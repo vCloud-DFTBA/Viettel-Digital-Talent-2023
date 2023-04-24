@@ -16,11 +16,6 @@ import { Link, useLocation } from 'react-router-dom';
 import ListItemText from '@mui/material/ListItemText';
 import clsx from 'clsx';
 import { Divider } from '@mui/material';
-import ListItemButton from '@mui/material/ListItemButton';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import IconButton from '@mui/material/IconButton'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const savedScrollTop = {};
 
@@ -287,13 +282,6 @@ export default function AppNavDrawer(props) {
 
   let location = useLocation();
 
-  const [openTeams, setOpenTeams] = React.useState(true);
-
-  const handleClickTeams = () => {
-    setOpenTeams(!openTeams);
-  };
-
-
   const drawer = (
     <React.Fragment>
       <ToolbarDiv>
@@ -323,7 +311,7 @@ export default function AppNavDrawer(props) {
                 height: 60,
               }}
             >
-              <img src="https://upload.wikimedia.org/wikipedia/vi/b/bf/Logo_HUET.svg" alt="logo" style={{ width: '60px' }} />
+              <img src="https://i.pinimg.com/originals/d8/64/da/d864dae9f4a980a58011d76a0e0d0212.png" alt="logo" style={{ width: '60px' }} />
             </Box>
           </Box>
         </Link>

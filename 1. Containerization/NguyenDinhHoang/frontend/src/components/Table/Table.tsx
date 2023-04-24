@@ -15,11 +15,10 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import InternService from 'src/services/intern.service';
 
 interface Data {
   calories: number;
@@ -321,6 +320,14 @@ export default function EnhancedTable() {
   const [visibleRows, setVisibleRows] = React.useState<Intern[] | null>(null);
   const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
   const [paddingHeight, setPaddingHeight] = React.useState(0);
+
+  React.useEffect(() => {
+    InternService.GetIntern().then((res) => {
+      console.log(res)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
 
   React.useEffect(() => {
     let rowsOnMount = stableSort(
