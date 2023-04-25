@@ -1,7 +1,7 @@
 import axios from "axios"
 // env
 
-const backendUrl = 'http://127.0.0.1:5000'
+const backendUrl = process.env.BACKEND_URL
 
 const server = axios.create({
   baseURL: backendUrl,

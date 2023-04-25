@@ -24,6 +24,7 @@ class Intern:
                 'id': str(intern['_id']),
                 'name': intern['name'],
                 'university': intern['university'],
+                'email': intern['email'],
                 'year_of_birth': intern['year_of_birth']
             })
         return interns
@@ -39,3 +40,17 @@ class Intern:
             'year_of_birth': self.year_of_birth,
             'email': self.name.split(' ')[-1].lower() + self.name.split(' ')[0][0].lower() + self.name.split(' ')[1][0].lower() + '@' + 'is.viettel.com.vn'
         }})
+    
+    @classmethod
+    def delete(cls, id):
+        db.delete_one({'_id': id})
+
+    # Delete many
+    @classmethod
+    def delete_many(cls, ids):
+        db.delete_many({'_id': {'$in': ids}})
+
+    # Delete all
+    @classmethod
+    def delete_all(cls):
+        db.delete_many({})

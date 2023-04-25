@@ -14,7 +14,7 @@ export const SideBarData: SideBarProps[] = [
     href: '/',
   },
   {
-    title: 'My Tasks',
+    title: 'Interns List',
     icon: <TaskIcon fontSize='small' />,
     href: '/tasks',
   }
