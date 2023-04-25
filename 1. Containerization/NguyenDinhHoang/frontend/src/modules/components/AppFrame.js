@@ -172,7 +172,7 @@ export default function AppFrame(props) {
                 height: '50px',
               }}
             >
-              <img src="https://upload.wikimedia.org/wikipedia/vi/b/bf/Logo_HUET.svg" alt="logo" style={{ width: '50px' }} />
+              <img src="https://i.pinimg.com/originals/d8/64/da/d864dae9f4a980a58011d76a0e0d0212.png" alt="logo" style={{ width: '50px' }} />
             </Box>
           </Link>
           <GrowingDiv />

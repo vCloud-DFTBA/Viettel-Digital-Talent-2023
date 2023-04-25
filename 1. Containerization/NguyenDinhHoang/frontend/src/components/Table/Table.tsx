@@ -327,9 +327,7 @@ export default function EnhancedTable() {
     }).catch((err) => {
       console.log(err)
     })
-  }, [])
 
-  React.useEffect(() => {
     let rowsOnMount = stableSort(
       rows,
       getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),

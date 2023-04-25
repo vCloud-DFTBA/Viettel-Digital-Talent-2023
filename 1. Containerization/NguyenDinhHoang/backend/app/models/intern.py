@@ -6,14 +6,14 @@ class Intern:
         self.name = name
         self.university = university
         self.year_of_birth = year_of_birth
-        self.email = self.name.lower().replace(' ', '.') + '@' + 'is.viettel.com.vn'
+        self.email = name.split(' ')[-1].lower() + name.split(' ')[0][0].lower() + name.split(' ')[1][0].lower() + '@' + 'is.viettel.com.vn'
     
     def save(self):
         db.insert_one({
             'name': self.name,
             'university': self.university,
             'year_of_birth': self.year_of_birth,
-            'email': self.name.lower().replace(' ', '.') + '@' + 'is.viettel.com.vn'
+            'email': self.email
         })
     
     @classmethod
@@ -24,6 +24,7 @@ class Intern:
                 'id': str(intern['_id']),
                 'name': intern['name'],
                 'university': intern['university'],
+                'year_of_birth': intern['year_of_birth']
             })
         return interns
 
@@ -36,5 +37,5 @@ class Intern:
             'name': self.name,
             'university': self.university,
             'year_of_birth': self.year_of_birth,
-            'email': self.name.lower().replace(' ', '.') + '@' + 'is.viettel.com.vn'
+            'email': self.name.split(' ')[-1].lower() + self.name.split(' ')[0][0].lower() + self.name.split(' ')[1][0].lower() + '@' + 'is.viettel.com.vn'
         }})

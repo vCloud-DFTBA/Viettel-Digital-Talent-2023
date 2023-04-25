@@ -3,11 +3,9 @@ version: '3.9'
 networks:
   vdt-web:
     name: vdt-web
-
 volumes:
   mongo-data:
     name: mongo-data
-
 services:
   mongo:
     container_name: mongo

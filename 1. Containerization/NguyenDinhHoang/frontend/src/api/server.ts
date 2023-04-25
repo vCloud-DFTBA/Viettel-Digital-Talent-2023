@@ -1,10 +1,10 @@
 import axios from "axios"
 // env
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL
+const backendUrl = 'http://127.0.0.1:5000'
 
 const server = axios.create({
-  baseURL: "hoangndst.freeddns.org:5000",
+  baseURL: backendUrl,
   headers: {
     "Content-Type": "application/json",
   }
