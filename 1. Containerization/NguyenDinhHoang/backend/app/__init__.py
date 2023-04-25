@@ -7,7 +7,8 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     CORS(app)
     app.config.from_object(config_class)
-
+    # debug mode
+    
     from app.controllers import intern_blueprint
     app.register_blueprint(intern_blueprint, url_prefix='/interns')
 
