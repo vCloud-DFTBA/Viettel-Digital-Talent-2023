@@ -6,6 +6,8 @@ Base on FastAPI, the application build on asynchronously mechanism that offer hi
 
 - Visited Swagger site: https://api.viettelcloud.site/docs
 
+![viettelcloud](images/lab1.jpg)
+
 ### Base components
 The application is 3-tier components:
  - FastAPI
