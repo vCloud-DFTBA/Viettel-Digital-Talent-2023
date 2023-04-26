@@ -10,7 +10,7 @@
       background-color: #f5f5f5;
       cursor: pointer;
     }
-  </style>
+</style>
 
 {% endblock stylesheets %}
 
@@ -135,18 +135,18 @@
         <div class="container">
             <div class="row justify-content-center mb-5 mb-lg-7">
                 <div class="col-12 col-lg-8 text-center">
-                    <h2 class="h1 mb-4">Our talent</h2>
-                    <p class="lead">List of our talent from 1800 candinates.</p>
+                    <h2 class="h1 mb-4">Danh sách Talent</h2>
+                    <p class="lead">Danh sách tài năng được tuyển chọn từ 1800 ứng viên.</p>
 
                 </div>
                 <div>
                     <table class="table">
                         <thead>
                           <tr>
-                            <th class="text-center">Name</th>
-                            <th class="text-center">Program</th>
-                            <th class="text-center">Title</th>
-                            <th class="text-center">Hometown</th>
+                            <th class="text-center">Họ và tên</th>
+                            <th class="text-center">Ngành học</th>
+                            <th class="text-center">Trường đại học</th>
+                            <th class="text-center">Chương trình</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -154,8 +154,8 @@
                           <tr onclick="window.location.href='/user/{{ user.name }}';">
                             <td class="text-center">{{ user.name }}</td>
                             <td class="text-center">{{ user.program }}</td>
+                            <td class="text-center">{{ user.university }}</td>
                             <td class="text-center">{{ user.title }}</td>
-                            <td class="text-center">{{ user.hometown }}</td>
                           </tr>
                           {% endfor %}
                         </tbody>
@@ -163,8 +163,8 @@
                       
                 </div>
             </div>
-            <div class="row row-grid align-items-center mb-5 mb-lg-7" id="program">
-                <div class="col-12 col-lg-5">
+            <div class="row row-grid align-items-center mb-2 mb-lg-3" id="program">
+                <div class="col-12 col-lg-7">
                     <h2 class="mb-4">Viettel Digital Talent</h2>
                     <p>Viettel Digital Talent là chương trình đào tạo được thiết kế bởi các chuyên gia hàng đầu Viettel giúp các tài năng trẻ khai phá tiềm năng và phát triển chuyên môn trong các lĩnh vực Cloud, Cyber Security, Data Science & Artificial intelligence, Internet of Things, 5G, Software & Data Engineering (Data, C/C++, Web/Mobile).</p>
                     <a href="#" class="btn btn-dark mt-3 animate-up-2">
@@ -174,50 +174,13 @@
                         </span>
                     </a>
                 </div>
-                <div class="col-12 col-lg-6 ml-lg-auto">
+                <div class="col-12 col-lg-4 ml-lg-auto">
                     <img src="/static/assets/img/illustrations/scene-3.svg" class="w-100" alt="">
                 </div>
             </div>
            
         </div>
     </section>
-    <div class="section section-sm py-0">
-        <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col">
-                    <h2 class="h6 font-weight-bold text-brown">We're proudly featured by</h2>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col d-flex justify-content-center flex-wrap">
-                    <a href="#" aria-label="Stripe brand logo" class="icon icon-xl icon-dark mr-4 mr-sm-5"
-                    data-toggle="tooltip" data-placement="top" title="Stripe">
-                        <span class="fab fa-stripe"></span>
-                    </a>
-                    <a href="#" aria-label="Digg brand logo" class="icon icon-xl icon-dark mr-4 mr-sm-5"
-                    data-toggle="tooltip" data-placement="top" title="Digg">
-                        <span class="fab fa-digg"></span>
-                    </a>
-                    <a href="#" aria-label="FedEx brand logo" class="icon icon-xl icon-dark mr-4 mr-sm-5"
-                    data-toggle="tooltip" data-placement="top" title="FedEx">
-                        <span class="fab fa-fedex"></span>
-                    </a>
-                    <a href="#" aria-label="Ember brand logo" class="icon icon-xl icon-dark mr-4 mr-sm-5"
-                    data-toggle="tooltip" data-placement="top" title="Ember">
-                        <span class="fab fa-ember"></span>
-                    </a>
-                    <a href="#" aria-label="Beyond brand logo" class="icon icon-xl icon-dark mr-4 mr-sm-5"
-                    data-toggle="tooltip" data-placement="top" title="Beyond">
-                        <span class="fab fa-d-and-d-beyond"></span>
-                    </a>
-                    <a href="#" aria-label="AngryCreative brand logo" class="icon icon-xl icon-dark"
-                    data-toggle="tooltip" data-placement="top" title="AngryCreative">
-                        <span class="fab fa-angrycreative"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     
     
 

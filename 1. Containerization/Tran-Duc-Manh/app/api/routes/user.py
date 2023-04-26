@@ -28,7 +28,7 @@ async def add_user_info(
     try:
         file_path = None
         student_object = user_collection.find_one(
-            {"name": data_input.name, "age": data_input.age}
+            {"name": data_input.name, "year": data_input.year}
         )
         if file:
             file_path = os.path.join(MEDIA_PATH, file.filename)
@@ -42,20 +42,13 @@ async def add_user_info(
                 {
                     "name": data_input.name,
                     "program": data_input.program,
-                    "age": data_input.age,
-                    "hometown": data_input.hometown,
-                    "note": data_input.note,
-                    "joined_at": datetime.now(),
+                    "year": data_input.year,
+                    "sex": data_input.sex,
                     "avatar": file.filename,
-                    "email": data_input.email,
-                    "phone": data_input.phone,
-                    "fb": data_input.fb,
-                    "zalo": data_input.zalo,
-                    "github": data_input.github,
                     "title": data_input.title,
+                    "university": data_input.university
                 }
             )
-
             student_object = user_collection.find_one(
                 {"_id": insert_result.inserted_id}
             )
@@ -66,16 +59,10 @@ async def add_user_info(
     return UserInfoResponse(
         name=student_object.get("name"),
         program=student_object.get("program"),
-        age=student_object.get("age"),
-        hometown=student_object.get("hometown"),
-        joined_at=student_object.get("joined_at"),
+        year=student_object.get("year"),
+        sex=student_object.get("sex"),
         avatar=student_object.get("avatar"),
-        note=student_object.get("note"),
-        email=student_object.get("email"),
-        phone=student_object.get("phone"),
-        fb=student_object.get("fb"),
-        zalo=student_object.get("zalo"),
-        github=student_object.get("github"),
+        university=student_object.get("university"),
         title=student_object.get("title"),
     )
 
@@ -89,22 +76,16 @@ async def get_all_user():
     try:
         cursor = user_collection.find({})
         object_list = []
-        for document in cursor:
+        for student_object in cursor:
             object_list.append(
                 {
-                    "name": document.get("name"),
-                    "program": document.get("program"),
-                    "age": document.get("age"),
-                    "hometown": document.get("hometown"),
-                    "note": document.get("note"),
-                    "joined_at": document.get("joined_at"),
-                    "avatar": document.get("avatar"),
-                    "email": document.get("email"),
-                    "phone": document.get("phone"),
-                    "fb": document.get("fb"),
-                    "zalo": document.get("zalo"),
-                    "github": document.get("github"),
-                    "title": document.get("title"),
+                    "name": student_object.get("name"),
+                    "program": student_object.get("program"),
+                    "year": student_object.get("year"),
+                    "sex": student_object.get("sex"),
+                    "avatar": student_object.get("avatar"),
+                    "university": student_object.get("university"),
+                    "title": student_object.get("title"),
                 }
             )
         return AllUserInfoResponse(users=object_list)
@@ -130,3 +111,5 @@ def image_endpoint(avatar: str):
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="image/jpeg", filename=avatar)
     return {"error": "File not found!"}
+
+

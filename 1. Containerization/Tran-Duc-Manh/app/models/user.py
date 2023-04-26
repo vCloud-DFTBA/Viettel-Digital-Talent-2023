@@ -13,20 +13,19 @@ class ProgramType(str, Enum):
     web = 'Web Development'
     iot = 'IoT & 5G'
 
+class SexType(str, Enum):
+    male='Nam'
+    female='Nữ'
+    other='Khác'
+    
 class UserInfoResponse(BaseModel):
     name: str
     program: str
     title: str 
-    email: str 
-    phone: str 
-    age: int 
-    hometown: str 
-    note: str 
-    fb: str 
-    github: str 
-    zalo: str 
-    avatar: Optional[str] 
-    joined_at: Optional[datetime] 
+    university: str 
+    year: int
+    sex: str
+    avatar: str
 
 
 class AllUserInfoResponse(BaseModel):
@@ -38,12 +37,6 @@ class UserInfoInput:
     name: str  = Form(...)
     program: ProgramType = Form(...)
     title: str = Form(...)
-    email: str = Form(...)
-    phone: str = Form(...)
-    age: int = Form(...)
-    hometown: str = Form(...)
-    note: str = Form(...)
-    fb: str = Form(...)
-    github: str  = Form(...)
-    zalo: str  = Form(...)
-    
+    university: str = Form(...)
+    year: int = Form(...)
+    sex: SexType = Form(...)
