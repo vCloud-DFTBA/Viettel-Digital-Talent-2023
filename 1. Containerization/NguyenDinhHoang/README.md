@@ -1,7 +1,16 @@
 ## Build and Deploy a 3-Tier Web Application using Docker
 ### Table of Contents
-
-
+  - [1. What is Container?](#1-what-is-container)
+  - [2. What is Docker?](#2-what-is-docker)
+  - [3. Docker Architecture](#3-docker-architecture)
+  - [4. What is Docker Compose?](#4-what-is-docker-compose)
+  - [5. What is Docker Swarm?](#5-what-is-docker-swarm)
+  - [6. Homework Questions](#6-homework-questions)
+  - [7. Layer Caching](#7-layer-caching)
+  - [8. 3-tier Web Application](#8-3-tier-web-application)
+  - [9. Deploy Documentations](#9-deploy-documentations)
+  - [10. Application Demo](#10-application-demo)
+  - [11. References](#11-references)
 ### Introduction to Docker
 
 ### **1. What is Container?**
@@ -252,7 +261,7 @@ Docker uses a caching mechanism to save time when building images. When you buil
     ```
     Image will be automatically built and run on your server.
 
-### **Application Demo**
+### **10. Application Demo**
 - Access [`https://vdt-frontend.hoangndst.freeddns.org`](https://vdt-frontend.hoangndst.freeddns.org) to see the application demo.
 - Access [`https://grafana.hoangndst.freeddns.org/`](https://grafana.hoangndst.freeddns.org/) to see the Monitoring Dashboard.
   - Username: `admin`
@@ -269,7 +278,7 @@ Docker uses a caching mechanism to save time when building images. When you buil
   </div>
 
 
-### 10. **References**
+### **11. References**
 - [Docker Documentation](https://docs.docker.com/)
 - [Flask Documentation](https://flask.palletsprojects.com/en/latest/)
 - [React Documentation](https://react.dev/)
