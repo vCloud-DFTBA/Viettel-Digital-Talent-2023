@@ -5,11 +5,9 @@ from bson.objectid import ObjectId
 
 @intern_blueprint.route('', methods=['GET'])
 def get_all_interns():
-    try:
-        interns = Intern.get_all()
-        return jsonify(interns)
-    except:
-        return jsonify({'message': 'Get all interns failed'}), 400
+    interns = Intern.get_all()
+    return jsonify(interns)
+
 
 
 @intern_blueprint.route('', methods=['POST'])

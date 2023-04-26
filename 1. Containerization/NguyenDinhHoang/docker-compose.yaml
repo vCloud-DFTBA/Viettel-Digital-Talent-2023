@@ -1,9 +1,11 @@
 version: '3.9'
 
 networks:
-  vdt-web:
-    name: vdt-web
+  vdt_web:
+    name: vdt_web
   traefik_default:
+    external: true
+  monitoring:
     external: true
 volumes:
   mongo-data:
@@ -18,9 +20,24 @@ services:
       MONGO_INITDB_ROOT_USERNAME: hoangndst
       MONGO_INITDB_ROOT_PASSWORD: Hoang2002
     networks:
-      - vdt-web
+      - vdt_web
     volumes:
       - mongo-data:/data/db
+
+  mongo-exporter:
+    image: bitnami/mongodb-exporter:latest
+    container_name: mongo-exporter
+    hostname: mongo-exporter
+    restart: always
+    # ports:
+    #   - 9216:9216
+    environment:
+      - MONGODB_URI=mongodb://hoangndst:Hoang2002@mongo:27017
+    networks:
+      - vdt_web
+      - monitoring
+    depends_on:
+      - mongo
   frontend:
     build:
       context: frontend
@@ -40,7 +57,7 @@ services:
       - "traefik.http.routers.vdt-frontend.tls=true"
       - "traefik.http.routers.vdt-frontend.tls.certresolver=production"
     networks:
-      - vdt-web
+      - vdt_web
       - traefik_default
     depends_on:
       - mongo
@@ -68,7 +85,7 @@ services:
       - MONGO_USERNAME=hoangndst
       - MONGO_PASSWORD=Hoang2002
     networks:
-      - vdt-web
+      - vdt_web
       - traefik_default
     depends_on:
       - mongo
