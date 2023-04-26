@@ -3,6 +3,8 @@ version: '3.9'
 networks:
   vdt-web:
     name: vdt-web
+  traefik_default:
+    external: true
 volumes:
   mongo-data:
     name: mongo-data
@@ -25,11 +27,21 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     hostname: frontend
+    ports:
+      - 3000:80
     restart: always
-    environment:
-      - BACKEND_URL=backend:5000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vdt-frontend.entrypoints=websecure"
+      - "traefik.http.routers.vdt-frontend.rule=Host(`vdt-frontend.g4amqp.freeddns.org`)"
+      - "traefik.http.routers.vdt-frontend.service=vdt-frontend"
+      - "traefik.http.services.vdt-frontend.loadbalancer.server.port=80"
+      - "traefik.docker.network=traefik_default"
+      - "traefik.http.routers.vdt-frontend.tls=true"
+      - "traefik.http.routers.vdt-frontend.tls.certresolver=production"
     networks:
       - vdt-web
+      - traefik_default
     depends_on:
       - mongo
   backend:
@@ -38,7 +50,18 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     hostname: backend
+    ports:
+      - 5000:5000
     restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vdt-backend.entrypoints=websecure"
+      - "traefik.http.routers.vdt-backend.rule=Host(`vdt-backend.g4amqp.freeddns.org`)"
+      - "traefik.http.routers.vdt-backend.service=vdt-backend"
+      - "traefik.http.services.vdt-backend.loadbalancer.server.port=5000"
+      - "traefik.docker.network=traefik_default"
+      - "traefik.http.routers.vdt-backend.tls=true"
+      - "traefik.http.routers.vdt-backend.tls.certresolver=production"
     environment:
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
@@ -46,5 +69,6 @@ services:
       - MONGO_PASSWORD=Hoang2002
     networks:
       - vdt-web
+      - traefik_default
     depends_on:
       - mongo
