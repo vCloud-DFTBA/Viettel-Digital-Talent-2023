@@ -100,7 +100,7 @@ Docker uses a caching mechanism to save time when building images. When you buil
   <img src="./asserts/app.jpg" width="800"/>
 </div>
 
-**References**
+**More details:**
 - Onpremise Server:
   - [Ubuntu 22.04.2 LTS](https://ubuntu.com/download/server): Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.
   - [Docker Standalone](https://docs.docker.com/engine/install/ubuntu/): Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers.
@@ -127,6 +127,33 @@ Docker uses a caching mechanism to save time when building images. When you buil
   - My free domain: [hoangndst.freeddns.org](http://hoangndst.freeddns.org/) point to `Traefik`.
 
 ### **9. Deploy Documentations**
+
+**Project Architecture:**
+  ``` bash
+  NguyenDinhHoang
+  ├── asserts
+  ├── backend
+  │   ├── Dockerfile
+  │   ├── .dockerignore
+  │   ├── .gitignore
+  │   ├── requirements.txt
+  │   ├── config.py
+  │   ├── app
+  ├── frontend
+  │   ├── Dockerfile
+  │   ├── .dockerignore
+  │   ├── .gitignore
+  │   ├── .env
+  │   ├── package.json
+  │   ├── package-lock.json
+  │   ├── public
+  │   ├── src
+  ├── docker-compose.yaml
+  ├── docker-compose-local.yaml
+  ├── README.md
+  ```
+
+
 
 **Understand `Dockerfile`**:
 
@@ -260,6 +287,11 @@ Docker uses a caching mechanism to save time when building images. When you buil
     docker compose -f docker-compose.yaml up -d
     ```
     Image will be automatically built and run on your server.
+
+**Preview Deployment**:
+  <div align="center">
+    <img src="./asserts/deploy.png" width="800"/>
+  </div>
 
 ### **10. Application Demo**
 - Access [`https://vdt-frontend.hoangndst.freeddns.org`](https://vdt-frontend.hoangndst.freeddns.org) to see the application demo.
