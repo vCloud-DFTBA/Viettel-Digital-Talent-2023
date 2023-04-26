@@ -10,7 +10,7 @@ A container is an isolated environment for your code. This means that a containe
 
 ### **2. What is Docker?**
 
-<div style="text-align:center">
+<div align="center">
   <img src="./asserts/docker.png" width="210" height="200" />
 </div>
 
@@ -27,7 +27,7 @@ Docker is a containerization platform that packages your application and all its
 
 ### **3. Docker Architecture**
 
-<div style="text-align:center">
+<div align="center">
   <img src="./asserts/architecture.svg" width="800"/>
 </div>
 
@@ -87,7 +87,7 @@ What are the differences between these instructions?
 Docker uses a caching mechanism to save time when building images. When you build an image, Docker creates a series of layers that represent the instructions in the Dockerfile. Each layer is only recreated if the instructions that created it have changed. This means that if you change the `RUN` command in your Dockerfile, all subsequent layers after that command are recreated. However, if you change the `COPY` command, all subsequent layers after that command are recreated. This is because the `COPY` command affects the filesystem, which is represented by the layers that follow it.
 
 ### **8. 3-tier Web Application**
-<div style="text-align:center">
+<div align="center">
   <img src="./asserts/app.jpg" width="800"/>
 </div>
 
@@ -117,7 +117,7 @@ Docker uses a caching mechanism to save time when building images. When you buil
 - Domain:
   - My free domain: [hoangndst.freeddns.org](http://hoangndst.freeddns.org/) point to `Traefik`.
 
-### **Deploy Documentations**
+### **9. Deploy Documentations**
 
 **Understand `Dockerfile`**:
 
@@ -250,6 +250,8 @@ Docker uses a caching mechanism to save time when building images. When you buil
     ``` bash
     docker compose -f docker-compose.yaml up -d
     ```
+    Image will be automatically built and run on your server.
+
 ### **Application Demo**
 - Access [`https://vdt-frontend.hoangndst.freeddns.org`](https://vdt-frontend.hoangndst.freeddns.org) to see the application demo.
 - Access [`https://grafana.hoangndst.freeddns.org/`](https://grafana.hoangndst.freeddns.org/) to see the Monitoring Dashboard.
@@ -257,11 +259,21 @@ Docker uses a caching mechanism to save time when building images. When you buil
   - Password: `Hoang2002`
 
 **Frontend**:
-  <div style="text-align:center">
+  <div align="center">
     <img src="./asserts/demo1.png" width="800"/>
   </div>
 
 **Backend**:  
-  <div style="text-align:center">
+  <div align="center">
     <img src="./asserts/demo2.png" width="800"/>
   </div>
+
+
+### 10. **References**
+- [Docker Documentation](https://docs.docker.com/)
+- [Flask Documentation](https://flask.palletsprojects.com/en/latest/)
+- [React Documentation](https://react.dev/)
+- [Traefik Documentation](https://doc.traefik.io/traefik/)
+- [Prometheus Documentation](https://prometheus.io/docs/introduction/overview/)
+- [Grafana Documentation](https://grafana.com/docs/grafana/latest/)
+- [MongoDB Documentation](https://docs.mongodb.com/)

@@ -44,8 +44,8 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     hostname: frontend
-    ports:
-      - 3000:80
+    # ports:
+    #   - 3000:80
     restart: always
     labels:
       - "traefik.enable=true"
@@ -67,8 +67,8 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     hostname: backend
-    ports:
-      - 5000:5000
+    # ports:
+    #   - 5000:5000
     restart: always
     labels:
       - "traefik.enable=true"
