@@ -50,7 +50,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.vdt-frontend.entrypoints=websecure"
-      - "traefik.http.routers.vdt-frontend.rule=Host(`vdt-frontend.g4amqp.freeddns.org`)"
+      - "traefik.http.routers.vdt-frontend.rule=Host(`vdt-frontend.hoangndst.freeddns.org`)"
       - "traefik.http.routers.vdt-frontend.service=vdt-frontend"
       - "traefik.http.services.vdt-frontend.loadbalancer.server.port=80"
       - "traefik.docker.network=traefik_default"
@@ -73,7 +73,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.vdt-backend.entrypoints=websecure"
-      - "traefik.http.routers.vdt-backend.rule=Host(`vdt-backend.g4amqp.freeddns.org`)"
+      - "traefik.http.routers.vdt-backend.rule=Host(`vdt-backend.hoangndst.freeddns.org`)"
       - "traefik.http.routers.vdt-backend.service=vdt-backend"
       - "traefik.http.services.vdt-backend.loadbalancer.server.port=5000"
       - "traefik.docker.network=traefik_default"
