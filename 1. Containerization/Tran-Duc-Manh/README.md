@@ -67,7 +67,7 @@ The application is 3-tier components:
 
 I also offer to use Jaeger for tracing and distributed logging with EFK(not implemented yet).
 
-### What we're doing
+### What I have done
 
 - Buy a domain from tenten.vn
 - Rend a server from FPT Cloud
