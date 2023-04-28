@@ -81,11 +81,11 @@ I also offer to use Jaeger for tracing and distributed logging with EFK(not impl
 
 Using Docker Slim container optimzes from 978MB to 56.8MB. Of course i can optimze more but for base image:`python:3.9` and FastAPI, it should be balanced between performance and image size.
 
-- Nginx:1.22.0-alpine: Optimize from 22.1MB to 7.12MB
+- Nginx:1.22.0-alpine: Optimize from 22.1MB to 7.12MB. see [Nginx optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/nginx.report.json)
 - mongodb:5.0: optimize from 626MB to 128MB
-- python:3.9 with FastAPI fullstack webserver from 978MB to 56.8MB.
+- python:3.9 with FastAPI fullstack webserver from 978MB to 56.8MB. see [Slim optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/app.report.json)
 
-see more information in slim.report.json
+see more information in app.report.json
 
 ![viettelcloud](images/image.png)
 
