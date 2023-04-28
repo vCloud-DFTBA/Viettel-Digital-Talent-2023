@@ -1,0 +1,348 @@
+{
+  "version": "1.1",
+  "engine": "darwin|Transformer|1.40.1|9c5e69ab1fd4564b0a5426d47be038155e63e4c1|2023-04-05_11:53:16PM",
+  "containerized": false,
+  "host_distro": {
+    "name": "",
+    "version": "",
+    "display_name": "other"
+  },
+  "type": "build",
+  "state": "done",
+  "target_reference": "nginx:1.22.0-alpine",
+  "system": {
+    "type": "",
+    "release": "",
+    "distro": {
+      "name": "",
+      "version": "",
+      "display_name": ""
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": "sha256:4859ff7f0de8faa0e00568422c02e62b1620e01a1a3958e61814a9b84b3104d2",
+      "tags": [
+        "1.22.0-alpine"
+      ],
+      "names": [
+        "nginx:1.22.0-alpine"
+      ],
+      "digests": [
+        "sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec"
+      ],
+      "full_digests": [
+        "nginx@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec"
+      ]
+    },
+    "size": 22075501,
+    "size_human": "22 MB",
+    "create_time": "2022-10-06T22:39:38Z",
+    "docker_version": "20.10.12",
+    "architecture": "arm64",
+    "exposed_ports": [
+      "80/tcp"
+    ],
+    "os": "linux",
+    "labels": {
+      "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+    },
+    "env_vars": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "NGINX_VERSION=1.22.0",
+      "NJS_VERSION=0.7.6",
+      "PKG_RELEASE=1"
+    ],
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 7115652,
+  "minified_image_size_human": "7.1 MB",
+  "minified_image": "nginx.slim",
+  "minified_image_has_data": true,
+  "minified_by": 3.1023862605984664,
+  "artifact_location": "/tmp/slim-state/.slim-state/images/4859ff7f0de8faa0e00568422c02e62b1620e01a1a3958e61814a9b84b3104d2/artifacts",
+  "container_report_name": "creport.json",
+  "seccomp_profile_name": "nginx-seccomp.json",
+  "apparmor_profile_name": "nginx-apparmor-profile",
+  "image_stack": [
+    {
+      "is_top_image": true,
+      "id": "sha256:4859ff7f0de8faa0e00568422c02e62b1620e01a1a3958e61814a9b84b3104d2",
+      "full_name": "nginx:1.22.0-alpine",
+      "repo_name": "nginx",
+      "version_tag": "1.22.0-alpine",
+      "raw_tags": [
+        "nginx:1.22.0-alpine"
+      ],
+      "create_time": "2022-10-06T22:39:38Z",
+      "new_size": 22075501,
+      "new_size_human": "22 MB",
+      "instructions": [
+        {
+          "type": "ADD",
+          "time": "2022-08-09T17:39:41Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 5290519,
+          "size_human": "5.3 MB",
+          "params": "file:960fd469d48cf79ba14bbda71f3192074ed860c112e30e0bc92bff3440cb45ab in /",
+          "command_snippet": "ADD file:960fd469d48cf79ba14bbda71f3192074ed...",
+          "command_all": "ADD file:960fd469d48cf79ba14bbda71f3192074ed860c112e30e0bc92bff3440cb45ab /",
+          "target": "/",
+          "source_type": "file",
+          "inst_set_time_bucket": "2022-08-09T20:30:00+03:00"
+        },
+        {
+          "type": "CMD",
+          "time": "2022-08-09T17:39:42Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"/bin/sh\"]\n",
+          "command_snippet": "CMD [\"/bin/sh\"]\n",
+          "command_all": "CMD [\"/bin/sh\"]\n",
+          "inst_set_time_bucket": "2022-08-09T20:30:00+03:00"
+        },
+        {
+          "type": "LABEL",
+          "time": "2022-10-06T22:38:28Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "maintainer=NGINX Docker Maintainers <docker-maint@nginx.com>",
+          "command_snippet": "LABEL maintainer=NGINX Docker Maintainers <d...",
+          "command_all": "LABEL maintainer=NGINX Docker Maintainers <docker-maint@nginx.com>",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2022-10-06T22:39:22Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "NGINX_VERSION=1.22.0",
+          "command_snippet": "ENV NGINX_VERSION=1.22.0",
+          "command_all": "ENV NGINX_VERSION=1.22.0",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2022-10-06T22:39:23Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "NJS_VERSION=0.7.6",
+          "command_snippet": "ENV NJS_VERSION=0.7.6",
+          "command_all": "ENV NJS_VERSION=0.7.6",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2022-10-06T22:39:24Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "PKG_RELEASE=1",
+          "command_snippet": "ENV PKG_RELEASE=1",
+          "command_all": "ENV PKG_RELEASE=1",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2022-10-06T22:39:31Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 16776169,
+          "size_human": "17 MB",
+          "command_snippet": "RUN set -x && \\\n\taddgroup -g 101 -S nginx &&...",
+          "command_all": "RUN set -x && \\\n\taddgroup -g 101 -S nginx && \\\n\tadduser -S -D -H -u 101 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx && \\\n\tapkArch=\"$(cat /etc/apk/arch)\" && \\\n\tnginxPackages=\"         nginx=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-xslt=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-geoip=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-image-filter=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-njs=${NGINX_VERSION}.${NJS_VERSION}-r${PKG_RELEASE}     \" && \\\n\tapk add --no-cache --virtual .checksum-deps         openssl && \\\n\tcase \"$apkArch\" in         x86_64|aarch64)             set -x && \\\n\tKEY_SHA512=\"e7fa8303923d9b95db37a77ad46c68fd4755ff935d0a534d26eba83de193c76166c68bfe7f65471bf8881004ef4aa6df3e34689c305662750c0172fca5d8552a *stdin\" && \\\n\twget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub && \\\n\tif [ \"$(openssl rsa -pubin -in /tmp/nginx_signing.rsa.pub -text -noout | openssl sha512 -r)\" = \"$KEY_SHA512\" ]; then                 echo \"key verification succeeded!\";                 mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/;             else                 echo \"key verification failed!\";                 exit 1;             fi && \\\n\tapk add -X \"https://nginx.org/packages/alpine/v$(egrep -o '^[0-9]+\\.[0-9]+' /etc/alpine-release)/main\" --no-cache $nginxPackages             ;;         *)             set -x && \\\n\ttempDir=\"$(mktemp -d)\" && \\\n\tchown nobody:nobody $tempDir && \\\n\tapk add --no-cache --virtual .build-deps                 gcc                 libc-dev                 make                 openssl-dev                 pcre2-dev                 zlib-dev                 linux-headers                 libxslt-dev                 gd-dev                 geoip-dev                 perl-dev                 libedit-dev                 bash                 alpine-sdk                 findutils && \\\n\tsu nobody -s /bin/sh -c \"                 export HOME=${tempDir} && \\\n\tcd ${tempDir} && \\\n\tcurl -f -O https://hg.nginx.org/pkg-oss/archive/725.tar.gz && \\\n\tPKGOSSCHECKSUM=\\\"a6c56bb7e98be77337affe349e1316a71ddad7a732dc3b34294a794b3e740d68385022f0de72d08c090156f194580a92dcb8b5e2aa1c9c29b5a8484a6431e9b3 *725.tar.gz\\\" && \\\n\tif [ \\\"\\$(openssl sha512 -r 725.tar.gz)\\\" = \\\"\\$PKGOSSCHECKSUM\\\" ]; then                     echo \\\"pkg-oss tarball checksum verification succeeded!\\\";                 else                     echo \\\"pkg-oss tarball checksum verification failed!\\\";                     exit 1;                 fi && \\\n\ttar xzvf 725.tar.gz && \\\n\tcd pkg-oss-725 && \\\n\tcd alpine && \\\n\tmake all && \\\n\tapk index -o ${tempDir}/packages/alpine/${apkArch}/APKINDEX.tar.gz ${tempDir}/packages/alpine/${apkArch}/*.apk && \\\n\tabuild-sign -k ${tempDir}/.abuild/abuild-key.rsa ${tempDir}/packages/alpine/${apkArch}/APKINDEX.tar.gz                 \" && \\\n\tcp ${tempDir}/.abuild/abuild-key.rsa.pub /etc/apk/keys/ && \\\n\tapk del .build-deps && \\\n\tapk add -X ${tempDir}/packages/alpine/ --no-cache $nginxPackages             ;;     esac && \\\n\tapk del .checksum-deps && \\\n\tif [ -n \"$tempDir\" ]; then rm -rf \"$tempDir\"; fi && \\\n\tif [ -n \"/etc/apk/keys/abuild-key.rsa.pub\" ]; then rm -f /etc/apk/keys/abuild-key.rsa.pub; fi && \\\n\tif [ -n \"/etc/apk/keys/nginx_signing.rsa.pub\" ]; then rm -f /etc/apk/keys/nginx_signing.rsa.pub; fi && \\\n\tapk add --no-cache --virtual .gettext gettext && \\\n\tmv /usr/bin/envsubst /tmp/ && \\\n\trunDeps=\"$(         scanelf --needed --nobanner /tmp/envsubst             | awk '{ gsub(/,/, \"\\nso:\", $2); print \"so:\" $2 }'             | sort -u             | xargs -r apk info --installed             | sort -u     )\" && \\\n\tapk add --no-cache $runDeps && \\\n\tapk del .gettext && \\\n\tmv /tmp/envsubst /usr/local/bin/ && \\\n\tapk add --no-cache tzdata && \\\n\tapk add --no-cache curl ca-certificates && \\\n\tln -sf /dev/stdout /var/log/nginx/access.log && \\\n\tln -sf /dev/stderr /var/log/nginx/error.log && \\\n\tmkdir /docker-entrypoint.d",
+          "system_commands": [
+            "set -x",
+            "addgroup -g 101 -S nginx",
+            "adduser -S -D -H -u 101 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx",
+            "apkArch=\"$(cat /etc/apk/arch)\"",
+            "nginxPackages=\"         nginx=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-xslt=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-geoip=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-image-filter=${NGINX_VERSION}-r${PKG_RELEASE}         nginx-module-njs=${NGINX_VERSION}.${NJS_VERSION}-r${PKG_RELEASE}     \"",
+            "apk add --no-cache --virtual .checksum-deps         openssl",
+            "case \"$apkArch\" in         x86_64|aarch64)             set -x",
+            "KEY_SHA512=\"e7fa8303923d9b95db37a77ad46c68fd4755ff935d0a534d26eba83de193c76166c68bfe7f65471bf8881004ef4aa6df3e34689c305662750c0172fca5d8552a *stdin\"",
+            "wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub",
+            "if [ \"$(openssl rsa -pubin -in /tmp/nginx_signing.rsa.pub -text -noout | openssl sha512 -r)\" = \"$KEY_SHA512\" ]; then                 echo \"key verification succeeded!\";                 mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/;             else                 echo \"key verification failed!\";                 exit 1;             fi",
+            "apk add -X \"https://nginx.org/packages/alpine/v$(egrep -o '^[0-9]+.[0-9]+' /etc/alpine-release)/main\" --no-cache $nginxPackages             ;;         *)             set -x",
+            "tempDir=\"$(mktemp -d)\"",
+            "chown nobody:nobody $tempDir",
+            "apk add --no-cache --virtual .build-deps                 gcc                 libc-dev                 make                 openssl-dev                 pcre2-dev                 zlib-dev                 linux-headers                 libxslt-dev                 gd-dev                 geoip-dev                 perl-dev                 libedit-dev                 bash                 alpine-sdk                 findutils",
+            "su nobody -s /bin/sh -c \"                 export HOME=${tempDir}",
+            "cd ${tempDir}",
+            "curl -f -O https://hg.nginx.org/pkg-oss/archive/725.tar.gz",
+            "PKGOSSCHECKSUM=\"a6c56bb7e98be77337affe349e1316a71ddad7a732dc3b34294a794b3e740d68385022f0de72d08c090156f194580a92dcb8b5e2aa1c9c29b5a8484a6431e9b3 *725.tar.gz\"",
+            "if [ \"$(openssl sha512 -r 725.tar.gz)\" = \"$PKGOSSCHECKSUM\" ]; then                     echo \"pkg-oss tarball checksum verification succeeded!\";                 else                     echo \"pkg-oss tarball checksum verification failed!\";                     exit 1;                 fi",
+            "tar xzvf 725.tar.gz",
+            "cd pkg-oss-725",
+            "cd alpine",
+            "make all",
+            "apk index -o ${tempDir}/packages/alpine/${apkArch}/APKINDEX.tar.gz ${tempDir}/packages/alpine/${apkArch}/*.apk",
+            "abuild-sign -k ${tempDir}/.abuild/abuild-key.rsa ${tempDir}/packages/alpine/${apkArch}/APKINDEX.tar.gz                 \"",
+            "cp ${tempDir}/.abuild/abuild-key.rsa.pub /etc/apk/keys/",
+            "apk del .build-deps",
+            "apk add -X ${tempDir}/packages/alpine/ --no-cache $nginxPackages             ;;     esac",
+            "apk del .checksum-deps",
+            "if [ -n \"$tempDir\" ]; then rm -rf \"$tempDir\"; fi",
+            "if [ -n \"/etc/apk/keys/abuild-key.rsa.pub\" ]; then rm -f /etc/apk/keys/abuild-key.rsa.pub; fi",
+            "if [ -n \"/etc/apk/keys/nginx_signing.rsa.pub\" ]; then rm -f /etc/apk/keys/nginx_signing.rsa.pub; fi",
+            "apk add --no-cache --virtual .gettext gettext",
+            "mv /usr/bin/envsubst /tmp/",
+            "runDeps=\"$(         scanelf --needed --nobanner /tmp/envsubst             | awk '{ gsub(/,/, \"nso:\", $2); print \"so:\" $2 }'             | sort -u             | xargs -r apk info --installed             | sort -u     )\"",
+            "apk add --no-cache $runDeps",
+            "apk del .gettext",
+            "mv /tmp/envsubst /usr/local/bin/",
+            "apk add --no-cache tzdata",
+            "apk add --no-cache curl ca-certificates",
+            "ln -sf /dev/stdout /var/log/nginx/access.log",
+            "ln -sf /dev/stderr /var/log/nginx/error.log",
+            "mkdir /docker-entrypoint.d"
+          ],
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "COPY",
+          "time": "2022-10-06T22:39:32Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 1202,
+          "size_human": "1.2 kB",
+          "params": "file:65504f71f5855ca017fb64d502ce873a31b2e0decd75297a8fb0a287f97acf92 in /",
+          "command_snippet": "COPY file:65504f71f5855ca017fb64d502ce873a31...",
+          "command_all": "COPY file:65504f71f5855ca017fb64d502ce873a31b2e0decd75297a8fb0a287f97acf92 /",
+          "target": "/",
+          "source_type": "file",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "COPY",
+          "time": "2022-10-06T22:39:33Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 1961,
+          "size_human": "2.0 kB",
+          "params": "file:0b866ff3fc1ef5b03c4e6c8c513ae014f691fb05d530257dfffd07035c1b75da in /docker-entrypoint.d",
+          "command_snippet": "COPY file:0b866ff3fc1ef5b03c4e6c8c513ae014f6...",
+          "command_all": "COPY file:0b866ff3fc1ef5b03c4e6c8c513ae014f691fb05d530257dfffd07035c1b75da /docker-entrypoint.d",
+          "target": "/docker-entrypoint.d",
+          "source_type": "file",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "COPY",
+          "time": "2022-10-06T22:39:34Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 1037,
+          "size_human": "1.0 kB",
+          "params": "file:0fd5fca330dcd6a7de297435e32af634f29f7132ed0550d342cad9fd20158258 in /docker-entrypoint.d",
+          "command_snippet": "COPY file:0fd5fca330dcd6a7de297435e32af634f2...",
+          "command_all": "COPY file:0fd5fca330dcd6a7de297435e32af634f29f7132ed0550d342cad9fd20158258 /docker-entrypoint.d",
+          "target": "/docker-entrypoint.d",
+          "source_type": "file",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "COPY",
+          "time": "2022-10-06T22:39:35Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 4613,
+          "size_human": "4.6 kB",
+          "params": "file:09a214a3e07c919af2fb2d7c749ccbc446b8c10eb217366e5a65640ee9edcc25 in /docker-entrypoint.d",
+          "command_snippet": "COPY file:09a214a3e07c919af2fb2d7c749ccbc446...",
+          "command_all": "COPY file:09a214a3e07c919af2fb2d7c749ccbc446b8c10eb217366e5a65640ee9edcc25 /docker-entrypoint.d",
+          "target": "/docker-entrypoint.d",
+          "source_type": "file",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "ENTRYPOINT",
+          "time": "2022-10-06T22:39:35Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"/docker-entrypoint.sh\"]\n",
+          "command_snippet": "ENTRYPOINT [\"/docker-entrypoint.sh\"]\n",
+          "command_all": "ENTRYPOINT [\"/docker-entrypoint.sh\"]\n",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "EXPOSE",
+          "time": "2022-10-06T22:39:36Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "80",
+          "command_snippet": "EXPOSE 80",
+          "command_all": "EXPOSE 80",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "STOPSIGNAL",
+          "time": "2022-10-06T22:39:37Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "SIGQUIT",
+          "command_snippet": "STOPSIGNAL SIGQUIT",
+          "command_all": "STOPSIGNAL SIGQUIT",
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        },
+        {
+          "type": "CMD",
+          "time": "2022-10-06T22:39:38Z",
+          "is_last_instruction": true,
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"nginx\",\"-g\",\"daemon off;\"]\n",
+          "command_snippet": "CMD [\"nginx\",\"-g\",\"daemon off;\"]\n",
+          "command_all": "CMD [\"nginx\",\"-g\",\"daemon off;\"]\n",
+          "raw_tags": [
+            "nginx:1.22.0-alpine"
+          ],
+          "inst_set_time_bucket": "2022-10-07T01:30:00+03:00",
+          "inst_set_time_index": 1
+        }
+      ]
+    }
+  ],
+  "image_created": true,
+  "image_build_engine": "docker"
+}

@@ -74,6 +74,20 @@ I also offer to use Jaeger for tracing and distributed logging with EFK(not impl
 - Connect DNS from Cloudflare
 - Seft host 3-tier application on FPT server
 - Configure SSL certificate to secure connection
+- Optimize docker container using Docker Slim
+
+
+### Optimze Docker container 
+
+Using Docker Slim container optimzes from 978MB to 56.8MB. Of course i can optimze more but for base image:`python:3.9` and FastAPI, it should be balanced between performance and image size.
+
+- Nginx:1.22.0-alpine: Optimize from 22.1MB to 7.12MB
+- mongodb:5.0: optimize from 626MB to 128MB
+- python:3.9 with FastAPI fullstack webserver from 978MB to 56.8MB.
+
+see more information in slim.report.json
+
+![viettelcloud](images/image.png)
 
 ### How to use
 
