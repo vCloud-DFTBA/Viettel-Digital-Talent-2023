@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  react:
+    build: frontend
+    container_name: presentation_tier
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    links:
+      - fastapi
+
+  fastapi:
+    build: backend
+    container_name: logic_tier
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    links:
+      - mongodb
+
+  mongodb:
+    image: mongo:5.0
+    container_name: data_tier
+    restart: unless-stopped
+    hostname: mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=VDT2023
+      - MONGO_INITDB_ROOT_USERNAME=practice1
+      - MONGO_INITDB_ROOT_PASSWORD=practice1
+    ports:
+      - "27017:27017"
+  
+  nginx:
+    image: nginx:1.22.0-alpine
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx/config.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8888:8888"
