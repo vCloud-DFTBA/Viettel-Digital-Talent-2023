@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  backend:
+    image: backend:latest
+    container_name: backend
+    depends_on:
+      - mongodb
+    networks:
+      - db
+      - app
+
+  mongodb:
+    image: mongo:5.0.0
+    container_name: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: kilinh
+      MONGO_INITDB_ROOT_PASSWORD: Linh2812
+      MONGO_INITDB_DATABASE: VDT2023
+    networks:
+      - db
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+
+  frontend:
+    image: frontend:latest
+    container_name: frontend
+    ports:
+      - 80:80
+    networks:
+      - app
+    depends_on:
+      - backend
+
+networks:
+  app:
+    driver: bridge
+  db:
+    driver: bridge
