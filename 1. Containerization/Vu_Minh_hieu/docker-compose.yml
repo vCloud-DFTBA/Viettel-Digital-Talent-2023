@@ -4,6 +4,7 @@ services:
   react:
     build: frontend
     container_name: presentation_tier
+    hostname: react
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -16,7 +17,7 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-    links:
+    depends_on:
       - mongodb
 
   mongodb:
@@ -25,9 +26,7 @@ services:
     restart: unless-stopped
     hostname: mongodb
     environment:
-      - MONGO_INITDB_DATABASE=VDT2023
-      - MONGO_INITDB_ROOT_USERNAME=practice1
-      - MONGO_INITDB_ROOT_PASSWORD=practice1
+      - MONGO_INITDB_DATABASE=vdt2023
     ports:
       - "27017:27017"
   
@@ -39,3 +38,5 @@ services:
       - ./nginx/config.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "8888:8888"
+    links:
+      - react
