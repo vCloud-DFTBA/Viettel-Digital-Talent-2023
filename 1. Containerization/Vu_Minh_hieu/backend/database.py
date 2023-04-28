@@ -2,8 +2,7 @@ import motor.motor_asyncio
 from model import Student
 
 # MongoDB driver
-# url = 'mongodb://localhost:27017'
-url = 'mongodb://host.docker.internal:27017'
+url = 'mongodb://mongodb:27017/vdt2023'
 client = motor.motor_asyncio.AsyncIOMotorClient(url)
 
 database = client.VDT
