@@ -569,7 +569,7 @@ I have tried many times, and as you can see in the tag, this is my 6th time.
         docker-slim build --http-probe=false --target three-tier-webapp_backend:latest --tag three-tier-webapp_backend:6
         
         // web server
-        docker-slim build --http-probe=false --target three-tier-webapp_webserver:latest --tag        three-tier-webapp_webserver:6
+        docker-slim build --http-probe=false --target three-tier-webapp_webserver:latest --tag three-tier-webapp_webserver:6
 ```
 
 After optimization with Docker-slim, the docker images are significantly smaller than before:
