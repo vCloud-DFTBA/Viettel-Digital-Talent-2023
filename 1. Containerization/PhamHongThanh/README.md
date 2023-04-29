@@ -60,7 +60,6 @@ Structure:
 ```bash
 ├── flask
 │   ├── app.py
-│   │   ├── **/*.css
 │   ├── Dockerfile
 │   ├── requirements.txt
 ├── images
