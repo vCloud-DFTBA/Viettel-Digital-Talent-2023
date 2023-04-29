@@ -135,6 +135,77 @@ Xem thêm chi tiết [tại đây](https://viblo.asia/p/tim-hieu-ve-dockerfile-v
 - `CMD` được thực thi trong quá trình run. Điều này cho phép gọi tới một vài quá trình như bash, nginx hay bất cứ quá trình nào mà Docker image runs. Việc thực thi chỉ thị nằm ngay trong layer hiện tại của images.
 - Trong Dockerfile có thể có nhiều chỉ thị `RUN` được thực thi nhưng chỉ có duy nhất một chỉ thị `CMD` được thi.
 # II. Web Application
+## 1. Frontend
+Để **Build Docker Image** cho Frontend chúng ta cần tạo file cấu hình `Dockerfile` và định nghĩa môi trường chúng ta mong muốn. `Dockerfile` có nội dung như sau:
+Chúng ta sẽ sử dụng image này để xây dựng nginx server và triển khai ứng dụng trên server đó.
+```Dockerfile
+  FROM nginx:1.22.0-alpine
+  COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+  EXPOSE 80
+  CMD ["/bin/sh", "-c", "nginx -g 'daemon off;'"]
+```
+Tiếp theo chúng ta sẽ tạo 1 file `nginx.conf ` cho **Nginx** web server. File có nội dung như sau:
+```
+upstream web_server {
+    server backend_1:5000;
+    server backend_2:5000;
+}
+
+server {
+  listen 80;
+  server_name localhost;
+  location / {
+    proxy_pass http://web_server;
+  }
+}
+```
+## 2. Backend
+Chúng ta đang set up một ứng dụng Python dùng Flask framework, sử dụng image base `python:3.9-alpine3.17`. Đầu tiên cần tạo 1 `Dockerfile` có nội dung như sau:
+```Dockerfile
+FROM python:3.9-alpine3.17
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt --no-cache-dir && \
+    rm -f flask_requirements.txt
+
+COPY . .
+EXPOSE 5000
+
+CMD [ "python3" ,"app.py" ]
+```
+File requirements.txt được dùng để cài đặt những module cần thiết để triển khai ứng dụng.
+```
+Flask~=2.3.1
+pymongo~=4.3.3
+```
+## 3. `Docker-compose.yml` file
+Để triển khai ứng dụng Web với `docker-compose`, chúng ta cần tạo một file với tên là `docker-compose.yml`, với nội dung như sau:
+```
+FROM python:3.9-alpine3.17
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt --no-cache-dir && \
+    rm -f flask_requirements.txt
+
+COPY . .
+EXPOSE 5000
+
+CMD [ "python3" ,"app.py" ]
+```
+### 4. Deployment
+Chúng ta sẽ triển khi một Web application có sử dụng Load balancer. Chạy ứng dụng trong trình duyệt theo đường dẫn `localhost:5000` sẽ trả về 2 địa chỉ IP khác nhau của Container và chúng hiển thị xen kẽ sau mỗi lần chạy.
+Kết quả trả về:
+<div align="center">
+       <img src="./images/result_1.png"/>
+</div>
+<div align="center">
+       <img src="./images/result_2.png"/>
+</div>
+
 
 
     
