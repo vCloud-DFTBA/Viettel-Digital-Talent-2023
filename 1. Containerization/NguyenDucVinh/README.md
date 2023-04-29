@@ -3,16 +3,18 @@
 ### Cả hai instruction ARG và ENV đều được sử dụng để định nghĩa các biến trong quá trình xây dựng Docker image, tuy nhiên chúng có sự khác nhau như sau:
 - ARG: Được sử dụng để định nghĩa các biến môi trường trong quá trình xây dựng Docker image và chúng được đặt giá trị trong quá trình build. Điều này có nghĩa là giá trị của ARG chỉ có hiệu lực trong quá trình build và không có giá trị trong quá trình runtime của container.
 - ENV: Được sử dụng để định nghĩa các biến môi trường trong quá trình runtime của container. Chúng được đặt giá trị trong quá trình build và được sử dụng trong quá trình runtime của container. Điều này có nghĩa là giá trị của ENV có thể được truyền vào container và sử dụng trong quá trình chạy của nó.
-- Ví du: 
-## sử dụng ARG trong Dockerfile
- *ARG APP_PORT=5000*
- *ENV APP_PORT=$APP_PORT*
- *EXPOSE $APP_PORT*
 
-##sử dụng ENV trong Dockerfile
+## sử dụng ARG trong Dockerfile
+ARG APP_PORT = 5000
+ENV APP_PORT= $APP_PORT
+
+EXPOSE $APP_PORT
+
+## sử dụng ENV trong Dockerfile
  *ENV APP_PORT=5000*
  *EXPOSE $APP_PORT*
-- Ở ví dụ trên, cả hai instruction đều định nghĩa biến môi trường APP_PORT và sử dụng nó trong lệnh EXPOSE. Tuy nhiên, với ARG, giá trị của nó chỉ có hiệu lực trong quá trình build và được truyền vào ENV để sử dụng trong quá trình runtime của container. Trong khi đó, với ENV, giá trị của nó được sử dụng trực tiếp trong quá trình runtime của container.
+
+### Ở ví dụ trên, cả hai instruction đều định nghĩa biến môi trường APP_PORT và sử dụng nó trong lệnh EXPOSE. Tuy nhiên, với ARG, giá trị của nó chỉ có hiệu lực trong quá trình build và được truyền vào ENV để sử dụng trong quá trình runtime của container. Trong khi đó, với ENV, giá trị của nó được sử dụng trực tiếp trong quá trình runtime của container.
 
 ## COPY vs ADD
 ### Giống nhau:
