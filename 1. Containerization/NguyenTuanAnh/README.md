@@ -127,7 +127,7 @@ Xem thêm chi tiết [tại đây](https://viblo.asia/p/tim-hieu-ve-dockerfile-v
   - Nếu thực hiện copy local files tới Docker image thì hãy sử dụng `COPY` bởi vì nó tường minh hơn so với `ADD` (làm rõ việc chúng ta đang muốn thực hiện hành động nào).
 #### Phân biệt CMD và ENTRYPOINT:
 - Hiện tại Docker chỉ cho phép chạy một `CMD` khi khởi động container, nhưng nếu `CMD` của các chúng ta phức tạp thì có thể dùng tới `ENTRYPOINT`.
-- `CMD` và `ENTRYPOINT` có tác dụng tương tự nhau. Nếu một Dockerfile có cả `CMD` và `ENTRYPOINT` thì `ENTRYPOINT` dùng để cấu hình cho `CMD` trước khi chạy `CMD`. 
+- `CMD` và `ENTRYPOINT` có tác dụng tương tự nhau. Nếu một Dockerfile có cả `CMD` và `ENTRYPOINT` thì `ENTRYPOINT` được dùng để làm đối số mặc định cho `CMD`. 
 - Lý do dùng `ENTRYPOINT` là để chuẩn bị các điều kiện setup như tạo user, mkdir, change owner... cần thiết để chạy service trong container.
 >Trong Dockerfile có thể vừa có ENTRYPOINT vừa có CMD.
 #### Phân biệt CMD và RUN: 
