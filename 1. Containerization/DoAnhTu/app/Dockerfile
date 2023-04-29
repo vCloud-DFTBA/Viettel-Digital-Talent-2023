@@ -15,6 +15,7 @@ COPY . .
 EXPOSE 5000
 
 
-CMD [ "flask","run","--host=0.0.0.0" ]
+CMD ["uwsgi", "--http", "127.0.0.1:8000", "--master", "-p", "4", "-w", "wsgi:app"]
+
 
 
