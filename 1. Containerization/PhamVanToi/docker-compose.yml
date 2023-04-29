@@ -1,0 +1,35 @@
+services:
+  web:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/tmp/nginx.conf
+    environment: 
+      - FLASK_SERVER_ADDR=app:9091  
+    command: /bin/bash -c "envsubst < /tmp/nginx.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'" 
+    ports:
+      - 80:80
+    depends_on:
+      - app
+
+  app:
+    build: .
+    command: python -u app.py
+    # ports:
+    #   - "5000:5000"
+    environment:
+      - FLASK_SERVER_PORT=9091
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  db:
+    image: mongo:latest
+    hostname: phamvantoi
+    environment:
+      - MONGO_INITDB_DATABASE=internees
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+    ports:
+      - 27017:27017
