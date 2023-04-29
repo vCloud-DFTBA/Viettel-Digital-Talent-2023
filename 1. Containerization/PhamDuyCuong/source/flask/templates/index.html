@@ -13,19 +13,21 @@
 <body>
     <table>
         <tr>
+            <th>STT</th>
             <th>Họ và tên</th>
             <th>Năm sinh</th>
             <th>Giới tính</th>
             <th>Trường</th>
             <th>Chuyên ngành</th>
         </tr>
-        {% for mentee in data %}
+        {% for student in data %}
             <tr>
-              <td>{{mentee['full_name']}}</td>
-              <td>{{mentee['birth_year']}}</td>
-              <td>{{mentee['gender']}}</td>
-              <td>{{mentee['university']}}</td>
-              <td>{{mentee['major']}}</td>
+                <td>{{student['stt']}}</td>
+                <td>{{student['full_name']}}</td>
+                <td>{{student['birth_year']}}</td>
+                <td>{{student['gender']}}</td>
+                <td>{{student['university']}}</td>
+                <td>{{student['major']}}</td>
             </tr>
        {% endfor %}
     </table>

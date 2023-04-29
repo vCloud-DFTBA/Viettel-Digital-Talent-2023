@@ -8,15 +8,15 @@ services:
     ports:
       - 80:80
     depends_on:
-      - backend
+      - backend_1
       - backend_2
 
-  backend:
-    container_name: logic_tier
+  backend_1:
+    container_name: logic_tier_1
     build:
       context: flask
     environment:
-      - FLASK_SERVER_PORT=9000
+      - FLASK_SERVER_PORT=9001
       - BORDER_COLOR=red
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -28,7 +28,7 @@ services:
     build:
       context: flask
     environment:
-      - FLASK_SERVER_PORT=9003
+      - FLASK_SERVER_PORT=9002
       - BORDER_COLOR=blue
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -38,5 +38,5 @@ services:
   mongo:
     image: mongo:5.0
     container_name: data_tier
-    environment:
-      - MONGO_INITDB_DATABASE=vdt2023
+
+

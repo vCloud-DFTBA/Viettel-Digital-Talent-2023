@@ -1,17 +1,10 @@
 import csv
-import logging
 
-
-def init_database(path, collection):
-    payload = []
-
-    with open(path, encoding='utf-8') as file:
-        csv_reader = csv.DictReader(file, delimiter=";")
-        for row in csv_reader:
-            payload.append(row)
-
-    # if collection.estimated_document_count() == 0:
-    #    logging.info("Initialize database\n")
-    collection.insert_many(payload)
-    #else:
-    #    logging.info("Database is already initialized\n")
+def insert_db(path, collection):
+    rows = []
+    csvFile = open(path, encoding='utf-8')
+    csv_reader = csv.DictReader(csvFile, delimiter=";")
+    for row in csv_reader:
+        rows.append(row)
+    print(rows)
+    collection.insert_many(rows)
