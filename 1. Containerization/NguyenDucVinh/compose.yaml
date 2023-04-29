@@ -15,8 +15,6 @@ services:
     build:
       context: flask
       target: builder
-    # flask requires SIGINT to stop gracefully
-    # (default stop signal from Compose is SIGTERM)
     stop_signal: SIGINT
     environment:
       - FLASK_SERVER_PORT=9091
