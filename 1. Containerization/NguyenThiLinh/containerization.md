@@ -6,11 +6,6 @@
   - [1.2. COPY vs ADD](#12-copy-vs-add)
   - [1.3. CMD vs ENTRYPOINT](#13-cmd-vs-entrypoint)
 - [2. THREE-TIER WEB APPLICATION WITH DOCKER](#2-three-tier-web-application-with-docker)
-  - [2.1. Tổng quan về project](#21-tổng-quan-về-project)
-  - [2.2. Tạo Dockerfile cho mongoDB](#22-tạo-dockerfile-cho-mongodb)
-  - [2.2. Tạo Dockerfile cho Python Web Server](#22-tạo-dockerfile-cho-python-web-server)
-  - [2.3. Tạo Dockerfile cho NGINX](#23-tạo-dockerfile-cho-nginx)
-  - [2.4. Deploy bằng Docker-compose](#24-deploy-bằng-docker-compose)
 
 # 1. PHÂN BIỆT CÁC INSTRUCTION
 
