@@ -40,9 +40,7 @@ services:
     container_name: webserver
     restart: unless-stopped
     environment:
-      APP_ENV: "prod"
       APP_NAME: "webserver"
-      APP_DEBUG: "false"
       SERVICE_NAME: "webserver"
     ports:
       - "8000:8000"
