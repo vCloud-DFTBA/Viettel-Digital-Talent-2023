@@ -4,8 +4,8 @@ Sinh viên: **Trần Minh Dương**
 
 ## Mục lục
 
-[I. Trả lời câu hỏi]("question")  
-[II. Ứng dụng web 3 tầng]("webapp")
+[I. Trả lời câu hỏi](#i-trả-lời-câu-hỏi)  
+[II. Ứng dụng web 3 tầng](#ii-ứng-dụng-web-3-tầng)
 
 ## I. Trả lời câu hỏi
 
