@@ -1,7 +1,7 @@
 # TABLE OF CONTENT
 
 - [TABLE OF CONTENT](#table-of-content)
-- [1. DIFFERENT INSTRUCTIONS](#1-phân-biệt-các-instruction)
+- [1. DISTINGUISH INSTRUCTIONS](#1-distinguish-instructions)
   - [1.0. Overview Docker and docker-compose](#10-overview-docker-and-docker-compose)
   - [1.1. ARG and ENV](#11-arg-vs-env)
   - [1.2. COPY and ADD](#12-copy-vs-add)
@@ -19,7 +19,7 @@
 - [4. REFERENCES](#4-references)
 
 
-# 1. DIFFERENT INSTRUCTIONS
+# 1. DISTINGUISH INSTRUCTIONS
 
 ## 1.0. Overview Docker and docker-compose
 
