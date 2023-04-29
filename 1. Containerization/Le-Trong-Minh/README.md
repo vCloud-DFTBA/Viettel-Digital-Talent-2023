@@ -6,6 +6,7 @@
   - [1.1. ARG and ENV](#11-arg-vs-env)
   - [1.2. COPY and ADD](#12-copy-vs-add)
   - [1.3. CMD and ENTRYPOINT](#13-cmd-vs-entrypoint)
+  - [1.4. Multi-stage build technique](#14-what-is-multi-stage-build)
 - [2. THREE-TIER WEB APPLICATION WITH DOCKER](#2-three-tier-web-application-with-docker)
   - [2.1. Three-tier architecture overview](#21-three-tier-web-application-overview)
   - [2.2. Configure Dockerfile for backend](#22-configure-dockerfile-for-backend)
@@ -13,11 +14,13 @@
   - [2.4. Configure Dockerfile for frontend](#24-configure-dockerfile-for-frontend)
   - [2.5. Deploy using Docker-compose](#25-deploy-using-docker-compose)
 - [3. OPTIMIZE DOCKER IMAGE SIZE](#3-optimize-image-size)
-  - [3.1 Based on Dockerfile instruction](#31-based-on-dockerfile-instruction)
+  - [3.1 Techinques based on Dockerfile instruction](#31-techniques-based-on-dockerfile-instruction)
   - [3.2 Extremely optimize Docker image size ](#32-extremely-optimize)
   - [3.3 Conclusions](#33-conclusions-about-optimzation)
 - [4. REFERENCES](#4-references)
 
+
+#
 
 # 1. DISTINGUISH INSTRUCTIONS
 
@@ -197,6 +200,7 @@ of app golang.
 
 With multi-stage builds, `we only need a single Dockerfile`. All unnecessary things generated during the webpack build process (like node_modules, package-lock etc.) will be removed, keeping only what is needed for the final image, as in the above example the file **build.js**.
 
+#
 # 2. THREE-TIER WEB APPLICATION WITH DOCKER
 
 ## 2.1. THREE-TIER WEB APPLICATION OVERVIEW
@@ -509,12 +513,12 @@ Using Postman to post data to POST API endpoint:
         </a></i>
 </div>
 
-
+#
 # 3. OPTIMIZE IMAGE SIZE
 An equally challenging aspect is keeping the size of Docker images small. The core advantage of small Docker images is cost reduction: **small images consume less disk space, can be downloaded (and extracted) faster, and thus reduce container startup time**.
 
 
-## 3.1. Based on Dockerfile instruction.
+## 3.1. Techniques based on Dockerfile instruction.
 
 In the process of writing Dockerfiles, I optimized the size of Docker images using the following methods:
 
@@ -623,6 +627,7 @@ To get small Docker images, we can don't use docker-slim to catch-all, but then 
 
 `Docker-slim can be used with this straightforward web application, but much more caution is required for apps that are more sophisticated.`
 
+#
 # 4. REFERENCES
 
 - https://docs.docker.com/
