@@ -1,7 +1,6 @@
 FROM python:3.9.16-alpine3.17
 
 RUN pip install --upgrade pip && \
-    apk add curl && \
     addgroup -S webapp && \
     adduser -D --ingroup webapp webapp 
 
