@@ -76,22 +76,20 @@ Kiến trúc cơ bản Docker bao gồm 3 phần chính:
 
 - **Dockerfile:** là một tệp tin chứa các chỉ dẫn để build lên một image.
 
-.
-
 #### **2.2. Dockerfile và các instruciton**
 
 <div align="center">
   <img width="1500" src="images/Dockerfile.jpeg" alt="">
 </div>
 
-`Dockerfile` là file dạng text chứa tất cả các lệnh chỉ dẫn để tạo ra một `image`. Docker tạo ra các `image` bằng cách thưc hiện tuần tự các dòng lệnh trong `Dockerfile. 
+`Dockerfile` là file dạng text chứa tất cả các lệnh chỉ dẫn để tạo ra một `image`. Docker tạo ra các `image` bằng cách thưc hiện tuần tự các dòng lệnh trong `Dockerfile`. 
 
 **Các chỉ dẫn(instructions) trong Dockerfile:**
 - `FROM`:
   ```Dockerfile
   FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]
   ```
-Chỉ thị `FROM` khai báo image cơ sở, gồm 2 phần tên và tag của image trên docker hub. Khi build image docker sẽ pull image cơ sở trên docker hub nếu máy tính chưa có image trên để khởi tạo image mới của bạn.
+  Chỉ thị `FROM` khai báo image cơ sở, gồm 2 phần tên và tag của image trên docker hub. Khi build image docker sẽ pull image cơ sở trên docker hub nếu máy tính chưa có image trên để khởi tạo image mới của bạn.
 
 - `LABEL`: Dùng để khai báo thông tin metadata cho image theo dạng key-value.
   ```Dockerfile
@@ -144,14 +142,15 @@ Có 2 dạng khai báo lệnh `RUN`:
   CMD command param1 param2 (shell form)
   ```
 **Một số cách tối ưu và lưu ý khi viết Dockerfile**
-- Sắp xếp layers để tận dụng cache: Đặt các layer **nặng** và **ít thay đổi** lên gần phái đầu; các layers hay thay đổi đặt phía cuối tránh **rebuilds** các layers không thay đổi.
-- Xây dựng các layers nhỏ:
-   - Tránh truyền các file không cần thiết: sử dụng file .dockerignore
+- **Sắp xếp layers để tận dụng cache**: Đặt các layer **nặng** và **ít thay đổi** lên gần phái đầu; các layers hay thay đổi đặt phía cuối tránh **rebuilds** các layers không thay đổi.
+- **Xây dựng các layers nhỏ**:
+   - Tránh truyền các file không cần thiết: sử dụng file `.dockerignore`.
    - Sử dụng các package manager một cách thông minh: chỉ install các gói mà container cần.
-- Giảm số lượng layer: 
+- **Giảm số lượng layer**: 
   - Sử dụng các images tích hợp: có thể sử dụng các imaeges từ bên thứ ba mà có đủ chức năng bạn cần.
   - Sử dụng multi-stage builds.
   - Kết hợp các commands nếu có thể: viết nhiều lệnh vào trong một chỉ thị `RUN`; nếu có thể hãy viết 2 lệnh `CMD` vào `ENTRYPOINT` vào một lệnh `ENTRYPOINT` duy nhất.
+- **Sử dụng base image nhỏ**: Sử dụng các image tag `alpine`, `slim` khi triển khai có thể làm kích thước image cuối.
 
 Ngoài ra nên sử dụng các tag phiên bản cho image, điều này khiến các image cụ thể hơn và dễ quản lí hơn. Tránh khi các images từ registry được update  thì xảy ra lỗi.
 
@@ -171,8 +170,8 @@ Docker compose là công cụ dùng để định nghĩa và run multi-container
 - **Chỉ tạo lại các container đã thay đổi:** Compose sẽ nhận biết được các service chưa thay đổi và sử dụng lại các container tương ứng với service đó.
 
 - **Điều chỉnh các biến sử dụng cho các môi trường:** Compose sử dụng các biến trong Compose file cho các môi trường. Vì vậy với môi trường hay người dùng khác nhau, có thể điều chỉnh các biến khi sử dụng Compose để thiết lập các service.
-- **Quản lí tất cả các container sử dụng một file `docker-compose.yml` duy nhất**
-- **Quản lí các volumes và networks một cách tự động**
+- **Quản lí tất cả các container sử dụng một file `docker-compose.yml` duy nhất**.
+- **Quản lí các volumes và networks một cách tự động**.
 
 
 ## **II. Bài tập 1**
@@ -188,9 +187,15 @@ Docker compose là công cụ dùng để định nghĩa và run multi-container
 
 ### **1. ARG vs ENV**
 
-- `ARG`: Chỉ khả dụng trong **build-time**, không thể sử dụng trong **run-time** khi image đã được tạo ra. **Có thể** ghi đè trong build-time với flag `--build-arg`.
+- `ARG`: 
+  - Chỉ khả dụng trong **build-time**.
+  - Không thể sử dụng trong **run-time** khi image đã được tạo ra.
+  -  **Có thể** ghi đè trong build-time với flag `--build-arg`.
 
-- `ENV`: Là các giá trị ENV có sẵn trong container, nhưng cũng có thể các lệnh RUN được chạy trong quá trình Docker build. Và giá trị của các biến `ENV` **không thể** ghi đè **trực tiếp** trong build-time.
+- `ENV`: 
+  - Khả dụng trong cả **build-time** và **runtime**
+  - Là các giá trị ENV có sẵn trong container, nhưng cũng có thể các truyền vào lệnh RUN được chạy trong quá trình Docker build.
+  -  Và giá trị của các biến `ENV` **không thể** ghi đè **trực tiếp** trong build-time.
 
 <div align="center">
   <img width="1500" src="images/ARGvsENV.png" alt="">
@@ -198,9 +203,9 @@ Docker compose là công cụ dùng để định nghĩa và run multi-container
 
 ### **2. COPY vs ADD**
 
-`COPY`giống như `ADD` cho phép bạn copy một local file hoặc trực tiếp từ local host tới Docker Images. Nhưng : 
+`COPY` giống như `ADD` cho phép bạn copy một local file hoặc trực tiếp từ local host tới Docker Images. Nhưng : 
 
-  - `COPY`: Hỗ trọ sao chép file từ  một stage hoặc remote image sang stage khác trong multi-stage builds  với flag --from.  ví dụ:
+  - `COPY`: Hỗ trợ sao chép file từ  một stage hoặc remote image sang stage khác trong multi-stage builds  với flag --from.  ví dụ:
     ```Dockerfile
     FROM … AS build1
     COPY –from=build1 . /bin/
@@ -216,13 +221,15 @@ Docker compose là công cụ dùng để định nghĩa và run multi-container
 
 ### **3. CMD vs ENTRYPOINT**
 
- Về cơ bản: Cả hai lệnh xác định command nào sẽ được thực thi khi khởi chạy container. Dockerfile có thể khởi tạo thì cần ít nhất một trong hai chỉ dẫn `CMD` hoặc `ENTRYPOINT`. Và nếu chỉ có một trong chỉ dẫn này thì kết  của chúng như nhau.
+ - Về cơ bản: 
+   - Cả hai lệnh xác định command nào sẽ được thực thi khi khởi chạy container.
+   -  Dockerfile có thể khởi tạo thì cần ít nhất một trong hai chỉ dẫn `CMD` hoặc `ENTRYPOINT`.
+   -  Và nếu chỉ có một trong chỉ dẫn này thì kết  của chúng như nhau.
   
   - `CMD`: đặt các tham số mặc định có thể được ghi đè từ Docker CLI khi container chạy. Các tham số này sẽ bị ghi đè bới `arg` nếu chạy `docker run arg` với tham số tùy chọn. 
 
   - `ENTRYPOINT` : 
     - Nếu khai báo `ENTRYPOINT` ở **exec** form, thì các tham số của `CMD`  sẽ **chèn** vào sau tham số của `ENTRYPOINT`.
-
        Note: Ta có thể sử dùng cách khai báo này, khi đó `ENTRYPOINT` dùng để định nghĩa lệnh thực hiện,còn `CMD` định nghĩa tham số.
     - Nếu khai báo `ENTRYPOINT` ở **shell** form, thì các tham số của `CMD`  sẽ **không** được chèn vào.
     - `ENTRYPOINT` khi cần ghi đè từ dòng lệnh khi chạy `docker run` cần sử dụng flag `--entrypoint`:
@@ -231,7 +238,7 @@ Docker compose là công cụ dùng để định nghĩa và run multi-container
     ```
     - Nếu khai báo nhiều lần trong Dockerfile thì chỉ `ENTRYPOINT`  cuối được thực hiện.
     
-Bảng bên dưới hiển thị lệnh nào được thực thi cho các tổ hợp `ENTRYPOINT` và `CMD`:
+Các ví dụ trực quan cho các tổ hợp `ENTRYPOINT` và `CMD`:
 <div align="center">
   <img width="1500" src="images/CMDvsENTRYPOINT.png" alt="">
 </div>
@@ -266,43 +273,45 @@ Set up a three-tier web application that displays the course attendees' informat
 - Thư viện đính kèm `requirements.txt`. Tận dụng các thư mục build-in trong python nhằm giải quyết bài toán nhưng vẫn đảm bảo không install thêm quá nhiều thư viện bên ngoài và tăng dung lượng image. 
 
   **Note:** nên ghi các version cụ thể cho các thư viện tránh khi có update thì máy sẽ install phiên bản mới nhất và có thể xảy ra lỗi.
-```
-flask==2.3.1
-pymongo==4.3.3
-```
+  ```
+  flask==2.3.1
+  pymongo==4.3.3
+  ```
 
 - `server.py`
 
-```python
-import os
+  ```python
+  import os
 
-from flask import Flask, render_template
-from pymongo import MongoClient
-from init_db import insert_db
+  from flask import Flask, render_template
+  from pymongo import MongoClient
+  from init_db import insert_db
 
-app = Flask(__name__)
+  app = Flask(__name__)
 
-DATABASE_NAME  = 'VDT23'
-DATABASE_HOST  = 'data_tier'
-client = MongoClient(DATABASE_HOST)
-db = client[DATABASE_NAME]
+  DATABASE_NAME  = 'VDT23'
+  DATABASE_HOST  = 'data_tier'
+  client = MongoClient(DATABASE_HOST)
+  db = client[DATABASE_NAME]
 
-@app.route('/')
-def todo():
-    try:
-        client.admin.command('ismaster')
-        students = list(db.attendees.find({}))
-        return render_template('index.html', data= students, border_color=os.environ.get("BORDER_COLOR"))
-    except:
-        return "Server not available"
+  @app.route('/')
+  def todo():
+      try:
+          client.admin.command('ismaster')
+          students = list(db.attendees.find({}))
+          return render_template('index.html', data= students, border_color=os.environ.get("BORDER_COLOR"))
+      except:
+          return "Server not available"
 
-if __name__ == "__main__":
-    insert_db('static/attendees.csv', db.attendees)
-    app.run(host='0.0.0.0', port=os.environ.get("FLASK_SERVER_PORT"), debug=True)
-```
+  if __name__ == "__main__":
+      insert_db('static/attendees.csv', db.attendees)
+      app.run(host='0.0.0.0', port=os.environ.get("FLASK_SERVER_PORT"), debug=True)
+  ```
 
 - `Dockerfile`. Dùng image python:3.9-alpine3.17 sẽ nhỏ hơn python3.9 mặc định.
 Sử dụng 2 lệnh `COPY` lần lượt nhằm tận dụng cache khi install `requirements.txt` vì bước install nặng và ít thay đổi nên cần được đưa lên trên. Còn các file source thường được thay đổi nên được `COPY` một lần nữa và đưa xuống dưới.
+- `RUN --mount=type=cache,target=/root/.cache/pip` sử dụng để chỉ upadate những packages cần thay đổi, còn lại thì cache trong `taget` sẽ được sử dụng.
+
   ```Dockerfile
   FROM python:3.9-alpine3.17
 
@@ -406,19 +415,24 @@ Sử dụng 2 lệnh `COPY` lần lượt nhằm tận dụng cache khi install 
           - .docker/data/db:/data/db
 
       ```
-
+- services web  sẽ `depends_on` backend, backend `depends_on` mongo. Vì để chạy chương trinh cần chạy lần lượt các service: `mongo`, `backend`, `web`.
+- Với backend
+  - Biến môi trường `FLASK_SERVER_PORT` để expose port cho API.
+  - Biến `BORDER_COLOR` khai báo màu khi chạy cho khung của frondend lần lượt là `red` và `blue`.
+  - volume `/var/run/docker.sock` được khai báo để lưu lại các tương tác, kết nối tới backend, tránh khi tắt container sẽ bị mất. 
+- Với mongo: volume `.docker/data/db` được khai báo để lưu trữ **persistently** database.
 ## Đánh giá kết quả
 - Thông số các image base:
-    <div align="center">
-      <img width="700" src="images/sizeimages.png" alt="">
-    </div>
-- Dung lượng của image python sau khi build đã tăng lên khoảng 10Mb. Do đối với API, ta cần cài thêm các packet từ python flask và pymongo để có thể sử dụng. Dung lượng của `nginx` hầu như không đổi.
+  <div align="center">
+        <img width="700" src="images/sizeimages.png" alt="">
+  </div>
 
-- Kểt quả: Nginx trỏ tới backend_1 và backend_2 tướng ứng với màu đỏ và xanh với tỉ lệ 8/2 (khai báo bắng weight trong `ngin.conf`)
+- Dung lượng của image python sau khi build đã tăng lên khoảng 10Mb. Do đối với API, ta cần cài thêm các packages từ python flask và pymongo để có thể sử dụng. Dung lượng của `nginx` hầu như không đổi.
+
+- Kểt quả: Nginx tạo `Proxy server` và `Load balancer` trỏ tới backend_1 và backend_2 tướng ứng với màu đỏ và xanh với tỉ lệ 8/2 (khai báo bắng weight trong `ngin.conf`)
     <div align="center">
       <img width="700" src="images/result.png" alt="">
     </div>
-
 
 ## References
 <a name='references'></a>
