@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+    mongodb:
+        image: mongo:5.0-focal
+        container_name: mongodb
+        restart: unless-stopped
+        environment:
+            MONGO_INITDB_DATABASE: flaskdb
+        volumes:
+            - ./mongodbdata:/data/db
+        networks:
+            - backend
+    webapp:
+        build: ./app
+        container_name: webapp
+        restart: on-failure
+        environment:
+            MONGODB_DATABASE: flaskdb
+            MONGODB_HOSTNAME: mongodb
+        networks:
+            - frontend
+            - backend
+        depends_on:
+            - mongodb
+    server:
+        image: nginx:1.22.0-alpine
+        container_name: webserver
+        restart: on-failure
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx/static:/var/www/static:ro
+        networks:
+            - frontend
+        depends_on:
+            - webapp
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge

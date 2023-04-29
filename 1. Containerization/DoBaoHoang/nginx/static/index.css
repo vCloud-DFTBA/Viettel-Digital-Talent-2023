@@ -1,0 +1,32 @@
+html,
+body,
+.intro {
+  height: 100%;
+}
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card {
+  border-radius: .5rem;
+}
+
+.table-scroll {
+  border-radius: .5rem;
+}
+
+thead {
+  top: 0;
+  position: sticky;
+  color: #52b788;
+  background-color: #081c15;
+  opacity: 0.9;
+}
+
+.mask {
+    flex-direction: column;
+}
