@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+      h1 {
+        color: {{ header_color }};
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Viettel Digital Tallent 2023</h1>
+    </header>
+    <div class="table-container">
+        <table class="my-table">
+            <tr class="header-row">
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>Năm sinh</th>
+                <th>Giới tính</th>
+                <th>Trường</th>
+                <th>Chuyên ngành</th>
+            </tr>
+        {% for attendee in attendees %}
+            <tr>
+            <td>{{ attendee['STT'] }}</td>
+            <td>{{ attendee['Họ và tên'] }}</td>
+            <td>{{ attendee['Năm sinh'] }}</td>
+            <td>{{ attendee['Giới tính'] }}</td>
+            <td>{{ attendee['Trường'] }}</td>
+            <td>{{ attendee['Chuyên ngành'] }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+  </body>
+</html>
+
+
+          
+       
