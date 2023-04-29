@@ -306,7 +306,7 @@ Base images:
 - `mongo:5.0`
   
 <p align = "center">
-<img src = "./images/three_tier_web.png" width = 600 height = 240> 
+<img src = "./images/three-tier-web.png" width = 600 height = 240> 
 <br>Picture 7. Three-tier web architecture.
 </p>
 
