@@ -6,12 +6,14 @@
 
 ## sử dụng ARG trong Dockerfile
 ARG APP_PORT = 5000
+
 ENV APP_PORT= $APP_PORT
 
 EXPOSE $APP_PORT
 
 ## sử dụng ENV trong Dockerfile
  *ENV APP_PORT=5000*
+ 
  *EXPOSE $APP_PORT*
 
 ### Ở ví dụ trên, cả hai instruction đều định nghĩa biến môi trường APP_PORT và sử dụng nó trong lệnh EXPOSE. Tuy nhiên, với ARG, giá trị của nó chỉ có hiệu lực trong quá trình build và được truyền vào ENV để sử dụng trong quá trình runtime của container. Trong khi đó, với ENV, giá trị của nó được sử dụng trực tiếp trong quá trình runtime của container.
