@@ -1,3 +1,4 @@
 /test
 /env
-/db
+db/*
+!db/.gitkeep
