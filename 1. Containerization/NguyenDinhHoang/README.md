@@ -340,9 +340,15 @@ Docker uses a caching mechanism to save time when building images. When you buil
     Image will be automatically built and run on your server.
 
 **Preview Deployment**:
-  <div align="center">
-    <img src="./asserts/deploy.png" width="800"/>
-  </div>
+ - **Local Machine**:
+    <div align="center">
+      <img src="./asserts/deploy.png" width="800"/>
+    </div>
+
+  - **Server**:
+    <div align="center">
+      <img src="./asserts/container.png" width="800"/>
+    </div>
 
 ### **10. Application Demo**
 - Access [`https://vdt-frontend.hoangndst.freeddns.org`](https://vdt-frontend.hoangndst.freeddns.org) to see the application demo.
