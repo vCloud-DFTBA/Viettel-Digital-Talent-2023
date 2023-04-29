@@ -1,11 +1,9 @@
-html,
-body,
-.intro {
+
+html, body, .intro {
   height: 100%;
 }
 
-table td,
-table th {
+table td, table th {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

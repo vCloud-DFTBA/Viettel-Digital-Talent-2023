@@ -31,7 +31,7 @@ services:
             - 443:443
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./nginx/static:/var/www/static:ro
+            - ./nginx/static:/etc/static:ro
         networks:
             - frontend
         depends_on:

@@ -10,17 +10,6 @@ client = MongoClient(f"{MONGODB_HOSTNAME}:27017")
 db = client[MONGODB_DATABASE]
 collection = db.attendees
 
-# @application.route("/")
-# def index():
-#     return redirect(url_for("profile"))
-
-# @application.route("/profile")
-# def profile():
-#     attendees = []
-#     for attendee in collection.find():
-#         attendees.append(attendee)
-#     return render_template("index.html", attendees=attendees)
-
 @application.route("/profiles")
 def profiles():
     attendees = []
@@ -31,7 +20,3 @@ def profiles():
         "attendees": attendees
     }
     return response
-
-# @application.route("/static/<path:file_path>")
-# def files(file_path):
-#     return url_for('static', filename=file_path)
