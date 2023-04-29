@@ -4,8 +4,26 @@
 	</head>
 	<body>
 		<h1>VDT Cloud Attendees</h1>
-		{% for attendee in attendees %}
-		<div>{{ attendee.name }} - {{ attendee.school }}</div>
-		{% endfor %}
+		<table>
+			<tr>
+				<th>STT</th>
+				<th>Họ và tên</th>
+				<th>Năm sinh</th>
+				<th>Giới tính</th>
+				<th>Trường</th>
+				<th>Chuyên ngành</th>
+			</tr>
+			{% for attendee in attendees %}
+			<tr>
+				<th> {{ attendee.no }} </th>
+				<th> {{ attendee.name }} </th>
+				<th> {{ attendee.yob }} </th>
+				<th> {{ attendee.sex }} </th>
+				<th> {{ attendee.school }} </th>
+				<th> {{ attendee.major }} </th>
+			</tr>
+			{% endfor %}
+		</table>
+		
 	</body>
 </html>
