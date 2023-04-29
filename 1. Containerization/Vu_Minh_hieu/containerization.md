@@ -85,14 +85,15 @@ A Docker container is a run-time environment in which a user can run a standalon
 
 -   _FROM_
 
-        The FROM directive is required and must be placed at the top of the Dockerfile.
+The FROM directive is required and must be placed at the top of the Dockerfile.
 
-        Syntax:
-        `	 FROM <image> [AS <name>]
+    > Syntax:
 
-    FROM <image>[:<tag>] [AS <name>]
-    FROM <image>[@<digest>] [AS <name>]
-    `
+```
+FROM <image> [AS <name>]
+FROM <image>[:<tag>] [AS <name>]
+FROM <image>[@<digest>] [AS <name>]
+```
 
 -   _EXPOSE_
 
@@ -106,7 +107,7 @@ Set the working directory in the container for the COPY, ADD, RUN, CMD, and ENTR
 
 ### 3. Docker-compose
 
-<img src= images/docker-compose.png>
+<img src= images/docker_compose.png>
 
 -   Docker Compose is a tool for defining and running Docker programs that use multi-containers.
 
