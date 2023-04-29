@@ -25,8 +25,6 @@
 
 ### **Docker**
 
-Sure, I'd be happy to provide more detail on each point about Docker.
-
 1. Docker is an open platform for developing, shipping, and running applications.
 
 Docker enables to separate applications from infrastructure so can deliver software quickly. With Docker, we can manage our infrastructure in the same ways we manage our applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
