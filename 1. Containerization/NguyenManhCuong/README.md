@@ -336,8 +336,8 @@ CMD ["python3", "app.py"]
 ```
 **The Dockerfile provided includes a few optimization techniques:**
 
-- <p align = "justify">This Dockerfile sets up a <strong>multi-stage</strong> build process. The first stage sets up the database tier, while the second stage sets up the web application tier. Using multi-stage builds like this can help keep the resulting Docker image small and efficient. The first stage is only used to <em>initialize</em> the database and is not included in the final image, so the final image only includes the necessary components to run the web application.</p>
-- <p align = "justify"><strong>Lightweight base image</strong>: The Dockerfile uses the <code>python:3.9-alpine3.17</code> base image, which is a lightweight version of the Python 3.9 image. This helps reduce the size of the resulting Docker image.</p>
+- <p align = "justify">This Dockerfile sets up a <strong>multi-stage</strong> build process. The first stage sets up the database tier, while the second stage sets up the web application tier. Using multi-stage builds like this can help keep the resulting Docker image small and efficient. The first stage is only used to <em>initialize</em> the database and is not included in the final image, so the final image only includes the necessary components to run the web application. </p>
+- <p align = "justify"><strong>Lightweight base image</strong>: The Dockerfile uses the <code>python:3.9-alpine3.17</code> base image, which is a lightweight version of the Python 3.9 image. This helps reduce the size of the resulting Docker image. In Docker Hub images <strong>python:3.9-alpine</strong> and <strong>python:3.9-alpine3.17</strong> have the same size, but the latter specifies the exact version of Alpine Linux used (version 3.17). This helps ensure stability and compatibility, reducing the risk of unexpected behavior. Using a specific version also aids reproducibility by ensuring consistent behavior across different environments.</p>
 - <p align = "justify"><strong>Use caching</strong>: Firsly copy the <code>requirement.txt</code> file into the container, This is because this file is unlikely to change frequently, so Docker can use the cached version from a previous build if it hasn't changed. The <code>COPY init.py init.py</code> and <code>COPY . .</code> commands will copy neccessary and frequently changed code into the container. It can save time and improve build times.</p>
 - <p align = "justify"><strong>Use the local cache when installing the specified packages</strong>: When installing dependencies using pip, the <code>--no-cache-dir</code> flag is used. This flag tells pip not to use the local cache when installing packages, which can help reduce the size of the Docker image.</p>
 - <p align = "justify"><strong>Remove unnecessary files</strong>: After installing dependencies using <code>pip</code>, the <code>rm</code> command is used to remove the <code>requirement.txt</code> file. This helps reduce the size of the Docker image by removing unnecessary files.
@@ -387,10 +387,8 @@ CMD ["python3", "app.py"]
 
 <p align = "center">
 <img src = "./images/loadbalancer.png" width = 500 height = 300> 
-<br>Picture 9. Reverse proxy using Nginx.
+<br>Picture 9. Load-balancer using Nginx.
 </p>
-
-
 
 **Docker-compose configuration**
 
@@ -402,20 +400,20 @@ CMD ["python3", "app.py"]
             container_name: mongodb
             restart: unless-stopped
             environment:
-            MONGO_DATABASE: flask
+                MONGO_DATABASE: flask
             ports:
-            - "27017:27017"
+                - "27017:27017"
             volumes:
-            - ./database:/data/db
+                - ./database:/data/db
             networks:
-            - backend
+                - backend
     ```
 
     - <p align = "justify"><code>image: mongo:5.0.17</code>:  The <strong>smallest</strong> official image for <strong>MongoDB version 5.0</strong> is <code>mongo:5.0.17</code>, which can be found on Docker Hub.</p>
     - <p align = "justify"><code>restart</code>: Specifies the restart policy for the container. In this case, the container will be restarted unless explicitly stopped.</p>
-    - <p align = "justify"><code>environment</code>: Defines environment variables that will be passed to the container at runtime. In this case, we are setting the "MONGO_DATABASE" variable to "flask", which will be used to create a new database with the given name.</p>
-    - <p align = "justify"><code>volumes</code>: Allows us to mount a host directory or a named volume as a data volume inside the container. In this case, we are mounting the local directory "./database" to "/data/db" inside the container, which will persist the database data even if the container is removed.</p>
-    - <p align = "justify"><code>networks</code>: Specifies the network mode for the container. In this case, the container will be attached to the "backend" network, which we define later in the configuration.</p>
+    - <p align = "justify"><code>environment</code>: Defines environment variables that will be passed to the container at runtime. In this case, we are setting the <code>MONGO_DATABASE</code> variable to <code>flask</code>, which will be used to create a new database with the given name.</p>
+    - <p align = "justify"><code>volumes</code>: Allows us to mount a host directory or a named volume as a data volume inside the container. In this case, we are mounting the local directory <code>./database</code> to <code>/data/db</code> inside the container, which will persist the database data even if the container is removed.</p>
+    - <p align = "justify"><code>networks</code>: Specifies the network mode for the container. In this case, the container will be attached to the <code>backend</code> network, which we define later in the configuration.</p>
 
 - **`web` service**:
   
@@ -425,52 +423,52 @@ CMD ["python3", "app.py"]
             container_name: flask_1
             restart: unless-stopped
             environment:
-            MONGODB_DATABASE: flask
-            MONGODB_HOSTNAME: db
-            COLOR: "#003366"
+                MONGODB_DATABASE: flask
+                MONGODB_HOSTNAME: db
+                COLOR: "#003366"
             ports:
-            - "5000:5000"
+                - "5000:5000"
             networks:
-            - frontend
-            - backend
+                - frontend
+                - backend
             depends_on:
-            - db
+                - db
 
         web_2:
             build: ./web
             container_name: flask_2
             restart: unless-stopped
             environment:
-            MONGODB_DATABASE: flask
-            MONGODB_HOSTNAME: db
-            COLOR: "#ff0033"
+                MONGODB_DATABASE: flask
+                MONGODB_HOSTNAME: db
+                COLOR: "#ff0033"
             ports:
-            - "5001:5000"
+                - "5001:5000"
             networks:
-            - frontend
-            - backend
+                - frontend
+                - backend
             depends_on:
-            - db
+                - db
 
         web_3:
             build: ./web
             container_name: flask_3
             restart: unless-stopped
             environment:
-            MONGODB_DATABASE: flask
-            MONGODB_HOSTNAME: db
-            COLOR: "#00ff00"
+                MONGODB_DATABASE: flask
+                MONGODB_HOSTNAME: db
+                COLOR: "#00ff00"
             ports:
-            - "5002:5000"
+                - "5002:5000"
             networks:
-            - frontend
-            - backend
+                - frontend
+                - backend
             depends_on:
-            - db
+                - db
     ```
 
     - <p align = "justify">These are the definitions of three services, <code>web_1</code>, <code>web_2</code>, and <code>web_3</code>, which are built from a Dockerfile located in the <code>./web</code> directory and expose their application on ports <code>5000</code>, <code>5001</code>, and <code>5002</code>, respectively. Each of these services is dependent on a database service named <code>db</code> and is connected to two networks, <code>frontend</code> and <code>backend</code>.</p>
-    - <p align = "justify">Each of these services defines three environment variables: <code>MONGODB_DATABASE</code>, which specifies the name of the database that the Flask application will connect to; <code>MONGODB_HOSTNAME</code>, which specifies the hostname of the MongoDB instance that the Flask application will connect to (in this case, db); and <code>COLOR</code>, which specifies the color of the Flask application's background.</p>
+    - <p align = "justify">Each of these services defines three environment variables: <code>MONGODB_DATABASE</code>, which specifies the name of the database that the Flask application will connect to; <code>MONGODB_HOSTNAME</code>, which specifies the hostname of the MongoDB instance that the Flask application will connect to (in this case, <code>db</code>); and <code>COLOR</code>, which specifies the color of the Flask application's background.</p>
     - <p align = "justify">The <code>depends_on</code> field specifies that the db service must be started before the <code>web_1</code>, <code>web_2</code>, and <code>web_3</code> services can be started.</p>
 
 - **`nginx` service (server)**:
@@ -480,35 +478,35 @@ CMD ["python3", "app.py"]
             image: nginx:1.22.0-alpine
             container_name: nginx
             ports:
-            - "80:80"
+                - "80:80"
             volumes:
-            - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+                - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
             networks:
-            - frontend
+                - frontend
             depends_on:
-            - web_1
-            - web_2
-            - web_3
+                - web_1
+                - web_2
+                - web_3
     ```
 
     - <p align = "justify"><code>image: nginx:1.22.0-alpine</code>: Uses the <code>nginx:1.22.0-alpine</code> Docker image, which is the most lightweight version of the popular Nginx web server.</p>
     - <p align = "justify"><code>volumes</code>: This mounts the <code>./nginx/nginx.conf</code> file on the host to the container's <code>/etc/nginx/conf.d/default.conf</code> file, which is the Nginx configuration file.</p>
     - <p align = "justify"><code>networks</code>: Sets the networks for the container will connect to. In this case, it is only connected to the frontend network.</p>
-    - <p align = "justify"><code>volumes</code>: Allows us to mount a host directory or a named volume as a data volume inside the container. In this case, we are mounting the local directory "./database" to "/data/db" inside the container, which will persist the database data even if the container is removed.</p>
-    - <p align = "justify"><code>depends_on</code>: This specifies the container dependencies for the Nginx service. In this case, it depends on the three Flask services (web_1, web_2, and web_3) to be started before it can start.</p>
+    - <p align = "justify"><code>depends_on</code>: This specifies the container dependencies for the Nginx service. In this case, it depends on the three Flask services (<code>web_1</code>, <code>web_2</code>, and <code>web_3</code>) to be started before it can start.</p>
 
 - **`networks` section**:
 
     ```yaml
-        networks:
-        frontend:
-            driver: bridge
-        backend:
-            driver: bridge
+    networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
     ```
-  <p align = "justify">The networks section defines two networks: <strong>frontend</strong> and </strong> <strong>backend</strong>. The frontend network is used by the Nginx container and the Flask containers to communicate with each other. The backend network is used by the Flask containers to communicate with the MongoDB container. Both networks use the <em>bridge</em> driver, which is the default driver for Docker networks.</p>
 
-  <p align = "justify">By using custom networks, you can isolate the communication between containers, control the traffic flow, and provide a secure environment for your application.</p>
+    <p align = "justify">The networks section defines two networks: <strong>frontend</strong> and <strong>backend</strong>. The frontend network is used by the Nginx container and the Flask containers to communicate with each other. The backend network is used by the Flask containers to communicate with the MongoDB container. Both networks use the <em>bridge</em> driver, which is the default driver for Docker networks.</p>
+
+    <p align = "justify">By using custom networks, you can isolate the communication between containers, control the traffic flow, and provide a secure environment for your application. Using custom networks in Docker can provide an additional layer of security to your application stack by limiting access to sensitive resources and controlling how containers communicate with each other.</p>
 
 ## **3. Result**
 
