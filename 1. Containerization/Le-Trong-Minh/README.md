@@ -582,7 +582,7 @@ After optimization with Docker-slim, the docker images are significantly smaller
         </a></i>
 </div>
 
-<big> **Oh, wizardry!!!** </big> The size of backend image has been reduced from `nearly 900 MB` (three-tier-webapp_backend) to `less than 50 MB` (three-tier-webapp_backend.slim) - `almost 40 times reduction`.
+<big> **Oh, wizardry!!!** </big> The size of backend image has been reduced from `nearly 900 MB` (three-tier-webapp_backend) to `less than 50 MB` (three-tier-webapp_backend.slim) - `almost 20 times reduction`.
 
 We can check more information in the `slim.report.json`.
 
@@ -621,8 +621,8 @@ To handle this disadvantage, you need to tweak docker-slim via two mechanisms:
 
 To get small Docker images, we can don't use docker-slim to catch-all, but then you need to spend time implementing the other techniques. Or we do use docker-slim, but then we need to invest time to write automated system-level tests which identify problems in the slimmed-down container.
 
-`With this simple web application we can use docker-slim but for more complex applications a lot more care is needed
-`
+`Docker-slim can be used with this straightforward web application, but much more caution is required for apps that are more sophisticated.`
+
 # 4. REFERENCES
 
 - https://docs.docker.com/
