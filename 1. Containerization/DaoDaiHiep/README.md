@@ -23,6 +23,7 @@ Khác:
 ## 4. Docker Lab
 ### 4.1. Mô hình
 ![alt](images/model.png)
+
 Các thành phần:
 * PHP: được build từ image **docker.io/php:7.4-fpm**, được custom để kích hoạt các extension hỗ trợ truy vấn MySQL. Xem [Dockerfile](build/php/Dockerfile)
 * httpd: máy chủ web, lấy từ image **docker.io/httpd:latest**, có chỉnh sửa file cấu hình theo file [httpd.conf](httpd.conf), cụ thể:
