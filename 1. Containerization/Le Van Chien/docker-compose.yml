@@ -15,8 +15,6 @@ services:
                         - net
         app:
                 build: ./app
-                ports:
-                        - "5000:5000"
                 depends_on: 
                         - db
                 networks:
