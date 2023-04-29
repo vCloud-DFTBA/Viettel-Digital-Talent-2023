@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
   db:
-    image: mongo:latest
+    image: mongo:5.0
     hostname: phamvantoi
     environment:
       - MONGO_INITDB_DATABASE=internees
