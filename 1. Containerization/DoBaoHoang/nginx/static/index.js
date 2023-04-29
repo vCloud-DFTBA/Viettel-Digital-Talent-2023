@@ -19,7 +19,6 @@ function appendCell(parent, val) {
 fetch('/profiles')
     .then(resp => resp.json())
     .then(data => {
-        console.log(data);
         data.attendees.forEach(attendee => {
             let row = document.createElement("tr");
             appendCell(row, attendee.name);
