@@ -1,17 +1,25 @@
 import csv
 import logging
+import os
+from pymongo import MongoClient
 
+PATH = './data/attendees.csv'
 
-def init_database(path, collection):
-    payload = []
+MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
+MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
 
-    with open(path, encoding='utf_8_sig') as file:
+client = MongoClient(f'{MONGODB_HOSTNAME}:27017')
+db = client[f'{MONGODB_DATABASE}']
+
+if __name__ == '__main__':
+    attendee = []
+    with open(PATH, encoding='utf_8_sig') as file:
         csv_reader = csv.DictReader(file, delimiter=",")
         for row in csv_reader:
-            payload.append(row)
+            attendee.append(row)
 
-    if collection.estimated_document_count() == 0:
+    if db.attendees.estimated_document_count() == 0:
         logging.info("Initialize database\n")
-        collection.insert_many(payload)
+        db.attendees.insert_many(attendee)
     else:
         logging.info("Database is already initialized\n")
