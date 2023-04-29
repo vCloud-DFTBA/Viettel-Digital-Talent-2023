@@ -13,7 +13,15 @@ services:
         -  mongo  
       networks:
         - webapp
-  
+    #nginx
+    webserver:
+      image: nginx:1.22.0-alpine
+      ports:
+          - 8000:80
+      volumes:
+          - ./nginx/:/etc/nginx/conf.d/
+      networks:
+        - webapp
     # MongoDB
     mongo:
       container_name: mongodb
