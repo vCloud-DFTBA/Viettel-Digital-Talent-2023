@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: presentation_tier
+    build:
+      context: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - backend_2
+
+  backend:
+    container_name: logic_tier
+    build:
+      context: flask
+    environment:
+      - FLASK_SERVER_PORT=9000
+      - BORDER_COLOR=red
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - mongo
+
+  backend_2:
+    container_name: logic_tier_2
+    build:
+      context: flask
+    environment:
+      - FLASK_SERVER_PORT=9003
+      - BORDER_COLOR=blue
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5.0
+    container_name: data_tier
+    environment:
+      - MONGO_INITDB_DATABASE=vdt2023
