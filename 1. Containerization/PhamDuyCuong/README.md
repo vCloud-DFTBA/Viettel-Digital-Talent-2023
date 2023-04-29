@@ -3,20 +3,23 @@
 ## **Mục lục**
 
 
-## I. Overview
-### 1. Containerization
-### 2. Docker
-### 3. Docker-compose
+- ## [I. Overview](#Overview)
+  - ### [1. Containerization](#containerization)
+  - ### [2. Docker](#docker)
+  - ### [3. Docker-compose](#compose)
 
-## II. Bài tập 1
+- ## [II. Bài tập 1](#baitap1)
+- ## [III. Bài tập 2](#baitap2)
 
-## III. Bài tập 2
-
-## Tự dánh giá
-## Reference
-
+- ## [Đánh giá kết quả](#danhgia)
+- ## [Reference](#references)
+---
 ## **I. Overview**
+<a name='Overview'></a>
+
 ### **1.Containerization**
+<a name='containerization'></a>
+
 #### **Containerization là gì?**
 - Containerization (hay Container hóa) là một quy trình **đóng gói** mã của ứng dụng cùng tất cả các tệp và thư viện cần thiết. Các gói phần mềm được gọi là `container`.
 - Containerization là giải pháp ảo hoá, tự động hóa thế hệ mới kế tiếp sau Hypervisor Virtualization.
@@ -41,6 +44,9 @@ Các những ưu điểm chính của containerization:
 - Cgroups (control groups) là một công nghệ cho phép giới hạn và quản lý tài nguyên hệ thống như (CPU, bộ nhớ, I/O) mà mỗi container sử dụng. Điều này đảm bảo rằng các container không sử dụng quá nhiều tài nguyên và gây ra tình trạng cạnh tranh tài nguyên trên host.
 
 ### **2. Docker**
+
+<a name='docker'></a>
+
 Docker là một nền tảng containerization phổ biến được sử dụng để đóng gói, triển khai và quản lý (package, deploy, manage) các ứng dụng trong các container.
  Docker là một bộ **platform as a service** (PAAS) sử dụng ảo hóa cấp độ OS để cung cấp phần mềm trong các container.
 - **Note:**
@@ -150,6 +156,7 @@ Có 2 dạng khai báo lệnh `RUN`:
 Ngoài ra nên sử dụng các tag phiên bản cho image, điều này khiến các image cụ thể hơn và dễ quản lí hơn. Tránh khi các images từ registry được update  thì xảy ra lỗi.
 
 ### **3. Docker-compose**
+<a name='compose'></a>
 
 Docker compose là công cụ dùng để định nghĩa và run multi-container cho Docker application. Với compose bạn sử dụng file YAML để config các services cho application của bạn. Sau đó dùng command để create và run từ những config đó. Cuối cùng, với một câu lệnh, chúng ta sẽ create và start tất cả service từ các thiết lập đó.
 
@@ -169,6 +176,8 @@ Docker compose là công cụ dùng để định nghĩa và run multi-container
 
 
 ## **II. Bài tập 1**
+<a name='baitap1'></a>
+
 *What are the differences between these instruction?*
 
   - ARG vs ENV
@@ -228,6 +237,7 @@ Bảng bên dưới hiển thị lệnh nào được thực thi cho các tổ h
 </div>
 
 ## **III. Bài tập 2**
+<a name='baitap2'></a>
 
 Set up a three-tier web application that displays the course attendees' information on the browser using docker-compose.
 
@@ -238,3 +248,181 @@ Set up a three-tier web application that displays the course attendees' informat
   - *python:3.9*
   
   - *mongo:5.0*
+
+### 1.Tổng quan
+- Mô hình trực quan
+  <div align="center">
+    <img width="1000" src="images/overview.png" alt="">
+  </div>
+- Hệ thống được triển khai sử dụng docker, docker-compose.
+- Cấu trúc practice sau khi hoàn thành:
+<div align="center">
+  <img width="150" src="images/Cautruc.png" alt="">
+</div>
+
+### 2. Cài đặt
+#### 2.1. Cấu hình flask API
+- API framework `Flask` của Python, sử dụng image python:3.9-alpine3.17 nhằm tối ưu dung lượng image
+- Thư viện đính kèm `requirements.txt`. Tận dụng các thư mục build-in trong python nhằm giải quyết bài toán nhưng vẫn đảm bảo không install thêm quá nhiều thư viện bên ngoài và tăng dung lượng image. 
+
+  **Note:** nên ghi các version cụ thể cho các thư viện tránh khi có update thì máy sẽ install phiên bản mới nhất và có thể xảy ra lỗi.
+```
+flask==2.3.1
+pymongo==4.3.3
+```
+
+- `server.py`
+
+```python
+import os
+
+from flask import Flask, render_template
+from pymongo import MongoClient
+from init_db import insert_db
+
+app = Flask(__name__)
+
+DATABASE_NAME  = 'VDT23'
+DATABASE_HOST  = 'data_tier'
+client = MongoClient(DATABASE_HOST)
+db = client[DATABASE_NAME]
+
+@app.route('/')
+def todo():
+    try:
+        client.admin.command('ismaster')
+        students = list(db.attendees.find({}))
+        return render_template('index.html', data= students, border_color=os.environ.get("BORDER_COLOR"))
+    except:
+        return "Server not available"
+
+if __name__ == "__main__":
+    insert_db('static/attendees.csv', db.attendees)
+    app.run(host='0.0.0.0', port=os.environ.get("FLASK_SERVER_PORT"), debug=True)
+```
+
+- `Dockerfile`. Dùng image python:3.9-alpine3.17 sẽ nhỏ hơn python3.9 mặc định.
+Sử dụng 2 lệnh `COPY` lần lượt nhằm tận dụng cache khi install `requirements.txt` vì bước install nặng và ít thay đổi nên cần được đưa lên trên. Còn các file source thường được thay đổi nên được `COPY` một lần nữa và đưa xuống dưới.
+  ```Dockerfile
+  FROM python:3.9-alpine3.17
+
+  WORKDIR /src
+
+  COPY requirements.txt .
+  RUN --mount=type=cache,target=/root/.cache/pip \
+      pip3 install -r requirements.txt
+
+  COPY . .
+  ENTRYPOINT ["python3", "server.py"]
+
+  ```
+
+#### **2.1. Cấu hình cho Nginx**
+- Frontend sử dụng Nginx với image base: nginx:1.22.0-alpine làm **hai** nhiệm vụ:
+  - Proxy server: chuyển tiếp các yêu cầu nội dung từ nhiều máy khách đến các máy chủ
+  - Load balancing: Phân phối các yêu cầu tới các máy chủ khác nhau nhắm ngăn  việc một số máy chủ có thể bị quá tải. Trong trường hợp một máy chủ bị lỗi hoàn toàn thì các máy chủ khác cũng có thể xử lý lưu lượng.
+
+- `Dockerfile`
+  ```Dockerfile
+  FROM nginx:1.22.0-alpine
+
+  ENV FLASK_SERVER_ADDR_1=backend_1:9001
+  ENV FLASK_SERVER_ADDR_2=backend_2:9002
+
+  COPY ./nginx.conf /tmp/nginx.conf
+
+  CMD ["/bin/sh", "-c", "envsubst < /tmp/nginx.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+  ```
+
+- `nginx.conf`
+  ```
+  upstream loadbalancer {
+    server $FLASK_SERVER_ADDR_1 weight=8;
+    server $FLASK_SERVER_ADDR_2 weight=2;
+  }
+  server {
+    listen 80;
+    location / {
+      proxy_pass http://loadbalancer;
+    }
+  }
+  ```
+  Ở đây ta thấy, `nginx` trỏ đến 2 backend khác nhau với weight lần lượt là 8 và 2. Các biến mỗi trường `FLASK_SERVER_ADDR` được truyền vào nginx.conf nhằm khai báo địa chỉ và port của backend thông qua  dòng lệnh : 
+  ```Dockefile 
+  CMD "/bin/sh", "-c", "envsubst < /tmp/nginx.conf > /etc/nginx/conf.d/default.conf
+  ```
+  Vì trong alpine không có **bash** nên cần dùng lệnh `/bin/sh`.
+
+  Như vậy nginx đã đảm bảo phân phối request đến 2 backend.
+
+
+#### **2.3. Database**
+- Do việc sử dụng mongodb không quá phức tạp nên nên ta sử dụng trực tiếp image base mongodb:5.0 và ghi vào docker-compose.
+
+#### **2.4. docker-compose**
+  - `docker-compose.yml`
+    ```yml
+    version: '3.9'
+
+    services:
+      web:
+        container_name: presentation_tier
+        build:
+          context: nginx
+        ports:
+          - 80:80
+        depends_on:
+          - backend_1
+          - backend_2
+
+      backend_1:
+        container_name: logic_tier_1
+        build:
+          context: flask
+        environment:
+          - FLASK_SERVER_PORT=9001
+          - BORDER_COLOR=red
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        depends_on:
+          - mongo
+
+      backend_2:
+        container_name: logic_tier_2
+        build:
+          context: flask
+        environment:
+          - FLASK_SERVER_PORT=9002
+          - BORDER_COLOR=blue
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        depends_on:
+          - mongo
+
+      mongo:
+        image: mongo:5.0
+        container_name: data_tier
+        volumes:
+          - .docker/data/db:/data/db
+
+      ```
+
+## Đánh giá kết quả
+- Thông số các image base:
+    <div align="center">
+      <img width="700" src="images/sizeimages.png" alt="">
+    </div>
+- Dung lượng của image python sau khi build đã tăng lên khoảng 10Mb. Do đối với API, ta cần cài thêm các packet từ python flask và pymongo để có thể sử dụng. Dung lượng của `nginx` hầu như không đổi.
+
+- Kểt quả: Nginx trỏ tới backend_1 và backend_2 tướng ứng với màu đỏ và xanh với tỉ lệ 8/2 (khai báo bắng weight trong `ngin.conf`)
+    <div align="center">
+      <img width="700" src="images/result.png" alt="">
+    </div>
+
+
+## References
+<a name='references'></a>
+ - [1] <https://github.com/PauGa9/flask-mongodb-nginx-docker>
+ - [2] <https://viblo.asia/p/dockerfile-references-3P0lPkmpZox>
+ - [3] <http://nginx.org/en/docs/http/load_balancing.html>
+ - [4] <https://docs.docker.com/engine/reference/builder/>
