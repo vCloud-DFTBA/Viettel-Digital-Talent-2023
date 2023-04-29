@@ -1,0 +1,11 @@
+<html>
+	<head>
+		<title>VDT Cloud Attendees</title>
+	</head>
+	<body>
+		<h1>VDT Cloud Attendees</h1>
+		{% for attendee in attendees %}
+		<div>{{ attendee.name }} - {{ attendee.school }}</div>
+		{% endfor %}
+	</body>
+</html>
