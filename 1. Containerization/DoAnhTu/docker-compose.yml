@@ -1,0 +1,42 @@
+version: '3'
+services:
+  appuser:
+    build: ./app
+    depends_on:
+      - dbmongo
+    ports:
+      - 5000:5000
+    networks:
+      - db
+      - app
+    
+    
+  nginx-production:
+    image: nginx:1.22.0-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - appuser
+    networks:
+      - app
+
+
+  dbmongo:
+    image: mongo:5.0 
+    
+    ports:
+      - 27017:27017
+    volumes:
+      - database:/data/db
+    networks:
+      - db
+volumes:
+  database:
+
+networks:
+  db:
+    driver: bridge
+  app:
+    driver: bridge
