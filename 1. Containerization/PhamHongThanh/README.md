@@ -13,11 +13,11 @@
     - [Công nghệ dùng để phát triển](#công-nghệ-dùng-để-phát-triển)
   - [2.3. Xử lí Database](#23-xử-lí-database)
   - [2.4. Xử lí Backend](#24-xử-lí-backend)
-    - [**Tạo Web bằng Flask**](#tạo-web-bằng-flask)
-    - [**Tạo Dockerfile chuẩn bị cho deploy**](#tạo-dockerfile-chuẩn-bị-cho-deploy)
+    - [Tạo Web bằng Flask](#tạo-web-bằng-flask)
+    - [Tạo Dockerfile chuẩn bị cho deploy](#tạo-dockerfile-chuẩn-bị-cho-deploy)
   - [2.5. Xử lí Frontend](#25-xử-lí-frontend)
-    - [**Xử lí frontend**](#xử-lí-frontend)
-    - [**Tạo Dockerfile chuẩn bị cho deploy**](#tạo-dockerfile-chuẩn-bị-cho-deploy-1)
+    - [Xử lí JS và HTML](#xử-lí-js-và-html)
+    - [Tạo Dockerfile chuẩn bị cho deploy](#tạo-dockerfile-chuẩn-bị-cho-deploy-1)
   - [2.6. Deploy 3 services](#26-deploy-3-services)
 - [TÀI LIỆU THAM KHẢO](#tài-liệu-tham-khảo)
 
@@ -108,7 +108,7 @@ Với dữ liệu có sẵn, ta convert từ dạng xlsx sang json rồi import 
 Tuy nhiên, đây là cách làm rất thủ công, chúng ta có thể import một cách tự động bằng những ý tưởng khác. Một ý tưởng em nghĩ đến là sử dụng Entrypoint để import vào ngay khi khởi tạo nhưng em chưa tìm ra cách làm đúng.
 ## 2.4. Xử lí Backend
 
-### **Tạo Web bằng Flask**
+### Tạo Web bằng Flask
 Ta sử dụng Python framework có tên là Flask để phát triển phần backend. Vì phần backend cũng rất đơn giản (chỉ cần lấy dữ liệu để frontend hiển thị) nên ta chỉ cần viết một api duy nhất. Có một lưu ý nhỏ là tuy chúng ta sẽ expose database ở port 27018 trên máy chủ, ta vẫn sẽ connect tới port 27017 của database container vì 2 service đều nằm trên cùng network riêng của Docker.
 
 ``` Python
@@ -134,7 +134,7 @@ if __name__ == '__main__':
 
 ```
 
-### **Tạo Dockerfile chuẩn bị cho deploy**
+### Tạo Dockerfile chuẩn bị cho deploy
 
 Ta sử dụng base image là python:3.10.6-alpine để tối ưu hóa resource. Đồng thời, ta tạo directory app để chứa các file cần thiết.
 ```
@@ -157,7 +157,7 @@ Cuối cùng là copy source code và chạy flask web
 ```
 
 ## 2.5. Xử lí Frontend  
-### **Xử lí frontend**  
+### Xử lí JS và HTML  
 Sử dụng lệnh Fetch đơn giản để xử lí dữ liệu từ backend:
 ```js
 fetch("/attendees")
@@ -202,7 +202,7 @@ NGINX được dùng để serve static content lên web browser của client. �
 ```
 
 Domain của backend được sử dụng trong proxy pas là tên của service đó trong network của 3 service. Được hiện thị ở attribute aliases.  
-### **Tạo Dockerfile chuẩn bị cho deploy**  
+### Tạo Dockerfile chuẩn bị cho deploy  
 Ta sử dụng base image nhỏ của nginx để image có size không quá lớn. Sau đó copy file cần thiết vào như default setting của NGINX
 ```dọcker
 
