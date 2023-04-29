@@ -91,6 +91,57 @@ What are the differences between these instructions?
     ENTRYPOINT command param1 param2 # shell form
     ```
 
+**How many way to optimize Dockerfile?**
+  ``` Dockerfile
+  # 1. Use multi-stage builds
+  FROM golang:1.16.5-alpine3.14 AS builder
+  WORKDIR /app
+  COPY . .
+  RUN go build -o main .
+
+  FROM alpine:3.14
+  WORKDIR /app
+  COPY --from=builder /app/main .
+  CMD ["./main"]
+  ```
+  ``` Dockerfile
+  # 2. Use .dockerignore
+  .git
+  .vscode
+  .idea
+  .env
+  .DS_Store
+  node_modules
+  npm-debug.log
+  ...
+  ```
+  ``` Dockerfile
+  # 4. Minimal base image
+  FROM alpine:3.14
+  ```
+  ``` Dockerfile
+  # 5. Use COPY instead of ADD
+  COPY . .
+  ```
+  - Use the COPY instruction over the ADD instruction: The COPY instruction is faster and less powerful than the ADD instruction.
+  ``` Dockerfile
+  # 6. Minimize the number of layers
+  RUN apt-get update && apt-get install -y \
+      aufs-tools \
+      automake \
+      build-essential \
+      curl \
+      dpkg-sig \
+      libcap-dev \
+      libsqlite3-dev \
+      mercurial \
+      reprepro \
+      ruby1.9.1 \
+      ruby1.9.1-dev \
+      s3cmd=1.1.* \
+      && rm -rf /var/lib/apt/lists/*
+  ```
+
 ### **7. Layer caching**
 
 Docker uses a caching mechanism to save time when building images. When you build an image, Docker creates a series of layers that represent the instructions in the Dockerfile. Each layer is only recreated if the instructions that created it have changed. This means that if you change the `RUN` command in your Dockerfile, all subsequent layers after that command are recreated. However, if you change the `COPY` command, all subsequent layers after that command are recreated. This is because the `COPY` command affects the filesystem, which is represented by the layers that follow it.
