@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+
+  python:
+    container_name: python_buddy
+    image: ducpa01/python-buddy
+    ports:
+      - 5000:5000
+    environment:
+      - DB_URI=mongodb://mongo:27017/
+    depends_on:
+      - mongo
+  mongo:
+    container_name: mongodb_buddy
+    image: mongo:5.0
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongoconfig:/data/configdb
+  nginx:
+    container_name: nginx_buddy
+    image: ducpa01/nginx-buddy
+    ports:
+      - 8080:8080
+
+volumes:
+  mongodb:
+  mongoconfig:
+
+  
