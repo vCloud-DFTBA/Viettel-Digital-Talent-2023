@@ -598,7 +598,7 @@ Let's run containers:
 
 <div align="center">
   <i><a>
-        Slim containers are runing
+        Slim containers are running
         </a></i>
 </div>
 
