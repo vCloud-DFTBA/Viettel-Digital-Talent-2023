@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+  	border: none;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #ee0033;
+    color: white;
+  	font-weight: bold;
+	text-align: left;
+	border: none;
+    padding: 8px;
+}
+
+th:first-child {
+	border-radius: 8px 0 0 8px;
+}
+th:last-child {
+	border-radius: 0 8px 8px 0;
+}
+td:first-child {
+	border-radius: 8px 0 0 8px;
+}
+td:last-child {
+	border-radius: 0 8px 8px 0;
+}
