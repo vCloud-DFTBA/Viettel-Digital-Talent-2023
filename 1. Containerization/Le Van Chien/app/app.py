@@ -8,11 +8,9 @@ print('start')
 @app.route('/')
 def hello():
     client = MongoClient('mongodb://db:27017')
-    client.drop_database('attendee')
+    # client.drop_database('attendee')
     db = client.attendee
-    # db.attendees.drop()
     if 'attendees' not in db.list_collection_names():
-        # df = pandas.read_csv("attendees.csv")
         with open('data/attendees.json') as f:
             data = json.load(f)
         db.attendees.insert_many(data)
