@@ -51,8 +51,12 @@ docker-compose up
 * Chi tiết hướng dẫn đọc [README](web/README.md)
 * Cấu hinh thông tin đăng nhập trong file `web/config.php`
 * Kết quả khi chưa kết nối được tới Database:
+
 ![](web/failed.png)
+
 * Kết quả khi kết nối được tới Database thành công:
+
 ![](web/success.png)
+
 ## 5. Contributor:
 Đào Hiệp - @bonavadeur
