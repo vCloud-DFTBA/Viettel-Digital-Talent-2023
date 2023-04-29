@@ -6,9 +6,11 @@ ENV: được sử dụng để thiết lập các biến môi trường trong c
 
 Ví dụ:
 // Dockerfile sử dụng ARG để truyền tham số vào trong quá trình build image
+
 ARG NODE_VERSION=14
 
 // Sử dụng ENV để định nghĩa các biến môi trường trong container
+
 ENV APP_HOME=/usr/src/app
 ENV NODE_ENV=production
 
@@ -19,9 +21,11 @@ Tốc độ: ADD có tốc độ chậm hơn vì có thể phải giải nén c�
 
 Ví dụ:
 // Sử dụng COPY để sao chép file index.js vào trong image
+
 COPY index.js /app/
 
 // Sử dụng ADD để tải và giải nén file từ URL và sao chép vào trong image
+
 ADD https://example.com/file.tar.gz /app/
 
 - CMD vs ENTRYPOINT:
