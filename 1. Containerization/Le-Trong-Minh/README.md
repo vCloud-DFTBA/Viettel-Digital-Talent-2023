@@ -584,6 +584,7 @@ After optimization with Docker-slim, the docker images are significantly smaller
 
 <big> **Oh, wizardry!!!** </big> The size of backend image has been reduced from `nearly 900 MB` (three-tier-webapp_backend) to `less than 50 MB` (three-tier-webapp_backend.slim) - `almost 40 times reduction`.
 
+We can check more information in the `slim.report.json`.
 
 Let's run containers:
 
