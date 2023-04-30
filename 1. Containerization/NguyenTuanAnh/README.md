@@ -201,6 +201,18 @@ Việc viết Dockerfile tối ưu là rất quan trọng để giảm thiểu t
 - `CMD` được thực thi trong quá trình run. Điều này cho phép gọi tới một vài quá trình như bash, nginx hay bất cứ quá trình nào mà Docker image runs. Việc thực thi chỉ thị nằm ngay trong layer hiện tại của images.
 - Trong Dockerfile có thể có nhiều chỉ thị `RUN` được thực thi nhưng chỉ có duy nhất một chỉ thị `CMD` được thi.
 # II. Web Application
+Set up a `three-tier Web Application` để hiển thị danh sách thông tin các ứng viên Viettel Digital Talent 2023 mảng Cloud sử dụng **Docker-compose**.
+Base images:
+- `nginx:1.22.0-alpine`
+- `python:3.9`
+- `mongo:5.0`
+
+<div align="center">
+       <img src="./images/3-tier-web-architecture.jpg"/>
+       <br/>
+       <i>Three-tier Web Architecture.</i>
+</div>
+
 ## 1. Frontend
 Để **Build Docker Image** cho Frontend chúng ta cần tạo file cấu hình `Dockerfile` và định nghĩa môi trường chúng ta mong muốn. `Dockerfile` có nội dung như sau:
 Chúng ta sẽ sử dụng image này để xây dựng `Nginx` server và triển khai ứng dụng trên server đó.
