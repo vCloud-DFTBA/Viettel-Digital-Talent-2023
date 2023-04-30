@@ -9,7 +9,7 @@
 - [6. Docker compose](#6-docker-compose)
 - [7. Exercises](#7-exercises)
 - [8. Build and deploy 3-tier web application](#8-build-and-deploy-3-tier-web-application)
-- [9. Result](#9-result)
+- [9. Include](#9-include)
 
 
 ## **1. What is a container?**
