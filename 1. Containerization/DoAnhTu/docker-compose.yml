@@ -14,7 +14,7 @@ services:
   nginx-production:
     image: nginx:1.22.0-alpine
     ports:
-      - 8080:80
+      - 8000:80
     volumes:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
@@ -29,11 +29,11 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - database:/data/db
+      - db1:/data/db
     networks:
       - db
 volumes:
-  database:
+  db1:
 
 networks:
   db:
