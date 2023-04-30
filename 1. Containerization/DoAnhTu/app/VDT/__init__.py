@@ -2,7 +2,6 @@ import os
 
 from flask import Flask, render_template, request
 from flask_pymongo import MongoClient
-from DB.data import students
 
 
 def create_app(test_config=None):
@@ -15,13 +14,12 @@ def create_app(test_config=None):
     db = VDT_DB.user
 
     # a simple page that says hello
-
     @app.route('/')
     def hello():
 
         student = db.find_one({"name": "Đỗ Anh Tú"})
         print(student)
-        return str(student["name"]) + " VDT"
+        return str(student["name"]) + " VDT Hello"
 
     @app.route('/VDT')
     def VDT():
