@@ -1,6 +1,6 @@
-# Viettel - Digital-Talent-2023: Cloud - Pratice 1
+# Viettel-Digital-Talent-2023: Pratice 1
 
-# Task: docker, docker-compose
+# Task: Docker, Docker-compose
 
 # Mục lục
 
@@ -40,7 +40,7 @@
   - [3. Deployment](#3-deployment)
 - [III. Tài liệu tham khảo](#iii-tài-liệu-tham-khảo)
 
-# [I. Overview]()
+# I. Overview
 ## 1. Containerization
 ### 1.1. Containerization
 - **Containerization** là giải pháp ảo hóa, tự động hóa thế hệ mới kế tiếp sau Hypervisor Virtualization và được các hãng công nghệ nổi tiếng hàng đầu thế giới như **Google, Facebook, Amazon** áp dụng rộng rãi, đem lại hiệu quả đột phá với các ưu điểm vượt trội về tốc độ triển khai, khả năng mở rộng, tính an toàn và trải nghiệm người dùng. 
@@ -172,7 +172,7 @@ Việc viết Dockerfile tối ưu là rất quan trọng để giảm thiểu t
 - Sử dụng cùng một chỉ thị `RUN` để cài đặt nhiều gói cùng một lúc: Việc sử dụng cùng một lệnh `RUN` để cài đặt nhiều gói cùng một lúc sẽ giúp giảm số lượng lớn các lớp trong lịch sử xây dựng và giảm kích thước của image.
 
 ### 3.3. Homework
-#### Phân biệt ARG và ENV:
+#### Phân biệt ARG và ENV
 - `ARG` còn được gọi là biến build-time (chỉ hoạt động trong quá trình build images). Biến `ARG` sẽ không bền vững như khi sử dụng `ENV`, chúng chỉ khả dụng cho đến khi image được tạo. Khi chạy container, chúng ta không thể truy cập giá trị của các biến `ARG`. Các giá trị `ARG` có thể được kiểm tra dễ dàng bằng cách chạy `docker history` của image sau khi được tạo ra. Vì vậy, `ARG` không được lựa chọn sử dụng cho các dữ liệu nhạy cảm, mang tính bảo mật cao.
 - Các biến `ENV` cũng có sẵn trong quá trình build, ngay khi khai báo chúng với một command của `ENV`. Tuy nhiên, không giống như `ARG`, khi build xong image, các container chạy image có thể truy cập giá trị `ENV` này. Các container chạy từ image có thể ghi đè giá trị của `ENV`.
 
@@ -182,7 +182,7 @@ Việc viết Dockerfile tối ưu là rất quan trọng để giảm thiểu t
        <i>So sánh <strong> ARG </strong> và <strong> ENV</strong>.</i>
 </div>
 
-#### Phân biệt COPY và ADD:
+#### Phân biệt COPY và ADD
 - `COPY` và `ADD` trong Docker phục vụ chung một mục đích đó là copy file từ một nơi nào đó vào trong Image.
 - `COPY` nhận vào đối tượng cần copy và đích cần copy tới trong image. Và `COPY` **chỉ cho phép** copy file từ local, từ máy gốc của chúng ta vào trong Image.
 - `ADD` cũng làm được điều tương tự nhưng `ADD` có thêm 2 chức năng đó là:
@@ -191,12 +191,12 @@ Việc viết Dockerfile tối ưu là rất quan trọng để giảm thiểu t
 - **Khi nào nên dùng `COPY` hoặc `ADD`:**
   - Trường hợp sử dụng hợp lệ của `ADD` là khi thực hiện giải nén một local tar file tới một đường dẫn khai báo trong Docker Image. Nhưng trong hầu hết trường hợp khi dùng đến URL để download file thì sẽ dùng câu lệnh **`RUN curl/wget`** hoặc muốn giải nén file thì cũng sẽ dùng **`RUN tar -xvzf`**.
   - Nếu thực hiện copy local files tới Docker image thì hãy sử dụng `COPY` bởi vì nó tường minh hơn so với `ADD` (làm rõ việc chúng ta đang muốn thực hiện hành động nào).
-#### Phân biệt CMD và ENTRYPOINT:
+#### Phân biệt CMD và ENTRYPOINT
 - Hiện tại Docker chỉ cho phép chạy một `CMD` khi khởi động container, nhưng nếu `CMD` của các chúng ta phức tạp thì có thể dùng tới `ENTRYPOINT`.
 - `CMD` và `ENTRYPOINT` có tác dụng tương tự nhau. Nếu một Dockerfile có cả `CMD` và `ENTRYPOINT` thì `ENTRYPOINT` dùng để cấu hình cho `CMD` trước khi chạy `CMD`. 
 - Lý do dùng `ENTRYPOINT` là để chuẩn bị các điều kiện setup như tạo user, mkdir, change owner... cần thiết để chạy service trong container.
 >Trong Dockerfile có thể vừa có ENTRYPOINT vừa có CMD.
-#### Phân biệt CMD và RUN: 
+#### Phân biệt CMD và RUN
 - `RUN` được thực thi trong quá trình build. Khi chúng ta build một Docker image, Docker sẽ đọc các câu lệnh trong chỉ dẫn `RUN` và build tới một layer mới trong image sử dụng.
 - `CMD` được thực thi trong quá trình run. Điều này cho phép gọi tới một vài quá trình như bash, nginx hay bất cứ quá trình nào mà Docker image runs. Việc thực thi chỉ thị nằm ngay trong layer hiện tại của images.
 - Trong Dockerfile có thể có nhiều chỉ thị `RUN` được thực thi nhưng chỉ có duy nhất một chỉ thị `CMD` được thi.
