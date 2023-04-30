@@ -36,18 +36,4 @@ def create_app(test_config=None):
         print(student_data)
         return render_template("VDT.html", data_student=student_data)
 
-    @app.route('/VDT/edit', methods=['POST'])
-    def edit_user():
-        person = {
-            'name': request['name'],
-            'year_of_birth': request['birth_year'],
-            'university': request['university']
-        }
-        db.insert_one(person)
-        return render_template("addUser.html")
-
-    @app.route("/VDT/edit")
-    def user():
-        return render_template("addUser.html")
-
     return app
