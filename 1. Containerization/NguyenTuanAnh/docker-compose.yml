@@ -9,28 +9,15 @@ services:
     ports:
       - "80:80"
     depends_on: 
-      - backend_1
-      - backend_2
+      - backend
         
-  backend_1:
-    container_name: flask_1
+  backend:
     build:
       context: flask
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "5000:5000"
-    depends_on:
-      - database
-
-  backend_2:
-    container_name: flask_2
-    build:
-      context: flask
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    ports:
-      - "5001:5000"
+      - "5000-5010:5000"
     depends_on:
       - database
 
