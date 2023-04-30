@@ -31,7 +31,7 @@ Editor: **Do Bao Hoang**
 Trước khi công nghệ container xuất hiện, máy ảo (`virtualization`) là công nghệ được dùng để tối ưu hoạt động của máy chủ. Máy ảo mô phỏng các thiết bị vật lý. Các ứng dụng chạy trên 2 máy ảo khác nhau sẽ được cô lập ở lớp vật lý. 
 
 <div align="center">
-  <img width="500" src="imgs/virtualize_containerize.png">
+  <img width="500" src="images/virtualize_containerize.png">
 </div>
 
 <div align="center">
@@ -51,7 +51,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 `Container` hoạt động dựa trên 2 công cụ của Linux là `Namespace` và `Cgroup`.
 
 <div align="center">
-  <img width="500" src="imgs/namespace.png">
+  <img width="500" src="images/namespace.png">
 </div>
 
 <div align="center">
@@ -70,7 +70,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 - `uts`: UNIX time-sharing namespace cho phép cùng 1 hệ thống có thể có nhiều hosts và domain names khác nhau. 
 
 <div align="center">
-  <img width="500" src="imgs/cgroup.png">
+  <img width="500" src="images/cgroup.png">
 </div>
 
 <div align="center">
@@ -92,7 +92,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 ### 2. Docker <a name='docker'></a>
 
 <div align="center">
-  <img width="300" src="imgs/docker.png">
+  <img width="300" src="images/docker.png">
 </div>
 
 <div align="center">
@@ -106,7 +106,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 Ý tưởng chính của Docker là `Build once, run everywhere` giúp cho quá trình vận hành phần mềm đơn giản hơn trước rất nhiều. 
 
 <div align="center">
-  <img width="500" src="imgs/docker_architect.png">
+  <img width="500" src="images/docker_architect.png">
 </div>
 
 <div align="center">
@@ -121,16 +121,16 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 
 Các `thuật ngữ` liên quan:
 
-- `Docker Image`
-- `Docker Container`
-- `Docker Network`
-- `Docker Volume`
-- `Dockerfile`
+- `Docker Image`: 1 image sẽ định nghĩa cho 1 môi trường và những thứ có trong môi trường đó.
+- `Docker Container`: Container được tạo ra từ Image, là nơi chứa mọi thứ cần thiết để có thể chạy ứng dụng. Từ 1 image chúng ta có thể tạo ra nhiều containers với môi trường bên trong giống hệt nhau.
+- `Docker Network`: Docker Network có nhiệm vụ cung cấp kết nối để các container trên một hoặc nhiều host có thể liên lạc được với nhau.
+- `Docker Volume`: Volume là cơ chế tạo và sử dụng dữ liệu của docker, có nhiệm vụ lưu trữ dữ liệu độc lập với vòng đời của container. 
+- `Dockerfile`: Dockerfile chứa các đặc tả về một trường thực thi phần mềm, cấu trúc cho Docker image.
 
 **Cách để tạo ra một container**
 
 <div align="center">
-  <img width="500" src="imgs/container_creation.png">
+  <img width="500" src="images/container_creation.png">
 </div>
 
 <div align="center">
@@ -143,6 +143,10 @@ Từ những chỉ dẫn của kỹ sư (`Dockerfile`), bản thiết kế đư�
 
 ### 3. Docker-compose <a name='compose'></a>
 
+`Docker Compose` là một tool dùng để build và run nhiều Container cùng lúc, điều phối các container làm việc cùng nhau.
+
+`Docker Compose` có file config mặc định là `docker-compose.yml`.
+
 ### 4. Câu hỏi bài tập <a name='questions'></a>
 
 **Phân biệt ARG và ENV**
@@ -152,11 +156,11 @@ Từ những chỉ dẫn của kỹ sư (`Dockerfile`), bản thiết kế đư�
 `ARG` được tạo ra để khởi tạo các giá trị cho quá trình build từ Dockerfile thành image. Sau khi build thì các biến ARG không sử dụng được nữa.
 
 <div align="center">
-  <img width="500" src="imgs/ENV_ARG.png">
+  <img width="500" src="images/ENV_ARG.png">
 </div>
 
 <div align="center">
-  <i>Pic. 6 - Tổng quan về ARG và ENV </i>
+  <i>Pic. 7 - Tổng quan về ARG và ENV </i>
 </div>
 
 Cả `ENV` và `ARG` đều có thể access trong quá trình build tuy nhiên khác với ARG, `ENV không thể bị ghi đè trong quá trình build`. 
@@ -270,11 +274,11 @@ Base images:
 ## III. Thực hành <a name='deployment'></a>
 
 <div align="center">
-  <img width="500" src="imgs/3_tier_app.png">
+  <img width="500" src="images/3_tier_app.png">
 </div>
 
 <div align="center">
-  <i>Pic. 5 - Cấu trúc ứng dụng web 3 lớp </i>
+  <i>Pic. 8 - Cấu trúc ứng dụng web 3 lớp </i>
 </div>
 
 Ứng dụng web 3 lớp gồm có:
@@ -368,11 +372,126 @@ if __name__ == "__main__":
 
     init_database('static/attendees.csv', collection)
 ```
+Giống như service mongoDB, ta cần chọn base image cho webapp. Trong các phiên bản Python 3.9x thì image `3.9.16-alpine3.17` có dung lượng nhỏ và chạy trên phiên bản alpine 3.17 mới nhất. 
 
+Tuy rằng image 3.9.16-alpine và 3.9.16-alpine3.17 là 1 (giống nhau hash). Nhưng nên chọn phiên bản 3.9.16-alpine3.17 để tránh trường hợp sau này alpine update lên phiên bản mới hơn, image bị thay đổi.
+
+*Table 2 - Python images*
+| Series | Size |
+|--------|--------|
+| 3.9.16| 337 MB | 
+| 3.9.16-slim | 45.71 MB | 
+| 3.9.16-buster | 332.2 MB | 
+| 3.9.16-alpine3.17 | 17.88 MB | 
+
+Sau khi chọn được base image, ta tiến hành tạo group và user cho webapp, tránh không dùng user root để tăng tính bảo mật.
+```yaml
+FROM python:3.9.16-alpine3.17
+
+RUN pip install --upgrade pip && \
+    addgroup -S webapp && \
+    adduser -D --ingroup webapp webapp 
+
+USER webapp
+```
+File requirements và các package ít khi thay đổi nên được copy vào và cài đặt riêng. Sau đó mới copy các file code vào.
+```yaml
+WORKDIR /var/www/
+COPY ./requirements.txt /var/www/requirements.txt
+
+RUN pip install -r requirements.txt
+
+COPY . .
+```
+Khởi chạy gồm 2 phần: khởi tạo database bằng script init.py và khởi chạy WSGI server bằng gunicorn. WSGI server chạy trên 4 workers, public webapp trên cổng 8080.
+
+```yaml
+CMD ["/bin/sh", "-c", "python3 init.py;python3 -m gunicorn -w 4 -b 0.0.0.0:8080 app"]
+```
+
+Cuối cùng config docker-compose file cho service webapp:
+```yaml
+webapp:
+        build: ./app
+        container_name: webapp
+        restart: on-failure
+        environment:
+            MONGODB_DATABASE: flaskdb
+            MONGODB_HOSTNAME: mongodb
+        depends_on:
+            - mongodb
+```
+Config của service webapp cũng tương tự như service mongodb. Service webapp có thêm referece depends_on thể hiện sự phụ thuộc vào service mongodb. Service webapp sẽ khởi động sau service mongodb. 
 
 ### 3. Webserver <a name='webserver'></a>
 
+`Webserver` thực hiện 2 nhiệm vụ: `serving static files` (html, js, css, imges) và `reverse proxy server` forward ngược request về webapp.
+
+`Webserver` chạy trên NGINX được gắn với port 80 và 443 của máy localhost. NGINX sử dụng file `nginx.conf` để cấu hình máy chủ:
+```C
+events {}
+http {
+    include mime.types;
+    sendfile on;
+    server {
+        listen 80;
+        root /etc/static;
+        index index.html;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        location /profiles {
+            proxy_pass http://webapp:8080;
+        }
+    }
+}
+```
+
+Các file serve bởi NGINX sẽ được kiểm tra và gắn MIME types tương ứng vào response. Nhờ vậy browser có thể hiểu đúng loại file và sử dụng.
+```c
+include mime.types;
+```
+Nếu không tìm được file tương ứng trong thư mục root, NGINX sẽ trả về 404
+```c
+location / {
+    try_files $uri $uri/ =404;
+}
+```
+Trong file docker-compose ta mount file config và thư mục static từ localhost vào container  nhưng chỉ cho phép đọc (read only mode)
+```yaml
+volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./nginx/static:/etc/static:ro
+```
+Service server cũng phụ thuộc vào service webapp
+```yaml
+depens_on:
+    - webapp 
+```
+
 ### 4. Run Result <a name='result'></a>
+
+
+<div align="center">
+  <img width="500" src="images/compose_run.png">
+</div>
+
+<div align="center">
+  <i>Pic. 9 - Build và chạy docker-compose file </i>
+</div>
+
+----
+
+<div align="center">
+  <img width="500" src="images/result_browser.png">
+</div>
+
+<div align="center">
+  <i>Pic. 10 - Kết quả hiển thị </i>
+</div>
+
 
 ## IV. Encountered Errors <a name='errors'></a>
 
