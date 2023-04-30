@@ -18,7 +18,6 @@ services:
 
     webapp:
         build: ./app
-        container_name: webapp
         restart: on-failure
         environment:
             MONGODB_DATABASE: flaskdb

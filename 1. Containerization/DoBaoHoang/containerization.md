@@ -492,14 +492,93 @@ depens_on:
   <i>Pic. 10 - Kết quả hiển thị </i>
 </div>
 
+----
+
+<div align="center">
+  <img width="500" src="images/compose_run_scaled.png">
+</div>
+
+<div align="center">
+  <i>Pic. 11 - Build và chạy với tính năng scale </i>
+</div>
+
+Sau khi scale webapp lên thành 3 containers, docker sẽ đóng vai trò làm load balancer và phân chia đều request đến container tương ứng. Kiểm tra trong network backend có thể thấy ip của các instances:
+
+<div align="center">
+  <img width="500" src="images/backend_network.png">
+</div>
+
+<div align="center">
+  <i>Pic. 12 - Kiểm tra các ip trong mạng backend </i>
+</div>
+
+Mở trình duyệt và vào api của webapp để check ip, ta có thể thấy phần ip trả về (mục khoanh đỏ thay đổi mỗi lần reload lại website)
+
+<div align="center">
+  <img width="500" src="images/browser_scaled.png">
+</div>
+
+<div align="center">
+  <i>Pic. 13 - Kiểm tra các ip trong trình duyệt </i>
+</div>
+
 
 ## IV. Encountered Errors <a name='errors'></a>
 
-### 1. Container Database đã active nhưng Mongodb chưa khởi động xong
+### 1. Container Database đã started nhưng Mongodb chưa khởi động xong
+
+Tuy container mongodb đã started nhưng vẫn cần thêm thời gian để service Mongo bên trong container khởi chạy. 
+
+Để kiểm tra được chính xác trạng thái của container, t chạy 1 command ping vào mongodb mỗi , nếu kết quả trả ra 1, status của container sẽ là healthy, ngược lại sẽ là unhealthy và webapp không khởi động.
+```yaml
+healthcheck:
+    test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet || exit 1
+    interval: 5s
+    retries: 3
+    start_period: 20s
+```
+
+Tương tự webserver cũng phụ thuộc vào api của webapp nên ta viết thêm healthcheck cho webapp
+```yaml
+healthcheck:
+    test: wget http://localhost:8080/profiles || exit 1
+    interval: 5s
+    retries: 3
+    start_period: 15s
+```
 
 ### 2. Khởi tạo dữ liệu cho Database
 
+Lúc đầu khi chưa sử dụng gunicorn để làm WSGI server mình import hàm khởi tạo dữ liệu cho Database trực tiếp vào app.py sau đó khởi chạy ngay trước lệnh application.run()
+```Python
+from init import init_database
+
+...
+
+init_database('/path', collection)
+
+if __name__ == "__main__":
+    application.run()
+```
+
+Database vẫn khởi tạo bình thường nhưng khi config cho WSGI với 4 workers chạy song song, dữ liệu đã bị khởi tạo trùng 4 lần.
+
+`Lý do chính` là do WSGI tạo ra 4 instances của file app.py và khởi chạy cùng thời điểm. Tại thời điểm 4 instances đó chạy, database chưa khởi tạo và cả 4 instances cùng ghi thêm dữ liệu vào database. 
+
+`Cách khắc phục`: tách function init_database ra 1 file script riêng và khởi chạy trước gunicorn
+
 ### 3. Serve static css file trên NGINX
+
+Khi chưa config mime.types trên NGINX, server vẫn trả ra các file đầy đủ nội dung, html và js vẫn hoạt động bình thường, duy chỉ có css không được áp dụng.
+
+`Lý do chính` là do response header của file css có Content-Type là html/plain chứ không phải text/css nên trình duyệt không hiểu đó là file css.
+
+`Cách khắc phục` config mime.types để NGINX tự động gán header theo loại file
 
 ## V. References <a name='references'></a>
 
+https://docs.docker.com/compose/compose-file/compose-file-v3/#depends_on
+https://docs.docker.com/engine/reference/builder/#entrypoint
+https://hub.docker.com/
+http://nginx.org/en/docs/http/ngx_http_core_module.html#types
+https://medium.com/@vinodkrane/microservices-scaling-and-load-balancing-using-docker-compose-78bf8dc04da9

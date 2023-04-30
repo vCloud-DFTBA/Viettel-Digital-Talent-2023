@@ -1,4 +1,5 @@
 import os
+import socket
 from flask import Flask
 from pymongo import MongoClient
 application = Flask(__name__)
@@ -17,6 +18,7 @@ def profiles():
         attendee.pop('_id', None)
         attendees.append(attendee)
     response = {
+        "ip": socket.gethostbyname(socket.gethostname()),
         "attendees": attendees
     }
     return response
