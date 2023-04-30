@@ -224,25 +224,44 @@ Docker compose là công cụ dùng để định nghĩa và run multi-container
  - Về cơ bản: 
    - Cả hai lệnh xác định command nào sẽ được thực thi khi khởi chạy container.
    -  Dockerfile có thể khởi tạo thì cần ít nhất một trong hai chỉ dẫn `CMD` hoặc `ENTRYPOINT`.
+   - Không giống với `RUN`, nếu khai báo nhiều lần trong Dockerfile thì chỉ `ENTRYPOINT` và `CMD`  cuối được thực hiện.
    -  Và nếu chỉ có một trong chỉ dẫn này thì kết  của chúng như nhau.
   
-  - `CMD`: đặt các tham số mặc định có thể được ghi đè từ Docker CLI khi container chạy. Các tham số này sẽ bị ghi đè bới `arg` nếu chạy `docker run arg` với tham số tùy chọn. 
+  - `CMD`: 
+    - Đặt các lệnh, tham số mặc định khi container chạy mà không chỉ định thêm một arg nào.
+    - Nếu chạy `docker run arg` với tham số `arg` thì sẽ ghi đè lên tham số,lệnh của `CMD`
 
   - `ENTRYPOINT` : 
+    - Nếu chạy `docker run arg` thì tham số `arg`  sẽ ghi vào phía sau tham số, lệnh của `ENTRYPOINT`
     - Nếu khai báo `ENTRYPOINT` ở **exec** form, thì các tham số của `CMD`  sẽ **chèn** vào sau tham số của `ENTRYPOINT`.
-       Note: Ta có thể sử dùng cách khai báo này, khi đó `ENTRYPOINT` dùng để định nghĩa lệnh thực hiện,còn `CMD` định nghĩa tham số.
-    - Nếu khai báo `ENTRYPOINT` ở **shell** form, thì các tham số của `CMD`  sẽ **không** được chèn vào.
+
+      Ta có thể sử dùng cách khai báo này, khi đó `ENTRYPOINT` dùng để định nghĩa lệnh thực hiện,còn `CMD` định nghĩa tham số.
+      ```Dockerfile
+      FROM ubuntu:latest
+      ENTRYPOINT ["/bin/echo", "Hello"]
+      CMD ["world"]
+        ```
+        --> ```Hello world```
+    - Nếu khai báo `ENTRYPOINT` ở **shell** form, thì các tham số của `CMD` sẽ **bị bỏ qua**.
+      ```Dockerfile
+        FROM ubuntu:latest
+        ENTRYPOINT echo Hello
+        CMD ["các bạn"]
+        ```
+       --> ```Hello```
+
     - `ENTRYPOINT` khi cần ghi đè từ dòng lệnh khi chạy `docker run` cần sử dụng flag `--entrypoint`:
-    ```Dockerfile
-      docker run --entrypoint ...
-    ```
-    - Nếu khai báo nhiều lần trong Dockerfile thì chỉ `ENTRYPOINT`  cuối được thực hiện.
+      ```Dockerfile
+        docker run --entrypoint ...
+      ```
+    
     
 Các ví dụ trực quan cho các tổ hợp `ENTRYPOINT` và `CMD`:
 <div align="center">
   <img width="1500" src="images/CMDvsENTRYPOINT.png" alt="">
 </div>
-
+ 
+- - -
 ## **III. Bài tập 2**
 <a name='baitap2'></a>
 
@@ -360,7 +379,7 @@ Sử dụng 2 lệnh `COPY` lần lượt nhằm tận dụng cache khi install 
   ```Dockefile 
   CMD "/bin/sh", "-c", "envsubst < /tmp/nginx.conf > /etc/nginx/conf.d/default.conf
   ```
-  Vì trong alpine không có **bash** nên cần dùng lệnh `/bin/sh`.
+  Vì trong alpine không có **bash** nên cần dùng lệnh `/bin/sh` và truyền tham số môi trường thông qua `encubst` vào `deauflt.conf`
 
   Như vậy nginx đã đảm bảo phân phối request đến 2 backend.
 
