@@ -10,12 +10,12 @@ Editor: **Do Bao Hoang**
 - [3. Docker-compose](#compose)
 - [4. Câu hỏi bài tập](#questions)
 
-[II. System requirements](#requirements)
+[II. Yêu cầu đề bài](#requirements)
 
 [III. Thực hành](#deployment)
-- [1. Webserver](#webserver)
-- [2. Web application](#webapp)
-- [3. Database](#database)
+- [1. Xây dựng Database](#database)
+- [2. Tạo Web application](#webapp)
+- [3. Xây dựng Webserver](#webserver)
 - [4. Run Result](#result)
 
 [IV. Encountered Errors](#errors)
@@ -31,7 +31,7 @@ Editor: **Do Bao Hoang**
 Trước khi công nghệ container xuất hiện, máy ảo (`virtualization`) là công nghệ được dùng để tối ưu hoạt động của máy chủ. Máy ảo mô phỏng các thiết bị vật lý. Các ứng dụng chạy trên 2 máy ảo khác nhau sẽ được cô lập ở lớp vật lý. 
 
 <div align="center">
-  <img width="1000" src="imgs/virtualize_containerize.png">
+  <img width="500" src="imgs/virtualize_containerize.png">
 </div>
 
 <div align="center">
@@ -51,7 +51,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 `Container` hoạt động dựa trên 2 công cụ của Linux là `Namespace` và `Cgroup`.
 
 <div align="center">
-  <img width="1000" src="imgs/namespace.png">
+  <img width="500" src="imgs/namespace.png">
 </div>
 
 <div align="center">
@@ -70,7 +70,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 - `uts`: UNIX time-sharing namespace cho phép cùng 1 hệ thống có thể có nhiều hosts và domain names khác nhau. 
 
 <div align="center">
-  <img width="1000" src="imgs/cgroup.png">
+  <img width="500" src="imgs/cgroup.png">
 </div>
 
 <div align="center">
@@ -92,7 +92,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 ### 2. Docker <a name='docker'></a>
 
 <div align="center">
-  <img width="1000" src="imgs/docker.png">
+  <img width="300" src="imgs/docker.png">
 </div>
 
 <div align="center">
@@ -106,7 +106,7 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 Ý tưởng chính của Docker là `Build once, run everywhere` giúp cho quá trình vận hành phần mềm đơn giản hơn trước rất nhiều. 
 
 <div align="center">
-  <img width="1000" src="imgs/docker_architect.png">
+  <img width="500" src="imgs/docker_architect.png">
 </div>
 
 <div align="center">
@@ -115,13 +115,146 @@ Tuy máy ảo tối ưu hóa tài nguyên của máy chủ khá hiệu quả nh�
 
 `Cấu trúc của Docker` gồm có 3 thành phần chính:
 
-- `Docker Daemon` (dockerd) 
-- `Docker Client`
-- `Docker Registry`
+- `Docker Daemon` (dockerd) đóng vai trò là server và nhận request từ Docker Client và thực thi chúng. `Dockerd` ngoài nhiệm vụ build, run còn quản lý các `Docker objects` (containers, images, networks, volumes) và các thành phần liên quan khác.
+- `Docker Client` là giao diện tương tác giữa người dùng và Docker. Khi chạy những lệnh docker run hay docker build, client sẽ xử lý và gửi request đến dockerd để thực hiện.
+- `Docker Registry` là nơi lưu trữ các images. Ví dụ như `Docker hub` là một public docker registry. Ngoài ra ta có thể tự host một private docker registry riêng.
+
+Các `thuật ngữ` liên quan:
+
+- `Docker Image`
+- `Docker Container`
+- `Docker Network`
+- `Docker Volume`
+- `Dockerfile`
+
+**Cách để tạo ra một container**
+
+<div align="center">
+  <img width="500" src="imgs/container_creation.png">
+</div>
+
+<div align="center">
+  <i>Pic. 6 - Create a Container </i>
+</div>
+
+Nếu coi `Container` là một ngôi nhà thì `Docker image` chính là bản thiết kế chi tiết còn `Dockerfile` là những chỉ dẫn của kỹ sư. 
+
+Từ những chỉ dẫn của kỹ sư (`Dockerfile`), bản thiết kế được vẽ lên (`quá trình build`). Từ bản thiết kế có sẵn (`Docker image`), ta có thể dựng lên bao nhiêu ngôi nhà (`Container`) và ở đâu tùy ý, vẫn đảm bảo các ngôi nhà giống nhau 100% (`quá trình run`). 
 
 ### 3. Docker-compose <a name='compose'></a>
 
 ### 4. Câu hỏi bài tập <a name='questions'></a>
+
+**Phân biệt ARG và ENV**
+
+`ENV` được tạo ra để khởi tạo container khi run từ image thành container. Các app trong container cũng có thể truy cập.
+
+`ARG` được tạo ra để khởi tạo các giá trị cho quá trình build từ Dockerfile thành image. Sau khi build thì các biến ARG không sử dụng được nữa.
+
+<div align="center">
+  <img width="500" src="imgs/ENV_ARG.png">
+</div>
+
+<div align="center">
+  <i>Pic. 6 - Tổng quan về ARG và ENV </i>
+</div>
+
+Cả `ENV` và `ARG` đều có thể access trong quá trình build tuy nhiên khác với ARG, `ENV không thể bị ghi đè trong quá trình build`. 
+
+Ví dụ ta khởi tạo ARG `VAR_1` = 5 và ENV `VAR_2` = 15 .
+```yaml
+ARG VAR_1=5
+ENV VAR_2=15
+```
+Ta có thể ghi đè `VAR_1` trong build-time với câu lệnh
+```bash
+docker build --build-arg VAR_1=10 .
+```
+Tuy nhiên `VAR_2` chỉ có thể bị ghi đè trong run-time
+```bash
+docker run -e "VAR_2=20" .
+```
+Ngoài ra ta có thể khởi tạo ENV linh động bằng cách gán biến ENV bằng giá trị ARG
+```yaml
+ARG VAR_1=5
+ENV VAR_2=$VAR1
+```
+
+**Phân biệt COPY và ADD**
+
+`COPY` và `ADD` có tính năng tương tự nhau đó là copy file từ local vào trong container. Ngoài ra đối ADD còn hỗ trợ thêm 2 tính năng: fetch packages from URLs và tar extraction.
+
+`COPY` thường được sử dụng hơn do tính rõ ràng, dễ hiểu. `ADD` sử dụng trong các trường hợp cần giải nén hoặc tải thêm file.
+
+Tuy nhiên `ADD` có điểm yếu là tạo thêm 1 layer trong docker gây `lãng phí bộ nhớ` nên thay vì dùng ADD để tải file, ta có thể dùng `curl` hoặc `wget` rồi xóa file đã tải sau khi cài đặt. 
+
+Ví dụ thay vì dùng ADD 
+```yaml
+ADD https://fake.com/file.tar.xz /usr/path/to/somewhere/
+RUN tar -xJf /usr/path/to/somewhere/file.tar.xz -C /usr/path/to/somewhere
+RUN make -C /usr/path/to/somewhere all
+```
+Ta có thể dùng wget để tiết kiệm dung lượng cache
+```yaml
+RUN wget https://fake.com/file.tar.xz && \
+    tar -xJf file.tar.xz -C /usr/path/to/somewhere && \
+    make -C /usr/path/to/somewhere all
+```
+
+**Phân biệt CMD và ENTRYPOINT**
+
+`ENTRYPOINT` dùng để khởi chạy container dưới dạng 1 executable program.
+
+`CMD` mục đích chính dùng để cung cấp giá trị mặc định cho executing container. 
+
+`Nếu không có ENTRYPOINT`, CMD sẽ đóng vai trò khởi chạy executable của container. Nhưng nếu người dùng truyền tham số vào khi docker run, CMD sẽ bị bỏ qua.
+```yaml
+FROM alpine
+
+CMD ["echo", "cde"]
+
+# Sau khi build container ta được kết quả:
+# $ docker run test
+# $ cde
+
+# Tuy nhiên nếu thêm tham số CMD sẽ bị bỏ qua:
+# $ docker run test abc
+# $ exec: "abc": executable file not found in $PATH: unknown.
+```
+
+`Nếu có ENTRYPOINT`, CMD sẽ đóng vai trò là tham số mặc định cho executable trong ENTRYPOINT.
+```yaml
+FROM alpine
+
+CMD ["echo", "cde"]
+
+ENTRYPOINT ["echo", "abc"]
+
+# Sau khi build container ta được kết quả:
+# $ docker run test
+# $ abc echo cde 
+
+# Run container với tham số:
+# $ docker run test abc
+# $ abc abc
+```
+
+Cần lưu ý nếu viết `ENTRYPOINT dưới dạng Shell form`, cả CMD lẫn tham số truyền vào qua docker run sẽ bị bỏ qua
+```yaml
+FROM alpine
+
+CMD ["echo", "cde"]
+
+ENTRYPOINT echo abc
+
+# Sau khi build container ta được kết quả:
+# $ docker run test
+# $ abc
+
+# Run container với tham số:
+# $ docker run test abc
+# $ abc
+```
 
 ## II. Yêu cầu đề bài <a name='requirements'></a>
 
@@ -137,7 +270,7 @@ Base images:
 ## III. Thực hành <a name='deployment'></a>
 
 <div align="center">
-  <img width="1000" src="imgs/3_tier_app.png">
+  <img width="500" src="imgs/3_tier_app.png">
 </div>
 
 <div align="center">
@@ -150,15 +283,104 @@ Base images:
 - Lớp `Businesss Logic`: thực hiện các hành động tính toán, đánh giá, xử lý thông tin. Tương ứng với lớp này trong bài tập ta xây dựng 1 `ứng dụng web` chạy bằng `flask` trả về dữ liệu dạng json.
 - Lớp `Data`: lưu trữ và trích xuất dữ liệu từ CSDL. Tương ứng với lớp này trong bài tập ta xây dựng 1 `CSDL MongoDB` cho phép truy xuất qua cổng 27017.
 
-### 1. Webserver <a name='webserver'></a>
+### 1. Database <a name='database'></a>
+
+Đối với mongoDB 5.0 trên dockerhub có rất nhiều phiên bản, ta chọn phiên bản có dung lượng nhỏ nhất là 5.0-focal để làm base image.
+
+*Table 1 - MongoDB images*
+| Series | Size |
+|--------|--------|
+| 5.0 | 2.22 GB | 
+| 5.0-focal | 242.9 MB | 
+| 5.0-nanoserver | 414.7 MB | 
+| 5.0-windowsservercore | 2.22 GB | 
+
+Trước hết ta khởi tạo service mongodb trong `docker-compose.yml`. Ta chỉ định thêm tên container để dễ phân biệt khi chạy compose. Reference `restart` dùng đảm bảo service mongodb luôn chạy trừ khi người dùng lệnh cho container dừng.
+
+```yaml
+services:
+    mongodb:
+        image: mongo:5.0-focal
+        container_name: mongodb
+        restart: unless-stopped
+```
+Base image này cho phép khởi tạo database thông qua biến môi trường. Ta sẽ khởi tạo 1 database có tên `flaskdb`
+```yaml
+environment:
+    MONGO_INITDB_DATABASE: flaskdb
+```
+Để dữ liệu không bị mất đi mỗi khi tắt/bật service, toàn bộ database được mount vào local drive.
+```yaml
+volumes:
+    - ./mongodbdata:/data/db
+```
 
 ### 2. Web application <a name='webapp'></a>
 
-### 3. Database <a name='database'></a>
+Python Web Application sẽ sử dụng 2 thư viện là Flask (viết API) và pymongo (kết nối với database). App chỉ đơn giản trả ra danh sách các học viên dưới dạng json response qua route `/profiles`
+
+```Python
+import os
+from flask import Flask
+from pymongo import MongoClient
+application = Flask(__name__)
+
+MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
+MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
+
+client = MongoClient(f"{MONGODB_HOSTNAME}:27017")
+db = client[MONGODB_DATABASE]
+collection = db.attendees
+
+@application.route("/profiles")
+def profiles():
+    attendees = []
+    for attendee in collection.find():
+        attendee.pop('_id', None)
+        attendees.append(attendee)
+    response = {
+        "attendees": attendees
+    }
+    return response
+```
+
+Ngoài ra ta cũng khởi tạo database ngay trong service này. Ý tưởng đơn giản là trước khi chạy Flask service ta sẽ chạy script và kiểm tra database.
+```Python
+import csv
+
+def init_database(path, collection):
+    if collection.count_documents({}) == 0:
+        with open(path, "r", encoding='utf_8_sig') as file:
+            data = csv.DictReader(file, delimiter=",")
+            for row in data:
+                collection.insert_one(row)
+
+if __name__ == "__main__":
+    import os
+    from pymongo import MongoClient
+
+    MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
+    MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
+
+    client = MongoClient(f"{MONGODB_HOSTNAME}:27017")
+    db = client[MONGODB_DATABASE]
+    collection = db.attendees
+
+    init_database('static/attendees.csv', collection)
+```
+
+
+### 3. Webserver <a name='webserver'></a>
 
 ### 4. Run Result <a name='result'></a>
 
 ## IV. Encountered Errors <a name='errors'></a>
+
+### 1. Container Database đã active nhưng Mongodb chưa khởi động xong
+
+### 2. Khởi tạo dữ liệu cho Database
+
+### 3. Serve static css file trên NGINX
 
 ## V. References <a name='references'></a>
 
