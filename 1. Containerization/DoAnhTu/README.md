@@ -1,6 +1,16 @@
 # **Ex1: Build and deploy 3-tier web by Docker**
 
 ## Table of content:
+- [1. What is a container?](#1-what-is-a-container)
+- [2. Why do we need to use containers?](#2-why-do-we-need-to-use-containers)
+- [3. Docker introduction](#3-docker-introduction)
+- [4. Docker technology?](4-docker-technology)
+- [5. Docker engine](#5-docker-engine)
+- [6. Docker compose](#6-docker-compose)
+- [7. Exercises](#7-exercises)
+- [8. Build and deploy 3-tier web application](#8-build-and-deploy-3-tier-web-application)
+- [9. Result](#9-result)
+
 
 ## **1. What is a container?**
 
@@ -474,7 +484,7 @@ In image of python, the gap seem to not big. The gap is 925-907 = 18 MB
 
 But i think, i can optimal size of image python by using multi-stage (will do in future)
 
-## **Include**
+## **9. Include**
 
 In this project, i have built a simple 3-tier web app by using docker-compose. this is the first time i built an complete app in production so i think it has many disadvantage are:
 
