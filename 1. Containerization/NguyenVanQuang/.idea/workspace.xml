@@ -5,23 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4b34f39-ecde-4ab3-996f-f53db2ac25f6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/NguyenVanQuang.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/init.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/requirement.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/static/attendees.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/static/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nginx/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/ENV-ARG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Linux Container.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Linux-Container.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/cgroup.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/docker-architecture.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/docker-architecture.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/docker.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/dockerfile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/dockerfile.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/namespace.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/nginx.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/nginx.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/run.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/run2.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/web.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/web3tier.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/flask/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,22 +66,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/quangnguyen/Desktop/Cloud/Viettel-Digital-Talent-2023/1. Containerization/NguyenVanQuang/Logical/app.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/quangnguyen/Desktop/Cloud/Viettel-Digital-Talent-2023/1. Containerization/NguyenVanQuang/Logical/app.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Logical/static" />
@@ -111,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682793158432</updated>
       <workItem from="1682793168585" duration="8030000" />
-      <workItem from="1682803998083" duration="10812000" />
+      <workItem from="1682803998083" duration="17169000" />
     </task>
     <servers />
   </component>
