@@ -37,4 +37,5 @@ Run the playbook
 ansible-playbook -i ./inventories/local.yml playbook-nginx.yml  >> nginx.run
 
 ```
+ansible-playbook -i ./inventories/local.yml playbooks/logstash.yml  >> logs/logstash.run
 

@@ -8,3 +8,17 @@ all:
           ansible_become_user: ubuntu
           ansible_become_password: 123
           host_name: vth
+        # node1:
+        #   ansible_hosts: 192.168.134.131
+        #   ansible_python_interpreter: /usr/bin/python3
+        #   ansible_become_user: ubuntu
+        #   ansible_become_password: 123
+        #   ansible_user: ubuntu
+        #   ansible_password: 123
+        #   host_name: node1
+        # node2:
+        #   ansible_hosts: 192.168.134.132
+        #   ansible_python_interpreter: /usr/bin/python3
+        #   ansible_become_user: ubuntu
+        #   ansible_become_password: 123
+        #   host_name: node2

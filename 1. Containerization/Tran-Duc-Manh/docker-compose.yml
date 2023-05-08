@@ -51,7 +51,7 @@ services:
       - "27017:27017"
 
   nginx:
-    image: nginx:1.22.0-alpine
+    image: nginx:1.22.0
     ports:
       - "443:443"
     volumes:

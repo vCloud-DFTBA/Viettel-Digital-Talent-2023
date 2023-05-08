@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir  --upgrade pip && \
 
 ARG DEV=false
 RUN if [ "$DEV" = "true" ] ; then poetry install --no-cache --with dev ; else poetry install --no-cache --only main ; fi
-COPY ./app/ ./
+COPY ./ ./
 
 ENV PYTHONPATH "${PYTHONPATH}:/app"
 
