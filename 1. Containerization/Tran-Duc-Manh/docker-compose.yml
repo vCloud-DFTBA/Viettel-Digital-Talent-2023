@@ -1,19 +1,35 @@
 version: "3"
 
 services:
-  app:
+  api:
     build: 
-      context: .
+      context: ./api
       args:
         DEV: "true"
     ports:
       - "8080:8080"
     hostname: app
     env_file:
-      - .env
+      - ./api/.env
     command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
     volumes:
-      - ./app:/app/
+      - ./api:/app/
+    links:
+      - mongodb
+      - nginx
+  
+  webapp:
+    build: 
+      context: ./webapp
+      args:
+        DEV: "true"
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./webapp/.env
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 4000
+    volumes:
+      - ./webapp:/app/
     links:
       - mongodb
       - nginx
@@ -31,6 +47,8 @@ services:
       MONDODB_LOG_DIR: /dev/null
     volumes:
       - dbdata6:/data/db
+    ports:
+      - "27017:27017"
 
   nginx:
     image: nginx:1.22.0-alpine
