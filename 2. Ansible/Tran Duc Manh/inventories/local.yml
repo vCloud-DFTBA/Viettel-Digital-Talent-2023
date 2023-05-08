@@ -4,7 +4,7 @@ all:
       hosts:
         local:
           ansible_connection: local
-          ansible_python_interpreter: /home/ubuntu/venv/bin/python
+          ansible_python_interpreter: /usr/bin/python3
           ansible_become_user: ubuntu
           ansible_become_password: 123
           host_name: vth
