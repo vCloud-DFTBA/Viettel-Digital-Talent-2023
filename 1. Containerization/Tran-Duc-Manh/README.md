@@ -67,13 +67,27 @@ The application is 3-tier components:
 
 I also offer to use Jaeger for tracing and distributed logging with EFK(not implemented yet).
 
-### What we're doing
+### What I have done
 
 - Buy a domain from tenten.vn
 - Rend a server from FPT Cloud
 - Connect DNS from Cloudflare
 - Seft host 3-tier application on FPT server
 - Configure SSL certificate to secure connection
+- Optimize docker container using Docker Slim
+
+
+### Optimze Docker container 
+
+Using Docker Slim container optimzes from 978MB to 56.8MB. Of course i can optimze more but for base image:`python:3.9` and FastAPI, it should be balanced between performance and image size.
+
+- Nginx:1.22.0-alpine: Optimize from 22.1MB to 7.12MB. see [Nginx optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/nginx.report.json)
+- mongodb:5.0: optimize from 626MB to 128MB. see history [Mongo optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/mongo.report.json)
+- python:3.9 with FastAPI fullstack webserver from 978MB to 56.8MB. see [Slim optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/app.report.json)
+
+see more information in app.report.json
+
+![viettelcloud](images/image.png)
 
 ### How to use
 
