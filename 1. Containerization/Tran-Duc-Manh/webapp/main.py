@@ -31,9 +31,10 @@ async def read_item(request: Request):
     try:
         print(f"{BASE_URL}/api/v1/users")
         object_list = requests.get(f"{BASE_URL}/api/v1/users").json()
+        print(object_list)
     except Exception as e:
         logging.error(e)
-    return templates.TemplateResponse("index.html", {"request": request, "users": object_list})
+    return templates.TemplateResponse("index.html", {"request": request, "users": object_list['users']})
 
 
 @app.get("/user/{user}", response_class=HTMLResponse)

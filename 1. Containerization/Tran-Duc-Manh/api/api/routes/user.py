@@ -20,7 +20,7 @@ user_collection = db_connect["user"]
     name="user:add-user",
 )
 async def add_user_info(
-    data_input: UserInfoInput = Depends(), file: UploadFile = File(...)
+    data_input: UserInfoInput = Depends()
 ):
     if not data_input:
         raise HTTPException(
@@ -30,11 +30,11 @@ async def add_user_info(
         student_object = user_collection.find_one(
             {"name": data_input.name, "year": data_input.year}
         )
-        if file:
-            file_path = os.path.join(MEDIA_PATH, file.filename)
-            with open(file_path, "wb") as f:
-                while contents := file.file.read(1024 * 1024):
-                    f.write(contents)
+        # if file:
+        #     file_path = os.path.join(MEDIA_PATH, file.filename)
+        #     with open(file_path, "wb") as f:
+        #         while contents := file.file.read(1024 * 1024):
+        #             f.write(contents)
         if student_object:
             logging.info("Student object exist")
         else:
@@ -44,7 +44,7 @@ async def add_user_info(
                     "program": data_input.program,
                     "year": data_input.year,
                     "sex": data_input.sex,
-                    "avatar": file.filename,
+                    "avatar": "",
                     "title": data_input.title,
                     "university": data_input.university
                 }
@@ -66,6 +66,87 @@ async def add_user_info(
         title=student_object.get("title"),
     )
 
+
+@router.get(
+    "/user/{user}",
+    response_model=UserInfoResponse,
+    name="user:add-user",
+)
+async def get_user_info(
+    user: str
+):
+    student_object = user_collection.find_one( {"name": user})    
+    if not student_object:
+            logging.info("Student object exist")
+            return {}
+    else:
+        return UserInfoResponse(
+        name=student_object.get("name"),
+        program=student_object.get("program"),
+        year=student_object.get("year"),
+        sex=student_object.get("sex"),
+        avatar=student_object.get("avatar"),
+        university=student_object.get("university"),
+        title=student_object.get("title"),
+    )
+
+@router.post(
+    "/delete-user",
+    name="user:delete-user",
+)
+async def delete_user_info(
+    user: str
+):
+    student_object = user_collection.delete_one({"name": user})    
+    return {"status":True}
+
+@router.post(
+    "/update-user",
+    response_model=UserInfoResponse,
+    name="user:update-user",
+)
+async def update_user_info(
+    data_input: UserInfoInput = Depends()
+):
+    if not data_input:
+        raise HTTPException(
+            status_code=404, detail="'data_input' argument invalid!")
+    try:
+        file_path = None
+        student_object = user_collection.find_one(
+            {"name": data_input.name}
+        )
+        if not student_object:
+            logging.info("Student object exist")
+        else:
+            student_object = user_collection.find_one_and_update(
+                {"name": data_input.name},
+                {"$set": {
+                    "name": data_input.name,
+                    "program": data_input.program,
+                    "year": data_input.year,
+                    "sex": data_input.sex,
+                    "avatar": "",
+                    "title": data_input.title,
+                    "university": data_input.university
+                }}
+            )
+            # print(insert_result)
+            # student_object = user_collection.find_one(
+            #     {"_id": insert_result.inserted_id}
+            # )
+            logging.info("Successful insert student to DB")
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=f"Exception: {err}")
+    return UserInfoResponse(
+        name=student_object.get("name"),
+        program=student_object.get("program"),
+        year=student_object.get("year"),
+        sex=student_object.get("sex"),
+        avatar=student_object.get("avatar"),
+        university=student_object.get("university"),
+        title=student_object.get("title"),
+    )
 
 @router.get(
     "/users",
