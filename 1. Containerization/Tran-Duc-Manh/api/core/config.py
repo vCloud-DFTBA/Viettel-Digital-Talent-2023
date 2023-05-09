@@ -3,6 +3,7 @@ import logging
 
 from starlette.config import Config
 from starlette.datastructures import Secret
+import logstash
 
 config = Config(".env")
 
@@ -26,6 +27,7 @@ ch.setLevel(logging.ERROR)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 fh.setFormatter(formatter)
 ch.setFormatter(formatter)
+logger.addHandler(logstash.LogstashHandler("172.17.0.1", 5044, version=1))
 logger.addHandler(fh)
 logger.addHandler(ch)
 

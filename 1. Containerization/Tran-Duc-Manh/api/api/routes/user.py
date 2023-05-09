@@ -2,10 +2,12 @@ from fastapi import APIRouter, HTTPException, File, UploadFile, Depends
 from models.user import UserInfoResponse, AllUserInfoResponse, UserInfoInput
 from datetime import datetime
 from core.db import db_connect
+from core.config import logger
 from fastapi.responses import FileResponse
 
 import logging
 import os
+
 
 router = APIRouter()
 MEDIA_PATH = "./media"
@@ -19,12 +21,10 @@ user_collection = db_connect["user"]
     response_model=UserInfoResponse,
     name="user:add-user",
 )
-async def add_user_info(
-    data_input: UserInfoInput = Depends()
-):
+async def add_user_info(data_input: UserInfoInput = Depends()):
+    logger.info("Add user to db", extra={"service": "api", "action": "success"})
     if not data_input:
-        raise HTTPException(
-            status_code=404, detail="'data_input' argument invalid!")
+        raise HTTPException(status_code=404, detail="'data_input' argument invalid!")
     try:
         file_path = None
         student_object = user_collection.find_one(
@@ -46,7 +46,7 @@ async def add_user_info(
                     "sex": data_input.sex,
                     "avatar": "",
                     "title": data_input.title,
-                    "university": data_input.university
+                    "university": data_input.university,
                 }
             )
             student_object = user_collection.find_one(
@@ -72,71 +72,70 @@ async def add_user_info(
     response_model=UserInfoResponse,
     name="user:add-user",
 )
-async def get_user_info(
-    user: str
-):
-    student_object = user_collection.find_one( {"name": user})    
+async def get_user_info(user: str):
+    student_object = user_collection.find_one({"name": user})
     if not student_object:
-            logging.info("Student object exist")
-            return {}
+        logger.info("Add user to db", extra={"service": "api", "action": "fail"})
+        logging.info("Student object exist")
+        return {}
     else:
+        logger.info("Add user to db", extra={"service": "api", "action": "success"})
         return UserInfoResponse(
-        name=student_object.get("name"),
-        program=student_object.get("program"),
-        year=student_object.get("year"),
-        sex=student_object.get("sex"),
-        avatar=student_object.get("avatar"),
-        university=student_object.get("university"),
-        title=student_object.get("title"),
-    )
+            name=student_object.get("name"),
+            program=student_object.get("program"),
+            year=student_object.get("year"),
+            sex=student_object.get("sex"),
+            avatar=student_object.get("avatar"),
+            university=student_object.get("university"),
+            title=student_object.get("title"),
+        )
+
 
 @router.post(
     "/delete-user",
     name="user:delete-user",
 )
-async def delete_user_info(
-    user: str
-):
-    student_object = user_collection.delete_one({"name": user})    
-    return {"status":True}
+async def delete_user_info(user: str):
+    student_object = user_collection.delete_one({"name": user})
+    logger.info("Delete user to db", extra={"service": "api", "action": "success"})
+    return {"status": True}
+
 
 @router.post(
     "/update-user",
     response_model=UserInfoResponse,
     name="user:update-user",
 )
-async def update_user_info(
-    data_input: UserInfoInput = Depends()
-):
+async def update_user_info(data_input: UserInfoInput = Depends()):
     if not data_input:
-        raise HTTPException(
-            status_code=404, detail="'data_input' argument invalid!")
+        raise HTTPException(status_code=404, detail="'data_input' argument invalid!")
     try:
         file_path = None
-        student_object = user_collection.find_one(
-            {"name": data_input.name}
-        )
+        student_object = user_collection.find_one({"name": data_input.name})
         if not student_object:
             logging.info("Student object exist")
         else:
             student_object = user_collection.find_one_and_update(
                 {"name": data_input.name},
-                {"$set": {
-                    "name": data_input.name,
-                    "program": data_input.program,
-                    "year": data_input.year,
-                    "sex": data_input.sex,
-                    "avatar": "",
-                    "title": data_input.title,
-                    "university": data_input.university
-                }}
+                {
+                    "$set": {
+                        "name": data_input.name,
+                        "program": data_input.program,
+                        "year": data_input.year,
+                        "sex": data_input.sex,
+                        "avatar": "",
+                        "title": data_input.title,
+                        "university": data_input.university,
+                    }
+                },
             )
             # print(insert_result)
             # student_object = user_collection.find_one(
             #     {"_id": insert_result.inserted_id}
             # )
-            logging.info("Successful insert student to DB")
+            logger.info("Update user info", extra={"service": "api", "action": "success"})
     except Exception as err:
+        logger.info("Fail update user info", extra={"service": "api", "action": "fail"})
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
     return UserInfoResponse(
         name=student_object.get("name"),
@@ -147,6 +146,7 @@ async def update_user_info(
         university=student_object.get("university"),
         title=student_object.get("title"),
     )
+
 
 @router.get(
     "/users",
@@ -169,8 +169,10 @@ async def get_all_user():
                     "title": student_object.get("title"),
                 }
             )
+        logger.info("Get all user info", extra={"service": "api", "action": "success"})
         return AllUserInfoResponse(users=object_list)
     except Exception as err:
+        logger.info("Fail get all user info", extra={"service": "api", "action": "fail"})
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
 
 
@@ -192,5 +194,3 @@ def image_endpoint(avatar: str):
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="image/jpeg", filename=avatar)
     return {"error": "File not found!"}
-
-
