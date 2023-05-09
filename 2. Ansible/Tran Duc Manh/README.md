@@ -35,6 +35,7 @@ ansible-galaxy collection install community.docker
 Run the playbook
 ```
 ansible-playbook -i ./inventories/local.yml playbook-nginx.yml  >> nginx.run
+ansible-playbook -i ./inventories/local.yml playbook-mongo.yml  >> mongo.run
 
 ```
 
