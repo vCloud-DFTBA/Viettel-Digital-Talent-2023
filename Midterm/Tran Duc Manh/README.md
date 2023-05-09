@@ -39,3 +39,10 @@ ansible-playbook -i ./inventories/local.yml playbook-nginx.yml  >> nginx.run
 ```
 ansible-playbook -i ./inventories/local.yml playbooks/logstash.yml  >> logs/logstash.run
 
+ansible-playbook -i ./inventories/local.yml playbooks/monitor.yml  >> logs/monitor.run
+
+apt install python3-virtualenv
+sudo apt-get install python3.10-distutils
+
+virtualenv -p /usr/bin/python3.10 /root/py310
+source /root/py310/bin/activate
