@@ -74,13 +74,24 @@
 - Output của luồng build và push Docker Image lên Docker Hub
 - Hướng dẫn sử dụng ansible playbook để triển khai các thành phần hệ thống
 - Output log triển khai hệ thống
+
 #### Result:
 - File setup CD Github Actions: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/.github/workflows/docker-image.yml
 - Output của luồng build và push Docker Image lên Docker Hub: 
 ![pr](./media/pr.png)
 ![img]("./media/dockerhub.png")
-- Output log: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs
+- Output log triển khai hệ thống: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs
 - File inventory chứa danh sách các hosts triển khai: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/Midterm/Tran%20Duc%20Manh/inventories/multinode.yml
+
+##### Install docker on multi node (2 worker node+master node)
+```
+ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >> logs/multinode-setup.run
+```
+##### Install FastAPI on multi node (2 worker node+master node)
+```
+ansible-playbook -i ./inventories/multinode.yml playbooks/api.yml >> logs/api.run
+```
+##### Install Webserver on multi node (2 worker node+master node)
 ```
 ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >> logs/multinode-setup.run
 ```
@@ -96,8 +107,18 @@ ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >>
 #### Output:
 - Role monitor chứa các playbook và cấu hình giám sát cho hệ thống
 - Ảnh chụp dashboard giám sát nodes & containers, có thể sử dụng hệ thống prometheus tập trung ở 171.236.38.100:9090
+
 #### Solution:
+![monitor](./media/monitoring-stack.png)
 - Ansible monitor: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/roles/monitor
+- Log deploy: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs/monitor.run
+- Image run:
+![prometheus](./media/prometheus.png)
+![cadvisor](./media/cadvisor.png)
+![nodeexport](./media/nodeexporter.png)
+
+
+
 ### 5. Logging (1đ)
 #### Yêu cầu:
 - Viết ansible playbook thực hiện các nhiệm vụ:
@@ -111,7 +132,9 @@ ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >>
 - Ảnh chụp sample log từ Kibana 171.236.38.100:5601
 
 ### Solution
+![elk](./media/elk-stack.jpg)
 - Ansible logstash: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/roles/ansible-role-logstash
 ```
 ansible-playbook -i ./inventories/local.yml playbooks/logstash.yml >> logs/logstash.run 
 ```
+![elk](./media/elk.png)

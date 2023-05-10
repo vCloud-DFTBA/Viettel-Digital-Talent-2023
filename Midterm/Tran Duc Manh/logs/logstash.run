@@ -1,271 +1,4 @@
 
-PLAY [all] ******************************************************************************************************************************************************************************************************************
-
-TASK [Gathering Facts] ******************************************************************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] *****************************************************************************************************************************************************
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] *****************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] **********************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ************************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] *******************************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ********************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ************************************************************************************************************************************************
-ok: [local] => (item=01-beats-input.conf)
-ok: [local] => (item=30-elasticsearch-output.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash filters.] ************************************************************************************************************************************************************
-ok: [local] => (item=10-syslog.conf)
-ok: [local] => (item=11-nginx.conf)
-ok: [local] => (item=12-apache.conf)
-ok: [local] => (item=14-solr.conf)
-ok: [local] => (item=15-drupal.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ********************************************************************************************************************************
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] **************************************************************************************************************************************
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***************************************************************************************************************************************
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] ******************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] *********************************************************************************************************************************************************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] *************************************************************************************************************************************
-ok: [local]
-
-PLAY RECAP ******************************************************************************************************************************************************************************************************************
-local                      : ok=12   changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
-PLAY [all] ******************************************************************************************************************************************************************************************************************
-
-TASK [Gathering Facts] ******************************************************************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] *****************************************************************************************************************************************************
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] *****************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] **********************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ************************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] *******************************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ********************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ************************************************************************************************************************************************
-ok: [local] => (item=01-beats-input.conf)
-changed: [local] => (item=30-elasticsearch-output.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash filters.] ************************************************************************************************************************************************************
-ok: [local] => (item=10-syslog.conf)
-ok: [local] => (item=11-nginx.conf)
-ok: [local] => (item=12-apache.conf)
-ok: [local] => (item=14-solr.conf)
-ok: [local] => (item=15-drupal.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ********************************************************************************************************************************
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] **************************************************************************************************************************************
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***************************************************************************************************************************************
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] ******************************************************************************************************************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] *********************************************************************************************************************************************************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] *************************************************************************************************************************************
-ok: [local]
-
-RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] *********************************************************************************************************************************************************
-changed: [local]
-
-PLAY RECAP ******************************************************************************************************************************************************************************************************************
-local                      : ok=13   changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
-PLAY [all] *********************************************************************
-
-TASK [Gathering Facts] *********************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] ********
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-fatal: [local]: FAILED! => {"changed": false, "msg": "Failed to download key at https://artifacts.elastic.co/GPG-KEY-elasticsearch: HTTP Error 403: Forbidden"}
-
-PLAY RECAP *********************************************************************
-local                      : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
-
-
-PLAY [all] *********************************************************************
-
-TASK [Gathering Facts] *********************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] ********
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
-changed: [local] => (item=01-beats-input.conf)
-ok: [local] => (item=30-elasticsearch-output.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash filters.] ***************
-changed: [local] => (item=10-syslog.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
-ok: [local]
-
-RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
-changed: [local]
-
-PLAY RECAP *********************************************************************
-local                      : ok=13   changed=3    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
-PLAY [all] *********************************************************************
-
-TASK [Gathering Facts] *********************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] ********
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
-ok: [local] => (item=01-beats-input.conf)
-changed: [local] => (item=30-elasticsearch-output.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash filters.] ***************
-ok: [local] => (item=10-syslog.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
-ok: [local]
-
-RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
-changed: [local]
-
-PLAY RECAP *********************************************************************
-local                      : ok=13   changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
 PLAY [all] *********************************************************************
 
 TASK [Gathering Facts] *********************************************************
@@ -292,12 +25,6 @@ ok: [local]
 TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
 changed: [local] => (item=01-beats-input.conf)
 
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ***
-ok: [local]
-
 TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
 skipping: [local]
 
@@ -321,230 +48,7 @@ RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
 changed: [local]
 
 PLAY RECAP *********************************************************************
-local                      : ok=12   changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
-PLAY [all] *********************************************************************
-
-TASK [Gathering Facts] *********************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] ********
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
-changed: [local] => (item=01-beats-input.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
-ok: [local]
-
-RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
-changed: [local]
-
-PLAY RECAP *********************************************************************
-local                      : ok=12   changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
-PLAY [all] *********************************************************************
-
-TASK [Gathering Facts] *********************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] ********
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
-changed: [local] => (item=01-beats-input.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
-ok: [local]
-
-RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
-changed: [local]
-
-PLAY RECAP *********************************************************************
-local                      : ok=12   changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
-PLAY [all] *********************************************************************
-
-TASK [Gathering Facts] *********************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] ********
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
-changed: [local] => (item=01-beats-input.conf)
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration file for local syslog.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure configuration for local syslog is absent if disabled.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
-ok: [local]
-
-RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
-changed: [local]
-
-PLAY RECAP *********************************************************************
-local                      : ok=12   changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-
-
-PLAY [all] *********************************************************************
-
-TASK [Gathering Facts] *********************************************************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Include OS Specific setup tasks] ********
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/ansible-role-logstash/tasks/setup-Debian.yml for local
-
-TASK [../roles/ansible-role-logstash : Ensure required dependencies are installed.] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
-ok: [local] => (item=01-beats-input.conf)
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
-skipping: [local] => (item=) 
-skipping: [local] => (item=) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
-ok: [local]
-
-TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
-skipping: [local] => (item=logstash-input-beats) 
-skipping: [local] => (item=logstash-filter-multiline) 
-skipping: [local]
-
-TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
-ok: [local]
-
-PLAY RECAP *********************************************************************
-local                      : ok=10   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+local                      : ok=11   changed=2    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
 
 
 PLAY [all] *********************************************************************
@@ -611,10 +115,44 @@ TASK [../roles/ansible-role-logstash : Ensure required dependencies are installe
 ok: [local]
 
 TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-fatal: [local]: FAILED! => {"changed": false, "msg": "Failed to download key at https://artifacts.elastic.co/GPG-KEY-elasticsearch: HTTP Error 403: Forbidden"}
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
+changed: [local] => (item=01-beats-input.conf)
+
+TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
+skipping: [local]
+
+TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
+skipping: [local] => (item=) 
+skipping: [local] => (item=) 
+skipping: [local]
+
+TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
+skipping: [local] => (item=logstash-input-beats) 
+skipping: [local] => (item=logstash-filter-multiline) 
+skipping: [local]
+
+TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
+ok: [local]
+
+RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
+changed: [local]
 
 PLAY RECAP *********************************************************************
-local                      : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+local                      : ok=11   changed=2    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
 
 
 PLAY [all] *********************************************************************
@@ -629,10 +167,44 @@ TASK [../roles/ansible-role-logstash : Ensure required dependencies are installe
 ok: [local]
 
 TASK [../roles/ansible-role-logstash : Add Elasticsearch apt key.] *************
-fatal: [local]: FAILED! => {"changed": false, "msg": "Failed to download key at https://artifacts.elastic.co/GPG-KEY-elasticsearch: HTTP Error 403: Forbidden"}
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Add Logstash repository.] ***************
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Install Logstash.] **********************
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Add Logstash user to adm group (Debian).] ***
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Create Logstash configuration files.] ***
+changed: [local] => (item=01-beats-input.conf)
+
+TASK [../roles/ansible-role-logstash : Ensure Logstash SSL key pair directory exists.] ***
+skipping: [local]
+
+TASK [../roles/ansible-role-logstash : Copy SSL key and cert for logstash-forwarder.] ***
+skipping: [local] => (item=) 
+skipping: [local] => (item=) 
+skipping: [local]
+
+TASK [../roles/ansible-role-logstash : Get list of installed plugins.] *********
+ok: [local]
+
+TASK [../roles/ansible-role-logstash : Install configured plugins.] ************
+skipping: [local] => (item=logstash-input-beats) 
+skipping: [local] => (item=logstash-filter-multiline) 
+skipping: [local]
+
+TASK [../roles/ansible-role-logstash : Ensure Logstash is started and enabled on boot.] ***
+ok: [local]
+
+RUNNING HANDLER [../roles/ansible-role-logstash : restart logstash] ************
+changed: [local]
 
 PLAY RECAP *********************************************************************
-local                      : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+local                      : ok=11   changed=2    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
 
 
 PLAY [all] *********************************************************************

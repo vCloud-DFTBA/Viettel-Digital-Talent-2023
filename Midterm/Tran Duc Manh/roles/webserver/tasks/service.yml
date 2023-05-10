@@ -1,11 +1,11 @@
 - name: Restart a container
   community.docker.docker_container:
     name: webapp
-    image: tran-duc-manh-app
+    image: tran-duc-manh-webapp
     state: started
     # restart: true
     ports:
-      - "{{ports}}:8080"
-    env_file: '/home/ubuntu/Viettel-Digital-Talent-2023/2. Ansible/Tran Duc Manh/roles/webserver/files/.env'
-    command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
+      - "4000:4000"
+    env_file: '/home/ubuntu/Viettel-Digital-Talent-2023/1. Containerization/Tran-Duc-Manh/webapp/.env'
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 4000
     
