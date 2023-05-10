@@ -1,0 +1,10 @@
+- name: Check if docker network exists
+  docker_network_info:
+    name: "{{ NETWORK_NAME }}"
+  register: network_info
+- name: Create docker network if not exists
+  docker_network:
+    name: "{{ NETWORK_NAME }}"
+    state: present
+  when: network_info.exists == False
+  
