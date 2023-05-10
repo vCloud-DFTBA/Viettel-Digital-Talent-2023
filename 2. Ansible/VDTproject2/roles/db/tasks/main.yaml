@@ -1,0 +1,15 @@
+---
+- name: Build db image
+  community.docker.docker_image:
+    name: db_image
+    build:
+      path: ./roles/db/templates
+    source: "build"
+    force_source: true
+- name: Create db container
+  community.docker.docker_container:
+    name: db
+    image: db_image
+    restart_policy: "unless-stopped"
+    networks:
+      - name: project
