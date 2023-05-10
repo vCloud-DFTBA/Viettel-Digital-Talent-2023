@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {{ userData|json_script:"userData" }}
+</head>
+
+<body>
+    <div class
+        style="height:auto;width: auto;display: flex;align-items: center;justify-content: center;flex-direction: column;">
+        <div style="height:auto;width: auto;display: flex;align-items: center;justify-content: center;flex-direction: column;"> 
+            <h1>Current Students</h1>
+            <table id="userTable" style="border: 1px solid;">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Birthyear</th>
+                <th scope="col">Gender</th>
+                <th scope="col">University</th>
+                <th scope="col">Major</th>
+            </tr>
+        </table>
+        </div>
+	<div>
+            <h1>Add New Students</h1>
+		<form method="post">
+        	{% csrf_token %}
+		{{addForm}}
+		<button class="button is-success"  type="submit">Add </button>
+    </form>
+	</div>
+    </div>
+</body>
+
+    <script>
+        const userData = JSON.parse(document.getElementById('userData').textContent);
+	console.log(document.getElementById('userData').textContent);
+        userData.map((v, i) => {
+            let newRow = document.getElementById('userTable').insertRow(-1);
+            v.map((_v, _i) => {
+                let newCol = newRow.insertCell(-1);
+                let newText = document.createTextNode(_v);
+                newCol.appendChild(newText);
+            })
+        })  
+    </script>
+</html>
