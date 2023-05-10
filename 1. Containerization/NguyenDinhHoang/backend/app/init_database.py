@@ -181,7 +181,9 @@ def init_db():
     try:
         for intern in interns_data:
             intern_to_add = Intern(name=intern['name'], year_of_birth=intern['year_of_birth'], university=intern['university'])
-            intern_to_add.save()
+            # save if not exist
+            if not Intern.objects.filter(name=intern['name'], year_of_birth=intern['year_of_birth'], university=intern['university']).exists():
+                intern_to_add.save()
         print('Added interns to database')
     except:
         print('Error when adding interns to database')
