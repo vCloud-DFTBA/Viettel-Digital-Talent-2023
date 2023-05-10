@@ -89,4 +89,6 @@ Set up the main task:
         restart_policy: "unless-stopped"
 
 Docker file and context are placed inside templates
+## Result
+![alt text](img/result.png)
 
