@@ -1,8 +1,0 @@
-# - name: Build image and with build args
-#   community.docker.docker_image:
-#     name: webapp
-#     build:
-#       path: /home/ubuntu/Viettel-Digital-Talent-2023/1. Containerization/Tran-Duc-Manh/Dockerfile
-#       args:
-#         DEV: "true"
-#     source: build
