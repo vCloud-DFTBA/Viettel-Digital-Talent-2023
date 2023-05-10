@@ -81,6 +81,9 @@
 ![img]("./media/dockerhub.png")
 - Output log: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs
 - File inventory chứa danh sách các hosts triển khai: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/Midterm/Tran%20Duc%20Manh/inventories/multinode.yml
+```
+ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >> logs/multinode-setup.run
+```
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/playbooks
 - Thư mục roles chứa các role: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/roles
 
@@ -104,7 +107,11 @@
     - Log được index với tiền tố <username>_ để phân biệt log dịch vụ của các sinh viên khác nhau. Thông tin <username> của từng sinh viên cho bởi bảng trong Phụ lục I.
 #### Output:
 - Ansible playbook triển khai các dịch vụ collect log (tách module logging)
+
 - Ảnh chụp sample log từ Kibana 171.236.38.100:5601
 
 ### Solution
 - Ansible logstash: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/roles/ansible-role-logstash
+```
+ansible-playbook -i ./inventories/local.yml playbooks/logstash.yml >> logs/logstash.run 
+```

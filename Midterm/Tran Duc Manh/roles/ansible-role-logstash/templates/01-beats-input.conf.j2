@@ -1,13 +1,22 @@
 input {
   beats {
-        port => "5044"
+    port => 50000
+    codec => json
   }
+  tcp {
+		port => 5044
+    codec => json
+	}
 }
 filter {
+  mutate {
+    rename => { "message" => "action" }
+  }
 }
 output {
   elasticsearch {
     hosts => ["http://171.236.38.100:9200"]
-    index => "tranducmanh-%{+YYYY.MM.dd}"
+    index => "tranducmanh_index"
+    ssl => false
   }
 }
