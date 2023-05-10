@@ -1,0 +1,47 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false  # true by default
+
+log:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: common  # common, json, logfmt
+  filePath: /var/log/traefik/traefik.log
+
+api:
+ dashboard: true  # true by default
+ insecure: true  # Don't do this in production!
+
+entryPoints:
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: :443
+    http:
+      tls:
+        certResolver: production
+        domains:
+          - main: "hoangnd.freeddns.org"
+            sans:
+              - "*.hoangnd.freeddns.org"
+certificatesResolvers:
+  production:
+    acme:
+      email: hoangndst@gmail.com
+      storage: /etc/traefik/certs/acme.json
+      dnsChallenge:
+        provider: dynu
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
+providers:
+  docker:
+    exposedByDefault: false  # Default is true
+  file:
+    # watch for dynamic configuration changes
+    directory: /etc/traefik
+    watch: true
