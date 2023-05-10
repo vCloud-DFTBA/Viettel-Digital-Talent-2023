@@ -25,5 +25,3 @@ ok: [local]
 PLAY RECAP *********************************************************************
 local                      : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
-CONTAINER ID   IMAGE                 COMMAND                  CREATED         STATUS         PORTS                          NAMES
-7e4b3f013a2e   nginx:1.22.0-alpine   "/docker-entrypoint.…"   2 minutes ago   Up 2 minutes   80/tcp, 0.0.0.0:443->443/tcp   nginx

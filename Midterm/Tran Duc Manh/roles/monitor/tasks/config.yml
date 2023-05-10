@@ -1,0 +1,14 @@
+---
+- name: Create nginx group info.
+  group:
+    name: monitor
+
+- name: Create user.
+  user:
+    name: monitor
+    group: monitor
+
+- name: Check docker install.
+  package:
+    name: docker
+    state: present

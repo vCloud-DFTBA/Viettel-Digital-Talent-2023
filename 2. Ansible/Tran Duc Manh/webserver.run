@@ -22,8 +22,8 @@ TASK [webserver : include_tasks] ***********************************************
 included: /home/ubuntu/Viettel-Digital-Talent-2023/2. Ansible/Tran Duc Manh/roles/webserver/tasks/service.yml for local
 
 TASK [webserver : Restart a container] *****************************************
-ok: [local]
+changed: [local]
 
 PLAY RECAP *********************************************************************
-local                      : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
