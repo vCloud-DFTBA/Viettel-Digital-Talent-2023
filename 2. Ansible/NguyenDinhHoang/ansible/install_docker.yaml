@@ -1,3 +1,0 @@
-- hosts: vm
-  roles:
-    - common
