@@ -9,7 +9,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     # connect to db
 
-    client = MongoClient('mongodb://dbmongo:27017', connectTimeoutMS=3000)
+    client = MongoClient('mongodb://admin:Admin123@dbmongo:27017/', connectTimeoutMS=3000)
     VDT_DB = client.VDTuser
     db = VDT_DB.user
 
