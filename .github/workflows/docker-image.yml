@@ -55,5 +55,5 @@ jobs:
         with:
           context: "{{defaultContext}}:1. Containerization/Tran-Duc-Manh/api"
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: "manhlab/vt_app_api"
+          tags: "manhlab/vth_app_api:latest"
+          labels: "manhlab/vth_app_api"
