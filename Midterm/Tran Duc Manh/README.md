@@ -45,7 +45,7 @@
 - Github actions config in file: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/.github/workflows/docker-image.yml
 - Build history: https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions/runs/4935221930
 - Demo image:
-![img]("./media/github.png")
+![img](./media/github.png)
 
 #### Result: 
 - Success to Deploy CI on Github actions: https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions
@@ -79,7 +79,7 @@
 - File setup CD Github Actions: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/.github/workflows/docker-image.yml
 - Output của luồng build và push Docker Image lên Docker Hub: 
 ![pr](./media/pr.png)
-![img]("./media/dockerhub.png")
+![img](./media/dockerhub.png)
 - Output log triển khai hệ thống: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs
 - File inventory chứa danh sách các hosts triển khai: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/Midterm/Tran%20Duc%20Manh/inventories/multinode.yml
 
