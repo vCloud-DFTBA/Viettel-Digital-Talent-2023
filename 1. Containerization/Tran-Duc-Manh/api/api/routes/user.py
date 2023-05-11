@@ -130,6 +130,8 @@ async def update_user_info(data_input: UserInfoInput = Depends()):
                     }
                 },
             )
+            student_object = user_collection.find_one({"name": data_input.name})
+
             # print(insert_result)
             # student_object = user_collection.find_one(
             #     {"_id": insert_result.inserted_id}
