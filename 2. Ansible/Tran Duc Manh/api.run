@@ -1,0 +1,29 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [api : include_tasks] *****************************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/2. Ansible/Tran Duc Manh/roles/api/tasks/config.yml for local
+
+TASK [api : Create vth group info.] ********************************************
+ok: [local]
+
+TASK [api : Create user.] ******************************************************
+ok: [local]
+
+TASK [api : Check docker install.] *********************************************
+ok: [local]
+
+TASK [api : include_tasks] *****************************************************
+
+TASK [api : include_tasks] *****************************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/2. Ansible/Tran Duc Manh/roles/api/tasks/service.yml for local
+
+TASK [api : Run the docker API images] *****************************************
+ok: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

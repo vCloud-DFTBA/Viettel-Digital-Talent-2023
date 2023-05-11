@@ -24,23 +24,18 @@ cookies = {
     "SL_wptGlobTipTmp": "1",
 }
 df = pd.read_csv("attendees.csv", sep=";")
-with open(
-    "/Users/macbook/Documents/photo/Taylor-Swift-Arlington-eras-2023-billboard-1548.jpg",
-    "rb",
-) as f:
-    for index, item in df.iterrows():
-        data = {
-            "file": f,
-            "name": (None, item[1]),
-            "program": (None, "Cloud"),
-            "title": (None, item[5]),
-            "university": (None, item[4]),
-            "year": (None, item[2]),
-            "sex": (None, item[3]),
-        }
-        print(data)
-        # response = requests.post('http://localhost:8080/api/v1/add-user', headers=headers, files=files)
-        response = requests.post(
-            "https://api.viettelcloud.site/api/v1/add-user", files=data
-        )
-        print(response.json())
+for index, item in df.iterrows():
+    data = {
+        "name": (None, item[1]),
+        "program": (None, "Cloud"),
+        "title": (None, item[5]),
+        "university": (None, item[4]),
+        "year": (None, item[2]),
+        "sex": (None, item[3]),
+    }
+    print(data)
+    # response = requests.post('http://localhost:8080/api/v1/add-user', headers=headers, files=files)
+    response = requests.post(
+        "http://localhost:8081/api/v1/add-user", files=data
+    )
+    print(response.json())

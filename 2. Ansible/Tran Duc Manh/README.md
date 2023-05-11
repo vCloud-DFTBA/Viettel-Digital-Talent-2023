@@ -31,11 +31,13 @@ You can see the log in the `docker.run` file
 Install community docker module
 ```
 ansible-galaxy collection install community.docker
-``
+```
+
 Run the playbook
 ```
 ansible-playbook -i ./inventories/local.yml playbook-nginx.yml  >> nginx.run
 ansible-playbook -i ./inventories/local.yml playbook-mongo.yml  >> mongo.run
+ansible-playbook -i ./inventories/local.yml playbook-api.yml  >> api.run
 
 ```
 

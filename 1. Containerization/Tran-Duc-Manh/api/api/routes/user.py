@@ -22,13 +22,14 @@ user_collection = db_connect["user"]
     name="user:add-user",
 )
 async def add_user_info(data_input: UserInfoInput = Depends()):
-    logger.info("Add user to db", extra={"service": "api", "action": "success"})
+    
     if not data_input:
+        logger.info("Fail Add user to db", extra={"service": "api", "status": "fail"})
         raise HTTPException(status_code=404, detail="'data_input' argument invalid!")
     try:
         file_path = None
         student_object = user_collection.find_one(
-            {"name": data_input.name, "year": data_input.year}
+            {"name": data_input.name}
         )
         # if file:
         #     file_path = os.path.join(MEDIA_PATH, file.filename)
@@ -52,10 +53,9 @@ async def add_user_info(data_input: UserInfoInput = Depends()):
             student_object = user_collection.find_one(
                 {"_id": insert_result.inserted_id}
             )
-            logging.info("Successful insert student to DB")
+            logger.info("Add user to db", extra={"service": "api", "status": "success"})
     except Exception as err:
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
-    print(student_object)
     return UserInfoResponse(
         name=student_object.get("name"),
         program=student_object.get("program"),
@@ -75,11 +75,11 @@ async def add_user_info(data_input: UserInfoInput = Depends()):
 async def get_user_info(user: str):
     student_object = user_collection.find_one({"name": user})
     if not student_object:
-        logger.info("Add user to db", extra={"service": "api", "action": "fail"})
+        logger.info("Fail get single user to db", extra={"service": "api", "status": "fail"})
         logging.info("Student object exist")
         return {}
     else:
-        logger.info("Add user to db", extra={"service": "api", "action": "success"})
+        logger.info("Get user to db", extra={"service": "api", "status": "success"})
         return UserInfoResponse(
             name=student_object.get("name"),
             program=student_object.get("program"),
@@ -97,7 +97,7 @@ async def get_user_info(user: str):
 )
 async def delete_user_info(user: str):
     student_object = user_collection.delete_one({"name": user})
-    logger.info("Delete user to db", extra={"service": "api", "action": "success"})
+    logger.info("Delete user to db", extra={"service": "api", "status": "success"})
     return {"status": True}
 
 
@@ -108,6 +108,7 @@ async def delete_user_info(user: str):
 )
 async def update_user_info(data_input: UserInfoInput = Depends()):
     if not data_input:
+        logger.info("Update user to db", extra={"service": "api", "status": "fail"})
         raise HTTPException(status_code=404, detail="'data_input' argument invalid!")
     try:
         file_path = None
@@ -133,9 +134,9 @@ async def update_user_info(data_input: UserInfoInput = Depends()):
             # student_object = user_collection.find_one(
             #     {"_id": insert_result.inserted_id}
             # )
-            logger.info("Update user info", extra={"service": "api", "action": "success"})
+            logger.info("Update user info", extra={"service": "api", "status": "success"})
     except Exception as err:
-        logger.info("Fail update user info", extra={"service": "api", "action": "fail"})
+        logger.info("Fail update user info", extra={"service": "api", "status": "fail"})
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
     return UserInfoResponse(
         name=student_object.get("name"),
@@ -169,10 +170,10 @@ async def get_all_user():
                     "title": student_object.get("title"),
                 }
             )
-        logger.info("Get all user info", extra={"service": "api", "action": "success"})
+        logger.info("Get all user info", extra={"service": "api", "status": "success"})
         return AllUserInfoResponse(users=object_list)
     except Exception as err:
-        logger.info("Fail get all user info", extra={"service": "api", "action": "fail"})
+        logger.info("Fail get all user info", extra={"service": "api", "status": "fail"})
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
 
 
@@ -192,5 +193,7 @@ async def get_all_user():
 def image_endpoint(avatar: str):
     file_path = os.path.join(MEDIA_PATH, avatar)
     if os.path.exists(file_path):
+        logger.info("Get query image", extra={"service": "api", "status": "success"})
         return FileResponse(file_path, media_type="image/jpeg", filename=avatar)
+    logger.info("Fail get media", extra={"service": "api", "status": "fail"})
     return {"error": "File not found!"}
