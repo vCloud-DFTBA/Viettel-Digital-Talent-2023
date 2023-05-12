@@ -1,0 +1,4 @@
+---
+mongodb_internal_port: 27017
+mongodb_users_config_path: '{{ mongodb_settings_path }}/users.js'
+mongodb_users_config_mount: '{{ mongodb_settings_path }}/users.js:/docker-entrypoint-initdb.d/users.js:ro'

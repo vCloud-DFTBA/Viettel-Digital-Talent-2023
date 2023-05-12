@@ -1,0 +1,8 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /home/minh/Downloads/learnAnsible/HWansible/myenv/bin/python3
+      ansible_become_user: root
+      ansible_become_password: 111
