@@ -3,7 +3,6 @@
 // Import Modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import StudentForm from "./StudentForm";
 import { useParams } from "react-router-dom";
 // EditStudent Component
 const ViewStudent = (props) => {
@@ -40,7 +39,7 @@ const ViewStudent = (props) => {
     <h2 style={{ 
         textAlign: 'center', 
         marginBottom: '1rem' 
-      }}>Student Detail</h2>
+      }}>Attendee Detail</h2>
     <div style={{ 
         backgroundColor: '#f5f5f5', 
         padding: '1rem', 

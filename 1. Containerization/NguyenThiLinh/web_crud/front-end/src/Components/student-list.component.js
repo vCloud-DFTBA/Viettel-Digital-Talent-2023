@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
 import StudentTableRow from "./StudentTableRow";
-  
+
 const StudentList = () => {
   const [students, setStudents] = useState([]);
   
@@ -18,6 +18,7 @@ const StudentList = () => {
   }, []);
   
   const DataTable = () => {
+    students.sort((a, b) => a.fullName.localeCompare(b.fullName));
     return students.map((res, i) => {
       return <StudentTableRow obj={res} key={i} />;
     });
