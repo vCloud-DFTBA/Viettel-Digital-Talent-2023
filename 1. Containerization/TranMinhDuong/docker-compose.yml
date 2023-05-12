@@ -3,8 +3,9 @@ services:
 
     #flask app
     backend:
+      container_name: vtapp-backend
       build: 
-        context: flask
+        context: backend
         dockerfile: Dockerfile
       restart: unless-stopped
       ports: 
@@ -13,18 +14,22 @@ services:
         -  mongo  
       networks:
         - webapp
-    #nginx
-    webserver:
-      image: nginx:1.22.0-alpine
+    #frontend
+    frontend:
+      container_name: vtapp-frontend
+      build:
+        context: frontend
+        dockerfile: Dockerfile
       ports:
-          - 8000:80
-      volumes:
-          - ./nginx/:/etc/nginx/conf.d/
+        - 8000:80
+      restart: unless-stopped
       networks:
         - webapp
+      depends_on:
+        - mongo
     # MongoDB
     mongo:
-      container_name: mongodb
+      container_name: vtapp-mongodb
       image: mongo:5.0
       restart: unless-stopped
       hostname: md_mongodb
