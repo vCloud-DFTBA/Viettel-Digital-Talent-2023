@@ -25,11 +25,17 @@ services:
 
   dbmongo:
     image: mongo:5.0 
+
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=Admin123
+      - MONGO_INITDB_DATABASE=VDTuser
     
     ports:
       - 27017:27017
     volumes:
       - db1:/data/db
+      - ./mongo-entrypoint:/docker-entrypoint-initdb.d
     networks:
       - db
 volumes:
