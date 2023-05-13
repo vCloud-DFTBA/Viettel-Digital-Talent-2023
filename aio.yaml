@@ -32,13 +32,4 @@
     - name: config db
       import_role:
         name: db
-
-  # pre_tasks:
-  #   - wait_for_connection: { timeout: 300 }
-    # - name: requests ver. 2.28.1
-    #   pip:
-    #     name: requests==2.28.1
-    #     state: present
-        # become: true
-        # become_method: sudo
-        # gather_facts: false
+        
