@@ -95,7 +95,7 @@ Giờ ta đã có 2 image để sử dụng ở phần deploy với Ansible:
 
 #### 1.1. Inventories
 
-`inventory.yaml` chứa thông tin các managed node: IP, ansible_user, cách kết nối, group...
+[`inventory.yaml`](./ansible/inventories/inventory.yaml) chứa thông tin các managed node: IP, ansible_user, cách kết nối, group...
 
 - VM1 thuộc group `webserver`, VM2 thuộc group `backend`.
 
