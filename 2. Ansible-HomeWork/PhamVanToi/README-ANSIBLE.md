@@ -1,7 +1,7 @@
 
 ### Set up the enviroment
 
-- Install ansible inside virtualenv
+- Install community.docker
   ```
   ansible-galaxy collection install community.docker
   ```
