@@ -1,0 +1,19 @@
+- name: Install Docker
+  hosts: nodes
+  become: yes
+  roles:
+    - common
+
+- name: Archive images into .tar for transfer to nodes
+  hosts: host
+  become: yes
+  roles:
+    - archive_images
+
+- name: Run containers database in node
+  hosts: nodes
+  become: yes
+  roles:
+    - db
+    - api
+    - web

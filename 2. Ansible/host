@@ -1,0 +1,5 @@
+[host]
+localhost ansible_connection=local
+
+[nodes]
+ec2-13-53-218-20.eu-north-1.compute.amazonaws.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./demo.pem
