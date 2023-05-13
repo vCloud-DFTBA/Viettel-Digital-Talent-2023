@@ -1,0 +1,17 @@
+---
+- name: Setup Docker
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+  - common
+
+- name: Setup web server
+  hosts: nodes
+  become: true
+  gather_facts: true
+  roles:
+  - db
+  - api
+  - web
+  
