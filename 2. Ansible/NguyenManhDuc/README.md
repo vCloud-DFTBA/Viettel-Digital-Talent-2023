@@ -786,7 +786,7 @@ To delete ``container`` i writen a playbook to do that [playbook_delete_images.y
 **Note :** to delete image you must stop the container and remove it. highly recommend run playbook ``playbook_delete_container.yaml`` before run ``playbook_delete_images.yaml``. 
 
 
-## It finally done, I would like to thank my mentors for reviewinf my homework. hope i did it right
+## It finally done, I would like to thank my mentors for reviewing my homework. hope i did it right
 
 ##  References
 
