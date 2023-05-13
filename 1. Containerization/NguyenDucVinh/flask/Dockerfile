@@ -1,5 +1,5 @@
 
-FROM --platform=$BUILDPLATFORM python:3.9-alpine AS builder
+FROM python:3.9-alpine AS builder
 
 WORKDIR /src
 COPY requirements.txt /src

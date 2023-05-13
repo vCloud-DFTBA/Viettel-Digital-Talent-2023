@@ -1,0 +1,5 @@
+- name: Create Docker network
+  community.docker.docker_network:
+    name: homework
+    state: present
+
