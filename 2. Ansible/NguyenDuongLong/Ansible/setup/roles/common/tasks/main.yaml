@@ -18,6 +18,14 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
 
+- name: Clean apt cache and update package index
+  become: true
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    autoclean: yes
+    autoremove: yes
+
 - name: Install Docker CE packages
   apt:
     name:

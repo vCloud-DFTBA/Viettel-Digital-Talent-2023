@@ -4,7 +4,7 @@
   become: true
   gather_facts: true
   roles:
-    - common
-    - db
+    # - common
+    # - db
     - api
-    - web
+    # - web
