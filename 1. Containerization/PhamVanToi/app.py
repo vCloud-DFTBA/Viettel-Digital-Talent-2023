@@ -6,11 +6,13 @@ import os
 app = Flask(__name__)
 
 def get_db():
-    client = MongoClient(host='phamvantoi',
-                         port=27017, 
-                         username='root', 
-                         password='pass',
-                        authSource="admin")
+    # client = MongoClient(host='phamvantoi',
+    #                      port=27017, 
+    #                      username='root', 
+    #                      password='pass',
+    #                     authSource="admin")
+
+    client = MongoClient("mongodb://mongodb-server:27017/")
     db = client["internees"]
     return db
 

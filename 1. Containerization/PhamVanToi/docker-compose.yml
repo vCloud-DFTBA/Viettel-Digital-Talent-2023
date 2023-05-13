@@ -24,11 +24,12 @@ services:
       - db
   db:
     image: mongo:5.0
-    hostname: phamvantoi
-    environment:
-      - MONGO_INITDB_DATABASE=internees
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=pass
+    container_name: mongodb-server
+    # hostname: phamvantoi
+    # environment:
+    #   - MONGO_INITDB_DATABASE=internees
+    #   - MONGO_INITDB_ROOT_USERNAME=root
+    #   - MONGO_INITDB_ROOT_PASSWORD=pass
     volumes:
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
     # ports:
