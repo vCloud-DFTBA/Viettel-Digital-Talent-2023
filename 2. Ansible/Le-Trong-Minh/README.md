@@ -8,7 +8,7 @@
 
 -   ### [1. Install ansible](#21-install-ansible)
 -   ### [2. Config](#22-configure)
--   ### [2. Using ansible to deploy common role](#23-deployment)
+-   ### [2. Using ansible to deploy](#23-deployment)
 
 ## [III. References](#4-references)
 
@@ -198,13 +198,15 @@ During the development process, I encountered many conflicts as architectural co
 
 One of them is the virtual environment conflict
 
-```sh
-TASK [nginx : Restart a container] ********************************************************************************************************************************************
-fatal: [localhost]: FAILED! => {"changed": false, "msg": "Error connecting: Error while fetching server API version: HTTPConnection.request() got an unexpected keyword argument 'chunked'"}
+<div align="center">
+  <img width="1000" src="imgs/error.png" alt="error">
+</div>
 
-PLAY RECAP ********************************************************************************************************************************************
-localhost
-```
+<div align="center">
+  <i>
+         error
+        </i>
+</div>
 
 That's because older versions of requests vendored in their own urllib3. Modern requests uses the distributed version.
 
