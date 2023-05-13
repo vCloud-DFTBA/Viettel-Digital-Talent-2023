@@ -4,22 +4,22 @@ Sinh viên: **Trần Minh Dương**
 
 ## Mục lục
 
-I. Chuẩn bị
+[I. Chuẩn bị](#i-chuẩn-bị)
 
-- 1. Hosts
-- 2. Các Docker Image của 3-tier application
+- [1. Hosts](#1-hosts)
+- [2. Các Docker Image của 3-tier application](#2-các-docker-image-của-3-tier-application)
 
-II. Thực hành Ansible
+[II. Thực hành Ansible](#ii-thực-hành-ansible)
 
-- 1. Viết Ansible Playbooks
-  - 1.1. Inventories
-  - 1.2. Common role
-  - 1.3. Db role
-  - 1.4. Api role
-  - 1.5. Web role
-- 2. Triển khai
-  - 2.1. Chạy Ansible Playbooks
-  - 2.2. Kết quả
+- [1. Viết Ansible Playbooks](#1-viết-ansible-playbooks)
+  - [1.1. Inventories](#11-inventories)
+  - [1.2. Common role](#12-common-role)
+  - [1.3. Api role](#13-api-role)
+  - [1.4. Db role](#14-db-role)
+  - [1.5. Web role](#15-web-role)
+- [2. Triển khai](#2-triển-khai)
+  - [2.1. Chạy Ansible Playbooks](#21-chạy-ansible-playbooks)
+  - [2.2. Kết quả](#22-kết-quả)
 
 ## I. Chuẩn bị
 
