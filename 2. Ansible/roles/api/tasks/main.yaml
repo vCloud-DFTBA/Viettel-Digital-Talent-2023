@@ -1,0 +1,20 @@
+- name: Build Python backend image
+  community.docker.docker_image:
+    name: "{{ IMAGE_NAME }}"
+    build:
+      path: ./app/backend
+    source: build
+
+- name: Create API network
+  community.docker.docker_network:
+    name: "{{ API_NETWORK_NAME }}"
+
+- name: Run Python backend container
+  community.docker.docker_container:
+    name: backend
+    image: "{{ IMAGE_NAME }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ DB_NETWORK_NAME }}"
+      - name: "{{ API_NETWORK_NAME }}"
+  become: yes
