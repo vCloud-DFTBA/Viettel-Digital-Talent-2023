@@ -1,8 +1,11 @@
 import motor.motor_asyncio
+import os
 from model import Student
 
 # MongoDB driver
-url = 'mongodb://mongodb:27017/vdt2023'
+mongoHost = os.getenv("MONGODB_HOST", "mongodb")
+# url = 'mongodb://mongodb:27017/vdt2023'
+url = f'mongodb://{mongoHost}:27017/vdt2023'
 client = motor.motor_asyncio.AsyncIOMotorClient(url)
 
 database = client.VDT
