@@ -18,7 +18,7 @@ const ViewStudent = (props) => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/getone/" 
+        "/api/attendees/getone/" 
         + id
       )
       .then((res) => {

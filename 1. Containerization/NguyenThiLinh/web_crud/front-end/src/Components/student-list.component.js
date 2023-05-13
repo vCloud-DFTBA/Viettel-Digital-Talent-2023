@@ -8,7 +8,7 @@ const StudentList = () => {
   
   useEffect(() => {
     axios
-      .get("http://localhost:5000/")
+      .get("/api/attendees")
       .then(({ data }) => {
         setStudents(data);
       })

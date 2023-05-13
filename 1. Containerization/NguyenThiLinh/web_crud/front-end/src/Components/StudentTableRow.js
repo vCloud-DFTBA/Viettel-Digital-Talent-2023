@@ -8,8 +8,7 @@ const StudentTableRow = (props) => {
   console.log(props.obj);
   const deleteStudent = () => {
     axios
-      .delete(
-"http://localhost:5000/" + _ID)
+      .delete("/api/attendees/" + _ID)
       .then((res) => {
         if (res.status === 200) {
           alert("Student successfully deleted");

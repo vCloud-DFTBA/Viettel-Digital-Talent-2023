@@ -11,7 +11,7 @@ const CreateStudent = () => {
     useState({ fullName: '', doB: '', gender: '', school: '', major: '' })
   // onSubmit handler
   const onSubmit = studentObject => {
-    axios.post('http://localhost:5000',
+    axios.post('/api/attendees',
       studentObject)
       .then(res => {
         if (res.status === 200)

@@ -16,7 +16,7 @@ const EditStudent = (props) => {
   const onSubmit = (studentObject) => {
     axios
       .put(
-        "http://localhost:5000/" +
+        "/api/attendees/" +
          id,
         studentObject
       )
@@ -33,7 +33,7 @@ const EditStudent = (props) => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/getone/" 
+        "/api/attendees/getone/" 
         + id
       )
       .then((res) => {
