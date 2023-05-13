@@ -1,0 +1,55 @@
+- name: Get running containers
+  docker_host_info:
+    containers: yes
+  register: docker_info
+
+- name: Stop running containers
+  docker_container:
+    name: "{{ item }}"
+    state: stopped
+  loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
+
+- name: Remove Stoped docker containers
+  shell: |
+     docker rm $(docker ps -a -q);
+  when: (docker_info.containers | length) != 0
+
+- name: Create a network
+  docker_network:
+    name: backend
+
+- name: Pull Mongodb image
+  docker_image:
+    name: "{{ mongodb_docker_image }}"
+    tag: "{{ mongodb_image_tag }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Create db container
+  docker_container:
+    name: "{{ mongodb_container_name }}"
+    image: "{{ mongodb_docker_image }}:{{mongodb_image_tag}}"
+    state: present
+
+- name: Run mongodb container
+  docker_container:
+    name: "{{ mongodb_container_name }}"
+    image: "{{ mongodb_docker_image }}:{{mongodb_image_tag}}"
+    restart_policy: unless-stopped
+    state: started
+    env: 
+      MONGO_DATABASE: "database"
+    volumes: ./database:/data/db
+    # ports:
+    # - '{{ mongodb_port }}:{{ mongodb_internal_port }}'
+    networks:
+      - name: backend
+    networks_cli_compatible: no
+
+  register: mongodb_container
+
+# - name: Wait until mongodb starts up
+#   wait_for:
+#     port: '{{ mongodb_port }}'
+#     delay: 5

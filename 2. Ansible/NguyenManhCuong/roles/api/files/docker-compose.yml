@@ -1,0 +1,52 @@
+version: '3.3'
+
+services:
+
+  web_1:
+    build: ./web
+    container_name: flask_1
+    restart: unless-stopped
+    environment:
+      MONGODB_DATABASE: flask
+      MONGODB_HOSTNAME: db
+      COLOR: "#003366"
+    ports:
+      - "5000:5000"
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - db
+
+  web_2:
+    build: ./web
+    container_name: flask_2
+    restart: unless-stopped
+    environment:
+      MONGODB_DATABASE: flask
+      MONGODB_HOSTNAME: db
+      COLOR: "#ff0033"
+    ports:
+      - "5001:5000"
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - db
+
+  web_3:
+    build: ./web
+    container_name: flask_3
+    restart: unless-stopped
+    environment:
+      MONGODB_DATABASE: flask
+      MONGODB_HOSTNAME: db
+      COLOR: "#00ff00"
+    ports:
+      - "5002:5000"
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - db
+

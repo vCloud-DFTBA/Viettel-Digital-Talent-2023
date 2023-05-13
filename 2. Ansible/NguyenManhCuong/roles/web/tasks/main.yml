@@ -1,0 +1,24 @@
+- name: Pull Nginx image
+  docker_image:
+    name: "{{ nginx_image_name }}"
+    source: pull
+    state: present
+    force_source: true
+    
+- name: Create db container
+  docker_container:
+    name: "{{ nginx_container_name }}"
+    image: "{{ nginx_image_name }}"
+    state: present
+
+
+- name: Run Nginx container
+  docker_container:
+    name: "{{ nginx_container_name }}"
+    image: "{{ nginx_image_name }}"
+    restart_policy: unless-stopped
+    state: started
+    ports:
+    - "80:80"
+    networks:
+      - name: frontend
