@@ -6,5 +6,5 @@
   roles:
     # - common
     # - db
-    - api
-    # - web
+    # - api
+    - web

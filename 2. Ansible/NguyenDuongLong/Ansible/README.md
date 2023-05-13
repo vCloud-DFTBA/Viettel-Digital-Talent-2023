@@ -49,10 +49,20 @@ ansible-playbook -i inventory.yaml --ask-become-pass setup.yaml
 
 <img src= images/db_rs.png>
 
-<b>3,</b> Run role api:
+<b>4,</b> Run role api:
 
 <img src= images/api_rs.png>
 
-<b>3,</b> Run role web:
+<b>5,</b> Run role web:
 
 <img src= images/web_rs.png>
+
+### IV, Result
+
+<b>1,</b> Containers:
+
+<img src= images/containers.png>
+
+<b>2,</b> App:
+
+<img src= images/list_sv.png>

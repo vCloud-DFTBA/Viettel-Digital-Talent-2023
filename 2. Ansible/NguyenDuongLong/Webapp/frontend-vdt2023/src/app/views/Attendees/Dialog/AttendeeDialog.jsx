@@ -13,6 +13,7 @@ function AttendeeDialog() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [yearOfBirth, setYearOfBirth] = useState("");
+  const [sex, setSex] = useState("");
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
 
@@ -31,6 +32,7 @@ function AttendeeDialog() {
             setName(attendee.name);
             setUsername(attendee.username);
             setYearOfBirth(attendee.yearOfBirth);
+            setSex(attendee.sex)
             setSchool(attendee.school);
             setMajor(attendee.major);
             return;
@@ -54,6 +56,7 @@ function AttendeeDialog() {
         name: name,
         username: username,
         yearOfBirth: yearOfBirth,
+        sex: sex,
         school: school,
         major: major,
       };
@@ -107,6 +110,9 @@ function AttendeeDialog() {
     } else if (yearOfBirth === "") {
       toast.warning("Year of Birth is required");
       return false;
+    } else if (sex === "") {
+      toast.warning("Year of Birth is required");
+      return false;
     } else if (school === "") {
       toast.warning("School is required");
       return false;
@@ -125,6 +131,9 @@ function AttendeeDialog() {
         break;
       case "yearOfBirth":
         setYearOfBirth(value);
+        break;
+      case "sex":
+        setSex(value);
         break;
       case "username":
         setUsername(value);
@@ -192,6 +201,19 @@ function AttendeeDialog() {
               required="required"
             />
             <label className={styles.formLabel}>Year of Birth</label>
+          </div>
+           {/* Sex */}
+           <div className={styles.form}>
+            <input
+              type="text"
+              className={styles.formInput}
+              autoComplete="off"
+              placeholder=" "
+              value={sex ? sex : ""}
+              onChange={(input) => handleChange(input.target.value, "sex")}
+              required="required"
+            />
+            <label className={styles.formLabel}>Sex</label>
           </div>
           {/* School */}
           <div className={styles.form}>
