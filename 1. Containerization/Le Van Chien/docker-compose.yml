@@ -1,7 +1,7 @@
 version: '3.9'
-networks:
-        net:
-                driver: bridge
+# networks:
+#         net:
+#                 driver: bridge
 services:
         nginx:
               image: nginx:1.22.0-alpine
@@ -12,14 +12,14 @@ services:
               volumes:
                       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
                       - ./nginx/static:/var/www/html
-              networks:
-                      - net
+        #       networks:
+        #               - net
         app:
                 build: ./app
                 depends_on: 
                         - db
-                networks:
-                        - net
+                # networks:
+                #         - net
                 volumes:
                         - ./app:/app
                 links:
@@ -30,8 +30,8 @@ services:
                 image: mongo:5.0
                 ports:
                         - "27017:27017"
-                networks:
-                        - net
+                # networks:
+                #         - net
                 volumes:
                         - ./db:/data/db
 
