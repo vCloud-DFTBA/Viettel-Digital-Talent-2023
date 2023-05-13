@@ -11,9 +11,7 @@
 #   shell:
 #     cmd: docker start mongodb-server flask_app nginx_container
 
-# - name: Open localhost
-#   shell:
-#     cmd: curl localhost 
+
 
 - name: Build the web image 
   docker_image:
