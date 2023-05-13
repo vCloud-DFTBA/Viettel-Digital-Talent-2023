@@ -11,16 +11,18 @@
   become: yes
 
 # svc
-
 - name: Run the docker API images
   community.docker.docker_container:
     name: api
-    image: manhlab/vt_api
+    image: web_app
     state: started
-    # restart: true
+    restart: true
     ports:
-      - "8080:8080"
-    # enenvironment:
+      - "8080:8080"    
+    env: 
+      SECRET_KEY=secret
+      DEBUG=False
+      MONGODB_URL=mongodb://mongodb/student
+      HOST_URL=http://172.17.0.1:8080
 
-    env_file: "/home/minh/Downloads/learnAnsible/HWansible/roles/api/files/.env"
     command: uvicorn main:app --reload --host 0.0.0.0 --port 8080

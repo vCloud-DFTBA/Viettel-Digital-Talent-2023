@@ -11,6 +11,10 @@
         name: requests==2.28.1
         state: present
 
+    # - name: install community docker
+    #   community.general.collection:
+    #     name: community.docker
+
   vars:
     docker_sdk_for_python_install: True
     docker_compose_install: True

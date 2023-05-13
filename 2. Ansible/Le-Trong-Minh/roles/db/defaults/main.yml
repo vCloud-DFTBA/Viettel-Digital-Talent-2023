@@ -4,7 +4,6 @@ mongodb_container_name: 'mongodb'
 # Port to be exposed to the host
 mongodb_port: 27017
 
-###########################################################################
 # Authentication
 # Enable authentication
 mongodb_auth: false
@@ -19,12 +18,10 @@ mongodb_db:
 mongodb_user:
 mongodb_password:
 
-###########################################################################
 # Optional settings
-
 # Mongo version
 mongodb_docker_image: mongo
-mongodb_docker_image_tag: 5
+mongodb_docker_image_tag: 5.0
 
 # Install mongo cli on docker host
 mongodb_install_cli: false
