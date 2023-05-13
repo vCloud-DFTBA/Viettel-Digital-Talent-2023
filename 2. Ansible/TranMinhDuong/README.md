@@ -219,7 +219,7 @@ Test các chức năng CRUD của backend:
 - Lấy thông tin 1 sinh viên bằng id
 
 <div align="center">
-    <img src="./images/result_be_getOne.png"/>
+    <img src="./images/result_be_getone.png"/>
 </div>
 
 - Thêm sinh viên
