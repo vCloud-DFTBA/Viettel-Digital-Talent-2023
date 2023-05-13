@@ -1,4 +1,4 @@
-For this practice, I could have done it the easy way by copying all the needed file and folders from hostnode and then tell the managed node to execute the dockercompse.yaml file. Instead, I will use some docker module to make image and create container inorder to level up my Ansible skill
+For this practice, I could have done it the easy way by copying all the needed file and folders from hostnode and then tell the managed node to execute the dockercompose.yaml file. Instead, I will use some docker module to make image and create container in order to level up my Ansible skill
 
 # 1.Setting up Inventory:
 ```
