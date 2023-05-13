@@ -1,0 +1,32 @@
+---
+- name: Login to DockerHub
+  docker_login:
+    username: "{{ DOCKER.USERNAME }}"
+    password: "{{ DOCKER.PASSWORD }}"
+
+- name: Build api image and push to docker hub
+  docker_image:
+    name: "{{ DOCKER.USERNAME }}/api"
+    source: build
+    build:
+      path: /vdt/source/api
+    push: true
+    tag: "{{ DOCKER.APP_VERSION }}"
+
+- name: Build web image and push to docker hub
+  docker_image:
+    name: "{{ DOCKER.USERNAME }}/web"
+    source: build
+    build:
+      path: /vdt/source/web
+    push: true
+    tag: "{{ DOCKER.APP_VERSION }}"
+
+- name: Build lb image and push to docker hub
+  docker_image:
+    name: "{{ DOCKER.USERNAME }}/lb"
+    source: build
+    build:
+      path: /vdt/source/lb
+    push: true
+    tag: "{{ DOCKER.APP_VERSION }}"

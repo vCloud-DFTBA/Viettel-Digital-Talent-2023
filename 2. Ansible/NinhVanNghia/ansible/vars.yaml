@@ -1,0 +1,15 @@
+---
+DB:
+  HOST: "primary-db"
+  USERNAME: root
+  PASSWORD: 1234
+  PORT: 3306
+  NAME: vdt
+
+USER: vt_app
+PASSWORD: root
+
+DOCKER:
+  USERNAME: nghianinhnb
+  PASSWORD: 1109nghia.@
+  APP_VERSION: v2

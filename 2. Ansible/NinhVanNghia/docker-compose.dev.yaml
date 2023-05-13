@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  api:
+    depends_on: 
+      - primary-db
+    build:
+      context: "./source/api"
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    networks:
+      - net
+    environment:
+      - WAIT_HOSTS=primary-db:3306
+      - WAIT_AFTER_HOSTS=3
+      - WAIT_HOSTS_TIMEOUT=30
+    volumes:
+      - api_modules:/app/node_modules
+      - ./source/api:/app
+
+  web:
+    build:
+      context: "./source/web"
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    networks:
+      - net
+    environment:
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - web_modules:/app/node_modules
+      - ./source/web:/app
+
+  primary-db:
+    image: mysql:8.0.27
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: VDT
+    networks:
+      - net
+    volumes:
+      - db_data:/var/lib/mysql
+
+networks:
+  net:
+
+volumes:
+  api_modules:
+  web_modules:
+  db_data:
