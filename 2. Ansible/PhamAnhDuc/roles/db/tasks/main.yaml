@@ -1,0 +1,16 @@
+---
+
+- name: Start Mongo database server
+  docker_container:
+    name: mongo
+    image: mongo:5.0
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongoconfig:/data/configdb
+    networks:
+      - name: "{{ three_tier_network_name }}"

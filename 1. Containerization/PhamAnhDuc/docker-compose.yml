@@ -7,7 +7,7 @@ services:
     ports:
       - 5000:5000
     environment:
-      - DB_URI=mongodb://mongo:27017/
+      - DB_URI=mongodb://mongo_buddy:27017/
     depends_on:
       - mongo
   mongo:
