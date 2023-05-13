@@ -1,0 +1,34 @@
+- name: Deploy load balancer
+  docker_container:
+    name: loadbalancer
+    image: traefik:v2.9
+    restart_policy: unless-stopped
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/traefik/traefik.yaml:/etc/traefik/traefik.yaml
+      - "{{ LB_VOLUME }}:/etc/traefik"
+    networks:
+      - name: "{{ NETWORK_NAME }}"
+    hostname: loadbalancer
+    env:
+      DYNU_API_KEY: "{{ DYNU_API_KEY }}"
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "{{ NETWORK_NAME }}"
+      traefik.http.routers.traefik.rule: "Host(`{{ TRAEFIK_DOMAIN }}`)"
+      traefik.http.routers.traefik.service: "traefik"
+      traefik.http.services.traefik.loadbalancer.server.port: "8080"
+      traefik.http.routers.traefik.tls: "true"
+      traefik.http.routers.traefik.tls.certresolver: "production"
+  become: yes
+  tags: traefik
+- name: Copy /etc/traefik/dynamic.yaml to loadBalancer container
+  shell: docker cp /etc/traefik/dynamic.yaml loadbalancer:/etc/traefik/dynamic.yaml
+  become: yes
+  tags: traefik

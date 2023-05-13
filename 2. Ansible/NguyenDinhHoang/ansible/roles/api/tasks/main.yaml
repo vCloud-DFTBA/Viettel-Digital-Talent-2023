@@ -1,0 +1,6 @@
+- name: Prepare to deploy backend
+  import_tasks: setup.yaml
+  tags: backend
+- name: Deploy backend
+  import_tasks: deploy.yaml
+  tags: backend
