@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    a{
+        padding: 10px 10px ;
+        margin-bottom: 20px ;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    input[type=text]{
+        padding: 10px;
+        margin: 10px;
+    }
+
+    button{
+        padding: 10px;
+        margin: 10px;
+    }
+</style>
+<body>
+    <a href="/">HOME</a>
+    <a href="/create">CREATE</a>
+    <a href="/read">READ</a>
+    <a href="/update">UPDATE</a>
+    <a href="/delete">DELETE</a>
+
+    <form action="/update" method = "post">
+        <input type="text" name="id" id="" placeholder="STT">
+        <input type="text" name="name" id="" placeholder="FULLNAME">
+        <input type="text" name="username" id="" placeholder="USERNAME">
+        <input type="text" name="birth" id="" placeholder="BIRTH">
+        <div class="sex-container">
+            <input type="radio" name="sex" id="" value="Male"> 
+            <label for="">Male</label>
+            <input type="radio" name="sex" id="" value = "Female">
+            <label for=""> Female</label>
+        </div>
+        <input type="text" name="university" id="" placeholder="UNIVERSITY">
+        <input type="text" name="major" id="" placeholder="MAJOR">
+
+        <button type="submit">SUBMIT</button>
+    </form>
+</body>
+</html>
