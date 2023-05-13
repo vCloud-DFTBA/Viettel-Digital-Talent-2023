@@ -1,9 +1,9 @@
 ---
-# - name: Install Docker
-#   hosts: all
-#   become_user: root
-#   roles:
-#   - common
+- name: Install Docker
+  hosts: all
+  become_user: root
+  roles:
+  - common
 
 
 - name: Build source code and push to DockerHub
