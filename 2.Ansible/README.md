@@ -11,6 +11,7 @@ all:
       ansible_password: 1
       ansible_sudo_pass: 1
 ```
+* I could use Ansible Vault to encrypt my password but the deadline is near so I will check it out later :">
 
 * Then, I will use the command below to try to connect to host
 ``` ansible -i inventories/inventory.yaml -m ping all ```
