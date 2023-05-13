@@ -1,0 +1,4 @@
+- name: Pull MongoDB
+  ansible.builtin.shell:
+    cmd: docker pull mongo:5.0-focal
+  become_user: docker

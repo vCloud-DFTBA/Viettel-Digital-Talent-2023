@@ -1,0 +1,3 @@
+- name: Clone docker-compose file
+  ansible.builtin.shell:
+    cmd: cd ~ && rm -rf ~/deployment/ && mkdir deployment && git clone https://github.com/lam-lt/VDT-Cloud.git deployment
