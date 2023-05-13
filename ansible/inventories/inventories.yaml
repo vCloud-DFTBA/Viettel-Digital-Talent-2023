@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /VDT-2023/ansible/venv/bin/python
+      ansible_become_user: root
+      ansible_become_password: 12345678
+     

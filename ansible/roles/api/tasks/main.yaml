@@ -1,0 +1,13 @@
+- name: Build the api image 
+  docker_image:
+    build:
+      path: ./roles/api/files/
+    name: flask
+    source: "build"
+
+- name: Build the flask_app container from the api image.
+  docker_container:
+    name: flask
+    image: flask
+    networks:
+      - name: networks
