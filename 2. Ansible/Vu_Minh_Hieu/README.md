@@ -147,3 +147,6 @@ sudo ansible-playbook -i inventories/inventory.yml playbook-aio.yml
 
 -   [Automation for everyone](https://www.ansible.com/)
 -   [Ansible galaxy](https://galaxy.ansible.com/)
+-   [Ansible playbook command](https://manpages.ubuntu.com/manpages/trusty/man1/ansible-playbook.1.html)
+-   [8 steps to developing an Ansible role in Linux](https://www.redhat.com/sysadmin/developing-ansible-role)
+-   [Workshop Exercise - Roles: Making your playbooks reusable](https://aap2.demoredhat.com/exercises/ansible_rhel/1.7-role/)
