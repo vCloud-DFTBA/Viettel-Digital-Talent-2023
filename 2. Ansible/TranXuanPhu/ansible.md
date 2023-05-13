@@ -83,4 +83,4 @@ ok: [localhost]
 TASK [common : Create appdata volume] ******************************************
 ```
 Sau khi chạy thành công:
-![alt](./md_images/main_page.jpg)
+![alt](./md_images/main_page.png)
