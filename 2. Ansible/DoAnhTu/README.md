@@ -8,15 +8,15 @@ I have 2 file to config ansible inventory
 # hosts-dev
 [node]
 node1 ansible_host=18.140.66.35
-node1 ansible_ssh_pass=vdt2023
+node1 ansible_ssh_pass=***
 node1 ansible_user=cloud_user
-node1 ansible_sudo_pass=vdt2023
+node1 ansible_sudo_pass=***
 
 [local]
 node1 ansible_host=192.168.60.134
-node1 ansible_ssh_pass=2288
+node1 ansible_ssh_pass=***
 node1 ansible_user=vm1
-node1 ansible_sudo_pass=2288
+node1 ansible_sudo_pass=***
 ```
 
 ```cfg
@@ -29,7 +29,17 @@ retry_files_enabled = False
 # private_key_file=~/local
 ```
 
-`host-dev` is a file which contains all of information about remote server i need deploy. Local server is server i create in vmware to deploy app. With ip address: 192.168.60.134 and i remote it from server: 192.168.60.133.
+`host-dev` is a file which contains all of information about remote server i need deploy. Local server is server i create in vmware to deploy app.With ip address: 192.168.60.134 and i remote it from server: 192.168.60.133.
+
+<div align="center">
+  <img src="./img/ip19216860134.png"  />
+  192.168.60.134
+</div>
+
+<div align="center">
+  <img src="./img/ip19216860133.png"  />
+  192.168.60.133
+</div>
 
 The second config is in `ansible.cfg`. In this file has `inventory` for ansible and `host_key_checking = False` is a configuration parameter used in SSH (Secure Shell) that instructs the SSH client to not check the host key of the server it is connecting to.
 
@@ -37,27 +47,32 @@ The second config is in `ansible.cfg`. In this file has `inventory` for ansible 
 
 This is my project structure
 
-├── ansible.cfg
-├── app
-│ ├── Dockerfile
-│ ├── requirements.txt
-│ └── VDT
-│ ├── **init**.py
-│ └── templates
-│ └── VDT.html
-├── hosts-dev
-├── img
-├── mongo-entrypoint
-│ └── init-mongo.js
-├── nginx
-│ └── conf.d
-│ └── default.conf
-├── playbooks
-│ ├── flask-services.yml
-│ ├── install-docker.yml
-│ ├── mongo-services.yml
-│ └── nginx-services.yml
-└── README.md
+```tree
+.
+└── DoAnhTu
+    ├── ansible.cfg
+    ├── app
+    │   ├── Dockerfile
+    │   ├── requirements.txt
+    │   └── VDT
+    │       ├── __init__.py
+    │       └── templates
+    │           └── VDT.html
+    ├── hosts-dev
+    ├── img
+    ├── mongo-entrypoint
+    │   └── init-mongo.js
+    ├── nginx
+    │   └── conf.d
+    │       └── default.conf
+    ├── playbooks
+    │   ├── flask-services.yml
+    │   ├── install-docker.yml
+    │   ├── mongo-services.yml
+    │   └── nginx-services.yml
+    └── README.md
+
+```
 
 ### **install-docker.yml**
 
