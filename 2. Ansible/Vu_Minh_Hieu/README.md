@@ -140,3 +140,10 @@ sudo ansible-playbook -i inventories/inventory.yml playbook-aio.yml
 ```
 
 <img src= images/aio.png>
+
+<a name="Re"></a>
+
+# **III. References**:
+
+-   [Automation for everyone](https://www.ansible.com/)
+-   [Ansible galaxy](https://galaxy.ansible.com/)
