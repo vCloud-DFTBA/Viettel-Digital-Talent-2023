@@ -1,0 +1,30 @@
+---
+- name: Copy Database
+  ansible.builtin.copy:
+    src: files/attendees.json
+    dest: /webapp
+    mode: '0644'
+
+- name: Container Configure
+  docker_container:
+    name: mongodb
+    image: mongo:5.0.0
+    hostname: host_mongodb
+    restart_policy: unless-stopped
+    volumes:
+      - mongodbdata:/data/db
+    ports:
+      - "27017:27017"
+    network_mode: bridge
+
+- name: Copy database to mongodb container
+  shell: |
+    sudo docker cp /webapp/attendees.json mongodb:/tmp
+    sudo docker exec mongodb bash
+
+- name: Import database
+  community.docker.docker_container_exec:
+    container: mongodb
+    command: mongoimport --db attendees --collection attendees --file /tmp/attendees.json
+    chdir: /tmp
+  register: result
