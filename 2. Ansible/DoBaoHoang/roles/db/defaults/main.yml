@@ -1,0 +1,5 @@
+---
+# defaults file for db
+mongodb_container_name: 'mongodb'
+mongodb_tag: 5.0-focal
+mongodb_image: mongo

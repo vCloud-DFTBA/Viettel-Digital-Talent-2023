@@ -1,0 +1,4 @@
+---
+# tasks file for test_ping
+- name: Test ping
+  action: ping

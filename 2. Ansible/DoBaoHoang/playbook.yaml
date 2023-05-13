@@ -1,0 +1,13 @@
+- name: Test ping to all hosts
+  hosts: nodes
+  roles: [ test_ping ]
+
+- name: Setup database server
+  hosts: nodes
+  become: true
+  roles: [ common, db ]
+
+- name: Setup web server
+  hosts: nodes
+  become: true
+  roles: []
