@@ -1,0 +1,13 @@
+user: lechiennn
+source_folder: ../db
+dest_folder: "/home/{{ user }}/test/"
+
+image_name: mongo:5.0
+
+container_name: db
+
+container_state: started
+volumes:
+  - "{{ dest_folder }}/db:/data/db"
+
+network_name: net
