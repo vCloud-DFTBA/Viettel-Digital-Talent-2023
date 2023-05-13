@@ -18,7 +18,7 @@ def todo():
     try:
         client.admin.command('ismaster')
         students = list(db.attendees.find({}))
-        return render_template('index.html', data= students, border_color=os.environ.get("BORDER_COLOR"))
+        return render_template('index.html', data= students)
     except:
         return "Server not available"
     
