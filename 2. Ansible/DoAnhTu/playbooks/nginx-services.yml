@@ -1,5 +1,5 @@
 ---
-- hosts: node
+- hosts: local
   become: true
   tasks:
     - name: Creates src directory

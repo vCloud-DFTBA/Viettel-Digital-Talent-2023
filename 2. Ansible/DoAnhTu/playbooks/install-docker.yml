@@ -1,5 +1,5 @@
 ---
-- hosts: node2
+- hosts: local
   become: true
   tasks:
     - name: updating apt packages

@@ -1,6 +1,6 @@
 # flask-services.yml
 ---
-- hosts: node2
+- hosts: local
   become: true
   tasks:
     - name: Creates src directory

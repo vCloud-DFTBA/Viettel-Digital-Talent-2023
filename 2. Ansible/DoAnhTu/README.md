@@ -396,15 +396,21 @@ Web will be deployed in 192.168.60.134:8000 like config nginx.
           - "8000:80"
 ```
 
+---
+
+**image for home page in nginx**
+
 <div align="center">
   <img src="./img/succes1.png"  />
 </div>
-Home page
+
+---
+
+**image for vdt app in nginx**
 
 <div align="center">
   <img src="./img/success2.png"  />
 </div>
-VDT app
 
 ### **Note**
 
