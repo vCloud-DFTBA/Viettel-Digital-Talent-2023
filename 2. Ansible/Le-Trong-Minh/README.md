@@ -77,11 +77,6 @@ Build `web_app` Docker Images
         docker build -t web_app
 ```
 
-        Show about image here
-
-Long in to dockerhub and push image
-
-
 In this project, components are declared according to each of its roles. Here, `common` will setup `docker`, `nginx` will setup `web server` using nginx, `db` will install `mongodb` and api will be `web backend`.
 
 
