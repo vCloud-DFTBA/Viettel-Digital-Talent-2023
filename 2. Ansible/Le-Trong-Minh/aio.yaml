@@ -1,0 +1,38 @@
+---
+- hosts: all
+  become: True
+  gather_facts: False
+
+  pre_tasks:
+    - wait_for_connection: { timeout: 300 }
+    - setup:
+    - name: Install requests library using pip
+      pip:
+        name: requests==2.28.1
+        state: present
+
+  vars:
+    docker_sdk_for_python_install: True
+    docker_compose_install: True
+    docker_daemon_config:
+      default-address-pools:
+        - { base: 172.16.0.0/16, size: 26 }
+      log-driver: "json-file"
+      log-opts:
+        max-size: "10m"
+        max-file: "3"
+  
+  tasks:
+    - name: Install Docker
+      import_role:
+        name: common
+    - name: config nginx
+      import_role:
+        name: nginx
+    - name: config db
+      import_role:
+        name: db
+    - name: api
+      import_role:
+        name: api
+        
