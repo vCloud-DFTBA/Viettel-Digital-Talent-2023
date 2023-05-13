@@ -1,0 +1,12 @@
+---
+webserver_image_name: littlehawk03/web_server
+webserver_container_name: web_server
+webserver_image_tag: latest
+
+webapp_image_name: littlehawk03/web_app
+webapp_container_name: web_app
+webapp_image_tag: latest
+
+MONGO_HOST: "192.168.89.125"
+MONGO_PORT: "27017"
+FLASK_ENV: development
