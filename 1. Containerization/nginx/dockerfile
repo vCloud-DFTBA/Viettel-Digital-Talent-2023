@@ -1,6 +1,0 @@
-FROM nginx:stable-alpine3.17-slim
-
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./index.html /usr/share/nginx/html/index.html
-RUN mkdir /usr/share/nginx/html/js/
-COPY ./js/script.js /usr/share/nginx/html/js/script.js
