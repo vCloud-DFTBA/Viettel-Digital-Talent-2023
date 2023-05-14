@@ -1,4 +1,4 @@
-# Viettel-Digital-Talent-2023: Pratice 1
+# Viettel-Digital-Talent-2023: Pratice 2
 # Task: Ansible
 # I. Ansible
 ## 1. Tổng quan về Ansible
