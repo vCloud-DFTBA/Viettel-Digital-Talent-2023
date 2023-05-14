@@ -1,0 +1,2 @@
+container_name: web_mongo
+docker_images: db
