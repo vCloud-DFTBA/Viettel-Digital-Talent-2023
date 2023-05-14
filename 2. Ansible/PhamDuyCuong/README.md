@@ -7,28 +7,30 @@ Author: **Pham Duy Cuong**
 
 <!-- TOC -->
 
-- [A. Prerequisites knowledge](#a-prerequisites-knowledge)
-  - [1. Ansible](#ansible)
-      - [1.1. Overview](#overview)
-      - [1.2. Architecture](#architecture)
-      - [1.3. Glossary](#glossary)
-  - [2. Ansible Galaxy](#ansible-galaxy)
-- [B. Practice](#b-practice)
-  - [1. Set up](#set-up)
-      - [1.1. Host machine](#host-machine)
-      - [1.2. Node machines](#node-machines)
-  - [2. Overview](#overview)
-  - [3. Deloy](#deloy)
-      - [Create inventory](#create-inventory)
-      - [3.1.Install Docker  role common](#install-docker--role-common)
-      - [3.2.Build images in host and archive it into .tar for transfer to nodes  role archive_images](#build-images-in-host-and-archive-it-into-tar-for-transfer-to-nodes--role-archive_images)
-      - [3.3.Create bridge network in node role set_up_network](#create-bridge-network-in-node-role-set_up_network)
-      - [3.4.Role db](#role-db)
-      - [3.5.Role api](#role-api)
-      - [3.6.Role web](#role-web)
-  - [Final playbook](#final-playbook)
-- [Result](#result)
-- [References](#references)
+- [Using Ansible to deploy three web tier](#using-ansible-to-deploy-three-web-tier)
+    - [Table of contents](#table-of-contents)
+    - [A. Prerequisites knowledge](#a-prerequisites-knowledge)
+        - [Ansible](#ansible)
+            - [Overview](#overview)
+            - [Architecture](#architecture)
+            - [Glossary](#glossary)
+        - [Ansible Galaxy](#ansible-galaxy)
+    - [B. Practice](#b-practice)
+        - [Set up](#set-up)
+            - [Host machine](#host-machine)
+            - [Node machines](#node-machines)
+        - [Overview](#overview)
+        - [Deloy](#deloy)
+            - [Create inventory](#create-inventory)
+            - [Install Docker  role common](#install-docker--role-common)
+            - [Build images in host and archive it into .tar for transfer to nodes  role archive_images](#build-images-in-host-and-archive-it-into-tar-for-transfer-to-nodes--role-archive_images)
+            - [Create bridge network in node role set_up_network](#create-bridge-network-in-node-role-set_up_network)
+            - [Role db](#role-db)
+            - [Role api](#role-api)
+            - [Role web](#role-web)
+        - [Final playbook](#final-playbook)
+    - [Result](#result)
+    - [References](#references)
 
 <!-- /TOC -->
 
@@ -44,10 +46,10 @@ Author: **Pham Duy Cuong**
 management**, and **application-deployment** tool enabling 
 **infrastructure as code**. 
 
-- Original author: **Michael DeHaan**
-- Developer(s): Ansible Community / Ansible Inc. / **Red Hat Inc** (since October 2015)
-- Initial release: **February 20, 2012**
-- Written in: **Python, PowerShell, Shell, Ruby**
+- Original author: Michael DeHaan
+- Developer(s): Ansible Community / Ansible Inc. / Red Hat Inc(since October 2015)
+- Initial release: February 20, 2012
+- Written in: Python, PowerShell, Shell, Ruby
 - Operating system: **Linux, Unix-like, MacOS, Windows**
 
 <div align="center">
@@ -67,7 +69,7 @@ Ansible then _executes_ these modules (over `SSH` by default),
 and _removes_ them when finished.
 
 <div align="center">
-  <img width="1500" src="images/ansible-architecture.webp" alt="Ansible architecture">
+  <img width="1500" src="images/ansible-architecture.png" alt="Ansible architecture">
 </div>
 
 <div align="center">
@@ -126,7 +128,7 @@ ansible-galaxy init <ROLE_NAME>
 Use this command, we will have a basic structure of a Role as below:
 
 <div align="center">
-  <img width="300" src="assets/roles-directory.png" alt="Roles directory structure">
+  <img width="500" src="images/roles_structure.png" alt="Roles structure">
 </div>
 
 <div align="center">
@@ -169,19 +171,19 @@ When installing `ansible`, `ansible-galaxy` is already included
 #### 1.2. Node machines
 <a name='node-machines'></a> 
 
-In this practice, I will create 2 virtual machines using **EC2** (Elastic Compute Cloud) 
+In this practice, I  created one virtual machines using  ** AWS EC2** (Elastic Compute Cloud) 
 of **AWS** (Amazon Web Services). They also use **Ubuntu** `22.04`, similar to host machine.
 
 
 <div align="center">
-  <img width="300" src="images/ec2-logo.png" alt="EC2 logo">
+  <img width="500" src="images/EC2-logo.png" alt="EC2 logo">
 </div>
 
 <div align="center">
   <i>EC2 logo.</i>
 </div>
 
-Then I connect with my EC2 instance via SSH to check.
+Then I connected with my EC2 instance via SSH to check.
 
 ```ssh -i "demo.pem" ubuntu@ec2-13-53-218-20.eu-north-1.compute.amazonaws.com```
 <div align="center">
@@ -220,7 +222,7 @@ This Ansible playbook will deploy a 3-tier web application using Docker:
   - Run the database container connected to that network
   - Load image in .tar file from  `host` and run container `api`, `web`  connected to the existing network
   
-Building container images and placing them into upstream repositories is a common way. If you might encounter scenarios where you don't want to upload a container image to a repository. By this method, we can build, save, and load your images without ever hitting a repository. The use of this Ansible module can also provide a simple mechanism for sharing your images in a small environment
+Building container images and placing them into upstream repositories is a common way. If you might **encounter scenarios** where you **don't** want to upload a container image to a repository. By this method, we can build, save, and load your images **without ever** hitting a repository. The use of this Ansible module can also provide a simple mechanism for **sharing** your images in a **small** environment
 
 ### 3. Deloy
 ####  Create inventory
@@ -240,12 +242,11 @@ In this inventory, I will divide into 2 groups: `host` and `nodes`.
   [host]
   localhost ansible_connection=local
   ```
-
 - **Node:**  EC2 instance - `nodes`.
 
   Remote host is:
 
-  ec2-13-53-218-20.eu-north-1.compute.amazonaws.com
+  `ec2-13-53-218-20.eu-north-1.compute.amazonaws.com`
 
   The `ansible_ssh_user` is the **SSH** username to use - which by default of EC2 is **ubuntu**.
 
@@ -275,8 +276,8 @@ I created `common` role, which both host and nodes use to install Docker.
 
 First, install `aptitude`a tool for interfacing with the Linux package manager, and installing the required system packages. 
 
-We will use module `apt` - an **idempotent** module, which is an Ansible module to manage _apt_ package:
-- `name` is the package name (it can be a list, but here we only have **aptitude**).
+I used an **idempotent** module `apt`, which is an Ansible module to manage _apt_ package:
+- `name` is the package name 
 - `state` the desired package state, and **latest** ensures that the latest version is installed. 
 - `update_cache` set to **true** to run `apt-get update` before the operation.
 
@@ -384,13 +385,13 @@ This uses the community.docker.docker_image module to loop over the list of imag
     ```
 
 - In `playbook.yaml`:
- ```yml
-- name: Install Docker
-  hosts: all
-  become: yes
-  roles:
-  - common
- ```
+  ```yaml
+  - name: Install Docker
+    hosts: all
+    become: yes
+    roles:
+    - common
+  ```
 Because these task will apply for all group, so I will set `host: all`.
 
 #### 3.3. Create bridge network in node (role `set_up_network`)
@@ -412,12 +413,12 @@ Role `db` is the role `nodes` use to run container database.
 In roles/db/tasks/main.yml:
 ```yaml
   - name: Download Docker image from Docker Hub
-  docker_image:
+    docker_image:
     name: mongo:5.0.6
     source: pull
 
   - name: Run Mongo container
-  community.docker.docker_container:
+    community.docker.docker_container:
     name: data_tier
     image: mongo:5.0.6
     state: started
@@ -436,7 +437,7 @@ Role `api` is the role `nodes` use to run container backend.
 
 In roles/api/tasks/main.yml:
 ```yaml
-  - name: copy tarball image to node
+- name: copy tarball image to node
   copy:
     src: /tmp/{{image_name}}.tar
     dest: /root/{{image_name}}.tar
@@ -462,20 +463,21 @@ This YAML defines three tasks:
 This uses the `copy` module to copy the Docker image .tar file (created in the previous play) from the host machine to the node.
 2. Load the image from the .tar file 
 This uses the `community.docker.docker_image` module to:
-- Load the Docker image from the .tar file  
-- The `source` is set to `load` to indicate loading from a .tar file
+  - Load the Docker image from the .tar file  
+  - The `source` is set to `load` to indicate loading from a .tar file
 3. Run the Flask container
 This uses the `community.docker.docker_container` module to:
-- Using the Docker image loaded in the previous step  
-- Connected to the `my-network` network 
-- In the `started` state (i.e. running the container)
+  - Using the Docker image loaded in the previous step  
+  -  Connected to the `my-network` network 
+  - In the `started` state (i.e. running the container)
 
-The key things to note are:
+The **key** things to note are:
 - The `load_path` parameter specifies the .tar file to load the image from   
 - The `networks` parameter connects the container to the desired network
 
 #### 3.6.  Role `web`
 Role `web` is the role `nodes` use to run container `nginx`.
+
 ``` ansible-galaxy init roles/web```
 
 In roles/web/tasks/main.yml:
@@ -510,7 +512,7 @@ This YAML defines three tasks alomost like role `api`:
 
 ### Final playbook
 <a name='create-playbook'></a>
-Plays:
+There are 3 plays:
 
 1/ Install **Docker** for all groups.
 
@@ -549,7 +551,8 @@ Plays:
 Run `playbook.yml` using command:
 
 ```ansible-playbook -i ./inventory playbook.yml```
-T
+
+URL: `http://13.53.218.20/`
 <div align="center">
   <img width="800" src="images/site.png" alt="Site">
 </div>
