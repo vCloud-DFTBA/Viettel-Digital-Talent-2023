@@ -27,7 +27,6 @@ services:
       - "python_server"
     build:
       context: ./front-end
-      # context: ./nginx
     container_name: nginx_server
     networks:
       - fe-be

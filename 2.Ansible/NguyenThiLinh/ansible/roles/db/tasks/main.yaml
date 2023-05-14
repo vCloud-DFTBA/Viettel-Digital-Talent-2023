@@ -1,0 +1,15 @@
+- name: Create docker network
+  docker_network:
+    name: "{{ NETWORK_NAME }}"  
+
+- name: Deploy MongoDB container
+  docker_container:
+    name: mongo_db
+    image: mongo:5.0
+    restart_policy: unless-stopped
+    volumes:
+      - ./mongodb:/docker-entrypoint-initdb.d
+    ports:
+      - "27017:27017"
+    networks:
+      - name: "{{ NETWORK_NAME }}"
