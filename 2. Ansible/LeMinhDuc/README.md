@@ -22,7 +22,7 @@ Deploy the application in the docker-compose homework using ansible:
 
 - First I installed `Ubuntu Server` as a virtual machine and enable bridged network adapter. I choose `Ubuntu Server` because its lightweight and ease of use.
 
-![img](/assets/1-set-up-vm.png)
+![img](assets/1-set-up-vm.png)
 *Setting up VirtualBox VM*
 
 - Install Ansible for controller node:
@@ -41,7 +41,7 @@ $ ip a
 ...
 ```
 
-![img](/assets/2-get-vm-ip.png)
+![img](assets/2-get-vm-ip.png)
 *Getting IP address of VM*
 
 - Set up SSH connection between controller and target nodes.
@@ -58,10 +58,10 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub <username>@<target-node-ip>
 
 -I only need to enter password once for each node. In future connections, SSH won't ask for password again.
 
-![img](/assets/3-set-up-ssh.png)
+![img](assets/3-set-up-ssh.png)
 *Setting up SSH connection*
 
-![img](/assets/4-test-connections.png)
+![img](assets/4-test-connections.png)
 *Testing SSH connection*
 
 - Add target nodes to `inventory.yml` file:
@@ -221,15 +221,15 @@ http {
 
 Here are the final results after deploying the application to my local machine and virtual machine:
 
-![img](/assets/5-deploy-app.png)
+![img](assets/5-deploy-app.png)
 *Deploying application to local machine*
 
-![img](/assets/6-localhost-result.png)
+![img](assets/6-localhost-result.png)
 *Result of deploying application to local machine*
 
 Well, the application isn't accessible from my VM. Let's SSH into the VM and debug it:
 
-![img](/assets/7-debug-vm.png)
+![img](assets/7-debug-vm.png)
 
 It turns out that the MongoDB requires a CPU with AVX support, which my VM doesn't have.
 
