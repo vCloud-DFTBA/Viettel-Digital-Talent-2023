@@ -39,6 +39,7 @@
 ```
 - Role common có chức năng cài đặt docker và docker compose trên node
 - Các role web, api, db có chức năng build image và run container các service web (nginx), api (flask), db (mongodb)
+- Sử dụng Ansible vault để mã hóa mật khẩu user (trong inventory)
 - Do tài nguyên hạn chế, các service trong bài tập được build trên cùng một host
 ## Update web service từ bài tập Containerization
 - Giao diện web viết bằng html, css, javascript triển khai trên nền nginx.
