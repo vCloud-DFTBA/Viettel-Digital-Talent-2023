@@ -1,10 +1,5 @@
 ---
 # tasks file for db
-- name: Create a network
-  community.docker.docker_network:
-    name: my-network
-    state: present
-    
 - name: Download Docker image from Docker Hub
   docker_image:
     name: mongo:5.0.6
@@ -17,3 +12,5 @@
     state: started
     networks:
       - name: my-network
+
+      

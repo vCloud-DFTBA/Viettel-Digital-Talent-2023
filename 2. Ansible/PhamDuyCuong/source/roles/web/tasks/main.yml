@@ -16,7 +16,7 @@
 - name: Run Nginx container
   docker_container:
     name: my-nginx
-    image: source-web
+    image: "{{image_name}}"
     networks:
       - name: my-network
     ports:

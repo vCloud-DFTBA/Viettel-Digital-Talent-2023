@@ -1,5 +1,5 @@
 - name: Install Docker
-  hosts: nodes
+  hosts: all
   become: yes
   roles:
     - common
@@ -10,10 +10,13 @@
   roles:
     - archive_images
 
-- name: Run containers database in node
+- name: Load images and deloy three-tier web in node
   hosts: nodes
   become: yes
   roles:
+    # Set up network for containers in nodes
+    - set_up_network
+    # Run containers and connect to the existing network
     - db
     - api
     - web
