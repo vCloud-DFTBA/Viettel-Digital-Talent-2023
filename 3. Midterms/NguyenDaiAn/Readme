@@ -505,9 +505,10 @@ Yêu cầu:
 Chú ý: Tên các container có tiền tố là `<username>` để phân biệt thông số giám
 sát dịch vụ của các sinh viên trên hệ thống giám sát tập trung. Thông tin
 `<username>` của từng sinh viên cho bởi bảng trong Phụ lục I.
+
 Yêu cầu:
-### Role monitor chứa các playbook và cấu hình giám sát cho hệ thống
-### Ảnh chụp dashboard giám sát nodes & containers, có thể sử dụng hệ thống prometheus
+- Role monitor chứa các playbook và cấu hình giám sát cho hệ thống
+- Ảnh chụp dashboard giám sát nodes & containers, có thể sử dụng hệ thống prometheus
 tập trung ở 171.236.38.100:9090
 
 #### 2. Logging (1đ)❌
