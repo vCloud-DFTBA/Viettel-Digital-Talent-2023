@@ -41,8 +41,8 @@ $ ip a
 ...
 ```
 
-![img](assets/2-get-vm-ip.png)
-*Getting IP address of VM*
+  ![img](assets/2-get-vm-ip.png)
+  *Getting IP address of VM*
 
 - Set up SSH connection between controller and target nodes.
 
@@ -56,7 +56,7 @@ ssh-add ~/.ssh/id_ed25519
 ssh-copy-id -i ~/.ssh/id_ed25519.pub <username>@<target-node-ip>
 ```
 
--I only need to enter password once for each node. In future connections, SSH won't ask for password again.
+- I only need to enter password once for each node. In future connections, SSH won't ask for password again.
 
 ![img](assets/3-set-up-ssh.png)
 *Setting up SSH connection*
