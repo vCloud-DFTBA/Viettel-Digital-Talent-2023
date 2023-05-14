@@ -511,6 +511,9 @@ Yêu cầu:
 - Ảnh chụp dashboard giám sát nodes & containers, có thể sử dụng hệ thống prometheus
 tập trung ở 171.236.38.100:9090
 
+Giải pháp:
+
+
 #### 2. Logging (1đ)❌
 
 Yêu cầu:
