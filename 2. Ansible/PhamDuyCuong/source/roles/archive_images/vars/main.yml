@@ -1,0 +1,9 @@
+---
+# vars file for push_images
+image_name:
+  - source_web
+  - source_backend
+
+path_to_source:
+  - /home/dc97/Desktop/VDT2/1. Containerization/PhamDuyCuong/source/nginx
+  - /home/dc97/Desktop/VDT2/1. Containerization/PhamDuyCuong/source/flask

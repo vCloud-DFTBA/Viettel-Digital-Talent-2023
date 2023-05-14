@@ -1,0 +1,7 @@
+---
+# tasks file for set_up_network
+- name: Create a network
+  community.docker.docker_network:
+    name: my-network
+    state: present
+    
