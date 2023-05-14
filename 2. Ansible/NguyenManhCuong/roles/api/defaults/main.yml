@@ -1,3 +1,3 @@
-mongodb_container_name: mongodb
-mongodb_database: database
-api_image_name: vansonpt/api:v1
+db_container_name: mongodb
+db_database: database
+api_image_name: vansonpt/api

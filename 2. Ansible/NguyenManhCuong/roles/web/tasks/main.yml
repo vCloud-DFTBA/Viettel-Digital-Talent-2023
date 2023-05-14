@@ -1,21 +1,15 @@
 - name: Pull Nginx image
   docker_image:
     name: "{{ nginx_image_name }}"
+    tag: "{{ image_version }}"
     source: pull
     state: present
     force_source: true
-    
-- name: Create db container
-  docker_container:
-    name: "{{ nginx_container_name }}"
-    image: "{{ nginx_image_name }}"
-    state: present
-
 
 - name: Run Nginx container
   docker_container:
     name: "{{ nginx_container_name }}"
-    image: "{{ nginx_image_name }}"
+    image: "{{ nginx_image_name }}:{{ image_version }}"
     restart_policy: unless-stopped
     state: started
     ports:

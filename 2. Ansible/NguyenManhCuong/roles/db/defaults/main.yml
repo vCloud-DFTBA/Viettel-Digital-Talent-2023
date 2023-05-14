@@ -1,4 +1,4 @@
-mongodb_container_name: 'mongodb'
-mongodb_image_tag: 5.0.17
-mongodb_docker_image: mongo
-mongodb_port: 27017
+db_container_name: mongodb
+db_image_tag: 5.0.17
+db_docker_image: mongo
+db_port: 27017

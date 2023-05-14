@@ -3,7 +3,7 @@ all:
     hosts:
         localhost:
             ansible_connection: local
-            ansible_python_interpreter: ./env/bin/python3
+            ansible_python_interpreter: ./venv/bin/python3
             ansible_become_user: root
             ansible_become_password: vanson1997
             hostname: vdt-23
