@@ -1,0 +1,28 @@
+---
+- name: Create a network
+  community.docker.docker_network:
+    name: frontend
+
+- name: Pull api image from Docker Hub
+  community.docker.docker_image:
+    name: "{{ flask_image }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run api container
+  community.docker.docker_container:
+    name: "{{ item.name }}"
+    image: "{{ flask_image }}"
+    restart_policy: unless-stopped
+    state: started
+    env:
+      DB_DATABASE: "{{ db_database }}"
+      DB_HOSTNAME: "{{ db_container_name }}"
+
+    networks:
+      - name: backend
+      - name: frontend
+  loop:
+    - { name: 'backend_1' }
+    - { name: 'backend_2' }

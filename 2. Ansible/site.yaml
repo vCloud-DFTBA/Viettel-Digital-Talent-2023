@@ -1,0 +1,20 @@
+---
+- name: Install Docker
+  hosts: all
+  become: yes
+  gather_facts: true
+  roles:
+    - common
+
+- name: Set up Web app in nodes
+  hosts: nodes
+  become: yes
+  gather_facts: true
+  roles:
+    - db
+    - api
+    - web
+
+
+
+

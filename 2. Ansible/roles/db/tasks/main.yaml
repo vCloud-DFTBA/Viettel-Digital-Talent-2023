@@ -1,0 +1,25 @@
+---
+- name: Create a network
+  community.docker.docker_network:
+    name: backend
+
+- name: Pull MongoDB image from Docker Hub
+  community.docker.docker_image:
+    name: mongo:5.0.17
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run MongoDB container
+  community.docker.docker_container:
+    name: mongodb
+    image: mongo:5.0.17
+    restart_policy: unless-stopped
+    state: started
+    env:
+      DB_DATABASE: "database"
+    volumes: ./database:/data/db
+    networks:
+      - name: backend
+
+

@@ -1,0 +1,5 @@
+database
+venv
+.idea
+roles/web/.travis.yml
+roles/api/.travis.yml
