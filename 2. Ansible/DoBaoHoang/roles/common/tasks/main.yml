@@ -80,10 +80,7 @@
 
   - name: Stop running containers
     when: (docker_running.containers | length) != 0
-    shell: "docker kill $(docker ps -q) && docker ps | grep imagename | wc -l"
-    register: result
-    until: (result | int) == 0
-    delay: 1
+    shell: "docker kill $(docker ps -q)"
 
   - name: Remove stopped docker containers
     when: (docker_all.containers | length) != 0

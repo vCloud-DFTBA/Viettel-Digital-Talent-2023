@@ -1,13 +1,14 @@
-- name: Test ping to all hosts
-  hosts: nodes
-  roles: [ test_ping ]
-
 - name: Setup database server
-  hosts: nodes
+  hosts: db
   become: true
   roles: [ common, db ]
 
-- name: Setup web server
-  hosts: nodes
+- name: Setup api server
+  hosts: api
   become: true
-  roles: []
+  roles: [ common, api ]
+
+- name: Setup web server
+  hosts: server
+  become: true
+  roles: [ common, web ]

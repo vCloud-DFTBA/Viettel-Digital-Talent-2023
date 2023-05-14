@@ -25,9 +25,8 @@
       exposed_ports:
         - 27017
       published_ports:
-        - 27017
+        - "27017:27017"
       volumes:
         - /mongodbdata:/data/db
       restart_policy: unless-stopped
       state: started
-

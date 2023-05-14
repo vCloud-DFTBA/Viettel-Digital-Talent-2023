@@ -1,2 +1,5 @@
 ---
 # defaults file for web
+nginx_container_name: 'web'
+nginx_tag: latest
+nginx_image: 1805111/web

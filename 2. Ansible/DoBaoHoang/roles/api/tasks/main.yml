@@ -1,2 +1,31 @@
 ---
 # tasks file for api
+- name: Install and run API server
+  block:
+  - name: Pull API image
+    community.general.docker_image:
+      name: "{{ api_image }}"
+      tag: "{{ api_tag }}"
+      source: pull
+      state: present
+      force_source: true
+  
+  - name: Create API container
+    community.general.docker_container:
+      name: "{{ api_container_name }}"
+      image: "{{ api_image }}:{{ api_tag }}"
+      state: present
+  
+  - name: Run API container
+    community.general.docker_container:
+      name: "{{ api_container_name }}"
+      image: "{{ api_image }}:{{ api_tag }}"
+      env:
+        MONGODB_DATABASE: flaskdb
+        MONGODB_HOSTNAME: "192.168.0.128"
+      exposed_ports:
+        - 8080
+      published_ports:
+        - "8080:8080"
+      restart_policy: unless-stopped
+      state: started

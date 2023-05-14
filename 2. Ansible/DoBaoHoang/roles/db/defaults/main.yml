@@ -1,5 +1,5 @@
 ---
 # defaults file for db
 mongodb_container_name: 'mongodb'
-mongodb_tag: 5.0-focal
+mongodb_tag: 4.4.18
 mongodb_image: mongo
