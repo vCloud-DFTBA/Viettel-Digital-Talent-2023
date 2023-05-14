@@ -557,7 +557,7 @@ URL: `http://13.53.218.20/`
   <img width="800" src="images/site.png" alt="Site">
 </div>
 
-We have successfully built an Ansible project to deploy three-tier web using Docker without docker-compose in remote host.
+We have successfully built an Ansible project to deploy three-tier web using Docker **without** docker-compose in remote host.
 Through this exercise I also learned how to use ansible, how to use amazon EC2 and what is infrastructure as code and automation.
 
 ## References
