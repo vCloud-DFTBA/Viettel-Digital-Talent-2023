@@ -1,0 +1,6 @@
+---
+api_name: backend
+api_image: duclm278/backend
+api_networks:
+  - react-flask
+  - flask-mongo

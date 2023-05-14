@@ -1,0 +1,19 @@
+---
+- name: Create networks
+  community.docker.docker_network:
+    name: "{{ item }}"
+  loop: "{{ db_networks }}"
+
+- name: Create container
+  community.docker.docker_container:
+    name: "{{ db_name }}"
+    hostname: "{{ db_name }}"
+    restart_policy: unless-stopped
+    image: "{{ db_image }}"
+    volumes:
+      - ../app/db:/docker-entrypoint-initdb.d
+    networks:
+      - name: "{{ item }}"
+    ports:
+      - 27017:27017
+  loop: "{{ db_networks }}"

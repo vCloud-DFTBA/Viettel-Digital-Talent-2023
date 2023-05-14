@@ -1,0 +1,27 @@
+---
+vm:
+  hosts:
+    # vm01:
+    #   ansible_host: 192.168.0.104
+    #   ansible_connection: ssh
+    #   ansible_user: duc
+    #   ansible_python_interpreter: /usr/bin/python3
+    #   ansible_become_user: root
+    #   ansible_become_password: "{{ become_password }}"
+    #   username: vdt01
+    #   hostname: vdt01
+
+local:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ become_password }}"
+      username: duc
+      hostname: duc
+
+all:
+  children:
+    vm:
+    local:
