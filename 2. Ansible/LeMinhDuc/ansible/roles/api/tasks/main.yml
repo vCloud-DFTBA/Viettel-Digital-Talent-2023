@@ -1,8 +1,7 @@
 ---
-- name: Create networks
+- name: Create network {{ web_api_network }}
   community.docker.docker_network:
-    name: "{{ item }}"
-  loop: "{{ api_networks }}"
+    name: "{{ web_api_network }}"
 
 - name: Create container
   community.docker.docker_container:
@@ -11,7 +10,7 @@
     restart_policy: unless-stopped
     image: "{{ api_image }}"
     networks:
-      - name: "{{ item }}"
+      - name: "{{ web_api_network }}"
+      - name: "{{ api_db_network }}"
     ports:
       - 5000:5000
-  loop: "{{ api_networks }}"

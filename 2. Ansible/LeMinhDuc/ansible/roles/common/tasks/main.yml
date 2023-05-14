@@ -1,12 +1,12 @@
 ---
-- name: Create group {{ username }}
+- name: Create group {{ remote_user }}
   ansible.builtin.group:
-    name: "{{ username }}"
+    name: "{{ remote_user }}"
 
-- name: Create user {{ username }}
+- name: Create user {{ remote_user }}
   ansible.builtin.user:
-    name: "{{ username }}"
-    group: "{{ username }}"
+    name: "{{ remote_user }}"
+    group: "{{ remote_user }}"
 
 - name: Uninstall old versions
   ansible.builtin.apt:
@@ -48,9 +48,9 @@
       - docker-compose-plugin
     state: present
 
-- name: Ensure docker-group added user {{ username }}
+- name: Ensure docker-group added user {{ remote_user }}
   ansible.builtin.user:
-    name: "{{ username }}"
+    name: "{{ remote_user }}"
     groups: docker
     append: true
 

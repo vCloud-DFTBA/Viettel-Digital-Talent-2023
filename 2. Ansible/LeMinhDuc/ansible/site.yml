@@ -8,21 +8,21 @@
 
 - name: Deploy db
   hosts: all
-  become: true
+  become: false
   gather_facts: false
   roles:
     - db
 
 - name: Deploy backend
   hosts: all
-  become: true
+  become: false
   gather_facts: false
   roles:
     - api
 
 - name: Deploy frontend
   hosts: all
-  become: true
+  become: false
   gather_facts: false
   roles:
     - web
