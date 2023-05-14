@@ -1,0 +1,2 @@
+db_container_name: mongodb
+db_database: database
