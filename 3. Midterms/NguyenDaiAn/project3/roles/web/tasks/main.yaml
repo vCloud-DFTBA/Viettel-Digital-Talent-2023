@@ -1,0 +1,25 @@
+---
+- name: Build a web image
+  community.docker.docker_image:
+    name: web_image
+    build:
+       path: ./roles/web/templates
+    source: "build"
+    force_source: true
+      #  shell: "docker build ./roles/web/templates -t web_image"
+
+- name: Create a web container
+  community.docker.docker_container:
+    name: web
+    image: web_image
+    networks:
+      - name:  project
+    restart_policy: "unless-stopped"
+
+- name: Create a web container
+  community.docker.docker_container:
+    name: web_1
+    image: web_image
+    networks:
+      - name:  project
+    restart_policy: "unless-stopped"

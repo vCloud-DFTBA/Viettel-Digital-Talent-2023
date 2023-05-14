@@ -1,0 +1,24 @@
+---
+- name: Build a api image
+  community.docker.docker_image:
+    name: api_image
+    build:
+      path: ./roles/api/templates
+    source: "build"
+    force_source: true
+      #  shell: "docker build ./roles/api/templates -t api_image"
+
+- name: Create a api container
+  community.docker.docker_container:
+    name: api
+    image: api_image
+    networks:
+      - name:  project
+    restart_policy: "unless-stopped"
+- name: Create a api container
+  community.docker.docker_container:
+    name: api_1
+    image: api_image
+    networks:
+      - name:  project
+    restart_policy: "unless-stopped"

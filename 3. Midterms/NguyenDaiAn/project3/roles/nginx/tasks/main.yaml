@@ -1,0 +1,21 @@
+---
+- name: Build a nginx image
+  community.docker.docker_image:
+    name: nginx_image
+    build:
+      path: ./roles/nginx/templates
+    source: "build"
+    force_source: yes
+  # shell: "docker build ./roles/nginx/templates -t nginx_image "
+    
+- name: Create a nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: nginx_image
+    ports:
+    - "8000:8000"
+    - "8001:8001"
+    networks:
+      - name: project
+    restart_policy: "unless-stopped"
+
