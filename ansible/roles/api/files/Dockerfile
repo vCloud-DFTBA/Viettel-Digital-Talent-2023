@@ -1,4 +1,4 @@
-FROM python:3.9-alpine
+FROM python:3.9-alpine as builder
 
 WORKDIR /app
 ADD . /app

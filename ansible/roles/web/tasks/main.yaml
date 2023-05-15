@@ -1,9 +1,11 @@
+---
 - name: Build the web image 
   docker_image:
     build:
       path: ./roles/web/files/
     name: my_nginx
     source: "build"
+    force_source: "true"
 
 - name: Build the nginx_container container from the my_db image
   docker_container:

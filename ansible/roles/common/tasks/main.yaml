@@ -1,34 +1,32 @@
-- name: Update apt package
+- name: Install packages required for Docker
   ansible.builtin.apt:
-    update_cache: yes
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
 
-- name: Install packages to allow apt to use a repository over HTTPS
-  ansible.builtin.apt:
-    pkg:
-    - ca-certificates
-    - curl
-    - gnupg
-
-- name: Add Dockers official GPG key
-  ansible.builtin.apt_key:
+- name: Add Docker GPG key
+  apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- name: Set up the repository
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+- name: Add Docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
     state: present
-    update_cache: yes
+    filename: docker-ce
 
-- name: Update apt package
+- name: Install Docker
   ansible.builtin.apt:
-    update_cache: yes
+    name: docker-ce
+    state: present
 
-- name: Install Docker Engine
-  ansible.builtin.apt:
-    pkg:
-      - docker
-      - docker.io
-      - docker-compose
-      - docker-registry
-    state: latest
+- name: Start Docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+

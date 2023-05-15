@@ -1,3 +1,4 @@
+---
 - name: Build the api image 
   docker_image:
     build:
@@ -9,5 +10,7 @@
   docker_container:
     name: flask
     image: flask
+    ports:
+      - "5000:5000"
     networks:
-      - name: networks
+      - name: network
