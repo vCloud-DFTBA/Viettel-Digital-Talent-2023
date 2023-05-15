@@ -1,4 +1,3 @@
----
 - name: Build db image
   community.docker.docker_image:
     name: db_image

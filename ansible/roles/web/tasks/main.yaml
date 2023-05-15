@@ -10,6 +10,6 @@
     name: nginx_container
     image: my_nginx
     networks:
-      - name: mongodb_flask_nginx_network
+      - name: network
     ports:
     - "80:80"
