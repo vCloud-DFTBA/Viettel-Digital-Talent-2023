@@ -16,6 +16,7 @@
             <th></th>
             <th class="table-success text-center" style="font-size: small; width: 1.5cm;">ID</th>
             <th class="table-success text-center" style="font-size: small;">Họ và tên</th>
+            <th class="table-success text-center" style="font-size: small; width: 2cm;">Username</th>
             <th class="table-success text-center" style="font-size: small;width: 2cm;">Năm sinh</th>
             <th class="table-success text-center" style="font-size: small; width: 2cm;">Giới tính</th>
             <th class="table-success text-center" style="font-size: small;">Trường</th>
@@ -23,7 +24,8 @@
             <tr class="filters">
                 <td><button id="search-btn">Search</button></td>
                 <td><input type="text" style="width:100%;" id="id-input"></td>
-                <td><input type="text" style="width:100%;" id="nam-input"></td>
+                <td><input type="text" style="width:100%;" id="name-input"></td>
+                <td><input type="text" style="width:100%;" id="username-input"></td>
                 <td><input type="text" style="width:100%;" id="yob-input"></td>
                 <td><input type="text" style="width:100%" id="sex-input"></td>
                 <td><input type="text" style="width:100%" id="uni-input"></td>
@@ -32,7 +34,9 @@
            </thead>
            <tbody></tbody>
         </table>
-        
+        <div>
+            <button id="add-btn">Add new attendee</button>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
