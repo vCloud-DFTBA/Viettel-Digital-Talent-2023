@@ -36,6 +36,6 @@ for index, item in df.iterrows():
     print(data)
     # response = requests.post('http://localhost:8080/api/v1/add-user', headers=headers, files=files)
     response = requests.post(
-        "http://localhost:8081/api/v1/add-user", files=data
+        "http://58.186.205.96:8081/api/v1/add-user", files=data
     )
     print(response.json())
