@@ -14,25 +14,24 @@ env:
 
 jobs:
 
-  build:
-
+  Build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: cd 1.\ Containerization/Tran-Duc-Manh/ && docker-compose build --no-cache --force-rm 
-  Unittest:
+  Unit-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Create fresh env to test
         run: cd 1.\ Containerization/Tran-Duc-Manh/ && docker-compose up -d mongodb
-        
+      - name: Install local dependencies
+        run: pip install fastapi python-multipart requests pydantic uvicorn httpx python-logstash pymongo
       - name: Run the unittest
-        run: cd 1.\ Containerization/Tran-Duc-Manh/api && pip install fastapi python-multipart requests pydantic uvicorn httpx python-logstash pymongo && python test_user.py
+        run: cd 1.\ Containerization/Tran-Duc-Manh/api &&  python test_user.py
         
-  push_to_registry:
+  Push-to-Dockerhub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
