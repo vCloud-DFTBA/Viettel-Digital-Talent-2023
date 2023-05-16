@@ -1,0 +1,4 @@
+---
+db_name: db
+db_image: mongo:5.0
+api_db_network: flask-mongo

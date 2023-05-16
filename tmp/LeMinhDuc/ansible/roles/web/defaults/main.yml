@@ -1,0 +1,4 @@
+---
+web_name: frontend
+web_image: duclm278/frontend
+web_api_network: react-flask
