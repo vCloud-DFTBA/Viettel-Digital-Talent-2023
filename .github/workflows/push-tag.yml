@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Trigger tag event and push to Dockerhub
 
 on:
   push:
@@ -39,5 +39,5 @@ jobs:
         with:
           context: "{{defaultContext}}:1. Containerization/Tran-Duc-Manh/api"
           push: true
-          tags: ${{env.GITHUB_REF_NAME}}
+          tags: ${{  github.ref_name }}
           labels: "manhlab/vth_app_api"
