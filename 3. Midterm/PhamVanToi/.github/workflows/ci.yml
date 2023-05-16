@@ -1,0 +1,14 @@
+name: Run unnittest automatically with PR on main and Push commit
+on:
+  pull-request:
+    branches:
+      - main
+  push:
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+    - run: pip install unittest2 requests
+    - run: python3 roles/web/files/unit_test.py
