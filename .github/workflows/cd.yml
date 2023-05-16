@@ -29,6 +29,23 @@ jobs:
         builder: ${{ steps.buildx.outputs.name }}
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_db
         push: true
+    
+    - name: Build and Push Flask API Image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./3. Midterm/PhamVanToi/roles/api/files
+        builder: ${{ steps.buildx.outputs.name }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_flask
+        push: true
+    
+    - name: Build and Push Web Nginx Image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./3. Midterm/PhamVanToi/roles/web/files
+        builder: ${{ steps.buildx.outputs.name }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_nginx
+        push: true
+
     # - name: Set up QEMU
     #   uses: docker/setup-qemu-action@v2
     # - name: Set up Docker Buildx
