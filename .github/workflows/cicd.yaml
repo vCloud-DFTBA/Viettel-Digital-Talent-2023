@@ -39,17 +39,17 @@ jobs:
       - name: Set up Docker Buildx      
         uses: docker/setup-buildx-action@v2
 
-      # - name: Log in to Docker Hub
-      #   uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-      #   with:
-      #     username: ${{ secrets.USER_DOCKERHUB }}
-      #     password: ${{ secrets.PASSWORD_DOCKERHUB }}
-      - name: docker login
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.USER_DOCKERHUB }}
+          password: ${{ secrets.PASSWORD_DOCKERHUB }}
+      # - name: docker login
+      #   env:
+      #     DOCKER_USER: ${{secrets.DOCKER_USER}}
+      #     DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      #   run: |
+      #     docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
 
 
       # - name: Extract metadata (tags, labels) for Docker
@@ -58,13 +58,13 @@ jobs:
       #   with:
       #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      # - name: Build and push api image to Docker hub
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/backend"
-      #     push: true
-      #     tags: "trongminhjr/api:latest"
-      #     labels: "trongminhjr/api"
+      - name: Build and push api image to Docker hub
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/backend"
+          push: true
+          tags: "trongminhjr/api:latest"
+          labels: "trongminhjr/api"
 
       #   - name: Build and push api image to Docker hub
       #     uses: docker/build-push-action@v3
