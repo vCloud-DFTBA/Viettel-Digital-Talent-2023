@@ -27,6 +27,6 @@ jobs:
       - name: Create fresh env to test
         run: cd 1.\ Containerization/Tran-Duc-Manh/ && docker-compose up -d mongodb
       - name: Install local dependencies
-        run: pip install pytest
+        run: pip install pytest fastapi python-multipart requests pydantic uvicorn httpx python-logstash pymongo
       - name: Run the unittest
         run: cd 1.\ Containerization/Tran-Duc-Manh/api && pytest
