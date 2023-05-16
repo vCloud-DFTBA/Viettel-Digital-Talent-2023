@@ -5,7 +5,7 @@ on:
       - main
   push:
 jobs:
-  test_project:
+  unit-test-CI:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
