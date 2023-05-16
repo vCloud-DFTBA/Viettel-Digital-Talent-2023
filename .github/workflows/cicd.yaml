@@ -50,19 +50,20 @@ jobs:
       #   uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
       #   with:
       #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      - name: Build and push api image to Docker hub
-        uses: docker/build-push-action@v3
-        with:
-          context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/backend"
-          push: true
-          tags: "trongminhjr/api:latest"
-          labels: "trongminhjr/api"
 
-        - name: Build and push api image to Docker hub
-          uses: docker/build-push-action@v3
-          with:
-            context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/frontend"
-            push: true
-            tags: "trongminhjr/webserver:latest"
-            labels: "trongminhjr/webserver"
+      # - name: Build and push api image to Docker hub
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/backend"
+      #     push: true
+      #     tags: "trongminhjr/api:latest"
+      #     labels: "trongminhjr/api"
+
+      #   - name: Build and push api image to Docker hub
+      #     uses: docker/build-push-action@v3
+      #     with:
+      #       context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/frontend"
+      #       push: true
+      #       tags: "trongminhjr/webserver:latest"
+      #       labels: "trongminhjr/webserver"
 
