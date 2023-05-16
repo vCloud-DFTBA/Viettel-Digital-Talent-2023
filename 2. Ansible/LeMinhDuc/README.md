@@ -211,6 +211,7 @@ http {
     location /api/ {
       resolver 127.0.0.11;
       set $example backend:5000;
+      rewrite /api/(.*) /$1 break;
       proxy_pass http://$example;
     }
   }
