@@ -30,7 +30,7 @@ jobs:
         run: cd 1.\ Containerization/Tran-Duc-Manh/ && docker-compose up -d mongodb
         
       - name: Run the unittest
-        run: cd 1.\ Containerization/Tran-Duc-Manh/api && pip install fastapi httpx python-logstash pymongo && python test_user.py
+        run: cd 1.\ Containerization/Tran-Duc-Manh/api && pip install fastapi python-multipart requests pydantic uvicorn httpx python-logstash pymongo && python test_user.py
         
   push_to_registry:
     name: Push Docker image to Docker Hub
