@@ -43,9 +43,16 @@
 -  Các hình ảnh demo khác
 #### Solution:
 - Github actions config in file: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/.github/workflows/docker_images.yml
-- Build history: https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions/runs/4935221930
+```
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+```
+- Build history: https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions/runs/4996373559/jobs/8949472635
 - Demo image:
-![img]("./media/github.png")
+![img]("./media/cigithub.png")
 
 #### Result: 
 - Success to Deploy CI on Github actions: https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions
