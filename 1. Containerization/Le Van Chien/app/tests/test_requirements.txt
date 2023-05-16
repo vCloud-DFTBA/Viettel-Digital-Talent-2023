@@ -1,0 +1,3 @@
+pytest
+mongomock
+-r ../requirements.txt
