@@ -6,7 +6,10 @@
     # restart: true
     ports:
       - "8081:8080"
-    env_file: ../files/.env
+    env:
+      SECRET_KEY: "secret"
+      DEBUG: "false"
+      MONGODB_URL: "mongodb://192.168.134.133:27017/student"
     command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
   become: yes
     

@@ -1,13 +1,4 @@
 ---
-- name: Create nginx group info.
-  group:
-    name: nginx
-
-- name: Create user.
-  user:
-    name: nginx
-    group: nginx
-
 - name: Check docker install.
   package:
     name: docker

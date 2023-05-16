@@ -11,11 +11,14 @@
 #### Output:
 - Mã nguồn của từng dịch vụ
 #### Solution
-- api: FastAPI with crud operation in: https://api.viettelcloud.site/docs
-- webserver: HTML+CSS+JS render by FastAPI template+Nginx service
+- api: FastAPI with crud operation in: http://58.186.205.96:8081/docs
+- webserver: HTML+CSS+JS render by FastAPI template+Nginx service: https://api.viettelcloud.site
 - db: mongodb 5.0
 - Unit test APIs CRUD: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/1.%20Containerization/Tran-Duc-Manh/api/test_user.py
+![unittest](./media/unittest.png)
+
 - Unit test UI:
+
 #### Result: 
 - Success to write and deploy webserver on : https://api.viettelcloud.site
 
@@ -91,10 +94,21 @@ ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >>
 ```
 ansible-playbook -i ./inventories/multinode.yml playbooks/api.yml >> logs/api.run
 ```
+Log here: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs/api.run
 ##### Install Webserver on multi node (2 worker node+master node)
 ```
 ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >> logs/multinode-setup.run
 ```
+Log here: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs/webserver.run
+##### Install Mongodb on multi node (2 worker node+master node)
+```
+ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >> logs/multinode-setup.run
+```
+##### Install Nginx loadbalancer (master node)
+```
+ansible-playbook -i ./inventories/local.yml playbooks/nginx.yml >> logs/nginx.run
+```
+
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/playbooks
 - Thư mục roles chứa các role: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/roles
 
