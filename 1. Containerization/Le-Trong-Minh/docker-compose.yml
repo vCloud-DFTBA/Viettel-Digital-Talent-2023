@@ -2,7 +2,8 @@ version: '3.9'
 
 services:
   webserver:
-    build: frontend
+    build: 
+      context: frontend
     # container_name: web
     image: webserver
     hostname: webserver
@@ -13,7 +14,8 @@ services:
     #   - api
 
   api:
-    build: backend
+    build: 
+      context: backend
     # container_name: api
     image: api
     restart: unless-stopped
