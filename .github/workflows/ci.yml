@@ -23,8 +23,8 @@ jobs:
           
       - name: install dependencies
         run: |
-                pip install -r requirements.txt
-                pip install pytest mongomock
+                pip install --upgrade pip
+                pip install pytest mongomock flask
       - name: run tests
-        working-directory: ./app
+        working-directory: ./1.\ Containerization/Le\ Van\ Chien/app/
         run: pytest
