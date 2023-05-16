@@ -7,7 +7,7 @@ import json
 import requests
 from bson.objectid import ObjectId
 def _getUserTable():
-    client = pymongo.MongoClient("mongodb://db:27017/",serverSelectionTimeoutMS=10)
+    client = pymongo.MongoClient("mongodb://db:27017",serverSelectionTimeoutMS=60)
     client.server_info()
     return client["data"]["users"]
 class AddForm(forms.Form):

@@ -1,3 +1,12 @@
+rs.initiate({
+_id: "dbRep",
+members: [
+  {_id: 0, host: "db"},
+  {_id: 1, host: "db_1"},
+  {_id: 2, host: "db_2"}
+ ]
+}) 
+rs.secondaryOk()
 db = new Mongo().getDB("data");
 db.createCollection("users",{ capped: false })
 db.users.insert(

@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from django.views.decorators.csrf import csrf_exempt
 
 def _getUserTable():
-    client = pymongo.MongoClient("mongodb://db:27017/",serverSelectionTimeoutMS=10)
+    client = pymongo.MongoClient("mongodb://db:27017",serverSelectionTimeoutMS=10)
     client.server_info()
     return client["data"]["users"]
 def listUsers(req):

@@ -15,6 +15,10 @@
     networks:
       - name:  project
     restart_policy: "unless-stopped"
+    log_driver: fluentd
+    log_options: 
+      fluentd-address: localhost:24224
+      tag: api 
 - name: Create a api container
   community.docker.docker_container:
     name: api_1
@@ -22,3 +26,7 @@
     networks:
       - name:  project
     restart_policy: "unless-stopped"
+    log_driver: fluentd
+    log_options: 
+      fluentd-address: localhost:24224
+      tag: api_1 

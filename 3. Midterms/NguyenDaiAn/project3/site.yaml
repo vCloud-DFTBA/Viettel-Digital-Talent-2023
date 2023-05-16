@@ -4,7 +4,9 @@
   gather_facts: false
   roles:
     # - common
+  - log
   - db
   - web
   - api
   - nginx
+  - monitor

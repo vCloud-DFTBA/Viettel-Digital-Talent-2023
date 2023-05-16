@@ -302,13 +302,19 @@ File Dockerfile của từng dịch vụ:
 
 `db`
 
+Note: 
+-   Hiện tại em đang build container db bằng ansible và không tạo image mới (dùng bind mount thay cho `COPY`)
+-   mongo-init.js chỉ tạo dữ liệu mới khi database trống
+
+Dockerfile:
+
     FROM mongo:5.0
     ENV MONGO_INITDB_DATABASE=data
     COPY mongo-init.js /docker-entrypoint-initdb.d/
 
-Lệnh build: (em gộp thêm câu lệnh volume để khi run dùng volume này)
+Lệnh build: 
 
-sudo docker volume create db_volume && sudo docker build . -t db_image 
+sudo docker build . -t db_image 
 
 `web`
 
@@ -338,6 +344,8 @@ Lệnh build:
 sudo docker build . -t api_image
 
 `nginx`
+
+Note: Hiện tại em đang build container db bằng ansible và không tạo image mới (dùng volume thay cho `COPY`)
 
     FROM nginx:1.22.0-alpine
     COPY nginx.conf  /etc/nginx/conf.d/default.conf
@@ -396,7 +404,7 @@ Yêu cầu:
     - Requests đến các endpoint web và api được cân bằng tải thông qua các công ✅
 cụ load balancer, ví dụ: nginx, haproxy và traefik (0.5đ)
     - (Optional) Các công cụ load balancer cũng được triển khai theo mô hình cluster ❌
-    - (Optional) Triển khai db dưới dạng cluster ❌
+    - (Optional) Triển khai db dưới dạng cluster ✅
 
 Output:
 - Ảnh minh họa kiến trúc triển khai và bản mô tả
@@ -496,9 +504,68 @@ Huớng dẫn sử dụng ansible-playbook để triển khai hệ thống:
 4.  Cài đặt ansible và 1 collection `community.docker` qua `pip install ansible && ansible-collection install community.docker`
 5.  Chỉnh sửa địa chỉ python trong `inventories/inventory.yaml` thành địa chỉ của python đang dùng (tức là output của lệnh `which python`).
 6.  Chạy `ansible-playbook -i inventories/inventory.yaml site.yaml`
+
+Triển khai db dưới dạng cluster:
+
+Có thể triển khai db dưới dạng cluster với role:
+    ---
+    - name: Build db image
+    community.docker.docker_image:
+        name: db_image
+        build:
+        path: ./roles/db/templates
+        source: "build"
+        force_source: true
+        
+    - name: Create a volume for db
+    community.docker.docker_volume: 
+        volume_name: "{{ item }}"
+    loop:
+        - db_volume
+        - db_volume_1
+        - db_volume_2
+
+    - name: Create db_1 container
+    community.docker.docker_container:
+        name: db_1
+        image: mongo:5.0
+        restart_policy: "unless-stopped"
+        networks:
+        - name: project
+        volumes:
+        - db_volume_1:/data/db
+        command: "mongod --replSet dbRep --bind_ip localhost,db_1"
+
+    - name: Create db_2 container
+    community.docker.docker_container:
+        name: db_2
+        image: mongo:5.0
+        restart_policy: "unless-stopped"
+        networks:
+        - name: project
+        volumes:
+        - db_volume_2:/data/db
+        command: "mongod --replSet dbRep --bind_ip localhost,db_2"
+    - name: Create db container
+    community.docker.docker_container:
+        name: db
+        image: mongo:5.0
+        restart_policy: "unless-stopped"
+        networks:
+        - name: project
+        env:
+        MONGO_INITDB_DATABASE: data
+        volumes:
+            - db_volume:/data/db
+        command: "mongod --replSet dbRep --bind_ip localhost,db"
+
+Trong đó cần thêm 1 task dùng docker_container_exec để khởi tạo Replica Set cho mongodb vào roles này. Tuy nhiên có nhược điểm:
+- Không khởi tạo được database ngay thông qua thư mục `docker-entrypoint-initdb.d` hỗ trợ sẵn của image `mongo` .
+- Thêm thao tác trong việc detect primary vs secondary database (và xử lý lỗi khi database đang kết nối không phải là primary)
+
 ### Monitoring (1đ)
 Yêu cầu:
-#### 1. Viết ansible playbook roles monitor thực hiện các nhiệm vụ:❌
+#### 1. Viết ansible playbook roles monitor thực hiện các nhiệm vụ: ✅
 - Cài đặt các dịch vụ node exporter và cadvisor dưới dạng container
 - Đẩy thông số giám sát lên hệ thống giám sát Prometheus tập trung
 
@@ -513,8 +580,90 @@ tập trung ở 171.236.38.100:9090
 
 Giải pháp:
 
+`roles/monitor/tasks/main.yaml`
+```
+- name: Build a cadvisor container
+community.docker.docker_container:
+    image: gcr.io/cadvisor/cadvisor:latest
+    name: annd_cad
+    networks: 
+    - name: project
+    ports:
+    - 8080:8080
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+- name: Build a prometheus container
+community.docker.docker_container:
+    image: prom/prometheus:latest
+    name: annd_prom
+    networks: 
+    - name: project
+    ports:
+    - 9090:9090
+    restart_policy: "unless-stopped"
+    command:
+    - --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+    - "{{ role_path }}/templates/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro"
 
-#### 2. Logging (1đ)❌
+- name: Build a node exporter container
+community.docker.docker_container:
+    image: prom/node-exporter:latest
+    name: annd_exporter
+    networks: 
+    - name: project
+    ports:
+    - 9100:9100
+    restart_policy: "unless-stopped"
+    pid_mode: "host"
+    volumes:
+    - /proc:/host/proc:ro
+    - /sys:/host/sys:ro
+    - /:/rootfs:ro
+    command:
+    - '--path.procfs=/host/proc'
+    - '--path.rootfs=/rootfs'
+    - '--path.sysfs=/host/sys'
+    - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+```
+
+`roles/monitor/templates/prometheus.yaml`
+
+```
+global:
+  external_labels:
+    username: annd
+scrape_configs:
+- job_name: cadvisor
+  scrape_interval: 5s
+  static_configs:
+    - targets:
+      - annd_cad:8080
+- job_name: node
+  scrape_interval: 5s
+  static_configs:
+    - targets: 
+      - annd_exporter:9100
+- job_name: 'prometheus'
+  scrape_interval: 1m
+  static_configs:
+    - targets: 
+      - localhost:9090
+        #remote_write:
+        #- url: 'http://171.236.38.100:9090/api/v1/write'
+remote_write:
+  - url: 'http://27.66.108.93:9090/api/v1/write'
+
+```
+Ảnh chụp Dashboard:
+
+!["(An image of prom log supposed to be here)"](img/prom_log.png "Prom log")
+!["(An image of prom log supposed to be here)"](img/prom_log2.png "Prom log")
+
+#### 2. Logging (1đ) ✅
 
 Yêu cầu:
 Viết ansible playbook thực hiện các nhiệm vụ:
@@ -527,3 +676,77 @@ kết quả (thành công/không thành công/status code)
 Output:
 - Ansible playbook triển khai các dịch vụ collect log (tách module logging)
 - Ảnh chụp sample log từ Kibana 171.236.38.100:5601
+
+Giải pháp: Sử dụng fluentd.
+
+`roles/log/tasks/main.yaml`
+
+```
+---
+- name: Build a fluentd image
+  community.docker.docker_image:
+    name: fluentd_image
+    build:
+       path: "{{ role_path }}/templates"
+    source: "build"
+    force_source: true
+- name: Build a fluentd container
+  community.docker.docker_container:
+    name: fluentd
+    image: fluentd_image
+    volumes: "{{ role_path }}/templates/fluentd.conf:/fluentd/etc/fluent.conf"
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    restart_policy: unless-stopped
+
+```
+
+`roles/log/templates/Dockerfile`
+
+    FROM fluent/fluentd:v1.12.0-debian-1.0
+    USER root
+    RUN ["gem", "install", "elasticsearch", "--no-document", "--version", "< 8"]
+    RUN ["gem", "install", "fluent-plugin-elasticsearch","--no-document","--version", "5.2.2"]
+    USER fluent
+
+
+`roles/log/templates/fluentd.conf`
+```
+<source>
+	@type forward
+	port 24224
+	bind 0.0.0.0
+</source>
+<filter *.>
+    @type record_transformer
+    <record>
+        Hostname annd
+    </record>
+</filter>
+<match **>
+	 @type copy
+	 <store>
+        	@type elasticsearch
+        	host 171.236.38.100
+	        port 9200
+	        logstash_format true
+	        logstash_prefix annd
+	        logstash_dateformat %Y%m%d
+	        include_tag_key true
+	        flush_interval 1s
+	</store>
+	<store>
+		@type stdout
+	</store>
+</match>
+
+```
+
+Kibana log:
+
+!["(An image of Kibana log supposed to be here)"](img/ki_log.png "Kibana log")
+!["(An image of Kibana log supposed to be here)"](img/ki_log2.png "Kibana log")
+
+
+

@@ -1,0 +1,47 @@
+- name: Build a cadvisor container
+  community.docker.docker_container:
+    image: gcr.io/cadvisor/cadvisor:latest
+    name: annd_cad
+    networks: 
+      - name: project
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+- name: Build a prometheus container
+  community.docker.docker_container:
+    image: prom/prometheus:latest
+    name: annd_prom
+    networks: 
+      - name: project
+    ports:
+      - 9090:9090
+    restart_policy: "unless-stopped"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+      - "{{ role_path }}/templates/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro"
+
+- name: Build a node exporter container
+  community.docker.docker_container:
+    image: prom/node-exporter:latest
+    name: annd_exporter
+    networks: 
+      - name: project
+    ports:
+      - 9100:9100
+    restart_policy: "unless-stopped"
+    pid_mode: "host"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+

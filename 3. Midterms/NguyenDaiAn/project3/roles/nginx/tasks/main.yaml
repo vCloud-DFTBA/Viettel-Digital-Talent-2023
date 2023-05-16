@@ -1,20 +1,26 @@
 ---
-- name: Build a nginx image
-  community.docker.docker_image:
-    name: nginx_image
-    build:
-      path: ./roles/nginx/templates
-    source: "build"
-    force_source: yes
-  # shell: "docker build ./roles/nginx/templates -t nginx_image "
+#- name: Build a nginx image
+#  community.docker.docker_image:
+#    name: nginx_image
+#    build:
+#      path: ./roles/nginx/templates
+#    source: "build"
+#    force_source: yes
+#  # shell: "docker build ./roles/nginx/templates -t nginx_image "
     
-- name: Create a nginx container
+- name: Create a nginx container that is exposed to host
   community.docker.docker_container:
     name: nginx
     image: nginx_image
     ports:
     - "8000:8000"
     - "8001:8001"
+      # - "8080:8080"
+      #- "9090:9090"
+    mounts:
+      - source: "{{ playbook_dir }}/roles/nginx/templates/nginx.conf"
+        target: /etc/nginx/conf.d/default.conf
+        type: bind
     networks:
       - name: project
     restart_policy: "unless-stopped"

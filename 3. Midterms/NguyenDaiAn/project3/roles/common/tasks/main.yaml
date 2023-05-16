@@ -37,6 +37,10 @@
   pip:
     name: docker
 
+- name: Create db Docker Network
+  community.docker.docker_network:
+    api_version: "auto"
+    name: db_net
 - name: Create Docker Network
   community.docker.docker_network:
     api_version: "auto"
