@@ -1,17 +1,20 @@
 ---
-- name: Build the web image 
-  docker_image:
+- name: Build nginx image
+  community.docker.docker_image:
+    name: nginx_image
     build:
-      path: ./roles/web/files/
-    name: my_nginx
-    source: "build"
-    force_source: "true"
+      path: ./roles/web/files
+      dockerfile: Dockerfile
+    source: build
+    force_source: true
 
-- name: Build the nginx_container container from the my_db image
-  docker_container:
-    name: nginx_container
-    image: my_nginx
+
+- name: Create nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: nginx_image
+    restart_policy: "unless-stopped"
+    ports:
+      - "80:80"
     networks:
       - name: network
-    ports:
-    - "80:80"

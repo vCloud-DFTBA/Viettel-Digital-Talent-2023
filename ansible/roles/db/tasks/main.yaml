@@ -1,14 +1,19 @@
+---
 - name: Build db image
-  docker_image:
+  community.docker.docker_image:
     name: db_image
     build:
       path: ./roles/db/files
+      dockerfile: Dockerfile
     source: "build"
+    force_source: true 
 
-- name: Build db container
-  docker_container:    
+- name: Create db container
+  community.docker.docker_container:
     name: db
     image: db_image
-    restart_policy: unless-stopped
+    restart_policy: "unless-stopped"
     networks:
       - name: network
+
+  
