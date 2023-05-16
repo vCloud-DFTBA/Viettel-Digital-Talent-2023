@@ -1,0 +1,11 @@
+- name: Restart a container
+  community.docker.docker_container:
+    name: frontend
+    image: trongminhjr/devmidterm-web:v1
+    state: started
+    restart_policy: unless-stopped
+    # networks: 
+    #   - name: "{{NETWORK}}"
+    ports:
+      - "3000:3000"
+    
