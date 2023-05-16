@@ -27,3 +27,354 @@ local                      : ok=7    changed=0    unreachable=0    failed=0    s
 
 CONTAINER ID   IMAGE                 COMMAND                  CREATED         STATUS         PORTS                          NAMES
 7e4b3f013a2e   nginx:1.22.0-alpine   "/docker-entrypoint.…"   2 minutes ago   Up 2 minutes   80/tcp, 0.0.0.0:443->443/tcp   nginx
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+fatal: [local]: FAILED! => {"changed": false, "msg": "Error creating container: 500 Server Error for http+docker://localhost/v1.42/containers/create?name=nginx: Internal Server Error (\"--storage-opt is supported only for overlay over xfs with 'pquota' mount option\")"}
+
+PLAY RECAP *********************************************************************
+local                      : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+fatal: [local]: FAILED! => {"changed": false, "msg": "Error creating container: 500 Server Error for http+docker://localhost/v1.42/containers/create?name=nginx: Internal Server Error (\"--storage-opt is supported only for overlay over xfs with 'pquota' mount option\")"}
+
+PLAY RECAP *********************************************************************
+local                      : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+fatal: [local]: FAILED! => {"changed": false, "msg": "Error starting container 62a1b6c1825ad631d61e593aea4ac64d94a8ec24ad96452796b28d5f29ef2e8e: 400 Client Error for http+docker://localhost/v1.42/containers/62a1b6c1825ad631d61e593aea4ac64d94a8ec24ad96452796b28d5f29ef2e8e/start: Bad Request (\"failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error mounting \"/home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/files/api.conf\" to rootfs at \"/etc/nginx/conf.d/default.conf\": mount /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/files/api.conf:/etc/nginx/conf.d/default.conf (via /proc/self/fd/6), flags: 0x5000: not a directory: unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type\")"}
+
+PLAY RECAP *********************************************************************
+local                      : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+fatal: [local]: FAILED! => {"changed": false, "msg": "Error starting container e1aa0e2955b130775846ba959d41dd40aca9e6775d91a218b7a60243c7f0efcd: 500 Server Error for http+docker://localhost/v1.42/containers/e1aa0e2955b130775846ba959d41dd40aca9e6775d91a218b7a60243c7f0efcd/start: Internal Server Error (\"driver failed programming external connectivity on endpoint nginx (f325fa172e91651345b812b3fcc27b44c7be1cccd9abb265fb9908752af3aadd): Error starting userland proxy: listen tcp4 0.0.0.0:8080: bind: address already in use\")"}
+
+PLAY RECAP *********************************************************************
+local                      : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+fatal: [local]: FAILED! => {"changed": false, "msg": "Error starting container 2bb1cfc388ea5513563e4557a5946cd10a0ce8070ce43db7c1ceb72c091c0b8a: 400 Client Error for http+docker://localhost/v1.42/containers/2bb1cfc388ea5513563e4557a5946cd10a0ce8070ce43db7c1ceb72c091c0b8a/start: Bad Request (\"failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error mounting \"/home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/files/api.conf\" to rootfs at \"/etc/nginx/conf.d/default.conf\": mount /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/files/api.conf:/etc/nginx/conf.d/default.conf (via /proc/self/fd/6), flags: 0x5000: not a directory: unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type\")"}
+
+PLAY RECAP *********************************************************************
+local                      : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+fatal: [local]: FAILED! => {"changed": false, "msg": "Error creating container: 500 Server Error for http+docker://localhost/v1.42/containers/create?name=nginx: Internal Server Error (\"source /var/lib/docker/overlay2/b1dacebd64bb5d6f70d07e737b778e5311ed6c88e3bc9975ffc3e5e55729b96d/merged/etc/nginx/conf.d/default.conf is not directory\")"}
+
+PLAY RECAP *********************************************************************
+local                      : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

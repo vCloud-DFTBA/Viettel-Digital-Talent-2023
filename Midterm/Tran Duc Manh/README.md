@@ -60,6 +60,7 @@
 - Đảm bảo Mỗi dịch vụ web và api được triển khai trên ít nhất 02 container khác nhau (0.5đ) Requests đến các endpoint web và api được cân bằng tải thông qua các công cụ load balancer, ví dụ: nginx, haproxy và traefik (0.5đ)
 - * Các công cụ load balancer cũng được triển khai theo mô hình cluster
 - * Triển khai db dưới dạng cluster
+
 #### Output:
 - Ảnh minh họa kiến trúc triển khai và bản mô tả
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có
@@ -76,10 +77,15 @@
 - Output log triển khai hệ thống
 
 #### Result:
+System design
+![api](./media/api.png)
+![api](./media/docker.png)
+
 - File setup CD Github Actions: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/.github/workflows/docker-image.yml
-- Output của luồng build và push Docker Image lên Docker Hub: 
-![pr](./media/pr.png)
-![img]("./media/dockerhub.png")
+- Output của luồng build và push Docker Image lên Docker Hub:  https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions/runs/4994638592
+![pr](./media/cdtag.png)
+![pr](./media/cdgit.png)
+![img]("./media/cddocker.png")
 - Output log triển khai hệ thống: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/logs
 - File inventory chứa danh sách các hosts triển khai: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/main/Midterm/Tran%20Duc%20Manh/inventories/multinode.yml
 
@@ -93,8 +99,47 @@ ansible-playbook -i ./inventories/multinode.yml playbooks/api.yml >> logs/api.ru
 ```
 ##### Install Webserver on multi node (2 worker node+master node)
 ```
-ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-docker.yml >> logs/multinode-setup.run
+ansible-playbook -i ./inventories/multinode.yml playbooks/webserver.yml >> logs/webserver.run
 ```
+##### Deploy nginx load balancer on masternode
+###### For API HA between 2 node + master
+```
+upstream vt_api {
+        server 192.168.134.131:8081;
+        server 192.168.134.132:8081;
+        server 192.168.134.133:8081;
+    }
+
+server {
+        listen 8088;
+
+        location / {
+            proxy_pass http://vt_api;
+        }
+}
+
+```
+###### For API HA between 2 node + master
+```
+upstream web_server {
+        server 192.168.134.131:4000;
+        server 192.168.134.132:4000;
+        server 192.168.134.133:4000;
+}
+
+server {
+        listen 4040;
+
+        location / {
+            proxy_pass http://web_server;
+        }
+}
+```
+###### Run the load balancer
+```
+ansible-playbook -i ./inventories/local.yml playbooks/playbook-nginx.yml >> logs/nginx.run
+```
+
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/playbooks
 - Thư mục roles chứa các role: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/roles
 
