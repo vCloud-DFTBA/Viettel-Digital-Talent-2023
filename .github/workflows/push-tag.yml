@@ -39,5 +39,5 @@ jobs:
         with:
           context: "{{defaultContext}}:1. Containerization/Tran-Duc-Manh/api"
           push: true
-          tags: ${{  github.ref_name }}
+          tags: "manhlab/vth_app_api:${{  github.ref_name }}"
           labels: "manhlab/vth_app_api"
