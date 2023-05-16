@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 import pymongo
 from pymongo import MongoClient
 import os
@@ -8,96 +8,82 @@ from dao import get_db, insert_data, delete_data, update_data
 app = Flask(__name__)
 
 
-@app.route('/')
-def get_stored_animals():
-    db=""
-    try:
-        db = get_db()
-
-        # return render_template('index.html', value = db.internees.find())
-        return render_template('home.html')
-    except:
-        pass
-    finally:
-        if type(db)==MongoClient:
-            db.close()
-
-@app.route('/read', methods=['GET'])
+@app.route('/api/attendees', methods=['GET'])
 def read():
     db=""
     try:
         db = get_db()
-
         all_attendees = db.internees.find()
-        
-        json_arr = []
-        for item in all_attendees:
-               json_arr.append({k: v for k, v in item.items() if k != '_id'})
 
-        # return json.dumps(json_arr, ensure_ascii=False).encode('utf-8')
-        return render_template('index.html', value = db.internees.find())
+        api_json = []
+
+        for attendee in all_attendees:
+            api_json.append({k: v for k, v in attendee.items() if k != '_id'})
+
+        return json.dumps(api_json, ensure_ascii=False).encode('utf-8')
+        
     except:
         pass
     finally:
         if type(db)==MongoClient:
             db.close()
 
-@app.route('/create', methods=['GET'])
-def create():
-    return render_template('create.html')
 
-@app.route('/create', methods=['POST'])
+@app.route('/api/create', methods=['POST'])
 def creat_post():
-    id = request.form['id']
-    name = request.form['name']
-    sex = request.form['sex']
-    birth = request.form['birth']
-    university = request.form['university']
-    major = request.form['major']
-    username = request.form['username']
+    try:
+        data = request.get_json()
+        insert_data(
+            data['id'], data['name'], data['username'], data['birth'], data['sex'], data['university'], data['major']
+        )
 
-    insert_data(id, name, username, birth, sex, university, major)
-
-    return render_template('home.html')
+        return jsonify(data)
+    except:
+        return "Error!"
     
 
-@app.route('/delete', methods=['GET'])
-def delete():
-    return render_template('delete.html')
-
-@app.route('/delete', methods=['POST'])
-def delete_post():
-    id = request.form['id']
-    delete_data(id)
-    return render_template('home.html')
-
-
-@app.route('/update', methods=['GET'])
-def update():
-    return render_template('update.html')
-
-@app.route('/update', methods=['POST'])
+    
+@app.route('/api/update', methods=['POST'])
 def update_post():
-    id = request.form['id']
-    name = request.form['name']
-    sex = request.form['sex']
-    birth = request.form['birth']
-    university = request.form['university']
-    major = request.form['major']
-    username = request.form['username']
+    try:
+        data = request.get_json()
+        update_data(
+            data['id'], data['name'], data['username'], data['birth'], data['sex'], data['university'], data['major']
+        )
 
-    update_data(id, name, username, birth, sex, university, major)
+        return jsonify(data)
+    except:
+        return "Error!"
 
-    return render_template('home.html')
+@app.route('/api/delete/<int:id>')
+def delete_post(id):
 
+    id = str(id)
+    try:    
+        if id != '29':
+            delete_data(id)
+        return "<h1 style='text-align:center; color: blue'>Delete succesfully. Reload the home page to see the differences!</h1>"
+    except:
+        return "Error!"
 
-# @app.route('/find/', methods=['POST', 'GET'])
-# def read_student():
-#     id = request.form['id']
-#     id = str(id)
-#     db = get_db()
-#     render_template('find.html', value = db.internees.find_one({'id':id}))
+@app.route('/api/read/<int:id>')
+def read_post(id):
 
+    id = str(id)
+    try:
+        db = get_db()
+        students = []
+        students.append(db.internees.find_one({"id": id}))
+
+        api_json = []
+        for attendee in students:
+            api_json.append({k: v for k, v in attendee.items() if k != '_id'})
+
+        
+        return json.dumps(api_json, ensure_ascii=False).encode('utf-8')
+    
+    except:
+        return "Error!"
 
 if __name__=='__main__':
     # app.run(host="0.0.0.0", port=5000)

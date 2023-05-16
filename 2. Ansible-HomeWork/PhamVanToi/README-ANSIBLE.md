@@ -10,7 +10,6 @@
 
 ![](images/tree.png)
 
-
 ### Result
 
 - Tasks result when running ansible-playbook  

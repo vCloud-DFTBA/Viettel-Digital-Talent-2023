@@ -27,6 +27,14 @@ def read():
     db=""
     try:
         db = get_db()
+
+        all_attendees = db.internees.find()
+        
+        json_arr = []
+        for item in all_attendees:
+               json_arr.append({k: v for k, v in item.items() if k != '_id'})
+
+        # return json.dumps(json_arr, ensure_ascii=False).encode('utf-8')
         return render_template('index.html', value = db.internees.find())
     except:
         pass
@@ -81,6 +89,14 @@ def update_post():
     update_data(id, name, username, birth, sex, university, major)
 
     return render_template('home.html')
+
+
+# @app.route('/find/', methods=['POST', 'GET'])
+# def read_student():
+#     id = request.form['id']
+#     id = str(id)
+#     db = get_db()
+#     render_template('find.html', value = db.internees.find_one({'id':id}))
 
 
 if __name__=='__main__':
