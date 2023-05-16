@@ -1,6 +1,6 @@
 name: Run unnittest automatically with PR on main and Push commit
 on:
-  pull-request:
+  pull_request:
     branches:
       - main
   push:
