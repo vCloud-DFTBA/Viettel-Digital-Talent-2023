@@ -1,0 +1,52 @@
+name: Release service.
+on:
+  push:
+    tags:
+      - '*'
+env:
+  CURRENT_DIR: ./roles
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Login DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+    # - name: Set up QEMU
+    #   uses: docker/setup-qemu-action@v2
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v2
+    # - name: Login to Docker Hub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+    # - name: Build and push db
+    #   uses: docker/build-push-action@v4
+    #   with: 
+    #     push: true
+    #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/db:latest
+    #     context: ${{ env.CURRENT_DIR }}/db/templates/
+    # - name: Build and push web
+    #   uses: docker/build-push-action@v4
+    #   with: 
+    #     push: true
+    #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:latest
+    #     context: ${{ env.CURRENT_DIR }}/web/templates/
+    # - name: Build and push api
+    #   uses: docker/build-push-action@v4
+    #   with: 
+    #     push: true
+    #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
+    #     context: ${{ env.CURRENT_DIR }}/api/templates/
+    # - name: Build and push nginx
+    #   uses: docker/build-push-action@v4
+    #   with: 
+    #     push: true
+    #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
+    #     context: ${{ env.CURRENT_DIR }}/nginx/templates/
