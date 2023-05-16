@@ -24,7 +24,7 @@ jobs:
       - name: install dependencies
         run: |
                 pip install --upgrade pip
-                pip install pytest mongomock flask
+                pip install pytest mongomock flask flask_cors
       - name: run tests
         working-directory: 1. Containerization/Le Van Chien/app
         run: pytest
