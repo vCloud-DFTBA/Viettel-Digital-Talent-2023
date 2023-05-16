@@ -41,8 +41,8 @@ $ ip a
 ...
 ```
 
-  ![img](assets/2-get-vm-ip.png)
-  *Getting IP address of VM*
+![img](assets/2-get-vm-ip.png)
+*Getting IP address of VM*
 
 - Set up SSH connection between controller and target nodes.
 
