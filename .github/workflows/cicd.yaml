@@ -66,11 +66,11 @@ jobs:
           tags: "trongminhjr/api:latest"
           labels: "trongminhjr/api"
 
-      #   - name: Build and push api image to Docker hub
-      #     uses: docker/build-push-action@v3
-      #     with:
-      #       context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/frontend"
-      #       push: true
-      #       tags: "trongminhjr/webserver:latest"
-      #       labels: "trongminhjr/webserver"
+      - name: Build and push api image to Docker hub
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:1.\ Containerization/Le-Trong-Minh/frontend"
+          push: true
+          tags: "trongminhjr/webserver:latest"
+          labels: "trongminhjr/webserver"
 
