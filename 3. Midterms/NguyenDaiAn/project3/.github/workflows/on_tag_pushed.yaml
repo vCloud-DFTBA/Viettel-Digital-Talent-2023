@@ -20,12 +20,12 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build and push db
-      uses: docker/build-push-action@v4
-      with: 
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/db:latest
-        context: ${{ env.CURRENT_DIR }}/db/templates/
+          #    - name: Build and push db
+          #      uses: docker/build-push-action@v4
+          #      with: 
+          #        push: true
+          #        tags: ${{ secrets.DOCKERHUB_USERNAME }}/db:latest
+          #        context: ${{ env.CURRENT_DIR }}/db/templates/
     - name: Build and push web
       uses: docker/build-push-action@v4
       with: 
@@ -38,9 +38,9 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
         context: ${{ env.CURRENT_DIR }}/api/templates/
-    - name: Build and push nginx
-      uses: docker/build-push-action@v4
-      with: 
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
-        context: ${{ env.CURRENT_DIR }}/nginx/templates/
+          #    - name: Build and push nginx
+          #      uses: docker/build-push-action@v4
+          #      with: 
+          #        push: true
+          #        tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
+          #        context: ${{ env.CURRENT_DIR }}/nginx/templates/

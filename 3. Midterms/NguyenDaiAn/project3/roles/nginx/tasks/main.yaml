@@ -11,7 +11,7 @@
 - name: Create a nginx container that is exposed to host
   community.docker.docker_container:
     name: nginx
-    image: nginx_image
+    image: nginx:1.22.0-alpine
     ports:
     - "8000:8000"
     - "8001:8001"
