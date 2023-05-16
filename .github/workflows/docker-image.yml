@@ -1,4 +1,4 @@
-name: Build and Push Docker Image to Docker Hub
+name: Run the API unit testcases and Build
 
 on:
   push:
