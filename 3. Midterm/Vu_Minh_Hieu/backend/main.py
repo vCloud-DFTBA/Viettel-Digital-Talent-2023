@@ -32,7 +32,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.on_event("startup")
 async def import_data_from_json_to_mongodb():
     # Read data from file JSON
@@ -75,6 +74,7 @@ async def get_student_by_id(id):
 async def post_student(data: Student = Body(...)):
     data = jsonable_encoder(data)
     response = await create_student(data)
+    print(response)
     if response:
         return ResponseModel(response, "Student added successfully.")
     return ErrorResponseModel("An error occurred.", 400, "Bad request.")
