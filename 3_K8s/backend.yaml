@@ -1,0 +1,37 @@
+cat <<EOF | kubectl apply -f -
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask1
+spec:
+  selector:
+    app: api
+  ports:
+  - protocol: TCP
+    port: 9090
+    targetPort: 9090
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: flask1
+        image: huong195/k8s_web_image:v1.0
+        ports:
+        - containerPort: 9090
+EOF

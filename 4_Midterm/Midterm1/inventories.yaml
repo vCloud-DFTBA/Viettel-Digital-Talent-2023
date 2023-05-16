@@ -1,0 +1,12 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /home/huong/Midterm1/venv/bin/python
+      ansible_become_user: root
+      ansible_become_password: secrets.yaml
+
+# Ninh Chi Huong 
+
+

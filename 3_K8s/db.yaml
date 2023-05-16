@@ -1,0 +1,37 @@
+cat <<EOF | kubectl apply -f -
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  selector:
+    app: database
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+  type: NodePort
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: db
+        image: huong195/k8s_db_image:v1.0
+        ports:
+        - containerPort: 27017
+        
+EOF

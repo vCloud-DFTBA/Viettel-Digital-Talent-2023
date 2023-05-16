@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Data</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>STT</th>
+        <th>Họ và tên</th>
+        <th>Năm sinh</th>
+        <th>Giới tính</th>
+        <th>Trường</th>
+        <th>Chuyên ngành</th>
+      </tr>
+      {% for row in attendees %}
+      <tr>
+        <td>{{ row['STT'] }}</td>
+        <td>{{ row['name'] }}</td>
+        <td>{{ row['year'] }}</td>
+        <td>{{ row['gender'] }}</td>
+        <td>{{ row['school'] }}</td>
+        <td>{{ row['major'] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
