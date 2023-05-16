@@ -137,7 +137,7 @@ server {
 ```
 ###### Run the load balancer
 ```
-ansible-playbook -i ./inventories/local.yml playbooks/playbook-nginx.yml >> logs/nginx.run
+ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-nginx.yml >> logs/nginx.run
 ```
 
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/main/Midterm/Tran%20Duc%20Manh/playbooks

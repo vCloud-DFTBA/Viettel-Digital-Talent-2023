@@ -9,7 +9,7 @@ import logging
 import os
 
 
-router = APIRouter()
+router = APIRouter(tags=["user"], prefix="/v1")
 MEDIA_PATH = "./media"
 if not os.path.exists(MEDIA_PATH):
     os.makedirs(MEDIA_PATH)
@@ -114,7 +114,7 @@ async def update_user_info(data_input: UserInfoInput = Depends()):
         file_path = None
         student_object = user_collection.find_one({"name": data_input.name})
         if not student_object:
-            logging.info("Student object exist")
+            logging.info("Student object not exist")
         else:
             student_object = user_collection.find_one_and_update(
                 {"name": data_input.name},
@@ -130,6 +130,7 @@ async def update_user_info(data_input: UserInfoInput = Depends()):
                     }
                 },
             )
+            student_object = user_collection.find_one({"name": data_input.name})
             # print(insert_result)
             # student_object = user_collection.find_one(
             #     {"_id": insert_result.inserted_id}
