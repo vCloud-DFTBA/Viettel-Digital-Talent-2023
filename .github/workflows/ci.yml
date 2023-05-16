@@ -26,5 +26,5 @@ jobs:
                 pip install --upgrade pip
                 pip install pytest mongomock flask
       - name: run tests
-        working-directory: ./1.\ Containerization/Le\ Van\ Chien/app/
+        working-directory: 1. Containerization/Le Van Chien/app
         run: pytest
