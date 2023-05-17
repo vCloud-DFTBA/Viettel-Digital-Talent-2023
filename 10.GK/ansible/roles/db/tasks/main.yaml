@@ -1,0 +1,41 @@
+- name: Copy init data to remote host
+  copy:
+    src: ../vtapp/data/
+    dest: /etc/mongoinitdata/
+    owner: duongtm
+    group: duongtm
+    mode: '0644'
+    remote_src: false
+
+- name: Check if docker network exists
+  docker_network_info:
+    name: vtapp
+  register: docker_network
+  become: true
+  
+  
+- name: Create docker network
+  docker_network:
+    name: vtapp
+    state: present
+  when: docker_network.exists == false
+  become: true
+  
+
+- name: Run docker image mongo:5.0
+  docker_container:
+    name: database
+    image: mongo:5.0
+    restart_policy: unless-stopped
+    networks:
+      - name: vtapp
+    hostname: md_mongodb
+    ports:
+      - "27017:27017"
+    env:
+      MONGO_INITDB_DATABASE: vdt2023
+      MONGO_INITDB_ROOT_USERNAME: mongoAdmin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+    volumes:
+      - /etc/mongoinitdata/init_db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+  become: true
