@@ -1,0 +1,3 @@
+collections/ansible_collections/*
+!collections/ansible_collections/.gitkeep
+/env
