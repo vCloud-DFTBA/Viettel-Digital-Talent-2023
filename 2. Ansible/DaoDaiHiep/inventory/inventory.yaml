@@ -1,0 +1,14 @@
+---
+all:
+  hosts:
+    node1:
+      ansible_host: 192.168.122.110
+      ip: 192.168.122.110
+      access_ip: 192.168.122.110
+      ansible_password: 1
+
+    node2:
+      ansible_host: 192.168.122.111
+      ip: 192.168.122.111
+      access_ip: 192.168.122.111
+      ansible_password: 1
