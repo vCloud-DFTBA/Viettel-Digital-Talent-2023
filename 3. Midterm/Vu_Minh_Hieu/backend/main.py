@@ -74,7 +74,6 @@ async def get_student_by_id(id):
 async def post_student(data: Student = Body(...)):
     data = jsonable_encoder(data)
     response = await create_student(data)
-    print(response)
     if response:
         return ResponseModel(response, "Student added successfully.")
     return ErrorResponseModel("An error occurred.", 400, "Bad request.")

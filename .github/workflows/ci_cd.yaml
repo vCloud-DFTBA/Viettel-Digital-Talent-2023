@@ -1,4 +1,4 @@
-name: Unit test
+name: CI - CD
 
 on:
     push:
@@ -13,7 +13,7 @@ env:
     IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-    build:
+    Build_docker_compose:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout the code
@@ -21,7 +21,7 @@ jobs:
             - name: Build the Docker image
               run: docker-compose -f 3.\ Midterm/Vu_Minh_Hieu/docker-compose.yml build --no-cache --force-rm
 
-    test:
+    Run_unit_test:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout the code
@@ -33,7 +33,7 @@ jobs:
             - name: Run the unittest
               run: pytest 3.\ Midterm/Vu_Minh_Hieu/backend/
 
-    Push-to-Dockerhub:
+    Push_to_Docker_hub:
         name: Push Docker image to Docker Hub
         runs-on: ubuntu-latest
         steps:
@@ -48,3 +48,25 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USER }}
                   password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+            # - name: Extract metadata (tags, labels) for Docker
+            #   id: meta
+            #   uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+            #   with:
+            #       images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+            - name: Build and push api image to Docker hub
+              uses: docker/build-push-action@v3
+              with:
+                  context: "{{defaultContext}}:1.\ Midterm/Vu_Minh_Hieu/backend"
+                  push: true
+                  tags: "hieuminhvuu/mt_backend:latest"
+                  labels: "hieuminhvuu/mt_backend"
+
+            - name: Build and push api image to Docker hub
+              uses: docker/build-push-action@v3
+              with:
+                  context: "{{defaultContext}}:1.\ Midterm/Vu_Minh_Hieu/frontend"
+                  push: true
+                  tags: "hieuminhvuu/mt_front:latest"
+                  labels: "hieuminhvuu/mt_backend"
