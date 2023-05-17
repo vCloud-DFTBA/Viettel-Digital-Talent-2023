@@ -10,11 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
-    - run: cd 3.\ Midterm/PhamVanToi 
+    - run: cd 3. Midterm/PhamVanToi 
     - run: sudo apt install python3-virtualenv
     - run: virtualenv venv && source venv/bin/activate
     - run: pip install unittest2 requests ansible
-    - run: sudo apt-get update
+    # - run: sudo apt-get update
     - run: ansible --version
     - run: ls
     # - run: python3 ./roles/web/files/unit_test.py
