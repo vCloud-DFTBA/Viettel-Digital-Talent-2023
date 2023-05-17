@@ -4,13 +4,13 @@ import "./style.css";
 import { addStudent, getStudent, updateStudent } from "../../apis";
 
 const STUDENT = {
-    stt: "1",
-    name: "Thomas Xiaomi",
-    username: "thomasx",
-    year_of_birth: "2001",
+    stt: "100",
+    name: "LTM",
+    username: "ltm",
+    year_of_birth: "2000",
     gender: "male",
-    university: "Birmingham",
-    major: "English Gangster",
+    university: "ITMO",
+    major: "CS",
 };
 
 const StudentModal = (props) => {
@@ -27,7 +27,7 @@ const StudentModal = (props) => {
             setLoading(true);
             getStudent(id)
                 .then((result) => {
-                    setStudent(result.data.data[0]);
+                    setStudent(result.data.data);
                 })
                 .catch((error) => {
                     message.error(JSON.stringify(error));
