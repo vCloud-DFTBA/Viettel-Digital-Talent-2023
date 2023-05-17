@@ -2,9 +2,11 @@ name: CI & CD
 
 on:
     push:
-        branches: ["*"]
+        branches:
+            - "*"
     pull_request:
-        branches: ["main"]
+        branches:
+            - main
 
 env:
     REGISTRY: docker.io
@@ -14,17 +16,19 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - name: Checkout the code
+              uses: actions/checkout@v2
             - name: Build the Docker image
-              run: cd 3.\ Midterm/Vu_Minh_Hieu/ && docker-compose build --no-cache --force-rm
+              run: docker-compose -f 3.\ Midterm/Vu_Minh_Hieu/docker-compose.yml build --no-cache --force-rm
 
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
+            - name: Checkout the code
+              uses: actions/checkout@v2
             - name: Create fresh env to test
-              run: cd 3.\ Midterm/Vu_Minh_Hieu/ && docker-compose up -d mongodb
+              run: docker-compose -f 3.\ Midterm/Vu_Minh_Hieu/docker-compose.yml up -d mongodb
             - name: Install local dependencies
-              run: cd 3.\ Midterm/Vu_Minh_Hieu/backend/ && pip install -r requirements.txt
+              run: pip install -r 3.\ Midterm/Vu_Minh_Hieu/backend/requirements.txt
             - name: Run the unittest
-              run: cd 3.\ Midterm/Vu_Minh_Hieu/backend/ &&  pytest
+              run: pytest 3.\ Midterm/Vu_Minh_Hieu/backend/
