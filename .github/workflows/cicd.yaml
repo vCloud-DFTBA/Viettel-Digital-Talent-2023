@@ -28,6 +28,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test the Docker image
         run: cd 1.\ Containerization/Le-Trong-Minh/ && docker-compose up -d
+      
+      ## Unitest
+      - name: Install dependencies
+        run: cd 1.\ Containerization/Le-Trong-Minh/backend/ && pip install -r requirements.txt
         
   push_to_registry:
     name: Push Docker image to Docker Hub
