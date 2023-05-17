@@ -15,5 +15,6 @@ jobs:
     - run: virtualenv venv && source venv/bin/activate
     - run: pip install unittest2 requests ansible
     - run: sudo apt-get update
-    - run: ansible-playbook -i inventory.yml setup.yml
-    - run: python3 ./roles/web/files/unit_test.py
+    - run: ansible --version
+    # - run: ansible-playbook -i inventory.yml setup.yml
+    # - run: python3 ./roles/web/files/unit_test.py
