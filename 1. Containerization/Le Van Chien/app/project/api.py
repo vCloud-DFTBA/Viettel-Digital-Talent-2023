@@ -34,7 +34,7 @@ def create_app(db):
     @app.route('/people/update/<string:username>', methods = ['PUT'])
     def update(username):
         data = request.get_json()
-        db.attendees.update_one({'username':username}, data)
+        db.attendees.update_one({'username':username}, {'$set': data})
         return json_util.dumps({'message': 'Resource with username {} updated'.format(username)})
     
     return app
