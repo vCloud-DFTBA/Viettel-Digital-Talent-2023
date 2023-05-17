@@ -1,0 +1,11 @@
+- name: Start Nginx load balancer
+  community.docker.docker_container:
+    name: nginx_gateway
+    image: nginx:latest
+    # state: started
+    restart: true
+    ports:
+      - "4444:4444"
+      - "8888:8888"
+    volumes:
+      - "/home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx-gateway/files/gateway.conf:/etc/nginx/conf.d/default.conf"

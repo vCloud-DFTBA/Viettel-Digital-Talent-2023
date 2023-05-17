@@ -5,6 +5,7 @@
       - docker
       - docker-engine
     state: absent
+  become: yes
 
 - name: Ensure dependencies are installed.
   apt:
@@ -35,6 +36,7 @@
   register: add_repository_key
   ignore_errors: "{{ docker_apt_ignore_key_error }}"
   when: docker_add_repo | bool
+  become: yes
 
 - name: Ensure curl is present (on older systems without SNI).
   package: name=curl state=present

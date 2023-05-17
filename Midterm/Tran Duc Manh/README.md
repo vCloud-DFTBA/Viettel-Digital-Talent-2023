@@ -87,7 +87,7 @@ on:
 ###### System design
 
 
-![api](./media/api.png)
+![api](./media/request.png)
 
 
 ![api](./media/docker.png)
@@ -148,6 +148,38 @@ server {
 ###### Run the load balancer
 ```
 ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-nginx.yml >> logs/nginx.run
+```
+###### Nginx loadbalancer + Gateway for Nginx Cluster
+```
+upstream vt_webapp {
+        server 192.168.134.131:4040;
+        server 192.168.134.132:4040;
+        server 192.168.134.133:4040;
+    }
+
+upstream vt_api {
+        server 192.168.134.131:8088;
+        server 192.168.134.132:8088;
+        server 192.168.134.133:8088;
+    }
+
+server {
+        listen 4444;
+        location / {
+            proxy_pass http://vt_webapp;
+        }
+}
+
+server {
+        listen 8888;
+        location / {
+            proxy_pass http://vt_api;
+        }
+}
+```
+Run the ansible command:
+```
+ansible-playbook -i ./inventories/local.yml playbooks/gateway.yml >> nginx-gateway.run
 ```
 
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/playbooks

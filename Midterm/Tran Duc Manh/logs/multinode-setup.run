@@ -2,92 +2,144 @@
 PLAY [all] *********************************************************************
 
 TASK [Gathering Facts] *********************************************************
-fatal: [node1]: FAILED! => {"msg": "to use the 'ssh' connection type with passwords or pkcs11_provider, you must install the sshpass program"}
+ok: [node2]
+ok: [node1]
 ok: [local]
-fatal: [node2]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname node2: Temporary failure in name resolution", "unreachable": true}
 
 TASK [../roles/common : Load OS-specific vars.] ********************************
 ok: [local]
+ok: [node2]
+ok: [node1]
 
 TASK [../roles/common : include_tasks] *****************************************
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : include_tasks] *****************************************
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/common/tasks/setup-Debian.yml for local
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/common/tasks/setup-Debian.yml for local, node1, node2
 
 TASK [../roles/common : Ensure old versions of Docker are not installed.] ******
+ok: [node1]
+ok: [node2]
 ok: [local]
 
 TASK [../roles/common : Ensure dependencies are installed.] ********************
+ok: [node2]
+ok: [node1]
 ok: [local]
 
 TASK [../roles/common : Ensure additional dependencies are installed (on Ubuntu < 20.04 and any other systems).] ***
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : Ensure additional dependencies are installed (on Ubuntu >= 20.04).] ***
+ok: [node2]
 ok: [local]
+ok: [node1]
 
 TASK [../roles/common : Add Docker apt key.] ***********************************
 ok: [local]
+ok: [node2]
+ok: [node1]
 
 TASK [../roles/common : Ensure curl is present (on older systems without SNI).] ***
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : Add Docker apt key (alternative for older systems without SNI).] ***
 skipping: [local]
+skipping: [node2]
+skipping: [node1]
 
 TASK [../roles/common : Add Docker repository.] ********************************
 ok: [local]
+ok: [node2]
+ok: [node1]
 
 TASK [../roles/common : Install Docker packages.] ******************************
 skipping: [local]
+skipping: [node2]
+skipping: [node1]
 
 TASK [../roles/common : Install Docker packages (with downgrade option).] ******
+ok: [node2]
+ok: [node1]
 ok: [local]
 
 TASK [../roles/common : Install docker-compose plugin.] ************************
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : Install docker-compose-plugin (with downgrade option).] ***
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : Ensure /etc/docker/ directory exists.] *****************
+skipping: [node1]
 skipping: [local]
+skipping: [node2]
 
 TASK [../roles/common : Configure Docker daemon options.] **********************
 skipping: [local]
+skipping: [node2]
+skipping: [node1]
 
 TASK [../roles/common : Ensure Docker is started and enabled at boot.] *********
 ok: [local]
+ok: [node1]
+ok: [node2]
+
+TASK [../roles/common : Ensure handlers are notified now to avoid firewall conflicts.] ***
+
+TASK [../roles/common : Ensure handlers are notified now to avoid firewall conflicts.] ***
 
 TASK [../roles/common : Ensure handlers are notified now to avoid firewall conflicts.] ***
 
 TASK [../roles/common : include_tasks] *****************************************
-included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/common/tasks/docker-compose.yml for local
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/common/tasks/docker-compose.yml for local, node2, node1
 
 TASK [../roles/common : Check current docker-compose version.] *****************
+ok: [node1]
 ok: [local]
+ok: [node2]
 
 TASK [../roles/common : set_fact] **********************************************
 ok: [local]
+ok: [node1]
+ok: [node2]
 
 TASK [../roles/common : Delete existing docker-compose version if it's different.] ***
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : Install Docker Compose (if configured).] ***************
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : Get docker group info using getent.] *******************
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : Check if there are any users to add to the docker group.] ***
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 TASK [../roles/common : include_tasks] *****************************************
 skipping: [local]
+skipping: [node1]
+skipping: [node2]
 
 PLAY RECAP *********************************************************************
 local                      : ok=13   changed=0    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
-node1                      : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
-node2                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+node1                      : ok=13   changed=0    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+node2                      : ok=13   changed=0    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
 
