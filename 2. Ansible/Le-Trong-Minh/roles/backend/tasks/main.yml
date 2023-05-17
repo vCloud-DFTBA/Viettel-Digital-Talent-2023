@@ -22,8 +22,9 @@
 - name: Run the docker api images
   community.docker.docker_container:
     name: backend
-    # image: trongminhjr/api:latest
-    image: api
+    image: trongminhjr/api:v1
+    # image: trongminhjr/devmidterm_api:v1
+    # image: api
     state: started
     restart_policy: unless-stopped
     # networks: 

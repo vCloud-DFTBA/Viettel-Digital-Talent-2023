@@ -67,18 +67,18 @@ jobs:
       #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push api image to Docker hub
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: "{{defaultContext}}:1. Containerization/Le-Trong-Minh/backend"
           push: true
           tags: "trongminhjr/api:latest"
-          labels: "trongminhjr/api"
+          # labels: "trongminhjr/api"
 
       - name: Build and push webserver image to Docker hub
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: "{{defaultContext}}:1. Containerization/Le-Trong-Minh/frontend"
           push: true
           tags: "trongminhjr/webserver:latest"
-          labels: "trongminhjr/webserver"
+          # labels: "trongminhjr/webserver"
 
