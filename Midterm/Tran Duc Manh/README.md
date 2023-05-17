@@ -11,8 +11,8 @@
 #### Output:
 - Mã nguồn của từng dịch vụ
 #### Solution
-- api: FastAPI with crud operation in: https://api.viettelcloud.site/docs
-- webserver: HTML+CSS+JS render by FastAPI template+Nginx service
+- api: FastAPI with crud operation in: http://58.186.205.96:8081/docs
+- webserver: HTML+CSS+JS render by FastAPI template+Nginx service: https://api.viettelcloud.site
 - db: mongodb 5.0
 - Unit test APIs CRUD: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/1.%20Containerization/Tran-Duc-Manh/api/test_user.py
 - Unit test UI:
@@ -52,7 +52,7 @@ on:
 ```
 - Build history: https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions/runs/4996373559/jobs/8949472635
 - Demo image:
-![img]("./media/cigithub.png")
+![img](./media/cigithub.png)
 
 #### Result: 
 - Success to Deploy CI on Github actions: https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions
@@ -84,16 +84,19 @@ on:
 - Output log triển khai hệ thống
 
 #### Result:
-System design
+###### System design
+
+
 ![api](./media/api.png)
+
+
 ![api](./media/docker.png)
 
 - File setup CD Github Actions: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/.github/workflows/docker-image.yml
 - Output của luồng build và push Docker Image lên Docker Hub:  https://github.com/manhtd98/Viettel-Digital-Talent-2023/actions/runs/4994638592
 ![pr](./media/cdtag.png)
 ![pr](./media/cdgit.png)
-![img]("./media/cddocker.png")
-- Output log triển khai hệ thống: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/logs
+![img](./media/cddocker.png)
 - File inventory chứa danh sách các hosts triển khai: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/Midterm/Tran%20Duc%20Manh/inventories/multinode.yml
 
 ##### Install docker on multi node (2 worker node+master node)
@@ -149,6 +152,7 @@ ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-nginx.yml >> 
 
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/playbooks
 - Thư mục roles chứa các role: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/roles
+- Output log triển khai hệ thống: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/logs
 
 ### 4. Monitoring (1đ)
 #### Yêu cầu:
