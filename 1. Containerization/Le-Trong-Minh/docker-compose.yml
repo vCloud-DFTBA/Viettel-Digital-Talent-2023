@@ -6,12 +6,12 @@ services:
       context: ./frontend
     # container_name: web
     image: webserver
-    hostname: webserver
+    # hostname: webserver
     restart: unless-stopped
     ports:
       - "3000:3000"
-    # links:
-    #   - api
+    links:
+      - api
 
   api:
     build: 
@@ -28,7 +28,7 @@ services:
     image: mongo:5.0
     # container_name: db
     restart: unless-stopped
-    hostname: mongodb
+    # hostname: mongodb
     environment:
       - MONGO_INITDB_DATABASE=vdt2023
     ports:
