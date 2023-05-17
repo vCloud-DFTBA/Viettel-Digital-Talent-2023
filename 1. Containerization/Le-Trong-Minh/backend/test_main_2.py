@@ -7,13 +7,13 @@ client = TestClient(app)
 @pytest.fixture(scope="module")
 def student_data():
     return {
-        "stt": "0",
-        "name": "Arthur Xiaomi",
-        "username": "arthurx",
+        "stt": "100",
+        "name": "Le Minh",
+        "username": "minhle",
         "year_of_birth": "2000",
         "gender": "male",
-        "university": "Birmingham",
-        "major": "English Gangster"
+        "university": "ITMO",
+        "major": "CS"
     }
 
 def test_post_student(student_data):
@@ -23,13 +23,13 @@ def test_post_student(student_data):
     del response_data['data']['id']
     expected_data = {
         "data": {
-            "stt": 0,
-            "name": "Arthur Xiaomi",
-            "username": "arthurx",
+            "stt": 100,
+            "name": "Le Minh",
+            "username": "minhle",
             "year_of_birth": 2000,
             "gender": "male",
-            "university": "Birmingham",
-            "major": "English Gangster"
+            "university": "ITMO",
+            "major": "CS"
         },
         "code": 200,
         "message": "Student added successfully."
@@ -50,13 +50,13 @@ def test_get_student_by_id(student_data):
     del response2_data['data']['_id']
     expected_data = {
         'data': {
-            'stt': 0,
-            'name': 'Arthur Xiaomi',
-            'username': 'arthurx',
-            'year_of_birth': 2000,
-            'gender': 'male',
-            'university': 'Birmingham',
-            'major': 'English Gangster'
+            "stt": 100,
+            "name": "Le Minh",
+            "username": "minhle",
+            "year_of_birth": 2000,
+            "gender": "male",
+            "university": "ITMO",
+            "major": "CS"
         },
         'code': 200,
         'message': 'Student data retrieved successfully'
@@ -67,13 +67,13 @@ def test_update_student(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     updated_data = {
-        "stt": "0",
-        "name": "Thomas Xiaomi",
-        "username": "thomasx",
-        "year_of_birth": "2001",
+        "stt": 100,
+        "name": "Le Minh",
+        "username": "minhle",
+        "year_of_birth": 2000,
         "gender": "male",
-        "university": "Birmingham",
-        "major": "English Gangster"
+        "university": "ITMO",
+        "major": "CS"
     }
     response2 = client.put(f"/api/v1/students/{student_id}", json=updated_data)
     assert response2.status_code == 200
