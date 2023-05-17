@@ -23,7 +23,7 @@
 - name: Restart a container
   community.docker.docker_container:
     name: frontend
-    image: trongminhjr/webserver:v1
+    image: trongminhjr/webserver:latest
     # image: trongminhjr/devmidterm-web:v1
     # image: webserver
     state: started

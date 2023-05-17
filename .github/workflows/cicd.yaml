@@ -70,6 +70,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: "{{defaultContext}}:1. Containerization/Le-Trong-Minh/backend"
+          platforms: linux/arm64
           push: true
           tags: "trongminhjr/api:latest"
           # labels: "trongminhjr/api"
@@ -78,6 +79,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: "{{defaultContext}}:1. Containerization/Le-Trong-Minh/frontend"
+          platforms: linux/arm64
           push: true
           tags: "trongminhjr/webserver:latest"
           # labels: "trongminhjr/webserver"
