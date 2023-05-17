@@ -28,9 +28,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        cd 10.GK/vtapp/backend
+        cd 10.GK/TranMinhDuong/vtapp/backend
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with unittest
       run: |
-        cd 10.GK/vtapp
+        cd 10.GK/TranMinhDuong/vtapp
         python3 -m unittest discover
