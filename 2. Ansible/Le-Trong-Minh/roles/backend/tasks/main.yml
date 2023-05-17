@@ -1,4 +1,34 @@
 ---
-- include_tasks: config.yml
-- include_tasks: setup.yml
-- include_tasks: service.yml
+# - include_tasks: config.yml
+- name: Create vth group info.
+  group:
+    name: '{{ hostname }}'
+  #become: yes
+
+- name: Create user.
+  user:
+    name: '{{ hostname }}'
+    group: '{{ hostname }}'
+  #become: yes
+
+- name: Check docker install.
+  package:
+    name: docker
+    state: present
+
+# - include_tasks: setup.yml
+# - include_tasks: service.yml
+
+- name: Run the docker API images
+  community.docker.docker_container:
+    name: backend
+    image: trongminhjr/devmidterm_api:v1
+    state: started
+    restart_policy: unless-stopped
+    # networks: 
+    #   - name: "{{ NETWORK}}"
+    ports:
+      - "80:80"
+    env:
+      MONGODB_HOST : "172.17.0.1"
+    
