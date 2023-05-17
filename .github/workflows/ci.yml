@@ -8,28 +8,53 @@ jobs:
   unit-test-CI:
     runs-on: ubuntu-latest
     steps:
+    # Set up Enviroment
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
-    - run: sudo apt-get update
-    - run: sudo apt install apt-transport-https ca-certificates curl software-properties-common
-    - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    - run: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-    - run: sudo apt install docker-ce
-    - run: sudo docker --version
-    - run: sudo docker pull crvt4722/my_db
-    - run: sudo docker pull crvt4722/my_flask
-    - run: sudo docker pull crvt4722/my_nginx
-    - run: sudo docker network create mongodb_flask_nginx_network
-    - run: sudo docker run -d --name mongodb-server --network mongodb_flask_nginx_network crvt4722/my_db 
-    - run: sudo docker run -d --name flask_app --network mongodb_flask_nginx_network crvt4722/my_flask 
-    - run: sudo docker run -d -p 80:80 --link flask_app:flask --network mongodb_flask_nginx_network crvt4722/my_nginx
+
+    # Update your existing list of packages
+    - run: |
+        sudo apt-get update
+        sudo apt install apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+        sudo docker --version
+        sudo apt install docker-ce
+
+    # # Next, install a few prerequisite packages which let apt use packages over HTTPS:
+    # - run: sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+    # # Then add the GPG key for the official Docker repository to your system:
+    # - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    # # Add the Docker repository to APT sources:
+    # - run: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+    # # Finally, install Docker:
+    # - run: sudo apt install docker-ce
+
+    # # Check if Docker is installed or not.
+    # - run: sudo docker --version
+
+    # Pull image from DockerHub
+    - run: |
+        sudo docker pull crvt4722/my_db
+        sudo docker pull crvt4722/my_flask
+        sudo docker pull crvt4722/my_nginx
+    # - run: sudo docker pull crvt4722/my_flask
+    # - run: sudo docker pull crvt4722/my_nginx
+
+    # Create the network and run container
+    - run: |
+        sudo docker network create mongodb_flask_nginx_network
+        sudo docker run -d --name mongodb-server --network mongodb_flask_nginx_network crvt4722/my_db 
+        sudo docker run -d --name flask_app --network mongodb_flask_nginx_network crvt4722/my_flask 
+        sudo docker run -d -p 80:80 --link flask_app:flask --network mongodb_flask_nginx_network crvt4722/my_nginx
+
+    # - run: sudo docker run -d --name mongodb-server --network mongodb_flask_nginx_network crvt4722/my_db 
+    # - run: sudo docker run -d --name flask_app --network mongodb_flask_nginx_network crvt4722/my_flask 
+    # - run: sudo docker run -d -p 80:80 --link flask_app:flask --network mongodb_flask_nginx_network crvt4722/my_nginx
+
+    # Running the unittest
     - run: python3 3.\ Midterm/PhamVanToi/roles/web/files/unit_test.py
 
-
-    # - run: sudo apt install python3-virtualenv
-    # - run: virtualenv venv && source venv/bin/activate
-    # - run: pip install unittest2 requests ansible
-    # - run: ansible --version
-
-    # - run: ls
-    # - run: python3 ./roles/web/files/unit_test.py
