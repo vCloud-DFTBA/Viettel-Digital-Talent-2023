@@ -16,8 +16,14 @@ jobs:
     - run: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
     - run: sudo apt install docker-ce
     - run: sudo docker --version
-
-        
+    - run: sudo docker pull crvt4722/my_db
+    - run: sudo docker pull crvt4722/my_flask
+    - run: sudo docker pull crvt4722/my_nginx
+    - run: sudo docker network create mongodb_flask_nginx_network
+    - run: sudo docker run -d --name mongodb-server --network mongodb_flask_nginx_network crvt4722/my_db 
+    - run: sudo docker run -d --name flask_app --network mongodb_flask_nginx_network crvt4722/my_flask 
+    - run: sudo docker run -d -p 80:80 --link flask_app:flask --network mongodb_flask_nginx_network crvt4722/my_nginx
+    - run: python3 ./roles/web/files/unit_test.py
 
 
     # - run: sudo apt install python3-virtualenv
