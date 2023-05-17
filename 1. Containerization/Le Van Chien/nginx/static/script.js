@@ -5,12 +5,12 @@ searchBtn.onclick = function() {
     const username = document.querySelector('#username-input').value;
 
     if (username === "") {
-        fetch('http://localhost:5000/people/' + id)
+        fetch('http://localhost:8080/people/' + id)
         .then(response => response.json())
         .then(data => loadHTMLTable(data));
     }
     else {
-        fetch('http://localhost:5000/people/' + username)
+        fetch('http://localhost:8080/people/' + username)
         .then(response => response.json())
         .then(data => loadHTMLTable(data));
     }
@@ -18,7 +18,7 @@ searchBtn.onclick = function() {
 
 
 function sendDeleteRequest(username, btn) {
-    fetch('http://localhost:5000/people/delete/' + username, {
+    fetch('http://localhost:8080/people/delete/' + username, {
         method: 'DELETE'
     })
         .then(response => response.json())
@@ -94,7 +94,7 @@ function addNewAttendee(row) {
     };
 
 
-    fetch('http://localhost:5000/people/create/', {
+    fetch('http://localhost:8080/people/create/', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -146,7 +146,7 @@ function change(row, username) {
         major: inputs[5].value
     }
 
-    fetch('http://localhost:5000/people/update/' + username, {
+    fetch('http://localhost:8080/people/update/' + username, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
