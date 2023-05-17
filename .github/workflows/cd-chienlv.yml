@@ -26,11 +26,11 @@ jobs:
         with:
           context: 1.\ Containerization/Le\ Van\ Chien/app/
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ github.ref }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ github.ref_name }}
 
       - name: Build and push web image
         uses: docker/build-push-action@v4
         with:
           context: 1.\ Containerization/Le\ Van\ Chien/nginx/
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.refname }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.ref_name }}
