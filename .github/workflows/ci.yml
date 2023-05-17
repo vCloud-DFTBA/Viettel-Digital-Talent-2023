@@ -16,5 +16,6 @@ jobs:
     - run: pip install unittest2 requests ansible
     - run: sudo apt-get update
     - run: ansible --version
-    # - run: ansible-playbook -i inventory.yml setup.yml
+    - run: cat inventory.yml
+    - run: cat setup.yml
     # - run: python3 ./roles/web/files/unit_test.py
