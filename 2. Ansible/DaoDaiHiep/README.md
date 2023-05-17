@@ -30,7 +30,7 @@ Ansible chạy thành công:
 Website hoạt động và kết nối database thành công
 ![alt](images/web_success.png)
 
-### 3. Ứng dụng web:
+## 3. Ứng dụng web:
 * Mã nguồn: https://github.com/bonavadeur/simplewebapp (tag v1.0)
 * Mã nguồn được đặt trong folder `web`
 * Chi tiết hướng dẫn đọc [README](web/README.md)
