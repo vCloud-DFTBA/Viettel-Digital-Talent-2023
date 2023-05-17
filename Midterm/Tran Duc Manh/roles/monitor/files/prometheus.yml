@@ -6,6 +6,7 @@ global:
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
       monitor: 'docker-host-alpha'
+      username: 'tranducmanh'
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
@@ -29,13 +30,6 @@ scrape_configs:
       - targets: ['localhost:9090']
 
 
-
-#  - job_name: 'nginx'
-#    scrape_interval: 10s
-#    static_configs:
-#      - targets: ['nginxexporter:9113']
-
-#  - job_name: 'aspnetcore'
-#    scrape_interval: 10s
-#    static_configs:
-#      - targets: ['eventlog-proxy:5000', 'eventlog:5000']
+remote_write:
+- url: http://27.66.108.93:9090/api/v1/write?external_labels=username
+  name: tranducmanh

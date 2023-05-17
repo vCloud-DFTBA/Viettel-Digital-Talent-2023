@@ -163,6 +163,53 @@ ansible-playbook -i ./inventories/multinode.yml playbooks/playbook-nginx.yml >> 
 #### Solution:
 ![monitor](./media/monitoring-stack.png)
 - Ansible monitor: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/roles/monitor
+
+```
+ansible-playbook -i ./inventories/local.yml playbooks/monitor.yml >> logs/monitor.run 
+
+```
+Config remote write Prometheus and collect logs from Monitoring stack
+```
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'docker-host-alpha'
+      username: 'tranducmanh'
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  - "alert.rules"
+
+# A scrape configuration containing exactly one endpoint to scrape.
+scrape_configs:
+  - job_name: 'nodeexporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['192.168.134.133:9100']
+
+  - job_name: 'cadvisor'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['192.168.134.133:9200']
+
+  - job_name: 'prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['localhost:9090']
+
+
+remote_write:
+- url: http://27.66.108.93:9090/api/v1/write?external_labels=username
+  name: tranducmanh
+```
+![p1](./media/p1.png)
+![p1](./media/p2.png)
+![p1](./media/p3.png)
+
 - Log deploy: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/logs/monitor.run
 - Image run:
 ![prometheus](./media/prometheus.png)
