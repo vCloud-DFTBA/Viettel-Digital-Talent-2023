@@ -13,7 +13,8 @@ jobs:
     - uses: actions/setup-python@v4
 
     # Update your existing list of packages
-    - run: |
+    - name: Install docker
+      run: |
         sudo apt-get update
         sudo apt install apt-transport-https ca-certificates curl software-properties-common
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -37,7 +38,8 @@ jobs:
     # - run: sudo docker --version
 
     # Pull image from DockerHub
-    - run: |
+    - name: Pull image from DockerHub
+      run: |
         sudo docker pull crvt4722/my_db
         sudo docker pull crvt4722/my_flask
         sudo docker pull crvt4722/my_nginx
@@ -45,7 +47,8 @@ jobs:
     # - run: sudo docker pull crvt4722/my_nginx
 
     # Create the network and run container
-    - run: |
+    - name: Run container
+      run: |
         sudo docker network create mongodb_flask_nginx_network
         sudo docker run -d --name mongodb-server --network mongodb_flask_nginx_network crvt4722/my_db 
         sudo docker run -d --name flask_app --network mongodb_flask_nginx_network crvt4722/my_flask 
@@ -56,5 +59,6 @@ jobs:
     # - run: sudo docker run -d -p 80:80 --link flask_app:flask --network mongodb_flask_nginx_network crvt4722/my_nginx
 
     # Running the unittest
-    - run: python3 3.\ Midterm/PhamVanToi/roles/web/files/unit_test.py
+    - name: Run unittest
+      run: python3 3.\ Midterm/PhamVanToi/roles/web/files/unit_test.py
 
