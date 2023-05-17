@@ -19,7 +19,7 @@ function App() {
             axios
                 .get("http://localhost:80/api/v1/students")
                 .then((res) => {
-                    setStudents(res.data.data[0]);
+                    setStudents(res.data.data);
                 })
                 .then(() => {
                     setReload(false);
