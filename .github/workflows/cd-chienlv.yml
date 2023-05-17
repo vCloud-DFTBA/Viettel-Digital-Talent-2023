@@ -33,4 +33,4 @@ jobs:
         with:
           context: 1.\ Containerization/Le\ Van\ Chien/nginx/
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.ref }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.refname }}
