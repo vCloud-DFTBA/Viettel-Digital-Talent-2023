@@ -3,7 +3,7 @@ name: Build Dockerfile and push
 on:
   push:
     tag:
-      - '*'
+      - 'v*'
 
 jobs:
   docker:
