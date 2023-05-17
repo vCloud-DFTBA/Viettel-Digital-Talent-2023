@@ -27,7 +27,7 @@ const StudentModal = (props) => {
             setLoading(true);
             getStudent(id)
                 .then((result) => {
-                    setStudent(result.data.data);
+                    setStudent(result.data.data[0]);
                 })
                 .catch((error) => {
                     message.error(JSON.stringify(error));
@@ -138,7 +138,7 @@ const StudentModal = (props) => {
                             >
                                 <Input
                                     disabled={!isEdit}
-                                    placeholder={"Nhập số thứ tự"}
+                                    placeholder={"Order"}
                                 />
                             </Form.Item>
                         </Col>
@@ -157,7 +157,7 @@ const StudentModal = (props) => {
                             >
                                 <Input
                                     disabled={!isEdit}
-                                    placeholder={"Nhập họ tên"}
+                                    placeholder={"Input fullname"}
                                 />
                             </Form.Item>
                         </Col>
@@ -176,7 +176,7 @@ const StudentModal = (props) => {
                             >
                                 <Input
                                     disabled={!isEdit}
-                                    placeholder='Nhập tên người dùng'
+                                    placeholder='Username'
                                 />
                             </Form.Item>
                         </Col>
@@ -195,7 +195,7 @@ const StudentModal = (props) => {
                             >
                                 <Input
                                     disabled={!isEdit}
-                                    placeholder='Nhập năm sinh'
+                                    placeholder='Date of Birth'
                                 />
                             </Form.Item>
                         </Col>
@@ -233,7 +233,7 @@ const StudentModal = (props) => {
                             >
                                 <Input
                                     disabled={!isEdit}
-                                    placeholder='Nhập giới tính'
+                                    placeholder='Input gender'
                                 />
                             </Form.Item>
                         </Col>
@@ -252,7 +252,7 @@ const StudentModal = (props) => {
                             >
                                 <Input
                                     disabled={!isEdit}
-                                    placeholder='Nhập chuyên ngành'
+                                    placeholder='Input major'
                                 />
                             </Form.Item>
                         </Col>

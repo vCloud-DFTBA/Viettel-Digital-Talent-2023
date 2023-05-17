@@ -19,7 +19,7 @@ function App() {
             axios
                 .get("http://localhost:80/api/v1/students")
                 .then((res) => {
-                    setStudents(res.data.data);
+                    setStudents(res.data.data[0]);
                 })
                 .then(() => {
                     setReload(false);
@@ -41,13 +41,13 @@ function App() {
 
     return (
         <div className={`App ${isOpen ? "mask" : ""}`}>
-            <header className='header'>
+            {/* <header className='header'>
                 <div className='logo'>
                     <img src={logo} alt='Logo' />
                 </div>
-            </header>
+            </header> */}
             <div className='text-list'>
-                List of intern Viettel Digital Talent 2023
+                Apprentices in Cloud Computing
             </div>
             <div className='table-container'>
                 <table style={{ position: "relative" }}>
@@ -74,10 +74,10 @@ function App() {
                             <th>STT</th>
                             <th className='name'>Name</th>
                             <th>Username</th>
-                            <th>Year</th>
+                            {/* <th>Year</th>
                             <th>Gender</th>
                             <th>University</th>
-                            <th>Major</th>
+                            <th>Major</th> */}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -94,10 +94,10 @@ function App() {
                                 <td>{student.stt}</td>
                                 <td>{student.name}</td>
                                 <td>{student.username}</td>
-                                <td>{student.year_of_birth}</td>
+                                {/* <td>{student.year_of_birth}</td>
                                 <td>{student.gender}</td>
                                 <td>{student.university}</td>
-                                <td>{student.major}</td>
+                                <td>{student.major}</td> */}
                                 <td className='button-row'>
                                     <button
                                         onClick={(e) => {

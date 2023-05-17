@@ -15,13 +15,13 @@ class Student(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "stt": "0",
-                "name": "Arthur Xiaomi",
-                "username" : "arthurx",
+                "stt": "100",
+                "name": "Minh dep trai",
+                "username" : "minhletrong",
                 "year_of_birth": "2000",
                 "gender": "male",
-                "university": "Birmingham",
-                "major": "English Gangster",
+                "university": "ITMO",
+                "major": "CS",
             }
         }
 
@@ -51,20 +51,20 @@ class UpdateStudent(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "stt": "1",
-                "name": "Thomas Xiaomi",
-                "username" : "thomasx",
-                "year_of_birth": "2001",
+                "stt": "100",
+                "name": "Minh dep trai",
+                "username" : "minhletrong",
+                "year_of_birth": "2000",
                 "gender": "male",
-                "university": "Birmingham",
-                "major": "English Gangster",
+                "university": "ITMO",
+                "major": "CS",
             }
         }
 
 
 def ResponseModel(data, message):
     return {
-        "data": data,
+        "data": [data],
         "code": 200,
         "message": message,
     }
