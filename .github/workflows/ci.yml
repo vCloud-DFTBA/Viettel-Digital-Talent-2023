@@ -11,11 +11,10 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
     - run: sudo apt-get update
-    - run: sudo apt-get install ca-certificates curl gnupg
-    - run: sudo install -m 0755 -d /etc/apt/keyrings
-    - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    - run: sudo chmod a+r /etc/apt/keyrings/docker.gpg
-    - run: echo \ "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \ "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \ sudo tee /etc/apt/sources.list.d/docker.list > /dev/nul
+    - run: sudo apt install apt-transport-https ca-certificates curl software-properties-common
+    - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    - run: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    - run: sudo apt install docker-ce
     - run: sudo docker --version
 
         
