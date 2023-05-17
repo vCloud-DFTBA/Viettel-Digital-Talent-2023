@@ -1,0 +1,3 @@
+---
+# defaults file for web
+nginx_image: "bititmo16/ansible_nginx"
