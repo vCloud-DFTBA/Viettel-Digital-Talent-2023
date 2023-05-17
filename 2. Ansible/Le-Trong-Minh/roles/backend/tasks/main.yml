@@ -22,7 +22,7 @@
 - name: Run the docker API images
   community.docker.docker_container:
     name: backend
-    image: trongminhjr/api:lastest
+    image: trongminhjr/api:latest
     state: started
     restart_policy: unless-stopped
     # networks: 
