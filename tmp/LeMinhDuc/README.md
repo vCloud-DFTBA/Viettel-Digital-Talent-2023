@@ -13,3 +13,6 @@ Author: **Le Minh Duc**
 ## 2. Conclusion
 
 ## 3. References
+
+[1] [Basic Blog App Built in the Flask](https://github.com/pallets/flask/tree/2.3.2/examples/tutorial)
+[2] [Unit Testing Pymongo Flask Applications With Mongomock](https://github.com/reritom/Flask-PyMongo-Unittest-Guide)
