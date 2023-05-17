@@ -1,16 +1,4 @@
 services:
-  backend:
-    restart: unless-stopped
-    build:
-      context: ./backend
-    depends_on:
-      - db
-    networks:
-      - react-flask
-      - flask-mongo
-    ports:
-      - 5000:5000
-
   db:
     restart: unless-stopped
     image: mongo:5.0
@@ -21,12 +9,42 @@ services:
     ports:
       - 27017:27017
 
+  backend:
+    restart: unless-stopped
+    build:
+      context: ./backend
+    depends_on:
+      - db
+    environment:
+      - MONGO_URI=mongodb://172.17.0.1:27017/vdt
+    networks:
+      - react-flask
+      - flask-mongo
+    # ports:
+    #   - 5000:5000
+  
+  backend-lb:
+    restart: unless-stopped
+    image: nginx:1.22.0-alpine
+    volumes:
+      - ./backend/nginx/lb.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+    networks:
+      - react-flask
+    ports:
+      - 5000:80
+
   frontend:
     restart: unless-stopped
     build:
       context: ./frontend
+      args:
+        - VITE_APP_BASE_URL=http://localhost:5000
     depends_on:
       - backend
+    environment:
+      - VITE_APP_BASE_URL=http://172.17.0.1:5000
     networks:
       - react-flask
     ports:

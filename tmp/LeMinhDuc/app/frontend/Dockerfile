@@ -1,4 +1,5 @@
 FROM node:18 AS build
+ARG VITE_APP_BASE_URL
 WORKDIR /app
 COPY ./package* ./
 RUN npm install

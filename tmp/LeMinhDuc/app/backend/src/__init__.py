@@ -10,6 +10,13 @@ def create_app(custom_config=None):
     if custom_config:
         app.config.update(custom_config)
 
+    import socket
+
+    @app.route("/")
+    def hello():
+        # Return hostname to test load balancing
+        return f"Hello from {socket.gethostname()}!"
+
     from src.db import get_db, init_app
 
     init_app(app)
