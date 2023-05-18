@@ -26,7 +26,7 @@ jobs:
       with:
         context: ./3. Midterm/PhamVanToi/roles/db/files
         builder: ${{ steps.buildx.outputs.name }}
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_db
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_db:${{ github.ref }}
         push: true
     
     - name: Build and Push Flask API Image
@@ -34,7 +34,7 @@ jobs:
       with:
         context: ./3. Midterm/PhamVanToi/roles/api/files
         builder: ${{ steps.buildx.outputs.name }}
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_flask
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_flask:${{ github.ref }}
         push: true
     
     - name: Build and Push Web Nginx Image
@@ -42,6 +42,6 @@ jobs:
       with:
         context: ./3. Midterm/PhamVanToi/roles/web/files
         builder: ${{ steps.buildx.outputs.name }}
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_nginx
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my_nginx:${{ github.ref }}
         push: true
 
