@@ -36,7 +36,9 @@ jobs:
           pip install -r Midterm/roles/api/files/requirements.txt
 
       - name: Check PEP8 compliance
-        run: pycodestyle --ignore=W504,E501,E275 Midterm/roles/api/files
+        run: |
+          pip install pycodestyle
+          pycodestyle --ignore=W504,E501,E275 Midterm/roles/api/files
 
       - name: Run Unit Test
         env:
