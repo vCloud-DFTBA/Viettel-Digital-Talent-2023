@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Cập nhật thông tin sinh viên</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/png" href="../static/images/icons/favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/animsition/css/animsition.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/daterangepicker/daterangepicker.css">
+
+<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+<link rel="stylesheet" type="text/css" href="../static/css/custom.css">
+
+<meta name="robots" content="noindex, follow">
+</head>
+<body>
+<div class="container-contact100">
+<div class="wrap-contact100">
+<form class="contact100-form validate-form" action="{{ url_for('update', id=document['STT']) }}" method="POST">
+<span class="contact100-form-title">
+Cập nhật thông tin sinh viên</span>
+<div class="wrap-input100 validate-input" data-validate="STT là bắt buộc">
+<span class="label-input100">STT:</span>
+<input class="input100" type="text" name="stt" placeholder="Nhập số thứ tự">
+<span class="focus-input100"></span>
+</div>
+<span class="label-input100">Họ và tên</span>
+<input class="input100" type="text" name="hovaten" placeholder="Nhập họ và tên">
+<span class="label-input100">Username<Username/span>
+<input class="input100" type="text" name="username" placeholder="Nhập Username">
+<span class="label-input100">Năm sinh</span>
+<input class="input100" type="text" name="namsinh" placeholder="Nhập năm sinh">
+<span class="label-input100">Giới tính</span>
+<input class="input100" type="text" name="gioitinh" placeholder="Nhập giới tính">
+<span class="label-input100">Trường</span>
+<input class="input100" type="text" name="truong" placeholder="Nhập trường">
+<span class="label-input100">Chuyên ngành</span>
+<input class="input100" type="text" name="chuyennganh" placeholder="Nhập chuyên ngành">
+<br>
+<div class="container-contact100-form-btn">
+<div class="wrap-contact100-form-btn">
+<div class="contact100-form-bgbtn"></div>
+<button class="contact100-form-btn">
+<span>
+Update
+<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div id="dropDownSelect1"></div>
+
+<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+<script src="../static/vendor/animsition/js/animsition.min.js"></script>
+
+<script src="../static/vendor/bootstrap/js/popper.js"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="../static/vendor/select2/select2.min.js"></script>
+<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+
+<script src="../static/vendor/daterangepicker/moment.min.js"></script>
+<script src="../static/vendor/daterangepicker/daterangepicker.js"></script>
+
+<script src="../static/vendor/countdowntime/countdowntime.js"></script>
+
+<script src="../static/js/main2.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7c5fac2b1a673e1f","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

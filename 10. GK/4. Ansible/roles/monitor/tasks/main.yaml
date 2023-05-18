@@ -1,0 +1,105 @@
+- name: Create Prometheus data volume
+  docker_volume:
+    name: prometheus_data
+    state: present
+
+- name: Create Grafana data volume
+  docker_volume:
+    name: grafana_data
+    state: present
+
+- name: Start Prometheus container
+  docker_container:
+    name: phutx_prometheus
+    image: prom/prometheus:{{ prometheus_version }}
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=5d"
+      - "--web.enable-lifecycle"
+      - "--web.listen-address=:9090"
+    volumes:
+      - "{{ absolute_path }}roles/monitor/files/prometheus/:/etc/prometheus/"
+      - "prometheus_data:/prometheus"
+    restart_policy: unless-stopped
+    network_mode: host
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+- name: Start Alertmanager container
+  docker_container:
+    name: phutx_alertmanager
+    image: prom/alertmanager:{{ alertmanager_version }}
+    volumes:
+      - "{{ absolute_path }}roles/monitor/files/alertmanager/:/etc/alertmanager/"
+    command:
+      - "--config.file=/etc/alertmanager/config.yml"
+      - "--storage.path=/alertmanager"
+      - "--web.listen-address=:9093"
+      - "--cluster.listen-address=:9095"
+      - "--cluster.peer=localhost:9096"
+      - "--log.level=info"
+    restart_policy: unless-stopped
+    network_mode: host
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+- name: Start Node Exporter container
+  docker_container:
+    name: phutx_nodeexporter
+    image: prom/node-exporter:v1.5.0
+    volumes:
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/:/rootfs:ro"
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+    restart_policy: unless-stopped
+    network_mode: host
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+- name: Deploy cAdvisor container
+  docker_container:
+    name: phutx_cadvisor
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    privileged: yes
+    devices:
+      - "/dev/kmsg:/dev/kmsg"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker:/var/lib/docker:ro"
+    restart_policy: unless-stopped
+    network_mode: host
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+- name: Start Grafana container
+  docker_container:
+    name: phutx_grafana
+    image: grafana/grafana:{{ grafana_version }}
+    volumes:
+      - "grafana_data:/var/lib/grafana"
+      - "{{ absolute_path }}roles/monitor/files/grafana/provisioning:/etc/grafana/provisioning"
+    restart_policy: unless-stopped
+    network_mode: host
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"

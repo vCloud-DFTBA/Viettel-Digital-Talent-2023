@@ -1,0 +1,26 @@
+- name: Build Nginx Image
+  docker_image:
+    name: nginx:1.22.0-alpine
+    source: build
+    build:
+      path: roles/web/files 
+
+- name: Start Nginx Container
+  become: true
+  docker_container:
+    name: "{{ nginx_container_name }}"
+    image: nginx:1.22.0-alpine
+    restart_policy: unless-stopped
+    env:
+      APP_ENV: "prod"
+      APP_NAME: "webserver"
+      APP_DEBUG: "true"
+      SERVICE_NAME: "webserver"
+    ports:
+      - "{{ port_1 }}:{{ port_1 }}"
+      - "{{ port_2 }}:{{ port_2 }}"
+    volumes:
+      - "{{ nginx_volumes }}"
+    networks:
+      - name: frontend
+

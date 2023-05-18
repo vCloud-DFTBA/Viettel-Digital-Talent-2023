@@ -1,0 +1,17 @@
+- name: Start mongodb container
+  become: true
+  docker_container:
+    name: "{{ db_container_name }}"
+    image: "{{ db_image }}"
+    restart_policy: unless-stopped
+    hostname: "{{ db_hostname }}"
+    env:
+      MONGO_INITDB_DATABASE: "{{ mongo_init_db }}"
+      MONGO_INITDB_ROOT_USERNAME: "{{ mongo_root_username }}"
+      MONGO_INITDB_ROOT_PASSWORD: "{{ mongo_root_password }}"
+    volumes:
+      - "{{ absolute_path }}{{ db_volumes }}"
+    ports:
+      - "{{ db_port }}:{{ db_port }}"
+    networks:
+      - name: backend
