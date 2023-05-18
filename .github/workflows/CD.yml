@@ -21,18 +21,18 @@ jobs:
 
       - name: Build and Push db Docker image
         run: |
-          cd roles/db/templates
+          cd 3.Midterm/roles/db/templates
           docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db .
           docker push ${{ secrets.DOCKER_USERNAME }}/test:db
 
       - name: Build and Push flask Docker image
         run: |
-          cd roles/api/files
+          cd 3.Midterm/roles/api/files
           docker build -t ${{ secrets.DOCKER_USERNAME }}/test:flask .
           docker push ${{ secrets.DOCKER_USERNAME }}/test:flask
 
       - name: Build and Push web Docker image
         run: |
-          cd roles/web/templates
+          cd 3.Midterm/roles/web/templates
           docker build -t ${{ secrets.DOCKER_USERNAME }}/test:nginx .
           docker push ${{ secrets.DOCKER_USERNAME }}/test:nginx

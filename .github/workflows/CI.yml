@@ -16,7 +16,6 @@ jobs:
       matrix:
         mongodb-version: ['5.0']
 
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -31,22 +30,19 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
-      - name: Install libary
+      - name: Install library
         run: |
           python -m pip install --upgrade pip
-          pip install -r roles/api/files/requirements.txt
+          pip install -r 2.Ansible/roles/api/files/requirements.txt
 
-      - name: test
-        run:
-          python roles/api/files/manage.py test
-      
+      - name: Run Unit Tests
+        run: |
+          cd 3.Midterm/roles/api/files
+          python manage.py test
+
       # - name: Run Python Files
       #   env:
       #     MONGODB_URI: mongodb://db:27017/
       #   run: |
-      #     python roles/api/files/app.py &
-      #     python roles/api/files/tests/test_app.py
-
-
-
- 
+      #     python 3.Midterm/roles/api/files/app.py &
+      #     python 3.Midterm/roles/api/files/tests/test_app.py
