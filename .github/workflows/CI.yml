@@ -46,6 +46,7 @@ jobs:
         run: |
           # cd Midterm/roles/api/files/tests
           # python test_app.py
+          pip install pytest
           pytest Midterm/roles/api/files/
       # - name: Show coverage report
       #   run: |
