@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Test the Docker image
-        run: cd 1.\ Containerization/Le-Trong-Minh/ && docker-compose up -d
+        run: cd 1.\ Containerization/Le-Trong-Minh/ && docker-compose up -d db
       
       ## Unitest
       - name: Install dependencies
@@ -37,7 +37,10 @@ jobs:
           pip install pytest pytest-cov
         
       - name: Test api
-        run: cd 1.\ Containerization/Le-Trong-Minh/backend/ && pytest test_main_2.py
+        run: |
+          cd 1.\ Containerization/Le-Trong-Minh/backend/
+          pwd
+          pytest test_main_2.py
 
 
   # push_to_registry:
