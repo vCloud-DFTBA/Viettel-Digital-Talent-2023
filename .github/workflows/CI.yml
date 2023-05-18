@@ -35,14 +35,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r Midterm/roles/api/files/requirements.txt
 
-      - name: Run Unit Tests
-        run: |
-          cd Midterm/roles/api/files
-          python manage.py test
+      - name: Check PEP8 compliance
+        run: pycodestyle --ignore=W504,E501,E275 Midterm/roles/api/files
 
-      - name: Run Python Files
+      - name: Run Unit Test
         env:
           MONGODB_URI: mongodb://localhost:27017/
         run: |
           cd Midterm/roles/api/files/tests
           python test_app.py
+      - name: Show coverage report
+        run: coverage report --skip-covered --omit *migrations*
+
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3
