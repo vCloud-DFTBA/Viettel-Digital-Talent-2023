@@ -3,7 +3,7 @@ all:
   hosts:
     localhost:
       ansible_connection: local
-      ansible_python_interpreter: /home/lechiennn/Viettel-Digital-Talent-2023/1.\ Containerization/Le\ Van\ Chien/env/bin/python
+      ansible_python_interpreter: /home/lechiennn/Viettel-Digital-Talent-2023/2.Ansible/LeVanChien/env/bin/python
       ansible_become_user: lechiennn
       ansible_become_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -12,11 +12,3 @@ all:
           36316339323630306464613430646237646438353665343266386139613463336363383630343238
           3535623932643139380a303833366638653362363862353564353532353061636131366335653036
           6265
-
-# all:
-#   hosts:
-#     localhost:
-#       ansible_connection: docker
-#       ansible_host: ubuntu2
-#       ansible_python_interpreter: /usr/bin/python3
-#       ansible_become_user: root
