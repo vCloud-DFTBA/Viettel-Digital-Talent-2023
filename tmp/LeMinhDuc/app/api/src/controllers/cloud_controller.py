@@ -23,7 +23,10 @@ class CloudController:
     def create():
         data = request.get_json()
         data["id"] = generate_id()
-        data["birth_year"] = int(data["birth_year"])
+        try:
+            data["birth_year"] = int(data["birth_year"])
+        except:
+            return jsonify({"message": "Invalid birth year"}), 400
         db = get_db()
         db.cloud.insert_one(data)
         data.pop("_id", None)
@@ -42,7 +45,10 @@ class CloudController:
     def update(id):
         data = request.get_json()
         if "birth_year" in data:
-            data["birth_year"] = int(data["birth_year"])
+            try:
+                data["birth_year"] = int(data["birth_year"])
+            except:
+                return jsonify({"message": "Invalid birth year"}), 400
         db = get_db()
         intern = db.cloud.find_one_and_update(
             {"id": id},
