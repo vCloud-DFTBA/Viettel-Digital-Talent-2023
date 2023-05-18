@@ -9,7 +9,10 @@ services:
 
   api:
     restart: unless-stopped
-    image: duclm278/api:latest
+    build:
+      context: ./api
+    # depends_on:
+    #   - db
     environment:
       - MONGO_URI=mongodb://172.17.0.1:27017/vdt
   
@@ -25,7 +28,14 @@ services:
 
   web:
     restart: unless-stopped
-    image: duclm278/web:latest
+    build:
+      context: ./web
+      args:
+        - VITE_APP_BASE_URL=http://localhost:5000
+    # depends_on:
+    #   - api
+    environment:
+      - VITE_APP_BASE_URL=http://172.17.0.1:5000
 
   web-lb:
     restart: unless-stopped

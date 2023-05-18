@@ -42,3 +42,5 @@ jobs:
           file: ${{ env.WEB_DIR }}/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.WEB_IMAGE }}:${{ github.ref_name }}
+          build-args: |
+            VITE_APP_BASE_URL=http://localhost:5000

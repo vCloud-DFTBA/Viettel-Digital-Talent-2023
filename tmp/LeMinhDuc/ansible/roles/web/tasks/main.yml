@@ -1,11 +1,18 @@
 ---
-- name: Create container
-  community.docker.docker_container:
-    name: "{{ web_name }}"
-    hostname: "{{ web_name }}"
-    restart_policy: unless-stopped
-    image: "{{ web_image }}"
-    networks:
-      - name: "{{ web_api_network }}"
-    ports:
-      - 80:80
+- name: Tear down existing service {{ web_service }}
+  community.docker.docker_compose:
+    project_src: "{{ app_src }}"
+    state: absent
+
+- name: Create and start service {{ web_service }}
+  community.docker.docker_compose:
+    project_src: "{{ app_src }}"
+    state: present
+    services:
+      - "{{ web_service }}"
+    scale:
+      "{ '{{ web_service }}': 2 }"
+  register: output
+
+- debug:
+    var: output

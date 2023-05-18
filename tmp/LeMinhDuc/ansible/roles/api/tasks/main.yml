@@ -1,16 +1,18 @@
 ---
-- name: Create network {{ web_api_network }}
-  community.docker.docker_network:
-    name: "{{ web_api_network }}"
+- name: Tear down existing service {{ api_service }}
+  community.docker.docker_compose:
+    project_src: "{{ app_src }}"
+    state: absent
 
-- name: Create container
-  community.docker.docker_container:
-    name: "{{ api_name }}"
-    hostname: "{{ api_name }}"
-    restart_policy: unless-stopped
-    image: "{{ api_image }}"
-    networks:
-      - name: "{{ web_api_network }}"
-      - name: "{{ api_db_network }}"
-    ports:
-      - 5000:5000
+- name: Create and start service {{ api_service }}
+  community.docker.docker_compose:
+    project_src: "{{ app_src }}"
+    state: present
+    services:
+      - "{{ api_service }}"
+    scale:
+      "{ '{{ api_service }}': 2 }"
+  register: output
+
+- debug:
+    var: output

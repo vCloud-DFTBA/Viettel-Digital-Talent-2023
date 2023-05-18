@@ -1,2 +1,6 @@
 ---
 become_password: "{{ vault_become_password }}"
+app_src: ../app
+db_service: db
+api_service: api
+web_service: web

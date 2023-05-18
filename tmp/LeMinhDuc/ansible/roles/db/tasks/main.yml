@@ -1,17 +1,16 @@
 ---
-- name: Create network {{ api_db_network }}
-  community.docker.docker_network:
-    name: "{{ api_db_network }}"
+- name: Tear down existing service {{ db_service }}
+  community.docker.docker_compose:
+    project_src: "{{ app_src }}"
+    state: absent
 
-- name: Create container
-  community.docker.docker_container:
-    name: "{{ db_name }}"
-    hostname: "{{ db_name }}"
-    restart_policy: unless-stopped
-    image: "{{ db_image }}"
-    volumes:
-      - ../app/db:/docker-entrypoint-initdb.d
-    networks:
-      - name: "{{ api_db_network }}"
-    ports:
-      - 27017:27017
+- name: Create and start service {{ db_service }}
+  community.docker.docker_compose:
+    project_src: "{{ app_src }}"
+    state: present
+    services:
+      - "{{ db_service }}"
+  register: output
+
+- debug:
+    var: output
