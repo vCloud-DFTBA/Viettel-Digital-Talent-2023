@@ -25,11 +25,11 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed 's/refs\/tags\///')
           echo "::set-output name=version::${VERSION}"
 
-      # - name: Build and Push db Docker image
-      #   run: |
-      #     cd Midterm/roles/db/templates
-      #     docker build -t ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }} .
-      #     docker push ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }}
+      - name: Build and Push db Docker image
+        run: |
+          cd Midterm/roles/db/templates
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:${{ env.VERSION }} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:${{ env.VERSION }}
 
       # - name: Build and Push flask Docker image
       #   run: |
