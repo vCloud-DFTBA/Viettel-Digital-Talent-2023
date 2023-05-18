@@ -1,0 +1,6 @@
+.vscode/
+flask-env/
+instance/
+__pycache__/
+
+flask_app/
