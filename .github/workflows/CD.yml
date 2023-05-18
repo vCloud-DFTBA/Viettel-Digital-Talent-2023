@@ -19,20 +19,26 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Extract version from tag
+        id: extract_version
+        run: |
+          VERSION=$(echo "${{ github.ref }}" | sed 's/refs\/tags\///')
+          echo "::set-output name=version::${VERSION}"
+
       - name: Build and Push db Docker image
         run: |
           cd Midterm/roles/db/templates
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db .
-          docker push ${{ secrets.DOCKER_USERNAME }}/test:db
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }}
 
       - name: Build and Push flask Docker image
         run: |
           cd Midterm/roles/api/files
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:flask .
-          docker push ${{ secrets.DOCKER_USERNAME }}/test:flask
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }}
 
       - name: Build and Push web Docker image
         run: |
           cd Midterm/roles/web/templates
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:nginx .
-          docker push ${{ secrets.DOCKER_USERNAME }}/test:nginx
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:${{ steps.extract_version.outputs.version }}
