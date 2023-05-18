@@ -1,60 +1,85 @@
-from flask import Flask, render_template, request, redirect
-import csv
+import json
+
+from flask import Flask, jsonify, render_template, redirect, request
 from pymongo import MongoClient
 
-
 app = Flask(__name__)
-
 
 client = MongoClient("mongodb://db:27017/")
 db = client["internees"]
 
 
-
-@app.route("/")
+@app.route('/list')
 def index():
-    return render_template("index.html", attendees=db.internees.find())
+    attendees = list(db.internees.find({}, {"_id": 0}))  # Exclude _id field
+    api_json = []
+    for attendee in attendees:
+        api_json.append(attendee)
+    return json.dumps(api_json, ensure_ascii=False).encode('utf-8')
 
-@app.route("/addStudent", methods = ['GET','POST'])
-def addcar():
-    if request.method == 'GET':
-        return render_template("addStudent.html")
-    if request.method == 'POST':
-        id = int(request.form["STT"])
-        name = request.form["name"]
-        year = int(request.form["year"])
-        gender = request.form["gender"]
-        school = request.form["school"]
-        major = request.form["major"]
-        db.internees.insert_one({'STT':id, 'name':name, 'year' : year, 'gender' : gender, 'school' : school, 'major' : major})
-        return redirect('/')
+@app.route("/addStudent", methods=['POST'])
+def add_student():
+    data = request.get_json()
+    id = data["id"]
+    name = data["name"]
+    username = data['username']
+    year = int(data["birth"])
+    gender = data["sex"]
+    school = data["university"]
+    major = data["major"]
+    db.internees.insert_one({
+        'id': id,
+        'name': name,
+        'username' : username,
+        'birth': year,
+        'sex': gender,
+        'university': school,
+        'major': major
+    })
+    return jsonify({'message': 'Student added successfully'}), 201
 
+@app.route('/deleteStudent/<int:id>', methods=['DELETE'])
+def delete_student(id):
+    id = str(id)
+    db.internees.delete_one({'id': id})
+    return jsonify({'message': 'Student deleted successfully'}), 200
 
-@app.route('/deleteStudent/<int:id>')
-def deleteStudent(id):
-    db.internees.delete_one({"STT":id})
-    return redirect('/')
+@app.route('/view/<int:id>', methods=['GET'])
+def view_student(id):
+    id = str(id)
+    student = db.internees.find_one({'id': id}, {"_id": 0})
+    api_json = []
+    api_json.append(student)
+    return json.dumps(api_json, ensure_ascii=False).encode('utf-8')
+    return jsonify({'message': 'Student not found'}), 404
 
+@app.route('/updateStudent/<int:id>', methods=['POST'])
+def update_student(id):
+    id = str(id)
+    student = db.internees.find_one({'id': id})
+    if not student:
+        return jsonify({'message': 'Student not found'}), 404
 
-@app.route('/view/<int:id>')
-def viewStudent(id):
-    students = []
-    students.append(db.internees.find_one({"STT": id}))
-    return render_template("detail.html", students=students)
-@app.route('/updateStudent/<int:id>',methods = ['GET','POST'])
-def updatecar(id):
-    students = []
-    if request.method == 'GET':
-        students.append(db.internees.find_one({"STT":id}))
-        return render_template("updateStudent.html", students = students)
-    if request.method == 'POST':
-        name = request.form["name"]
-        year = int(request.form["year"])
-        gender = request.form["gender"]
-        school = request.form["school"]
-        major = request.form["major"]
-        db.internees.update_one({'STT':id}, {"$set" : {'name':name, 'year' : year, 'gender' : gender, 'school' : school, 'major' : major}})
-        return redirect('/')
+    data = request.get_json()
+    name = data["name"]
+    username = data['username']
+    year = int(data["birth"])
+    gender = data["sex"]
+    school = data["university"]
+    major = data["major"]
 
-if __name__=='__main__':
-    app.run(host='0.0.0.0', port=9090, debug=True)
+    db.internees.update_one(
+        {'id': id},
+        {"$set": {
+            'name': name,
+            'username' : username,
+            'birth': year,
+            'sex': gender,
+            'university': school,
+            'major': major
+        }}
+    )
+    return jsonify({'message': 'Student updated successfully'}), 200
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=9090)

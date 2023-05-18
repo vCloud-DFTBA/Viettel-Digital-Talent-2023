@@ -15,6 +15,6 @@
     image: nginx_image
     restart_policy: "unless-stopped"
     ports:
-      - "80:80"
+      - "81:81"
     networks:
       - name: homework

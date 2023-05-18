@@ -1,0 +1,38 @@
+name: Publish Docker Image to Docker Hub
+
+on:
+  push:
+    branches: ['main']
+    tags:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push db Docker image
+        run: |
+          cd roles/db/templates
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:db
+
+      - name: Build and Push flask Docker image
+        run: |
+          cd roles/api/files
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:flask .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:flask
+
+      - name: Build and Push web Docker image
+        run: |
+          cd roles/web/templates
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:nginx .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:nginx
