@@ -40,9 +40,9 @@ jobs:
           cd Midterm/roles/api/files
           python manage.py test
 
-      # - name: Run Python Files
-      #   env:
-      #     MONGODB_URI: mongodb://db:27017/
-      #   run: |
-      #     python 3.Midterm/roles/api/files/app.py &
-      #     python 3.Midterm/roles/api/files/tests/test_app.py
+      - name: Run Python Files
+        env:
+          MONGODB_URI: mongodb://localhost:27017/
+        run: |
+          cd Midterm/roles/api/files/tests
+          python test_app.py
