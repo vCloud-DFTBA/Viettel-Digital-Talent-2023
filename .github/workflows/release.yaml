@@ -24,9 +24,9 @@ jobs:
         run: |
           cd 10.GK/DoAnhTu/
           docker-compose build
-          docker-compose push
-          docker tag appuser mr4x2/appuser
-          docker push mr4x2/appuser
+          docker images
+          docker tag appuser ${{ secrets.DOCKER_USER}}/appuser
+          docker push ${{ secrets.DOCKER_USER}}/appuser
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
