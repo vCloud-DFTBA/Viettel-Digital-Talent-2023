@@ -6,6 +6,7 @@ services:
     container_name: presentation_tier
     hostname: react
     restart: unless-stopped
+    platform: linux/arm64
     ports:
       - "3000:3000"
     links:
@@ -15,6 +16,7 @@ services:
     build: backend
     container_name: logic_tier
     restart: unless-stopped
+    platform: linux/arm64
     ports:
       - "80:80"
     depends_on:
