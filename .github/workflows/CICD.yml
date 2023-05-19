@@ -14,16 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-    - name: Run Unit Test
-      run: |
-        docker network create homework
-        docker build -t db_image Midterm/roles/db/templates
-        docker run -d --name db --network homework db_image
-        docker build -t flask_image Midterm/roles/api/files
-        docker run -d --name flask --network homework flask_image
-        docker build -t nginx_image Midterm/roles/web/templates
-        docker run -d -p 81:81 --name nginx --link flask:flask --network homework nginx_image
-        python3 Midterm/roles/api/files/test_main.py
+      - name: Run Unit Test
+        run: |
+          docker network create homework
+          docker build -t db_image Midterm/roles/db/templates
+          docker run -d --name db --network homework db_image
+          docker build -t flask_image Midterm/roles/api/files
+          docker run -d --name flask --network homework flask_image
+          docker build -t nginx_image Midterm/roles/web/templates
+          docker run -d -p 81:81 --name nginx --link flask:flask --network homework nginx_image
+          python3 Midterm/roles/api/files/test_main.py
 
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
