@@ -17,6 +17,9 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
       - name: Build and push Docker images
         run: |
           cd 10.GK/DoAnhTu/
