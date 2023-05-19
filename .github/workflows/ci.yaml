@@ -32,6 +32,8 @@ jobs:
           ls
           cd 10.GK/DoAnhTu
           pwd
+      - name: check pwd 2
+        run: pwd
       - name: Docker Compose Action
         uses: isbang/compose-action@v1.4.1
         with:
