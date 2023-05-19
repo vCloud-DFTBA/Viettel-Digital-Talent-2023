@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - '*'
+      - '**'
 env:
   CURRENT_DIR: ./roles
 jobs:
@@ -26,17 +27,23 @@ jobs:
           #        push: true
           #        tags: ${{ secrets.DOCKERHUB_USERNAME }}/db:latest
           #        context: ${{ env.CURRENT_DIR }}/db/templates/
+    - name: Build and push fluentd
+      uses: docker/build-push-action@v4
+      with: 
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/fluentd:${{ github.ref_name }}
+        context: ${{ env.CURRENT_DIR }}/web/templates/
     - name: Build and push web
       uses: docker/build-push-action@v4
       with: 
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.ref_name }}
         context: ${{ env.CURRENT_DIR }}/web/templates/
     - name: Build and push api
       uses: docker/build-push-action@v4
       with: 
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ github.ref_name }}
         context: ${{ env.CURRENT_DIR }}/api/templates/
           #    - name: Build and push nginx
           #      uses: docker/build-push-action@v4

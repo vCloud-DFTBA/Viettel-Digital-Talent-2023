@@ -5,4 +5,5 @@ all:
             ansible_connection: local
             ansible_python_interpreter: /home/rejk/Desktop/"New Folder"/project3/venv/bin/python
             ansible_become_user: root
+            ansible_become_password: 123456789
             hostname: project2

@@ -6,6 +6,7 @@
       - name: project
     ports:
       - 8080:8080
+    restart_policy: "unless-stopped"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw

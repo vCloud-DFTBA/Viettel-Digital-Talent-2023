@@ -1,9 +1,9 @@
 - name:
   hosts: all
   become: true
-  gather_facts: true
+  gather_facts: false
   roles:
-  - common
+    # - common
   - log
   - db
   - web

@@ -486,6 +486,8 @@ Build và push image on tab sử dụng Github Action:
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
             context: ${{ env.CURRENT_DIR }}/nginx/templates/
+            
+Có thể sử dụng biến ${{ github.ref_name }} để thay latest bằng tên tag.
 
 Output của luồng build&push:
 
@@ -658,7 +660,7 @@ remote_write:
   - url: 'http://27.66.108.93:9090/api/v1/write'
 
 ```
-Ảnh chụp Dashboard:
+Ảnh chụp Dashboard: (trước khi thay username thành họ&tên)
 
 !["(An image of prom log supposed to be here)"](img/prom_log.png "Prom log")
 !["(An image of prom log supposed to be here)"](img/prom_log2.png "Prom log")
@@ -743,7 +745,7 @@ Giải pháp: Sử dụng fluentd.
 
 ```
 
-Kibana log:
+Kibana log: (trước khi thay username thành họ&tên)
 
 !["(An image of Kibana log supposed to be here)"](img/ki_log.png "Kibana log")
 !["(An image of Kibana log supposed to be here)"](img/ki_log2.png "Kibana log")
