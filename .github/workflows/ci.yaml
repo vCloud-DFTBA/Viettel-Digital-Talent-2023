@@ -25,17 +25,25 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
+      # check working directory
       - name: Check pwd
         run: |
           pwd
           ls
+          cd 10.GK/DoAnhTu
+          pwd
+      - name: Docker Compose Action
+        uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: ".docker-compose.yml"
+          down-flags: "--volumes"
+          services: |
+            appuser
+            dbmongo
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Test docker
+        run: curl 127.0.0.1:8000
 
   test:
     runs-on: ubuntu-latest
