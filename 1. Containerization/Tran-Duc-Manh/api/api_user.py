@@ -91,7 +91,7 @@ async def get_user_info(user: str):
         )
 
 
-@router.post(
+@router.delete(
     "/delete-user",
     name="user:delete-user",
 )

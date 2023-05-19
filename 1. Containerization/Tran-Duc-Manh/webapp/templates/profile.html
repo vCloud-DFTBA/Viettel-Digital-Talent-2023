@@ -1,76 +1,297 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Presentation {% endblock %} 
+{% block title %} Presentation {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<style>
+  /* Add hover effect to table rows */
+  tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+
+  .add-user-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #addUserModal .close {
+    display: none;
+  }
+</style>
 {% endblock stylesheets %}
 
 {% block content %}
 <section style="background-color: #eee;">
-    <div class="container py-7">
-      <div class="row">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="row">
-                <div class="card-body text-center">
-                  <img src="/static/assets/img/koala.png" alt="avatar"
-                    class="rounded-circle img-fluid" style="width: 200px;">
-                  <h5 class="my-3">{{ user.name }}</h5>
-                  <p class="text-muted mb-1">{{ user.title }}</p>
-                  <p class="text-muted mb-4">{{ user.program }}</p>
-                  
-                </div>
-                <div class="col-sm-3">
-                  <p class="mb-0">Họ và tên</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.name }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Năm sinh</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.year }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Giới tính</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.sex }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Trường Đại học</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.university }}</p>
-                </div>
-              </div>
+  <div class="container py-7">
+    <div class="row">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="card-body text-center">
+              <img src="/static/assets/img/koala.png" alt="avatar" class="rounded-circle img-fluid"
+                style="width: 200px;">
+              <h5 class="my-3" id="userName">{{ user.name }}</h5>
+              <p class="text-muted mb-1">{{ user.title }}</p>
+              <p class="text-muted mb-4">{{ user.program }}</p>
+
+            </div>
+            <div class="col-sm-3">
+              <p class="mb-0">Họ và tên</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{ user.name }}</p>
             </div>
           </div>
+          <hr>
           <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
-                
-              </div>
+            <div class="col-sm-3">
+              <p class="mb-0">Năm sinh</p>
             </div>
-            
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{ user.year }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Giới tính</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{ user.sex }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Trường Đại học</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{ user.university }}</p>
+            </div>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <button id="addUserButton" class="add-user-button">Chỉnh sửa thông tin </button>
+        </div>
+        <div class="col-sm-3">
+          <button id="deleteButton" class="add-user-button">Xóa người dùng</button>
+        </div>
+      </div>
+      <div id="addUserModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form class="form-horizontal" id="addUserForm">
+            <!-- Form Name -->
+            <legend>Chỉnh sửa thông tin</legend>
+
+            <!-- Multiple Radios -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="radios">Họ và tên</label>
+              <input type="text" name="name" id="radios-1" value={{ user.name }} disabled>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="radios">Chương trình</label>
+
+              <div class="ml-3 d-flex flex-column align-items-start">
+                <div class="radio">
+                  <label for="radios-0">
+                    <input type="radio" name="program" id="radios-0" value="Cloud" checked="checked">
+                    Cloud
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="radios-1">
+                    <input type="radio" name="program" id="radios-1" value="Data science and AI">
+                    Data science and AI
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="radios-1">
+                    <input type="radio" name="program" id="radios-1" value="IoT & 5G">
+                    IoT & 5G
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="radios-0">
+                    <input type="radio" name="program" id="radios-0" value="Cyber security" checked="checked">
+                    Cyber security
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="radios-1">
+                    <input type="radio" name="program" id="radios-1" value="Web Development">
+                    Web Development
+                  </label>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="radios">Chuyên nghành</label>
+              <input type="text" name="title" id="radios-1" value="">
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="radios">Trường Đại học</label>
+              <input type="text" name="university" id="radios-1" value="">
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="radios">Năm sinh</label>
+              <input type="number" name="year" id="radios-1">
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="radios">Giới tính</label>
+              <div class="d-flex flex-column align-items-start">
+                <div class="radio">
+                  <label for="radios-0">
+                    <input type="radio" name="sex" id="radios-0" value="Nam" checked="checked">
+                    Nam
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="radios-1">
+                    <input type="radio" name="sex" id="radios-1" value="Nữ">
+                    Nữ
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="submitButton"></label>
+              <div class="col-md-4">
+                <button id="submitButton" name="submitButton" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+
+
+
     </div>
-  </section>  
+  </div>
+  </div>
+</section>
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#deleteButton').click(function () {
+      var username = $('#userName').text(); // Replace with the desired username
+
+    // Make API call with the username parameter
+    $.ajax({
+      url: 'https://v1.viettelcloud.site/api/v1/delete-user?user='+username,
+      type: 'DELETE',
+      success: function (response) {
+        console.log(response); // Handle successful response
+        alert('User deleted successfully');
+        window.location.href = '/';
+      },
+      error: function (error) {
+        console.error(error); // Handle error
+        alert('Failed to delete user');
+      }
+    });
+  });
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#addUserButton').click(function () {
+      $('#addUserModal').css('display', 'block');
+    });
+
+    $('.close').click(function () {
+      $('#addUserModal').css('display', 'none');
+    });
+
+    $(window).click(function (event) {
+      if (event.target == $('#addUserModal')[0]) {
+        $('#addUserModal').css('display', 'none');
+      }
+    });
+
+    $('#addUserForm').submit(function (event) {
+      event.preventDefault(); // Prevent form submission
+      var myform = $('#addUserForm');
+
+      var disabled = myform.find(':input:disabled').removeAttr('disabled');
+
+      var formData = $(this).serialize(); // Serialize form data
+
+      // Make API call to add the user
+      $.ajax({
+        url: 'https://v1.viettelcloud.site/api/v1/update-user',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+          console.log(response); // Handle successful response
+          // Reset form fields and close the modal
+          $('#addUserForm')[0].reset();
+          $('#addUserModal').css('display', 'none');
+          window.location.href = '/';
+        },
+        error: function (error) {
+          console.error(error); // Handle error
+        }
+      });
+    });
+  });
+</script>
+{% endblock javascripts %}

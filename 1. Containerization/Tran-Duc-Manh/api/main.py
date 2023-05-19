@@ -9,6 +9,7 @@ from fastapi.responses import HTMLResponse
 from core.db import db_connect
 import os
 import logging
+from fastapi.middleware.cors import CORSMiddleware
 
 user_collection = db_connect["user"]
 
@@ -23,3 +24,13 @@ def get_application() -> FastAPI:
 
 
 app = get_application()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
