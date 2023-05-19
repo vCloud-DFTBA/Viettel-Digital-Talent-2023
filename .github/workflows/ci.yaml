@@ -25,26 +25,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # check working directory
-      - name: Check pwd
-        run: |
-          pwd
-          ls
-          cd 10.GK/DoAnhTu
-          pwd
-      - name: check pwd 2
-        run: pwd
+      # deploy apllication by docker compose to test
       - name: Docker Compose Action
         uses: isbang/compose-action@v1.4.1
         with:
           compose-file: "./10.GK/DoAnhTu/docker-compose.yml"
           down-flags: "--volumes"
 
-      # Runs a set of commands using the runners shell
-      - name: Test docker
+      # Test application run or die
+      - name: Test application run or die
         run: curl 127.0.0.1:5000
 
-      - name: run test
+      - name: Run test by pytest
         run: |
           cd 10.GK/DoAnhTu/app/test
           python3 --version
