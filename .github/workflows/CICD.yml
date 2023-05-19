@@ -39,7 +39,8 @@ jobs:
       - name: Run Unit Test
         run: |
           docker network create homework
-          docker run -d --name db --network homework ${DOCKER_USERNAME}/test:db_image
-          docker run -d --name flask --network homework ${DOCKER_USERNAME}/test:flask_image
-          docker run -d -p 81:81 --name nginx --link flask:flask --network homework ${DOCKER_USERNAME}/test:nginx_image
-          docker ps
+          docker run -d --name db --network homework ndvinhcn/test:db_image
+          docker run -d --name flask --network homework ndvinhcn/test:flask_image
+          docker run -d -p 81:81 --name nginx --link flask:flask --network ndvinhcn/test:nginx_image
+
+
