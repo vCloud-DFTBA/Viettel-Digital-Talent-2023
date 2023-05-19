@@ -2,9 +2,6 @@ import pytest
 from fastapi.testclient import TestClient
 from main import app
 
-client = TestClient(app)
-
-@pytest.fixture(scope="module")
 def student_data():
     return {
         "stt": "100",
@@ -95,3 +92,15 @@ def test_delete_student(student_data):
         "message": "Student deleted successfully"
     }
     assert response2.json
+
+
+if __name__=="__main__":
+    client = TestClient(app)
+    @pytest.fixture(scope="module")
+    student_data()
+    test_post_student(student_data)
+    test_get_all_students()
+    test_get_student_by_id(student_data)
+    test_update_student(student_data)
+    test_delete_student(student_data)
+
