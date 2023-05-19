@@ -50,4 +50,4 @@ jobs:
           python3 --version
           pip install pytest
           pip install -r test_requirements.txt
-          pytest
+          pytest -s
