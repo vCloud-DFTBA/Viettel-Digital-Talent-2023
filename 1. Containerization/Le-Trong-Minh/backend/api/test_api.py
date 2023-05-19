@@ -2,7 +2,20 @@ import pytest
 from fastapi.testclient import TestClient
 from main import app
 
+client = TestClient(app)
+@pytest.fixture(scope="module")
+
 def student_data():
+    return {
+        "stt": "100",
+        "name": "Le Minh",
+        "username": "minhle",
+        "year_of_birth": "2000",
+        "gender": "male",
+        "university": "ITMO",
+        "major": "CS"
+    }
+def expected_output():
     return {
         "stt": "100",
         "name": "Le Minh",
@@ -45,16 +58,17 @@ def test_get_student_by_id(student_data):
     assert response2.status_code == 200
     response2_data = response2.json()
     del response2_data['data']['_id']
-    expected_data = {
-        'data': {
-            "stt": 100,
-            "name": "Le Minh",
-            "username": "minhle",
-            "year_of_birth": 2000,
-            "gender": "male",
-            "university": "ITMO",
-            "major": "CS"
-        },
+    # expected_data = {
+    #     'data': {
+    #         "stt": 100,
+    #         "name": "Le Minh",
+    #         "username": "minhle",
+    #         "year_of_birth": 2000,
+    #         "gender": "male",
+    #         "university": "ITMO",
+    #         "major": "CS"
+    #     },
+    expected_data = {'data': expected_output,
         'code': 200,
         'message': 'Student data retrieved successfully'
     }
@@ -92,15 +106,3 @@ def test_delete_student(student_data):
         "message": "Student deleted successfully"
     }
     assert response2.json
-
-
-if __name__=="__main__":
-    client = TestClient(app)
-    @pytest.fixture(scope="module")
-    student_data()
-    test_post_student(student_data)
-    test_get_all_students()
-    test_get_student_by_id(student_data)
-    test_update_student(student_data)
-    test_delete_student(student_data)
-
