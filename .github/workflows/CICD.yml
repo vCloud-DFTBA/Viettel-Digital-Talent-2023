@@ -1,0 +1,45 @@
+name: Build and Push Docker Image to Docker Hub
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push db Docker image
+        run: |
+          cd Midterm/roles/db/templates
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db_image .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:db
+      - name: Build and Push flask Docker image
+        run: |
+          cd Midterm/roles/api/files
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:flask_image .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:flask_image
+      - name: Build and Push web Docker image
+        run: |
+          cd Midterm/roles/web/templates
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:nginx_image .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:nginx_image
+
+      - name: Run Unit Test
+        run: |
+          docker network create homework
+          docker run -d --name db --network homework db_image
+          docker run -d --name flask --network homework db_image
+          docker run -d -p 81:81 --name nginx --link flask:flask --network homework nginx_image
+          
