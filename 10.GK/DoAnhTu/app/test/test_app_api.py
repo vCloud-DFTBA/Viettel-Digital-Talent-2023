@@ -6,8 +6,6 @@ client = MongoClient("mongodb://admin:Admin123@127.0.0.1:27017/", connectTimeout
 VDT_DB = client.VDTuser
 db = VDT_DB.user
 
-test_a = "sadsd"
-
 
 def test_can_access_homepage():
     respone = requests.get(ENDPOINT)
