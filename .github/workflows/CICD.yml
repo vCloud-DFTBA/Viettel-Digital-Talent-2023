@@ -24,7 +24,7 @@ jobs:
         run: |
           cd Midterm/roles/db/templates
           docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db_image .
-          docker push ${{ secrets.DOCKER_USERNAME }}/test:db
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:db_image
       - name: Build and Push flask Docker image
         run: |
           cd Midterm/roles/api/files
@@ -42,4 +42,3 @@ jobs:
           docker run -d --name db --network homework db_image
           docker run -d --name flask --network homework db_image
           docker run -d -p 81:81 --name nginx --link flask:flask --network homework nginx_image
-          
