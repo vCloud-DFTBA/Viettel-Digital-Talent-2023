@@ -1,56 +1,40 @@
-# name: Build and Push Docker Image to Docker Hub
+name: Build and Push Docker Image to Docker Hub
 
-# on:
-#   push:
-#     branches: [ "*" ]
-#   pull_request:
-#     branches: [ "main" ]
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-#     steps:
-#       - uses: actions/checkout@v3
+      - name: Check PEP8 compliance
+        run: pip install pycodestyle && pycodestyle --ignore=W504,E501,E275 Midterm/roles/api/files/app.py
 
-#       - name: Check PEP8 compliance
-#         run: |
-#           pip install pycodestyle
-#           pycodestyle --ignore=W504,E501,E275 Midterm/roles/api/files/app.py
+      - name: Run Unit Test
+        run: |
+          docker network create homework
+          docker build -t db_image Midterm/roles/db/templates
+          docker run -d --name db --network homework db_image
+          docker build -t flask_image Midterm/roles/api/files
+          docker run -d --name flask --network homework flask_image
+          docker build -t nginx_image Midterm/roles/web/templates
+          docker run -d -p 81:81 --name nginx --link flask:flask --network homework nginx_image
+          python3 Midterm/roles/api/files/test_main.py
 
-#       - name: Run Unit Test
-#         run: |
-#           docker network create homework
-#           docker build -t db_image Midterm/roles/db/templates
-#           docker run -d --name db --network homework db_image
-#           docker build -t flask_image Midterm/roles/api/files
-#           docker run -d --name flask --network homework flask_image
-#           docker build -t nginx_image Midterm/roles/web/templates
-#           docker run -d -p 81:81 --name nginx --link flask:flask --network homework nginx_image
-#           python3 Midterm/roles/api/files/test_main.py
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-#       - name: Log in to Docker Hub
-#         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-#         with:
-#           username: ${{ secrets.DOCKER_USERNAME }}
-#           password: ${{ secrets.DOCKER_PASSWORD }}
-
-#       - name: Build and Push db Docker image
-#         run: |
-#           cd Midterm/roles/db/templates
-#           docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db_image .
-#           docker push ${{ secrets.DOCKER_USERNAME }}/test:db_image
-#       - name: Build and Push flask Docker image
-#         run: |
-#           cd Midterm/roles/api/files
-#           docker build -t ${{ secrets.DOCKER_USERNAME }}/test:flask_image .
-#           docker push ${{ secrets.DOCKER_USERNAME }}/test:flask_image
-#       - name: Build and Push web Docker image
-#         run: |
-#           cd Midterm/roles/web/templates
-#           docker build -t ${{ secrets.DOCKER_USERNAME }}/test:nginx_image .
-#           docker push ${{ secrets.DOCKER_USERNAME }}/test:nginx_image
-
-
-
+      - name: Build and Push Docker images
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db_image Midterm/roles/db/templates && docker push ${{ secrets.DOCKER_USERNAME }}/test:db_image
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:flask_image Midterm/roles/api/files && docker push ${{ secrets.DOCKER_USERNAME }}/test:flask_image
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:nginx_image Midterm/roles/web/templates && docker push ${{ secrets.DOCKER_USERNAME }}/test:nginx_image
