@@ -1,28 +1,52 @@
 ---
-- name: Set up Docker
-  hosts: all
+- name: Set up
+  hosts: app
   become: true
   gather_facts: true
   roles:
     - common
+  tags: [common]
+
+- name: Tear down existing services
+  hosts: "{{ cleanup_hosts | default('app') }}" # To override, use --extra-vars
+  become: false
+  gather_facts: false
+  roles:
+    - cleanup
+  tags: [cleanup]
 
 - name: Deploy db
-  hosts: all
+  hosts: db
   become: false
   gather_facts: false
   roles:
     - db
+  tags: [deploy, db]
 
-- name: Deploy backend
-  hosts: all
+- name: Deploy scalable api
+  hosts: api
   become: false
   gather_facts: false
   roles:
-    - api
+    - role: api
+    - role: lb
+      lb_target: "{{ api_service }}"
+      lb_scale: "{{ api_scale }}"
+      lb_service: "{{ api_lb_service }}"
+      lb_dest: "{{ api_lb_dest }}"
+      lb_forward_port: "{{ api_lb_forward_port }}"
+  tags: [deploy, api]
 
-- name: Deploy frontend
-  hosts: all
+- name: Deploy scalable web
+  hosts: web
   become: false
   gather_facts: false
   roles:
-    - web
+    - role: web
+    - role: lb
+      lb_target: "{{ web_service }}"
+      lb_scale: "{{ web_scale }}"
+      lb_service: "{{ web_lb_service }}"
+      lb_dest: "{{ web_lb_dest }}"
+      lb_forward_port: "{{ web_lb_forward_port }}"
+  tags: [deploy, web]

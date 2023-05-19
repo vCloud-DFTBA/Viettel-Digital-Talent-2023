@@ -1,12 +1,12 @@
 ---
-- name: Create group {{ remote_user }}
+- name: Create group {{ ansible_user }}
   ansible.builtin.group:
-    name: "{{ remote_user }}"
+    name: "{{ ansible_user }}"
 
-- name: Create user {{ remote_user }}
+- name: Create user {{ ansible_user }}
   ansible.builtin.user:
-    name: "{{ remote_user }}"
-    group: "{{ remote_user }}"
+    name: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
 
 - name: Uninstall old versions
   ansible.builtin.apt:
@@ -48,9 +48,21 @@
       - docker-compose-plugin
     state: present
 
-- name: Ensure docker-group added user {{ remote_user }}
+- name: Install pip3
+  ansible.builtin.apt:
+    name:
+      - python3-pip
+    state: present
+    update_cache: true
+
+- name: Install Docker Compose v1 for backward compatibility
+  ansible.builtin.pip:
+    name: docker-compose
+    state: present
+
+- name: Ensure docker-group added user {{ ansible_user }}
   ansible.builtin.user:
-    name: "{{ remote_user }}"
+    name: "{{ ansible_user }}"
     groups: docker
     append: true
 

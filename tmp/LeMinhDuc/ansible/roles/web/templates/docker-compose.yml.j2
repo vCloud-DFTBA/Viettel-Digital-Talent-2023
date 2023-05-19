@@ -1,0 +1,14 @@
+services:
+  web:
+    restart: unless-stopped
+    image: duclm278/web:{{ app_ver }}
+
+  web-lb:
+    restart: unless-stopped
+    image: nginx:1.22.0-alpine
+    volumes:
+      - {{ web_lb_dest }}/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+    ports:
+      - {{ web_lb_exposed_port }}:80

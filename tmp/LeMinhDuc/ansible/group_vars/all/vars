@@ -1,6 +1,41 @@
 ---
-become_password: "{{ vault_become_password }}"
-app_src: ../app
+# Settings for app
+app_ver: 0.1.0
+# app_ver: 0.1
+# app_ver: latest
+app_dest: /etc/app # Absolute path on remote host
+
+# Settings for db
 db_service: db
+db_dest: ./db # Relative path to app_dest
+db_host: 188.166.179.154
+db_exposed_port: 27017
+db_name: vdt
+db_uri: "mongodb://{{ db_host }}:{{ db_exposed_port }}/{{ db_name }}"
+
+# Settings for api
 api_service: api
+# api_dest: ./api # Relative path to app_dest
+api_container_port: 5000
+api_scale: 2
+
+# Settings for api-lb
+api_lb_service: api-lb
+api_lb_dest: ./api-lb # Relative path to app_dest
+api_lb_host: 178.128.124.152 # Changes requires rebuilding web image if in static files.
+api_lb_container_port: 80
+api_lb_forward_port: "{{ api_container_port }}"
+api_lb_exposed_port: 5000 # Changes requires rebuilding web image if in static files.
+
+# Settings for web
 web_service: web
+# web_dest: ./web # Relative path to app_dest
+web_container_port: 80
+web_scale: 2
+
+# Settings for web-lb
+web_lb_service: web-lb
+web_lb_dest: ./web-lb # Relative path to app_dest
+web_lb_host: 188.166.187.112
+web_lb_forward_port: "{{ web_container_port }}"
+web_lb_exposed_port: 80

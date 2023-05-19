@@ -1,0 +1,16 @@
+services:
+  api:
+    restart: unless-stopped
+    image: duclm278/api:{{ app_ver }}
+    environment:
+      - MONGO_URI={{ db_uri }}
+  
+  api-lb:
+    restart: unless-stopped
+    image: nginx:1.22.0-alpine
+    volumes:
+      - {{ api_lb_dest }}/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
+    ports:
+      - {{ api_lb_exposed_port }}:80

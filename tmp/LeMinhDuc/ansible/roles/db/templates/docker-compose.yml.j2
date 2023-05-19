@@ -1,0 +1,8 @@
+services:
+  db:
+    restart: unless-stopped
+    image: mongo:5.0
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - {{ db_exposed_port }}:27017

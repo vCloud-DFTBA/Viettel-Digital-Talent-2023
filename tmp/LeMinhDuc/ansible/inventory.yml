@@ -1,25 +1,48 @@
 ---
-vm:
-  hosts:
-    vm01:
-      remote_user: duc
-      ansible_host: 192.168.0.105
-      ansible_user: "{{ remote_user }}"
-      ansible_python_interpreter: /usr/bin/python3
-      ansible_become_user: root
-      ansible_become_password: "{{ become_password }}"
-
 local:
   hosts:
     localhost:
-      remote_user: duc
+      ansible_user: duc
       ansible_connection: local
-      ansible_user: "{{ remote_user }}"
       ansible_python_interpreter: /usr/bin/python3
       ansible_become_user: root
-      ansible_become_password: "{{ become_password }}"
+      ansible_become_password: "{{ vault_local_password }}"
 
-all:
+db:
+  hosts:
+    db01:
+      ansible_user: root
+      ansible_host: "{{ db_host }}"
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ vault_db_password }}"
+  # children:
+  #   local:
+
+api:
+  hosts:
+    api01:
+      ansible_user: root
+      ansible_host: "{{ api_lb_host }}"
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ vault_api_password }}"
+  # children:
+  #   local:
+
+web:
+  hosts:
+    web01:
+      ansible_user: root
+      ansible_host: "{{ web_lb_host }}"
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ vault_web_password }}"
+  # children:
+  #   local:
+
+app:
   children:
-    vm:
-    local:
+    db:
+    api:
+    web:
