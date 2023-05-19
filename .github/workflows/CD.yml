@@ -1,0 +1,33 @@
+name: Build and push image
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push db Docker image
+        run: |
+          cd Midterm/roles/db/templates
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:db_image .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:db_image
+      - name: Build and Push flask Docker image
+        run: |
+          cd Midterm/roles/api/files
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:flask_image .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:flask_image
+      - name: Build and Push web Docker image
+        run: |
+          cd Midterm/roles/web/templates
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/test:nginx_image .
+          docker push ${{ secrets.DOCKER_USERNAME }}/test:nginx_image
