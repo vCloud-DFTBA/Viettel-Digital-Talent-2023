@@ -1,4 +1,5 @@
-# Source: https://github.com/docker/build-push-action
+# https://github.com/docker/metadata-action
+# https://github.com/docker/build-push-action
 
 name: release
 
@@ -7,40 +8,53 @@ on:
     tags:
       - "**"
 
-env:
-  API_DIR: ./app/api
-  API_IMAGE: api
-  WEB_DIR: ./app/web
-  WEB_IMAGE: web
-
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dir: ./app/api
+            image: api
+          - dir: ./app/web
+            image: web
+            build-args: |
+              VITE_APP_BASE_URL=http://localhost:5000
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push image for api
+      
+      - name: Build and push image ${{ matrix.image }}
         uses: docker/build-push-action@v4
         with:
-          context: ${{ env.API_DIR }}
-          file: ${{ env.API_DIR }}/Dockerfile
+          context: ${{ matrix.dir }}
+          file: ${{ matrix.dir }}/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.API_IMAGE }}:${{ github.ref_name }}
-      - name: Build and push image for web
-        uses: docker/build-push-action@v4
-        with:
-          context: ${{ env.WEB_DIR }}
-          file: ${{ env.WEB_DIR }}/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.WEB_IMAGE }}:${{ github.ref_name }}
-          build-args: |
-            VITE_APP_BASE_URL=http://localhost:5000
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: ${{ matrix.build-args }}
