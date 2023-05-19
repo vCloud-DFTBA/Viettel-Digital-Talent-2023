@@ -27,7 +27,7 @@ const StudentModal = (props) => {
             setLoading(true);
             getStudent(id)
                 .then((result) => {
-                    setStudent(result.data.data[0]);
+                    setStudent(result.data.data);
                 })
                 .catch((error) => {
                     message.error(JSON.stringify(error));
