@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
     image: nginx:1.22.0-alpine
     volumes:
-      - ./api/nginx/lb/nginx.conf:/etc/nginx/nginx.conf
+      - ./api-lb/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - api
     ports:
@@ -41,7 +41,7 @@ services:
     restart: unless-stopped
     image: nginx:1.22.0-alpine
     volumes:
-      - ./web/nginx/lb/nginx.conf:/etc/nginx/nginx.conf
+      - ./web-lb/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - web
     ports:

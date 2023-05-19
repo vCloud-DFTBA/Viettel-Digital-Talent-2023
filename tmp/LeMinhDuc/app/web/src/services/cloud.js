@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL + "/cloud";
+console.log("VITE_APP_BASE_URL", import.meta.env.VITE_APP_BASE_URL);
 
 const getAll = async () => {
   const response = await axios.get(baseUrl);
