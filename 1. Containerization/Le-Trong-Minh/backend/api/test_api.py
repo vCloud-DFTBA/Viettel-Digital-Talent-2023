@@ -1,10 +1,10 @@
 import pytest
 from fastapi.testclient import TestClient
 from main import app
+import logging
 
 client = TestClient(app)
 @pytest.fixture(scope="module")
-
 def student_data():
     return {
         "stt": "100",
@@ -15,18 +15,14 @@ def student_data():
         "university": "ITMO",
         "major": "CS"
     }
-def expected_output():
-    return {
-        "stt": "100",
-        "name": "Le Minh",
-        "username": "minhle",
-        "year_of_birth": "2000",
-        "gender": "male",
-        "university": "ITMO",
-        "major": "CS"
-    }
 
-def test_post_student(student_data):
+def get_all():
+    response = client.get("/api/v1/students")
+    assert response.status_code == 200
+    assert response.json() is not None
+
+
+def post_(student_data):
     response = client.post("/api/v1/students", json=student_data)
     assert response.status_code == 200
     response_data = response.json()
@@ -46,35 +42,29 @@ def test_post_student(student_data):
     }
     assert response_data == expected_data
 
-def test_get_all_students():
-    response = client.get("/api/v1/students")
-    assert response.status_code == 200
-    assert response.json() is not None
-
-def test_get_student_by_id(student_data):
+def get_by_id(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     response2 = client.get(f"/api/v1/students/{student_id}")
     assert response2.status_code == 200
     response2_data = response2.json()
     del response2_data['data']['_id']
-    # expected_data = {
-    #     'data': {
-    #         "stt": 100,
-    #         "name": "Le Minh",
-    #         "username": "minhle",
-    #         "year_of_birth": 2000,
-    #         "gender": "male",
-    #         "university": "ITMO",
-    #         "major": "CS"
-    #     },
-    expected_data = {'data': expected_output,
+    expected_data = {
+        'data': {
+            "stt": 100,
+            "name": "Le Minh",
+            "username": "minhle",
+            "year_of_birth": 2000,
+            "gender": "male",
+            "university": "ITMO",
+            "major": "CS"
+        },
         'code': 200,
         'message': 'Student data retrieved successfully'
     }
     assert response2_data == expected_data
 
-def test_update_student(student_data):
+def update_(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     updated_data = {
@@ -95,7 +85,7 @@ def test_update_student(student_data):
     }
     assert response2.json() == expected_data
 
-def test_delete_student(student_data):
+def delete_(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     response2 = client.delete(f"/api/v1/students/{student_id}")
