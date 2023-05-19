@@ -25,8 +25,8 @@ jobs:
           cd 10.GK/DoAnhTu/
           docker-compose build
           docker images
-          docker tag appuser ${{ secrets.DOCKER_USER}}/appuser
-          docker push ${{ secrets.DOCKER_USER}}/appuser
+          docker tag doanhtu_appuser ${{ secrets.DOCKER_USER}}/doanhtu_appuser
+          docker push ${{ secrets.DOCKER_USER}}/doanhtu_appuser
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
