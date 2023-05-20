@@ -27,7 +27,7 @@ jobs:
           context: 10.Midterm/Docker/app
           file: 10.Midterm/Docker/app/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}flask:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}
 
       - name: Build and push nginx
         uses: docker/build-push-action@v4
@@ -35,4 +35,4 @@ jobs:
           context: 10.Midterm/Docker/nginx
           file: 10.Midterm/Docker/nginx/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}nginx:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}
