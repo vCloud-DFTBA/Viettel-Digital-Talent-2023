@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>{{title}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='style.css')}}" >
+	</head>
+<body>
+	<h1>Danh sách học viên VDT 2023</h1>
+	<hr>
+	{% if data[0] %}
+	<h2>Result of the search: </h2>
+	<table>
+        <tr>
+            
+            <th>Full name</th>
+            <th>Year of birth</th>
+            <th>Gender</th>
+            <th>University</th>
+            <th>Major</th>
+            <th>Update</th>
+            <th>Delete</th>
+	    </tr>
+		{% for student in data %}
+		<tr class="datas">
+                <td>{{student['full_name']}}</td>
+                <td>{{student['birth_year']}}</td>
+                <td>{{student['gender']}}</td>
+                <td>{{student['university']}}</td>
+                <td>{{student['major']}}</td>
+                <td class="func1"><a href="./remove?_id={{ student['_id'] }}"><button type="submit">Xóa</button></a></td>
+			    <td class="func1"><a href="./update?_id={{ student['_id'] }}"><button type="submit">Sửa</button></a></td>
+        </tr>
+       {% endfor %}
+	{% else %}
+		<h4>No Result Found !!</h4>
+	{% endif %}
+	</table>
+	<a href="/">Return to TaskList</a>
+</body>
+</html>

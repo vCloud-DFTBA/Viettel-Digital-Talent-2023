@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mid_term_exercise_PhamDuyCuong </title>
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='style.css')}}">
+
+</head>
+
+
+<body>
+    <h1 style="text-align:center">Danh sách học viên VDT 2023</h1>
+    <form action="/search"	method="GET" >
+        <h4>Tìm kiếm ứng viên </h4>
+		<table id="search_table">
+		<td><select name="refer" required>
+			<option value="full_name">Họ và tên</option>
+			<option value="gender">Giới tính</option>
+            <option value="major">Trường</option>
+            <option value="birth_year">Năm sinh </option>
+		    </select>
+        </td>
+		<td><input type="text" name="key" placeholder="Nội dung tìm kiếm" size="15" /></td>
+		</tr>
+		</table>
+        <h4></h4>
+        <button type="submit">Search</button>
+	</form>
+
+    <form action="/action_add" method="POST">
+        <h4>Bổ sung ứng viên </h4>
+        <table class="add">
+            <tr>
+            <td><input type="text" name="full_name" placeholder="Họ và tên" /></td>
+            <td><input type="text" name="birth_year" placeholder="Năm sinh" /> </td>
+            <td><select name="gender" required>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            <td><input type="text" name="university" placeholder="Trường" /></td>
+            <td><input type="text" name="major" placeholder="Chuyên ngành" /></td>
+            </tr>
+        </table>
+        <h4></h4>
+        <tr><button class="button" type="submit"> Tạo mới </button></tr>
+    </form>
+
+    <h4></h4>
+    <table>
+        <tr>
+            <th>Họ và tên</th>
+            <th>Năm sinh</th>
+            <th>Giới tính</th>
+            <th>Trường</th>
+            <th>Chuyên ngành</th>
+            <th>Xóa ứng viên</th>
+            <th>Sửa thông tin</th>
+        </tr>
+        {% for student in data %}
+            <tr>
+                <td>{{student['full_name']}}</td>
+                <td>{{student['birth_year']}}</td>
+                <td>{{student['gender']}}</td>
+                <td>{{student['university']}}</td>
+                <td>{{student['major']}}</td>
+                <td class="func1"><a href="./remove?_id={{ student['_id'] }}"><button type="submit">Xóa</button></a></td>
+			    <td class="func1"><a href="./update?_id={{ student['_id'] }}"><button type="submit">Sửa</button></a></td>
+            </tr>
+       {% endfor %}
+    </table>
+
+</body>
+</html>
