@@ -63,4 +63,4 @@ jobs:
           context: 10.GK/Containerization/app
           file: 10.GK/Containerization/app/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vt_app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vt_app:${{  github.ref_name }}
