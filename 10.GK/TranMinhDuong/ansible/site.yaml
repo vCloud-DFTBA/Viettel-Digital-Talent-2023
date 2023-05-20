@@ -1,11 +1,10 @@
 ---
 - name: Setup OS environment
-  hosts: all
+  hosts: webserver
   become: true
   gather_facts: true
   roles:
     - common
-
 
 - name: Deploy database
   hosts: vm3
@@ -28,3 +27,10 @@
   gather_facts: true
   roles:
     - lb
+
+- name: Setup Prometheus
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - monitor
