@@ -1,7 +1,9 @@
 name: Java Test All Branch
 
-on: [push, pull_request]
-
+on:
+  push:
+    branches-ignore:
+      - mainvdt
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
