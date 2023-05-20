@@ -4,13 +4,14 @@ on:
   pull_request:
     branches:
       - mainvdt
+
+defaults:
+  run:
+    working-directory: ./10.GK/backend-vdt2023   
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./10.GK/backend-vdt2023
 
     steps:
       - name: Checkout code
@@ -30,10 +31,6 @@ jobs:
 
   build-and-push-image:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./10.GK/backend-vdt2023   
 
     steps:
     - name: Login to Docker Hub
