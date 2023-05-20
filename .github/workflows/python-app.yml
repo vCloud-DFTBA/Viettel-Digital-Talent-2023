@@ -60,7 +60,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./10GK/Containerization/app
+          context: 10.GK/Containerization/app
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/vt_app:latest
