@@ -1,0 +1,31 @@
+- name: Pull Nginx Docker image
+  docker_image:
+    source: pull
+    name: "{{ nginx_image }}"
+
+- name: Run Nginx container
+  docker_container:
+    name: "{{ nginx_container_name }}"
+    image: "{{ nginx_image }}"
+    ports:
+      - "80:80"
+    networks:
+      - name: "{{ network_name }}"
+
+- name: Copy file to target host
+  copy:
+    src: "{{ path_default_conf }}"
+    dest: /tmp/default.conf
+
+- name: Copy default.conf to container
+  community.docker.docker_container_copy_into:
+    container: "{{ nginx_container_name }}"
+    path: /tmp/default.conf
+    container_path: /etc/nginx/conf.d/default.conf
+  notify: "Reload Nginx config"
+
+# - name: Allow all access to tcp port 80
+#   ufw:
+#     rule: allow
+#     port: '80'
+#     proto: tcp

@@ -1,0 +1,7 @@
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: Reload Nginx config
+  command: docker exec nginx-vdt2023 nginx -s reload
