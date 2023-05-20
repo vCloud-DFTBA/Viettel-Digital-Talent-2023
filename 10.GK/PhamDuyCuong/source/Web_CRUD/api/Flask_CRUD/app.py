@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 from bson import ObjectId
 
 
@@ -8,13 +8,14 @@ heading = "Danh sách học viên VDT 2023"
 
 
 def create_app(students):
-    app = Flask(
-        __name__, template_folder="../templates/", static_folder="../static/styles"
+    app = Flask(__name__, 
+                template_folder="../templates/", 
+                static_folder="../static/styles"
     )
 
     @app.route("/")
     def todo():
-        if students == None:
+        if students is None:
             data = []
         else:
             data = list(students.find({}))
@@ -56,6 +57,6 @@ def create_app(students):
         key = request.values.get("key")
         refer = request.values.get("refer")
         search_list = students.find({refer: {"$regex": key}})
-        return render_template("searchlist.html", data=search_list, title=title)
+        return render_template("searchlist.html", data=search_list, t=title)
 
     return app
