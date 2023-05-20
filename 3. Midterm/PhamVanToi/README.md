@@ -5,7 +5,7 @@
 - Web: HTML, CSS, Javascript
 - API: Python (Flask)
 
-- Mã nguồn dịch vụ API: `roles/api/files/app.py`
+Mã nguồn dịch vụ API: `roles/api/files/app.py`
 
 ```
 from flask import Flask, jsonify, render_template, request, redirect, url_for
@@ -103,10 +103,10 @@ if __name__=='__main__':
 - Demo: 
 ![](images/three_tiers_web/demo_api.png)
 
-- Mã nguồn dịch vụ API `roles/web/files/frontend/`
-`index.html`: Giao diện thông tin thực tập sinh (dạng bảng)
-`update.html`: Form update thông tin thực tập sinh
-`create.html`: Form taọ mới thông tin thực tập sinh
+ Mã nguồn dịch vụ Web `roles/web/files/frontend/`  
+`index.html`: Giao diện thông tin thực tập sinh (dạng bảng)  
+`update.html`: Form update thông tin thực tập sinh  
+`create.html`: Form taọ mới thông tin thực tập sinh  
 
 - Demo: 
 ![](images/three_tiers_web/demo_web.png)
@@ -115,9 +115,9 @@ if __name__=='__main__':
 ## 1. Containerization
 1. File Dockerfile cho từng dịch vụ
 
-`roles\api\files\Dockerfile`: Dockerfile dịch vụ api
-`roles\web\files\Dockerfile`: Dockerfile dịch vụ web
-`roles\db\files\Dockerfile`: Dockerfile dịch vụ db
+`roles\api\files\Dockerfile`: Dockerfile dịch vụ api  
+`roles\web\files\Dockerfile`: Dockerfile dịch vụ web  
+`roles\db\files\Dockerfile`: Dockerfile dịch vụ db  
 
 2. Output câu lệnh build
  Build Mongodb Image
