@@ -3,10 +3,10 @@ name: Java Test All Branch
 on:
   push:
     branches:
-      - main-gk
+      - mainvdt
   pull_request:
     branches:
-      - main-gk
+      - mainvdt
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
