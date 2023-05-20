@@ -1,19 +1,11 @@
 #!/usr/bin/env python
-import logging
-import os
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson import ObjectId
-from Flask_CRUD.db import init_db
 
 
 title = "VDT 2023"
 heading = "Danh sách học viên VDT 2023"
-
-
-def redirect_url():
-    return request.args.get("next") or request.referrer or url_for("index")
-
 
 def create_app(students):
     app = Flask(
@@ -22,7 +14,11 @@ def create_app(students):
 
     @app.route("/")
     def todo():
-        return render_template("index.html", data=list(students.find({})))
+        if students == None:
+            data =[]
+        else:
+            data = list(students.find({}))
+        return render_template("index.html", data=data)
 
     @app.route("/action_add", methods=["POST"])
     def action_add():
@@ -32,13 +28,13 @@ def create_app(students):
 
         return redirect("/")
 
-    @app.route("/remove", methods=["DELETE"])
+    @app.route("/remove", methods=["DELETE","GET"])
     def remove():
         key = request.values.get("_id")
         students.delete_one({"_id": ObjectId(key)})
-
         return redirect("/")
 
+    
     @app.route("/update")
     def update():
         id = request.values.get("_id")
@@ -53,8 +49,6 @@ def create_app(students):
         attendee = request.form.to_dict()
         id = request.args.get("_id")
         students.update_one({"_id": ObjectId(id)}, {"$set": attendee})
-        logger = logging.getLogger()
-        logger.warning("Cann't connect to database")
         return redirect("/")
 
     @app.route("/search", methods=["GET"])

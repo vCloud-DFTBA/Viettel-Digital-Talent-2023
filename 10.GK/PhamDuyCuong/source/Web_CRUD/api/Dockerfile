@@ -8,5 +8,5 @@ RUN pip3 install -r requirements.txt
 
 
 COPY . .
-ENTRYPOINT ["python3", "./flask/server.py"]
+ENTRYPOINT ["python3", "run.py"]
 

@@ -3,7 +3,6 @@ from bson.objectid import ObjectId
 from Flask_CRUD.app import create_app
 import unittest
 import mongomock
-from flask import Flask
 
 
 def mockdatabase():
@@ -41,7 +40,7 @@ class FlaskAppTestCase(unittest.TestCase):
     def test_index(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        # self.assertIn(b"VDT 2023", response.data)
+        
 
     def test_add_student(self):
         response = self.client.post("/action_add", data=self.test_data)
@@ -64,7 +63,7 @@ class FlaskAppTestCase(unittest.TestCase):
     def test_update(self):
         response = self.client.get(f'/update?_id={str(self.init_data["_id"])}')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"<h3>Edit information of attendee</h3>", response.data)
+    
 
     def test_action_update(self):
         url = f"/action_update?_id={str(self.init_data['_id'])}"

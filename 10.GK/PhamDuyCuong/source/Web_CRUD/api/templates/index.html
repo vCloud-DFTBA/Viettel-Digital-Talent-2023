@@ -12,7 +12,7 @@
     <h1 style="text-align:center">Danh sách học viên VDT 2023</h1>
     <form action="/search"	method="GET" >
         <h4>Tìm kiếm ứng viên </h4>
-		<table id="search_table">
+		<table class = "nice-table">
 		<td><select name="refer" required>
 			<option value="full_name">Họ và tên</option>
 			<option value="gender">Giới tính</option>
@@ -29,7 +29,7 @@
 
     <form action="/action_add" method="POST">
         <h4>Bổ sung ứng viên </h4>
-        <table class="add">
+        <table class = "nice-table">
             <tr>
             <td><input type="text" name="full_name" placeholder="Họ và tên" /></td>
             <td><input type="text" name="birth_year" placeholder="Năm sinh" /> </td>
@@ -45,7 +45,7 @@
     </form>
 
     <h4></h4>
-    <table>
+    <table class = "nice-table">
         <tr>
             <th>Họ và tên</th>
             <th>Năm sinh</th>
