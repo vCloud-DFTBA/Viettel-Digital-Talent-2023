@@ -190,6 +190,8 @@ jobs:
 
 2. Output luồng CI
 
+`https://github.com/crvt4722/Viettel-Digital-Talent-2023/actions/runs/5012132574/jobs/8983719684`
+
 ![](images/2.CI/CI.png)
 
 ![](images/2.CI/log1.png)
@@ -266,6 +268,9 @@ jobs:
 
 ```
 3. Output của luồng CD và dockerhub 
+
+`https://github.com/crvt4722/Viettel-Digital-Talent-2023/actions/runs/5012154539/jobs/8983768256`
+
 ![](images/3.CD_and_Ansible/cd_log.png)
 ![](images/3.CD_and_Ansible/db_log1.png)
 ![](images/3.CD_and_Ansible/db_log2.png)
