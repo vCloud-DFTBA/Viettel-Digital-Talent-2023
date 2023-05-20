@@ -1,0 +1,31 @@
+
+- name: Check if docker network exists
+  docker_network_info:
+    name: sonbm_default
+  register: docker_network
+  become: true
+
+- name: Create docker network
+  docker_network:
+    name: sonbm_default
+    state: present
+  when: docker_network.exists == false
+  become: true
+
+- name: Run docker image minhson7112/sonbm-api:latest
+  docker_container:
+    name: api
+    image: minhson7112/sonbm-api:latest
+    restart_policy: unless-stopped
+    networks:
+      - name: sonbm_default
+    hostname: api
+    ports:
+      - "5000:5000"
+
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.16.96:24224"
+      tag: "docker.backend"
+  become: true
+  tags: docker 

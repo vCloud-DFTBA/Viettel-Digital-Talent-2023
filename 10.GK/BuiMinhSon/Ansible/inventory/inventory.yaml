@@ -1,0 +1,22 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: 7112
+
+    host1:
+      ansible_host: 192.168.16.213
+      ansible_user: minhson
+      ansible_become: true
+      ansible_become_method: sudo
+      ansible_become_password: 7112
+
+    host2:
+      ansible_host: 192.168.16.10
+      ansible_user: minhson
+      ansible_become: true
+      ansible_become_method: sudo
+      ansible_become_password: 7112

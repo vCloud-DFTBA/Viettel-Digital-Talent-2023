@@ -1,0 +1,44 @@
+- name: Create /etc/nginxconf folder
+  file:
+    path: /etc/nginxconf
+    state: directory
+    mode: 0755
+  become: true
+
+- name: Copy nginx.conf to host
+  template:
+    src: nginx.conf
+    dest: /etc/nginxconf/nginx.conf
+    owner: minhson
+    group: minhson
+    mode: '0644'
+
+- name: Check if docker network exists
+  docker_network_info:
+    name: sonbm_default
+  register: docker_network
+  become: true
+  
+  
+- name: Create docker network
+  docker_network:
+    name: sonbm_default
+    state: present
+  when: docker_network.exists == false
+  become: true
+  
+
+- name: Run nginx load balancing
+  docker_container:
+    name: nginxlb
+    image: nginx:1.22.0-alpine
+    restart_policy: unless-stopped
+    networks:
+      - name: sonbm_default
+    ports:
+      - "3001:3001"
+      - "5001:5001"
+    volumes:
+      - /etc/nginxconf/nginx.conf:/etc/nginx/conf.d/default.conf
+    command: ["nginx", "-g", "daemon off;"]
+  become: true
