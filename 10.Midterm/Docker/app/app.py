@@ -9,11 +9,6 @@ application.config["MONGO_URI"] = "mongodb://host_mongodb:27017/VDT23"
 mongo = PyMongo(application)
 db = mongo.db
 
-# def redirect_url():
-#     return request.args.get('next') or \
-#            request.referrer or \
-#            url_for('index')
-
 @application.route("/")
 def lists ():
 	curs = db.attendees.find()
