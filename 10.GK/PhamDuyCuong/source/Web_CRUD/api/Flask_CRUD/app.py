@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, request, redirect, url_for
-from pymongo import MongoClient
 from bson import ObjectId
 
 
 title = "VDT 2023"
 heading = "Danh sách học viên VDT 2023"
+
 
 def create_app(students):
     app = Flask(
@@ -15,7 +15,7 @@ def create_app(students):
     @app.route("/")
     def todo():
         if students == None:
-            data =[]
+            data = []
         else:
             data = list(students.find({}))
         return render_template("index.html", data=data)
@@ -28,13 +28,12 @@ def create_app(students):
 
         return redirect("/")
 
-    @app.route("/remove", methods=["DELETE","GET"])
+    @app.route("/remove", methods=["DELETE", "GET"])
     def remove():
         key = request.values.get("_id")
         students.delete_one({"_id": ObjectId(key)})
         return redirect("/")
 
-    
     @app.route("/update")
     def update():
         id = request.values.get("_id")

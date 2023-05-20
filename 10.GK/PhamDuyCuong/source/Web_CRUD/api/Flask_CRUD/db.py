@@ -2,6 +2,7 @@ import csv
 import logging
 from pymongo import MongoClient
 
+
 def init_db(path_to_csv):
     DATABASE_NAME = "VDT23"
     DATABASE_HOST = "localhost"
@@ -21,6 +22,6 @@ def init_db(path_to_csv):
             collection.insert_many(rows)
         return collection
     except BaseException:
-            logger = logging.getLogger()
-            logger.warning("Cann't connect to database")
-            return None
+        logger = logging.getLogger()
+        logger.warning("Cann't connect to database")
+        return None
