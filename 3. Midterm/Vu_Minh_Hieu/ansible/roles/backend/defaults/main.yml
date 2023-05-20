@@ -1,4 +1,0 @@
----
-# defaults file for backend
-hostname: vt_app
-ports: 80

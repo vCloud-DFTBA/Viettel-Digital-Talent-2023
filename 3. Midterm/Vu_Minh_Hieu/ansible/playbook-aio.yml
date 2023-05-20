@@ -3,3 +3,4 @@
       - mongodb
       - backend
       - frontend
+      - nginx

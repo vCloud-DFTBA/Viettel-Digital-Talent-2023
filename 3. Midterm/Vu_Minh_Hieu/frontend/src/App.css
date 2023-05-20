@@ -67,6 +67,16 @@ tfoot td:first-child {
     width: 50px;
     display: inline-block;
     margin: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit {
+    background-color: aqua;
+}
+
+.delete {
+    background-color: rgb(248, 131, 121);
 }
 
 .table-container th {

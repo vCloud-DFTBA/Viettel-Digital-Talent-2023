@@ -13,11 +13,14 @@ function App() {
     const [isOpen, setIsOpen] = useState();
     const [isEdit, setIsEdit] = useState(true);
     const [reload, setReload] = useState(true);
-
+    const port = process.env.REACT_APP_PORT_API;
+    const url = `http://localhost:${port}/api/v1`;
+    console.log(process.env.REACT_APP_PORT_API);
     useEffect(() => {
         if (reload) {
             axios
-                .get("http://localhost:80/api/v1/students")
+                // .get("http://localhost:80/api/v1/students")
+                .get(`${url}/students`)
                 .then((res) => {
                     setStudents(res.data.data);
                 })
@@ -29,7 +32,8 @@ function App() {
 
     const deleteStudent = (id, name) => {
         axios
-            .delete(`http://localhost:80/api/v1/students/${id}`)
+            // .delete(`http://localhost:80/api/v1/students/${id}`)
+            .delete(`${url}/students/${id}`)
             .then(() => {
                 message.success(`Da xoa hoc sinh ${name}`);
                 setReload(true);
@@ -100,6 +104,7 @@ function App() {
                                 <td>{student.major}</td>
                                 <td className='button-row'>
                                     <button
+                                        className='edit'
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             setIsOpen(true);
@@ -110,6 +115,7 @@ function App() {
                                         Edit
                                     </button>
                                     <button
+                                        className='delete'
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             deleteStudent(

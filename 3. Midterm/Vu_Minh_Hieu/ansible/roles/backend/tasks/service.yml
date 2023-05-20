@@ -1,11 +1,35 @@
-- name: Run the docker API images
+- name: Run the docker 1 API images
   community.docker.docker_container:
-    name: backend
-    image: hieuminhvuu/mt_backend
+    name: backend1
+    image: hieuminhvuu/mt_api_arm64_ver2
     state: started
     restart: true
     ports:
-      - "80:80"
+      - "8080:8080"
     env:
       MONGODB_HOST : "172.17.0.1"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
     
+- name: Run the docker 2 API images
+  community.docker.docker_container:
+    name: backend2
+    image: hieuminhvuu/mt_api_arm64_ver2
+    state: started
+    restart: true
+    ports:
+      - "8081:8081"
+    env:
+      MONGODB_HOST : "172.17.0.1"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8081
+
+- name: Run the docker 3 API images
+  community.docker.docker_container:
+    name: backend3
+    image: hieuminhvuu/mt_api_arm64_ver2
+    state: started
+    restart: true
+    ports:
+      - "8082:8082"
+    env:
+      MONGODB_HOST : "172.17.0.1"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8082
