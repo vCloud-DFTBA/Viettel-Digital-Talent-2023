@@ -112,7 +112,7 @@ if __name__=='__main__':
 ![](images/three_tiers_web/demo_web.png)
 
 ### Triển khai web application sử dụng các DevOps tools & practices
-1. Containerization
+## 1. Containerization
 - File Dockerfile cho từng dịch vụ
 
 `roles\api\files\Dockerfile`: Dockerfile dịch vụ api
