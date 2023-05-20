@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>VDT23 Cloud</title>
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+</head>
+<body>
+	<h1>Update</h1>
+	<form action="/action3" method="POST">
+	{% for item in curs %}
+	<br/>
+	<input type="text" name="_id" value="{{ item['_id'] }}" hidden>
+	<table>
+        <tr>
+            <td>Name</td><td><input type="text" name="Name" value="{{ item['Name'] }}" placeholder="{{ item['Name'] }}"></td>
+        </tr>
+        <tr>
+            <td>Username</td><td><input type="text" name="Username" value="{{ item['Username'] }}" placeholder="{{ item['Username'] }}"></td>
+        </tr>
+        <tr>
+            <td>DOB</td><td><input type="text" name="DOB" value="{{ item['DOB'] }}" placeholder="{{ item['DOB'] }}"></td>
+        </tr>
+        <tr>
+            <td>Gender</td><td><input type="text" name="Gender" value="{{ item['Gender'] }}" placeholder="{{ item['Gender'] }}"></td>
+        </tr>
+        <tr>
+            <td>University</td><td><input type="text" name="University" value="{{ item['University'] }}" placeholder="{{ item['University'] }}"></td>
+        </tr>
+        <tr>
+            <td>Major</td><td><input type="text" name="Major" value="{{ item['Major'] }}" placeholder="{{ item['Major'] }}"></td>
+        </tr>
+		<tr>
+			<td><button><a href="/">Return to list</a></button></td>
+			<td><button type="submit">Update</button></td>
+		</tr>
+	</table>
+	{% endfor %}
+		<br/>
+	</form>
+</body>
+</html>
