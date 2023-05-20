@@ -59,7 +59,7 @@
 - name: Deploy monitors
   hosts: app
   become: true
-  gather_facts: false
+  gather_facts: true
   roles:
     - monitor
   tags: [monitor]
@@ -67,7 +67,7 @@
 - name: Deploy loggers
   hosts: app
   become: true
-  gather_facts: false
+  gather_facts: true
   roles:
-    - monitor
-  tags: [monitor]
+    - log
+  tags: [log]
