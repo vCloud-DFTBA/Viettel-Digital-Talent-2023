@@ -1,9 +1,22 @@
 ---
 all:
   hosts:
-    localhost:
-      ansible_connection: local
-      ansible_python_interpreter: /path/to/python/interpreter
+    node1:
+      ansible_host: 192.168.122.134
+      ansible_port: 22
+      ansible_connection: ssh
+      ansible_user: lamle
+      ansible_python_interpreter: /usr/bin/python3
       ansible_become_user: root
-      ansible_become_password: PASSWORD
-      hostname: YOUR_HOSTNAME
+      ansible_become_password: 0
+      hostname: node1
+
+    node2:
+      ansible_host: 192.168.122.175
+      ansible_port: 22
+      ansible_connection: ssh
+      ansible_user: lamle
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: 0
+      hostname: node2

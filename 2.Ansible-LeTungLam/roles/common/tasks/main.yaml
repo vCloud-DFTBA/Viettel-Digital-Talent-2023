@@ -26,3 +26,12 @@
     name: docker-ce
     state: latest
     update_cache: true
+
+- name: Create docker group
+  group:
+    name: docker
+
+- name: Add user to the docker group
+  user:
+    name: "{{ ansible_user }}"
+    group: docker
