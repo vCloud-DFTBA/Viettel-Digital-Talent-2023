@@ -35,4 +35,4 @@ jobs:
           context: 10.Midterm/Docker/nginx
           file: 10.Midterm/Docker/nginx/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }/nginx:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/nginx:latest
