@@ -1,9 +1,6 @@
 name: Java Test Main
 
 on:
-  # push:
-  #   branches:
-  #     - mainvdt
   pull_request:
     branches:
       - mainvdt
