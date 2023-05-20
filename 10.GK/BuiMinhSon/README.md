@@ -180,7 +180,11 @@
 
     ![alt](./images/luong-build-push.png)
 
+  - Output log Backend
+
     ![alt](./images/CD-log-backend.png)
+
+  - Output log Frontend
 
     ![alt](./images/CD-log-frontend.png)
 
@@ -269,4 +273,10 @@
 
   - File cấu hình FLuentd tại [đây](./Ansible/roles/logging/files/fluentd/conf/fluent.conf)
 
-  
+  - Kết quả index lấy từ Kibana
+
+    ![alt](./images/index-kibana.png)
+
+  - Kết quả sample log lấy từ Kibana
+
+    ![alt](./images/log-kibana.png)
