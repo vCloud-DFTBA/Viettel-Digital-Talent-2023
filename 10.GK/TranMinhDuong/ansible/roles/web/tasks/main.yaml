@@ -23,4 +23,8 @@
       REACT_APP_BACKEND_URL: "{{ REACT_APP_BACKEND_URL }}"
     ports:
       - "8000:80"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ FLUENTD_HOST }}:24224"
+      tag: "docker.web-{{ inventory_hostname }}"
   become: true

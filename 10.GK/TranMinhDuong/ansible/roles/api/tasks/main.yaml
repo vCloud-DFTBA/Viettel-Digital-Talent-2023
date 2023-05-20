@@ -27,4 +27,8 @@
       MONGO_USERNAME: "{{ MONGO_USERNAME }}"
       MONGO_PASSWORD: "{{ MONGO_PASSWORD }}"
       ANSIBLE_HOST: "{{ inventory_hostname }}"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ FLUENTD_HOST }}:24224"
+      tag: "docker.api-{{ inventory_hostname }}"
   become: true

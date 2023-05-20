@@ -6,6 +6,14 @@
   roles:
     - common
 
+- name: Setup Logging
+  hosts: vm3
+  become: true
+  gather_facts: true
+  roles:
+    - logging
+
+
 - name: Deploy database
   hosts: vm3
   become: true
@@ -34,3 +42,5 @@
   gather_facts: true
   roles:
     - monitor
+
+

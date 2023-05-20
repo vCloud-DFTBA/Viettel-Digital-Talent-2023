@@ -38,4 +38,8 @@
       MONGO_INITDB_ROOT_PASSWORD: admin123
     volumes:
       - /etc/mongoinitdata/init_db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ FLUENTD_HOST }}:24224"
+      tag: "docker.db-{{ inventory_hostname }}"
   become: true
