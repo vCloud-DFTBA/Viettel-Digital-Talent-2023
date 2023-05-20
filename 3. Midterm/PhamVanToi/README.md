@@ -113,13 +113,13 @@ if __name__=='__main__':
 
 ### Triển khai web application sử dụng các DevOps tools & practices
 ## 1. Containerization
-- File Dockerfile cho từng dịch vụ
+1. File Dockerfile cho từng dịch vụ
 
 `roles\api\files\Dockerfile`: Dockerfile dịch vụ api
 `roles\web\files\Dockerfile`: Dockerfile dịch vụ web
 `roles\db\files\Dockerfile`: Dockerfile dịch vụ db
 
-- Output câu lệnh build
+2. Output câu lệnh build
  Build Mongodb Image
  ![](images/1.Containerization/docker_build_db.png)
 
@@ -130,7 +130,7 @@ if __name__=='__main__':
  ![](images/1.Containerization/docker_build_web.png)
 
 
-- Thông tin docker history của từng image
+3. Thông tin docker history của từng image
 
  Mongodb Image History
  ![](images/1.Containerization/docker_history_db.png)
@@ -141,8 +141,8 @@ if __name__=='__main__':
  Web Image History
  ![](images/1.Containerization/docker_history_web.png)
 
- 2. CI
- - File set up công cụ CI `github\workflows\ci.yml`
+ ## 2. CI
+ 1. File set up công cụ CI `github\workflows\ci.yml`
 
  ```
  name: Run unnittest automatically with PR on main and Push commit
@@ -188,7 +188,7 @@ jobs:
       run: python3 3.\ Midterm/PhamVanToi/roles/web/files/unit_test.py
  ```
 
-- Output luồng CI
+2. Output luồng CI
 
 ![](images/2.CI/CI.png)
 
@@ -198,18 +198,18 @@ jobs:
 ![](images/2.CI/log4.png)
 ![](images/2.CI/log5.png)
 
-3. CD And Ansible
-- Ảnh minh hoạ kiến trúc triển khai và mô tả
+## 3. CD And Ansible
+1. Ảnh minh hoạ kiến trúc triển khai và mô tả
 
 ![](images/3.CD_and_Ansible/architecture.jpg)
 
 Mô tả kiến trúc triển khai:
 
-Dịch vụ web và api được triển khai trên 2 container khác nhau.
-Requests đến dịch vụ web được cân bằng tải thông qua nginx.
-Request đến dịch vụ api và web cũng được cân bằng tải thông qua nginx.
+- Dịch vụ web và api được triển khai trên 2 container khác nhau.
+- Requests đến dịch vụ web được cân bằng tải thông qua nginx.
+- Request đến dịch vụ api và web cũng được cân bằng tải thông qua nginx.
 
-- File set up CD `.github/workflows/cd.yml`
+2. File set up CD `.github/workflows/cd.yml`
 ```
 name: Release service.
 on:
@@ -265,7 +265,7 @@ jobs:
         push: true
 
 ```
-- Output của luồng CD và dockerhub 
+3. Output của luồng CD và dockerhub 
 ![](images/3.CD_and_Ansible/cd_log.png)
 ![](images/3.CD_and_Ansible/db_log1.png)
 ![](images/3.CD_and_Ansible/db_log2.png)
@@ -278,7 +278,7 @@ jobs:
 ![](images/3.CD_and_Ansible/flask_tag.png)
 ![](images/3.CD_and_Ansible/nginx_tag.png)
 
-- Hướng dẫn sử dụng ansible playbook để triển khai hệ thống
+4. Hướng dẫn sử dụng ansible playbook để triển khai hệ thống
 
 Install virtualenv
   ```
@@ -308,8 +308,11 @@ Run the command:
   ```
   ansible-playbook -i inventory.yml playbooks/ansible.yml
   ```
-- Output log triển khai hệ thống
+5. Output log triển khai hệ thống
 
 ![](images/3.CD_and_Ansible/ansible_common_log.png)
+
+## 4. Monitoring
+1. Ảnh chụp dashboard giám sát nodes & containers
 
 
