@@ -2,5 +2,5 @@
   roles:
       - mongodb
       - backend
-      - frontend
       - nginx
+      - frontend

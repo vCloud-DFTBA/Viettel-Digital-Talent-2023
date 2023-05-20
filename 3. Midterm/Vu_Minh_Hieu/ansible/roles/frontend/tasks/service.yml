@@ -6,7 +6,7 @@
     ports:
       - "3000:3000"
     env:
-      REACT_APP_PORT_API : "8080"
+      REACT_APP_PORT_API : "81"
       PORT : "3000"
     command: npm start
 
@@ -18,7 +18,7 @@
     ports:
       - "3001:3001"
     env:
-      REACT_APP_PORT_API : "8081"
+      REACT_APP_PORT_API : "81"
       PORT : "3001"
     command: npm start
     
@@ -30,6 +30,6 @@
     ports:
       - "3002:3002"
     env:
-      REACT_APP_PORT_API : "8082"
+      REACT_APP_PORT_API : "81"
       PORT : "3002"
     command: npm start
