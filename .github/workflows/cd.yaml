@@ -29,5 +29,5 @@ jobs:
             app/api/Dockerfile
             app/web/Dockerfile
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ github.ref }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/fronend:${{ github.ref }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ github.ref | replace('/', '-') }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/fronend:${{ github.ref | replace('/', '-') }}
