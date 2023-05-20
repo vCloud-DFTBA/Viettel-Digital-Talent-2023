@@ -23,7 +23,8 @@ services:
 
   mongo:
     image: mongo:5.0
-    container_name: mongodb
+    hostname: mongodb
+    container_name: data_tier
     volumes:
       - database:/data/db
 

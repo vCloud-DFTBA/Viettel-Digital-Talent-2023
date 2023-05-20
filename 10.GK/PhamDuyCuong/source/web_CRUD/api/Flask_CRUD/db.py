@@ -5,7 +5,7 @@ from pymongo import MongoClient
 
 def init_db(path_to_csv):
     DATABASE_NAME = "VDT23"
-    DATABASE_HOST = "localhost"
+    DATABASE_HOST = "mongodb"
     logger = logging.getLogger()
     try:
         client = MongoClient(DATABASE_HOST)
