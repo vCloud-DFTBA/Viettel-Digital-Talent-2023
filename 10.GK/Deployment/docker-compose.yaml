@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     image: yellow09/vt_app:latest
-    container_name: vt_app
+#    container_name: vt_app
     restart: always
     ports:
       - "8000"
@@ -12,7 +12,7 @@ services:
 
   nginx:
     image: nginx:1.22.0-alpine
-    container_name: vt_nginx
+#    container_name: vt_nginx
     restart: always
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
