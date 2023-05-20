@@ -1,0 +1,24 @@
+---
+all:
+  hosts:
+    "192.168.56.103":
+      ansible_connection: ssh
+      ansible_become_password: 123
+      ansible_user: "vdt2"
+      non_root_docker_users: "vdt2"
+      hostname: vtn-02
+
+    "192.168.56.102":
+      ansible_connection: ssh
+      ansible_become_password: 123
+      ansible_user: "vdt3"
+      non_root_docker_users: "vdt3"
+      hostname: vtn-03
+
+    localhost:
+      ansible_user: "vdt"
+      non_root_docker_users: "vdt"
+      ansible_connection: local
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_password: 123
+      hostname: vtn-01

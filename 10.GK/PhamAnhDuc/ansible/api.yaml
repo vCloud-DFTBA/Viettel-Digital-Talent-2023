@@ -1,0 +1,9 @@
+---
+- name: Start Api server
+  hosts: all
+  become: false
+  gather_facts: true
+  vars_files:
+    - "./vars/common.yaml"
+  roles:
+    - api

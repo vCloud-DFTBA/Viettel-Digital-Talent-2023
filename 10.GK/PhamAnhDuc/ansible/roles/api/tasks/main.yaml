@@ -1,0 +1,14 @@
+---
+- name: Start Api server container with tag {{ tag_version }}
+  docker_container:
+    name: ducpa_api
+    image: ducpa01/python-buddy:{{ tag_version }}
+    state: started
+    restart: yes
+    log_driver: fluentd
+    restart_policy: unless-stopped
+    ports: "5000:5000"
+    env:
+      DB_URI: "{{ DB_URI }}"
+    networks:
+      - name: "{{ three_tier_network_name }}"

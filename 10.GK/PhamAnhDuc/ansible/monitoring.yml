@@ -1,0 +1,9 @@
+- name: Setup monitoring services
+  hosts: all
+  become: false
+  gather_facts: true
+  roles:
+    # - { name: common, become: yes }
+    - monitor
+  vars:
+    - remote_write_server: "http://192.168.56.102:9099/api/v1/write"
