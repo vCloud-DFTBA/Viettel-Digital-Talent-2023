@@ -31,6 +31,17 @@ jobs:
           pip install mongomock
           pip install -r 10.GK/PhamDuyCuong/source/Web_CRUD/api/requirements.txt
 
+      
+      - uses: ricardochaves/python-lint@v1.3.0
+        with:
+          python-root-list: "python_alelo ."
+          use-pylint: false
+          use-pycodestyle: false
+          use-flake8: false
+          use-black: false
+          use-mypy: false
+          use-isort: false
+
       - name: Run tests
         run: |
           python 10.GK/PhamDuyCuong/source/Web_CRUD/api/tests.py
