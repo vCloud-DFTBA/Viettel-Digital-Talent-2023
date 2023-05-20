@@ -46,6 +46,6 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        context: ./10.GK/backend-vdt2023
+        context: 10.GK/backend-vdt2023
         push: true
         tags: duogglong/backend-vdt2023:${{ steps.commit_sha.outputs.SHA }}
