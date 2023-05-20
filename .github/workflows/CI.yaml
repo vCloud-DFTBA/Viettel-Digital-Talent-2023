@@ -30,8 +30,9 @@ jobs:
       - name: Turn on Container
         run: |
           cd 10.Midterm/Docker
-          docker compose up
-
+          docker compose up -d
+          docker exec mongodb mongoimport --db VDT23 --collection attendees --jsonArray --file data/db/attendees.json
+          
       - name: Test with pytest
         run: |
           cd 10.Midterm/Docker/app
