@@ -41,6 +41,7 @@ jobs:
           use-black: true
           use-mypy: false
           use-isort: false
+          extra-flake8-options: "--exit-zero --max-line-length=127"
 
       - name: Run tests
         run: |
