@@ -13,7 +13,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: backend-vdt2023
+        working-directory: ./10.GK/backend-vdt2023
 
     steps:
       - name: Checkout code
