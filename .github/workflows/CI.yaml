@@ -27,7 +27,7 @@ jobs:
           cd 10.Midterm/Docker/app
           pip install -r requirements.txt;
 
-      - name: Turn on Container:
+      - name: Turn on Container
         run: |
           cd 10.Midterm/Docker
           docker compose up
