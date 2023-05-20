@@ -32,9 +32,9 @@ jobs:
           pip install -r 10.GK/PhamDuyCuong/source/Web_CRUD/api/requirements.txt
 
       
-      - uses: ricardochaves/python-lint@v1.3.0
+      - uses: ricardochaves/python-lint@v1.4.0
         with:
-          python-root-list: "python_alelo ."
+          python-root-list: "10.GK/PhamDuyCuong/source/Web_CRUD/api"
           use-pylint: true
           use-pycodestyle: false
           use-flake8: true
