@@ -1,24 +1,30 @@
 ---
+- name: Remove directory {{ lb_dest }}
+  ansible.builtin.file:
+    path: "{{ lb_dest }}"
+    state: absent
+  when: lb_dest_cleanup | default(false) | bool
+
 - name: Ensure having directory {{ lb_dest }}
   ansible.builtin.file:
-    path: "{{ app_dest }}/{{ lb_dest }}"
+    path: "{{ lb_dest }}"
     state: directory
     mode: "0755"
 
 - name: Generate nginx.conf
   ansible.builtin.template:
     src: nginx.conf.j2
-    dest: "{{ app_dest }}/{{ lb_dest }}/nginx.conf"
+    dest: "{{ lb_dest }}/nginx.conf"
     mode: "0644"
 
 - name: Create and start service {{ lb_service }}
   community.docker.docker_compose:
-    project_src: "{{ app_dest }}"
+    project_src: "{{ lb_target_dest }}"
     state: present
     services:
       - "{{ lb_service }}"
 
-- name: Scale service {{ lb_target }} to {{ lb_scale }}
+- name: Scale service {{ lb_target }} to {{ lb_target_scale }}
   community.docker.docker_compose:
-    project_src: "{{ app_dest }}"
-    scale: "{ '{{ lb_target }}': '{{ lb_scale }}' }"
+    project_src: "{{ lb_target_dest }}"
+    scale: "{ '{{ lb_target }}': '{{ lb_target_scale }}' }"

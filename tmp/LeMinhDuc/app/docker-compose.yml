@@ -13,11 +13,11 @@ services:
     environment:
       - MONGO_URI=mongodb://172.17.0.1:27017/vdt
   
-  api-lb:
+  api_lb:
     restart: unless-stopped
     image: nginx:1.22.0-alpine
     volumes:
-      - ./api-lb/nginx.conf:/etc/nginx/nginx.conf
+      - ../api_lb/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - api
     ports:
@@ -27,11 +27,11 @@ services:
     restart: unless-stopped
     image: duclm278/web:${APP_VERSION:-latest}
 
-  web-lb:
+  web_lb:
     restart: unless-stopped
     image: nginx:1.22.0-alpine
     volumes:
-      - ./web-lb/nginx.conf:/etc/nginx/nginx.conf
+      - ../web_lb/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - web
     ports:

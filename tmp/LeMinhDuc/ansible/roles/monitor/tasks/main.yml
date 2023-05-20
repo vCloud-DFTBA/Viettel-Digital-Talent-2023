@@ -1,0 +1,24 @@
+---
+- name: Remove directory {{ monitor_dest }}
+  ansible.builtin.file:
+    path: "{{ monitor_dest }}"
+    state: absent
+
+- name: Create directory {{ monitor_dest }}
+  ansible.builtin.file:
+    path: "{{ monitor_dest }}"
+    state: directory
+    mode: "0755"
+
+- name: Generate docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ monitor_dest }}/docker-compose.yml"
+    mode: "0644"
+
+- name: Create and start service {{ monitor_service }}
+  community.docker.docker_compose:
+    project_src: "{{ monitor_dest }}"
+    state: present
+    services:
+      - "{{ monitor_service }}"

@@ -3,11 +3,12 @@
 app_ver: 0.1.0
 # app_ver: 0.1
 # app_ver: latest
-app_dest: /etc/app # Absolute path on remote host
+# app_dest: /etc/app # Absolute path on remote host
 
 # Settings for db
 db_service: db
-db_dest: ./db # Relative path to app_dest
+db_dest: /etc/db # Absolute path on remote host
+db_dest_cleanup: true
 db_host: 188.166.179.154
 db_exposed_port: 27017
 db_name: vdt
@@ -15,13 +16,17 @@ db_uri: "mongodb://{{ db_host }}:{{ db_exposed_port }}/{{ db_name }}"
 
 # Settings for api
 api_service: api
-# api_dest: ./api # Relative path to app_dest
+api_image: duclm278/api
+api_image_tag: "{{ app_ver }}"
+api_dest: /etc/api # Absolute path on remote host
+api_dest_cleanup: true
 api_container_port: 5000
 api_scale: 2
 
-# Settings for api-lb
-api_lb_service: api-lb
-api_lb_dest: ./api-lb # Relative path to app_dest
+# Settings for api_lb
+api_lb_service: api_lb
+api_lb_dest: /etc/api_lb # Absolute path on remote host
+api_lb_dest_cleanup: true
 api_lb_host: 178.128.124.152 # Changes requires rebuilding web image if in static files.
 api_lb_container_port: 80
 api_lb_forward_port: "{{ api_container_port }}"
@@ -29,13 +34,29 @@ api_lb_exposed_port: 5000 # Changes requires rebuilding web image if in static f
 
 # Settings for web
 web_service: web
-# web_dest: ./web # Relative path to app_dest
+web_image: duclm278/web
+web_image_tag: "{{ app_ver }}"
+web_dest: /etc/web # Absolute path on remote host
+web_dest_cleanup: true
 web_container_port: 80
 web_scale: 2
 
-# Settings for web-lb
-web_lb_service: web-lb
-web_lb_dest: ./web-lb # Relative path to app_dest
+# Settings for web_lb
+web_lb_service: web_lb
+web_lb_dest: /etc/web_lb # Absolute path on remote host
+web_lb_dest_cleanup: true
 web_lb_host: 188.166.187.112
 web_lb_forward_port: "{{ web_container_port }}"
 web_lb_exposed_port: 80
+
+# Settings for monitor
+monitor_service: monitor
+monitor_dest: /etc/monitor # Absolute path on remote host
+monitor_dest_cleanup: true
+monitor_remote_write: http://27.66.108.93:9090
+
+# Settings for logger
+logger_service: logger
+logger_dest: /etc/logger # Absolute path on remote host
+logger_dest_cleanup: true
+logger_remote_write: http://171.236.38.100:5601

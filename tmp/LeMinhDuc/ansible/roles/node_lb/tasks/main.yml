@@ -1,0 +1,21 @@
+---
+- name: Ensure having directory {{ lb_dest }}
+  ansible.builtin.file:
+    path: "{{ app_dest }}/{{ lb_dest }}"
+    state: directory
+    mode: "0755"
+
+- name: Generate nginx.conf
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: "{{ app_dest }}/{{ lb_dest }}/nginx.conf"
+    mode: "0644"
+
+- name: Create and start service {{ lb_service }}
+  community.docker.docker_compose:
+    project_src: "{{ app_dest }}"
+    state: present
+    services:
+      - "{{ lb_service }}"
+
+# TODO

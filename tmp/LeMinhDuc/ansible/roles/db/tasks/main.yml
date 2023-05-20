@@ -1,36 +1,31 @@
 ---
-- name: Remove directory {{ app_dest }}
+- name: Remove directory {{ db_dest }}
   ansible.builtin.file:
-    path: "{{ app_dest }}"
+    path: "{{ db_dest }}"
     state: absent
+  when: db_dest_cleanup | default(false) | bool
 
-- name: Create directory {{ app_dest }}
+- name: Create directory {{ db_dest }}
   ansible.builtin.file:
-    path: "{{ app_dest }}"
-    state: directory
-    mode: "0755"
-
-- name: Ensure having directory {{ db_dest }}
-  ansible.builtin.file:
-    path: "{{ app_dest }}/{{ db_dest }}"
+    path: "{{ db_dest }}"
     state: directory
     mode: "0755"
 
 - name: Copy files to {{ db_dest }}
   ansible.builtin.copy:
     src: ./
-    dest: "{{ app_dest }}/{{ db_dest }}"
+    dest: "{{ db_dest }}"
     mode: "0644"
 
 - name: Generate docker-compose.yml
   ansible.builtin.template:
     src: docker-compose.yml.j2
-    dest: "{{ app_dest }}/docker-compose.yml"
+    dest: "{{ db_dest }}/docker-compose.yml"
     mode: "0644"
 
 - name: Create and start service {{ db_service }}
   community.docker.docker_compose:
-    project_src: "{{ app_dest }}"
+    project_src: "{{ db_dest }}"
     state: present
     services:
       - "{{ db_service }}"
