@@ -24,11 +24,11 @@ jobs:
         with:
           push: true
           tags: ducpa01/python-buddy:${{github.ref_name}}
-          context: "{{defaultContext}}:src/app"
+          context: "{{defaultContext}}:10.GK/PhamAnhDuc/src/app"
 
       - name: Build and push nginx webserver
         uses: docker/build-push-action@v4
         with:
           push: true
           tags: ducpa01/nginx-buddy:${{github.ref_name}}
-          context: "{{defaultContext}}:src/nginx"
+          context: "{{defaultContext}}:10.GK/PhamAnhDuc/src/nginx"
