@@ -16,15 +16,24 @@
 - name: Build the web image 
   docker_image:
     build:
-      path: ./roles/web/files/
+      path: ../roles/web/files/
     name: my_nginx
     source: "build"
 
-- name: Build the nginx_container container from the my_db image
+- name: Build the nginx_container1 container from the my_nginx image
   docker_container:
-    name: nginx_container
+    name: nginx_container1
     image: my_nginx
     networks:
       - name: mongodb_flask_nginx_network
     ports:
     - "80:80"
+
+- name: Build the nginx_container2 container from the my_nginx image
+  docker_container:
+    name: nginx_container2
+    image: my_nginx
+    networks:
+      - name: mongodb_flask_nginx_network
+    ports:
+    - "81:81"

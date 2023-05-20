@@ -315,4 +315,11 @@ Run the command:
 ## 4. Monitoring
 1. Ảnh chụp dashboard giám sát nodes & containers
 
+![](images/4.Monitor/prometheus.png)
+![](images/4.Monitor/dashboard1.png)
+![](images/4.Monitor/dashboard2.png)
+![](images/4.Monitor/dashboard3.png)
+![](images/4.Monitor/dashboard4.png)
+![](images/4.Monitor/dashboard5.png)
+
 

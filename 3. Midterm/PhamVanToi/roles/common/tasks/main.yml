@@ -36,6 +36,10 @@
     name: docker 
     state: started
 
+- name: Check the docker version
+  shell:
+    cmd: docker --version
+
 
 # Create the network to connect 3 containers of 3 web tiers.
 - name: Create a network

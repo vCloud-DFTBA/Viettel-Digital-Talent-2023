@@ -14,7 +14,7 @@
 - name: Build the mongodb image 
   docker_image:
     build:
-      path: ./roles/db/files/
+      path: ../roles/db/files/
     name: my_db
     source: "build"
 

@@ -47,7 +47,7 @@
     <script>
         let root = document.querySelector('.table-data')
 
-        fetch('http://localhost/api/attendees/')
+        fetch('http://localhost:8000/api/attendees/')
         .then(response => response.json())
         .then(data => {
             for (attendee of data){

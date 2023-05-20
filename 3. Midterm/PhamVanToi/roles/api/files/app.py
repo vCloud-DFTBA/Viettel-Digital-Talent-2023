@@ -62,7 +62,7 @@ def delete_post(id):
     try:    
         if id != '29':
             delete_data(id)
-        return "<h1 style='text-align:center; color: blue'>Delete succesfully. Reload the home page to see the differences!</h1>"
+        return redirect("http://localhost:8000/")
     except:
         return "Error!"
 
