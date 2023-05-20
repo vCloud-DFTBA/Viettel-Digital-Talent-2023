@@ -7,7 +7,6 @@ on:
 
 jobs:
   build-and-push-image-be:
-    needs: build-and-test  # Công việc "build-and-push-image" phụ thuộc vào công việc "build-and-test"
     runs-on: ubuntu-latest
 
     defaults:
@@ -36,7 +35,6 @@ jobs:
         tags: duogglong/backend-vdt2023:${{ steps.commit_sha.outputs.SHA }}
         
   build-and-push-image-fe:
-    needs: build-and-test  # Công việc "build-and-push-image" phụ thuộc vào công việc "build-and-test"
     runs-on: ubuntu-latest
 
     defaults:
