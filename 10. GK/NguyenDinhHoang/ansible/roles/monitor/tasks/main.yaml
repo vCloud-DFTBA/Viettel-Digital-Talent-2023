@@ -1,0 +1,4 @@
+- name: Setup for deploy monitoring
+  import_tasks: setup.yaml
+- name: Deploy monitoring
+  import_tasks: deploy.yaml

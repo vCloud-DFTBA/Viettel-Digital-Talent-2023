@@ -1,0 +1,16 @@
+- name: Run docker image hoangndst/fluentd:latest
+  docker_container:
+    name: fluentd
+    image: hoangndst/fluentd:latest
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ NETWORK_NAME }}"
+    hostname: fluentd
+    volumes:
+      - /etc/fluentd:/fluentd/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+  become: yes
+  when: inventory_hostname == "vm1"
+  tags: docker

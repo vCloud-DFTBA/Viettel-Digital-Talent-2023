@@ -1,0 +1,35 @@
+http:
+  routers:
+    vdt-frontend:
+      rule: Host(`{{ FRONTEND_DOMAIN }}`)
+      entryPoints:
+        - websecure
+      service: vdt-frontend
+      tls:
+        certResolver: production
+    vdt-backend:
+      rule: Host(`{{ BACKEND_DOMAIN }}`)
+      entryPoints:
+        - websecure
+      service: vdt-backend
+      tls:
+        certResolver: production
+  services:
+    vdt-frontend:
+      loadBalancer:
+        healthCheck:
+          path: /
+          port: 3000
+        servers:
+          - url: http://{{ VM1_IP }}:3000
+          - url: http://{{ VM2_IP }}:3000
+          - url: http://{{ VM3_IP }}:3000
+    vdt-backend:
+      loadBalancer:
+        healthCheck:
+          path: /test
+          port: 5000
+        servers:
+          - url: http://{{ VM1_IP }}:5000
+          - url: http://{{ VM2_IP }}:5000
+          - url: http://{{ VM3_IP }}:5000

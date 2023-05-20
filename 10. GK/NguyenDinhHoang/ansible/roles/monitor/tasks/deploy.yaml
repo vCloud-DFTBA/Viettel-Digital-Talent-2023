@@ -1,0 +1,9 @@
+- name: Make sure previous monitoring is removed
+  shell: docker compose -f /tmp/monitor/docker-compose.yaml down
+  become: yes
+  tags: docker-compose
+- name: Deploy monitoring
+  shell: docker compose -f /tmp/monitor/docker-compose.yaml up -d
+  become: yes
+  tags: docker-compose
+  

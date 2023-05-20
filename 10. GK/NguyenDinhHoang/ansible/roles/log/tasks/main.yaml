@@ -1,0 +1,6 @@
+- name: Setup for deploy logging
+  import_tasks: setup.yaml
+  when: inventory_hostname == "vm1"
+- name: Deploy logging
+  import_tasks: deploy.yaml
+

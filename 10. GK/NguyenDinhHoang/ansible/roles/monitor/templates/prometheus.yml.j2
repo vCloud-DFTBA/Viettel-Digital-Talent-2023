@@ -1,0 +1,98 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: prometheus_cluster
+{% if inventory_hostname == 'vm2' %}
+    replica: 0
+{% elif inventory_hostname == 'vm3' %}
+    replica: 1
+{% endif %}
+    username: hoangnd
+
+rule_files:
+  - '/etc/prometheus/rules/*.yaml'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['{{ VM2_IP }}:9090', '{{ VM3_IP }}:9090']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '{{ VM2_IP }}:9090'
+        replacement: 'prometheus-vm2:9090'
+        target_label: instance
+      - source_labels: [__address__]
+        regex: '{{ VM3_IP }}:9090'
+        replacement: 'prometheus-vm3:9090'
+        target_label: instance
+
+  - job_name: 'alertmanager'
+    static_configs:
+      - targets: ['{{ VM2_IP }}:9093', '{{ VM3_IP }}:9093']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '{{ VM2_IP }}:9093'
+        replacement: 'alertmanager-vm2:9093'
+        target_label: instance
+      - source_labels: [__address__]
+        regex: '{{ VM3_IP }}:9093'
+        replacement: 'alertmanager-vm3:9093'
+        target_label: instance
+
+  - job_name: 'thanos-sidecar'
+    static_configs:
+      - targets: ['{{ VM2_IP }}:19191', '{{ VM3_IP }}:19191']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '{{ VM2_IP }}:19191'
+        replacement: 'thanos-sidecar-vm2:19191'
+        target_label: instance
+      - source_labels: [__address__]
+        regex: '{{ VM3_IP }}:19191'
+        replacement: 'thanos-sidecar-vm3:19191'
+        target_label: instance
+  
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['{{ VM1_IP }}:9100', '{{ VM2_IP }}:9100', '{{ VM3_IP }}:9100']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '{{ VM1_IP }}:9100'
+        replacement: 'node_exporter-vm1:9100'
+        target_label: instance
+      - source_labels: [__address__]
+        regex: '{{ VM2_IP }}:9100'
+        replacement: 'node_exporter-vm2:9100'
+        target_label: instance
+      - source_labels: [__address__]
+        regex: '{{ VM3_IP }}:9100'
+        replacement: 'node_exporter-vm3:9100'
+        target_label: instance
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['{{ VM1_IP }}:8080', '{{ VM2_IP }}:8080', '{{ VM3_IP }}:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '{{ VM1_IP }}:8080'
+        replacement: 'cadvisor-vm1:8080'
+        target_label: instance
+      - source_labels: [__address__]
+        regex: '{{ VM2_IP }}:8080'
+        replacement: 'cadvisor-vm2:8080'
+        target_label: instance
+      - source_labels: [__address__]
+        regex: '{{ VM3_IP }}:8080'
+        replacement: 'cadvisor-vm3:8080'
+        target_label: instance
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - {{ VM2_IP }}:9093
+          - {{ VM3_IP }}:9093
+
+remote_write:
+  - url: http://27.66.108.93:9090/api/v1/write

@@ -1,0 +1,74 @@
+- name: Check if python3-pip is installed
+  apt:
+    name: python3-pip
+    state: present
+  become: yes
+  tags: python3-pip
+- name: Install docker module for python if not exists
+  pip:
+    name: docker
+    state: present
+  become: yes
+  tags: python3-pip
+- name: Check if docker network exists
+  docker_network_info:
+    name: "{{ NETWORK_NAME }}"
+  register: docker_network
+  become: yes
+  tags: docker
+- name: Create docker network
+  docker_network:
+    name: "{{ NETWORK_NAME }}"
+    state: present
+  when: docker_network.exists == false
+  become: yes
+  tags: docker
+- name: Check if docker lb_volume exists
+  docker_volume_info:
+    name: "{{ LB_VOLUME }}"
+  register: docker_lb_volume
+  become: yes
+  tags: docker
+- name: Create docker nfs lb_volume
+  docker_volume:
+    name: "{{ LB_VOLUME }}"
+    driver: local
+    driver_options:
+      type: nfs
+      o: addr={{ NFS_SERVER_IP }},rw
+      device: ":{{ NFS_SHARE_PATH }}"
+  when: docker_lb_volume.exists == false
+  become: yes
+  tags: docker
+- name: Create /etc/traefik folder if not exists
+  file:
+    path: /etc/traefik
+    state: directory
+    mode: 0755
+  become: yes
+  tags: traefik
+- name: Copy traefik static config file to "/etc/traefik"
+  template:
+    src: traefik.yaml.j2
+    dest: /etc/traefik/traefik.yaml
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  tags: traefik
+- name: Copy traefik dynamic config file to "/etc/traefik"
+  template:
+    src: dynamic.yaml.j2
+    dest: /etc/traefik/dynamic.yaml
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  tags: traefik
+- name: Create traefik acme.json file
+  file:
+    path: /etc/traefik/acme.json
+    state: touch
+    mode: 0600
+  become: yes
+  tags: traefik

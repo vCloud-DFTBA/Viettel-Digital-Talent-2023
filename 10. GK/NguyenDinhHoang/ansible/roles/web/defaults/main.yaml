@@ -1,0 +1,4 @@
+NETWORK_NAME: vdt_web
+MONGO_DB_VOLUME: mongo_db_nfs
+NFS_SERVER_IP: 10.114.0.2
+NFS_SHARE_PATH: /mnt/nfs_volume/docker_nfs_share

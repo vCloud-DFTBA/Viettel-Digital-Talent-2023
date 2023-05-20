@@ -1,0 +1,202 @@
+version: "3.6"
+networks:
+  vdt_monitoring:
+    name: "{{ VDT_MONITOR_NET }}"
+    external: true
+volumes:
+{% if inventory_hostname == 'vm1' %}
+  grafana_data:
+    name: "{{ GRAFANA_VOLUME }}"
+    external: true
+  minio_data:
+    name: "{{ MINIO_VOLUME }}"
+    external: true
+{% else %}
+  prometheus_data:
+    name: "{{ PROMETHEUS_VOLUME }}"
+    external: true
+{% endif %}
+services:
+{% if inventory_hostname == 'vm1' %}
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    hostname: grafana
+    networks:
+      - "vdt_monitoring"
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - /etc/grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - /etc/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/prometheus.yaml
+      - /etc/grafana/dashboards:/dashboards
+    restart: always
+  thanos-query:
+    container_name: thanos-query
+    hostname: thanos-query
+    image: quay.io/thanos/thanos:v0.31.0
+    restart: always
+    command:
+      - "query"
+      - "--http-address=0.0.0.0:19192"
+      - "--store={{ VM2_IP }}:19090"
+      - "--store={{ VM3_IP }}:19090"
+      - "--store=thanos-store-gateway:19090"
+      - "--query.replica-label=replica"
+    ports:
+      - "19192:19192"
+    networks:
+      - "vdt_monitoring"
+    depends_on:
+      - minio
+  thanos-store-gateway:
+    container_name: thanos-store-gateway
+    hostname: thanos-store-gateway
+    image: quay.io/thanos/thanos:v0.31.0
+    restart: always
+    command:
+      - "store"
+      - "--grpc-address=0.0.0.0:19090"
+      - "--http-address=0.0.0.0:19191"
+      - "--objstore.config-file=/etc/thanos/storage.yaml"
+      - "--data-dir=/var/thanos/store"
+    networks:
+      - "vdt_monitoring"
+    volumes:
+      - /etc/thanos/storage.yaml:/etc/thanos/storage.yaml
+    depends_on:
+      - minio
+  thanos-compact:
+    container_name: thanos-compact
+    hostname: thanos-compact
+    image: quay.io/thanos/thanos:v0.31.0
+    restart: always
+    command:
+      - "compact"
+      - "--log.level=debug"
+      - "--data-dir=/var/thanos/compact"
+      - "--objstore.config-file=/etc/thanos/storage.yaml"
+      - "--wait"
+    volumes:
+      - /etc/thanos/storage.yaml:/etc/thanos/storage.yaml
+    networks:
+      - "vdt_monitoring"
+    depends_on:
+      - minio
+
+  minio:
+    container_name: minio
+    hostname: minio
+    image: minio/minio:latest
+    restart: always
+    environment:
+      MINIO_ACCESS_KEY: "{{ MINIO_ACCESS_KEY }}"
+      MINIO_SECRET_KEY: "{{ MINIO_SECRET_KEY }}"
+      MINIO_PROMETHEUS_AUTH_TYPE: public
+    command: server --console-address ":9001" /data
+    networks:
+      - "vdt_monitoring"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+{% else %}
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: 'prometheus-{{ inventory_hostname }}'
+    hostname: 'prometheus-{{ inventory_hostname }}'
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.min-block-duration=2h"
+      - "--storage.tsdb.max-block-duration=2h"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--web.enable-lifecycle"
+      - "--web.enable-admin-api"
+    networks:
+      - "vdt_monitoring"
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+      - /etc/prometheus:/etc/prometheus
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: 'alertmanager-{{ inventory_hostname }}'
+    hostname: 'alertmanager-{{ inventory_hostname }}'
+    # clustering
+    command:
+      - '--config.file=/etc/alertmanager/config.yaml'
+      - "--cluster.listen-address=0.0.0.0:9094"
+{% if inventory_hostname == 'vm2' %}
+      - "--cluster.peer={{ VM3_IP }}:9094"
+{% elif inventory_hostname == 'vm3' %}
+      - "--cluster.peer={{ VM2_IP }}:9094"
+{% endif %}
+    networks:
+      - "vdt_monitoring"
+    volumes:
+      - /etc/alertmanager/config.yaml:/etc/alertmanager/config.yaml
+    restart: always
+    ports:
+      - "9093:9093"
+      - "9094:9094"
+    
+  thanos-sidecar:
+    container_name: 'thanos-sidecar-{{ inventory_hostname }}'
+    hostname: 'thanos-sidecar-{{ inventory_hostname }}'
+    image: quay.io/thanos/thanos:v0.31.0
+    restart: always
+    volumes:
+      - /etc/thanos/storage.yaml:/etc/thanos/storage.yaml
+      - prometheus_data:/prometheus
+    command:
+      - "sidecar"
+      - "--tsdb.path=/prometheus"
+      - "--prometheus.url=http://prometheus-{{ inventory_hostname }}:9090"
+      - "--objstore.config-file=/etc/thanos/storage.yaml"
+      - "--grpc-address=0.0.0.0:19090"
+      - "--http-address=0.0.0.0:19191"
+    ports:
+      - "19090:19090"
+      - "19191:19191"
+    networks:
+      - "vdt_monitoring"
+{% endif %}
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: 'node-exporter-{{ inventory_hostname }}'
+    hostname: 'node-exporter-{{ inventory_hostname }}'
+    restart: always
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - "9100:9100"
+    networks:
+      - "vdt_monitoring"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+  cadvisor:
+    container_name: 'cadvisor-{{ inventory_hostname }}'
+    hostname: 'cadvisor-{{ inventory_hostname }}'
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - "vdt_monitoring"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro

@@ -1,0 +1,139 @@
+- name: Check if python3-pip is installed
+  apt:
+    name: python3-pip
+    state: present
+  become: yes
+  tags: python3-pip
+- name: Install docker module for python if not exists
+  pip:
+    name: docker
+    state: present
+  become: yes
+  tags: python3-pip
+- name: Check if docker network exists
+  docker_network_info:
+    name: "{{ VDT_MONITOR_NET }}"
+  register: docker_network
+  become: yes
+  tags: docker
+- name: Create docker network
+  docker_network:
+    name: "{{ VDT_MONITOR_NET }}"
+    state: present
+  when: docker_network.exists == false
+  become: yes
+  tags: docker
+- name: Check if docker PROMETHEUS_VOLUME exists
+  docker_volume_info:
+    name: "{{ PROMETHEUS_VOLUME }}"
+  register: docker_prometheus_volume
+  when: inventory_hostname != "vm1"
+  become: yes
+  tags: docker
+- name: Create docker PROMETHEUS_VOLUME
+  docker_volume:
+    name: "{{ PROMETHEUS_VOLUME }}"
+    state: present
+    driver: local
+  when:
+    - inventory_hostname != "vm1"
+    - docker_prometheus_volume.exists == false
+  become: yes
+  tags: docker
+- name: Check if docker GRAFANA_VOLUME exists
+  docker_volume_info:
+    name: "{{ GRAFANA_VOLUME }}"
+  register: docker_grafana_volume
+  when: inventory_hostname == "vm1"
+  become: yes
+  tags: docker
+- name: Create docker GRAFANA_VOLUME
+  docker_volume:
+    name: "{{ GRAFANA_VOLUME }}"
+    state: present
+    driver: local
+  when:
+    - inventory_hostname == "vm1"
+    - docker_grafana_volume.exists == false
+  become: yes
+  tags: docker
+- name: Check if docker MINIO_VOLUME exists
+  docker_volume_info:
+    name: "{{ MINIO_VOLUME }}"
+  register: docker_minio_volume
+  when: inventory_hostname == "vm1"
+  become: yes
+  tags: docker
+- name: Create docker MINIO_VOLUME
+  docker_volume:
+    name: "{{ MINIO_VOLUME }}"
+    state: present
+    driver: local
+  when:
+    - inventory_hostname == "vm1"
+    - docker_minio_volume.exists == false
+  become: yes
+  tags: docker
+- name: Copy folder files/alertmanager to /etc/
+  copy:
+    src: files/alertmanager
+    dest: /etc/
+  become: yes
+  tags: alertmanager
+- name: Create /etc/prometheus directory if not exists
+  file:
+    path: /etc/prometheus
+    state: directory
+    mode: 0755
+  become: yes
+  when: inventory_hostname != "vm1"
+  tags: prometheus
+- name: Copy folder files/rules to /etc/prometheus
+  copy:
+    src: files/rules
+    dest: /etc/prometheus
+  when: inventory_hostname != "vm1"
+  become: yes
+  tags: prometheus
+- name: Copy prometheus config file
+  template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus/prometheus.yml
+    mode: 0644
+  when: inventory_hostname != "vm1"
+  become: yes
+  tags: prometheus
+- name: Create /etc/thanos directory if not exists
+  file:
+    path: /etc/thanos
+    state: directory
+    mode: 0755
+  become: yes
+  tags: thanos
+- name: Copy thanos config file
+  template:
+    src: storage.yaml.j2
+    dest: /etc/thanos/storage.yaml
+    mode: 0644
+  become: yes
+  tags: thanos
+- name: Copy folder files/grafana to /etc/
+  copy:
+    src: files/grafana
+    dest: /etc/
+  when: inventory_hostname == "vm1"
+  become: yes
+  tags: grafana
+- name: Create /tmp/monitor directory if not exists
+  file:
+    path: /tmp/monitor
+    state: directory
+    mode: 0755
+  become: yes
+  tags: monitor
+- name: Copy docker-compose file
+  template:
+    src: docker-compose.yaml.j2
+    dest: /tmp/monitor/docker-compose.yaml
+  become: yes
+  tags: monitor
