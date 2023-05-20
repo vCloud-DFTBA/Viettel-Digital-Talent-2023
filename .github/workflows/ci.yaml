@@ -32,6 +32,5 @@ jobs:
           pip install -r 10.GK/PhamDuyCuong/source/Web_CRUD/api/requirements.txt
 
       - name: Run tests
-      - name: Run unit test
         run: |
           python -m unittest 10.GK/PhamDuyCuong/source/Web_CRUD/api/tests.py
