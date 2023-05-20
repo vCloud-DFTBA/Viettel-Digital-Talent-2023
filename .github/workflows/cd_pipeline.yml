@@ -1,0 +1,65 @@
+name: Continous Delivery Pipeline
+
+on:
+  push:
+      tags:
+        - '*'
+
+jobs:
+  build-and-push-image-be:
+    needs: build-and-test  # Công việc "build-and-push-image" phụ thuộc vào công việc "build-and-test"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./10.GK/backend-vdt2023  
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Get commit SHA
+      id: commit_sha
+      run: echo "::set-output name=SHA::$(git rev-parse --short HEAD)"
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: 10.GK/backend-vdt2023
+        push: true
+        tags: duogglong/backend-vdt2023:${{ steps.commit_sha.outputs.SHA }}
+        
+  build-and-push-image-fe:
+    needs: build-and-test  # Công việc "build-and-push-image" phụ thuộc vào công việc "build-and-test"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./10.GK/frontend-vdt2023  
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Get commit SHA
+      id: commit_sha
+      run: echo "::set-output name=SHA::$(git rev-parse --short HEAD)"
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: 10.GK/frontend-vdt2023
+        push: true
+        tags: duogglong/backend-vdt2023:${{ steps.commit_sha.outputs.SHA }}
