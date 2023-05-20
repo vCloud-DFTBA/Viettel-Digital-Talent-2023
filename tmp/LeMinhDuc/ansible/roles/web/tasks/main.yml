@@ -17,9 +17,10 @@
     dest: "{{ web_dest }}/docker-compose.yml"
     mode: "0644"
 
-- name: Create and start service {{ web_service }}
+- name: Create and (re)start service {{ web_service }}
   community.docker.docker_compose:
     project_src: "{{ web_dest }}"
     state: present
+    restarted: true
     services:
       - "{{ web_service }}"

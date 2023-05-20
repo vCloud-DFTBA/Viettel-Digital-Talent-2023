@@ -19,3 +19,4 @@
     networks: true
     volumes: true
     builder_cache: true
+  when: prune_everything

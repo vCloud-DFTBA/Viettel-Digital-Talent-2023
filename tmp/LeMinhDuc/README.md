@@ -27,3 +27,13 @@ Author: **Le Minh Duc**
 [6] [GitHub Actions Starter Workflows](https://github.com/actions/starter-workflows)
 
 [7] [Sample Workflows by `conghm`](https://github.com/haminhcong/demo-ci-cd-netbox)
+
+[8] [](https://faun.pub/how-to-configure-prometheus-server-as-a-remote-write-receiver-4c8e265011c2)
+
+[9] [](https://github.com/grafana/agent/issues/1935)
+
+[10] [](https://prometheus.io/docs/prometheus/latest/storage/#overview)
+
+[11] [](https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach)
+
+[12] [](https://blogs.cisco.com/learning/exploring-default-docker-networking-part-1)

@@ -5,6 +5,9 @@ app_ver: 0.1.0
 # app_ver: latest
 # app_dest: /etc/app # Absolute path on remote host
 
+# Settings for cleanup
+cleanup_prune_everything: true
+
 # Settings for db
 db_service: db
 db_dest: /etc/db # Absolute path on remote host
@@ -53,10 +56,12 @@ web_lb_exposed_port: 80
 monitor_service: monitor
 monitor_dest: /etc/monitor # Absolute path on remote host
 monitor_dest_cleanup: true
-monitor_remote_write: http://27.66.108.93:9090
+monitor_external_labels: { username: "leminhduc" }
+monitor_remote_write_url: http://27.66.108.93:9090/api/v1/write
 
 # Settings for logger
 logger_service: logger
 logger_dest: /etc/logger # Absolute path on remote host
 logger_dest_cleanup: true
-logger_remote_write: http://171.236.38.100:5601
+logger_external_labels: { username: "leminhduc" }
+logger_remote_write_url: http://171.236.38.100:5601

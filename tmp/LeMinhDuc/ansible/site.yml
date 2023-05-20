@@ -9,25 +9,24 @@
 
 - name: Tear down existing services
   hosts: "{{ cleanup_hosts | default('app') }}" # To override, use --extra-vars
-  become: false
+  become: true
   gather_facts: false
   roles:
-    - cleanup
+    - role: cleanup
+      prune_everything: "{{ cleanup_prune_everything }}"
   tags: [cleanup]
 
 - name: Deploy db
   hosts: db
-  become: false
+  become: true
   gather_facts: false
   roles:
-    - role: db
-    # - role: monitor
-    # - role: logger
-  tags: [deploy, mointor, logger, db]
+    - db
+  tags: [deploy, db]
 
-- name: Deploy scalable api
+- name: Deploy api
   hosts: api
-  become: false
+  become: true
   gather_facts: false
   roles:
     - role: api
@@ -39,13 +38,11 @@
       lb_target: "{{ api_service }}"
       lb_target_dest: "{{ api_dest }}"
       lb_target_scale: "{{ api_scale }}"
-    # - role: monitor
-    # - role: logger
-  tags: [deploy, monitor, logger, api]
+  tags: [deploy, lb, api]
 
-- name: Deploy scalable web
+- name: Deploy web
   hosts: web
-  become: false
+  become: true
   gather_facts: false
   roles:
     - role: web
@@ -57,6 +54,20 @@
       lb_target: "{{ web_service }}"
       lb_target_dest: "{{ web_dest }}"
       lb_target_scale: "{{ web_scale }}"
-    # - role: monitor
-    # - role: logger
-  tags: [deploy, monitor, logger, web]
+  tags: [deploy, lb, web]
+
+- name: Deploy monitors
+  hosts: app
+  become: true
+  gather_facts: false
+  roles:
+    - monitor
+  tags: [monitor]
+
+- name: Deploy loggers
+  hosts: app
+  become: true
+  gather_facts: false
+  roles:
+    - monitor
+  tags: [monitor]

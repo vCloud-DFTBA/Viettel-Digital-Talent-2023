@@ -17,10 +17,11 @@
     dest: "{{ lb_dest }}/nginx.conf"
     mode: "0644"
 
-- name: Create and start service {{ lb_service }}
+- name: Create and (re)start service {{ lb_service }}
   community.docker.docker_compose:
     project_src: "{{ lb_target_dest }}"
     state: present
+    restarted: true
     services:
       - "{{ lb_service }}"
 
