@@ -1,8 +1,9 @@
-name: ci-test-on-push
+name: ci-test-on-pr
 
 on:
-  push:
-    branches: "*"
+    pull_request:
+      branches: ["main","master"]
+  
 
 jobs:
   test:
@@ -11,8 +12,6 @@ jobs:
       matrix:
         python-version: ["3.10"]
         mongodb-version: ['5.0']
-    # env:
-    #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
