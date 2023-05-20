@@ -1,4 +1,4 @@
-Name: CD
+name: CD
 
 on:
   create:
