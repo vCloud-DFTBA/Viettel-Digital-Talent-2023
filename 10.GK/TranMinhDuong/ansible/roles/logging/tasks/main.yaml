@@ -1,13 +1,13 @@
-- name: Check if network exists
+- name: Check if logging network exists
   docker_network_info:
-    name: vtapp
+    name: vtapp_logging
   register: docker_network
   become: true
   
   
-- name: Create network
+- name: Create logging network
   docker_network:
-    name: vtapp
+    name: vtapp_logging
     state: present
   when: docker_network.exists == false
   become: true
@@ -28,7 +28,7 @@
     image: duongtm3102/fluentd:latest
     restart_policy: unless-stopped
     networks:
-      - name: vtapp
+      - name: vtapp_logging
     hostname: fluentd
     volumes:
       - /etc/fluentd:/fluentd/etc
