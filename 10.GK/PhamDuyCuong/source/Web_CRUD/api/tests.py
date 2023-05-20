@@ -58,8 +58,7 @@ class FlaskAppTestCase(unittest.TestCase):
 
     def test_remove_student(self):
         # Test remove student
-        response = self.client.delete(
-            "/remove", data={"_id": self.init_data["_id"]})
+        response = self.client.delete("/remove", data={"_id": self.init_data["_id"]})
         self.assertEqual(response.status_code, 302)
 
         removed_student = self.db.find_one({"_id": self.init_data["_id"]})
@@ -77,9 +76,7 @@ class FlaskAppTestCase(unittest.TestCase):
         assert response.status_code == 302
 
         # Verify the update was successful
-        updated_student = self.db.find_one(
-            {"_id": ObjectId(self.init_data["_id"])}
-        )
+        updated_student = self.db.find_one({"_id": ObjectId(self.init_data["_id"])})
         self.assertIsNotNone(updated_student)
         assert updated_student["birth_year"] == "1975"
 
