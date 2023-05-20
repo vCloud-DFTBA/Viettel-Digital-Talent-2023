@@ -23,7 +23,7 @@ jobs:
       - name: Build and push backend images
         uses: docker/build-push-action@v4
         with:
-          context: 10.GK/PhamDuyCuong/source/Web_CRUD/
+          context: 10.GK/PhamDuyCuong/source/web_CRUD/
           push: true
           file: |
             app/api/Dockerfile
