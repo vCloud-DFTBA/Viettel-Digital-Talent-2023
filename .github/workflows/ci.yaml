@@ -46,4 +46,4 @@ jobs:
 
       - name: Run tests
         run: |
-          python 10.GK/PhamDuyCuong/source/Web_CRUD/api/tests.py
+          python 10.GK/PhamDuyCuong/source/web_CRUD/api/tests.py

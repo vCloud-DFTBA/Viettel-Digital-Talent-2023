@@ -5,6 +5,16 @@ on:
     tags:
       - '*'
 
+  pull_request:
+    branches:
+      - main
+      - 10.GK
+  
+  push:
+    branches:
+     - main
+     - 10.GK
+     
 jobs:
   build:
     runs-on: ubuntu-latest
