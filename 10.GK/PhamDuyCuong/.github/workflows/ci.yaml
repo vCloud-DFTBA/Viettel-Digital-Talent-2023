@@ -1,0 +1,17 @@
+name: CI workflow
+
+on:
+  pull_request:
+    branches:
+      - 10.GK
+  
+  push:
+    branches:
+     - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: Echo Helloworld
