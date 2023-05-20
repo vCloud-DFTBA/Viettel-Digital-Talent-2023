@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: 10.Midterm/Docker/app
-          file: ./Dockerfile
+          file: 10.Midterm/Docker/app/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}flask:latest
 
@@ -33,6 +33,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: 10.Midterm/Docker/nginx
-          file: ./Dockerfile
+          file: 10.Midterm/Docker/nginx/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}nginx:latest
