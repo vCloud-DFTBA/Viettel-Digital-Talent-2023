@@ -318,7 +318,16 @@ Run the command:
 ![](images/3.CD_and_Ansible/ansible_common_log.png)
 
 ## 4. Monitoring
-1. Ảnh chụp dashboard giám sát nodes & containers
+
+1. Hướng dẫn sử dụng ansible playbook để triển khai monitoring
+
+Run the command:
+  ```
+  ansible-playbook -i inventory.yml playbooks/monitoring.yml
+  ```
+
+2. Ảnh chụp dashboard giám sát nodes & containers
+
  
 ![](images/4.Monitor/prometheus.png)
 ![](images/4.Monitor/dashboard1.png)
