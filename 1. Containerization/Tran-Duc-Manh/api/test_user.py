@@ -70,7 +70,7 @@ def test_update_user_info():
 
 
 def test_delete_user_info():
-    response = client.post("/api/v1/delete-user", params={"user": "test"})
+    response = client.delete("/api/v1/delete-user", params={"user": "test"})
     assert response.status_code == 200
     assert response.json() == {"status": True}
     logger.info("Pass delete user")
