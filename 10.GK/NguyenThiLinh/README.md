@@ -143,7 +143,7 @@ Author: **Nguyen Thi Linh**
 ## 3. Continuous Delivery
 
 ### Deployment architecture and description:
-  See output of [0. Build a 3-tier web application](#1-build-a-3-tier-web-application)
+  See output of [0. Build a 3-tier web application](#0-build-a-3-tier-web-application)
 
 ### Directory layout
 
@@ -227,13 +227,17 @@ Output build and push Docker Image to DockerHub:
 Log: [cd-log.zip](output/logs/cd-log.zip)  
 
 First, I add tag to Docker Image by variable `${{  github.ref_name }}`. It success build and push image to DockerHub, but it is not attached tag 'latest`
-  ![img](assets/notag.png)
+  
+![img](assets/notag.png)
 
 Then, I follow [this tutorial](https://docs.docker.com/build/ci/github-actions/manage-tags-labels/), by extracting meta data, I can add tag to docker image and it's attached tag `latest' as well.
+
 ![img](assets/taglatest.png)
  
 I tried some method to cache image layers, aiming to reduce CD time, but it failed.
+
 Ref:
 [1] [GitHub Actions cache](https://docs.docker.com/build/cache/backends/gha/)
+
 [2] [GitHub Actions Workflow + Docker Build & Push (Demo + Giải Thích)](https://www.youtube.com/watch?v=33Ttv3taz7I&list=WL&index=1&t=1s&ab_channel=FullstacKAGE)
 
