@@ -64,7 +64,8 @@
 
     on:
       push:
-        branches: [ "master" ]
+        branches:
+          - '*'
       pull_request:
         branches: [ "master" ]
 
