@@ -14,7 +14,6 @@ alerting:
     static_configs:
     - targets: 
       - 'localhost:9093'
-      - 'localhost:9094'
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
@@ -24,8 +23,7 @@ rule_files:
 #  - url: http://localhost:9090/api/v1/read
 
 
-# remote_write:
-#   - url: "http://27.66.108.93:9090/api/v1/write"
+
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
@@ -45,3 +43,6 @@ scrape_configs:
     - targets: [
       'cadvisor:8080',
     ]
+
+remote_write:
+  - url: "http://27.66.108.93:9090/api/v1/write"
