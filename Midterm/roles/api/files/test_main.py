@@ -1,7 +1,7 @@
 import unittest
 import requests
 
-URL = "http://localhost:81"
+URL = "http://localhost"
 
 
 class AppTestCase(unittest.TestCase):

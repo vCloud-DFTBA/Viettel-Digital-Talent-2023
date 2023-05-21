@@ -18,3 +18,7 @@
       - "3000:3000"
     networks:
       - name: homework
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: lb
