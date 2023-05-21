@@ -89,6 +89,8 @@ Author: **Le Minh Duc**
 
 - I deploy each service `logger`, `monitor`, `db`, `api` & `web` on multiple different hosts and scale `api` & `web` easily with `docker-compose` command.
 
+- As can be seen in the diagram, each big white box is a host. So, there are 4 hosts in total. Each service is contained in a Docker container.
+
 - For load balancing, I deploy `nginx` on the same `api` or `web` hosts and use `nginx` as the reverse proxy to distribute the requests to the containers.
 
 - By deploying the load balancer on the same host as the target service, I take advantage of Docker's embedded DNS server to resolve the service name to the actual container IPs. It implements DNS round-robin, so a client sees the list of IPs shuffled each time it resolves the service name.
