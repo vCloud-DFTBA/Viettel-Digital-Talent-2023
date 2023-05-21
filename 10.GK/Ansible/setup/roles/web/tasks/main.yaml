@@ -6,10 +6,10 @@
     name: "{{ frontend_container_name }}"
     image: duogglong/frontend-vdt2023:latest
     state: started
-    # log_driver: fluentd
-    # log_options:
-    #   fluentd-address: "{{ fluentd_address }}"
-    #   tag: "frontend-vdt2023"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ fluentd_address }}"
+      tag: "frontend-vdt2023"
     interactive: true
     tty: true
     ports:
