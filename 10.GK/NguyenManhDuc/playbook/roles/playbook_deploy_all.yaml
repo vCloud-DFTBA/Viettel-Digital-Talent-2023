@@ -1,0 +1,21 @@
+---
+- name: setup database in vps3
+  hosts: vps3
+  become: true
+  gather_facts: false
+  roles:
+    - db
+
+- name: set up api in vps2
+  hosts: vps2
+  become: true
+  gather_facts: false
+  roles:
+    - api
+
+- name: set up web in vps1
+  hosts: vps1
+  become: true
+  gather_facts: false
+  roles:
+    - web

@@ -1,0 +1,31 @@
+---
+
+- name: pull docker image prometheus from registry
+  docker_image:
+    name: "{{ docker_image }}"
+    source: pull
+
+
+- name: copy rule alert file to temp
+  copy:
+    src: alert_rules.yml
+    dest: ./tmp
+
+
+- name: Copy prometheus.yml to temp 
+  copy:
+    src:  prometheus.yml
+    dest: ./tmp
+
+- name: run docker image prometheus
+  docker_container:
+    name: "{{ container_name }}"
+    image: "{{ docker_image }}"
+    restart_policy: unless-stopped
+    volumes:
+      - ./tmp/prometheus.yml:{{ prometheus_dir_config }}/prometheus.yml
+      - ./tmp/alert_rules.yml:{{ prometheus_dir_config }}/alert_rules.yml
+    command:
+      - '--config.file={{prometheus_dir_config}}/prometheus.yml'
+    ports:
+      - 9090:9090

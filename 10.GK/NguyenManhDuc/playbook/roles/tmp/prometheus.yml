@@ -1,0 +1,43 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "/etc/prometheus/alert_rules.yml"
+  - "/etc/prometheus/node_rules.yml"
+
+
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#       - targets: ['192.168.89.109:9093','192.168.89.110:9093','192.168.89.111:9093','localhost:9093']
+
+remote_write:
+  - url: http://27.66.108.93:9090/api/v1/write
+
+scrape_configs:
+
+
+
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090','27.66.108.93:9090']
+        labels:
+          username: 'nguyenmanhduc03'
+
+
+  - job_name: "node-expoter"
+    static_configs:
+      - targets: ['192.168.89.109:9100','192.168.89.110:9100','192.168.89.111:9100']
+        labels:
+            username: 'nguyenmanhduc03'
+
+
+  - job_name: cadvisor
+    static_configs:
+      - targets: ['192.168.89.109:8080','192.168.89.110:8080','192.168.89.111:8080']
+        labels:
+          username: 'nguyenmanhduc03'
+
+
+

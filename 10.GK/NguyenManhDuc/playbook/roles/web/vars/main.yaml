@@ -1,0 +1,8 @@
+---
+web_image_name: littlehawk03/web
+web_container_name: web
+
+API_HOST: "192.168.89.110"
+API_POST: "5500"
+FLASK_ENV: development
+FLUENTD_HOST: "192.168.89.107"

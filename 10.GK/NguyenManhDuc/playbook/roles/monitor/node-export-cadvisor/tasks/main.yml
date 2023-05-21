@@ -1,0 +1,11 @@
+---
+
+- name: copy docker-compose.yml to a foler
+  copy:
+    src: docker-compose.yml
+    dest: /tmp/docker_exporter/
+
+- name: run the docker-compose.yml 
+  docker_compose:
+    project_src: /tmp/docker_exporter/
+    state: present

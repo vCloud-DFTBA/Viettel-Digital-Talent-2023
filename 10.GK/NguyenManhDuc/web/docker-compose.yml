@@ -1,0 +1,50 @@
+version: "3"
+
+# Three-tier web architecture :))
+
+services:
+  # web app using python flask and html
+  web_app:
+    build: .
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_ENV=development
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+    depends_on:
+      - mongodb
+    networks:
+      - web_network
+     
+  # image mongdb port mapping 27017
+  mongodb:
+    image: littlehawk03/mongo-slim:latest
+    container_name: database
+    # volumes:
+    #   - ./data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - web_network
+  
+  # build docker images for web server using nginx
+  web_server:
+    
+    build: 
+      context: ./nginx
+    hostname: nginx
+    environment:
+      - FLASK_SERVER_ADDR=web_app:5000
+    ports:
+      - 80:80
+    depends_on:
+      - web_app
+    networks:
+      - web_network
+    
+    
+networks:
+  web_network:
+    driver: bridge
+        

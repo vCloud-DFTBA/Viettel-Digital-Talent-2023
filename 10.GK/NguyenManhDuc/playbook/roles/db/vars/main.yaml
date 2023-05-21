@@ -1,0 +1,4 @@
+---
+docker_image_name: mongo:5.0
+docker_container_name: db
+

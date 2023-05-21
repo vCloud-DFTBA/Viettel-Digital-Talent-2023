@@ -1,0 +1,2 @@
+grafana_image: grafana/grafana-enterprise
+container_grafana_name: grafana

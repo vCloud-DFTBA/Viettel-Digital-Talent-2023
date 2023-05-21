@@ -1,0 +1,7 @@
+---
+- name: deploy fluent
+  hosts: localhost
+  become: true
+  gather_facts: false
+  roles:
+    - log/fluent
