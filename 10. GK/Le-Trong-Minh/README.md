@@ -45,6 +45,7 @@ Dockerfile for each service:
 ### 1.3 Write unit tests for APIs functionality (0.5pts) ✅
 
 The API's unit test file is as follows:
+
         ```python
         import pytest
         from fastapi.testclient import TestClient
