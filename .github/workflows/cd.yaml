@@ -33,6 +33,6 @@ jobs:
             app/api/Dockerfile
             app/web/Dockerfile
           tags: |
-            backend:${ env.TAG}
-            fronend:${ env.TAG}
+            backend:${ env.TAG }
+            fronend:${ env.TAG }
      
