@@ -1,0 +1,75 @@
+docker-compose up -d --build                  
+[+] Running 10/1
+ ✔ mongodb 9 layers [⣿⣿⣿⣿⣿⣿⣿⣿⣿]      0B/0B      Pulled                                                                           93.3s 
+[+] Building 130.4s (10/10) FINISHED                                                                                                   
+ => [internal] load .dockerignore                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                   0.0s
+ => [internal] load build definition from Dockerfile                                                                              0.0s
+ => => transferring dockerfile: 244B                                                                                              0.0s
+ => [internal] load metadata for docker.io/library/python:3.9                                                                     3.1s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                     0.0s
+ => [1/4] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51             116.6s
+ => => resolve docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51               0.0s
+ => => sha256:f0b2855cc2c528e9cd1cff924dd676c90b9294b799804adad2813b8b6dea6f70 2.01kB / 2.01kB                                    0.0s
+ => => sha256:6bb3b066da172af5b78710b2c4e12ed4a9da99c4392f1bcf8c865356dcf525f3 7.52kB / 7.52kB                                    0.0s
+ => => sha256:bd49b43770afa984b42a50282487e41b4ca05ba0e9f8bf233e6fc6d2fa99353e 54.68MB / 54.68MB                                 60.0s
+ => => sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51 1.86kB / 1.86kB                                    0.0s
+ => => sha256:73587d290df17347645f166c8385f0a2d320a31f4803658f619f2887a5d88faf 15.75MB / 15.75MB                                 29.1s
+ => => sha256:d677c78be691f8dcbe9d44ce576b97ad205b3dd78557dc62794e59eb19553ee9 53.69MB / 53.69MB                                 34.4s
+ => => sha256:e9a96e84daab7feb81c20a699d776f6cb02383bdcc7f2b02d4f3af942e740c2a 189.77MB / 189.77MB                              111.4s
+ => => sha256:1fae52722eaca931441d62f115fa36556ed7a0e4751aa1dfc99fd5d3b9f20a51 6.40MB / 6.40MB                                   39.4s
+ => => extracting sha256:d677c78be691f8dcbe9d44ce576b97ad205b3dd78557dc62794e59eb19553ee9                                         0.9s
+ => => extracting sha256:73587d290df17347645f166c8385f0a2d320a31f4803658f619f2887a5d88faf                                         0.3s
+ => => sha256:23760ffdb04d39c393f74e722c77f45efee7af8e4fcff040e614f6ff4aa8581d 16.03MB / 16.03MB                                 50.4s
+ => => sha256:ad7cfc4d8f1ed5967775fbc3b51f6607fc716b60954b15645ac0e15b2567118f 243B / 243B                                       51.4s
+ => => sha256:690d2ae436879a0350388d115c8c8912a10497e45728f89cef3418257ac0d83b 2.90MB / 2.90MB                                   55.2s
+ => => extracting sha256:bd49b43770afa984b42a50282487e41b4ca05ba0e9f8bf233e6fc6d2fa99353e                                         1.1s
+ => => extracting sha256:e9a96e84daab7feb81c20a699d776f6cb02383bdcc7f2b02d4f3af942e740c2a                                         2.8s
+ => => extracting sha256:1fae52722eaca931441d62f115fa36556ed7a0e4751aa1dfc99fd5d3b9f20a51                                         0.2s
+ => => extracting sha256:23760ffdb04d39c393f74e722c77f45efee7af8e4fcff040e614f6ff4aa8581d                                         0.2s
+ => => extracting sha256:ad7cfc4d8f1ed5967775fbc3b51f6607fc716b60954b15645ac0e15b2567118f                                         0.0s
+ => => extracting sha256:690d2ae436879a0350388d115c8c8912a10497e45728f89cef3418257ac0d83b                                         0.1s
+ => [internal] load build context                                                                                                 0.0s
+ => => transferring context: 21.83kB                                                                                              0.0s
+ => [2/4] WORKDIR /code                                                                                                           0.4s
+ => [3/4] COPY . /code                                                                                                            0.0s
+ => [4/4] RUN pip install --no-cache-dir --upgrade -r requirements.txt                                                           10.1s
+ => exporting to image                                                                                                            0.2s
+ => => exporting layers                                                                                                           0.2s
+ => => writing image sha256:99219f196ddd2c0a442e7e69bb3b2f0c261bf451af0a16c619c34a0a32addb45                                      0.0s
+ => => naming to docker.io/library/vu_minh_hieu-fastapi                                                                           0.0s
+[+] Building 81.5s (11/11) FINISHED                                                                                                    
+ => [internal] load .dockerignore                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                   0.0s
+ => [internal] load build definition from Dockerfile                                                                              0.0s
+ => => transferring dockerfile: 178B                                                                                              0.0s
+ => [internal] load metadata for docker.io/library/node:18.2.0-alpine                                                             3.1s
+ => [auth] library/node:pull token for registry-1.docker.io                                                                       0.0s
+ => [1/5] FROM docker.io/library/node:18.2.0-alpine@sha256:0677e437543d10f6cb050d92c792a14e5eb84340e3d5b4c25a88baa723d8a4ae      18.1s
+ => => resolve docker.io/library/node:18.2.0-alpine@sha256:0677e437543d10f6cb050d92c792a14e5eb84340e3d5b4c25a88baa723d8a4ae       0.0s
+ => => sha256:f470461fb2f6789d707bfd72b2ffc7af9a7e27722a4774de1a7b82d2fe839178 6.64kB / 6.64kB                                    0.0s
+ => => sha256:9981e73032c8833e387a8f96986e560edbed12c38119e0edb0439c9c2234eac9 2.72MB / 2.72MB                                    1.9s
+ => => sha256:e856a1339a133f84c04cafa9dc290b7f913439bd1daa5d1e918a1ab45f6ccbdf 46.73MB / 46.73MB                                 16.2s
+ => => sha256:a13e5231b8c719c40878653ac0a14292a8526d2467eb62a4908e3774b41015dd 2.43MB / 2.43MB                                    1.9s
+ => => sha256:0677e437543d10f6cb050d92c792a14e5eb84340e3d5b4c25a88baa723d8a4ae 1.43kB / 1.43kB                                    0.0s
+ => => sha256:06d71ed7b244ba1c143f3f90afce0fe4429f43b0294571dfc20a7f33f828941f 1.16kB / 1.16kB                                    0.0s
+ => => extracting sha256:9981e73032c8833e387a8f96986e560edbed12c38119e0edb0439c9c2234eac9                                         0.2s
+ => => sha256:850438ed94e8d7314f320dca98386254b850701010a2ca7ba5e98a814bf17306 452B / 452B                                        2.2s
+ => => extracting sha256:e856a1339a133f84c04cafa9dc290b7f913439bd1daa5d1e918a1ab45f6ccbdf                                         1.4s
+ => => extracting sha256:a13e5231b8c719c40878653ac0a14292a8526d2467eb62a4908e3774b41015dd                                         0.1s
+ => => extracting sha256:850438ed94e8d7314f320dca98386254b850701010a2ca7ba5e98a814bf17306                                         0.0s
+ => [internal] load build context                                                                                                 0.1s
+ => => transferring context: 1.45MB                                                                                               0.1s
+ => [2/5] WORKDIR /app                                                                                                            1.7s
+ => [3/5] COPY . /app                                                                                                             0.0s
+ => [4/5] RUN npm install                                                                                                        30.6s
+ => [5/5] RUN npm run build                                                                                                      22.9s
+ => exporting to image                                                                                                            5.0s
+ => => exporting layers                                                                                                           5.0s
+ => => writing image sha256:133d87c286a34a25a7c0d5d5abfaaaee26cab270a4154c46f3e4b026f8847079                                      0.0s
+ => => naming to docker.io/library/vu_minh_hieu-react                                                                             0.0s
+[+] Running 4/4
+ ✔ Network vu_minh_hieu_default  Created                                                                                          0.1s 
+ ✔ Container data_tier           Started                                                                                          0.9s 
+ ✔ Container logic_tier          Started                                                                                          1.5s 
+ ✔ Container presentation_tier   Started  

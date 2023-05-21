@@ -13,8 +13,8 @@ function App() {
     const [isOpen, setIsOpen] = useState();
     const [isEdit, setIsEdit] = useState(true);
     const [reload, setReload] = useState(true);
-    const port = process.env.REACT_APP_PORT_API;
-    const url = `http://localhost:${port}/api/v1`;
+    // const port = process.env.REACT_APP_PORT_API;
+    const url = `http://0.0.0.0:80/api/v1`;
     console.log(process.env.REACT_APP_PORT_API);
     useEffect(() => {
         if (reload) {

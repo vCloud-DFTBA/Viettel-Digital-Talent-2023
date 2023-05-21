@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const port = process.env.REACT_APP_PORT_API;
-const BASE_URL = `http://localhost:${port}/api/v1`;
+// const port = process.env.REACT_APP_PORT_API;
+const BASE_URL = `http://0.0.0.0:80/api/v1`;
 
 export const getStudent = (id) => axios.get(`${BASE_URL}/students/${id}`);
 

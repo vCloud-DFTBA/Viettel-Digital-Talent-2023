@@ -1,0 +1,14 @@
+IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
+133d87c286a3   13 minutes ago   CMD ["npm" "start"]                             0B        buildkit.dockerfile.v0
+<missing>      13 minutes ago   RUN /bin/sh -c npm run build # buildkit         19.3MB    buildkit.dockerfile.v0
+<missing>      13 minutes ago   RUN /bin/sh -c npm install # buildkit           364MB     buildkit.dockerfile.v0
+<missing>      14 minutes ago   COPY . /app # buildkit                          1.45MB    buildkit.dockerfile.v0
+<missing>      14 minutes ago   WORKDIR /app                                    0B        buildkit.dockerfile.v0
+<missing>      12 months ago    /bin/sh -c #(nop)  CMD ["node"]                 0B        
+<missing>      12 months ago    /bin/sh -c #(nop)  ENTRYPOINT ["docker-entry…   0B        
+<missing>      12 months ago    /bin/sh -c #(nop) COPY file:4d192565a7220e13…   388B      
+<missing>      12 months ago    /bin/sh -c apk add --no-cache --virtual .bui…   7.86MB    
+<missing>      12 months ago    /bin/sh -c #(nop)  ENV YARN_VERSION=1.22.19     0B        
+<missing>      12 months ago    /bin/sh -c addgroup -g 1000 node     && addu…   157MB     
+<missing>      12 months ago    /bin/sh -c #(nop)  ENV NODE_VERSION=18.2.0      0B        
+<missing>      13 months ago    /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B      
