@@ -1,0 +1,2 @@
+IMAGE_NAME: khanhlinh/frontend-vdt:v0.1.0
+NETWORK_NAME: api-network

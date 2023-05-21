@@ -1,0 +1,41 @@
+- name: Check if API network exists
+  community.docker.docker_network_info:
+    name: "{{ API_NETWORK_NAME }}"
+  register: api_network
+  become: true
+
+- name: Create API network
+  community.docker.docker_network:
+    name: "{{ API_NETWORK_NAME }}"
+    state: present
+  when: api_network.exists == false
+  become: true
+
+- name: Check if Database network exists
+  community.docker.docker_network_info:
+    name: "{{ DB_NETWORK_NAME }}"
+  register: db_network
+  become: true
+
+- name: Create Database network
+  community.docker.docker_network:
+    name: "{{ DB_NETWORK_NAME }}"
+    state: present
+  when: db_network.exists == false
+  become: true
+
+- name: Run Python backend container with image backend-vdt:v0.1.0
+  community.docker.docker_container:
+    name: backend
+    image: "{{ IMAGE_NAME }}"
+    ports:
+      - "5000:5000"
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ DB_NETWORK_NAME }}"
+      - name: "{{ API_NETWORK_NAME }}"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "100.115.93.99:24224"
+      tag: "docker.api"
+  tags: docker

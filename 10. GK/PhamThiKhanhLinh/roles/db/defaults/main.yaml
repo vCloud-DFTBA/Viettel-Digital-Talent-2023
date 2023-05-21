@@ -1,0 +1,7 @@
+IMAGE_NAME: mongo:5.0
+NETWORK_NAME: db-network
+FLUENT_NETWORK_NAME: fluentd-network
+MONGODB_VOLUME: ./app/data:/docker-entrypoint-initdb.d
+MONGO_ROOT_USERNAME: kilinh
+MONGO_ROOT_PASSWORD: Linh2812
+DATABASE_NAME: vdt-2023

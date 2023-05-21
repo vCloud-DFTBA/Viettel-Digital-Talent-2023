@@ -1,0 +1,33 @@
+- name: Check if Database network exists
+  community.docker.docker_network_info:
+    name: "{{ NETWORK_NAME }}"
+  register: db_network
+  become: true
+
+- name: Create Database network
+  community.docker.docker_network:
+    name: "{{ NETWORK_NAME }}"
+    state: present
+  when: db_network.exists == false
+  become: true
+
+- name: Run docker image mongo
+  community.docker.docker_container:
+    name: mongo
+    image: "{{ IMAGE_NAME }}"
+    restart_policy: unless-stopped
+    ports:
+      - "27017:27017"
+    networks:
+      - name: "{{ NETWORK_NAME }}"
+    volumes:
+      - "{{ MONGODB_VOLUME }}"
+    env:
+      MONGO_INITDB_ROOT_USERNAME: "{{ MONGO_ROOT_USERNAME }}"
+      MONGO_INITDB_ROOT_PASSWORD: "{{ MONGO_ROOT_PASSWORD }}"
+      MONGO_INITDB_DATABASE: "{{ DATABASE_NAME }}"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "100.115.93.99:24224"
+      tag: "docker.db"
+  tags: docker

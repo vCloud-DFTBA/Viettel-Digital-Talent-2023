@@ -1,0 +1,36 @@
+- name: Set up Docker
+  hosts: all
+  become: true
+  roles:
+    - common
+
+- name: Set up logstash service with Fluentd
+  hosts: localhost
+  become: true
+  roles:
+    - log
+
+- name: Set up Load Balancer with NGINX
+  hosts: loadbalancer
+  become: true
+  roles:
+    - lb
+
+- name: Deploy backend and mongodb database
+  hosts: webapp
+  become: true
+  roles:
+    - db
+    - api
+
+- name: Deploy frontend
+  hosts: webapp
+  become: true
+  roles:
+    - web
+
+- name: Set up Prometheus with Node Exporter and Cadvisor
+  hosts: webapp
+  become: true
+  roles:
+    - monitor
