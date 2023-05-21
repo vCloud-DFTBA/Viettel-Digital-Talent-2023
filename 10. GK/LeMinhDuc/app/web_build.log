@@ -1,0 +1,155 @@
+#1 [internal] load .dockerignore
+#1 transferring context: 53B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 325B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:18
+#3 ...
+
+#4 [auth] library/node:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [auth] library/nginx:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#6 [internal] load metadata for docker.io/library/nginx:1.22.0-alpine
+#6 ...
+
+#3 [internal] load metadata for docker.io/library/node:18
+#3 DONE 5.1s
+
+#6 [internal] load metadata for docker.io/library/nginx:1.22.0-alpine
+#6 DONE 5.3s
+
+#7 [internal] load build context
+#7 transferring context: 161.86kB done
+#7 DONE 0.0s
+
+#8 [stage-1 1/3] FROM docker.io/library/nginx:1.22.0-alpine@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec
+#8 resolve docker.io/library/nginx:1.22.0-alpine@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec 0.1s done
+#8 sha256:f0219f99a56ec88f02f1d6055e5b4565cb80dba10b2301aa18f47913456accac 1.57kB / 1.57kB done
+#8 sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec 1.65kB / 1.65kB done
+#8 sha256:5685937b6bc1bd59d5301c596efc66f4d447e3d65959a3d52db007c7d7300fab 8.74kB / 8.74kB done
+#8 sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49 0B / 2.81MB 0.2s
+#8 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 0B / 7.39MB 0.2s
+#8 sha256:a19f4cc2e0294fdd41523297ad14df64bb526fdf8ce599b4af3687d8912c4e41 0B / 601B 0.2s
+#8 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 1.05MB / 7.39MB 1.0s
+#8 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 3.15MB / 7.39MB 1.3s
+#8 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 4.19MB / 7.39MB 1.4s
+#8 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 6.29MB / 7.39MB 1.5s
+#8 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 7.39MB / 7.39MB 1.6s
+#8 sha256:a19f4cc2e0294fdd41523297ad14df64bb526fdf8ce599b4af3687d8912c4e41 601B / 601B 1.5s done
+#8 sha256:4ae981811a6d5d8dbd93ecccfe21e9e947155407df83e899099170dfdf366fb6 0B / 893B 1.6s
+#8 sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49 1.05MB / 2.81MB 1.8s
+#8 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 7.39MB / 7.39MB 1.6s done
+#8 sha256:7a662f439736576aac6a8cd6ddf51e961c8641e2a22ce7bb620b60815b25fc37 0B / 666B 1.8s
+#8 sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49 2.10MB / 2.81MB 1.9s
+#8 sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49 2.81MB / 2.81MB 1.9s done
+#8 extracting sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49 0.1s done
+#8 sha256:a317c3c2c9064a2aabf3ab203f55b717e828a7fc339ee0a6100cd8d5970a6c17 0B / 1.40kB 2.0s
+#8 extracting sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472
+#8 sha256:4ae981811a6d5d8dbd93ecccfe21e9e947155407df83e899099170dfdf366fb6 893B / 893B 2.2s done
+#8 sha256:7a662f439736576aac6a8cd6ddf51e961c8641e2a22ce7bb620b60815b25fc37 666B / 666B 2.2s done
+#8 extracting sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 0.3s done
+#8 extracting sha256:a19f4cc2e0294fdd41523297ad14df64bb526fdf8ce599b4af3687d8912c4e41
+#8 extracting sha256:a19f4cc2e0294fdd41523297ad14df64bb526fdf8ce599b4af3687d8912c4e41 done
+#8 extracting sha256:4ae981811a6d5d8dbd93ecccfe21e9e947155407df83e899099170dfdf366fb6 done
+#8 extracting sha256:7a662f439736576aac6a8cd6ddf51e961c8641e2a22ce7bb620b60815b25fc37
+#8 sha256:a317c3c2c9064a2aabf3ab203f55b717e828a7fc339ee0a6100cd8d5970a6c17 1.40kB / 1.40kB 2.5s done
+#8 extracting sha256:7a662f439736576aac6a8cd6ddf51e961c8641e2a22ce7bb620b60815b25fc37 done
+#8 extracting sha256:a317c3c2c9064a2aabf3ab203f55b717e828a7fc339ee0a6100cd8d5970a6c17 done
+#8 DONE 2.8s
+
+#9 [stage-1 2/3] COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+#9 DONE 0.1s
+
+#10 [build 1/6] FROM docker.io/library/node:18@sha256:3f567a26b6b6d601fb2b168d4f987b50697617ead15bfc0e0152e600ac48d0fe
+#10 resolve docker.io/library/node:18@sha256:3f567a26b6b6d601fb2b168d4f987b50697617ead15bfc0e0152e600ac48d0fe 0.1s done
+#10 sha256:c0a8990273163b3c17685bf98986c6e21d574cda0cbb97440147e9f73e71e973 2.00kB / 2.00kB done
+#10 sha256:3f567a26b6b6d601fb2b168d4f987b50697617ead15bfc0e0152e600ac48d0fe 1.21kB / 1.21kB done
+#10 sha256:acb969b80f38172c04103f6e584a938b8bb46d9283bb8071c1028cbc354a7c50 7.24kB / 7.24kB done
+#10 sha256:b58a51cba8a5618947ffed9b5650d08c891b7b33e66d86ccc5c4c6364ee4fa98 4.20kB / 4.20kB 2.8s done
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 0B / 45.52MB 2.9s
+#10 sha256:0ebc6b9148c5daa3d927d5b8e529325eab0e1e0bce4430a73f266cae5f5cb77e 0B / 2.28MB 2.9s
+#10 extracting sha256:b58a51cba8a5618947ffed9b5650d08c891b7b33e66d86ccc5c4c6364ee4fa98 done
+#10 sha256:0c858c110602b07013263ed0af84a352975f078f04cc05f2533435d0bacb6dac 0B / 450B 2.9s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 4.19MB / 45.52MB 3.9s
+#10 sha256:0c858c110602b07013263ed0af84a352975f078f04cc05f2533435d0bacb6dac 450B / 450B 4.0s done
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 8.39MB / 45.52MB 4.2s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 12.58MB / 45.52MB 4.7s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 15.73MB / 45.52MB 5.0s
+#10 sha256:0ebc6b9148c5daa3d927d5b8e529325eab0e1e0bce4430a73f266cae5f5cb77e 1.05MB / 2.28MB 5.0s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 18.87MB / 45.52MB 5.4s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 22.02MB / 45.52MB 5.7s
+#10 sha256:0ebc6b9148c5daa3d927d5b8e529325eab0e1e0bce4430a73f266cae5f5cb77e 2.10MB / 2.28MB 5.7s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 25.17MB / 45.52MB 6.0s
+#10 sha256:0ebc6b9148c5daa3d927d5b8e529325eab0e1e0bce4430a73f266cae5f5cb77e 2.28MB / 2.28MB 5.8s done
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 29.36MB / 45.52MB 6.4s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 32.51MB / 45.52MB 6.7s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 36.70MB / 45.52MB 7.1s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 39.85MB / 45.52MB 7.5s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 42.99MB / 45.52MB 7.7s
+#10 sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 45.52MB / 45.52MB 7.9s done
+#10 extracting sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 0.1s
+#10 extracting sha256:5779d144b348b0ea83c27b9f11fb0bc281512e4b467dabff574484f573282206 1.7s done
+#10 extracting sha256:0ebc6b9148c5daa3d927d5b8e529325eab0e1e0bce4430a73f266cae5f5cb77e
+#10 extracting sha256:0ebc6b9148c5daa3d927d5b8e529325eab0e1e0bce4430a73f266cae5f5cb77e 0.1s done
+#10 extracting sha256:0c858c110602b07013263ed0af84a352975f078f04cc05f2533435d0bacb6dac done
+#10 DONE 10.1s
+
+#11 [build 2/6] WORKDIR /app
+#11 DONE 0.2s
+
+#12 [build 3/6] COPY ./package* ./
+#12 DONE 0.1s
+
+#13 [build 4/6] RUN npm install
+#13 23.23 
+#13 23.23 added 266 packages, and audited 267 packages in 23s
+#13 23.23 
+#13 23.23 90 packages are looking for funding
+#13 23.23   run `npm fund` for details
+#13 23.23 
+#13 23.23 found 0 vulnerabilities
+#13 23.23 npm notice 
+#13 23.23 npm notice New minor version of npm available! 9.5.1 -> 9.6.7
+#13 23.23 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.7>
+#13 23.23 npm notice Run `npm install -g npm@9.6.7` to update!
+#13 23.23 npm notice 
+#13 DONE 23.4s
+
+#14 [build 5/6] COPY . .
+#14 DONE 0.1s
+
+#15 [build 6/6] RUN npm run build
+#15 0.842 
+#15 0.842 > web@0.0.0 build
+#15 0.842 > vite build
+#15 0.842 
+#15 1.096 vite v4.3.3 building for production...
+#15 1.144 transforming...
+#15 5.360 ✓ 1234 modules transformed.
+#15 5.750 rendering chunks...
+#15 5.764 computing gzip size...
+#15 5.828 dist/index.html                   0.78 kB │ gzip:   0.42 kB
+#15 5.828 dist/assets/index-37c88af2.css    0.45 kB │ gzip:   0.31 kB
+#15 5.828 dist/assets/index-6a738ff0.js   574.44 kB │ gzip: 183.11 kB
+#15 5.829 
+#15 5.829 (!) Some chunks are larger than 500 kBs after minification. Consider:
+#15 5.829 - Using dynamic import() to code-split the application
+#15 5.829 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+#15 5.829 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#15 5.829 ✓ built in 4.73s
+#15 DONE 6.0s
+
+#16 [stage-1 3/3] COPY --from=build /app/dist /usr/share/nginx/html
+#16 DONE 0.0s
+
+#17 exporting to image
+#17 exporting layers 0.0s done
+#17 writing image sha256:22d33ace406f4c9c3b710378d948857c78fc77fc874f26450179b1a53ae68ab0 done
+#17 naming to docker.io/duclm278/web done
+#17 DONE 0.0s
