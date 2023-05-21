@@ -34,7 +34,10 @@ jobs:
 
       # Test application run or die
       - name: Test application run or die
-        run: curl 127.0.0.1:5000
+        run: |
+          curl 127.0.0.1:5000
+          curl 127.0.0.1:5001
+          curl 127.0.0.1:8000
 
       - name: Run test by pytest
         run: |
