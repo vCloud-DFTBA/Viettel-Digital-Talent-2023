@@ -335,3 +335,7 @@ Run the command:
 
 - Kibana log
 ![](images/5.Logging/kibana_log.png)
+
+
+
+
