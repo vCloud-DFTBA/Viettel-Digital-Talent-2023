@@ -17,7 +17,7 @@ def student_data():
         "major": "CS"
     }
 
-def test_post_student(student_data):
+def test_post_endpoint(student_data):
     response = client.post("/api/v1/students", json=student_data)
     assert response.status_code == 200
     response_data = response.json()
@@ -37,12 +37,12 @@ def test_post_student(student_data):
     }
     assert response_data == expected_data
 
-def test_get_all_students():
+def test_get_all_endpoint():
     response = client.get("/api/v1/students")
     assert response.status_code == 200
     assert response.json() is not None
 
-def test_get_student_by_id(student_data):
+def test_get_by_id_endpoint(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     response2 = client.get(f"/api/v1/students/{student_id}")
@@ -64,7 +64,7 @@ def test_get_student_by_id(student_data):
     }
     assert response2_data == expected_data
 
-def test_update_student(student_data):
+def test_update_endpoint(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     updated_data = {
@@ -85,7 +85,7 @@ def test_update_student(student_data):
     }
     assert response2.json() == expected_data
 
-def test_delete_student(student_data):
+def test_delete_endpoint(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     response2 = client.delete(f"/api/v1/students/{student_id}")
