@@ -19,7 +19,7 @@ jobs:
             - name: Checkout the code
               uses: actions/checkout@v2
             - name: Build the Docker image
-              run: docker-compose -f 3.\ Midterm/Vu_Minh_Hieu/docker-compose.yml build --no-cache --force-rm
+              run: docker-compose -f 10.GK/Vu_Minh_Hieu/docker-compose.yml build --no-cache --force-rm
 
     Run_unit_test:
         runs-on: ubuntu-latest
@@ -27,11 +27,11 @@ jobs:
             - name: Checkout the code
               uses: actions/checkout@v2
             - name: Create fresh env to test
-              run: docker-compose -f 3.\ Midterm/Vu_Minh_Hieu/docker-compose.yml up -d mongodb
+              run: docker-compose -f 10.GK/Vu_Minh_Hieu/docker-compose.yml up -d mongodb
             - name: Install local dependencies
-              run: pip install -r 3.\ Midterm/Vu_Minh_Hieu/backend/requirements.txt
+              run: pip install -r 10.GK/Vu_Minh_Hieu/backend/requirements.txt
             - name: Run the unittest
-              run: pytest 3.\ Midterm/Vu_Minh_Hieu/backend/
+              run: pytest 10.GK/Vu_Minh_Hieu/backend/
 
     Push_to_Docker_hub:
         name: Push Docker image to Docker Hub
@@ -58,7 +58,7 @@ jobs:
             - name: Build and push api image to Docker hub
               uses: docker/build-push-action@v3
               with:
-                  context: "{{defaultContext}}:3.\ Midterm/Vu_Minh_Hieu/backend"
+                  context: "{{defaultContext}}:10.GK/Vu_Minh_Hieu/backend"
                   push: true
                   tags: "hieuminhvuu/mt_backend:latest"
                   labels: "hieuminhvuu/mt_backend"
@@ -66,7 +66,7 @@ jobs:
             - name: Build and push api image to Docker hub
               uses: docker/build-push-action@v3
               with:
-                  context: "{{defaultContext}}:3.\ Midterm/Vu_Minh_Hieu/frontend"
+                  context: "{{defaultContext}}:10.GK/Vu_Minh_Hieu/frontend"
                   push: true
                   tags: "hieuminhvuu/mt_frontend:latest"
                   labels: "hieuminhvuu/mt_backend"
