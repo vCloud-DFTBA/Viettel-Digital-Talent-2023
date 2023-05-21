@@ -16,8 +16,8 @@ jobs:
       matrix:
         node-version: [18.x]
         dir:
-          - source/api
-          - source/web
+          - "10.GK\\NinhVanNghia\\source\\api"
+          - "10.GK\\NinhVanNghia\\source\\web"
 
     steps:
     - name: Checkout repo
