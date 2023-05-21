@@ -137,7 +137,7 @@ _Log của luồng:_
 
 **Mô tả kiến trúc triển khai:**
 
-Trong bài demo này, em sử dụng 3 VM chạy ubuntu với địa chỉ IP:
+    Trong bài demo này, em sử dụng 3 VM chạy ubuntu với địa chỉ IP:
 
     - VM1: 192.168.192.144
     - VM2: 192.168.192.145
@@ -185,6 +185,14 @@ _Log của luồng: Build-Push Frontend Image_
     <img src="./images/cd_log_2.png"/>
 </div>
 
+_Các image Frontend và Backend trên DockerHub với các tag_
+
+<div align="center">
+    <img src="./images/docker_fe_images.png"/>
+</div>
+<div align="center">
+    <img src="./images/docker_be_images.png"/>
+</div>
 - Hướng dẫn sử dụng ansible playbook để triển khai các thành phần hệ thống
 
 Chuyển đến thư mục [ansible](./ansible/)
