@@ -3,7 +3,7 @@ services:
   appuser1:
     build: ./app
     depends_on:
-      - dbmongo
+      - mongodb
     ports:
       - 5000:5000
     networks:
@@ -13,7 +13,7 @@ services:
   appuser2:
     build: ./app
     depends_on:
-      - dbmongo
+      - mongodb
     ports:
       - 5001:5000
     networks:
