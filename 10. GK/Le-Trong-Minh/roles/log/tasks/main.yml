@@ -1,0 +1,39 @@
+---
+- name: Build a fluentd image
+  community.docker.docker_image:
+    name: fluentd_image
+    build:
+       path: "./roles/log/files"
+    source: "build"
+    force_source: true
+
+# config:
+- name: Check network
+  docker_network_info:
+    name: "{{ NETWORK }}"
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Create docker network
+  docker_network:
+    name: "{{ NETWORK }}"
+    state: present
+  when: docker_network.exists == false
+  become: yes
+  tags: docker
+
+- name: Build a fluentd container
+  community.docker.docker_container:
+    name: fluentd
+    image: fluentd_image
+    volumes: "./roles/log/files/fluentd.conf:/fluentd/etc/fluent.conf"
+    container_default_behavior: "compatibility"
+    networks: 
+      - name: "{{ NETWORK }}"
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    restart_policy: unless-stopped
+  become: yes
+  tags: docker

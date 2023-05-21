@@ -1,0 +1,4 @@
+---
+# defaults file for nginx
+hostname: vt_app
+NETWORK : vdt

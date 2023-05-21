@@ -1,0 +1,63 @@
+---
+- name: Create vth group info.
+  group:
+    name: '{{ hostname }}'
+
+- name: Create user.
+  user:
+    name: '{{ hostname }}'
+    group: '{{ hostname }}'
+
+- name: Check docker install.
+  package:
+    name: docker
+    state: present
+
+- name: Check network
+  docker_network_info:
+    name: "{{ NETWORK }}"
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Create docker network
+  docker_network: 
+    name: "{{ NETWORK }}"
+  when: docker_network.exists == false
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Restart a container
+  community.docker.docker_container:
+    name: frontend_1
+    # image: trongminhjr/webserver:latest
+    image: trongminhjr/devmidterm-web:v1
+    # image: webserver
+    state: started
+    restart_policy: unless-stopped
+    networks: 
+      - name: "{{NETWORK}}"
+    ports:
+      - "3000:3000"
+    env:
+      PORT_API : "80"
+      # PORT : "3000"
+    command: npm start
+    
+- name: Restart a container
+  community.docker.docker_container:
+    name: frontend_2
+    image: trongminhjr/webserver:latest
+    # image: trongminhjr/devmidterm-web:v1
+    # image: webserver
+    state: started
+    restart_policy: unless-stopped
+    networks: 
+      - name: "{{NETWORK}}"
+    ports:
+      - "3001:3001"
+    env:
+      PORT_API : "81"
+      PORT : "3001"
+    command: npm start
