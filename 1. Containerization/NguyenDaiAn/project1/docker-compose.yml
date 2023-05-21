@@ -1,0 +1,30 @@
+services:
+  db:
+    # image: mongo:5.0
+    container_name: p1_db
+    build: ./db
+    networks:
+      - project1
+    # restart: always
+    # volumes:
+    #   - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+  web: 
+    container_name: p1_web
+    build: ./web
+    depends_on: 
+      - db
+    networks:
+    - project1
+    restart: always
+  nginx:
+    container_name: p1_nginx
+    build: ./nginx
+    ports:
+      - 8001:8001
+    depends_on:
+      - web
+    networks:
+    - project1
+networks:
+  project1:
+    driver: bridge

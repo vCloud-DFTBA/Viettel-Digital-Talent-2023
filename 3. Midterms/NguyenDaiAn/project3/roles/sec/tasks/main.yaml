@@ -1,0 +1,10 @@
+---
+- name: Create defectdojo container
+  community.docker.docker_container:
+    name: defectdojo
+    image: defectdojo/defectdojo-django
+    network_mode: host
+      # networks:
+      #- name: project
+    restart_policy: "unless-stopped"
+

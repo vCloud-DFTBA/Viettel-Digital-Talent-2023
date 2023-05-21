@@ -1,0 +1,6 @@
+- name: "Run Tests"
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+  - test
