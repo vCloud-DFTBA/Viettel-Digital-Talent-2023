@@ -29,7 +29,7 @@ jobs:
         with:
           context: 10.GK/PhamDuyCuong/source/web_CRUD/api
           push: true
-          tags: backend:${{ env.TAG }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:${{ env.TAG }}
           file: 10.GK/PhamDuyCuong/source/web_CRUD/api/Dockerfile
       
       - name: Build and push Docker image fronend
@@ -37,5 +37,5 @@ jobs:
         with:
           context: 10.GK/PhamDuyCuong/source/web_CRUD
           push: true
-          tags: backend:${{ env.TAG }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:${{ env.TAG }}
           file: 10.GK/PhamDuyCuong/source/web_CRUD/web/Dockerfile
