@@ -8,7 +8,12 @@ node1 ansible_sudo_pass=2288
 
 
 [VPS]
-vps1 ansible_host=35.84.3.157
+vps1 ansible_host=35.86.186.124
 vps1 ansible_ssh_pass=vdt2023
 vps1 ansible_user=cloud_user
 vps1 ansible_sudo_pass=vdt2023
+
+vps2 ansible_host=35.86.242.19
+vps2 ansible_ssh_pass=vdt2023
+vps2 ansible_user=cloud_user
+vps2 ansible_sudo_pass=vdt2023
