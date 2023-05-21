@@ -12,7 +12,6 @@
   hosts: localhost
   become: true
   gather_facts: false
-
   roles:
     - db
     - lb
@@ -21,16 +20,26 @@
   hosts: all
   become: true
   gather_facts: false
-
   roles:
     - api
     - web
 
-- name: Create network on local
-  host: localhost
+- name: Create network on node1
+  hosts: node1
   become: true
   gather_facts: false
+  tasks:
+    - name: Create network
+      docker_network:
+        name: webapp_network
+        connected:
+          - flask
+          - webserver
 
+- name: Create network on local
+  hosts: localhost
+  become: true
+  gather_facts: false
   tasks:
     - name: Create network
       docker_network:
@@ -40,19 +49,6 @@
           - webserver
           - mongodb
           - loadbalance
-
-- name: Create network on node1
-  host: localhost
-  become: true
-  gather_facts: false
-
-  tasks:
-    - name: Create network
-      docker_network:
-        name: webapp_network
-        connected:
-          - flask
-          - webserver
 
 # - name: Forward 27017 port of node
 #   hosts: node1
