@@ -1,25 +1,33 @@
 # Phát triển 3-tier web application đơn giản
 
 Ouput: mã nguồn các dịch vụ
+
 - [Danh sách sinh viên](./src/app/services)
 - [CRUD sinh viên](./src/app/services)
 - [Giao diện HTML, CSS, JS](./src/nginx/index.html)
 - [nginx.conf](./src/nginx/nginx.conf)
-- [unit tests](./src/test)
+- [unit tests](./src/app/test)
+
+Giao diện: ![giaodien](./images/giao-dien.jpg)
 
 # Triển khai web applications dùng devops tools
+
 ## 1. Containerization
+
 - [Dockerfile API](./src/app/Dockerfile)
 - [Dockerfile Nginx](./src/nginx/Dockerfile)
 - Câu lệnh build:
-	- nginx: `docker build -t ducpa01/nginx-buddy .`
-	- python api server: `docker build -t ducpa01/python-buddy .`
+- nginx: `docker build -t ducpa01/nginx-buddy .`
+- python api server: `docker build -t ducpa01/python-buddy .`
 - Docker history:
-	- [nginx web server](./src/nginx/history.txt)
-	- [python api server](./src/app/history.txt)
+- [nginx web server](./src/nginx/history.txt)
+- [python api server](./src/app/history.txt)
+
 ## 2. CI
+
 2.1 File setup CI
 Test khi push lên 1 branch
+
 ```yml
 name: ci-test-on-push
 
@@ -56,7 +64,9 @@ jobs:
           cd ./10.GK/PhamAnhDuc/src
           python -m unittest discover -s app -p '*_test.py' -v
 ```
+
 Test khi tạo pull request
+
 ```yml
 name: ci-test-on-pr
 
@@ -94,16 +104,21 @@ jobs:
           cd ./10.GK/PhamAnhDuc/src
           python -m unittest discover -s app -p '*_test.py' -v
 ```
+
 2.2 Output logs
+
 - Test khi push lên 1 branch: [link](./logs/test_on_push.txt)
 - Test khi tạo pull request: [link](./logs/test_on_pull_request.txt)
 
 2.3 Các hình ảnh demo:
+
 - test khi push lên 1 branch: ![697f10032b809405ff8fbb97807824d7.png](./images/697f10032b809405ff8fbb97807824d7.png)
 - Test khi tạo pull request: ![707e0d652ac6bd030bd2b05d43bfd4c9.png](./images/707e0d652ac6bd030bd2b05d43bfd4c9.png) ![8a05c080b052d86c528b5795890d007b.png](./images/8a05c080b052d86c528b5795890d007b.png)
 
 ## 3. CD
+
 3.1 File setup CD
+
 ```
 name: cd-build-push-on-tag
 
@@ -148,6 +163,7 @@ jobs:
           context: "{{defaultContext}}:10.GK/PhamAnhDuc/src/logging/fluentd"
 
 ```
+
 3.2 Output luồng build
 ![b9dfdb88dcf70b22f97bcb89ef3b10c3.png](./images/b9dfdb88dcf70b22f97bcb89ef3b10c3.png)
 ![8abfeb65b75dc5129d72dcece171be68.png](./images/8abfeb65b75dc5129d72dcece171be68.png)
@@ -155,19 +171,29 @@ jobs:
 ![448f8086f13b818d5874ac5bb15ad1e3.png](./images/448f8086f13b818d5874ac5bb15ad1e3.png)
 
 3.3 Hướng dẫn sử dụng ansible playbook
-	- Thêm các machine vào file `inventory.yml`
-	- trong file `main.yml`:
-		- config prometheus tập trung: `remote_write_server` 
-		- config elasticsearch server tập trung: `remote_logging_server`
-		- config `tag_version` muốn deploy
-		- config các endpoint cho load_balancer
-	- Chạy lệnh `ansible-playbook -i inventory.yml main.yml` để triển khai.
+
+- Thêm các machine vào file `inventory.yml`
+- trong file `main.yml`:
+- config prometheus tập trung: `remote_write_server`
+- config elasticsearch server tập trung: `remote_logging_server`
+- config `tag_version` muốn deploy
+- config các endpoint cho load_balancer
+- Chạy lệnh `ansible-playbook -i inventory.yml main.yml` để triển khai.
+
 3.4 Output [log triển khai](./ansible/final_log.txt)
 
 ## 4. Monitoring
+
 4.1 [Role monitor](./ansible/roles/monitor)
+
 4.2 Ảnh chụp dashboard
 
+![prom](./images/prom-node-load1.jpg)
+![prom graph](./images/prom-node-load1_graph.jpg)
 ## 5. Logging
+
 5.1 [Role logging](./ansible/roles/logging)
+
 5.2 Sample log từ kibana
+
+![LogKibana](./images//log-kibana.jpg)
