@@ -2,23 +2,17 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: app
-    container_name: vt_app
+    image: yellow09/vt_app:latest
+#    container_name: vt_app
     restart: always
     ports:
       - "8000"
     links:
       - db
-    # logging:
-    #   driver: "fluentd"
-    #   options:
-    #     fluentd-address: 172.17.0.1:24224
-    #     tag: app
 
   nginx:
     image: nginx:1.22.0-alpine
-    container_name: vt_nginx
+#    container_name: vt_nginx
     restart: always
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
@@ -29,12 +23,6 @@ services:
     ports:
       - "80:80"
       - "81:81"
-    # logging:
-    #   driver: "fluentd"
-    #   options:
-    #     fluentd-address: 172.17.0.1:24224
-    #     tag: nginx
-
 
   db:
     image: mongo:5.0-focal
@@ -45,8 +33,3 @@ services:
       - 27017:27017
     volumes:
       - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-    # logging:
-    #   driver: "fluentd"
-    #   options:
-    #     fluentd-address: 172.17.0.1:24224
-    #     tag: mongo
