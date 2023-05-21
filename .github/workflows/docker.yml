@@ -55,17 +55,17 @@ jobs:
         with:
           push: true
           context: "{{defaultContext}}:10.GK/PhamHongThanh/src/mongodb"
-          tags: ${{ secrets.DOCKER_USERNAME }}/thanhph/mongodb:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/mongodb:${{  github.ref_name }}
       - name: Build and push Database Docker image
         uses: docker/build-push-action@v4
         with:
           push: true
           context: "{{defaultContext}}:10.GK/PhamHongThanh/src/backend"
-          tags: ${{ secrets.DOCKER_USERNAME }}/thanhph/backend:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/backend:${{  github.ref_name }}
 
       - name: Build and push Frontend Docker image
         uses: docker/build-push-action@v4
         with:
           push: true
           context: "{{defaultContext}}:10.GK/PhamHongThanh/src/frontend"
-          tags: ${{ secrets.DOCKER_USERNAME }}/thanhph/frontend:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/frontend:${{  github.ref_name }}
