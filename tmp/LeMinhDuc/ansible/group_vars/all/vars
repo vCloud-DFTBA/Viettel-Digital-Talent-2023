@@ -1,12 +1,11 @@
 ---
+become_password: "{{ vault_become_password }}"
+
 # Settings for app
 app_ver: 0.1.0
 # app_ver: 0.1
 # app_ver: latest
 # app_dest: /etc/app # Absolute path on remote host
-
-# Settings for cleanup
-cleanup_prune_everything: true
 
 # Settings for db
 db_service: db
@@ -63,5 +62,7 @@ monitor_remote_write_url: http://27.66.108.93:9090/api/v1/write
 logger_service: logger
 logger_dest: /etc/logger # Absolute path on remote host
 logger_dest_cleanup: true
-logger_external_labels: { username: "leminhduc" }
-logger_remote_write_url: http://171.236.38.100:5601
+logger_host: 146.190.81.163
+elasticsearch_prefix: "leminhduc"
+elasticsearch_host: 171.236.38.100
+elasticsearch_port: 9200

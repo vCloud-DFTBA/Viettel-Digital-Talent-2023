@@ -19,13 +19,13 @@
 
 - name: Create and (re)start service {{ lb_service }}
   community.docker.docker_compose:
-    project_src: "{{ lb_target_dest }}"
+    project_src: "{{ target_dest }}"
     state: present
     restarted: true
     services:
       - "{{ lb_service }}"
 
-- name: Scale service {{ lb_target }} to {{ lb_target_scale }}
+- name: Scale service {{ target_service }} to {{ target_scale }}
   community.docker.docker_compose:
-    project_src: "{{ lb_target_dest }}"
-    scale: "{ '{{ lb_target }}': '{{ lb_target_scale }}' }"
+    project_src: "{{ target_dest }}"
+    scale: "{ '{{ target_service }}': '{{ target_scale }}' }"

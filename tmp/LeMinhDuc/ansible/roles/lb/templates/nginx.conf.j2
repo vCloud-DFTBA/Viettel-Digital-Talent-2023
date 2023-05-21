@@ -11,7 +11,7 @@ http {
   
     location / {
       resolver 127.0.0.11;
-      set $servers {{ lb_target }};
+      set $servers {{ target_service }};
       proxy_pass http://$servers:{{ lb_forward_port }};
     }
   }

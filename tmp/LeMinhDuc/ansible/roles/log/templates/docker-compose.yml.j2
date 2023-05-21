@@ -1,0 +1,8 @@
+services:
+  {{ logger_service }}:
+    restart: unless-stopped
+    container_name: fluentd
+    build: {{ logger_dest }}
+    volumes:
+        - {{ logger_dest }}/conf:/fluentd/etc
+    network_mode: "host"

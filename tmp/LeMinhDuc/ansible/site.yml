@@ -7,16 +7,50 @@
     - common
   tags: [common]
 
+# https://stackoverflow.com/a/52135934
+- name: Restart docker service
+  hosts: "{{ which | default('app') }}" # To override, use --extra-vars
+  become: true
+  gather_facts: false
+  roles:
+    - role: debug
+      debug_action: "restart_dockerd"
+  tags: [cleanup, debug]
+
 - name: Tear down existing services
-  hosts: "{{ cleanup_hosts | default('app') }}" # To override, use --extra-vars
+  hosts: "{{ which | default('app') }}" # To override, use --extra-vars
   become: true
   gather_facts: false
   roles:
     - role: cleanup
-      prune_everything: "{{ cleanup_prune_everything }}"
+      prune_everything: true
   tags: [cleanup]
 
-- name: Deploy db
+################################################################################
+# Deploy logger
+################################################################################
+
+- name: Deploy logger
+  hosts: logger
+  become: true
+  gather_facts: false
+  roles:
+    - log
+  tags: [deploy, log]
+
+################################################################################
+# Deploy db
+################################################################################
+
+- name: Set up db files
+  hosts: db
+  become: true
+  gather_facts: false
+  roles:
+    - db_setup
+  tags: [deploy, db, db_setup]
+
+- name: Deploy db service
   hosts: db
   become: true
   gather_facts: false
@@ -24,10 +58,23 @@
     - db
   tags: [deploy, db]
 
-- name: Deploy api
+################################################################################
+# Deploy api
+################################################################################
+
+- name: Set up api files
   hosts: api
   become: true
   gather_facts: false
+  roles:
+    - api_setup
+  tags: [deploy, api, api_setup]
+
+- name: Deploy api service
+  hosts: api
+  become: true
+  gather_facts: false
+  vars:
   roles:
     - role: api
     - role: lb
@@ -35,15 +82,28 @@
       lb_dest: "{{ api_lb_dest }}"
       lb_dest_cleanup: "{{ api_lb_dest_cleanup }}"
       lb_forward_port: "{{ api_lb_forward_port }}"
-      lb_target: "{{ api_service }}"
-      lb_target_dest: "{{ api_dest }}"
-      lb_target_scale: "{{ api_scale }}"
-  tags: [deploy, lb, api]
+      target_service: "{{ api_service }}"
+      target_dest: "{{ api_dest }}"
+      target_scale: "{{ api_scale }}"
+  tags: [deploy, log, lb, api]
 
-- name: Deploy web
+################################################################################
+# Deploy web
+################################################################################
+
+- name: Set up web files
   hosts: web
   become: true
   gather_facts: false
+  roles:
+    - web_setup
+  tags: [deploy, web, web_setup]
+
+- name: Deploy web service
+  hosts: web
+  become: true
+  gather_facts: false
+  vars:
   roles:
     - role: web
     - role: lb
@@ -51,23 +111,19 @@
       lb_dest: "{{ web_lb_dest }}"
       lb_dest_cleanup: "{{ web_lb_dest_cleanup }}"
       lb_forward_port: "{{ web_lb_forward_port }}"
-      lb_target: "{{ web_service }}"
-      lb_target_dest: "{{ web_dest }}"
-      lb_target_scale: "{{ web_scale }}"
-  tags: [deploy, lb, web]
+      target_service: "{{ web_service }}"
+      target_dest: "{{ web_dest }}"
+      target_scale: "{{ web_scale }}"
+  tags: [deploy, log, lb, web]
+
+################################################################################
+# Deploy monitors
+################################################################################
 
 - name: Deploy monitors
   hosts: app
   become: true
-  gather_facts: true
+  gather_facts: false
   roles:
     - monitor
-  tags: [monitor]
-
-- name: Deploy loggers
-  hosts: app
-  become: true
-  gather_facts: true
-  roles:
-    - log
-  tags: [log]
+  tags: [deploy, monitor]

@@ -2,6 +2,11 @@ services:
   {{ web_service }}:
     restart: unless-stopped
     image: {{ web_image }}:{{ web_image_tag }}
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: {{ logger_host }}:24224
+        tag: {{ web_service }}
 
   {{ web_lb_service }}:
     restart: unless-stopped
@@ -12,3 +17,8 @@ services:
       - {{ web_service }}
     ports:
       - {{ web_lb_exposed_port }}:80
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: {{ logger_host }}:24224
+        tag: {{ web_lb_service }}

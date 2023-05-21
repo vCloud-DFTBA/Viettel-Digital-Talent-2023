@@ -1,0 +1,44 @@
+<source>
+  @type forward
+  port 24224
+  bind 0.0.0.0
+</source>
+
+<filter *.>
+    @type record_transformer
+    enable_ruby true
+    <record>
+      hostname ${hostname}
+
+      # ip ${record["ip"]}
+      ip ${record.dig("ip")}
+
+      # time ${record["time"]}
+      time ${record.dig("time")}
+
+      # action ${record["action"]}
+      action ${record.dig("action")}
+
+      # result ${record["result"]}
+      result ${record.dig("result")}
+    </record>
+</filter>
+
+<match *.**>
+  @type copy
+
+  <store>
+    @type elasticsearch
+    host {{ elasticsearch_host }}
+    port {{ elasticsearch_port }}
+    logstash_format true
+    logstash_prefix {{ elasticsearch_prefix }}
+    logstash_dateformat %Y%m%d
+    include_tag_key true
+    flush_interval 1s
+  </store>
+
+  <store>
+    @type stdout
+  </store>
+</match>

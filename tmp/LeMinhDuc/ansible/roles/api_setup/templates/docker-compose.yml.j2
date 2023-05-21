@@ -1,9 +1,16 @@
 services:
   {{ api_service }}:
     restart: unless-stopped
+    stop_signal: SIGINT
+    stop_grace_period: 30s
     image: {{ api_image }}:{{ api_image_tag }}
     environment:
       - MONGO_URI={{ db_uri }}
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: {{ logger_host }}:24224
+        tag: {{ api_service }}
   
   {{ api_lb_service }}:
     restart: unless-stopped
@@ -14,3 +21,8 @@ services:
       - {{ api_service }}
     ports:
       - {{ api_lb_exposed_port }}:80
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: {{ logger_host }}:24224
+        tag: {{ api_lb_service }}

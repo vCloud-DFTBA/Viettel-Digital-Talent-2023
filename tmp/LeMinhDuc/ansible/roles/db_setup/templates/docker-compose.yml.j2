@@ -6,3 +6,8 @@ services:
       - {{ db_dest }}:/docker-entrypoint-initdb.d
     ports:
       - {{ db_exposed_port }}:27017
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: {{ logger_host }}:24224
+        tag: {{ db_service }}
