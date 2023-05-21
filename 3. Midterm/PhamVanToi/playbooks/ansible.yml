@@ -4,8 +4,10 @@
   become: true
   gather_facts: false
   roles:
-    - roles/common
+    # - roles/common
+    - roles/logging
     - roles/db
     - roles/api
     - roles/web
     - roles/lb
+    

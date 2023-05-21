@@ -19,6 +19,11 @@
     image: my_flask
     networks:
       - name: mongodb_flask_nginx_network
+    
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: "flask_container1"
 
 - name: Build the flask_app2 container from the api image.
   docker_container:
@@ -26,4 +31,9 @@
     image: my_flask
     networks:
       - name: mongodb_flask_nginx_network
+      
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: "flask_container2"
     

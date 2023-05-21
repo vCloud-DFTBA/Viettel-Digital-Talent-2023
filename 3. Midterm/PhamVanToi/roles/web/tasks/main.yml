@@ -29,6 +29,11 @@
     ports:
     - "80:80"
 
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: "web_container1"
+
 - name: Build the nginx_container2 container from the my_nginx image
   docker_container:
     name: nginx_container2
@@ -37,3 +42,8 @@
       - name: mongodb_flask_nginx_network
     ports:
     - "81:81"
+
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: "web_container2"

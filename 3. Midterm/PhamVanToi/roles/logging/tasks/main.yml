@@ -1,0 +1,16 @@
+---
+- name: Build a fluentd image
+  docker_image:
+    name: my_fluentd
+    build:
+       path: ../roles/logging/files/
+    source: "build"
+
+- name: Build a fluentd container
+  docker_container:
+    name: fluentd_container
+    image: my_fluentd
+    networks:
+      - name: mongodb_flask_nginx_network
+    ports:
+      - 24224:24224
