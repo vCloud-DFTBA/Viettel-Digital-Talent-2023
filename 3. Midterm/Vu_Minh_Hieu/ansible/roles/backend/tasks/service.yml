@@ -5,10 +5,10 @@
     state: started
     restart: true
     ports:
-      - "8080:8080"
+      - "8000:8000"
     env:
       MONGODB_HOST : "172.17.0.1"
-    command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8000
     
 - name: Run the docker 2 API images
   community.docker.docker_container:
@@ -17,10 +17,10 @@
     state: started
     restart: true
     ports:
-      - "8081:8081"
+      - "8001:8001"
     env:
       MONGODB_HOST : "172.17.0.1"
-    command: uvicorn main:app --reload --host 0.0.0.0 --port 8081
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8001
 
 - name: Run the docker 3 API images
   community.docker.docker_container:
@@ -29,7 +29,7 @@
     state: started
     restart: true
     ports:
-      - "8082:8082"
+      - "8002:8002"
     env:
       MONGODB_HOST : "172.17.0.1"
-    command: uvicorn main:app --reload --host 0.0.0.0 --port 8082
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8002
