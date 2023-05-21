@@ -9,6 +9,12 @@
     image: "{{ nginx_image }}"
     ports:
       - "80:80"
+    # Don't use for loadbalance server
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ fluentd_address }}"
+      tag: "{{ fluentd_tag_name }}"
+    # 
     networks:
       - name: "{{ network_name }}"
 

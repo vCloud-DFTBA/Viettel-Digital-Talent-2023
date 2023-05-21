@@ -1,8 +1,13 @@
 version: '3'
 services:
   fluentd:
-    container_name: fluentd
+    container_name: fluentd-vdt2023
     build: ./fluentd
-    # volumes:
-    #     - /var/Fluent-Docker/fluentd/conf:/fluentd/etc
-    network_mode: "host"
+    networks:
+      - vdt2023
+    ports:
+      - "24224:24224"
+    # network_mode: "host"
+
+networks:
+  vdt2023:

@@ -5,6 +5,7 @@ mysql_container_name: mysql-vdt2023
 backend_container_name: backend-vdt2023
 frontend_container_name: frontend-vdt2023
 nginx_container_name: nginx-vdt2023
+fluentd_container_name: fluentd-vdt2023
 
 password_vaulted: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -23,3 +24,5 @@ ip_ubuntu06: 34.92.110.53
 ip_ubuntu07: 34.150.15.167
 
 python_path: /usr/bin/python3
+
+fluentd_address: 34.150.15.167:24224

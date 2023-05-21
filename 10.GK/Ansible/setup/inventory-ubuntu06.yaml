@@ -9,3 +9,5 @@ all:
       ansible_become_user: root
       ansible_become_password: "{{ password_vaulted }}"
       path_default_conf: ../templates/default-fe.conf
+      fluentd_tag_name: app
+

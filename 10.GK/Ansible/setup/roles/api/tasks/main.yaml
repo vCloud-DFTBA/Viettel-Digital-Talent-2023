@@ -6,6 +6,10 @@
     name: "{{ backend_container_name }}"
     image: duogglong/backend-vdt2023:v1.0.5
     state: started
+    # log_driver: fluentd
+    # log_options:
+    #   fluentd-address: "{{ fluentd_address }}"
+    #   tag: "backend-vdt2023"
     interactive: true
     tty: true
     ports:
