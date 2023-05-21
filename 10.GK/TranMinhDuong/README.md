@@ -20,8 +20,8 @@ Yêu cầu:
   - [x] db: Database MongoDB lưu trữ thông tin sinh viên
 - [x] Viết unit tests cho các chức năng APIs (0.5đ)
 
-  [ ] \* Viết unit tests cho các chức năng giao diện, viết integration tests
-  Output:
+- [ ] \* Viết unit tests cho các chức năng giao diện, viết integration tests
+      Output:
 
 **Output:** Mã nguồn của từng dịch vụ
 
@@ -85,6 +85,17 @@ _Api image history :_
 **Output:**
 
 - File setup công cụ CI: [CI workflow](./workflows/python-app.yml)
+
+```yaml
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: ["main"]
+ ...
+```
+
 - Output log của luồng CI
 
 _Tự động chạy unit test khi push commit lên 1 branch:_
@@ -109,7 +120,7 @@ _Log của luồng:_
 - Viết ansible playbook thực hiện các nhiệm vụ:
   - [x] Setup môi trường: Cài đặt docker trên các node triển khai dịch vụ (1đ)
   - [x] Deploy các dịch vụ theo version sử dụng docker (1đ)
-  - [x] Triển khai các dịch vụ trên nhiều hosts khác nhau
+  - [x] \* Triển khai các dịch vụ trên nhiều hosts khác nhau
 - Đảm bảo tính HA cho các dịch vụ web và api:
   - [x] Mỗi dịch vụ web và api được triển khai trên ít nhất 02 container khác nhau (0.5đ)
   - [x] Requests đến các endpoint web và api được cân bằng tải thông qua các công
@@ -120,6 +131,21 @@ _Log của luồng:_
 **Output:**
 
 - Ảnh minh họa kiến trúc triển khai và bản mô tả
+<div align="center">
+    <img src="./images/mohinh.png"/>
+</div>
+
+**Mô tả kiến trúc triển khai:**
+
+Trong bài demo này, em sử dụng 3 VM chạy ubuntu với địa chỉ IP:
+
+    - VM1: 192.168.192.144
+    - VM2: 192.168.192.145
+    - VM3: 192.168.192.141
+
+    - VM1 và VM2 triển khai container Web và API (tổng cộng là 2 container mỗi dịch vụ).
+    - VM3 triển khai container Database và Load Balancing (ngoài ra Prometheus và Fluentd cũng triển khai trên máy này).
+    - Các request sẽ Load Balancing điều hướng đến các container thể hiện như trong hình.
 
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có
   - File [inventory](./ansible/inventories/inventory.yaml) chứa danh sách các hosts triển khai
@@ -131,6 +157,15 @@ _Log của luồng:_
     - [db](./ansible/roles/db/): Triển khai dịch vụ db
     - [lb](./ansible/roles/lb/): Triển khai dịch vụ load balancing
 - File setup CD: [CD workflow](./workflows/docker-image.yml)
+
+```yaml
+on:
+  push:
+    tags:
+      - '*'
+ ...
+```
+
 - Output của luồng build và push Docker Image lên Docker Hub
   _Tự động build và push Docker image khi push 1 tag:_
 
@@ -233,4 +268,48 @@ _Username **duongtm**:_
 
 <div align="center">
     <img src="./images/logging.png"/>
+</div>
+
+## Các demo khác
+
+### Web app CRUD
+
+<div align="center">
+    <img src="./images/webapp_demo.gif"/>
+</div>
+
+### Load Balancing
+
+File config: Sử dụng thuật toán mặc định là Round-Robin
+
+```conf
+
+    upstream frontend {
+        server 192.168.192.144:8000;
+        server 192.168.192.145:8000;
+    }
+
+    upstream backend {
+        server 192.168.192.144:5000;
+        server 192.168.192.145:5000;
+    }
+
+    server {
+        listen 80;
+        location / {
+            proxy_pass http://frontend;
+        }
+    }
+
+    server {
+        listen 5000;
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+
+```
+
+<div align="center">
+    <img src="./images/lb_demo.gif"/>
 </div>
