@@ -1,6 +1,7 @@
 - name: Container Configure
   docker_container:
     name: flask
+    hostname: flask
     image: lephuclai/flask:latest
     restart_policy: unless-stopped
     volumes: 

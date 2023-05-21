@@ -17,7 +17,7 @@
     - db
     - lb
 
-- name: Setup flask, nginx and create network
+- name: Setup flask, nginx
   hosts: all
   become: true
   gather_facts: false
@@ -25,6 +25,26 @@
   roles:
     - api
     - web
+
+- name: Create network on local
+  host: localhost
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Create network
+      docker_network:
+        name: webapp_network
+        connected:
+          - flask
+          - webserver
+          - mongodb
+          - loadbalance
+
+- name: Create network on node1
+  host: localhost
+  become: true
+  gather_facts: false
 
   tasks:
     - name: Create network
