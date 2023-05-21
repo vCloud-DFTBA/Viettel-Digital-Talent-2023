@@ -27,7 +27,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: 10.GK/PhamDuyCuong/source/web_CRUD/
           push: true
           tags: |
             backend:${{ env.TAG }}
