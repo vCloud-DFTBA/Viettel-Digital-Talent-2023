@@ -20,6 +20,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       
+      - name: Get tag name    
+        if: startsWith(github.ref, 'refs/tags/')    
+        run: echo "TAG=$(echo ${{ github.ref }} | sed 's/refs\/tags//')" >> $GITHUB_ENV
+
       - name: Build and push backend images
         uses: docker/build-push-action@v4
         with:
@@ -29,5 +33,6 @@ jobs:
             app/api/Dockerfile
             app/web/Dockerfile
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ github.ref:10: }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/fronend:${{ github.ref:10: }}
+            backend:${ env.TAG}
+            fronend:${ env.TAG}
+     
