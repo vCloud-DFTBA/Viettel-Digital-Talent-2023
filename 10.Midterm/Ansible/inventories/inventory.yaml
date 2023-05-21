@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    node1:
+      ansible_host: 192.168.40.134
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_user: ubuntu4
+      ansible_password: 1
+      ansible_sudo_pass: 1
