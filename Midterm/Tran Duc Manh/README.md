@@ -11,19 +11,25 @@
 #### Output:
 - Mã nguồn của từng dịch vụ
 #### Solution
-- api: FastAPI with crud operation in: http://58.186.205.96:8081/docs
+- Mã nguồn dịch vụ: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/1.%20Containerization/Tran-Duc-Manh
+- api: FastAPI with crud operation in: https://v1.viettelcloud.site/docs
 - webserver: HTML+CSS+JS render by FastAPI template+Nginx service: https://api.viettelcloud.site
 - db: mongodb 5.0
 - Unit test APIs CRUD: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/1.%20Containerization/Tran-Duc-Manh/api/test_user.py
-- Unit test UI:
+- UI Testing: Using selenium to run the test scenario: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/1.%20Containerization/Tran-Duc-Manh/ui-test/selenium.py
+- Performance test: Using jmeter to run the performance test
+![jmeter](./media/jmeter.png)
+
 #### Result: 
 - Success to write and deploy webserver on : https://api.viettelcloud.site
+- Success to write and deploy api backend on(see Swagger): https://v1.viettelcloud.site/docs
 
 
 ### Part 2: 1. Containerization (1đ)
 #### Yêu cầu:
 - Viết Dockerfile để đóng gói các dịch vụ trên thành các container image (0.5đ)
--  Yêu cầu image đảm bảo tối ưu thời gian build và kích thước chiếm dụng, khuyến khích sử dụng các thủ thuật build image đã được giới thiệu (layer-caching, optimized RUN instructions, multi-stage build, etc.) (0.5đ) Output:
+-  Yêu cầu image đảm bảo tối ưu thời gian build và kích thước chiếm dụng, khuyến khích sử dụng các thủ thuật build image đã được giới thiệu (layer-caching, optimized RUN instructions, multi-stage build, etc.) (0.5đ) 
+#### Output:
 - File Dockerfile cho từng dịch vụ kế hệ thống với ba dịch vụ: (0.5đ)
 - Output câu lệnh build và thông tin docker history của từng image
 ### Solution:
@@ -31,6 +37,13 @@
 - Dockerfile Webserver: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/1.%20Containerization/Tran-Duc-Manh/webapp/Dockerfile
 - History build: API: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/1.%20Containerization/Tran-Duc-Manh/api.build
 - History build webserver: https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/mid2/1.%20Containerization/Tran-Duc-Manh/webapp.build
+###### Optimze Docker container 
+
+Using Docker Slim container optimzes from 978MB to 56.8MB. Of course i can optimze more but for base image:`python:3.9` and FastAPI, it should be balanced between performance and image size.
+
+- Nginx:1.22.0-alpine: Optimize from 22.1MB to 7.12MB. see [Nginx optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/nginx.report.json)
+- mongodb:5.0: optimize from 626MB to 128MB. see history [Mongo optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/mongo.report.json)
+- python:3.9 with FastAPI fullstack webserver from 978MB to 56.8MB. see [Slim optimization history](https://github.com/manhtd98/Viettel-Digital-Talent-2023/blob/lab1-docker/1.%20Containerization/Tran-Duc-Manh/app.report.json)
 
 
 ### 2. Continuous Integration (1đ)
@@ -269,6 +282,33 @@ remote_write:
 ### Solution
 ![elk](./media/elk-stack.jpg)
 - Ansible logstash: https://github.com/manhtd98/Viettel-Digital-Talent-2023/tree/mid2/Midterm/Tran%20Duc%20Manh/roles/ansible-role-logstash
+
+Config file: 
+```
+input {
+  beats {
+    port => 50000
+    codec => json
+  }
+  tcp {
+		port => 5044
+    codec => json
+	}
+}
+filter {
+  mutate {
+    rename => { "message" => "action" }
+  }
+}
+output {
+  elasticsearch {
+    hosts => ["http://171.236.38.100:9200"]
+    index => "tranducmanh_%{+yyyy.MM.dd}"
+    ssl => false
+  }
+}
+```
+Ansible deployment:
 ```
 ansible-playbook -i ./inventories/local.yml playbooks/logstash.yml >> logs/logstash.run 
 ```
