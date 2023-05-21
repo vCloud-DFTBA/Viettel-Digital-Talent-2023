@@ -1,0 +1,26 @@
+- name: create log folder
+  file:
+    path: "{{ path_to_folder }}"
+    state: directory
+
+- name: copy all resources to target host
+  copy:
+    src: ./
+    dest: "{{ path_to_folder }}"
+
+- name: build Docker Image
+  docker_image: 
+    name: "{{ image_name }}"
+    state: "{{ image_state }}"
+    source: build
+    build:
+      path: "{{ path_to_folder }}"
+  
+
+- name: run Docker container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image_name }}"
+    state: "{{ container_state }}"
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"

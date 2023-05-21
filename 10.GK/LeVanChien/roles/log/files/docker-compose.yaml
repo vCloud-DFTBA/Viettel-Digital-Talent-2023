@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  nginx:
+    build: .
+    container_name: logging
+    ports:
+      - "24224:24224"
+    volumes:
+      - "/home/lechiennn/test/lb/log:/nginx"
+      - "./fluent.conf:/fluentd/etc/fluent.conf"

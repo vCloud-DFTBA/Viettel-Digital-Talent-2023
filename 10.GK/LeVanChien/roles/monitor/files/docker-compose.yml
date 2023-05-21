@@ -1,0 +1,67 @@
+version: '3.9'
+
+networks:
+  monitor: 
+    driver: bridge
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.43.0
+    container_name: prom
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    restart: unless-stopped
+    networks:
+      - monitor
+
+  nodeexporter:
+    image: prom/node-exporter:v1.5.0
+    container_name: nodeexporter
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    restart: unless-stopped
+    networks:
+      - monitor
+  
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    container_name: cadvisor
+    ports:
+      - "8090:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    restart: unless-stopped
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    networks:
+      - monitor
+
+  # grafana:
+  #   image: grafana/grafana:9.5.1
+  #   container_name: grafana
+  #   volumes:
+  #     - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+  #     - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+  #     - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+  #     - GF_USERS_ALLOW_SIGN_UP=false
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - monitor

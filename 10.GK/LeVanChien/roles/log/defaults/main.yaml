@@ -1,0 +1,16 @@
+user: lechiennn
+path_to_log: "/home/{{ user }}/test/lb/log"
+path_to_folder: "/home/{{ user }}/test/fluentd"
+
+image_name: logging
+image_state: present
+
+container_name: logging
+container_state: started
+
+ports:
+  - "24224:24224"
+volumes:
+  - "{{ path_to_log }}:/nginx"
+  - "{{ path_to_folder }}/fluent.conf:/fluentd/etc/fluent.conf"
+
