@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         dir:
-          - "10.GK\\NinhVanNghia\\source\\api"
-          - "10.GK\\NinhVanNghia\\source\\web"
+          - "./10.GK/NinhVanNghia/source/api"
+          - "./10.GK/NinhVanNghia/source/web"
         image-name:
           - api
           - web
