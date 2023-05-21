@@ -99,8 +99,8 @@ jobs:
 - Test khi tạo pull request: [link](./logs/test_on_pull_request.txt)
 
 2.3 Các hình ảnh demo:
-- test khi push lên 1 branch: ![697f10032b809405ff8fbb97807824d7.png](../images/697f10032b809405ff8fbb97807824d7.png)
-- Test khi tạo pull request: ![707e0d652ac6bd030bd2b05d43bfd4c9.png](../images/707e0d652ac6bd030bd2b05d43bfd4c9.png) ![8a05c080b052d86c528b5795890d007b.png](../images/8a05c080b052d86c528b5795890d007b.png)
+- test khi push lên 1 branch: ![697f10032b809405ff8fbb97807824d7.png](./images/697f10032b809405ff8fbb97807824d7.png)
+- Test khi tạo pull request: ![707e0d652ac6bd030bd2b05d43bfd4c9.png](./images/707e0d652ac6bd030bd2b05d43bfd4c9.png) ![8a05c080b052d86c528b5795890d007b.png](./images/8a05c080b052d86c528b5795890d007b.png)
 
 ## 3. CD
 3.1 File setup CD
@@ -149,10 +149,10 @@ jobs:
 
 ```
 3.2 Output luồng build
-![b9dfdb88dcf70b22f97bcb89ef3b10c3.png](../images/b9dfdb88dcf70b22f97bcb89ef3b10c3.png)
-![8abfeb65b75dc5129d72dcece171be68.png](../images/8abfeb65b75dc5129d72dcece171be68.png)
-![1d98fb134f5c900ba7e2fcd986ef8b12.png](../images/1d98fb134f5c900ba7e2fcd986ef8b12.png)
-![448f8086f13b818d5874ac5bb15ad1e3.png](../images/448f8086f13b818d5874ac5bb15ad1e3.png)
+![b9dfdb88dcf70b22f97bcb89ef3b10c3.png](./images/b9dfdb88dcf70b22f97bcb89ef3b10c3.png)
+![8abfeb65b75dc5129d72dcece171be68.png](./images/8abfeb65b75dc5129d72dcece171be68.png)
+![1d98fb134f5c900ba7e2fcd986ef8b12.png](./images/1d98fb134f5c900ba7e2fcd986ef8b12.png)
+![448f8086f13b818d5874ac5bb15ad1e3.png](./images/448f8086f13b818d5874ac5bb15ad1e3.png)
 
 3.3 Hướng dẫn sử dụng ansible playbook
 	- Thêm các machine vào file `inventory.yml`
