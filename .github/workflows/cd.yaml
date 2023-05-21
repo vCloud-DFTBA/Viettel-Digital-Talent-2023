@@ -41,13 +41,13 @@ jobs:
         run: echo "TAG=$(echo ${{ github.ref }} | sed 's/refs\/tags\///')" >> $GITHUB_ENV
 
       - name: Build and push Docker images
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           push: true
           tags: |
-            - backend:${{ env.TAG }}
-            - frontend:${{ env.TAG }}
+            backend:${{ env.TAG }}
+            frontend:${{ env.TAG }}
           Dockerfile: |
-            - 10.GK/PhamDuyCuong/source/web_CRUD/api/Flask_CRUD/
-            - 10.GK/PhamDuyCuong/source/web_CRUD/web/
+            10.GK/PhamDuyCuong/source/web_CRUD/api/Flask_CRUD/
+            10.GK/PhamDuyCuong/source/web_CRUD/web/
