@@ -4,7 +4,7 @@ all:
     localhost:
       ansible_connection: local
       ansible_python_interpreter: /home/lechiennn/Viettel-Digital-Talent-2023/2.Ansible/LeVanChien/env/bin/python
-      ansible_become_user: lechiennn
+      ansible_become_user: root
       ansible_become_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           30313539646439366363313339313065663661353035323036383138643731363937653362643238
