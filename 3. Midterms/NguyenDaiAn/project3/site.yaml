@@ -1,0 +1,13 @@
+- name:
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    # - common
+  - log
+  - db
+  - web
+  - api
+  - nginx
+  - monitor
+  - sec

@@ -1,0 +1,17 @@
+---
+- name: Create db container
+  community.docker.docker_container:
+    name: db
+    image: mongo:5.0
+    restart_policy: "unless-stopped"
+    networks:
+      - name: project
+    env:
+      MONGO_INITDB_DATABASE: data
+    volumes:
+        - "{{ role_path }}/templates/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js"
+        - db_volume:/data/db
+    log_driver: fluentd
+    log_options: 
+      fluentd-address: localhost:24224
+      tag: api_1 

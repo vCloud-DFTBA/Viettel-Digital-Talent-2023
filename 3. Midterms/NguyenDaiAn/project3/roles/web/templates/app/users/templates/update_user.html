@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class
+        style="height:auto;width: auto;display: flex;align-items: center;justify-content: center;flex-direction: column;">
+	 <div style="height:auto;width: auto;display: flex;align-items: center;justify-content: center;flex-direction: column;"> 
+            <h1>Update Student</h1>
+        <div style="height:auto;width: auto;display: flex;align-items: center;justify-content: center;flex-direction: column;"> 
+            <table id="userTable" style="border: 1px solid;">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Birthyear</th>
+                <th scope="col">Gender</th>
+                <th scope="col">University</th>
+                <th scope="col">Major</th>
+            </tr>
+	{% for r in userData %}
+	<tr>
+		<th> {{ r.Name }}</th>
+		<th> {{ r.Username }}</th>
+		<th> {{ r.Birthyear | floatformat }}</th>
+		<th> {{ r.Gender }}</th>
+		<th> {{ r.University }}</th>
+		<th> {{ r.Major }}</th>
+	</tr> 
+	{% endfor %}
+        </table>
+        </div>
+	    <h2>{% if error %} An error occured when updating specified student id {{ id|default_if_none:""}} ,  please try again. {% else %} {%endif%}</h2>
+		<form method="post">
+        	{% csrf_token %}
+		{{updateForm}}
+		{{updateForm.id.hidden}}
+		<button class="button is-success"  type="submit" onclick="location.href='{% url 'update_user' id %}'">Update </button>
+   		</form>
+	</div>
+    </div>
+</body>
+
+    <script>
+    </script>
+</html>

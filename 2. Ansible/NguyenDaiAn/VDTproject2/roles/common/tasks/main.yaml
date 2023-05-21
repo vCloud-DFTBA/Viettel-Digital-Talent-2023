@@ -1,0 +1,40 @@
+---
+#- name: Set hostname
+#  hostname:
+#    name: "{{ hostname }}" 
+#
+#- name: Create vt_app group
+#  group:
+#    name: vt_app
+#
+#- name: Create vt_app user
+#  user:  
+#    name: vt_app
+#    group: vt_app
+#
+#- name: Setup DNS server
+#  lineinfile:
+#    path: /etc/resolv.conf
+#    line: nameserver 8.8.8.8
+#
+#- name: Install utility tools
+#  package:
+#    name:
+#     " {{ item }}"
+#    state: present 
+#    update-cache: "{{ update_cache }}"
+#  loop:
+#    - curl
+#    - wget
+#    - htop
+#
+#- name: SSH hardening
+#  copy:
+#    src: ../templates/ssh_hardening.conf
+#    dest: /etc/ssh/ssh_config.d/ssh_hardening.conf
+#  notify: "hardening SSH"
+#
+- name: Create Docker Network
+  community.docker.docker_network:
+    api_version: "auto"
+    name: project

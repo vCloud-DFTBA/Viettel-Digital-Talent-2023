@@ -1,0 +1,10 @@
+---
+all:
+    hosts:
+        localhost:
+            ansible_connection: local
+            ansible_python_interpreter: /home/rejk/Desktop/"New Folder"/Viettel-Digital-Talent-2023/"2. Ansible"/VDTproject2/bin/python
+
+            ansible_become_user: root
+            ansible_become_password: root_password
+            hostname: project2

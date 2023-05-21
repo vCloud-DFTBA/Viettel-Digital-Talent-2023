@@ -1,0 +1,18 @@
+name: On pull request
+on:
+  pull_request:
+    branches:
+      - main
+    tags:
+      - '*'
+  push:
+jobs:
+  test_project:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+    - run: pip install django pymongo
+    - run: cp -i "3. Midterms"/NguyenDaiAn/project3/roles/test/templates/api/tests.py "3. Midterms"/NguyenDaiAn/project3/roles/api/templates/app/api/tests.py
+    - run: python "3. Midterms"/NguyenDaiAn/project3/roles/api/templates/app/manage.py test
+

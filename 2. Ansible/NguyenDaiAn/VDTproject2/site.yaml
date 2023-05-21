@@ -1,0 +1,12 @@
+- name:
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+  - common
+  - db
+  - web
+  - api
+  tasks:
+    - debug: var=ansible_all_ipv4_addresses
+    - debug: var=ansible_default_ipv4.address

@@ -1,0 +1,19 @@
+---
+- name: Copy test to api
+  community.docker.docker_container_copy_into: 
+    container: "api"
+    container_path: "/app/api/tests.py"
+    path: "./roles/test/templates/api/tests.py"
+- name: Run test on api
+  community.docker.docker_container_exec:
+    container: "api"
+    command: "python manage.py test"
+      #- name: Copy test to web
+      #  community.docker.docker_container_copy_into: 
+      #    container: "web"
+      #    container_path: "/app/users/tests.py"
+      #    path: "./roles/test/templates/web/tests.py"
+      #- name: Run test on web
+      #  community.docker.docker_container_exec:
+      #    container: "web"
+      #    command: "python manage.py test"
