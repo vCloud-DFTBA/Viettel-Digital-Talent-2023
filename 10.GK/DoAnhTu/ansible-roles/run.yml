@@ -1,0 +1,10 @@
+---
+- name: install webapp
+  hosts: VPS
+  become: true
+  gather_facts: true
+  roles:
+    - common
+    - mongo
+    - webservers
+    - loadbalancer

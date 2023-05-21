@@ -1,0 +1,14 @@
+# hosts-dev
+
+[local]
+node1 ansible_host=192.168.60.134
+node1 ansible_ssh_pass=2288
+node1 ansible_user=vm1
+node1 ansible_sudo_pass=2288
+
+
+[VPS]
+vps1 ansible_host=35.84.3.157
+vps1 ansible_ssh_pass=vdt2023
+vps1 ansible_user=cloud_user
+vps1 ansible_sudo_pass=vdt2023

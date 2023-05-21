@@ -1,0 +1,37 @@
+---
+# tasks file for roles/mongo
+- name: Creates src directory
+  file:
+    path: /home/data
+    state: directory
+    mode: "0775"
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ../../../../mongo-entrypoint/init-mongo.js
+    dest: /home/data
+    mode: "0777"
+
+- name: Create a volume
+  community.docker.docker_volume:
+    name: db1
+
+- name: Create a network
+  docker_network:
+    name: network_db
+
+- name: deploy mongo db
+  community.docker.docker_container:
+    name: mongodb
+    image: mongo:5.0
+    env:
+      MONGO_INITDB_ROOT_USERNAME: "admin"
+      MONGO_INITDB_ROOT_PASSWORD: "Admin123"
+      MONGO_INITDB_DATABASE: "VDTuser"
+    ports:
+      - "27017:27017"
+    volumes:
+      - db1:/data/db
+      - /home/data/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - name: network_db
