@@ -319,7 +319,7 @@ Run the command:
 
 ## 4. Monitoring
 1. Ảnh chụp dashboard giám sát nodes & containers
-
+ 
 ![](images/4.Monitor/prometheus.png)
 ![](images/4.Monitor/dashboard1.png)
 ![](images/4.Monitor/dashboard2.png)
@@ -327,4 +327,11 @@ Run the command:
 ![](images/4.Monitor/dashboard4.png)
 ![](images/4.Monitor/dashboard5.png)
 
+## 5.Logging
+1. Ảnh chụp sample log từ Kibana 171.236.38.100:5601
 
+- Index management.
+![](images/5.Logging/index_management.png)
+
+- Kibana log
+![](images/5.Logging/kibana_log.png)
