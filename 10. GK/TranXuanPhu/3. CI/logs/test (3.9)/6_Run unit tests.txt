@@ -1,0 +1,17 @@
+2023-05-18T03:35:02.4802452Z ##[group]Run python -m unittest discover -v
+2023-05-18T03:35:02.4802783Z [36;1mpython -m unittest discover -v[0m
+2023-05-18T03:35:02.4898445Z shell: /usr/bin/bash -e {0}
+2023-05-18T03:35:02.4898688Z env:
+2023-05-18T03:35:02.4898942Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.16/x64
+2023-05-18T03:35:02.4899278Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.16/x64/lib
+2023-05-18T03:35:02.4899546Z ##[endgroup]
+2023-05-18T03:35:06.4076861Z test_create (test.TestFlaskApp) ... ok
+2023-05-18T03:35:06.8410938Z test_delete (test.TestFlaskApp) ... ok
+2023-05-18T03:35:06.8483489Z test_get (test.TestFlaskApp) ... ok
+2023-05-18T03:35:06.8529450Z test_index (test.TestFlaskApp) ... ok
+2023-05-18T03:35:06.8622428Z test_update (test.TestFlaskApp) ... ok
+2023-05-18T03:35:06.8622653Z 
+2023-05-18T03:35:06.8623099Z ----------------------------------------------------------------------
+2023-05-18T03:35:06.8623401Z Ran 5 tests in 3.795s
+2023-05-18T03:35:06.8623566Z 
+2023-05-18T03:35:06.8623624Z OK

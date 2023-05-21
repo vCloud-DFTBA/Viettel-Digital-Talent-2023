@@ -1,0 +1,8 @@
+2023-05-20T03:28:51.9257031Z ##[section]Starting: Prepare job build_and_push
+2023-05-20T03:28:51.9475325Z Evaluating strategy
+2023-05-20T03:28:51.9480177Z Creating job '__default'
+2023-05-20T03:28:51.9482573Z Evaluating timeout
+2023-05-20T03:28:51.9482644Z Evaluating cancel timeout
+2023-05-20T03:28:51.9482675Z Evaluating continue on error
+2023-05-20T03:28:51.9482705Z Evaluating target
+2023-05-20T03:28:51.9484361Z ##[section]Finishing: Prepare job build_and_push

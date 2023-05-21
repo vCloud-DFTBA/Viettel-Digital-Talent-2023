@@ -1,0 +1,3 @@
+2023-05-20T03:29:39.5770961Z Post job cleanup.
+2023-05-20T03:29:39.7065612Z [command]/usr/bin/docker logout 
+2023-05-20T03:29:39.7325589Z Removing login credentials for https://index.docker.io/v1/

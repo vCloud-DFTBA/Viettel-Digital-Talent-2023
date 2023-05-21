@@ -1,0 +1,44 @@
+- name: Create loggingdata volume
+  docker_volume:
+    name: loggingdata
+    driver: local
+
+- name: Copy data to loggingdata volume
+  copy:
+    src: roles/logging/files/fluentd/conf/
+    dest: /var/lib/docker/volumes/loggingdata/_data
+    remote_src: true
+
+
+- name: Build Fluentd Image
+  docker_image:
+    name: "{{ fluentd_image }}"
+    build:
+      path: roles/logging/files/fluentd/
+    source: build
+    state: present
+
+- name: Start Fluentd container
+  docker_container:
+    name: phutx_fluentd
+    restart_policy: unless-stopped
+    image: "{{ fluentd_image }}"
+    volumes:
+      - loggingdata:/fluentd/etc/
+    network_mode: host
+
+#- name: Start Elasticsearch container
+#  docker_container:
+#    name: elasticsearch
+#    image: elasticsearch:7.17.1
+#    network_mode: host
+#    env:
+#      discovery.type: single-node
+#
+#- name: Start Kibana container
+#  docker_container:
+#    name: kibana
+#    image: kibana:7.17.1
+#    network_mode: host
+#    env:
+#      ELASTICSEARCH_HOSTS: http://localhost:9200

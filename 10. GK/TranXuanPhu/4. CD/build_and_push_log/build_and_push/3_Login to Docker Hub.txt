@@ -1,0 +1,9 @@
+2023-05-20T03:29:01.6095861Z ##[group]Run docker/login-action@v2
+2023-05-20T03:29:01.6096121Z with:
+2023-05-20T03:29:01.6096447Z   username: ***
+2023-05-20T03:29:01.6096693Z   password: ***
+2023-05-20T03:29:01.6097020Z   ecr: auto
+2023-05-20T03:29:01.6097227Z   logout: true
+2023-05-20T03:29:01.6097428Z ##[endgroup]
+2023-05-20T03:29:01.7368147Z Logging into Docker Hub...
+2023-05-20T03:29:02.0355738Z Login Succeeded!

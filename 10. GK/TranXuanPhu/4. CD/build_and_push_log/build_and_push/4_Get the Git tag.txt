@@ -1,0 +1,5 @@
+2023-05-20T03:29:02.0458772Z ##[group]Run echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
+2023-05-20T03:29:02.0459217Z [36;1mecho ::set-output name=TAG::${GITHUB_REF#refs/tags/}[0m
+2023-05-20T03:29:02.0516467Z shell: /usr/bin/bash -e {0}
+2023-05-20T03:29:02.0516762Z ##[endgroup]
+2023-05-20T03:29:02.0690305Z ##[warning]The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/

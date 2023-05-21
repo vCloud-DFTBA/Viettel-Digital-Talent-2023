@@ -1,0 +1,50 @@
+name: Release services
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+#    branches:
+#      - main
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push phutx_python_image Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: roles/api/files/
+          push: true
+          tags: xuanphu270101/phutx_python_image:latest
+
+      - name: Build and push phutx_mongo_image Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: roles/db/files/
+          push: true
+          tags: xuanphu270101/phutx_mongo_image:latest
+
+      - name: Build and push phutx_nginx_image Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: roles/web/files/
+          push: true
+          tags: xuanphu270101/phutx_nginx_image:latest
+
+      - name: Build and push phutx_nginxlb_image Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: roles/lb/files/
+          push: true
+          tags: xuanphu270101/phutx_nginxlb_image:latest
