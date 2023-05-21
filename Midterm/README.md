@@ -650,7 +650,7 @@ ansible-playbook -i inventory.yml playbooks/ansible.yml
 ![luong_log](images/efk.jpg)
 
 
-- Cấu hình  `Dockerfile`
+- Cấu hình  `Dockerfile`:
 
 ``` text
 FROM fluent/fluentd:v1.12.0-debian-1.0
@@ -661,7 +661,7 @@ USER fluent
 
 ```
 
-- Cấu hình  `fluentd.conf`
+- Cấu hình  `fluentd.conf`: 
 
 ``` text
 <source>
@@ -717,6 +717,7 @@ USER fluent
       - 24224:24224
       - 24224:24224/udp
     restart_policy: unless-stopped
+
 
 ```
 ### Output
