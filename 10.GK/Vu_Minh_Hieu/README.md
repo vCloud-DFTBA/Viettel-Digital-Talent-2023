@@ -81,6 +81,8 @@ Output:
 
 -   Ảnh minh họa kiến trúc triển khai và bản mô tả
     <img src= images/cluster_architecture.jpg>
+    <img src= images/all_port.png>
+
 -   Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có :
     -   File inventory chứa danh sách các hosts triển khai
         -   source : [invenroty.yml](./ansible/inventories/inventory.yml)
