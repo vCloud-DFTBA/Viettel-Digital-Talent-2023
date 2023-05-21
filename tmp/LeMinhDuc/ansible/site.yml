@@ -19,7 +19,6 @@
 
 - name: Tear down existing services
   hosts: "{{ which | default('app') }}" # To override, use --extra-vars
-  order: reverse_inventory # web -> api -> db -> logger
   become: true
   gather_facts: false
   roles:
