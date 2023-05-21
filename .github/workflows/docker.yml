@@ -46,8 +46,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
 
       - name: Build and push Database Docker image
@@ -55,17 +55,17 @@ jobs:
         with:
           push: true
           context: "{{defaultContext}}:10.GK/PhamHongThanh/src/mongodb"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/thanhph/mongodb:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/thanhph/mongodb:${{  github.ref_name }}
       - name: Build and push Database Docker image
         uses: docker/build-push-action@v4
         with:
           push: true
           context: "{{defaultContext}}:10.GK/PhamHongThanh/src/backend"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/thanhph/backend:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/thanhph/backend:${{  github.ref_name }}
 
       - name: Build and push Frontend Docker image
         uses: docker/build-push-action@v4
         with:
           push: true
           context: "{{defaultContext}}:10.GK/PhamHongThanh/src/frontend"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/thanhph/frontend:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/thanhph/frontend:${{  github.ref_name }}
