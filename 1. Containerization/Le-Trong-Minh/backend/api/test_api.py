@@ -1,6 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from main import app
+import logging
 
 client = TestClient(app)
 
@@ -16,13 +17,7 @@ def student_data():
         "major": "CS"
     }
 
-
-def test_get_all():
-    response = client.get("/api/v1/students")
-    assert response.status_code == 200
-    assert response.json() is not None
-
-def test_post(student_data):
+def test_post_student(student_data):
     response = client.post("/api/v1/students", json=student_data)
     assert response.status_code == 200
     response_data = response.json()
@@ -42,8 +37,12 @@ def test_post(student_data):
     }
     assert response_data == expected_data
 
+def test_get_all_students():
+    response = client.get("/api/v1/students")
+    assert response.status_code == 200
+    assert response.json() is not None
 
-def test_get_by_id(student_data):
+def test_get_student_by_id(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     response2 = client.get(f"/api/v1/students/{student_id}")
@@ -65,7 +64,7 @@ def test_get_by_id(student_data):
     }
     assert response2_data == expected_data
 
-def test_update(student_data):
+def test_update_student(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     updated_data = {
@@ -86,7 +85,7 @@ def test_update(student_data):
     }
     assert response2.json() == expected_data
 
-def test_delete(student_data):
+def test_delete_student(student_data):
     response1 = client.post("/api/v1/students", json=student_data)
     student_id = response1.json()['data']['id']
     response2 = client.delete(f"/api/v1/students/{student_id}")
