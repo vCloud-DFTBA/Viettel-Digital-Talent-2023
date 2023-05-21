@@ -1,11 +1,21 @@
 version: '3'
 services:
-  appuser:
+  appuser1:
     build: ./app
     depends_on:
       - dbmongo
     ports:
       - 5000:5000
+    networks:
+      - db
+      - app
+  
+  appuser2:
+    build: ./app
+    depends_on:
+      - dbmongo
+    ports:
+      - 5001:5000
     networks:
       - db
       - app
@@ -18,7 +28,8 @@ services:
     volumes:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
-      - appuser
+      - appuser1
+      - appuser2
     networks:
       - app
 
