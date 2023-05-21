@@ -33,5 +33,5 @@ jobs:
             backend:${{ env.TAG }}
             frontend:${{ env.TAG }}
           file: |
-            10.GK/PhamDuyCuong/source/web_CRUD/api/Flask_CRUD/
-            10.GK/PhamDuyCuong/source/web_CRUD/web/
+            10.GK/PhamDuyCuong/source/web_CRUD/api/Dockerfile
+            10.GK/PhamDuyCuong/source/web_CRUD/web/Dockerfile
