@@ -1,0 +1,31 @@
+- name: create lb folder
+  file:
+    path: "{{ path_to_folder }}/log"
+    state: directory
+
+- name: copy dockerfile and nginx config
+  copy:
+    src: "{{ item }}"
+    dest: "{{ path_to_folder }}"
+  loop:
+    - nginx.conf
+    - Dockerfile
+
+- name: build Docker Image
+  docker_image: 
+    name: "{{ image_name }}"
+    state: "{{ image_state }}"
+    source: build
+    build:
+      path: "{{ path_to_folder }}"
+  
+
+- name: run Docker container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image_name }}"
+    state: "{{ container_state }}"
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"
+    networks:
+      - name: "{{ network_name }}"
