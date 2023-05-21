@@ -1,0 +1,3 @@
+NETWORK_FE_BE: fe-be
+NETWORK_BE_DB: be-db
+IMAGE_NAME: liinhhnt/vdt-backend:latest

@@ -1,0 +1,62 @@
+name: Unit Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      # - uses: actions/checkout@v2  
+      # - uses: awalsh128/cache-apt-pkgs-action@latest
+      #   with:
+      #     packages: apt-transport-https ca-certificates curl gnupg software-properties-common python3-pip virtualenv python3-setuptools
+      #     version: latest
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+        
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: site.yaml
+          directory: ./ansible/
+          options: |
+            --inventory inventories/inventory.yaml
+          vault_password: ${{secrets.VAULT_PASSWORD}}
+          
+      # - name: Cache dependencies
+      #   id: cache-dependencies
+      #   uses: actions/cache@v3
+      #   env:
+      #     cache-name: cache-dependencies
+      #   with:
+      #     # npm cache files are stored in `~/.depend` on Linux/macOS
+      #     path: ~/.depend
+      #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-build-${{ env.cache-name }}-
+      #       ${{ runner.os }}-build-
+      #       ${{ runner.os }}-
+      # - if: ${{ steps.cache-dependencies.outputs.cache-hit != 'true' }}
+      #   name: Install dependencies
+      #   continue-on-error: true
+      #   run: pip install -r web_crud/test/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r web_crud/test/requirements.txt
+
+      - name: Run unit tests
+        run: python -m unittest web_crud/test/unit_test.py

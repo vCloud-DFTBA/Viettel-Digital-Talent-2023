@@ -1,0 +1,8 @@
+- name: Deploy Web server container
+  docker_container:
+    name: nginx_server
+    image: "{{IMAGE_NAME}}"
+    ports:
+      - "3000:80"
+    networks:
+      - name: "{{ NETWORK_NAME }}"
