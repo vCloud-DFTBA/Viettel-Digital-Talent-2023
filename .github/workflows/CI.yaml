@@ -27,13 +27,13 @@ jobs:
           cd 10.Midterm/Docker/app
           pip install -r requirements.txt;
 
-      - name: Turn on Container for Database
+      - name: Build container for database 
         run: |
           cd 10.Midterm/Docker
           docker compose up -d
           docker exec mongodb mongoimport --db VDT23 --collection attendees --jsonArray --file data/db/attendees.json
-          
-      - name: Test with pytest
+      
+# test api inside container 
+      - name: Test api 
         run: |
-          cd 10.Midterm/Docker/app
-          pytest test.py
+          docker exec flask python3 test.py
