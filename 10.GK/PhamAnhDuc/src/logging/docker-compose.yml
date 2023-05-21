@@ -1,11 +1,11 @@
 version: '3'
 services:
-  fluentd:
-    container_name: fluentd
-    build: ./fluentd
-    volumes:
-      - ./fluentd/conf:/fluentd/etc
-    network_mode: "host"
+  # fluentd:
+  #   container_name: fluentd
+  #   build: ./fluentd
+  #   volumes:
+  #     - ./fluentd/conf:/fluentd/etc
+  #   network_mode: "host"
 
   elasticsearch:
     container_name: elasticsearch

@@ -1,0 +1,23 @@
+---
+
+- name: Create fluentd config directory if it does not exist
+  ansible.builtin.file:
+    path: "~/fluentd_conf"
+    state: directory
+
+- name: Template Load fluentd.conf config file
+  template:
+    src: "../templates/fluent.conf"
+    dest: "~/fluentd_conf/fluent.conf"
+
+- name: Start fluentd
+  docker_container:
+    name: fluentd
+    image: ducpa01/fluentd-vdt:{{ tag_version }}
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    volumes:
+      - ~/fluentd_conf/:/fluentd/etc
+    networks:
+      - name: host

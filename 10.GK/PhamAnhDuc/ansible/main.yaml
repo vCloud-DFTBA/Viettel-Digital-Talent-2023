@@ -8,6 +8,22 @@
   vars_files:
     - "./vars/common.yaml"
 
+- name: Start monitoring & logging services
+  hosts: all
+  gather_facts: false
+  become: false
+  roles:
+    - monitor
+    - logging
+  vars:
+    - remote_write_server: "http://27.66.108.93:9090/api/v1/write"
+    - remote_logging_server: 171.236.38.100
+    - tag_version: v0.1.1
+
+  vars_files:
+    - "./vars/common.yaml"
+
+
 - name: Start database
   hosts: localhost
   gather_facts: false
@@ -29,7 +45,7 @@
   vars_files:
     - "./vars/common.yaml"
   vars:
-    - tag_version: v0.0.11
+    - tag_version: v0.1.1
     - DB_URI: "mongodb://192.168.56.101:27017/"
     - SERVER_ADDRESS_WITH_TRAILING_SLASH: "http://ducpa_api:5000/"
 
@@ -42,15 +58,8 @@
   vars:
     - server_1: "192.168.56.102"
     - server_2: "192.168.56.101"
-    - server_3: "localhost"
+    - server_3: "192.168.56.103"
   vars_files:
     - "./vars/common.yaml"
 
-- name: Start monitoring services
-  hosts: all
-  gather_facts: false
-  become: false
-  roles:
-    - monitor
-  vars:
-    - remote_write_server: "http://192.168.56.102:9099/api/v1/write"
+
