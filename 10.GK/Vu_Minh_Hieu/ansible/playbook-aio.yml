@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+      - mongodb
+      - backend
+      - nginx
+      - frontend
