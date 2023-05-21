@@ -280,4 +280,5 @@
 
   - Kết quả sample log lấy từ Kibana
 
-    ![alt](./images/log-kibana.png)
+    ![image](https://github.com/bmson7112/Viettel-Digital-Talent-2023/assets/79183573/a9c6f568-e32d-45f1-852c-255665816f21)
+
