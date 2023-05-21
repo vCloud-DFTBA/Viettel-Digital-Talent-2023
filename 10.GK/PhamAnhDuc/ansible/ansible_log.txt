@@ -1,0 +1,153 @@
+
+PLAY [Setup hosts] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [192.168.56.103]
+ok: [192.168.56.102]
+ok: [localhost]
+
+TASK [common : Change host name] ***********************************************
+ok: [localhost]
+ok: [192.168.56.103]
+ok: [192.168.56.102]
+
+TASK [common : Create vt_app group] ********************************************
+ok: [localhost]
+ok: [192.168.56.102]
+ok: [192.168.56.103]
+
+TASK [common : Create vt_app user] *********************************************
+ok: [localhost]
+ok: [192.168.56.102]
+ok: [192.168.56.103]
+
+TASK [common : Setup DNS server] ***********************************************
+ok: [localhost]
+ok: [192.168.56.102]
+ok: [192.168.56.103]
+
+TASK [common : Install utility tools] ******************************************
+ok: [localhost]
+ok: [192.168.56.103]
+ok: [192.168.56.102]
+
+TASK [common : SSH hardening] **************************************************
+ok: [localhost]
+ok: [192.168.56.102]
+ok: [192.168.56.103]
+
+TASK [common : Add Docker GPG apt Key] *****************************************
+ok: [192.168.56.103]
+ok: [localhost]
+ok: [192.168.56.102]
+
+TASK [common : Add Docker Repository] ******************************************
+ok: [localhost]
+ok: [192.168.56.102]
+ok: [192.168.56.103]
+
+TASK [common : Update apt and install docker-ce] *******************************
+ok: [localhost]
+ok: [192.168.56.103]
+ok: [192.168.56.102]
+
+TASK [common : Install Docker Module for Python] *******************************
+ok: [192.168.56.102]
+ok: [localhost]
+ok: [192.168.56.103]
+
+TASK [common : Create docker group] ********************************************
+ok: [localhost]
+ok: [192.168.56.103]
+ok: [192.168.56.102]
+
+TASK [common : Add user to the docker group] ***********************************
+ok: [localhost] => (item=vdt)
+ok: [192.168.56.103] => (item=vdt2)
+ok: [192.168.56.102] => (item=vdt3)
+
+TASK [common : Include reset connection tasks to make docker group change visible change to user] ***
+skipping: [192.168.56.103]
+skipping: [192.168.56.102]
+skipping: [localhost]
+
+TASK [common : Create docker network for 3-tier web application] ***************
+ok: [localhost]
+ok: [192.168.56.102]
+ok: [192.168.56.103]
+
+PLAY [Start database] **********************************************************
+
+TASK [db : Start Mongo database server] ****************************************
+changed: [localhost]
+
+PLAY [Start webserver and api] *************************************************
+
+TASK [api : Start Api server container with tag v0.0.11] ***********************
+changed: [192.168.56.103]
+changed: [192.168.56.102]
+changed: [localhost]
+
+TASK [web : Create webserver config directory if it does not exist] ************
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+TASK [web : Template Webserver config file] ************************************
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+TASK [web : Start web docker container with tag v0.0.11] ***********************
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+PLAY [Start load balancer service] *********************************************
+
+TASK [lb : Create load_balancer_conf directory if it does not exist] ***********
+changed: [localhost]
+
+TASK [lb : Template Load Balancer config file] *********************************
+changed: [localhost]
+
+TASK [lb : Setup & Run Load Balancer] ******************************************
+changed: [localhost]
+
+PLAY [Start monitoring services] ***********************************************
+
+TASK [monitor : Install and Run "node_exporter"] *******************************
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+TASK [monitor : Install and Run "cAdvisor"] ************************************
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+TASK [monitor : Create directory for local prometheus if not exists] ***********
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+TASK [monitor : Template prometheus.yml] ***************************************
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+TASK [monitor : Create docker volume for local prometheus] *********************
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+changed: [localhost]
+
+TASK [monitor : Setup local prometheus push data to centralized prometheus] ****
+changed: [localhost]
+changed: [192.168.56.102]
+changed: [192.168.56.103]
+
+PLAY RECAP *********************************************************************
+192.168.56.102             : ok=24   changed=10   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+192.168.56.103             : ok=24   changed=10   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+localhost                  : ok=28   changed=14   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+

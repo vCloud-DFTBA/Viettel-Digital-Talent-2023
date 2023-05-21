@@ -32,3 +32,10 @@ jobs:
           push: true
           tags: ducpa01/nginx-buddy:${{github.ref_name}}
           context: "{{defaultContext}}:10.GK/PhamAnhDuc/src/nginx"
+      
+      - name: Build and push fluentd
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: ducpa01/fluentd-vdt:${{github.ref_name}}
+          context: "{{defaultContext}}:10.GK/PhamAnhDuc/src/logging/fluentd"

@@ -1,12 +1,12 @@
 ---
-# - name: Setup hosts
-#   hosts: all
-#   become: true
-#   gather_facts: true
-#   roles:
-#     - common
-#   vars_files:
-#     - "./vars/common.yaml"
+- name: Setup hosts
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - common
+  vars_files:
+    - "./vars/common.yaml"
 
 - name: Start database
   hosts: localhost
@@ -30,7 +30,7 @@
     - "./vars/common.yaml"
   vars:
     - tag_version: v0.0.11
-    - DB_URI: "mongodb://192.168.56.102:27017/"
+    - DB_URI: "mongodb://192.168.56.101:27017/"
     - SERVER_ADDRESS_WITH_TRAILING_SLASH: "http://ducpa_api:5000/"
 
 - name: Start load balancer service
