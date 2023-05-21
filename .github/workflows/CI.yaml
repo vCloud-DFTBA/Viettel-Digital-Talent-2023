@@ -36,4 +36,5 @@ jobs:
 # test api inside container 
       - name: Test api 
         run: |
+          cd /var/www/
           docker exec flask python3 test.py
