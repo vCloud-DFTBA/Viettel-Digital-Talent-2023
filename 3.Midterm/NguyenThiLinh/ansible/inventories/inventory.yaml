@@ -1,9 +1,0 @@
----
-all:
-  hosts:
-    localhost:
-      ansible_connection: local
-      ansible_python_intepreter: /home/liinhhnt/VDTCloud2023/Viettel-Digital-Talent-2023/2.Ansible/NguyenThiLinh/ansible/venv/bin/python
-      ansible_become_user: root
-      ansible_become_password: ntlinh120102
-      hostname: liinhhnt
