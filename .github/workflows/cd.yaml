@@ -35,7 +35,7 @@ jobs:
       - name: Build and push Docker image fronend
         uses: docker/build-push-action@v4
         with:
-          context: 10.GK/PhamDuyCuong/source/web_CRUD
+          context: 10.GK/PhamDuyCuong/source/web_CRUD/web
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:${{ env.TAG }}
-          file: 10.GK/PhamDuyCuong/source/web_CRUD/web/Dockerfile
+          file: Dockerfile
