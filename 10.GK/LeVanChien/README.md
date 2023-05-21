@@ -4,7 +4,7 @@
 Web app có các chức năng đơn giản như liệt kê danh sách các sinh viên, tìm kiếm theo username, xóa, cập nhật thông tin một sinh viên, thêm thông tin sinh viên mới.
 ![](images/demo-webui.png)
 
-Hệ thống gồm ba dịch vụ:
+Hệ thống gồm [ba dịch vụ](https://github.com/lechiennn/Viettel-Digital-Talent-2023/tree/midterm/1.%20Containerization/Le%20Van%20Chien):
 
 - Web: Giao diện viết bằng html + css + javascript, triển khai trên nền nginx.
 - Api: Sử dụng Flask với các chức năng get, create, delete, update các thông tin. Các chức năng trong api đều có unit tests, sử dụng thư viện pytest.
@@ -46,7 +46,7 @@ Kích thước các images:
 ![](images/image-size.png)
 
 ## 2. Continuous Integration
-File setup công cụ CI:
+File setup [công cụ CI](https://github.com/lechiennn/Viettel-Digital-Talent-2023/tree/midterm/.github/workflows):
 ```
 name: CI
 
@@ -89,7 +89,7 @@ Github Actions thực hiện test sau khi push commit:
 
 Phần này sử dụng Ansible-playbook để setup và build các container trên một host.
 
-### File setup CD
+### File setup [CD](https://github.com/lechiennn/Viettel-Digital-Talent-2023/tree/midterm/.github/workflows)
 ```
 name: Build Dockerfile and push
 
@@ -147,7 +147,8 @@ Kế quả thực hiện 2 actions CI, CD trên github mỗi lần push:
 
 ---
 
-### **Cấu trúc cây thư mục các roles và các file playbooks**
+### **Cấu trúc cây thư mục [các roles và các file playbooks](https://github.com/lechiennn/Viettel-Digital-Talent-2023/tree/midterm/2.Ansible/LeVanChien)**
+
 ```
 ├── ansible.cfg
 ├── inventories
@@ -160,7 +161,7 @@ Kế quả thực hiện 2 actions CI, CD trên github mỗi lần push:
 │   │   └── tasks
 │   │       └── main.yaml
 │   ├── common
-│   │   ├── defaults
+│   │   ├── defaults1
 │   │   │   └── main.yaml
 │   │   ├── handlers
 │   │   │   └── main.yaml
