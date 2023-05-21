@@ -1,19 +1,12 @@
 import os
-import socket
 from flask import Flask, render_template, request, redirect, url_for
 from flask_pymongo import PyMongo
 from bson import ObjectId 
 
 application = Flask(__name__, template_folder='template')
 
-# hostname = socket.getfqdn()
-# host_ip = socket.gethostbyname_ex(hostname)[2][0]
+application.config["MONGO_URI"] = "mongodb://192.168.40.128:27017/VDT23"
 
-ret = os.system("ping -n -c 3 -W 3000 192.168.40.128")
-if ret != 0:
-	application.config["MONGO_URI"] = "mongodb://localhost:27017/VDT23"
-else:
-	application.config["MONGO_URI"] = "mongodb://192.168.40.128:27017/VDT23"
 mongo = PyMongo(application)
 db = mongo.db
 
