@@ -1,0 +1,13 @@
+---
+# tasks file for web
+
+- name: Run docker image web
+  docker_container:
+    name: web
+    image: pdc1997/web:latest
+    restart_policy: unless-stopped
+    hostname: web
+    links:
+      - "api:api"
+    ports:
+      - "80:80"

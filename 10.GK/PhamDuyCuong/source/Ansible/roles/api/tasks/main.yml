@@ -1,0 +1,11 @@
+---
+# tasks file for api
+
+- name: Run docker image api
+  docker_container:
+    name: api
+    image: pdc1997/api:latest
+    restart_policy: unless-stopped
+    hostname: api
+    ports:
+      - "5000:5000"

@@ -4,11 +4,15 @@ from pymongo import MongoClient
 
 
 def init_db(path_to_csv):
-    DATABASE_NAME = "VDT23"
-    DATABASE_HOST = "mongodb"
+    DB_HOSTNAME="44.201.231.16"
+    DB_USERNAME="admin"
+    DB_PASSWORD="vdt23"
+    DATABASE_NAME="VDT2023"
     logger = logging.getLogger()
     try:
-        client = MongoClient(DATABASE_HOST)
+        MONGO_URI =f"mongodb://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOSTNAME}:27017"
+        print(MONGO_URI)
+        client = MongoClient(MONGO_URI)
         db = client[DATABASE_NAME]
         collection = db.attendees
         logger.warning("Conected to database")
