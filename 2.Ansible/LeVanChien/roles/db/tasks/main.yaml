@@ -1,9 +1,8 @@
-- name: copy resources from host
-  copy:
-    src: "{{ source_folder }}"
-    dest: "{{ dest_folder }}"
-    force: false
-
+- name: create db folder
+  file:
+    path: "{{ path_to_db }}"
+    state: directory
+    
 - name: create Docker network
   community.docker.docker_network:
     name: "{{ network_name }}"

@@ -1,6 +1,5 @@
 user: lechiennn
-source_folder: ../db
-dest_folder: "/home/{{ user }}/test/"
+path_to_db: "/home/{{ user }}/test/db"
 
 image_name: mongo:5.0
 
@@ -8,6 +7,6 @@ container_name: db
 
 container_state: started
 volumes:
-  - "{{ dest_folder }}/db:/data/db"
+  - "{{ path_to_db }}:/data/db"
 
 network_name: net

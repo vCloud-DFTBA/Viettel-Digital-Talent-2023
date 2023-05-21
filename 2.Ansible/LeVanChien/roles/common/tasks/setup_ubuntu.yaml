@@ -34,52 +34,9 @@
   ignore_errors: true
   
 
-# - name: Ensure curl is present (on older systems without SNI).
-#   package: name=curl state=present
-#   when: add_repository_key is failed and docker_add_repo | bool
-
-# - name: Add Docker apt key (alternative for older systems without SNI).
-#   shell: >
-#     curl -sSL {{ docker_apt_gpg_key }} | apt-key add -
-#   when: add_repository_key is failed and docker_add_repo | bool
-
 - name: Add Docker repository.
   apt_repository:
     repo: "{{ docker_apt_repository }}"
     state: present
     update_cache: true
 
-# - name: Install required package
-#   package:
-#     name:
-#       - ca-certificates
-#       - curl
-#       - gnupg
-#     state: present
-#     update_cache: true
-
-# - name: Add Docker apt key.
-#   get_url:
-#     url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
-#     dest: /etc/apt/trusted.gpg.d/docker.asc
-#     mode: '0644'
-#     force: true
-#   register: add_repository_key
-#   ignore_errors: false
-
-# - name: Add Docker repository.
-#   apt_repository:
-#     repo: "deb [arch={{ ansible_architecture }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
-#     state: present
-#     update_cache: true
-
-####
-# - name: Add GPG key
-#   apt_key: 
-#     url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
-#     state: present
-
-# - name: Add repository
-#   apt_repository:
-#     repo: "deb [arch={{ ansible_architecture }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
-#     state: present
