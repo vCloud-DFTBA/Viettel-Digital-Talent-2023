@@ -116,8 +116,19 @@ jobs:
 - Test khi tạo pull request: ![707e0d652ac6bd030bd2b05d43bfd4c9.png](./images/707e0d652ac6bd030bd2b05d43bfd4c9.png) ![8a05c080b052d86c528b5795890d007b.png](./images/8a05c080b052d86c528b5795890d007b.png)
 
 ## 3. CD
+3.1 Minh họa kiến trúc triển khai
 
-3.1 File setup CD
+![architecture](./images/architecture.png)
+Mô tả:
+- Hệ thống được triển khai trên 2 nodes: localhost và node với ip: 192.168.56.102
+- Hệ thống cân bằng tải được triển khai trên localhost, sau đó forward các request vào từng node theo phương pháp round-robin.
+- Trên mỗi node sẽ host 2 containers: API server viết trên python, Web server sử dụng nginx.
+- Trình duyệt sẽ gọi đến load balancer để nhận trang web, sau đó trang web gọi đến API nằm sau load balancer.
+- Mỗi API sẽ kết nối đến cơ sở dữ liệu tập trung MongoDB host trên localhost.
+
+3.2 Thư mục [ansible playbook và roles](./ansible/)
+
+3.3 File setup CD
 
 ```
 name: cd-build-push-on-tag
@@ -164,20 +175,20 @@ jobs:
 
 ```
 
-3.2 Output luồng build
+3.4 Output luồng build
 ![b9dfdb88dcf70b22f97bcb89ef3b10c3.png](./images/b9dfdb88dcf70b22f97bcb89ef3b10c3.png)
 ![8abfeb65b75dc5129d72dcece171be68.png](./images/8abfeb65b75dc5129d72dcece171be68.png)
 ![1d98fb134f5c900ba7e2fcd986ef8b12.png](./images/1d98fb134f5c900ba7e2fcd986ef8b12.png)
 ![448f8086f13b818d5874ac5bb15ad1e3.png](./images/448f8086f13b818d5874ac5bb15ad1e3.png)
 
-3.3 Hướng dẫn sử dụng ansible playbook
+3.5 Hướng dẫn sử dụng ansible playbook
 
-- Thêm các machine vào file `inventory.yml`
+- Thêm các host vào file `inventory.yml`
 - trong file `main.yml`:
-- config prometheus tập trung: `remote_write_server`
-- config elasticsearch server tập trung: `remote_logging_server`
-- config `tag_version` muốn deploy
-- config các endpoint cho load_balancer
+    - config prometheus tập trung: `remote_write_server`
+    - config elasticsearch server tập trung: `remote_logging_server`
+    - config `tag_version` muốn deploy
+    - config các endpoint cho load_balancer
 - Chạy lệnh `ansible-playbook -i inventory.yml main.yml` để triển khai.
 
 3.4 Output [log triển khai](./ansible/final_log.txt)
