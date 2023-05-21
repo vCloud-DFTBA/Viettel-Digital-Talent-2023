@@ -34,4 +34,4 @@ jobs:
       with:
         context: "./10.GK/NinhVanNghia/source/${{matrix.image-name}}"
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ github.ref }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ github.ref_name }}
