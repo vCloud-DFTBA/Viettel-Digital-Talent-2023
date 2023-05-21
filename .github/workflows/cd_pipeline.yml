@@ -68,4 +68,4 @@ jobs:
       with:
         context: 10.GK/frontend-vdt2023
         push: true
-        tags: duogglong/backend-vdt2023:${{ steps.tag_name.outputs.TAG_NAME }}
+        tags: duogglong/frontend-vdt2023:${{ steps.tag_name.outputs.TAG_NAME }}
