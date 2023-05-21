@@ -572,6 +572,9 @@ ansible-playbook -i inventory.yml playbooks/ansible.yml
 
 ## 4. Monitoring
 
+### Luồng hoạt động
+![luong](images/moni1oni1.jpg)
+
 #### Yêu cầu:
 - Viết ansible playbook roles monitor thực hiện các nhiệm vụ:
 - Cài đặt các dịch vụ node exporter và cadvisor dưới dạng container
@@ -627,3 +630,99 @@ ansible-playbook -i inventory.yml playbooks/ansible.yml
   ![monitor1](images/monitor1.jpg)
   ![monitor2](images/monitor2.jpg)
 
+## 5. Logging
+
+#### Yêu cầu:
+- Viết ansible playbook thực hiện các nhiệm vụ:
+    - Cài đặt dịch vụ logstash hoặc fluentd để collect log từ các dịch vụ web, api và db
+    - Đẩy log dịch vụ lên hệ thống Elasticsearch tập trung 171.236.38.100:9200
+    - Log phải đảm bảo có ít nhất các thông tin: IP truy cập, thời gian, action tác động, kết quả (thành công/không thành công/status code)
+    - Log được index với tiền tố <username>_ để phân biệt log dịch vụ của các sinh viên khác nhau. Thông tin <username> của từng sinh viên cho bởi bảng trong Phụ lục I.
+#### Output:
+- Ansible playbook triển khai các dịch vụ collect log (tách module logging)
+
+- Ảnh chụp sample log từ Kibana 171.236.38.100:5601
+
+### Solution
+
+#### Luồng hoạt động
+
+![luong_log](images/efk.jpg)
+
+
+- Cấu hình  `Dockerfile`:
+
+``` text
+FROM fluent/fluentd:v1.12.0-debian-1.0
+USER root
+RUN ["gem", "install", "elasticsearch", "--no-document", "--version", "< 8"]
+RUN ["gem", "install", "fluent-plugin-elasticsearch","--no-document","--version", "5.2.2"]
+USER fluent
+
+```
+
+- Cấu hình  `fluentd.conf`: 
+
+``` text
+<source>
+	@type forward
+	port 24224
+	bind 0.0.0.0
+</source>
+
+<filter *.>
+    @type record_transformer
+    <record>
+        Hostname vinhnd
+    </record>
+</filter>
+<match **>
+	 @type copy
+	 <store>
+        	@type elasticsearch
+        	host 171.236.38.100
+	        port 9200
+	        logstash_format true
+	        logstash_prefix "vinhnd"
+	        logstash_dateformat %Y%m%d
+	        include_tag_key true
+	        flush_interval 1s
+	</store>
+	<store>
+		@type stdout
+	</store>
+</match>
+```
+
+- Build a fluentd container `main.yml`
+
+``` text
+---
+- name: Build a fluentd image
+  community.docker.docker_image:
+    name: fluentd_image
+    build:
+       path: ./roles/logging/templates
+    source: "build"
+    force_source: true
+
+- name: Build a fluentd container
+  community.docker.docker_container:
+    name: fluentd
+    image: fluentd_image
+    volumes: "./roles/logging/templates/fluentd.conf:/fluentd/etc/fluent.conf"
+    networks:
+      - name: homework
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    restart_policy: unless-stopped
+
+
+```
+### Output
+- Ảnh chụp sample log từ Kibana 171.236.38.100:5601
+![log1](images/log1.jpg)
+
+
+![log2](images/log2.jpg)

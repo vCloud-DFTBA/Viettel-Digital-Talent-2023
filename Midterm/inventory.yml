@@ -8,4 +8,3 @@ all:
       ansible_become_user: root
       ansible_become_password: 4779
     
-

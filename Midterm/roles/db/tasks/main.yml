@@ -14,3 +14,7 @@
     restart_policy: "unless-stopped"
     networks:
       - name: homework
+    log_driver: fluentd
+    log_options: 
+      fluentd-address: localhost:24224
+      tag: db 
