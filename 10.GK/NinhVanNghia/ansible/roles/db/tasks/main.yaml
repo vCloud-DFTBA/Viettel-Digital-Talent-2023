@@ -1,64 +1,79 @@
 ---
-# - name: Pull and start database container
-#   docker_container:
-#     image: mysql:8.0.27
-#     name: primary_db
-#     pull: true
-#     published_ports:
-#       - "{{DB.PORT}}:{{DB.PORT}}"
-#     env:
-#       MYSQL_ROOT_PASSWORD: "{{ DB.PASSWORD }}"
-#       MYSQL_DATABASE: "{{ DB.NAME }}"
-#     volumes:
-#     - db_data:/var/lib/mysql
-#     log_driver: fluentd
-#     log_options:
-#       fluentd-address: "localhost:24224"
-#       fluentd-async-connect: "true"
-#       tag: db.log
+- name: Create directory for MYSQL config file
+  file:
+    path: "/etc/mysql/{{item}}"
+    state: directory
+  with_items:
+  - master
+  - replica
 
 
-- name: Create Docker network
+- name: copy Mysql config
+  template:
+    src: "{{item}}.conf.j2"
+    dest: "/etc/mysql/{{item}}/mysql.conf.cnf"
+  with_items:
+  - master
+  - replica
+
+
+- name: create database network
   docker_network:
-    name: cluster
-    subnet: 192.168.0.0/16
+    name: db_network
+    driver: bridge
 
-- name: Start management node
-  docker_container:
-    name: management1
-    image: mysql/mysql-cluster
-    command: ndb_mgmd
-    net: cluster
-    ip_address: 192.168.0.2
-    detached: true
 
-- name: Start data node
+- name: start MySQL Master container
   docker_container:
-    name: ndb1
-    image: mysql/mysql-cluster
-    command: ndbd
-    net: cluster
-    ip_address: 192.168.0.3
-    detached: true
-
-- name: Start MySQL server
-  docker_container:
-    name: mysql1
-    image: mysql/mysql-cluster
-    command: mysqld
-    net: cluster
-    ip_address: 192.168.0.10
+    image: mysql:8.0.27
+    name: primary_db
+    pull: true
+    hostname: primary_db
+    networks: 
+    - name: db_network
+    published_ports:
+      - "{{DB.PORT}}:{{DB.PORT}}"
     env:
-      MYSQL_RANDOM_ROOT_PASSWORD: "true"
-    detached: true
+      MYSQL_ROOT_PASSWORD: "{{ DB.PASSWORD }}"
+      MYSQL_DATABASE: "{{ DB.NAME }}"
+    volumes:
+    - /db_data:/var/lib/mysql
+    - /etc/mysql/master:/etc/mysql/conf.d
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: db.log
 
-- name: Retrieve MySQL root password
-  command: docker logs mysql1 2>&1 | grep PASSWORD
-  register: mysql_password
-  changed_when: false
+- name: Wait for Master to start
+  wait_for:
+    host: localhost
+    port: "{{DB.PORT}}"
+    delay: 3
+    timeout: 120
 
-- name: Change MySQL root password
-  docker_container_exec:
-    name: mysql1
-    command: mysql -uroot -pMyNewPass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';"
-  when: "'MyNewPass' not in mysql_password.stdout"
+- name: start MySQL Replica container
+  docker_container:
+    image: mysql:8.0.27
+    name: replica_db
+    pull: true
+    hostname: replica_db
+    networks: 
+    - name: db_network
+    published_ports:
+      - "{{DB.PORT + 1}}:{{DB.PORT}}"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ DB.PASSWORD }}"
+      MYSQL_REPLICA_USER: "{{ DB.REPLICA.USER }}"
+      MYSQL_REPLICA_PASSWORD: "{{ DB.REPLICA.PASSWORD }}"
+      MYSQL_MASTER_HOST: primary_db
+      MYSQL_MASTER_PORT: "{{ DB.PORT }}"
+      MYSQL_DATABASE: "{{ DB.NAME }}"
+    volumes:
+    - /replica_data:/var/lib/mysql
+    - /etc/mysql/replica:/etc/mysql/conf.d
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: db.replica.log

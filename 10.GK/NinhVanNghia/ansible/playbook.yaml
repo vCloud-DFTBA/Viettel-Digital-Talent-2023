@@ -1,9 +1,9 @@
 ---
-# - name: Install Docker
-#   hosts: deploy
-#   become: true
-#   roles:
-#   - common
+- name: Install Docker
+  hosts: deploy
+  become: true
+  roles:
+  - common
 
 
 - name: Deploy Database Cluster
@@ -30,16 +30,16 @@
   - lb
 
 
-# - name: Run node_exporter, cadvisor and grafana agent
-#   hosts: deploy
-#   become_user: "{{ USER }}"
-#   roles:
-#   - monitor
+- name: Run node_exporter, cadvisor and grafana agent
+  hosts: deploy
+  become_user: "{{ USER }}"
+  roles:
+  - monitor
 
 
-# - name: start Fluent container
-#   hosts: app, db_cluster
-#   become_user: "{{ USER }}"
-#   gather_facts: false
-#   roles:
-#   - logging
+- name: start Fluent container
+  hosts: app, db_cluster
+  become_user: "{{ USER }}"
+  gather_facts: false
+  roles:
+  - logging

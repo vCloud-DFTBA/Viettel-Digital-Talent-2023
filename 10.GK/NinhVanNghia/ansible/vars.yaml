@@ -6,6 +6,10 @@ DB:
   PORT: 3306
   NAME: vdt
 
+  REPLICA:
+    USER: replica_user
+    PASSWORD: PASSWORD
+
 USER: vt_app
 PASSWORD: root
 
