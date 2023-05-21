@@ -5,7 +5,10 @@ from bson import ObjectId
 
 application = Flask(__name__, template_folder='template')
 
-application.config["MONGO_URI"] = "mongodb://192.168.40.128:27017/VDT23"
+# application.config["MONGO_URI"] = "mongodb://192.168.40.128:27017/VDT23"
+
+default_mongo_uri = "mongodb://192.168.40.128:27017/VDT23"
+application.config["MONGO_URI"] = os.getenv("MONGO_URI", default_mongo_uri)
 
 mongo = PyMongo(application)
 db = mongo.db
