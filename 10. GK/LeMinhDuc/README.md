@@ -85,7 +85,7 @@ Author: **Le Minh Duc**
 
 ### 3.1. Architecture Design
 
-![img](./assets/architecture_design.png)
+![design](./assets/design.jpg)
 
 - I deploy each service `logger`, `monitor`, `db`, `api` & `web` on multiple different hosts and scale `api` & `web` easily with `docker-compose` command.
 
@@ -113,6 +113,10 @@ Author: **Le Minh Duc**
 - However, this approach sacrifices the high availability of the load balancer. If the host goes down, the load balancer will be unavailable. I also lose nice features provided by nginx's `upstream` module like load-balancing policies, weights and health checks.
 
 - One solution might be looping through the list of hosts to generate the `nginx` configuration file. If I had more time, I would try this looping technique with Ansible Jinja2 template.
+
+- Each host I will deploy a Grafana Agent to collect metrics and logs from the services. The Agent will then push the data to the centralized Prometheus server.
+
+- Each service will register logging to Fluentd, which is on its own host. Fluentd will then push the logs to the centralized Elasticsearch server.
 
 ### 3.2. GitHub Actions Workflow
 
