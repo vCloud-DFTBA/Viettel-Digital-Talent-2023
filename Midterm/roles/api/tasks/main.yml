@@ -16,7 +16,15 @@
     name: flask
     image: flask_image
     restart_policy: "unless-stopped"
-    ports:
-      - "5000:5000"
+    networks:
+      - name: homework
+
+
+
+- name: Create flask container
+  community.docker.docker_container:
+    name: flask2
+    image: flask_image
+    restart_policy: "unless-stopped"
     networks:
       - name: homework

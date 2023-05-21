@@ -11,7 +11,7 @@
     
     <div class="href-item">
         <a href="/">Home</a>
-        <a href="create.html">Add Student</a>
+        <a href="insert.html">Add Student</a>
     </div>
     
     <table class="table-data">
@@ -32,7 +32,7 @@
     <script>
         let root = document.querySelector('.table-data')
 
-        fetch('http://localhost:81/list')
+        fetch('http://localhost:3000/list')
         .then(response => response.json())
         .then(data => {
             for (attendee of data){

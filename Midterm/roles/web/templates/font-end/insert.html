@@ -17,7 +17,7 @@
     
     <div class="href-item">
         <a href="/">Home</a>
-        <a href="create.html">Add Student</a>
+        <a href="insert.html">Add Student</a>
     </div>
 
     <form class="insert-form" >
@@ -81,7 +81,7 @@
             }
             console.log(data)
 
-            fetch("http://localhost:81/addStudent", {
+            fetch("http://localhost:3000/addStudent", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

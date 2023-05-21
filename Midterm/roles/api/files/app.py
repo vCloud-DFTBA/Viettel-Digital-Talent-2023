@@ -8,7 +8,7 @@ client = MongoClient("mongodb://db:27017/")
 db = client["internees"]
 
 
-@app.route('/list')
+@app.route('/list', methods=['GET'])
 def index():
     attendees = list(db.internees.find({}, {"_id": 0}))  # Exclude _id field
     api_json = []

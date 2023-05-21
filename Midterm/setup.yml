@@ -8,3 +8,5 @@
     - db
     - api
     - web
+    - lb
+    # - monitor
