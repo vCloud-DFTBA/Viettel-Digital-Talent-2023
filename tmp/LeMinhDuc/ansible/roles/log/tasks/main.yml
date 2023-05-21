@@ -23,7 +23,7 @@
     dest: "{{ logger_dest }}/Dockerfile"
     mode: "0644"
 
-- name : Generate docker-compose.yml
+- name: Generate docker-compose.yml
   ansible.builtin.template:
     src: docker-compose.yml.j2
     dest: "{{ logger_dest }}/docker-compose.yml"

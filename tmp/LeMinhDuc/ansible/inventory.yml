@@ -54,7 +54,7 @@ logger:
 
 app:
   children:
+    logger:
     db:
     api:
     web:
-    logger:

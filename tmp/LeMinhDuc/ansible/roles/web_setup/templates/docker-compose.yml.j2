@@ -6,7 +6,7 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: {{ logger_host }}:24224
-        tag: {{ web_service }}
+        tag: nginx.{{ web_service }}
 
   {{ web_lb_service }}:
     restart: unless-stopped
@@ -21,4 +21,4 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: {{ logger_host }}:24224
-        tag: {{ web_lb_service }}
+        tag: nginx.{{ web_lb_service }}

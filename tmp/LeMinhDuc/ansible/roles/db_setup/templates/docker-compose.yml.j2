@@ -10,4 +10,4 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: {{ logger_host }}:24224
-        tag: {{ db_service }}
+        tag: mongo.{{ db_service }}

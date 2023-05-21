@@ -10,7 +10,7 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: {{ logger_host }}:24224
-        tag: {{ api_service }}
+        tag: flask.{{ api_service }}
   
   {{ api_lb_service }}:
     restart: unless-stopped
@@ -25,4 +25,4 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: {{ logger_host }}:24224
-        tag: {{ api_lb_service }}
+        tag: nginx.{{ api_lb_service }}

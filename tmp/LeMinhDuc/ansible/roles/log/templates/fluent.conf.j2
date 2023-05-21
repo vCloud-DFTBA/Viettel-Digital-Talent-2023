@@ -4,23 +4,21 @@
   bind 0.0.0.0
 </source>
 
-<filter *.>
+<filter nginx.**>
+  @type parser
+  key_name log
+  reserve_data true
+  remove_key_name_field true
+  <parse>
+    @type nginx
+  </parse>
+</filter>
+
+<filter *.**>
     @type record_transformer
     enable_ruby true
     <record>
       hostname ${hostname}
-
-      # ip ${record["ip"]}
-      ip ${record.dig("ip")}
-
-      # time ${record["time"]}
-      time ${record.dig("time")}
-
-      # action ${record["action"]}
-      action ${record.dig("action")}
-
-      # result ${record["result"]}
-      result ${record.dig("result")}
     </record>
 </filter>
 
