@@ -118,6 +118,8 @@ Author: **Le Minh Duc**
 
 - GitHub Action release workflow: [here](./.github/workflows/release.yml)
 
+- I make use of the [`docker/metadata-action`](https://github.com/docker/metadata-action). It will auto extract the semantic version of the tag and pass it to the `docker build` command. If I tag `v0.1.0`, the image will receive the tag `0.1.0`, `0.1` and `latest`.
+
 - Output log of the release workflow: [github](https://github.com/duclm278/test-github-actions/actions/runs/5038327905)
   - Raw logs for api: [here](./.github/workflows/release-api.log)
   - Raw logs for web: [here](./.github/workflows/release-web.log)
