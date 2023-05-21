@@ -27,7 +27,8 @@
   community.docker.docker_container:
     name: fluentd
     image: fluentd_image
-    volumes: "./roles/log/files/fluentd.conf:/fluentd/etc/fluent.conf"
+    volumes: "./roles/log/files/conf/fluentd.conf:/fluentd/etc/fluent.conf"
+    # volumes: ./roles/log/files/conf/:/fluentd/etc/
     container_default_behavior: "compatibility"
     networks: 
       - name: "{{ NETWORK }}"

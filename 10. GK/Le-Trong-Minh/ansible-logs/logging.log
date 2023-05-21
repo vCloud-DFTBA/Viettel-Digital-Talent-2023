@@ -1,0 +1,32 @@
+****************************************************************************************************************
+local                      : ok=5    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+(env) minhle@minhletrong:~/Downloads/dev-mid-term/10. GK/Le-Trong-Minh$ ^C
+(env) minhle@minhletrong:~/Downloads/dev-mid-term/10. GK/Le-Trong-Minh$ ^C
+(env) minhle@minhletrong:~/Downloads/dev-mid-term/10. GK/Le-Trong-Minh$ sudo ansible-playbook -i inventories/inventory.yml log.yml 
+[sudo] password for minhle: 
+
+PLAY [all] ********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ********************************************************************************************************************************************************************
+ok: [local]
+
+TASK [log : Build a fluentd image] ********************************************************************************************************************************************************
+ok: [local]
+
+TASK [log : Check network] ****************************************************************************************************************************************************************
+ok: [local]
+
+TASK [log : Create docker network] ********************************************************************************************************************************************************
+skipping: [local]
+
+TASK [log : Build a fluentd container] ****************************************************************************************************************************************************
+[DEPRECATION WARNING]: Please note that the default value for `network_mode` will change from not specified (which is equal to `default`) to the name of the first network in `networks` 
+if `networks` has at least one entry and `networks_cli_compatible` is `true`. You can change the behavior now by explicitly setting `network_mode` to the name of the first network in 
+`networks`, and remove this warning by setting `network_mode` to `default`. Please make sure that the value you set to `network_mode` equals the inspection result for existing 
+containers, otherwise the module will recreate them. You can find out the correct value by running "docker inspect --format '{{.HostConfig.NetworkMode}}' <container_name>". This feature 
+will be removed from community.docker in version 2.0.0. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+changed: [local]
+
+PLAY RECAP ********************************************************************************************************************************************************************************
+local                      : ok=4    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
