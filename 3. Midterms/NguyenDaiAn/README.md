@@ -380,6 +380,8 @@ Giải pháp:
     jobs:
     test_project:
         runs-on: ubuntu-latest
+        
+        
         steps:
         - uses: actions/checkout@v3
         - uses: actions/setup-python@v4
@@ -390,6 +392,8 @@ Giải pháp:
 Log của 1 lần push:
 
 !["(An image of CI log supposed to be here)"](img/ci_log.png "CI log")
+
+File logs ở thư mục `log_out`.
 
 #### 3. Continuous Delivery (4đ)
 
@@ -404,7 +408,7 @@ Yêu cầu:
     - Requests đến các endpoint web và api được cân bằng tải thông qua các công ✅
 cụ load balancer, ví dụ: nginx, haproxy và traefik (0.5đ)
     - (Optional) Các công cụ load balancer cũng được triển khai theo mô hình cluster ❌
-    - (Optional) Triển khai db dưới dạng cluster ✅
+    - (Optional) Triển khai db dưới dạng cluster ❌
 
 Output:
 - Ảnh minh họa kiến trúc triển khai và bản mô tả
@@ -427,65 +431,68 @@ Sử dụng branch protection rule để ngăn push đến branch `main`. Cho ph
 
 Kiến trúc triển khai:
 
-```
----------------------------------- main
-    \                         /
-     \                       /
-      ----------------------- release
+!["(An image of structure supposed to be here)"](img/structure.png "Structure log")
 
-```
 Build và push image on tab sử dụng Github Action:
 
 `.github/workflows/on_tag_pushed.yaml`
 
-    name: On tag pushed
-    on:
-    push:
-        branches:
-        - main
-        tags:
-        - '*'
-    env:
-    CURRENT_DIR: ./roles
-    jobs:
-    docker:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout
-        uses: actions/checkout@v2
-        - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-        - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-        - name: Build and push db
-        uses: docker/build-push-action@v4
-        with: 
-            push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/db:latest
-            context: ${{ env.CURRENT_DIR }}/db/templates/
-        - name: Build and push web
-        uses: docker/build-push-action@v4
-        with: 
-            push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:latest
-            context: ${{ env.CURRENT_DIR }}/web/templates/
-        - name: Build and push api
-        uses: docker/build-push-action@v4
-        with: 
-            push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
-            context: ${{ env.CURRENT_DIR }}/api/templates/
-        - name: Build and push nginx
-        uses: docker/build-push-action@v4
-        with: 
-            push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
-            context: ${{ env.CURRENT_DIR }}/nginx/templates/
+```
+name: On tag pushed
+on:
+  push:
+    tags:
+      - '*'
+      - '**'
+env:
+  CURRENT_DIR: ./roles
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+          #    - name: Build and push db
+          #      uses: docker/build-push-action@v4
+          #      with: 
+          #        push: true
+          #        tags: ${{ secrets.DOCKERHUB_USERNAME }}/db:latest
+          #        context: ${{ env.CURRENT_DIR }}/db/templates/
+    - name: Build and push fluentd
+      uses: docker/build-push-action@v4
+      with: 
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/fluentd:${{ github.ref_name }}
+        context: ${{ env.CURRENT_DIR }}/web/templates/
+    - name: Build and push web
+      uses: docker/build-push-action@v4
+      with: 
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.ref_name }}
+        context: ${{ env.CURRENT_DIR }}/web/templates/
+    - name: Build and push api
+      uses: docker/build-push-action@v4
+      with: 
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ github.ref_name }}
+        context: ${{ env.CURRENT_DIR }}/api/templates/
+          #    - name: Build and push nginx
+          #      uses: docker/build-push-action@v4
+          #      with: 
+          #        push: true
+          #        tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
+          #        context: ${{ env.CURRENT_DIR }}/nginx/templates/
+
+```
             
 Có thể sử dụng biến ${{ github.ref_name }} để thay latest bằng tên tag.
 
@@ -720,10 +727,20 @@ Giải pháp: Sử dụng fluentd.
 	port 24224
 	bind 0.0.0.0
 </source>
+<filter nginx>
+    @type record_transformer
+    enable_ruby
+    <parse>
+        @type regexp
+        expression ^(?<somenginxstuff>.*)$
+        time_key logtime
+        time_format %d/%b/%Y:%H:%M:%S.%z
+    </parse>
+</filter>
 <filter *.>
     @type record_transformer
     <record>
-        Hostname annd
+        Hostname nguyendaian_annd
     </record>
 </filter>
 <match **>
@@ -745,8 +762,9 @@ Giải pháp: Sử dụng fluentd.
 
 ```
 
-Kibana log: (trước khi thay username thành họ&tên)
+Kibana log: 
 
+!["(An image of Kibana log supposed to be here)"](img/ki_log3.png "Kibana log")
 !["(An image of Kibana log supposed to be here)"](img/ki_log.png "Kibana log")
 !["(An image of Kibana log supposed to be here)"](img/ki_log2.png "Kibana log")
 

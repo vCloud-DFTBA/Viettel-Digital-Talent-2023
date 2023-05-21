@@ -4,8 +4,6 @@
     name: annd_cad
     networks: 
       - name: project
-    ports:
-      - 8080:8080
     restart_policy: "unless-stopped"
     volumes:
       - /:/rootfs:ro
@@ -18,8 +16,6 @@
     name: annd_prom
     networks: 
       - name: project
-    ports:
-      - 9090:9090
     restart_policy: "unless-stopped"
     command:
       - --config.file=/etc/prometheus/prometheus.yaml
@@ -32,8 +28,6 @@
     name: annd_exporter
     networks: 
       - name: project
-    ports:
-      - 9100:9100
     restart_policy: "unless-stopped"
     pid_mode: "host"
     volumes:

@@ -11,6 +11,8 @@
     name: fluentd
     image: fluentd_image
     volumes: "{{ role_path }}/templates/fluentd.conf:/fluentd/etc/fluent.conf"
+    networks:
+      - name: project
     ports:
       - 24224:24224
       - 24224:24224/udp

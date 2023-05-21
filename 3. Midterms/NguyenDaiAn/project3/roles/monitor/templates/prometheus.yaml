@@ -12,7 +12,7 @@ scrape_configs:
   static_configs:
     - targets: 
       - annd_exporter:9100
-- job_name: 'prometheus'
+- job_name: prometheus
   scrape_interval: 1m
   static_configs:
     - targets: 
