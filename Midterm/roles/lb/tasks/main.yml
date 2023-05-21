@@ -1,0 +1,20 @@
+---
+- name: Build lb image
+  community.docker.docker_image:
+    name: lb_image
+    build:
+      path: ./roles/lb/templates
+      dockerfile: Dockerfile
+    source: build
+    force_source: true
+
+
+- name: Create lb container
+  community.docker.docker_container:
+    name: lb
+    image: lb_image
+    restart_policy: "unless-stopped"
+    ports:
+      - "3000:3000"
+    networks:
+      - name: homework

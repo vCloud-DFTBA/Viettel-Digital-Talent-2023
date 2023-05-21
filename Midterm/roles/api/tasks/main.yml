@@ -1,0 +1,30 @@
+---
+- name: Build flask image
+  community.docker.docker_image:
+    name: flask_image
+    build:
+      path: ./roles/api/files
+      dockerfile: Dockerfile
+    source: build
+    force_source: true
+
+
+
+
+- name: Create flask container
+  community.docker.docker_container:
+    name: flask
+    image: flask_image
+    restart_policy: "unless-stopped"
+    networks:
+      - name: homework
+
+
+
+- name: Create flask container
+  community.docker.docker_container:
+    name: flask2
+    image: flask_image
+    restart_policy: "unless-stopped"
+    networks:
+      - name: homework

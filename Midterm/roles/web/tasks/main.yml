@@ -1,0 +1,30 @@
+---
+- name: Build nginx image
+  community.docker.docker_image:
+    name: nginx_image
+    build:
+      path: ./roles/web/templates
+      dockerfile: Dockerfile
+    source: build
+    force_source: true
+
+
+- name: Create nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: nginx_image
+    restart_policy: "unless-stopped"
+    ports:
+      - "81:81"
+    networks:
+      - name: homework
+
+- name: Create nginx container
+  community.docker.docker_container:
+    name: nginx2
+    image: nginx_image
+    restart_policy: "unless-stopped"
+    ports:
+      - "82:82"
+    networks:
+      - name: homework

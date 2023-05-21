@@ -1,0 +1,9 @@
+.git/
+flask/__pycache__
+flask/*.pyc
+flask/*.pyo
+flask/*.pyd
+flask/.pytest_cache
+flask/.coverage
+flask/.venv
+images/
