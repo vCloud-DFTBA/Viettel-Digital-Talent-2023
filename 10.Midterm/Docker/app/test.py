@@ -1,6 +1,9 @@
 import unittest
 from bson import ObjectId
+import app
 from app import application, db
+
+app.mongo_uri = "mongodb://localhost:27017/VDT23"
 
 class FlaskAppTestCase(unittest.TestCase):
 

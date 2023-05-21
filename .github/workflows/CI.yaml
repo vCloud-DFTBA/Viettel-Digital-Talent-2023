@@ -36,4 +36,5 @@ jobs:
       - name: Test with pytest
         run: |
           cd 10.Midterm/Docker/app
+          export MONGO_URI="mongodb://localhost:27017/VDT23"
           pytest test.py
