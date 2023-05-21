@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  web_mongo:
+    build: ./roles/db/files
+    networks: 
+      - my_network
+    ports:  
+      - 27017:27017
+  flask_server:
+    build: ./roles/api/files
+    networks: 
+     - my_network
+    depends_on:
+      - "web_mongo"
+  web_nginx:
+    build: ./roles/web/files
+    networks: 
+    - my_network
+    depends_on:
+      - "flask_server"
+    ports:
+      - 80:80
+networks:
+  my_network:
+    driver: bridge

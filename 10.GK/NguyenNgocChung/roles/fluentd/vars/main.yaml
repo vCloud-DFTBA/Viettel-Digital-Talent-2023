@@ -1,0 +1,3 @@
+---
+container_name: fluentd
+docker_images: fluentd_images

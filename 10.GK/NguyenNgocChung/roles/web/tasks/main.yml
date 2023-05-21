@@ -1,0 +1,19 @@
+---
+- name: Build the web image 
+  docker_image:
+    build:
+      path: ./roles/web/files/
+    name: my_nginx
+    source: "build"
+
+- name: Build the nginx_container container from the my_db image
+  docker_container:
+    name: nginx_container
+    image: my_nginx
+    networks:
+      - name: my-network
+    ports:
+    - "80:80"
+    log_driver: fluentd  
+    log_options:
+      fluentd-address: 192.168.52.135:24224

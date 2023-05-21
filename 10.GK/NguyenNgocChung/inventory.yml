@@ -1,0 +1,7 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_become_user: root
+      ansible_become_password: Chung16102002.
