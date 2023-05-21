@@ -1,12 +1,17 @@
 import unittest
+from flask_pymongo import PyMongo
 from bson import ObjectId
 from app import application, db
 
 class FlaskAppTestCase(unittest.TestCase):
 
     def setUp(self):
+        application.config["MONGO_URI"] = "mongodb://localhost:27017/VDT23"
         application.config["TESTING"] = True
         self.app = application.test_client()
+        self.mongo = PyMongo(application)
+        self.mongo.db.client.drop_database('VDT23')
+        self.db = self.mongo.db
 
     def test_lists_route(self):
         response = self.app.get("/")
