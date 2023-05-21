@@ -38,4 +38,4 @@ jobs:
           context: 10.GK/PhamDuyCuong/source/web_CRUD/web
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:${{ env.TAG }}
-          file: Dockerfile
+          file: 10.GK/PhamDuyCuong/source/web_CRUD/web/Dockerfile
