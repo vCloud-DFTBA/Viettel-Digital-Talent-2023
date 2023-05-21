@@ -1,0 +1,41 @@
+- name: Pull fluentd-vdt2023 Docker image - always pull latest version every playbook executes
+  command: docker pull duogglong/fluentd-vdt2023:latest
+
+- name: Run Docker container fluentd-vdt2023
+  docker_container:
+    name: "{{ fluentd_container_name }}"
+    image: duogglong/fluentd-vdt2023:latest
+    state: started
+    interactive: true
+    tty: true
+    ports:
+      - "24224:24224"
+    networks:
+      - name: "{{ network_name }}"
+
+
+
+# - name: Create fluentd directory
+#   file:
+#     path: var/Fluent-Docker/fluentd/conf
+#     state: directory
+
+# - name: Create docker-compose file
+#   copy:
+#     src: ../templates/docker-compose.yml
+#     dest: var/Fluent-Docker/docker-compose.yaml
+
+# - name: Copy Dockerfile
+#   copy:
+#     src: ../templates/Dockerfile
+#     dest: var/Fluent-Docker/fluentd/Dockerfile
+
+# - name: Copy fluentd.conf
+#   copy:
+#     src: ../templates/fluentd.conf
+#     dest: ./fluentd/conf/fluentd.conf
+
+# - name: Build and run fluentd container
+#   command: docker compose up -d
+#   args:
+#     chdir: var/Fluent-Docker/
