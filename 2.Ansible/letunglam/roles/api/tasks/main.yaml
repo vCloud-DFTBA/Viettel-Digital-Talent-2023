@@ -1,4 +1,0 @@
-- name: Pull python
-  ansible.builtin.shell:
-    cmd: docker pull 3.9-alpine
-  become_user: docker
