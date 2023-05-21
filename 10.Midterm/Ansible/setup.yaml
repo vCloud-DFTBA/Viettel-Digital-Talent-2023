@@ -1,0 +1,32 @@
+---
+- name: Setup Docker on all host
+  hosts: all
+  become: true
+  gather_facts: false
+
+  roles:
+    - common
+
+
+- name: Setup host
+  hosts: localhost
+  become: true
+  gather_facts: false
+
+  roles:
+    - db
+    - lb
+
+- name: Setup flask, nginx and create network
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Create network
+      docker_network:
+        name: webapp_network
+        connected:
+          - flask
+          - webserver
+          - mongodb
