@@ -34,7 +34,7 @@ services:
       - app
 
 
-  dbmongo:
+  mongodb:
     image: mongo:5.0 
 
     environment:

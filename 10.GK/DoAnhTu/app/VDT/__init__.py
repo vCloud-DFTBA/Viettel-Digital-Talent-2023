@@ -10,7 +10,7 @@ def create_app(test_config=None):
     # connect to db
 
     client = MongoClient(
-        "mongodb://admin:Admin123@dbmongo:27017/", connectTimeoutMS=3000
+        "mongodb://admin:Admin123@mongodb:27017/", connectTimeoutMS=3000
     )
     VDT_DB = client.VDTuser
     db = VDT_DB.user
