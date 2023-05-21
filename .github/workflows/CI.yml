@@ -1,0 +1,35 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - '*'
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check PEP8 compliance
+        run: pip install pycodestyle && pycodestyle --ignore=W504,E501,E275 Midterm/roles/api/files/app.py
+
+      - name: Run container
+        run: |
+          docker network create homework
+          docker build -t db_image Midterm/roles/db/templates
+          docker run -d --name db --network homework db_image
+          docker build -t flask_image Midterm/roles/api/files
+          docker run -d --name flask --network homework flask_image
+          docker build -t nginx_image Midterm/roles/web/templates
+          docker run -d -p 81:81 --name nginx --link flask:flask --network homework nginx_image
+
+      - name: Run Unit Test
+        run: python3 Midterm/roles/api/files/test_main.py
+
+
+ 
