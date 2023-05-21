@@ -5,17 +5,27 @@
 1. Show the list of students participating in the VDT 2023  - Cloud program in the form of a table (0.5pts) ✅
 2. Allow to view details/add/delete/update student information(0.5pts) ✅
 Requirement: Source code of each service
+[Sources here](https://github.com/letrongminh/Viettel-Digital-Talent-2023/tree/dev-midterm/1.%20Containerization/Le-Trong-Minh)
 
 Used `FastAPI` to write backend because `FastAPI` supports API testing through `SwaggerUI` interface
 
 Dockerfile for each service:
 <div align="center">
-  <img  src="images/web-main.png" alt="docker">
+  <img  src="images/web-main.png" alt="main">
 </div>
-
 <div align="center">
   <i><a href=>
-         Main page
+         Main page, all students, can delete, update and add user
+        </a></i>
+</div>
+
+
+<div align="center">
+  <img  src="images/web-Add-User.png" alt="add">
+</div>
+<div align="center">
+  <i><a href=>
+         Add User
         </a></i>
 </div>
 
@@ -163,7 +173,14 @@ CMD ["npm", "start"]
 ```
 `Frontend Logs`:
 
-
+<div align="center">
+  <img  src="images/webserver-build-logs.png" alt="log front end">
+</div>
+<div align="center">
+  <i><a href=>
+         Logs while building frontend
+        </a></i>
+</div>
 
 
 `Backend`:
@@ -178,12 +195,30 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
 
 `Backend Logs`:
 
+<div align="center">
+  <img  src="images/api-log.png" alt="log backend">
+</div>
+<div align="center">
+  <i><a href=>
+         Logs while building backend
+        </a></i>
+</div>
+
 
 `Database Logs`:
+<div align="center">
+  <img  src="images/mongo-logs.png" alt="log db">
+</div>
+<div align="center">
+  <i><a href=>
+         Logs while building database
+        </a></i>
+</div>
 
 
 
 2. Continuous Integration (1pt)
+
 Request:
 
 - Automatically run unit test when creating PR on main branch (0.5pt) ✅
@@ -243,9 +278,27 @@ jobs:
 ```    
 - Output log of CI stream
 
+<div align="center">
+  <img  src="images/ci-results.png" alt="CI">
+</div>
+<div align="center">
+  <i><a href=>
+         CI stream
+        </a></i>
+</div>
 
-    
--  More demo images
+-  ## More demo images
+
+Pipe deploying CI - CD.
+
+<div align="center">
+  <img  src="images/cd-cd2.png" alt="CI-cd-pp">
+</div>
+<div align="center">
+  <i><a href=>
+         CI-CD Pipline
+        </a></i>
+</div>
 
 
 # 3. Continuous Delivery (4 pts)
@@ -265,6 +318,16 @@ Request:
 Output:
 - Deployment architecture illustration and description
 
+<div align="center">
+  <img  src="images/arch.png" alt="kientruc">
+</div>
+<div align="center">
+  <i><a href=>
+         Deployment architecture
+        </a></i>
+</div>
+
+Nginx is used as a load balancer and revserse proxy. From there, it is possible to deploy a larger number of containers to ensure HA. Multiple Nginx clusters can be used together for a more guaranteed HA. Due to time limitations as well as my work, I have not been able to deploy and configure as desired.
 
 - The directory containing the ansible playbook used to deploy the service, in this directory it is required
     - ○ The inventory file contains the list of deployed hosts
@@ -276,7 +339,8 @@ Output:
         - db: Deploy the db service
         - lb: Deploy load balancing service
 
-        Structure of Ansible task:
+    
+    ## Structure of Ansible task:
 
 ```sh
 minhle@minhletrong:~/Downloads/dev-mid-term/10. GK/Le-Trong-Minh$ tree 
@@ -373,7 +437,8 @@ Roles:
 - [db](https://github.com/letrongminh/Viettel-Digital-Talent-2023/blob/dev-midterm/10.%20GK/Le-Trong-Minh/roles/db/tasks/main.yml)
 - [lb](https://github.com/letrongminh/Viettel-Digital-Talent-2023/blob/dev-midterm/10.%20GK/Le-Trong-Minh/roles/nginx/tasks/main.yml)
 
-- CD Setup File
+  
+#  - CD Setup File
 
 ```sh
 name: Push Docker Image to Docker Hub
@@ -449,8 +514,94 @@ jobs:
 
 ```
 - Output of build flow and push Docker Image to Docker Hub
-- Ansible playbook manual for deploying system components
-- Output log of system deployment
+
+<div align="center">
+  <img  src="images/CD-build.png" alt="cd-build">
+</div>
+<div align="center">
+  <i>
+         Building
+         </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/CD-push.png" alt="cd-push">
+</div>
+<div align="center">
+  <i>
+         Pushing
+        </i>
+</div>
+
+- Instructions for using ansible playbook to deploy system components
+
+For each component, a playbook playbook has been written corresponding to each role. If you want to install it manually, can use the commands:
+
+```sh
+  mkdir -p env
+  virtualenv env/
+  source env/bin/activate
+
+  sudo ansible-playbook -i inventories/inventory.yml **.yml 
+
+  
+```
+- `note: deploy-aio.yml - deploy all-in-one`
+
+- `** - the component that you want to deploy`
+
+- ### Output log of system deployment
+
+<div align="center">
+  <img  src="images/common-ansible.png" alt="common">
+</div>
+<div align="center">
+  <i>
+         Deploy Docker
+        </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/ansible-api.png" alt="ansible-api">
+</div>
+<div align="center">
+  <i>
+         Backend
+        </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/ansible-db.png" alt="ansible-db">
+</div>
+<div align="center">
+  <i>
+         DB
+        </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/ansible-frontend.png" alt="ansible-frontend">
+</div>
+<div align="center">
+  <i>
+         Frontend
+        </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/ansible-lb.png" alt="ansible-lb">
+</div>
+<div align="center">
+  <i>
+         Load balancer
+        </i>
+</div>
+
 
 
 # 4. Monitoring (1 point) ✅
@@ -465,13 +616,38 @@ Output:
 - ● Role monitor contains playbooks and monitor configurations for the system
 - ● A snapshot of the nodes & containers monitoring dashboard, can use the centralized prometheus system at 171.236.38.100:9090
 
-
-
 [Ansible role file for monitoring here](https://github.com/letrongminh/Viettel-Digital-Talent-2023/blob/dev-midterm/10.%20GK/Le-Trong-Minh/roles/monitoring/tasks/main.yaml)
 [config file here](https://github.com/letrongminh/Viettel-Digital-Talent-2023/blob/dev-midterm/10.%20GK/Le-Trong-Minh/roles/monitoring/files/prometheus.yml)
+### Deploy
 
-<---------ảnh monitoring----->
+<div align="center">
+  <img  src="images/role-monitoring-done.png" alt="monitoring 0">
+</div>
+<div align="center">
+  <i>
+         Deploy Prometheus, cAdvisor, node-exporter
+        </i>
+</div>
 
+### Snapshots of the nodes & containers monitoring dashboard
+
+<div align="center">
+  <img  src="images/monitoring -cadvisor.png" alt="monitoring 1">
+</div>
+<div align="center">
+  <i>
+         Prometheus on the centralized monitoring system with my username `minlt`
+        </i>
+</div>
+
+<div align="center">
+  <img  src="images/monitoring-node-exporter.png" alt="monitoring 2">
+</div>
+<div align="center">
+  <i>
+         Prometheus on the centralized monitoring system with my username `minlt`
+        </i>
+</div>
 
 
 # 5. Logging (1 pt) ✅
@@ -487,4 +663,73 @@ Output:
 
 [Ansible role file for logging here](https://github.com/letrongminh/Viettel-Digital-Talent-2023/blob/dev-midterm/10.%20GK/Le-Trong-Minh/roles/log/tasks/main.yml)
 [Config file for Fluentd here](https://github.com/letrongminh/Viettel-Digital-Talent-2023/blob/dev-midterm/10.%20GK/Le-Trong-Minh/roles/log/files/fluentd.conf)
+
+### Ansible playbook implementing collect log services (separate logging module)
+
+## [For Fluentd here](https://github.com/letrongminh/Viettel-Digital-Talent-2023/tree/dev-midterm/10.%20GK/Le-Trong-Minh/roles/log)
+## [For Logstash here](https://github.com/letrongminh/Viettel-Digital-Talent-2023/tree/dev-midterm/10.%20GK/Le-Trong-Minh/roles/logstash)
+
+
+### Log while deploying
+<div align="center">
+  <img  src="images/role-log-done.png" alt="log 1">
+</div>
+<div align="center">
+  <i>
+         Deploying Fluentd
+        </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/ansible-logstash.png" alt="log 2">
+</div>
+<div align="center">
+  <i>
+         Deploying Logstash
+        </i>
+</div>
+
+
+### Sample log snapshots from Kibana 171.236.38.100:5601
+
+<div align="center">
+  <img  src="images/logstash-3.png" alt="logstash3">
+</div>
+<div align="center">
+  <i>
+          Snapshot 1
+        </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/logstash-1.png" alt="logstash1">
+</div>
+<div align="center">
+  <i>
+         Shapshot 2
+        </i>
+</div>
+
+
+<div align="center">
+  <img  src="images/logstash-2.png" alt="logstash2">
+</div>
+<div align="center">
+  <i>
+         Snapshot 3
+        </i>
+</div>
+
+
+
+# References:
+
+All logs are in this [directory](https://github.com/letrongminh/Viettel-Digital-Talent-2023/tree/dev-midterm/10.%20GK/Le-Trong-Minh/ansible-logs).
+
+
+
+
+
 

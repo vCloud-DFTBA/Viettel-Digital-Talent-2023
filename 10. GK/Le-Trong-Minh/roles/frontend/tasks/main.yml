@@ -32,8 +32,8 @@
   community.docker.docker_container:
     name: frontend_1
     # image: trongminhjr/webserver:latest
-    image: trongminhjr/devmidterm-web:v1
-    # image: webserver
+    # image: trongminhjr/devmidterm-web:v1
+    image: webserver
     state: started
     restart_policy: unless-stopped
     networks: 
