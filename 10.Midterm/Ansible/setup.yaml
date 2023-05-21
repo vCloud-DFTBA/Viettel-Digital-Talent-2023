@@ -50,11 +50,11 @@
           - mongodb
           - loadbalance
 
-- name: Forward 27017 port of node
-  hosts: node1
-  become: true
-  gather_facts: false
-  tasks:
-    - shell: |
-        socat tcp-listen:27017,bind=127.0.0.1,fork tcp:192.168.40.128:27017 &
+# - name: Forward 27017 port of node
+#   hosts: node1
+#   become: true
+#   gather_facts: false
+#   tasks:
+#     - shell: |
+#         socat tcp-listen:27017,bind=192.168.40.134,fork tcp:192.168.40.128:27017 &
 
