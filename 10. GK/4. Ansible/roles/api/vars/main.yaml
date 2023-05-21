@@ -1,5 +1,0 @@
-flask_port: "5000"
-python_image: python:3.9
-flask_container_name: phutx_flask
-flask_volumes: "appdata:/var/www"
-#file_path: roles/api/files__

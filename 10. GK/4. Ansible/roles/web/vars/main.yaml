@@ -1,6 +1,0 @@
-nginx_image: nginx:1.22.0-alpine
-nginx_container_name: phutx_webserver
-port_1: 80
-port_2: 443
-nginx_volumes: "nginxdata:/var/log/nginx"
-#file_path: roles/web/files__
