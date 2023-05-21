@@ -1,0 +1,10 @@
+---
+- name: Stop grafana-agent container
+  docker_container:
+    name: grafana-agent
+    state: stopped
+
+- name: Start grafana-agent container
+  docker_container:
+    name: grafana-agent
+    state: started

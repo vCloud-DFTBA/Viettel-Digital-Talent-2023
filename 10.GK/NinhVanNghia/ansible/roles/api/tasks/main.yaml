@@ -1,0 +1,30 @@
+---
+- name: Wait for database to start
+  wait_for:
+    host: db
+    port: "{{DB.PORT}}"
+    delay: 3
+    timeout: 120
+
+- name: Pull and start api container
+  docker_container:
+    name: api
+    image: "{{DOCKER.USERNAME}}/api"
+    pull: true
+    network_mode: host
+    env:
+      DB_HOST: "{{DB.HOST}}"
+      DB_USERNAME: "{{DB.USERNAME}}"
+      DB_PASSWORD: "{{DB.PASSWORD}}"
+      DB_PORT: "{{DB.PORT}}"
+      DB_NAME: "{{DB.NAME}}"
+      DB_DIALECT: mysql
+      DB_POOL_MIN: "1"
+      DB_POOL_MAX: "5"
+      DB_POOL_ACQUIRE: "30000"
+      DB_POOL_IDLE: "10000"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: api.log

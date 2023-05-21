@@ -1,0 +1,16 @@
+<source>
+  @type forward
+  port 24224
+</source>
+
+<match *.*>
+  @type elasticsearch
+  host 171.236.38.100
+  port 9200
+  logstash_format true
+  logstash_prefix ninh_nghia
+  logstash_dateformat %Y%m%d
+  include_tag_key true
+  type_name fluentd
+  flush_interval 10s
+</match>

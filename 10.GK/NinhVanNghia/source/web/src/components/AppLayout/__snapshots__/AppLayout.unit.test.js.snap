@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppLayout/> It should render 1`] = `
+<div
+  className="App vw-100"
+>
+  <div
+    className="page-wrapper d-flex flex-column flew-grow-1 min-vh-100"
+  >
+    <div
+      className="container d-flex flex-row justify-content-between align-items-center py-5"
+    >
+      <h2>
+        VDT APP
+      </h2>
+    </div>
+    <div
+      className="d-flex flex-row justify-content-between align-items-center p-5 mt-auto"
+    >
+      <span
+        className="text-muted"
+      >
+        @Viettel Solution
+      </span>
+    </div>
+  </div>
+</div>
+`;

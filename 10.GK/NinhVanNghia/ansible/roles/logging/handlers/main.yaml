@@ -1,0 +1,10 @@
+---
+- name: Stop fluentd container
+  docker_container:
+    name: fluentd
+    state: stopped
+
+- name: Start fluentd container
+  docker_container:
+    name: fluentd
+    state: started

@@ -1,0 +1,64 @@
+---
+- name: Start Node Exporter container
+  docker_container:
+    name: node-exporter
+    image: prom/node-exporter
+    restart_policy: unless-stopped
+    network_mode: host
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+
+
+- name: Start cAdvisor container
+  docker_container:
+    name: cadvisor
+    image: gcr.io/cadvisor/cadvisor
+    restart_policy: unless-stopped
+    network_mode: host
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro
+
+
+# ------------- Grafana Agent -------------------
+
+
+- name: Create directory for Grafana Agent config
+  file:
+    path: /etc/grafana-agent
+    state: directory
+
+- name: Copy Grafana Agent config file
+  template:
+    src: grafana-agent.yaml.j2
+    dest: /etc/grafana-agent/agent.yaml
+  notify:
+  - Stop grafana-agent container
+  - Start grafana-agent container
+
+
+- name: Start Grafana Agent container
+  docker_container:
+    name: grafana-agent
+    image: grafana/agent
+    restart_policy: unless-stopped
+    network_mode: host
+    pid_mode: host
+    ipc_mode: host
+    capabilities:
+    - SYS_TIME
+    privileged: true
+    volumes:
+      - /:/host/root:ro
+      - /sys:/host/sys:ro
+      - /proc:/host/proc:ro
+      - /etc/grafana-agent/agent.yaml:/etc/grafana-agent.yaml
+    command: -config.file=/etc/grafana-agent.yaml

@@ -1,0 +1,64 @@
+---
+# - name: Pull and start database container
+#   docker_container:
+#     image: mysql:8.0.27
+#     name: primary_db
+#     pull: true
+#     published_ports:
+#       - "{{DB.PORT}}:{{DB.PORT}}"
+#     env:
+#       MYSQL_ROOT_PASSWORD: "{{ DB.PASSWORD }}"
+#       MYSQL_DATABASE: "{{ DB.NAME }}"
+#     volumes:
+#     - db_data:/var/lib/mysql
+#     log_driver: fluentd
+#     log_options:
+#       fluentd-address: "localhost:24224"
+#       fluentd-async-connect: "true"
+#       tag: db.log
+
+
+- name: Create Docker network
+  docker_network:
+    name: cluster
+    subnet: 192.168.0.0/16
+
+- name: Start management node
+  docker_container:
+    name: management1
+    image: mysql/mysql-cluster
+    command: ndb_mgmd
+    net: cluster
+    ip_address: 192.168.0.2
+    detached: true
+
+- name: Start data node
+  docker_container:
+    name: ndb1
+    image: mysql/mysql-cluster
+    command: ndbd
+    net: cluster
+    ip_address: 192.168.0.3
+    detached: true
+
+- name: Start MySQL server
+  docker_container:
+    name: mysql1
+    image: mysql/mysql-cluster
+    command: mysqld
+    net: cluster
+    ip_address: 192.168.0.10
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+    detached: true
+
+- name: Retrieve MySQL root password
+  command: docker logs mysql1 2>&1 | grep PASSWORD
+  register: mysql_password
+  changed_when: false
+
+- name: Change MySQL root password
+  docker_container_exec:
+    name: mysql1
+    command: mysql -uroot -pMyNewPass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';"
+  when: "'MyNewPass' not in mysql_password.stdout"

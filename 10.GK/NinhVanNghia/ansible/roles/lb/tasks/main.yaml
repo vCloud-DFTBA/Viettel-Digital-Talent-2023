@@ -1,0 +1,97 @@
+---
+- name: Wait for web server to start
+  wait_for:
+    host: "{{ item }}"
+    port: 80
+    delay: 3
+    timeout: 120
+  with_items:
+  - host1
+  - host2
+
+- name: Wait for api server to start
+  wait_for:
+    host: "{{ item }}"
+    port: 8000
+    delay: 3
+    timeout: 120
+  with_items:
+  - host1
+  - host2
+
+
+# --------------- get Domain Name info ------------------
+
+
+- name: Install DNS Ultils
+  package:
+    name:
+      - dnsutils
+    state: present
+    update_cache: false
+
+
+- name: Retrieve IP addresses of app server
+  command: "dig +short {{ item }}"
+  register: dig_output
+  changed_when: false
+  with_items: 
+  - host1
+  - host2
+
+- name: Set IP addresses as facts
+  set_fact:
+    "{{ item.item }}": "{{ item.stdout }}"
+  loop: "{{ dig_output.results }}"
+
+
+# -------------- start Load Balancer cluster --------------
+
+
+- name: Create docker network
+  docker_network:
+    name: "{{LOAD_BALANCER.NETWORK.NAME}}"
+    driver: bridge
+    ipam_config:
+      - subnet: "{{LOAD_BALANCER.NETWORK.NETMASK}}"
+
+
+- name: Pull and start load balancer
+  docker_container:
+    name: "load_balancer_{{item}}"
+    image: "{{DOCKER.USERNAME}}/lb"
+    restart_policy: unless-stopped
+    networks: 
+    - name: "{{LOAD_BALANCER.NETWORK.NAME}}"
+    etc_hosts:
+      host1: "{{ host1 }}"
+      host2: "{{ host2 }}"
+    env:
+      TYPE: "{{item}}"
+    capabilities:
+    - NET_ADMIN
+    pull: true
+  with_items: 
+  - master
+  - backup
+
+
+# ------------- forward :80 to cluster -------------
+
+
+- name: Enable IP forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_set: yes
+
+
+- name: "Forwarding from outside port 80 to {{LOAD_BALANCER.VIP}}:80"
+  iptables:
+    chain: PREROUTING
+    table: nat
+    protocol: tcp
+    destination_port: 80
+    source: "!{{LOAD_BALANCER.NETWORK.NETMASK}}"
+    jump: DNAT
+    to_destination: "{{LOAD_BALANCER.VIP}}:80"

@@ -1,0 +1,11 @@
+.FormikInput, .SelectInput {
+    outline: none;
+    p {
+        height: 14px;
+    }
+}
+.SelectInput{
+    &:has(input:disabled) {
+        background: #EFEFEF;
+    }
+}
