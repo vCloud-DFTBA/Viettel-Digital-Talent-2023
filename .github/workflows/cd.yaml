@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2 
@@ -19,22 +19,6 @@ jobs:
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      
-      # - name: Get tag name    
-      #   if: startsWith(github.ref, 'refs/tags/')    
-      #   run: echo "TAG=$(echo ${{ github.ref }} | sed 's/refs\/tags//')" >> $GITHUB_ENV
-
-      # - name: Build and push backend images
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: 10.GK/PhamDuyCuong/source/web_CRUD/
-      #     push: true
-      #     file: |
-      #       app/api/Dockerfile
-      #       app/web/Dockerfile
-      #     tags: |
-      #       backend:${ env.TAG }
-      #       fronend:${ env.TAG }
 
       - name: Get tag name
         if: startsWith(github.ref, 'refs/tags/')
@@ -48,6 +32,6 @@ jobs:
           tags: |
             backend:${{ env.TAG }}
             frontend:${{ env.TAG }}
-          Dockerfile: |
+          file: |
             10.GK/PhamDuyCuong/source/web_CRUD/api/Flask_CRUD/
             10.GK/PhamDuyCuong/source/web_CRUD/web/
