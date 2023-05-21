@@ -1,0 +1,25 @@
+---
+- name: Copy files to node
+  ansible.builtin.copy:
+    src: roles/lb/files
+    dest: /loadbalance
+    mode: '0644'
+
+- name: Build Loadbalancing container image
+  docker_image:
+    name: nginx-lb
+    build:
+      path: /loadbalance
+    source: build
+    state: present
+
+- name: Build container
+  docker_container:
+    name: loadbalance
+    image: nginx-lb   
+    restart_policy: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - nginxdata:/var/log/nginx
+    network_mode: bridge

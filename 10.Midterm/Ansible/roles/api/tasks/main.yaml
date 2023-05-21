@@ -1,0 +1,10 @@
+- name: Container Configure
+  docker_container:
+    name: flask
+    image: lephuclai/flask:latest
+    restart_policy: unless-stopped
+    volumes: 
+      - appdata:/var/www
+    ports:
+      - "5500:5000"
+    network_mode: bridge

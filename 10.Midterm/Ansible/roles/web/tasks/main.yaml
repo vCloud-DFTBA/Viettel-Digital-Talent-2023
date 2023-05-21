@@ -1,0 +1,11 @@
+- name: Container Configure
+  docker_container:
+    name: webserver
+    image: lephuclai/nginx:latest   
+    restart_policy: unless-stopped
+    ports:
+      - "8000:8000"
+      - "443:443"
+    volumes:
+      - nginxdata:/var/log/nginx
+    network_mode: bridge
