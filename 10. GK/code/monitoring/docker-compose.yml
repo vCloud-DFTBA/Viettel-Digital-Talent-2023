@@ -1,0 +1,31 @@
+
+services:
+  node-exporter:
+    image: prom/node-exporter
+    container_name: dungtm_node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+  cadvisor:
+    image: 'google/cadvisor:latest'
+    container_name: dungtm_cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk:/dev/disk/:ro
+    ports:
+      - '8080:8080'
+
+  prometheus:
+    image: 'prom/prometheus:latest'
+    container_name: dungtm_prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - '9090:9090'

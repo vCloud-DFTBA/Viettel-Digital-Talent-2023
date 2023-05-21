@@ -1,0 +1,25 @@
+services:
+  fluentd:
+    container_name: fluentd
+    build: .
+    volumes:
+        - ./conf/:/fluentd/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+#  elasticsearch:
+#    container_name: elasticsearch
+#    image: elasticsearch:7.17.1
+#    ports:
+#      - "9200:9200"
+#    environment:
+#      - "discovery.type=single-node"
+#
+#  kibana:
+#    container_name: kibana
+#    image: kibana:7.17.1
+#    environment:
+#      ELASTICSEARCH_HOSTS: http://192.168.238.133:9200
+#    ports:
+#      - "5601:5601"

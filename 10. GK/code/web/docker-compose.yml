@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 192.168.238.133:24224
+        tag: dungtm_web
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginxlb.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+    ports:
+      - 80:80

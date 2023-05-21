@@ -1,0 +1,18 @@
+- name: Stop and remove existing container
+  shell:
+    cmd: "docker ps -a | grep {{ container_name }} | awk '{print $1}' | xargs -I% docker stop % | xargs -I% docker rm -f %"
+
+- name: Clear invalid version of api image
+  shell:
+    cmd: "docker images | grep {{ docker_repo_image_name }} | awk '{print $3}' | xargs -I% docker rmi -f %"
+
+- name: Pull an image from docker hub
+  shell:
+    cmd: "docker pull {{ docker_repo_image_name }}"
+# - name: Pull an image
+#   community.docker.docker_image:
+#   #   name: tranmanhdung582001/api
+#   #   source: pull
+- name: Run backend container  
+  shell:
+    cmd: "docker run -d --name {{ container_name }} -p 8000:8000 {{ docker_repo_image_name }}"

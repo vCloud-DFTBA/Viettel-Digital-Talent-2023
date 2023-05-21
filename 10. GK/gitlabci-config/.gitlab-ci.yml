@@ -1,0 +1,30 @@
+stages:
+  - "test"
+  - "build"
+
+unit-test-job:
+  image: python:3.9-slim-buster   # This job runs in the test stage.
+  stage: test 
+  script:
+    - pip install -r requirements.txt
+    - python manage.py test core
+  rules:
+    - if: '$CI_COMMIT_BRANCH != "main" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+
+build-push-image-job:
+  image: docker:24.0.0-rc.4-cli-alpine3.18
+  services:
+    - docker:24.0.0-rc.4-dind-alpine3.18
+  variables:
+    IMAGE_NAME: tranmanhdung582001/api
+    IMAGE_TAG: v9.0
+    DOCKER_TLS_CERTDIR: "/certs"
+  stage: build
+  before_script:
+    - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+  script:
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+  only:
+    - tags
+    
