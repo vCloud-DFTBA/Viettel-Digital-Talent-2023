@@ -654,9 +654,13 @@ Output:
 # 5. Logging (1 pt) ✅
 Request:
 - ● Write ansible playbook that performs the following tasks: ✅
+
         - ○ Install logstash or fluentd service to collect logs from web, api and db services ✅
+
         - ○ Push service log to centralized Elasticsearch system 171,236.38.100:9200 ✅
+        
         - ○ Log must have at least the following information: IP access, time, action effect, result (success/failure/status code) ✅
+
         - ○ Logs are indexed with <username>_ prefix to distinguish service logs of different students. Information <username> of each student is given by the table in Appendix I. ✅
 Output:
 - ● Ansible playbook implementing collect log services (separate logging module)
