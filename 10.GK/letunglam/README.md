@@ -303,4 +303,4 @@ jobs:
 #### 5. Logging
   - Kết quả sample log lấy từ Kibana
 
-    ![image](./images/kibana.png)
+    ![image](./images/kibana-0.png)
