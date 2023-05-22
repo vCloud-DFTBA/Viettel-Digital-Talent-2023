@@ -1,11 +1,11 @@
 ---
-# - name: Setup Docker on all host
-#   hosts: all
-#   become: true
-#   gather_facts: false
+- name: Setup Docker on all host
+  hosts: all
+  become: true
+  gather_facts: false
 
-#   roles:
-#     - common
+  roles:
+    - common
 
 
 - name: Setup host

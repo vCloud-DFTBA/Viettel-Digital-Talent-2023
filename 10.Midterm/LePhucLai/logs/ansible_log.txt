@@ -1,0 +1,67 @@
+
+PLAY [Setup Docker on all host] ************************************************
+
+TASK [common : Update apt package] *********************************************
+changed: [localhost]
+changed: [node1]
+
+TASK [common : Install packages to allow apt to use a repository over HTTPS] ***
+ok: [node1]
+ok: [localhost]
+
+TASK [common : Add Dockers official GPG key] ***********************************
+ok: [node1]
+ok: [localhost]
+
+TASK [common : Set up the repository] ******************************************
+ok: [node1]
+ok: [localhost]
+
+TASK [common : Update apt package] *********************************************
+changed: [node1]
+changed: [localhost]
+
+TASK [common : Install Docker Engine, containerd, and Docker Compose] **********
+ok: [node1]
+fatal: [localhost]: FAILED! => {"cache_update_time": 1684777505, "cache_updated": false, "changed": false, "msg": "'/usr/bin/apt-get -y -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confold\"      install 'docker' 'docker.io' 'docker-compose' 'docker-registry'' failed: E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.\n", "rc": 100, "stderr": "E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.\n", "stderr_lines": ["E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages."], "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nSome packages could not be installed. This may mean that you have\nrequested an impossible situation or if you are using the unstable\ndistribution that some required packages have not yet been created\nor been moved out of Incoming.\nThe following information may help to resolve the situation:\n\nThe following packages have unmet dependencies:\n containerd.io : Conflicts: containerd\n                 Conflicts: runc\n", "stdout_lines": ["Reading package lists...", "Building dependency tree...", "Reading state information...", "Some packages could not be installed. This may mean that you have", "requested an impossible situation or if you are using the unstable", "distribution that some required packages have not yet been created", "or been moved out of Incoming.", "The following information may help to resolve the situation:", "", "The following packages have unmet dependencies:", " containerd.io : Conflicts: containerd", "                 Conflicts: runc"]}
+
+PLAY [Setup host] **************************************************************
+
+PLAY [Setup flask, nginx] ******************************************************
+
+TASK [api : Container Configure] ***********************************************
+ok: [node1]
+
+TASK [web : Container Configure] ***********************************************
+ok: [node1]
+
+PLAY [Create network on node1] *************************************************
+
+TASK [Create network] **********************************************************
+ok: [node1]
+
+PLAY [Create network on localhost] *********************************************
+
+PLAY [Start monitoring and logging services] ***********************************
+
+TASK [monitor : Create folder] *************************************************
+ok: [node1]
+
+TASK [monitor : Copy files] ****************************************************
+ok: [node1]
+
+TASK [monitor : Build node exporter, cadvisor and prometheus container] ********
+ok: [node1]
+
+TASK [logging : Create folder] *************************************************
+ok: [node1]
+
+TASK [logging : Copy files] ****************************************************
+ok: [node1]
+
+TASK [logging : Build logging containers] **************************************
+ok: [node1]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=5    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+node1                      : ok=15   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

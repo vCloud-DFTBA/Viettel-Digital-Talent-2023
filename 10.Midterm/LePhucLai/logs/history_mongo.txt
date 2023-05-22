@@ -1,0 +1,23 @@
+IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT
+2d38962b1e5e   22 months ago   /bin/sh -c #(nop)  CMD ["mongod"]               0B        
+<missing>      22 months ago   /bin/sh -c #(nop)  EXPOSE 27017                 0B        
+<missing>      22 months ago   /bin/sh -c #(nop)  ENTRYPOINT ["docker-entry…   0B        
+<missing>      22 months ago   /bin/sh -c #(nop) COPY file:1dd28550b0c6cd4b…   12.6kB    
+<missing>      22 months ago   /bin/sh -c #(nop)  VOLUME [/data/db /data/co…   0B        
+<missing>      22 months ago   /bin/sh -c mkdir -p /data/db /data/configdb …   0B        
+<missing>      22 months ago   /bin/sh -c set -x  && export DEBIAN_FRONTEND…   575MB     
+<missing>      22 months ago   /bin/sh -c #(nop)  ENV MONGO_VERSION=5.0.0      0B        
+<missing>      22 months ago   /bin/sh -c echo "deb http://$MONGO_REPO/apt/…   72B       
+<missing>      22 months ago   /bin/sh -c #(nop)  ENV MONGO_MAJOR=5.0          0B        
+<missing>      22 months ago   /bin/sh -c #(nop)  ENV MONGO_PACKAGE=mongodb…   0B        
+<missing>      22 months ago   /bin/sh -c #(nop)  ARG MONGO_REPO=repo.mongo…   0B        
+<missing>      22 months ago   /bin/sh -c #(nop)  ARG MONGO_PACKAGE=mongodb…   0B        
+<missing>      22 months ago   /bin/sh -c set -ex;  export GNUPGHOME="$(mkt…   1.16kB    
+<missing>      22 months ago   /bin/sh -c mkdir /docker-entrypoint-initdb.d    0B        
+<missing>      22 months ago   /bin/sh -c set -ex;   savedAptMark="$(apt-ma…   15.1MB    
+<missing>      22 months ago   /bin/sh -c #(nop)  ENV JSYAML_VERSION=3.13.1    0B        
+<missing>      22 months ago   /bin/sh -c #(nop)  ENV GOSU_VERSION=1.12        0B        
+<missing>      22 months ago   /bin/sh -c set -eux;  apt-get update;  apt-g…   7.77MB    
+<missing>      22 months ago   /bin/sh -c groupadd -r mongodb && useradd -r…   329kB     
+<missing>      22 months ago   /bin/sh -c #(nop)  CMD ["bash"]                 0B        
+<missing>      22 months ago   /bin/sh -c #(nop) ADD file:5c3d9d2597e01d1ce…   72.8MB    

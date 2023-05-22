@@ -1,0 +1,76 @@
+#1 [internal] load .dockerignore
+#1 transferring context: 2B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 206B 0.1s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.9
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 11.28kB done
+#4 DONE 0.0s
+
+#5 [1/4] FROM docker.io/library/python:3.9
+#5 DONE 0.0s
+
+#6 [2/4] WORKDIR /var/www/
+#6 DONE 0.0s
+
+#7 [3/4] ADD . /var/www/
+#7 DONE 0.0s
+
+#8 [4/4] RUN pip install --no-cache-dir -r requirements.txt
+#8 2.196 Requirement already satisfied: flask in /usr/local/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.3.2)
+#8 2.198 Requirement already satisfied: flask_pymongo in /usr/local/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (2.3.0)
+#8 2.199 Requirement already satisfied: gunicorn in /usr/local/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (20.1.0)
+#8 2.221 Requirement already satisfied: Werkzeug>=2.3.3 in /usr/local/lib/python3.9/site-packages (from flask->-r requirements.txt (line 1)) (2.3.4)
+#8 2.227 Requirement already satisfied: click>=8.1.3 in /usr/local/lib/python3.9/site-packages (from flask->-r requirements.txt (line 1)) (8.1.3)
+#8 2.231 Requirement already satisfied: blinker>=1.6.2 in /usr/local/lib/python3.9/site-packages (from flask->-r requirements.txt (line 1)) (1.6.2)
+#8 2.233 Requirement already satisfied: itsdangerous>=2.1.2 in /usr/local/lib/python3.9/site-packages (from flask->-r requirements.txt (line 1)) (2.1.2)
+#8 2.237 Requirement already satisfied: Jinja2>=3.1.2 in /usr/local/lib/python3.9/site-packages (from flask->-r requirements.txt (line 1)) (3.1.2)
+#8 2.242 Requirement already satisfied: importlib-metadata>=3.6.0 in /usr/local/lib/python3.9/site-packages (from flask->-r requirements.txt (line 1)) (6.6.0)
+#8 2.248 Requirement already satisfied: PyMongo>=3.3 in /usr/local/lib/python3.9/site-packages (from flask_pymongo->-r requirements.txt (line 2)) (4.3.3)
+#8 2.258 Requirement already satisfied: setuptools>=3.0 in /usr/local/lib/python3.9/site-packages (from gunicorn->-r requirements.txt (line 3)) (58.1.0)
+#8 2.305 Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.9/site-packages (from importlib-metadata>=3.6.0->flask->-r requirements.txt (line 1)) (3.15.0)
+#8 2.315 Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.9/site-packages (from Jinja2>=3.1.2->flask->-r requirements.txt (line 1)) (2.1.2)
+#8 2.335 Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in /usr/local/lib/python3.9/site-packages (from PyMongo>=3.3->flask_pymongo->-r requirements.txt (line 2)) (2.3.0)
+#8 2.488 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#8 2.916 WARNING: You are using pip version 22.0.4; however, version 23.1.2 is available.
+#8 2.916 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+#8 DONE 3.1s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 0.1s done
+#9 writing image sha256:c1a49b1187a2c905ca93ea2d787764320a88172a712b7aa29691a8771865b64c done
+#9 naming to docker.io/library/python:3.9 done
+#9 DONE 0.1s
+#1 [internal] load .dockerignore
+#1 transferring context: 2B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 162B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/nginx:1.22.0-alpine
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 662B done
+#4 DONE 0.0s
+
+#5 [1/2] FROM docker.io/library/nginx:1.22.0-alpine
+#5 CACHED
+
+#6 [2/2] COPY conf.d/app.conf /etc/nginx/conf.d/app.conf
+#6 DONE 0.0s
+
+#7 exporting to image
+#7 exporting layers done
+#7 writing image sha256:b090fe66ac6c2fe111d53206264c97cac5fda674d659f34822baa3437409e6fa done
+#7 naming to docker.io/library/nginx:1.22.0-alpine done
+#7 DONE 0.0s
