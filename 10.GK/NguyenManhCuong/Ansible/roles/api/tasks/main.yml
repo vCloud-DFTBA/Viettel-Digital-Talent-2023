@@ -1,0 +1,30 @@
+- name: Create a network
+  docker_network:
+    name: frontend
+
+- name: Pull api image
+  docker_image:
+    name: "{{ api_image_name }}"
+    tag: "{{ image_version }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run api containers
+  docker_container:
+    name: "{{ item.name }}"
+    image: "{{ api_image_name }}:{{ image_version }}"
+    restart_policy: unless-stopped
+    state: started
+    env: 
+      DB_DATABASE: "{{ db_database }}"
+      DB_HOSTNAME: "{{ db_container_name }}"
+      COLOR: "{{ item.color }}"
+
+    networks:
+      - name: backend
+      - name: frontend
+  loop:
+    - { name: 'flask_1', color: "#003366" }
+    - { name: 'flask_2', color: "#ff0033" }
+    - { name: 'flask_3', color: "#00ff00" }
