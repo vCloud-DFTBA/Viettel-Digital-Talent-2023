@@ -8,13 +8,13 @@
 #     - common
 
 
-- name: Setup host
-  hosts: localhost
-  become: true
-  gather_facts: false
-  roles:
-    # - db
-    - lb
+# - name: Setup host
+#   hosts: localhost
+#   become: true
+#   gather_facts: false
+#   roles:
+#     - db
+#     - lb
 
 - name: Setup flask, nginx
   hosts: all
@@ -22,7 +22,7 @@
   gather_facts: false
   roles:
     - api
-    - web
+    # - web
 
 - name: Create network on node1
   hosts: node1
@@ -36,7 +36,7 @@
           - flask
           - webserver
 
-- name: Create network on local
+- name: Create network on localhost
   hosts: localhost
   become: true
   gather_facts: false
@@ -50,11 +50,11 @@
           - mongodb
           - loadbalance
 
-# - name: Forward 27017 port of node
+# - name: Forward 8001 port to port 8000 of node
 #   hosts: node1
 #   become: true
 #   gather_facts: false
 #   tasks:
 #     - shell: |
-#         socat tcp-listen:27017,bind=192.168.40.134,fork tcp:192.168.40.128:27017 &
+#         socat tcp-listen:8001,bind=192.168.40.128,fork tcp:192.168.40.134:8000 &
 
