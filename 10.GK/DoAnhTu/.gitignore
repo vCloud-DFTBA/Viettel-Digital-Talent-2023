@@ -4,3 +4,5 @@ instance/
 __pycache__/
 
 flask_app/
+.vscode/
+settings.json

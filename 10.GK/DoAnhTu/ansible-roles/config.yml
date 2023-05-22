@@ -14,7 +14,7 @@
 #     - monitoring
 
 - name: install configure package
-  hosts: local
+  hosts: localhost
   become: true
   gather_facts: true
   roles:

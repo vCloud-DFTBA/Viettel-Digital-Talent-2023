@@ -40,7 +40,7 @@
       - docker
       - docker-compose
 - name: add user to Docker group
-  shell: "usermod -aG docker cloud_user"
+  shell: "usermod -aG docker vm2"
 
 - name: allow ports 8000, 5000, 5001
   ansible.builtin.shell: ufw allow 8000 && ufw allow 5000 && ufw allow 5001
