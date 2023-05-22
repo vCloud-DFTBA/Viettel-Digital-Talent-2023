@@ -1,2 +1,21 @@
 ---
 # tasks file for logging
+- name: Build fluentd image
+  community.docker.docker_image:
+    name: fluentd_image
+    build:
+       path: ./roles/logging/templates
+    source: "build"
+    force_source: true
+
+- name: Run fluentd container
+  community.docker.docker_container:
+    name: fluentd
+    image: fluentd_image
+    volumes: "./roles/logging/templates/fluentd.conf:/fluentd/etc/fluent.conf"
+    networks:
+      - name: homework
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    restart_policy: unless-stopped

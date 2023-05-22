@@ -2,7 +2,7 @@
 # tasks file for monitor
 - name: Run cadvisor container
   community.docker.docker_container:
-    image: gcr.io/cadvisor/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor
     name: cadvisor
     ports:
       - 8080:8080
@@ -14,19 +14,28 @@
 
 - name: Run node exporter container
   community.docker.docker_container:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter
     name: node_exporter
     ports:
       - 9100:9100
     restart_policy: "unless-stopped"
+
+
+- name: Copy prometheus config
+  copy:
+    src: /home/dc97/Desktop/BTGK/PhamDuyCuong/Viettel-Digital-Talent-2023/10.GK/PhamDuyCuong/source/Ansible/roles/monitor/templates/prometheus.yml
+    dest: /tmp
+  become: yes
 
 - name: Run Prometheus container
   community.docker.docker_container:
     name: prometheus
     image: prom/prometheus
     restart: true
-    published_ports: "9090:9090"
-    volumes:
-      - "./roles/monitor/templates/prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports: "9090:9090"
+    volumes: /tmp/prometheus.yml:/etc/prometheus/prometheus.yml
+      
+
+    
 
 

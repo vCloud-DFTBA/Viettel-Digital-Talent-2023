@@ -11,3 +11,8 @@
       - "api:api"
     ports:
       - "80:80"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: web.log

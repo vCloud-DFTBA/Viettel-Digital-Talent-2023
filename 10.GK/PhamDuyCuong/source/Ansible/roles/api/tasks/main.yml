@@ -9,3 +9,8 @@
     hostname: api
     ports:
       - "5000:5000"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: api.log
