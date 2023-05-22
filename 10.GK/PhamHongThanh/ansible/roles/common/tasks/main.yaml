@@ -1,0 +1,49 @@
+- name: Install required packages
+  apt:
+    update_cache: true
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+  become: true
+
+- name: Add Docker's official GPG Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+
+- name: Install Docker Engine and relative packages
+  apt: 
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+
+- name: Install Docker and Docker Compose for Python 
+  pip: 
+    name:
+      - docker
+      - docker-compose
+
+- name: Manage Docker as a non-root user
+  user: 
+    name: thanh
+    groups: docker
+    append: yes
+  become: true
+
+- name: Create Docker network
+  community.docker.docker_network:
+    name: midsem_network
+    state: present

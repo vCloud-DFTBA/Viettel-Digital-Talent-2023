@@ -1,0 +1,36 @@
+---
+- name: OS
+  hosts: host1
+  become: true
+  gather_facts: true
+  roles:
+    - common
+
+- name: log
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - log
+- name: monitor
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - monitor
+
+- name: Web
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - db
+    - api
+    - web
+
+- name: lb
+  hosts: localhost
+  become: true
+  gather_facts: false
+  roles:
+    - lb
