@@ -29,12 +29,18 @@
     tag: "{{ latest_tag.stdout }}"
     source: pull
 
+- name: full image of load balancing
+  docker_image:
+    name: "{{ lb_image_name }}"
+    tag: "{{ lb_image_tag }}"
+    source: pull
+
 - name: creat a docker container for web application and mapping port
   docker_container:
-    name: "{{ web_container_name }}"
+    name: "{{ web_container_name }}1"
     image: "{{ web_image_name }}:{{ latest_tag.stdout }}"
     ports:
-      - "5000:5000"
+      - "5001:5000"
     env:
       API_HOST: "http://{{ API_HOST }}"
       API_POST: "{{ API_POST }}"
@@ -43,4 +49,54 @@
     log_driver: fluentd
     log_options:
       fluentd-address: "192.168.89.107:24224"
-      tag: "docker.web.nguyenmanhduc"
+      tag: "docker.web.nguyenmanhduc1"
+
+- name: creat a docker container for web application and mapping port
+  docker_container:
+    name: "{{ web_container_name }}2"
+    image: "{{ web_image_name }}:{{ latest_tag.stdout }}"
+    ports:
+      - "5002:5000"
+    env:
+      API_HOST: "http://{{ API_HOST }}"
+      API_POST: "{{ API_POST }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.web.nguyenmanhduc2"
+
+
+- name: creat a docker container for web application and mapping port
+  docker_container:
+    name: "{{ web_container_name }}3"
+    image: "{{ web_image_name }}:{{ latest_tag.stdout }}"
+    ports:
+      - "5003:5000"
+    env:
+      API_HOST: "http://{{ API_HOST }}"
+      API_POST: "{{ API_POST }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.web.nguyenmanhduc3"
+
+
+- name: copy nginx config file to vps
+  copy:
+    src: nginx.conf
+    dest: /etc/nginxlb/
+
+- name: run container for load balancing
+  docker_container:
+    name: "{{ lb_container_name }}"
+    image: "{{ lb_image_name }}:{{ lb_image_tag }}"
+    restart_policy: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - /etc/nginxlb/nginx.conf:/etc/nginx/conf.d/default.conf
+    command: ["nginx", "-g", "daemon off;"]

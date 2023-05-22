@@ -52,7 +52,7 @@
     log_driver: fluentd
     log_options:
       fluentd-address: "192.168.89.107:24224"
-      tag: "docker.api.nguyenmanhduc"
+      tag: "docker.api.nguyenmanhduc1"
 
 - name: creat a docker container for api 2
   docker_container:
@@ -69,7 +69,7 @@
     log_driver: fluentd
     log_options:
       fluentd-address: "192.168.89.107:24224"
-      tag: "docker.api.nguyenmanhduc"
+      tag: "docker.api.nguyenmanhduc2"
 
 - name: creat a docker container for api 3
   docker_container:
@@ -86,7 +86,7 @@
     log_driver: fluentd
     log_options:
       fluentd-address: "192.168.89.107:24224"
-      tag: "docker.api.nguyenmanhduc"
+      tag: "docker.api.nguyenmanhduc3"
 
 - name: copy nginx config file to vps
   copy:

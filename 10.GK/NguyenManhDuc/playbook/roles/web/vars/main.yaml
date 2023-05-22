@@ -1,8 +1,11 @@
 ---
 web_image_name: littlehawk03/web
 web_container_name: web
+lb_image_name: nginx
+lb_image_tag: 1.23.4-alpine-slim
+lb_container_name: lb_api
 
 API_HOST: "192.168.89.110"
-API_POST: "5500"
+API_POST: "80"
 FLASK_ENV: development
 FLUENTD_HOST: "192.168.89.107"
