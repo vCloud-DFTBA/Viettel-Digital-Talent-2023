@@ -1,8 +1,8 @@
-[localhost]
+[host]
 localhost ansible_connection=local
 
-[remote_node]
-ec2-instance1 ansible_host=ec2-52-91-70-187.compute-1.amazonaws.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./DC.pem
-
+[remote_nodes]
+remote-node1 ansible_host=ec2-52-91-70-187.compute-1.amazonaws.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./DC.pem
+remote-node2 ansible_host=ec2-44-201-231-16.compute-1.amazonaws.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./DC.pem
 [database]
-ec2-instance2 ansible_host=ec2-44-201-231-16.compute-1.amazonaws.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./DC.pem
+db ansible_host=ec2-44-201-231-16.compute-1.amazonaws.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./DC.pem

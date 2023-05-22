@@ -1,5 +1,1 @@
 ---
-- hosts: localhost
-  remote_user: root
-  roles:
-    - set_up_network
