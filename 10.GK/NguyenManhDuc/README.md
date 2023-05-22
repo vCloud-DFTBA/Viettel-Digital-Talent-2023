@@ -1,10 +1,10 @@
-# HOME WORK FROM VIETTEL DIGITAL TALENT
+# MIDTERM PROJECT FROM VIETTEL DIGITAL TALENT
 
 ### _LittleHawk03-Nguyễn Mạnh Đức_
 
 
 
-####Table of contents
+## Table of contents
 
 
 [1. Develop a simple 3-tier web application (2đ)](#1-develop-a-simple-3-tier-web-application-2đ)
@@ -27,23 +27,24 @@
 - [1.2 Image requirements ensure optimal build time and size of occupancy, recommending the use of the recommended build image tricks](#12-image-requirements-ensure-optimal-build-time-and-size-of-occupancy-recommending-the-use-of-the-recommended-build-image-tricks)
 
 [2. Continuous Integration (1đ)]()
+  - [2.1 Automatically run unit test when creating PR on main branch](#21-automatically-run-unit-test-when-creating-pr-on-main-branch)
+  - [2.2 Automatically run unit test when push commit to a branch](#22-automatically-run-unit-test-when-push-commit-to-a-branch)
 
+[3. Continuous Delivery (4đ)](#3-continuous-delivery-4đ)
 
-[3. Continuous Delivery (4đ)]()
+- [3.1 Write service release flow using GitHub/GitLab CI/CD tool, execute docker image build and push docker image to Docker Hub when a new tag is created by developer on GitHub](#31-write-service-release-flow-using-githubgitlab-cicd-tool-execute-docker-image-build-and-push-docker-image-to-docker-hub-when-a-new-tag-is-created-by-developer-on-github)
+- [3.2 Write ansible playbook that does the following tasks:](#32-write-ansible-playbook-that-does-the-following-tasks)
+  - [3.2.2 : Install docker to all host and node](#322--install-docker-to-all-host-and-node)
+  - [3.2.3: Deploy services by version using docker (1d)](#323-deploy-services-by-version-using-docker-1d)
 
-- [3.1 Write service release flow using GitHub/GitLab CI/CD tool, execute docker image build and push docker image to Docker Hub when a new tag is created by developer on GitHub]()
-- [3.2 Write ansible playbook that does the following tasks:]()
-  - [3.2.2 : Install docker to all host and node]()
-  - [3.2.3: Deploy services by version using docker (1d)]()
+- [3.3 : Make sure HA for web services and api:](#33--make-sure-ha-for-web-services-and-api)
+  - [3.3.1 : Each web service and api is deployed on at least 02 different containers](#331--each-web-service-and-api-is-deployed-on-at-least-02-different-containers)
+  - [3.3.2 : Requests to web and api endpoints are load balanced via load balancer tools, e.g. nginx, haproxy and traefik](#332--requests-to-web-and-api-endpoints-are-load-balanced-via-load-balancer-tools-eg-nginx-haproxy-and-traefik)
+- [4. Monitoring (1đ)](#4-monitoring-1đ)
+  - [4.1 Write ansible playbook roles monitor that performs the following tasks:](#41-write-ansible-playbook-roles-monitor-that-performs-the-following-tasks)
 
-- [3.3 : Make sure HA for web services and api:]()
-  - [3.3.1 : Each web service and api is deployed on at least 02 different containers]()
-  - [3.3.2 : Requests to web and api endpoints are load balanced via load balancer tools, e.g. nginx, haproxy and traefik]()
-- [4. Monitoring (1đ)]()
-  - [4.1 Write ansible playbook roles monitor that performs the following tasks:]()
-
-- [5. Logging (1đ)]()
- - [5.1 : Install logstash or fluentd service to collect logs from web services, api and db.]()
+- [5. Logging (1đ)](#5-logging-1đ)
+ - [5.1 : Install logstash or fluentd service to collect logs from web services, api and db.](#51--install-logstash-or-fluentd-service-to-collect-logs-from-web-services-api-and-db)
 
  
 
@@ -429,7 +430,7 @@ the log of unittest
   <i></i>
 </div>
 
-Automatically run unit test when push commit to a branch
+#### 2.2 Automatically run unit test when push commit to a branch
 
 **The result of the workflow full is saved in [log-githubaction/push](10.GK/NguyenManhDuc/log-githubaction/push)**
 
