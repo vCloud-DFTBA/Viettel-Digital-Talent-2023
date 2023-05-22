@@ -1,0 +1,14 @@
+2023-05-22T04:35:25.1591386Z ##[group]Run docker ps
+2023-05-22T04:35:25.1591961Z [36;1mdocker ps[0m
+2023-05-22T04:35:25.1662134Z shell: /usr/bin/bash -e {0}
+2023-05-22T04:35:25.1662437Z env:
+2023-05-22T04:35:25.1662756Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.1663146Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib/pkgconfig
+2023-05-22T04:35:25.1663542Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.1663916Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.1664282Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.1664653Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib
+2023-05-22T04:35:25.1664949Z ##[endgroup]
+2023-05-22T04:35:25.2094421Z CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                                           NAMES
+2023-05-22T04:35:25.2096194Z 68c061614bdd   api_api     "python api.py"          6 seconds ago   Up 5 seconds   0.0.0.0:5500->5500/tcp, :::5500->5500/tcp       api_api_1
+2023-05-22T04:35:25.2098364Z 185e4b783eb2   mongo:5.0   "docker-entrypoint.s…"   6 seconds ago   Up 5 seconds   0.0.0.0:27017->27017/tcp, :::27017->27017/tcp   database

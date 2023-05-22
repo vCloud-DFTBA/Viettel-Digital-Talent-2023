@@ -398,7 +398,82 @@ and docker history
           run:
             python -u "tests/unit-test.py"
 ```
-- As you can see in ``push:`` and ``pull_request:`` will trigger when have ``push`` and ``pull request `` event then the CI pipeline will run.
+As you can see in ``push:`` and ``pull_request:`` will trigger when have ``push`` and ``pull request `` event then the CI pipeline will run.
+
+- **pull resquest**
+
+<div align="center">
+  <img src="assets/vid_5.gif">
+</div>
+
+<div align="center">
+  <i>full request work flow</i>
+</div>
+
+**the pipeline**
+
+<div align="center">
+  <img src="assets/pic_3.png">
+
+</div>
 
 
 
+
+
+
+**The result of the workflow full is saved in [log-githubaction/full-request](10.GK/NguyenManhDuc/log-githubaction/full-request)**
+
+the log of unittest
+```
+2023-05-22T04:35:25.2133261Z ##[group]Run python -u "tests/unit-test.py"
+2023-05-22T04:35:25.2133645Z [36;1mpython -u "tests/unit-test.py"[0m
+2023-05-22T04:35:25.2210993Z shell: /usr/bin/bash -e {0}
+2023-05-22T04:35:25.2211270Z env:
+2023-05-22T04:35:25.2211567Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.2211956Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib/pkgconfig
+2023-05-22T04:35:25.2213803Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.2214209Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.2214575Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:25.2214950Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib
+2023-05-22T04:35:25.2215253Z ##[endgroup]
+2023-05-22T04:35:25.8475847Z DONE
+2023-05-22T04:35:25.8520543Z DONE
+2023-05-22T04:35:25.8581736Z DONE
+2023-05-22T04:35:25.8646439Z DONE
+2023-05-22T04:35:25.8712617Z DONE
+2023-05-22T04:35:25.8781417Z DONE
+2023-05-22T04:35:25.9054064Z DONE
+2023-05-22T04:35:25.9212740Z DONE
+2023-05-22T04:35:25.9383917Z DONE
+2023-05-22T04:35:25.9644727Z DONE
+2023-05-22T04:35:25.9745237Z .....
+2023-05-22T04:35:25.9747305Z ----------------------------------------------------------------------
+2023-05-22T04:35:25.9750762Z Ran 5 tests in 0.103s
+2023-05-22T04:35:25.9751341Z 
+2023-05-22T04:35:25.9751784Z OK
+```
+
+<div align="center">
+  <i>the log of unittest</i>
+</div>
+
+- **push**
+
+<div align="center">
+  <img src="assets/pic_4.png">
+</div>
+
+<div align="center">
+  <i></i>
+</div>
+
+<div align="center">
+  <img src="assets/vid_6.gif">
+</div>
+
+<div align="center">
+  <i></i>
+</div>
+
+**The result of the workflow full is saved in [log-githubaction/push](10.GK/NguyenManhDuc/log-githubaction/push)**
