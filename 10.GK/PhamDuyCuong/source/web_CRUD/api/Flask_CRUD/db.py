@@ -4,11 +4,11 @@ from pymongo import MongoClient
 
 
 def init_db(path_to_csv):
-    DB_HOSTNAME="ec2-44-201-231-16.compute-1.amazonaws.com:27017/"
-    DATABASE_NAME="VDT2023"
+    DB_HOSTNAME = "ec2-44-201-231-16.compute-1.amazonaws.com:27017/"
+    DATABASE_NAME = "VDT2023"
     logger = logging.getLogger()
     try:
-        MONGO_URI =f"mongodb://{DB_HOSTNAME}"
+        MONGO_URI = f"mongodb://{DB_HOSTNAME}"
         client = MongoClient(MONGO_URI)
         db = client[DATABASE_NAME]
         collection = db.attendees
