@@ -6,6 +6,13 @@
   roles:
   - common
 
+- name: Load balancer
+  hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+  - lb
+
 - name: Deploy the application on remote machines
   hosts: nodes
   become: true
