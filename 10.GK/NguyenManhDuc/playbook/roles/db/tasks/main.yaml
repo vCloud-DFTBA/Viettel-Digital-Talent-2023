@@ -1,6 +1,4 @@
 ---
-
-
 - name: copy docker-compose.yml
   copy:
     src: init.js

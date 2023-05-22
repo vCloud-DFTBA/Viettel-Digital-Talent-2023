@@ -1,0 +1,4 @@
+---
+lb_image_name: nginx
+lb_image_tag: 1.23.4-alpine-slim
+lb_container_name: lb

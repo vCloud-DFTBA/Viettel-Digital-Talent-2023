@@ -1,6 +1,6 @@
 ---
 - name: delete all container 
-  hosts: all
+  hosts: ["vps1","vps2","vps3"]
   gather_facts: false
   tasks:
     - name: get running containert

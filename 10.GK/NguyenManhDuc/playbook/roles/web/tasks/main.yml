@@ -85,18 +85,3 @@
       tag: "docker.web.nguyenmanhduc3"
 
 
-- name: copy nginx config file to vps
-  copy:
-    src: nginx.conf
-    dest: /etc/nginxlb/
-
-- name: run container for load balancing
-  docker_container:
-    name: "{{ lb_container_name }}"
-    image: "{{ lb_image_name }}:{{ lb_image_tag }}"
-    restart_policy: unless-stopped
-    ports:
-      - 80:80
-    volumes:
-      - /etc/nginxlb/nginx.conf:/etc/nginx/conf.d/default.conf
-    command: ["nginx", "-g", "daemon off;"]
