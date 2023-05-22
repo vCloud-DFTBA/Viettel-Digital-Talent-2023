@@ -19,82 +19,7 @@
   - Viết unit tests cho các chức năng APIs (0.5đ)
 
 
-  Output:
-  - Mã nguồn của từng dịch vụ
-  
-Triển khai web application sử dụng các DevOps tools & practices
-(8đ)
-1. Containerization (1đ)
-Yêu cầu:
-- Viết Dockerfile để đóng gói các dịch vụ trên thành các container image (0.5đ)
-- Yêu cầu image đảm bảo tối ưu thời gian build và kích thước chiếm dụng, khuyến khích
-sử dụng các thủ thuật build image đã được giới thiệu (layer-caching, optimized RUN
-instructions, multi-stage build, etc.) (0.5đ)
-Output:
-- File Dockerfile cho từng dịch vụ
-Output câu lệnh build và thông tin docker history của từng image
-2. Continuous Integration (1đ)
-Yêu cầu:
-- Tự động chạy unit test khi tạo PR vào branch main (0.5đ)
-- Tự động chạy unit test khi push commit lên một branch (0.5đ)
-Output:
-- File setup công cụ CI
-- Output log của luồng CI
-- Các hình ảnh demo khác
-3. Continuous Delivery (4đ)
-Yêu cầu:
-- Viết luồng release dịch vụ bằng công cụ CI/CD của GitHub/GitLab, thực hiện build
-docker image và push docker image lên Docker Hub khi có event một tag mới được
-developer tạo ra trên GitHub (1đ)
-- Viết ansible playbook thực hiện các nhiệm vụ:
-  - Setup môi trường: Cài đặt docker trên các node triển khai dịch vụ (1đ)
-  - Deploy các dịch vụ theo version sử dụng docker (1đ)
-  - Triển khai các dịch vụ trên nhiều hosts khác nhau
-- Đảm bảo tính HA cho các dịch vụ web và api:
-  - Mỗi dịch vụ web và api được triển khai trên ít nhất 02 container khác nhau (0.5đ)
-  - Requests đến các endpoint web và api được cân bằng tải thông qua các công cụ load balancer, ví dụ: nginx, haproxy và traefik (0.5đ)
-  - Các công cụ load balancer cũng được triển khai theo mô hình cluster
-  - Triển khai db dưới dạng cluster
-Output:
-- Ảnh minh họa kiến trúc triển khai và bản mô tả
-- Thư mục chứa ansible playbook dùng để triển khai dịch vụ, trong thư mục này cần có
-○ File inventory chứa danh sách các hosts triển khai
-○ Các file playbook
-○ Thư mục roles chứa các role:
-■ common: Setup môi trường trước deploy
-■ web: Triển khai dịch vụ web
-■ api: Triển khai dịch vụ api
-■ db: Triển khai dịch vụ db
-■ lb: Triển khai dịch vụ load balancing
-● File setup CD
-● Output của luồng build và push Docker Image lên Docker Hub
-● Hướng dẫn sử dụng ansible playbook để triển khai các thành phần hệ thống
-● Output log triển khai hệ thống4. Monitoring (1đ)
-Yêu cầu:
-● Viết ansible playbook roles monitor thực hiện các nhiệm vụ:
-○ Cài đặt các dịch vụ node exporter và cadvisor dưới dạng container
-○ Đẩy thông số giám sát lên hệ thống giám sát Prometheus tập trung
-○ Chú ý: Tên các container có tiền tố là <username>_ để phân biệt thông số giám
-sát dịch vụ của các sinh viên trên hệ thống giám sát tập trung. Thông tin
-<username> của từng sinh viên cho bởi bảng trong Phụ lục I.
-Output:
-● Role monitor chứa các playbook và cấu hình giám sát cho hệ thống
-● Ảnh chụp dashboard giám sát nodes & containers, có thể sử dụng hệ thống prometheus
-tập trung ở 171.236.38.100:9090
-● …...
-5. Logging (1đ)
-Yêu cầu:
-● Viết ansible playbook thực hiện các nhiệm vụ:
-○ Cài đặt dịch vụ logstash hoặc fluentd để collect log từ các dịch vụ web, api và db
-○ Đẩy log dịch vụ lên hệ thống Elasticsearch tập trung 171.236.38.100:9200
-○ Log phải đảm bảo có ít nhất các thông tin: IP truy cập, thời gian, action tác động,
-kết quả (thành công/không thành công/status code)
-○ Log được index với tiền tố <username>_ để phân biệt log dịch vụ của các sinh
-viên khác nhau. Thông tin <username> của từng sinh viên cho bởi bảng trong
-Phụ lục I.
-Output:
-● Ansible playbook triển khai các dịch vụ collect log (tách module logging)
-● Ảnh chụp sample log từ Kibana 171.236.38.100:5601
+ 
 
 # 1. Develop a simple 3-tier web application (2đ)
 
@@ -1169,11 +1094,173 @@ i run 3 container api in node vps2 and 3 container web in vps1
 
 #### 3.3.2 : Requests to web and api endpoints are load balanced via load balancer tools, e.g. nginx, haproxy and traefik
 
+the role is used to install lb is [common](110.GK/NguyenManhDuc/playbook/roles/lb)
+
+```sh
+  roles/lb
+  ├── defaults
+  ├── files
+  │   ├── nginx_api.conf
+  │   └── nginx_web.conf
+  ├── handlers
+  ├── meta
+  ├── tasks
+  │   └── main.yaml
+  ├── templates
+  └── vars
+      └── main.yml
+
+7 directories, 4 files
+
+```
+
+file config load to the api [nginx_api.conf](10.GK/NguyenManhDuc/playbook/roles/lb/files/nginx_api.conf)
+
+```c
+upstream api {
+        server 192.168.89.110:5501;
+        server 192.168.89.110:5502;
+        server 192.168.89.110:5503;
+}
+
+
+server {
+    listen 80;
+    # server_name localhost;
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://api;
+    }
+}
+```
+
+file config load to the api [nginx_wed.conf](10.GK/NguyenManhDuc/playbook/roles/lb/files/nginx_wed.conf)
+
+```c
+upstream web {
+        server 192.168.89.116:5001;
+        server 192.168.89.116:5002;
+        server 192.168.89.116:5003;
+}
+
+
+server {
+    listen 80;
+    # server_name localhost;
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://web;
+    }
+}
+```
+
+and playbook to run load balancing
+
+```yaml
+  ---
+  - name: full image of load balancing
+    docker_image:
+      name: "{{ lb_image_name }}"
+      tag: "{{ lb_image_tag }}"
+      source: pull
+
+  - name: copy nginx config file to vps1
+    copy:
+      src: nginx_web.conf
+      dest: /etc/nginxlb/
+    when:  inventory_hostname == 'vps1'
+
+  - name: copy nginx config file to vps2
+    copy:
+      src: nginx_api.conf
+      dest: /etc/nginxlb/
+    when: inventory_hostname == 'vps2' 
+
+  - name: Set nginxlba config file
+    set_fact:
+          nginxlb_config_file: >-
+            {% if inventory_hostname == 'vps2' %}nginx_api.conf{% elif inventory_hostname == 'vps1' %}nginx_web.conf{% endif %}
+
+  - name: run container for load balancing
+    docker_container:
+      name: "{{ lb_container_name }}"
+      image: "{{ lb_image_name }}:{{ lb_image_tag }}"
+      restart_policy: unless-stopped
+      ports:
+        - 80:80
+      volumes:
+        - /etc/nginxlb/{{ nginxlb_config_file }}:/etc/nginx/conf.d/default.conf
+      command: ["nginx", "-g", "daemon off;"]
+
+```
+
+and to deploy it for web and api i write a playbook
+
+```yaml
+  ---
+  - name: set up load balanding for web, api
+    hosts: ["vps1","vps2"]
+    become: true
+    gather_facts: false
+    roles:
+      - lb
+
+  - name: setup database in vps3
+    hosts: vps3
+    become: true
+    gather_facts: false
+    roles:
+      - db
+
+  - name: set up api in vps2
+    hosts: vps2
+    become: true
+    gather_facts: false
+    roles:
+      - api
+
+  - name: set up web in vps1
+    hosts: vps1
+    become: true
+    gather_facts: false
+    roles:
+      - web
+
+```
+
+command:
+
+
+```shell
+  ansible-playbook -i inventories/inventory.yaml roles/playbook_deploy_all.yaml
+```
+
+and now i cant access the web ui by connect to ip 192.168.89.116
+
+<div align="center">
+  <img src="assets/pic_16.png">
+</div>
+
+<div align="center">
+  <i>node expoeter an cadvsior</i>
+</div>
+
+
+
+
 ### 4. Monitoring (1đ)
 #### 4.1 Write ansible playbook roles monitor that performs the following tasks:
 ##### 4.1.1 Install node exporter and cadvisor services as containers and Push monitoring parameters to centralized Prometheus monitoring system
 
-the role is used to install docker is [common](110.GK/NguyenManhDuc/playbook/roles/monitor)
+the role is used to install monitor is [common](110.GK/NguyenManhDuc/playbook/roles/monitor)
 
 ```sh
   monitor
@@ -1319,6 +1406,8 @@ i install exporter and advisor service by docker compose
 
 ```
 
+
+
 playbook:
 
 ```yaml
@@ -1334,3 +1423,134 @@ playbook:
       state: present
 
 ```
+
+
+<div align="center">
+  <img src="assets/pic_12.png">
+</div>
+
+<div align="center">
+  <i>node expoeter an cadvsior</i>
+</div>
+
+prometheus centered at 27.66.108.93:9090
+
+<div align="center">
+  <img src="assets/pic_14.png">
+</div>
+
+<div align="center">
+  <i>node expoeter an cadvsior</i>
+</div>
+
+#### 5. Logging (1đ)
+
+##### 5.1 : Install logstash or fluentd service to collect logs from web services, api and db.
+
+the role is used to install logging is [common](110.GK/NguyenManhDuc/playbook/roles/log/)
+
+```sh
+  roles/log
+  └── fluent
+      ├── defaults
+      ├── files
+      ├── handlers
+      ├── meta
+      ├── tasks
+      │   └── main.yml
+      ├── templates
+      │   └── config
+      └── vars
+          └── main.yml
+```
+
+the config file is in [10.GK/NguyenManhDuc/config-fluent](10.GK/NguyenManhDuc/config-fluent)
+
+file config fluent [fluent.conf](10.GK/NguyenManhDuc/config-fluent/files/fluent.conf)
+
+```c
+<source>
+  @type forward
+  port 24224
+  bind 0.0.0.0
+</source>
+
+<filter **>
+  @type record_transformer
+  <record>
+    ip "${record['ip']}"
+    time "${record['time']}"
+    action "${record['action']}"
+    result "${record['result']}"
+    username "ducnm"  
+  </record>
+</filter>
+
+<match docker.**>
+  @type elasticsearch
+  host 171.236.38.100
+  port 9200
+  logstash_format true
+  logstash_prefix "ducnm" 
+  logstash_dateformat "%Y%m%d"
+</match>
+
+```
+
+Docker file for built fluent image
+
+```dockerfile
+  FROM fluent/fluentd:v1.12.0-debian-1.0
+  USER root
+  RUN ["gem", "install", "elasticsearch", "--no-document", "--version", "< 8"]
+  RUN ["gem", "install", "fluent-plugin-elasticsearch", "--no-document", "--version", "5.2.2"]
+  USER fluent
+```
+
+Docker-compose for install and run container
+
+```yaml
+  version: '3'
+  services:
+    fluentd:
+      container_name: fluentd
+      build: .
+      volumes:
+          - ./files/:/fluentd/etc
+    
+      ports:
+        - "24224:24224"
+        - "24224:24224/udp"
+```
+
+To be able to obtain logs from containers you must include the log . setting 
+
+```yaml
+  log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ FLUENTD_HOST }}:24224"
+      tag: "docker.api.nguyenmanhduc3"
+
+```
+
+fluent is installed on a server to collect logs through port 24224 and then push to kibana centralized system 171.236.38.100:9200, in this lab i using my laptop is fluent server
+
+```yaml
+  ---
+  - name: deploy fluent
+    hosts: localhost
+    become: true
+    gather_facts: false
+    roles:
+      - log/fluent
+```
+
+- the resutl in kibana
+
+<div align="center">
+  <img src="assets/pic_15.png">
+</div>
+
+<div align="center">
+  <i>node expoeter an cadvsior</i>
+</div>

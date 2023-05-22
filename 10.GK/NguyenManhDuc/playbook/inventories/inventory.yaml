@@ -20,7 +20,7 @@ all:
 
     #this vps for database
     vps3:
-      ansible_host: 192.168.89.114
+      ansible_host: 192.168.89.117
       # ansible_become: true
       ansible_user: root
       ansible_password: 1

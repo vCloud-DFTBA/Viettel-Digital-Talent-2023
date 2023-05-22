@@ -1,7 +1,7 @@
 ---
 
 - name: setup docker
-  hosts: [vps1]
+  hosts: [vps3]
   become: true
   gather_facts: false
   vars:

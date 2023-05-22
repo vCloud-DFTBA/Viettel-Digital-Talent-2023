@@ -8,14 +8,19 @@
 - name: copy nginx config file to vps1
   copy:
     src: nginx_web.conf
-    dest: /etc/nginxlba/
-    when: inventory_hostname == "vps1"
+    dest: /etc/nginxlb/
+  when:  inventory_hostname == 'vps1'
 
 - name: copy nginx config file to vps2
   copy:
     src: nginx_api.conf
-    dest: /etc/nginxlba/
-    when: inventory_hostname == "vps2"
+    dest: /etc/nginxlb/
+  when: inventory_hostname == 'vps2' 
+
+- name: Set nginxlba config file
+  set_fact:
+        nginxlb_config_file: >-
+          {% if inventory_hostname == 'vps2' %}nginx_api.conf{% elif inventory_hostname == 'vps1' %}nginx_web.conf{% endif %}
 
 - name: run container for load balancing
   docker_container:
@@ -25,5 +30,5 @@
     ports:
       - 80:80
     volumes:
-      - /etc/nginxlba/nginx.conf:/etc/nginx/conf.d/default.conf
+      - /etc/nginxlb/{{ nginxlb_config_file }}:/etc/nginx/conf.d/default.conf
     command: ["nginx", "-g", "daemon off;"]
