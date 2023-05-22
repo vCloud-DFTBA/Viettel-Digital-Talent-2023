@@ -6,18 +6,44 @@
 
 ####Table of contents
 
-[1. Phát triển một 3-tier web application đơn giản (2đ)](#1-phát-triển-một-3-tier-web-application-đơn-giản-2đ)
-  
-  Yêu cầu:
-  - [Viết một CRUD web application đơn giản thực hiện các chức năng:](#11-viết-một-crud-web-application-đơn-giản-thực-hiện-các-chức-năng)
-    - Liệt kê danh sách sinh viên tham gia khóa đào tạo chương trình VDT 2023 lĩnh vực cloud dưới dạng bảng (0.5đ)
-    - Cho phép xem chi tiết/thêm/xóa/cập nhật thông tin sinh viên (0.5đ)
-  - Thiết kế hệ thống với ba dịch vụ: (0.5đ)
-    - web: Giao diện web viết bằng HTML + CSS + Javascript được triển khai trên nền web server nginx
-    - api: RESTful API viết bằng ngôn ngữ lập trình tùy chọn (prefer Python), có đầy đủ các chức năng: list, get, create, update, delete các bản ghi thông tin sinh viên
-    - db: Database SQL hoặc NoSQL lưu trữ thông tin sinh viên (dữ liệu khởi tạo của DB này được cho bởi bảng trong Phụ lục I.)
-  - Viết unit tests cho các chức năng APIs (0.5đ)
 
+[1. Develop a simple 3-tier web application (2đ)](#1-develop-a-simple-3-tier-web-application-2đ)
+
+- [1.1 Write a simple CRUD web application that implements the functions](#11-write-a-simple-crud-web-application-that-implements-the-functions)
+
+  - [1.1.1 List the list of students participating in the cloud training VDT 2023 program in the form of a table (0.5đ)](#111-list-the-list-of-students-participating-in-the-cloud-training-vdt-2023-program-in-the-form-of-a-table-05đ)
+  - [1.1.2 view details/add/delete/update student information (0.5đ)](#112-view-detailsadddeleteupdate-student-information-05đ)
+- [1.2  System design with three services: (0.5đ)](#12-system-design-with-three-services-05đ)
+
+  - [1.2.1 web: Web interface written in HTML + CSS + Javascript](#121-web-web-interface-written-in-html--css--javascript)
+  - [1.2.2 api: RESTful API written in optional programming language (prefer Python), with full functions: list, get, create, update, delete student information records](#122-api-restful-api-written-in-optional-programming-language-prefer-python-with-full-functions-list-get-create-update-delete-student-information-records)
+  - [1.2.3 db: Database SQL or NoSQL stores student information (dữ liệu khởi tạo của DB này được cho bởi bảng trong Phụ lục I.)](#123-db-database-sql-or-nosql-stores-student-information-dữ-liệu-khởi-tạo-của-db-này-được-cho-bởi-bảng-trong-phụ-lục-i)
+  - [1.3 Write unit tests for APIs function (0.5pt)](#13-write-unit-tests-for-apis-function-05pt)
+  
+[Deploy web application using DevOps tools and practices (8 points)](#deploy-web-application-using-devops-tools-and-practices-8-points)
+
+[1. Containerization (1đ)](#1-containerization-1đ)
+- [1.1 Write Dockerfile to package the above services into container images](#11-write-dockerfile-to-package-the-above-services-into-container-images)
+- [1.2 Image requirements ensure optimal build time and size of occupancy, recommending the use of the recommended build image tricks](#12-image-requirements-ensure-optimal-build-time-and-size-of-occupancy-recommending-the-use-of-the-recommended-build-image-tricks)
+
+[2. Continuous Integration (1đ)]()
+
+
+[3. Continuous Delivery (4đ)]()
+
+- [3.1 Write service release flow using GitHub/GitLab CI/CD tool, execute docker image build and push docker image to Docker Hub when a new tag is created by developer on GitHub]()
+- [3.2 Write ansible playbook that does the following tasks:]()
+  - [3.2.2 : Install docker to all host and node]()
+  - [3.2.3: Deploy services by version using docker (1d)]()
+
+- [3.3 : Make sure HA for web services and api:]()
+  - [3.3.1 : Each web service and api is deployed on at least 02 different containers]()
+  - [3.3.2 : Requests to web and api endpoints are load balanced via load balancer tools, e.g. nginx, haproxy and traefik]()
+- [4. Monitoring (1đ)]()
+  - [4.1 Write ansible playbook roles monitor that performs the following tasks:]()
+
+- [5. Logging (1đ)]()
+ - [5.1 : Install logstash or fluentd service to collect logs from web services, api and db.]()
 
  
 
@@ -325,6 +351,8 @@ and docker history
 ```
 As you can see in ``push:`` and ``pull_request:`` will trigger when have ``push`` and ``pull request `` event then the CI pipeline will run.
 
+#### 2.1 Automatically run unit test when creating PR on main branch 
+
 - **pull resquest**
 
 <div align="center">
@@ -400,6 +428,8 @@ the log of unittest
 <div align="center">
   <i></i>
 </div>
+
+Automatically run unit test when push commit to a branch
 
 **The result of the workflow full is saved in [log-githubaction/push](10.GK/NguyenManhDuc/log-githubaction/push)**
 
@@ -1243,14 +1273,14 @@ command:
   ansible-playbook -i inventories/inventory.yaml roles/playbook_deploy_all.yaml
 ```
 
-and now i cant access the web ui by connect to ip 192.168.89.116
+and now i cant access the web ui by connect to ip 192.168.89.116 port default 80
 
 <div align="center">
   <img src="assets/pic_16.png">
 </div>
 
 <div align="center">
-  <i>node expoeter an cadvsior</i>
+  <i>nginx load balancer</i>
 </div>
 
 
@@ -1554,3 +1584,6 @@ fluent is installed on a server to collect logs through port 24224 and then push
 <div align="center">
   <i>node expoeter an cadvsior</i>
 </div>
+
+
+## 
