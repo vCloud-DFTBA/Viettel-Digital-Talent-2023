@@ -784,7 +784,7 @@ name: Login to Docker Hub
 [Kiểm tra output tại đây](https://github.com/batamsieuhang/Viettel-Digital-Talent-2023/actions/runs/5022462629)
 
 <div align="center">
-        <img src="./image/cd1.png" width="1000" />
+        <img src="./image/CD1.png" width="1000" />
 </div>
 
 
