@@ -187,6 +187,7 @@ Out put log của luồng CI:
 Bài giữa kì này em sử dụng ansible để deploy trang web tại 1 node là localhost.
 
 - Mô hình triển khai:
+
   ![load_balance](Images/bl.png)
 
 - Web, api, db được trển khai trên 3 container và giữa web và api có nginx để cân bằng tải. 
@@ -247,7 +248,7 @@ jobs:
 
  ![hethong](Images/he_thong.jpg)
 
-### ** 4. Monitoring  **
+### ** 4. Monitoring**
 
 Sử dụng roles cadvisor để giám sát container, node-exporer để giám sát máy. Các giám sát được đẩy lên local host: 9090 và promtheus tập trung tại đỉa chỉ 27.66.108.93:9090.
 
@@ -265,7 +266,7 @@ Vẽ biểu đồ giám sát container và host bằng Grafana tại địa ch�
 
  ![gra_host](Images/gra_host.jpg)
 
-### ** 5. Logging  **
+### ** 5. Logging**
 
 Sử dụng roles fluentd để thu thập log của dịch vụ web tại địa chỉ localhost:24224. Sau đó Đẩy log dịch vụ lên hệ thống Elasticsearch tập trung 171.236.38.100:9200.
 
