@@ -9,6 +9,13 @@
     - fluentd
     - api
     - web
+    - lb
+
+- name: monitoring
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
     - node-exporter
     - cadvisor
     - prometheus

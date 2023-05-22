@@ -1,0 +1,16 @@
+- name: Build the load balancer image 
+  docker_image:
+    build:
+      path: ./roles/lb/files/
+    name: my_load_balancer
+    source: "build"
+
+- name: Build the lb_container container from the my_nginx image
+  docker_container:
+    name: lb_container
+    image: my_load_balancer
+    networks:
+      - name: mongodb_flask_nginx_network
+    ports:
+    - "8000:8000"
+  

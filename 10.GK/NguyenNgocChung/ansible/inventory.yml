@@ -4,4 +4,4 @@ all:
     localhost:
       ansible_connection: local
       ansible_become_user: root
-      ansible_become_password: Chung16102002.
+      ansible_become_password: 1234
