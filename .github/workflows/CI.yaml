@@ -24,17 +24,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ruff pytest
-          cd 10.Midterm/Docker/app
+          cd 10.Midterm/LePhucLai/Docker/app
           pip install -r requirements.txt;
 
       - name: Turn on Container for Database
         run: |
-          cd 10.Midterm/Docker
+          cd 10.Midterm/LePhucLai/Docker
           docker compose up -d
           docker exec mongodb mongoimport --db VDT23 --collection attendees --jsonArray --file data/db/attendees.json
           
       - name: Test with pytest
         run: |
-          cd 10.Midterm/Docker/app
+          cd 10.Midterm/LePhucLai/Docker/app
           export MONGO_URI="mongodb://localhost:27017/VDT23"
           pytest test.py

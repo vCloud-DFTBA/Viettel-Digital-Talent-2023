@@ -24,15 +24,15 @@ jobs:
       - name: Build and push flask
         uses: docker/build-push-action@v4
         with:
-          context: 10.Midterm/Docker/app
-          file: 10.Midterm/Docker/app/Dockerfile
+          context: 10.Midterm/LePhucLai/Docker/app
+          file: 10.Midterm/LePhucLai/Docker/app/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/flask:latest
 
       - name: Build and push nginx
         uses: docker/build-push-action@v4
         with:
-          context: 10.Midterm/Docker/nginx
-          file: 10.Midterm/Docker/nginx/Dockerfile
+          context: 10.Midterm/LePhucLai/Docker/nginx
+          file: 10.Midterm/LePhucLai/Docker/nginx/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/nginx:latest
