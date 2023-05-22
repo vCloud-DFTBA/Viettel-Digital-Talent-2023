@@ -9,6 +9,12 @@ services:
     networks:
       - db
       - app
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "0.0.0.0:24224"
+        tag: app1
+    
   
   appuser2:
     build: ./app
@@ -19,6 +25,13 @@ services:
     networks:
       - db
       - app
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "0.0.0.0:24224"
+        tag: app2
+    
+
     
     
   nginx-production:
@@ -32,6 +45,11 @@ services:
       - appuser2
     networks:
       - app
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "0.0.0.0:24224"
+        tag: nginx
 
 
   mongodb:
@@ -49,6 +67,7 @@ services:
       - ./mongo-entrypoint:/docker-entrypoint-initdb.d
     networks:
       - db
+    
 volumes:
   db1:
 
