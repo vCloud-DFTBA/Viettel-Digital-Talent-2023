@@ -682,24 +682,24 @@ jobs:
 
 CI
 <div align="center">
-        <img src="./image/ci.png" width="1000" />
+        <img src="./image/CI.png" width="1000" />
 </div>
 
 
 - Test ping to web
 <div align="center">
-        <img src="./image/ci1.png" width="1000" />
+        <img src="./image/CI1.png" width="1000" />
 </div>
 
 - Pytest in CI
 
 <div align="center">
-        <img src="./image/ci2.png" width="1000" />
+        <img src="./image/CI2.png" width="1000" />
 </div>
 
 
 <div align="center">
-        <img src="./image/ci3.png" width="1000" />
+        <img src="./image/CI3.png" width="1000" />
 </div>
 
 ### **3. Continuous Delivery (4đ)**
