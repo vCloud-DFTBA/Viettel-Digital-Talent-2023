@@ -1125,6 +1125,18 @@ i run 3 container api in node vps2 and 3 container web in vps1
 
 #### 3.3.2 : Requests to web and api endpoints are load balanced via load balancer tools, e.g. nginx, haproxy and traefik
 
+the systerm i setup is
+
+<div align="center">
+  <img src="assets/pic_19.png">
+</div>
+
+<div align="center">
+  <i>container</i>
+</div>
+
+
+
 the role is used to install lb is [common](110.GK/NguyenManhDuc/playbook/roles/lb)
 
 ```sh
@@ -1293,6 +1305,16 @@ and now i cant access the web ui by connect to ip 192.168.89.116 port default 80
 
 the role is used to install monitor is [common](110.GK/NguyenManhDuc/playbook/roles/monitor)
 
+the systerm i built
+
+<div align="center">
+  <img src="assets/pic_17.png">
+</div>
+
+<div align="center">
+  <i>node expoeter an cadvsior</i>
+</div>
+
 ```sh
   monitor
   ├── grafana
@@ -1331,6 +1353,19 @@ the role is used to install monitor is [common](110.GK/NguyenManhDuc/playbook/ro
 
 ```
 ###### 4.1.1.1 install prometheus
+
+
+the systerm log i built
+
+<div align="center">
+  <img src="assets/pic_18.png">
+</div>
+
+<div align="center">
+  <i>done its worked</i>
+</div>
+
+
 
 the first we install prometheus
 
@@ -1480,6 +1515,10 @@ prometheus centered at 27.66.108.93:9090
 
 the role is used to install logging is [common](110.GK/NguyenManhDuc/playbook/roles/log/)
 
+
+
+
+
 ```sh
   roles/log
   └── fluent
@@ -1587,4 +1626,6 @@ fluent is installed on a server to collect logs through port 24224 and then push
 </div>
 
 
-## 
+## author's words
+
+Em cảm ơn tất cả các anh,chị mentor đã dành thời gian để chấm bài cho em ạ. Chương trình học mọi người xây dựng thực sự hay và giúp em biết thêm được nhiều kiến thức thực tế bên ngoài trường đại học. Em cảm ơn.
