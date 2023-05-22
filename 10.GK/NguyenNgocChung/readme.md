@@ -184,7 +184,7 @@ Out put log của luồng CI:
 
 ### ** 3. Continuous Delivery **
 
-Bài giữa kì này em sử dụng ansible để deploy trang web tại 1 node là localhost.
+Bài giữa kì này em sử dụng ansible để deploy trang web tại 1 node là localhost. Sử dụng roles common để setup docker lên máy.
 
 - Mô hình triển khai:
 
