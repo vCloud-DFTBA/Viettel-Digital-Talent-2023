@@ -43,7 +43,9 @@ jobs:
           extra-flake8-options: "--exit-zero --max-line-length=127"
 
       - name: Run unit test
-        run: python3 -m unittest 10.GK/NguyenManhCuong/source_code/app/unit_test.py
+        run: |
+          cd 10.GK/NguyenManhCuong/source_code/app
+          python3 -m unittest unit_test.py
 
       - name: Create Coverage 
         if: ${{ github.event_name == 'pull_request' }}
