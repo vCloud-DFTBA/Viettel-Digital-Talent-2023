@@ -22,14 +22,96 @@ Chạy câu lệnh docker compose up:
 
 
 # 3. Continuous Integration
-* [File setup công cụ CI](../.github/workflows/CI.yaml)
+* Setup CI:
+```
+name: CI
+
+on:
+  push:
+    branches:
+      - midterm
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.10.6
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10.6
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff pytest
+          cd 10.Midterm/LePhucLai/Docker/app
+          pip install -r requirements.txt;
+
+      - name: Turn on Container for Database
+        run: |
+          cd 10.Midterm/LePhucLai/Docker
+          docker compose up -d
+          docker exec mongodb mongoimport --db VDT23 --collection attendees --jsonArray --file data/db/attendees.json
+          
+      - name: Test with pytest
+        run: |
+          cd 10.Midterm/LePhucLai/Docker/app
+          export MONGO_URI="mongodb://localhost:27017/VDT23"
+          pytest test.py
+```
 * [Output log của luồng CI](logs/CI.txt)
 
 ![ảnh kết quả chạy CI](img/CI_result.png)
 
 # 4. Continuous Delivery
 ## 4.1 CD
-* [File setup công cụ CD](../.github/workflows/CD.yaml)
+* Setup CD:
+```
+name: CD
+
+on:
+  create:
+    tags:
+      - '*'
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v2
+
+      - name: Build and push flask
+        uses: docker/build-push-action@v4
+        with:
+          context: 10.Midterm/LePhucLai/Docker/app
+          file: 10.Midterm/LePhucLai/Docker/app/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/flask:latest
+
+      - name: Build and push nginx
+        uses: docker/build-push-action@v4
+        with:
+          context: 10.Midterm/LePhucLai/Docker/nginx
+          file: 10.Midterm/LePhucLai/Docker/nginx/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/nginx:latest
+```
 * [Output log của luồng CD](logs/CD.txt)
 ![Kết quả của luồng CD](img/CD_result.png)
 
