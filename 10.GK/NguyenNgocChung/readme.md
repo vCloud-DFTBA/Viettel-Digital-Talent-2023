@@ -244,6 +244,12 @@ jobs:
 
  ![cd](Images/cd.jpg)
 
+- Kết quả trên Docker hub:
+
+ ![dkh1](Images/dockerhub1.jpg)
+
+ ![dkh2](Images/dockerhub2.jpg)
+
 - Output của triển  khai hệ thống:
 
  ![hethong](Images/he_thong.jpg)
