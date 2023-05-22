@@ -702,9 +702,9 @@ CI
         <img src="./image/ci3.png" width="1000" />
 </div>
 
-### 3. Continuous Delivery (4đ)
+### **3. Continuous Delivery (4đ)**
 
-#### 3.1 Viết luồng release dịch vụ bằng công cụ CI/CD của GitHub/GitLab, thực hiện build docker image và push docker image lên Docker Hub khi có event một tag mới được developer tạo ra trên GitHub
+#### **3.1 Viết luồng release dịch vụ bằng công cụ CI/CD của GitHub/GitLab, thực hiện build docker image và push docker image lên Docker Hub khi có event một tag mới được developer tạo ra trên GitHub**
 
 ```yml
 # file setup CI
@@ -794,9 +794,9 @@ name: Login to Docker Hub
         <img src="./image/CD2.png" width="1000" />
 </div>
 
-#### Viết ansible playbook thực hiện các nhiệm vụ
+#### **3.2 Viết ansible playbook thực hiện các nhiệm vụ**
 
-Cấu trúc ansible em sử dụng
+**Cấu trúc ansible em sử dụng**
 ```tree
 ├── ansible.cfg
 ├── config.yml
@@ -1037,3 +1037,410 @@ Có 2 điều cần chú ý tại web app đó là sẽ triển khai 2 container
 
 Tương tự webapp thì nginx cũng được cải driver fluentd để thuận tiện cho fluentd lấy log về sau
 
+- file inventory của ansible
+```conf
+host-dev
+[vm]
+vm1 ansible_host=192.168.60.134
+vm1 ansible_ssh_pass=******
+vm1 ansible_user=vm1
+vm1 ansible_sudo_pass=******
+
+vm2 ansible_host=192.168.60.135
+vm2 ansible_ssh_pass=******
+vm2 ansible_user=vm2
+vm2 ansible_sudo_pass=******
+```
+
+```cfg
+# ansible.cfg
+[defaults]
+inventory = ./hosts-dev
+host_key_checking = False
+retry_files_enabled = False
+
+```
+
+File playbook triển khai cài đặt cơ bản, cài đặt web app, logging and monitor
+```yml
+# run.yml
+---
+- name: install configure package
+  hosts: vm2
+  become: true
+  gather_facts: true
+  roles:
+    - common
+
+- name: install logging and monitoring
+  hosts: vm2
+  become: true
+  gather_facts: true
+  roles:
+    - monitor
+    - logging
+
+- name: install webapp
+  hosts: vm2
+  become: true
+  gather_facts: true
+  roles:
+    - mongo
+    - webservers
+    - loadbalancer
+
+```
+
+để triển khai hệ thống vào thư mục ansible 
+```cmd
+ansible-playbook run.yml
+```
+
+
+**out put**
+
+
+- output cài đặt common cho server
+<div align="center">
+        <img src="./image/play1.png" width="1000" />
+</div>
+
+- output cài đặt logging and monitoring
+
+<div align="center">
+        <img src="./image/play2.png" width="1000" />
+</div>
+
+
+
+
+- output cài đặt webapp
+
+<div align="center">
+        <img src="./image/play3.png" width="1000" />
+</div>
+
+#### **3.3 Load balancers**
+Load balancers em sử dụng 2 container và 1 nginx, trong đó nginx có vai trò điều phối luồng cho 2 container.
+Việc thực hiện Ha khi triển khai bằng ansible cũng tương tự khi triển khai Ha bằng containerization
+Dưới đây là file config của nginx
+```conf
+upstream localhost {
+    server appuser1:5000;
+    server appuser2:5000;
+}
+
+
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://localhost;
+
+    }
+}
+
+
+
+```
+Mode load balancer được sử dụng tại nginx là roundrobin tức là luồng traffic sẽ được chia đều cho 2 container chạy web app(flask-app).
+
+**out put khi sử dụng pytest test với localhost:8000(ip của nginx)**
+<div align="center">
+        <img src="./image/test1.png" width="1000" />
+</div>
+
+
+Khi test request tới nginx, request được chia đều tới cả appuser1 và appuser2
+
+
+
+
+## **4. Monitoring (1đ)**
+
+Cấu trúc của role monitoring
+```tree
+monitor
+├── tasks
+│   └── main.yml
+└── templates
+    ├── docker-compose.yml
+    └── prometheus.yml
+```
+
+
+File playbook cấu hình monitor 
+```yml
+# main.yml
+---
+# tasks file for roles/monitoring
+- name: Creates src directory
+  file:
+    path: /home/prometheus
+    state: directory
+    mode: "0775"
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ../templates/
+    dest: /home/prometheus/
+    mode: "0777"
+- name: Run Docker Compose
+  community.docker.docker_compose:
+    project_src: /home/prometheus/
+    build: no
+    state: present
+```
+
+File playbook được tạo ra để cài đặt prometheus, node-exporter, cadvisor bằng docker compose
+
+File docker compose cài đặt prometheus, node export
+```yml
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus:v2.43.0
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=5d"
+      - "--web.enable-lifecycle"
+      - "--web.listen-address=:9090"
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+  
+  nodeexporter:
+    image: prom/node-exporter:v1.5.0
+    container_name: nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+  
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    container_name: cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+```
+
+
+File cấu hình prometheus
+```yml
+# prometheus.yml
+---
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      username: tuda
+
+
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets: 
+      - 'localhost:9093'
+      - 'localhost:9094'
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  - "alert.rules"
+
+# remote_read:
+#  - url: http://localhost:9090/api/v1/read
+
+# A scrape configuration containing exactly one endpoint to scrape.
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: [
+      'localhost:9090',
+      'localhost:9091'
+    ]
+
+
+  - job_name: 'node-exporter'
+    static_configs:
+    - targets: [
+      'localhost:9100',
+      'demo.do.prometheus.io:9100'
+    ]
+
+  - job_name: 'cadvisor'
+    static_configs:
+    - targets: [
+      'localhost:8080',
+    ]
+
+remote_write:
+- url: 'http://27.66.108.93:9090/api/v1/write'
+  name: tuda
+```
+
+
+**output**
+
+Ảnh chụp dashboard
+<div align="center">
+        <img src="./image/prom1.png" width="1000" />
+</div>
+
+
+
+<div align="center">
+        <img src="./image/prom2.png" width="1000" />
+</div>
+
+
+## **5. Logging (1đ)**
+
+
+Ở đây e dùng ansible để cài fluentd bằng docker từ đó có thể đầy log lên server tập trung.
+
+
+File ansible triển khai loggging
+```yml
+---
+# tasks file for roles/logging
+- name: Creates src directory
+  file:
+    path: /home/fluentd
+    state: directory
+    mode: "0775"
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ../templates/
+    dest: /home/fluentd/
+    mode: "0777"
+- name: Run docker-compose
+  shell: cd /home/fluentd/ && docker compose up -d
+
+```
+
+
+
+```Dockerfile
+#docker file install fluentd
+FROM fluent/fluentd:v1.12.0-debian-1.0
+USER root
+RUN ["gem", "install", "elasticsearch", "--no-document", "--version", "< 8"]
+RUN ["gem", "install", "fluent-plugin-elasticsearch", "--no-document", "--version", "5.2.2"]
+USER fluent
+```
+
+```yml
+#docker compose
+version: '3'
+services:
+  fluentd:
+    container_name: fluentd
+    build: /home/fluentd
+    volumes:
+        - ./conf:/fluentd/etc
+    network_mode: "host"
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    
+```
+
+
+File config fluentd
+```conf
+<source>
+  @type forward
+  port 24224
+  bind 0.0.0.0
+</source>
+
+<filter *.**>
+    @type record_transformer
+    <record>
+        Hostname ${hostname}
+        ip ${record['ip']}
+        time ${record['time']}
+        action ${record['action']}
+        result ${record['result']}
+        username "tuda"
+    </record>
+
+</filter>
+
+<match *.**>
+    @type copy
+    <store>
+        @type elasticsearch
+        host 171.236.38.100
+        port 9200
+        logstash_format true
+        logstash_prefix tuda
+        logstash_dateformat %Y%m%d
+        include_tag_key true
+        flush_interval 1s
+    </store>
+</match>
+```
+
+
+Lưu ý: cần cài đặt driver ở image của web, api để lấy được log từ conatiner. Vì vậy khi cài đặt web app, nginx thì em có thêm phần log driver của fluentd.
+
+
+Ví dụ
+<div align="center">
+        <img src="./image/fluentd1.png" width="1000" />
+</div>
+
+
+**output sample log từ kibana**
+<div align="center">
+        <img src="./image/kibana1.png" width="1000" />
+</div>
+
+
+
+<div align="center">
+        <img src="./image/kibana2.png" width="1000" />
+</div>
+
+**Em xin chân thành cảm ơn anh Lê Trọng Minh và anh Đang(mentee) đã giúp em hoàn thành được phần loggging này ạ!**
