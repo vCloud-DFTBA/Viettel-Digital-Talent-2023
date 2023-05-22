@@ -272,9 +272,104 @@ jobs:
 
 - Mô hình đảm bảo tính HA:
   ![alt](./images/HA.png)
-  Trong đó MongoDB sẽ chạy trên một host riêng, Nginx webser + FastAPI sẽ được scale thành 2 hosts để đảm bảo tính HA. Còn Nginx load balancer sẽ chạy trên máy chính để cân bằng tải cho 2 host webserver + fastapi
+  Trong đó MongoDB sẽ chạy trên một host riêng, Nginx webser + FastAPI sẽ được scale thành 2 hosts để đảm bảo tính HA. Còn Nginx load balancer sẽ chạy trên máy chính để cân bằng tải cho 2 host webserver + fastapi.
+
+  Do giới hạn về tài nguyên nên em chỉ thực hiện mô hình trên một host, nhưng vẫn đảm bảo tính HA cho web và api. Mô hình này hoàn toàn có thể dễ dàng triển khai trên nhiều host khác nhau. Sau đây là video demo mô hình HA:
+  ![alt](./images/HA.gif)
+
+  Có thể thấy khi thực hiện call API get hostname thì lần lượt các host sẽ được Load Banlancer phân phối request tới (ở đây mặc định sử dụng chiến lược Round Robin).
+
+  Thư mục [HA/Deployment](./HA/Deployment/) chứa file docker-compose.yaml cũng như các cấu hình của DB và Nginx để triển khai mô hình HA.
+
+  - File [docker-compose.yaml](./HA/Deployment/docker-compose.yaml):
+  ```Dockerfile
+  version: '3.8'
+
+  services:
+
+    app-1:
+      build: app
+      restart: always
+      expose:
+        - "8000"
+      links:
+        - db
+
+    nginx-1:
+      image: nginx:1.22.0-alpine
+      container_name: nginx-1
+      restart: always
+      volumes:
+        - ./nginx-1/nginx.conf:/etc/nginx/nginx.conf:ro
+        - ./nginx-1/index.html:/usr/share/nginx/html/index.html:ro
+      depends_on:
+        - app-1
+        - db
 
 
+    app-2:
+      build: app
+      restart: always
+      expose:
+        - "8000"
+      links:
+        - db
+
+    nginx-2:
+      image: nginx:1.22.0-alpine
+      container_name: nginx-2
+      restart: always
+      volumes:
+        - ./nginx-2/nginx.conf:/etc/nginx/nginx.conf:ro
+        - ./nginx-2/index.html:/usr/share/nginx/html/index.html:ro
+      depends_on:
+        - app-2
+        - db
+
+    db:
+      image: mongo:5.0-focal
+      hostname: mongodb
+      container_name: vt_db
+      restart: always
+      volumes:
+        - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  # Load balancer
+    nginx-lb:
+      image: nginx:1.22.0-alpine
+      container_name: lb
+      restart: always
+      volumes:
+        - ./lb/nginx.conf:/etc/nginx/nginx.conf:ro
+      depends_on:
+        - nginx-1
+        - nginx-2
+      ports:
+        - "80:80"
+  ```
+  - File [nginx.conf](./HA/Deployment/lb/nginx.conf):
+  ```Conf
+  # events are used to set general configurations on how
+  # nginx will handle the connection requests
+  events {}
+
+  http {
+      # Define the group of servers available
+      upstream app {
+          # server app;
+          server nginx-1:80;
+          server nginx-2:80;
+      }
+      server {
+          # Server group will respond to port 80
+          listen 80;
+          server_name app.com;
+          location / {
+              proxy_pass http://app;
+          }
+      }
+  }
+  ```
 
 
 - Hướng dẫn sử dụng `ansible playbook` để triển khai các thành phần hệ thống
