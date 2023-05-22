@@ -145,6 +145,8 @@ Author: **Le Minh Duc**
   vault_become_password=123456
   ```
 
+- The default password is `123456`.
+
 - The `vars` file contains every settings one needs to config such as the service name, service directory to be created on the host, whether to clean up the old configuration or not, etc.
 
   ```yml
@@ -157,8 +159,6 @@ Author: **Le Minh Duc**
   api_container_port: 5000
   api_scale: 2
   ```
-
-- The default password is `123456`.
 
 - Edit the inventory file to add your hosts and use the tagging system specified in the `site.yml` file to run tasks on demand.
 
@@ -180,7 +180,7 @@ Author: **Le Minh Duc**
   ansible-playbook -i inventory.yml site.yml --ask-vault-pass -t "cleanup"
   ```
 
-- Or even run multiple tags:
+- Or you can even run multiple tags:
 
   ```shell
   ansible-playbook -i inventory.yml site.yml --ask-vault-pass -t "common,cleanup"
@@ -219,7 +219,7 @@ Author: **Le Minh Duc**
 
 ## 5. Logging
 
-- Role `logger`: [here](./ansible/roles/logger)
+- Role `log`: [here](./ansible/roles/log)
 
   ```yml
   # ansible/site.yml
