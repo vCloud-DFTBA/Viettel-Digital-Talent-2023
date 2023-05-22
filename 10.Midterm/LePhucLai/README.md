@@ -22,15 +22,15 @@ Chạy câu lệnh docker compose up:
 
 
 # 3. Continuous Integration
-* [File setup công cụ CI](.github/workflows/CI.yaml)
+* [File setup công cụ CI](../.github/workflows/CI.yaml)
 * [Output log của luồng CI](logs/CI.txt)
 
 ![ảnh kết quả chạy CI](img/CI_result.png)
 
 # 4. Continuous Delivery
 ## 4.1 CD
-*[File setup công cụ CD](.github/workflows/CD.yaml)
-*[Output log của luồng CD](logs/CD.txt)
+* [File setup công cụ CD](../.github/workflows/CD.yaml)
+* [Output log của luồng CD](logs/CD.txt)
 ![Kết quả của luồng CD](img/CD_result.png)
 
 ## 4.2 Cách triển khai load balance:
