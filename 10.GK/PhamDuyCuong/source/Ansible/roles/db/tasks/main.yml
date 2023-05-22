@@ -1,16 +1,12 @@
 ---
 # tasks file for db
-- name: Download Docker image from Docker Hub
-  docker_image:
-    name: mongo:5.0.6
-    source: pull
-
-- name: Run Mongo container
-  community.docker.docker_container:
-    name: data_tier
-    image: mongo:5.0.6
-    state: started
-    networks:
-      - name: my-network
+- name: Start MongoDB container
+  docker_container:
+    name: my-mongodb
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    command: mongod --bind_ip_all
+    restart_policy: always
 
       

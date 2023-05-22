@@ -1,6 +1,6 @@
 FROM nginx:1.22.0-alpine
 
-ENV FLASK_SERVER_ADDR=backend:5000
+ENV FLASK_SERVER_ADDR=api:5000
 
 COPY nginx.conf /tmp/nginx.conf
 

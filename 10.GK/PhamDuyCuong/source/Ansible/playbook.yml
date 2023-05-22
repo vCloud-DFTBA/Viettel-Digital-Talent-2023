@@ -4,19 +4,25 @@
   roles:
     - common
 
-- name: Load images and deloy three-tier web in node
-  hosts: nodes
+- name: Create remote database
+  hosts: database
   become: yes
   roles:
-    # Set up network for containers in nodes
-    - set_up_network
+    # Run containers and connect to the existing network
     - db
+
+- name: Load images and deloy three-tier web in node
+  hosts: 
+    - localhost
+    - remote_host
+  become: yes
+  roles:
     # Run containers and connect to the existing network
     - api
     - web
 
-  - name: Set up load balancer in host
-    hosts: host
-    become: yes
-    roles:
-      - lb
+- name: Set up load balancer in host
+  hosts: localhost
+  become: yes
+  roles:
+    - lb
