@@ -1,4 +1,0 @@
-- name: Pull Nginx
-  ansible.builtin.shell:
-    cmd: docker pull nginx:1.22.0-alpine
-  become_user: docker
