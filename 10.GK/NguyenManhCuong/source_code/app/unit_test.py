@@ -4,7 +4,7 @@ from bson import ObjectId
 from app import create_app
 from utils import insert_attendee
 import logging
-from flask import Flask
+
 
 def mock_data():
     test_client = MongoClient()
@@ -24,12 +24,13 @@ def mock_data():
         ]
 
         for student in students:
-            insert_attendee(test_collection, student) 
+            insert_attendee(test_collection, student)
 
     return test_collection
 
+
 class AppTestCase(unittest.TestCase):
- 
+
     def setUp(self):
         logging.basicConfig()
         self.test_collection = mock_data()
@@ -48,7 +49,7 @@ class AppTestCase(unittest.TestCase):
             'university': 'ABC University',
             'major': 'Engineering'
         }
-    
+
     def tearDown(self):
         self.test_collection.drop()
 
@@ -65,10 +66,10 @@ class AppTestCase(unittest.TestCase):
     def test_add_student(self):
         response = self.app_client.post('/students/add', data=self.new_student)
 
-        self.assertEqual(self.INIT_COLLECTION_SIZE +1 , self.test_collection.estimated_document_count())
-        
+        self.assertEqual(self.INIT_COLLECTION_SIZE +1, self.test_collection.estimated_document_count())
+
         result = self.test_collection.find_one({"name": self.new_student["name"]})
-        
+
         self.assertIsNotNone(result)
         self.assertEqual(result["birth_year"], self.new_student["birth_year"])
         self.assertEqual(result["username"], self.new_student["username"])
@@ -82,7 +83,7 @@ class AppTestCase(unittest.TestCase):
         response = self.app_client.get('/students/view?student_id=' + student_id)
 
         self.assertEqual(response.status_code, 200)
-      
+
         student_data = response.data.decode('utf-8')
         self.assertIn(self.test_student['name'], student_data)
         self.assertIn(self.test_student["birth_year"], student_data)
@@ -90,7 +91,7 @@ class AppTestCase(unittest.TestCase):
         self.assertIn(self.test_student["gender"], student_data)
         self.assertIn(self.test_student["university"], student_data)
         self.assertIn(self.test_student["major"], student_data)
-    
+
     def test_edit_route(self):
         student_id = str(self.test_student['_id'])
         response = self.app_client.get('/students/edit?student_id=' + student_id)
@@ -110,17 +111,18 @@ class AppTestCase(unittest.TestCase):
         self.assertEqual(updated_student["university"], self.new_student["university"])
         self.assertEqual(updated_student["major"], self.new_student["major"])
         self.assertEqual(response.json, {'message': 'Student Details Updated Successfully'})
-    
+
     def test_delete_student(self):
         student_id = str(self.test_student['_id'])
         response = self.app_client.delete('/students/' + student_id)
 
         self.assertEqual(self.INIT_COLLECTION_SIZE -1, self.test_collection.estimated_document_count())
-        
+
         deleted_student = self.test_collection.find_one({'_id': ObjectId(student_id)})
-        
+
         self.assertIsNone(deleted_student)
         self.assertEqual(response.json, {'message': 'Student Details Deleted Successfully'})
+
 
 if __name__ == '__main__':
     unittest.main()

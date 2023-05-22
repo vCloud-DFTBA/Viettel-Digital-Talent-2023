@@ -1,14 +1,12 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for
-from pymongo import MongoClient
+from flask import Flask, request, jsonify
 from init import init_data
 from bson import ObjectId
-from utils import * 
+from utils import insert_attendee, delete_attendee, create_student_from_form, create_formatted_student
 import os
-import logging
-# from flask_cors import CORS
+
+
 def create_app(students_collection):
     app = Flask(__name__)
-    # CORS(app)
     @app.route('/')
     def index():
         return "Nguyen Manh Cuong - VDT"
@@ -22,9 +20,9 @@ def create_app(students_collection):
     @app.route('/students/add', methods=['POST'])
     def add_students():
         student = create_student_from_form(request.form)
-        result = insert_attendee(students_collection, student)
+        insert_attendee(students_collection, student)
         return jsonify({'message': 'Student added successfully'})
-    
+
     @app.route('/students/view', methods=['GET'])
     def view_student():
         student_id = request.args.get('student_id')
@@ -44,7 +42,7 @@ def create_app(students_collection):
 
         if request.method == 'POST':
             student = create_student_from_form(request.form)
-            students_collection.update_one({ "_id": ObjectId(student_id) }, { "$set": student })
+            students_collection.update_one({"_id": ObjectId(student_id)}, {"$set": student})
             return jsonify({'message': 'Student Details Updated Successfully'})
 
     @app.route('/students/<student_id>', methods=['DELETE'])
@@ -52,7 +50,8 @@ def create_app(students_collection):
         delete_attendee(students_collection, student_id)
         return jsonify({'message': 'Student Details Deleted Successfully'})
     return app
-    
+
+
 if __name__ == '__main__':
     students_collection = init_data(os.environ.get("MONGODB_DATABASE"), os.environ.get("MONGODB_HOSTNAME"))
     app = create_app(students_collection)
