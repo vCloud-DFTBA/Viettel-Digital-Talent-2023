@@ -13,7 +13,7 @@
   become: true
   gather_facts: false
   roles:
-    - db
+    # - db
     - lb
 
 - name: Setup flask, nginx

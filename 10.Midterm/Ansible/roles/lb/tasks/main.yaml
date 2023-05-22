@@ -11,7 +11,7 @@
     dest: /etc/loadbalance
     mode: '0644'
 
-- name: Build Loadbalancing container image
+- name: Build Loadbalance image
   docker_image:
     name: nginx-lb
     build:
@@ -24,8 +24,8 @@
     name: loadbalance
     image: nginx-lb   
     restart_policy: unless-stopped
-    ports:
-      - "80:80"
     volumes:
       - nginxdata:/var/log/nginx
+    ports:
+      - "80:80"
     network_mode: bridge
