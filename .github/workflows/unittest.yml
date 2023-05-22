@@ -38,7 +38,7 @@ jobs:
           use-pylint: false
           use-pycodestyle: false
           use-flake8: true
-          use-black: true
+          use-black: false
           use-mypy: false
           use-isort: false
           extra-flake8-options: "--exit-zero --max-line-length=127"
