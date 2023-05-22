@@ -9,3 +9,4 @@
     ports:
       - "5500:5000"
     network_mode: bridge
+    log_driver: fluentd

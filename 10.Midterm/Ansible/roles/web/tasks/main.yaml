@@ -9,3 +9,4 @@
     volumes:
       - nginxdata:/var/log/nginx
     network_mode: bridge
+    log_driver: fluentd
