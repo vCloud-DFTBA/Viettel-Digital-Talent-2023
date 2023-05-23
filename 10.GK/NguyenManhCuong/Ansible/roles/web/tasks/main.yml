@@ -12,8 +12,10 @@
     image: "{{ nginx_image_name }}:{{ image_version }}"
     restart_policy: unless-stopped
     state: started
+    links:
+      - flask_app:flask_app
     ports:
-    - "80:80"
+      - 80:80
     networks:
       - name: frontend
     log_driver: fluentd

@@ -42,7 +42,7 @@
       MONGODB_HOSTNAME: "{{ mongodb_hostname }}"
     volumes: database:/data/db
     ports:
-    - "{{ db_port }}:{{ db_port }}"
+      - "{{ db_port }}:{{ db_port }}"
     log_driver: fluentd
     log_options:
       fluentd-address: "localhost:24224"
