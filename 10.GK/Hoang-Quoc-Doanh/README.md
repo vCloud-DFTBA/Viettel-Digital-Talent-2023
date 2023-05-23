@@ -22,4 +22,16 @@ RUN pip install "fastapi[all]" pymongo --no-cache-dir
 CMD uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ```
+- Dockerfile cho frontend:
+```Dockerfile
+FROM nginx:1.22.0-alpine
 
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+
+COPY ./* ./
+
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+
+```
