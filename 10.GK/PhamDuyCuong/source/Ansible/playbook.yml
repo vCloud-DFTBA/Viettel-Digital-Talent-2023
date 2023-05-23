@@ -1,13 +1,13 @@
 ---
 - name: Install Docker
-  hosts: all
+  hosts: db, remote_nodes
   become: yes
   roles:
     - common
 
 #Set up logging before deploying application
 - name: Set up logging
-  hosts: host , remote_nodes
+  hosts: all
   become: true
   gather_facts: true
   roles:
