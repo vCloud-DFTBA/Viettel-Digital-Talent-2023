@@ -1,0 +1,7 @@
+- name: Copy monitering folder to remote host
+  copy:
+    src: ./roles/monitoring/monitoring/    # note the '/' <-- !!!
+    dest: /tmp/monitoring/
+
+- name: Deploy Prometheus
+  ansible.builtin.command: chdir=/tmp/monitoring/ docker compose up -d
