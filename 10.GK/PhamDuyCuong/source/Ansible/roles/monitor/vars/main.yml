@@ -1,2 +1,4 @@
 ---
 # vars file for monitor
+PATH_CONFIG_FILE:
+ - ./roles/monitor/templates/prometheus.yml

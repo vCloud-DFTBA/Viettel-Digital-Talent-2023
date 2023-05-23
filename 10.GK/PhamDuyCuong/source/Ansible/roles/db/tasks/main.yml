@@ -14,7 +14,6 @@
     log_options:
       fluentd-address: "localhost:24224"
       fluentd-async-connect: "true"
-      tag: db.log
 
 
       

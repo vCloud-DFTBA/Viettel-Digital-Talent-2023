@@ -1,21 +1,23 @@
 ---
 # tasks file for logging
-- name: Build fluentd image
-  community.docker.docker_image:
-    name: fluentd_image
-    build:
-       path: ./roles/logging/templates
-    source: "build"
-    force_source: true
 
+- name: copy files to /tmp
+  copy:
+    src: ./roles/logging/templates
+    dest: /tmp
+  
+- name: Build fluentd image
+  docker_image:
+    name: fluentd_img
+    tag: latest
+    source: build
+    build:
+      path: /tmp/templates
+   
 - name: Run fluentd container
-  community.docker.docker_container:
+  docker_container:
     name: fluentd
-    image: fluentd_image
-    volumes: "./roles/logging/templates/fluentd.conf:/fluentd/etc/fluent.conf"
-    networks:
-      - name: homework
-    ports:
-      - 24224:24224
-      - 24224:24224/udp
+    image: fluentd_img
+    volumes: "/tmp/templates/fluent.conf:/fluentd/etc/fluent.conf"
     restart_policy: unless-stopped
+    network_mode: host
