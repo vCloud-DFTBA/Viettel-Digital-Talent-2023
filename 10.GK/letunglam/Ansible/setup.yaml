@@ -8,5 +8,5 @@
     # - db
     # - web
     # - deployment
-    # - monitoring
-    - logging
+    - monitoring
+    # - logging

@@ -395,7 +395,75 @@ jobs:
   
     ![alt](./images/ansible-deployment.png)
 
+
+#### 4. Monitoring
+  - Code [role monitoring](./Ansible/roles/monitoring)
+  ```shell
+  ansible-playbook -i inventories.yaml setup.yaml --extra-vars "ansible_sudo_pass=YOUR_REMOTE_PASSWORD"
+  ```
+  - Kết quả:
+    ![image](./images/prom-1.png)
+    ![image](./images/prome-2.png)
+
+  - File cấu hình Prometheus:
+    ```conf
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+
+      # Attach these labels to any time series or alerts when communicating with
+      # external systems (federation, remote storage, Alertmanager).
+      external_labels:
+          username: lamlt
+
+    alerting:
+      alertmanagers:
+      - scheme: http
+        static_configs:
+        - targets: 
+          - 'localhost:9093'
+          - 'localhost:9094'
+
+    # Load and evaluate rules in this file every 'evaluation_interval' seconds.
+    rule_files:
+      - "alert.rules"
+
+    # remote_read:
+    #  - url: http://localhost:9090/api/v1/read
+
+    # A scrape configuration containing exactly one endpoint to scrape.
+    scrape_configs:
+      - job_name: 'prometheus'
+        static_configs:
+        - targets: [
+          'localhost:9090',
+          'localhost:9091'
+        ]
+
+
+      - job_name: 'node-exporter'
+        static_configs:
+        - targets: [
+          'localhost:9100',
+          'demo.do.prometheus.io:9100'
+        ]
+
+      - job_name: 'cadvisor'
+        static_configs:
+        - targets: [
+          'localhost:8080',
+        ]
+    remote_write:
+    - url: 'http://27.66.108.93:9090/api/v1/write'
+      name: lamlt
+    ```
 #### 5. Logging
+  - Code [role logging](./Ansible/roles/logging)
+  ```shell
+  ansible-playbook -i inventories.yaml setup.yaml --extra-vars "ansible_sudo_pass=YOUR_REMOTE_PASSWORD"
+  ```
+  - Kêt quả chạy thành công logging role playbook:
+    ![image](./images/logging.png)
   - Kết quả sample log lấy từ Kibana
 
     ![image](./images/kibana-0.png)
