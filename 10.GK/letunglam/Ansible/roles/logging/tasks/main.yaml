@@ -1,0 +1,16 @@
+- name: Copy logging folder to remote host
+  copy:
+    src: ./roles/logging/logging/    
+    dest: /tmp/logging/
+
+- name: Copy Containerization folder to the remote host
+  copy:
+    src: ../Containerization/
+    dest: /tmp/containerization/
+
+- name: Logging deployment
+  ansible.builtin.command: 
+    chdir=/tmp/logging/ docker compose up -d
+- name: Containerization deployment
+  ansible.builtin.command: 
+    chdir=/tmp/containerization/ docker compose up -d
