@@ -376,7 +376,7 @@ As you can see in ``push:`` and ``pull_request:`` will trigger when have ``push`
 
 
 
-**The result of the workflow full is saved in [log-githubaction/full-request](10.GK/NguyenManhDuc/log-githubaction/full-request)**
+**The result of the workflow full is saved in [log-githubaction/full-request](log-githubaction/full-request)**
 
 the log of unittest
 ```
@@ -432,7 +432,7 @@ the log of unittest
 
 #### 2.2 Automatically run unit test when push commit to a branch
 
-**The result of the workflow full is saved in [log-githubaction/push](10.GK/NguyenManhDuc/log-githubaction/push)**
+**The result of the workflow full is saved in [log-githubaction/push](log-githubaction/push)**
 
 ```
 2023-05-22T04:35:25.2133261Z ##[group]Run python -u "tests/unit-test.py"
@@ -591,7 +591,7 @@ jobs:
 
 #### 3.2 Write ansible playbook that does the following tasks:
 
-##### 3.2.1 : Create a inventory file [inventory.yaml](10.GK/NguyenManhDuc/playbook/inventories/inventory.yaml)
+##### 3.2.1 : Create a inventory file [inventory.yaml](playbook/inventories/inventory.yaml)
 
 ```yaml
   ---
@@ -624,7 +624,7 @@ jobs:
 
 ##### 3.2.2 : Install docker to all host and node
 
-the role is used to install docker is [common](10.GK/NguyenManhDuc/playbook/roles/common)
+the role is used to install docker is [common](playbook/roles/common)
 
 ```sh
   ommon
@@ -756,7 +756,7 @@ The next we will use file [tasks/main.yaml](/playbook/roles/common/tasks/main.ym
 ```
 
 
-To run the role we write a playbook [playbook_install_docker.yaml](10.GK/NguyenManhDuc/playbook/roles/playbook_install_docker.yaml)
+To run the role we write a playbook [playbook_install_docker.yaml](playbook/roles/playbook_install_docker.yaml)
 
 ```yaml
   ---
@@ -796,7 +796,7 @@ in this lab i will setup in 3 node vps1(web),vps2(api),vps3(db)
 
 ##### 3.2.3.1 DB : deploy database with mongodb in vpss3
 
-the role is used to install docker is [common](10.GK/NguyenManhDuc/playbook/roles/db)
+the role is used to install docker is [common](playbook/roles/db)
 
 ```sh
   db
@@ -813,7 +813,7 @@ the role is used to install docker is [common](10.GK/NguyenManhDuc/playbook/role
 
 ```
 
-vars : enviroment variable [vars](10.GK/NguyenManhDuc/playbook/roles/db/vars/main.yaml)
+vars : enviroment variable [vars](playbook/roles/db/vars/main.yaml)
 
 ```yaml
   ---
@@ -821,7 +821,7 @@ vars : enviroment variable [vars](10.GK/NguyenManhDuc/playbook/roles/db/vars/mai
   docker_container_name: db
 ```
 
-the main task to deploy database and import data when container is created. [task](10.GK/NguyenManhDuc/playbook/roles/db/tasks/main.yaml)
+the main task to deploy database and import data when container is created. [task](playbook/roles/db/tasks/main.yaml)
 
 ```yaml
   ---
@@ -848,7 +848,7 @@ the main task to deploy database and import data when container is created. [tas
 
 ##### 3.2.3.2 : Deploy api services by version using docker
 
-the role is used to install api is [common](10.GK/NguyenManhDuc/playbook/roles/api)
+the role is used to install api is [common](playbook/roles/api)
 
 ```sh
   api
@@ -869,7 +869,7 @@ the role is used to install api is [common](10.GK/NguyenManhDuc/playbook/roles/a
 ```
 
 
-vars : enviroment variable [vars](10.GK/NguyenManhDuc/playbook/roles/api/vars/main.yaml)
+vars : enviroment variable [vars](playbook/roles/api/vars/main.yaml)
 
 ```yaml
   ---
@@ -947,7 +947,7 @@ And after get the tag of images we will pull and run the container
 
 ##### 3.2.3.3 : Deploy web services by version using docker
 
-the role is used to install api is [common](10.GK/NguyenManhDuc/playbook/roles/api)
+the role is used to install api is [common](playbook/roles/api)
 
 ```sh
   api
@@ -968,7 +968,7 @@ the role is used to install api is [common](10.GK/NguyenManhDuc/playbook/roles/a
 ```
 
 
-vars : enviroment variable [vars](10.GK/NguyenManhDuc/playbook/roles/api/vars/main.yaml)
+vars : enviroment variable [vars](playbook/roles/api/vars/main.yaml)
 
 ```yaml
   ---
@@ -1045,7 +1045,7 @@ And after get the tag of images we will pull and run the container
 
 ##### 3.2.3.4 : run the play book
 
-playbook of this role [playbook_deploy_all.yaml](10.GK/NguyenManhDuc/playbook/roles/playbook_deploy_all.yaml)
+playbook of this role [playbook_deploy_all.yaml](playbook/roles/playbook_deploy_all.yaml)
 
 ```yaml
   ---
@@ -1137,7 +1137,7 @@ the systerm i setup is
 
 
 
-the role is used to install lb is [common](110.GK/NguyenManhDuc/playbook/roles/lb)
+the role is used to install lb is [common](1playbook/roles/lb)
 
 ```sh
   roles/lb
@@ -1157,7 +1157,7 @@ the role is used to install lb is [common](110.GK/NguyenManhDuc/playbook/roles/l
 
 ```
 
-file config load to the api [nginx_api.conf](10.GK/NguyenManhDuc/playbook/roles/lb/files/nginx_api.conf)
+file config load to the api [nginx_api.conf](playbook/roles/lb/files/nginx_api.conf)
 
 ```c
 upstream api {
@@ -1181,7 +1181,7 @@ server {
 }
 ```
 
-file config load to the api [nginx_wed.conf](10.GK/NguyenManhDuc/playbook/roles/lb/files/nginx_wed.conf)
+file config load to the api [nginx_wed.conf](playbook/roles/lb/files/nginx_wed.conf)
 
 ```c
 upstream web {
@@ -1303,7 +1303,7 @@ and now i cant access the web ui by connect to ip 192.168.89.116 port default 80
 #### 4.1 Write ansible playbook roles monitor that performs the following tasks:
 ##### 4.1.1 Install node exporter and cadvisor services as containers and Push monitoring parameters to centralized Prometheus monitoring system
 
-the role is used to install monitor is [common](110.GK/NguyenManhDuc/playbook/roles/monitor)
+the role is used to install monitor is [common](1playbook/roles/monitor)
 
 the systerm i built
 
@@ -1513,7 +1513,7 @@ prometheus centered at 27.66.108.93:9090
 
 ##### 5.1 : Install logstash or fluentd service to collect logs from web services, api and db.
 
-the role is used to install logging is [common](110.GK/NguyenManhDuc/playbook/roles/log/)
+the role is used to install logging is [common](1playbook/roles/log/)
 
 
 
@@ -1534,9 +1534,9 @@ the role is used to install logging is [common](110.GK/NguyenManhDuc/playbook/ro
           └── main.yml
 ```
 
-the config file is in [10.GK/NguyenManhDuc/config-fluent](10.GK/NguyenManhDuc/config-fluent)
+the config file is in [config-fluent](config-fluent)
 
-file config fluent [fluent.conf](10.GK/NguyenManhDuc/config-fluent/files/fluent.conf)
+file config fluent [fluent.conf](config-fluent/files/fluent.conf)
 
 ```c
 <source>
