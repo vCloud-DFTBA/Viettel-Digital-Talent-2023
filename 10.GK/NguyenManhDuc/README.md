@@ -669,7 +669,7 @@ the variables required for the installation are located at [main.yml](playbook/r
 **docker_apts:** packages for install docker
 **docker_compose_url :** url install docker-compose
 
-The next we will use file [tasks/main.yaml](/playbook/roles/common/tasks/main.yml) to setup the task
+The next we will use file [tasks/main.yaml](playbook/roles/common/tasks/main.yml) to setup the task
 
 - The first, we will use apt again to install required system packages using loop get name of package by ``docker_dependencies`` list
 
