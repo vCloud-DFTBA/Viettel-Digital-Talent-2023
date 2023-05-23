@@ -286,7 +286,7 @@ Out put log của luồng CI:
     ![dockerhub](Images/docker_hub.png)
 
     Các images được gắn tag theo tag của commit đẩy lên github.
-    ![dockerhub](Images/docker_hub.png)
+    ![dockerhub](Images/tag_image.png)
 
 - Mô tả kiến trúc triển khai: Người dùng có thể truy cập vào web qua địa chỉ: `localhost:100`. Thông qua địa chỉ này LB sẽ chuyển các request tới api,web cả ở localhost (on-premises) và các EC2 (cloud). Cuối cùng tất cả các yêu cầu truy xuất database được thực hiện trên một EC2 riêng biệt, nơi chạy container `mongodb`.
 
@@ -295,9 +295,9 @@ Out put log của luồng CI:
 
 
 - Thư mục chứa ansible playbook dùng để triển khai dịch vụ:
- ![load_balance](Images/ansible.png)
+![load_balance](Images/ansible.png)
 
- *Note: Các role thực hiện theo các chắc năng mà bài tập yêu cầu.
+    *Note: Các role thực hiện theo các chắc năng mà bài tập yêu cầu.
 
 - Hướng dẫn sử dụng ansible playbook để triển khai các thành phần hệ thống. Nếu tair xuống toàn bộ code thì truy cập vào thư mục 10.GK/PhamDuyCuong/source/Ansible và thực hiện cmd:
 
