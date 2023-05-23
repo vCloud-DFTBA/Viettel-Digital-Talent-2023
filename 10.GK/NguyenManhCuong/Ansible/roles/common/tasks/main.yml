@@ -16,26 +16,39 @@
       - python3-setuptools
     state: latest
     update_cache: true
+  
+- name: Check If Docker Is Installed
+  command: docker --version
+  register: docker_valid
+  ignore_errors: yes
+
+- name: Debug Docker Output
+  debug:
+    var: docker_valid
     
 - name: Add Docker GPG apt Key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+  when: docker_valid.failed
 
 - name: Add Docker Repository
   apt_repository:
     repo: deb https://download.docker.com/linux/ubuntu focal stable
     state: present
+  when: docker_valid.failed
 
 - name: Update apt and install docker-ce
   apt:
     name: docker-ce
     state: latest
     update_cache: true
+  when: docker_valid.failed
 
 - name: Install Docker Module for Python
   pip:
     name: docker
+  when: docker_valid.failed
   
 - name: Add remote "ubuntu" user to "docker" group
   user:
@@ -44,3 +57,4 @@
     append: yes
   tags:
     - docker
+  when: docker_valid.failed

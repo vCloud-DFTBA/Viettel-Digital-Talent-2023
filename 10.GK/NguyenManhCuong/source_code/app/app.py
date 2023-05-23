@@ -3,6 +3,7 @@ from init import init_data
 from bson import ObjectId
 from utils import insert_attendee, delete_attendee, create_student_from_form, create_formatted_student
 import os
+from pymongo import MongoClient
 
 
 def create_app(students_collection):
@@ -53,6 +54,11 @@ def create_app(students_collection):
 
 
 if __name__ == '__main__':
-    students_collection = init_data(os.environ.get("MONGODB_DATABASE"), os.environ.get("MONGODB_HOSTNAME"))
+    MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
+    MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
+    uri = f'mongodb://{MONGODB_HOSTNAME}:27017/'
+    client = MongoClient(uri)
+    db = client[f'{MONGODB_DATABASE}']
+    students_collection = db.attendees
     app = create_app(students_collection)
     app.run(debug=True, use_debugger=False, use_reloader=False, host="0.0.0.0")

@@ -38,9 +38,32 @@
     restart_policy: unless-stopped
     state: started
     env: 
-      DB_DATABASE: database
-    volumes: ./database:/data/db
+      MONGODB_DATABASE: "{{ database_name }}"
+      MONGODB_HOSTNAME: "{{ mongodb_hostname }}"
+    volumes: database:/data/db
+    ports:
+    - "{{ db_port }}:{{ db_port }}"
     networks:
       - name: backend
-    networks_cli_compatible: no
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
   register: db_container
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - python3-pymongo
+    state: latest
+    update_cache: true
+- name: Copy file init data
+  copy:
+    src: ./roles/files
+    dest: /tmp
+  become: yes
+
+- name: Initilize database
+  ansible.builtin.script:
+    executable: python3
+    cmd: /tmp/files/init.py

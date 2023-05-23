@@ -1,0 +1,61 @@
+- name: Check network
+  docker_network_info:
+    name: "{{ NETWORK }}"
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Create docker network
+  docker_network: 
+    name: "{{ NETWORK }}"
+  when: docker_network.exists == false
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Run cadvisor container
+  community.docker.docker_container:
+    image: gcr.io/cadvisor/cadvisor
+    name: cadvisor
+    ports:
+      - 8080:8080
+    networks:
+      - name: "{{ NETWORK }}"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+- name: Run node exporter container
+  community.docker.docker_container:
+    image: node-exporter
+    name: prom/node-exporter
+    networks: 
+      - name: "{{NETWORK}}"
+    ports:
+      - 9100:9100
+    restart_policy: "unless-stopped"
+
+
+- name: Copy prometheus config
+  copy:
+    src: ./roles/files/prometheus.yml
+    dest: /tmp
+  become: yes
+
+- name: Run Prometheus container
+  community.docker.docker_container:
+    name: prometheus
+    image: prom/prometheus:latest
+    networks: 
+      - name: "{{NETWORK}}"
+    restart_policy: "unless-stopped"
+    volumes: /tmp/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+      
+
+    
+
+

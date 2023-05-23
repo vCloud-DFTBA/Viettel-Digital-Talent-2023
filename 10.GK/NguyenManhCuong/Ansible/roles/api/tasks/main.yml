@@ -17,14 +17,17 @@
     restart_policy: unless-stopped
     state: started
     env: 
-      DB_DATABASE: "{{ db_database }}"
-      DB_HOSTNAME: "{{ db_container_name }}"
-      COLOR: "{{ item.color }}"
+      MONGODB_DATABASE: "{{ db_database }}"
+      MONGODB_HOSTNAME: "{{ db_hostname }}"
 
     networks:
       - name: backend
       - name: frontend
   loop:
-    - { name: 'flask_1', color: "#003366" }
-    - { name: 'flask_2', color: "#ff0033" }
-    - { name: 'flask_3', color: "#00ff00" }
+    - { name: 'flask_app'}
+
+  log_driver: fluentd
+  log_options:
+    fluentd-address: "localhost:24224"
+    fluentd-async-connect: "true"
+    tag: api.log

@@ -1,2 +1,2 @@
-nginx_container_name: nginx
-nginx_image_name: vansonpt/nginx
+nginx_container_name: frontend
+nginx_image_name: vansonpt/frontend

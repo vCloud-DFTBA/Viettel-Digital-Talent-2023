@@ -9,8 +9,8 @@ services:
       - 27017:27017
     volumes:
       - database:/data/db
-    environment:
-      MONGO_INITDB_DATABASE: database
+    # environment:
+    #   MONGO_INITDB_DATABASE: database
     networks:
       - backend
     healthcheck:

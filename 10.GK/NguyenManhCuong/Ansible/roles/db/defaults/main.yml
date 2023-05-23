@@ -2,3 +2,6 @@ db_container_name: mongodb
 db_image_tag: 5.0.17
 db_docker_image: mongo
 db_port: 27017
+database_name: database
+mongodb_hostname: mongodb
+

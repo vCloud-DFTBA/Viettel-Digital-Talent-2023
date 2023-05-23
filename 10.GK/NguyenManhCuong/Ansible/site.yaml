@@ -6,26 +6,33 @@
   roles:
   - common
 
-- name: Load balancer
+- name: Setup Logging
+  hosts: remote_hosts
+  become: true
+  gather_facts: true
+  roles:
+  - logging
+
+- name: Setup database
+  hosts: note1
+  become: true
+  gather_facts: true
+  roles:
+  - db
+
+- name: Deploy the application on remote machines
+  hosts: remote_hosts
+  become: true
+  gather_facts: true
+  roles:
+  - api
+  - web
+
+- name: Setup Loadbalancer and Monitoring
   hosts: localhost
   become: true
   gather_facts: true
   roles:
   - lb
-
-- name: Deploy the application on remote machines
-  hosts: nodes
-  become: true
-  gather_facts: true
-  roles:
-  - db
-  - api
-  - web
-
-- name: Monitoring
-  hosts: localhost
-  become: true
-  gather_facts: true
-  roles:
-  - monitoring
+  - monitor
   

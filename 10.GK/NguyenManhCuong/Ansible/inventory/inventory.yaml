@@ -2,18 +2,22 @@ all:
   hosts:
     localhost:
       ansible_connection: local
-      ansible_python_interpreter: ./venv/bin/python3
+      ansible_python_interpreter: ../venv/bin/python3
       ansible_become_user: root
       ansible_become_password: vanson1997
       hostname: vdt-23
   children:
-    nodes:
+    remote_hosts:
       hosts:
         node1:
-          ansible_ssh_host: 3.27.152.18
+          ansible_ssh_host: 54.166.186.66
           ansible_ssh_user: ubuntu
-          ansible_ssh_private_key_file: ~/Desktop/vdt-2023.pem
+          ansible_ssh_private_key_file: ~/Desktop/ec2/vdt_2023.pem
         node2:
-          ansible_ssh_host: 192.168.1.100
+          ansible_ssh_host: 44.203.194.242
           ansible_ssh_user: ubuntu
-          ansible_ssh_private_key_file: ~/Desktop/node2-key.pem
+          ansible_ssh_private_key_file: ~/Desktop/ec2/vdt_2023.pem
+        node3:
+          ansible_ssh_host: 18.205.151.59
+          ansible_ssh_user: ubuntu
+          ansible_ssh_private_key_file: ~/Desktop/ec2/vdt_2023.pem
