@@ -14,7 +14,7 @@
   tags: docker
 
 - name: Run cadvisor container
-  community.docker.docker_container:
+  docker_container:
     image: gcr.io/cadvisor/cadvisor
     name: cadvisor
     ports:
@@ -28,9 +28,9 @@
       - /var/lib/docker/:/var/lib/docker:ro
 
 - name: Run node exporter container
-  community.docker.docker_container:
-    image: node-exporter
-    name: prom/node-exporter
+  docker_container:
+    image: prom/node-exporter
+    name: node-exporter
     networks: 
       - name: "{{NETWORK}}"
     ports:
@@ -40,14 +40,14 @@
 
 - name: Copy prometheus config
   copy:
-    src: ./roles/files/prometheus.yml
+    src: ./roles/monitor/files/prometheus.yml
     dest: /tmp
   become: yes
 
 - name: Run Prometheus container
-  community.docker.docker_container:
+  docker_container:
+    image: prom/prometheus
     name: prometheus
-    image: prom/prometheus:latest
     networks: 
       - name: "{{NETWORK}}"
     restart_policy: "unless-stopped"

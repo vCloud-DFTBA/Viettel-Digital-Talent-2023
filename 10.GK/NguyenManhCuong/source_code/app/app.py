@@ -56,7 +56,7 @@ def create_app(students_collection):
 if __name__ == '__main__':
     MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
     MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
-    uri = f'mongodb://{MONGODB_HOSTNAME}:27017/'
+    uri = f'mongodb://{MONGODB_HOSTNAME}:27017'
     client = MongoClient(uri)
     db = client[f'{MONGODB_DATABASE}']
     students_collection = db.attendees

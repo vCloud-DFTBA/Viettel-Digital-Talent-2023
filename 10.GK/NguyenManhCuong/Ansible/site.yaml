@@ -14,7 +14,7 @@
   - logging
 
 - name: Setup database
-  hosts: note1
+  hosts: node1
   become: true
   gather_facts: true
   roles:

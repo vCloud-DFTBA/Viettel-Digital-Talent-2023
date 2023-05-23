@@ -43,8 +43,6 @@
     volumes: database:/data/db
     ports:
     - "{{ db_port }}:{{ db_port }}"
-    networks:
-      - name: backend
     log_driver: fluentd
     log_options:
       fluentd-address: "localhost:24224"
@@ -59,11 +57,9 @@
     update_cache: true
 - name: Copy file init data
   copy:
-    src: ./roles/files
+    src: ./roles/db/files
     dest: /tmp
   become: yes
 
 - name: Initilize database
-  ansible.builtin.script:
-    executable: python3
-    cmd: /tmp/files/init.py
+  command: python3 /tmp/files/init.py

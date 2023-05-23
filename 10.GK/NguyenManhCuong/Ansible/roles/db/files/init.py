@@ -14,7 +14,7 @@ def insert_attendee(collection, attendee):
 def init_data(students_collection):
     
     if students_collection.estimated_document_count() == 0:
-        csv_path = './roles/files/attendees.csv'
+        csv_path = '/tmp/files/attendees.csv'
         with open(csv_path, encoding='utf-8-sig') as file:
             csv_reader = csv.DictReader(file, delimiter=";")
             students = list(csv_reader)
@@ -29,9 +29,9 @@ def init_data(students_collection):
     return students_collection
 
 if __name__ == '__main__':
-    MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
-    MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
-    client = MongoClient(f"{MONGODB_HOSTNAME}:27017")
+    MONGODB_DATABASE = 'database'
+    MONGODB_HOSTNAME = 'ec2-54-166-186-66.compute-1.amazonaws.com'
+    client = MongoClient(f"mongodb://{MONGODB_HOSTNAME}:27017")
     db = client[f'{MONGODB_DATABASE}']
     students_collection = db.attendees
     init_data(students_collection)

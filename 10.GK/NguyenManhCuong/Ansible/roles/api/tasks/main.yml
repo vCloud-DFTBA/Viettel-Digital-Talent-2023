@@ -1,7 +1,3 @@
-- name: Create a network
-  docker_network:
-    name: frontend
-
 - name: Pull api image
   docker_image:
     name: "{{ api_image_name }}"
@@ -12,21 +8,14 @@
 
 - name: Run api containers
   docker_container:
-    name: "{{ item.name }}"
+    name: flask_app
     image: "{{ api_image_name }}:{{ image_version }}"
     restart_policy: unless-stopped
     state: started
     env: 
       MONGODB_DATABASE: "{{ db_database }}"
       MONGODB_HOSTNAME: "{{ db_hostname }}"
-
-    networks:
-      - name: backend
-      - name: frontend
-  loop:
-    - { name: 'flask_app'}
-
-  log_driver: fluentd
-  log_options:
-    fluentd-address: "localhost:24224"
-    fluentd-async-connect: "true"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"

@@ -1,5 +1,5 @@
 - name: Build lb image
-  community.docker.docker_image:
+  docker_image:
     name: loadbalancer
     build:
       path: ./roles/lb/templates

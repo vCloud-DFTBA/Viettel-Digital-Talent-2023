@@ -1,4 +1,4 @@
 db_container_name: mongodb
-db_hostname: ec2-44-203-194-242.compute-1.amazonaws.com
+db_hostname: ec2-54-166-186-66.compute-1.amazonaws.com
 db_database: database
 api_image_name: vansonpt/backend
