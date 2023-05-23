@@ -796,7 +796,7 @@ in this lab i will setup in 3 node vps1(web),vps2(api),vps3(db)
 
 ##### 3.2.3.1 DB : deploy database with mongodb in vpss3
 
-the role is used to install docker is [common](playbook/roles/db)
+the role is used to install docker is [db](playbook/roles/db)
 
 ```sh
   db
