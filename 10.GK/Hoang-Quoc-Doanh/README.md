@@ -93,7 +93,7 @@ jobs:
 ```
 
 - Output nguồn log của CI khi push commit lên 1 branch:
-  ![CI_test](./images/CI-test.PNG)
+  ![CI_test](./images/CI_test.PNG)
   
 ### 3. CD
 - Source code phần set up CD:
