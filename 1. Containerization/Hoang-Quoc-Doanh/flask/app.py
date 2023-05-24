@@ -28,7 +28,7 @@ def index():
         }
         data.append(item)
 
-    return jsonify(status=True,data)
+    #return jsonify(status=True,data)
 
 @app.route('/', methods=('GET', 'POST'))
 def all():
