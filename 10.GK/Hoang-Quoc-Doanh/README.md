@@ -93,4 +93,37 @@ jobs:
 ```
 
 - Output nguồn log của CI khi push commit lên 1 branch:
-  ![CI_test](./images/image_be.PNG)
+  ![CI_test](./images/CI-test.PNG)
+  
+### 3. CD
+- Source code phần set up CD:
+```
+
+  
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: 10.GK/Hoang-Quoc-Doanh/web/app
+          file: 10.GK/Hoang-Quoc-Doanh/web/app/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vt_app:${{  github.ref_name }}
+```
+
+- Output luồng build và push lên dockerhub:
+  ![CD](./images/CD.PNG)
