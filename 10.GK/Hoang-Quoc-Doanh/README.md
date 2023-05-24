@@ -35,3 +35,13 @@ COPY ./* ./
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
 
 ```
+
+- Output và history image `doanh_fe`
+
+    ![build-fe](./images/image_fe.PNG)
+    ![history-fe](./images/history_fe.PNG)
+
+- Output và history image `doanh_be`
+
+    ![build-be](./images/image_be.PNG)
+    ![history-be](./images/history_be.PNG)
