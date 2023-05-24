@@ -116,14 +116,26 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Build and push
+        name: Build and push Backend Docker image
         uses: docker/build-push-action@v4
         with:
           context: 10.GK/Hoang-Quoc-Doanh/web/app
           file: 10.GK/Hoang-Quoc-Doanh/web/app/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vt_app:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh_be:${{  github.ref_name }}
+      -
+        name: Build and push Frontend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: 10.GK/Hoang-Quoc-Doanh/nginx/app
+          file: 10.GK/Hoang-Quoc-Doanh/web/nginx/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh_fe:${{  github.ref_name }}
 ```
 
-- Output luồng build và push lên dockerhub:
-  ![CD](./images/CD.PNG)
+- Output luồng build và push image backend lên dockerhub:
+  ![CD_BE](./images/cd_be.PNG)
+ 
+- Output luồng build và push image frontend lên dockerhub:
+  ![CD_FE](./images/cd_fe.PNG)
+
