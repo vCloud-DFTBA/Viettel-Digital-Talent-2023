@@ -92,4 +92,5 @@ jobs:
   
 ```
 
-- Output nguồn log của CI:
+- Output nguồn log của CI khi push commit lên 1 branch:
+  ![CI_test](./images/image_be.PNG)
