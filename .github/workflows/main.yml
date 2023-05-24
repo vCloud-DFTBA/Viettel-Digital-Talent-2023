@@ -64,13 +64,15 @@ jobs:
       - name: Build and push Backend Docker image
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:doanh/be"
+          context: 10.GK/Hoang-Quoc-Doanh/web/app
+          file: 10.GK/Hoang-Quoc-Doanh/web/app/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh-be:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh_be:${{  github.ref_name }}
 
       - name: Build and push Frontend Docker image
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:doanh/fe"
+          context: 10.GK/Hoang-Quoc-Doanh/web/nginx
+          file: 10.GK/Hoang-Quoc-Doanh/web/nginx/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh-be:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh_fe:${{  github.ref_name }}
