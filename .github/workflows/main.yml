@@ -57,7 +57,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: 10.GK/Containerization/app
-          file: 10.GK/Containerization/app/Dockerfile
+          context: 10.GK/Hoang-Quoc-Doanh/web/app
+          file: 10.GK/Hoang-Quoc-Doanh/web/app/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/vt_app:${{  github.ref_name }}
