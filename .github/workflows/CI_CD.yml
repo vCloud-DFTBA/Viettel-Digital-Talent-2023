@@ -28,7 +28,7 @@ jobs:
         if [ -f ./10.GK/Hoang-Quoc-Doanh/web/requirements.txt ]; then pip install -r ./10.GK/Hoang-Quoc-Doanh/web/requirements.txt; fi
     - name: Lint with flake8
       run: |
-        pytest 10.GK/Hoang-Quoc-Doanh/web/tests/app/test_main.py
+        pytest 10.GK/Hoang-Quoc-Doanh/web/tests/templates/test_main.py
 
   build-and-push:
     runs-on: ubuntu-latest
