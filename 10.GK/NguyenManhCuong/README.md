@@ -171,7 +171,7 @@ if __name__ == '__main__':
 </p>
 
 <p align = "center">
-<img src = "./images/demo_web.gif" width = 600 height = 350> 
+<img src = "./images/demo_web.gif" width = 800 height = 400> 
 <br>Picture 2. Demo web
 </p>
 
