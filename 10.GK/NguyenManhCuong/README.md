@@ -679,6 +679,15 @@ scrape_configs:
 
 ## 2.5 Logging
 
+To collect logs for each container (web, api, and db), add the following log driver configuration:
+
+```yaml
+log_driver: fluentd
+log_options:
+  fluentd-address: "localhost:24224"
+  fluentd-async-connect: "true"
+```
+
 **Dockerfile for building fluentd image**
 
 ```Dockerfile
