@@ -9,7 +9,7 @@
 -   ### [2. Continuous Integration](#22-continuous-integration)
 -   ### [3. Continuous Delivery](#23-continuous-delivery)
 -   ### [4. Monitoring](#24-monitoring)
--   ### [5. Logging](#24-logging)
+-   ### [5. Logging](#25-logging)
   
 ## [III. Results](#3-results)
 
