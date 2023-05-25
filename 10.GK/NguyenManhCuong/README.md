@@ -322,18 +322,13 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ```
 <p align = "center">
-<img src = "./images/unittest_workflow1.png" width = 800 height = 300> 
-<br>Picture 7. Output log CI workflow when pushing commit
-</p>
-
-<p align = "center">
-<img src = "./images/unittest_workflow2.png" width = 800 height = 300> 
-<br>Picture 8. Output log CI workflow when making pull request
+<img src = "./images/unittest_workflow.png" width = 800 height = 300> 
+<br>Picture 7. Output log CI workflow
 </p>
 
 <p align = "center">
 <img src = "./images/allworkflow_runs.png" width = 800 height = 300> 
-<br>Picture 9. All workflow runs
+<br>Picture 8. All workflow runs
 </p>
 
 ## 2.3 Continuous Delivery
@@ -391,17 +386,17 @@ jobs:
 
 <p align = "center">
 <img src = "./images/output_cdworkflow.png" width = 900 height = 400> 
-<br>Picture 10. Output log CD workflow
+<br>Picture 9. Output log CD workflow
 </p>
 
 <p align = "center">
 <img src = "./images/push_backend_dockerhub.png" width = 600 height = 400> 
-<br>Picture 11. Image backend (api) in DockerHub
+<br>Picture 10. Image backend (api) in DockerHub
 </p>
 
 <p align = "center">
 <img src = "./images/push_frontend_dockerhub.png" width = 600 height = 400> 
-<br>Picture 12. Image frontend (nginx) in DockerHub
+<br>Picture 11. Image frontend (nginx) in DockerHub
 </p>
 
 **Application Architecture**
@@ -410,7 +405,7 @@ Deploy the web and API service on 3 different containers located on EC2 hosts, w
 
 <p align = "center">
 <img src = "./images/architecture.png" width = 900 height = 400> 
-<br>Picture 13. Application Architecture
+<br>Picture 12. Application Architecture
 </p>
 
 **File config for load balancer:**
@@ -525,7 +520,7 @@ For each component, a playbook has been written corresponding to each role.
 
 <p align = "center">
 <img src = "./images/ansible.png" width = 400 height = 300>
-<br>Picture 14. Ansible folder
+<br>Picture 13. Ansible folder
 </p>
 
 ```shell
@@ -544,22 +539,22 @@ For each component, a playbook has been written corresponding to each role.
 <img src = "./images/ansible_log_docker2.png" width = 800 height = 400>
 <img src = "./images/ansible_log_docker3.png" width = 800 height = 400>
 <img src = "./images/ansible_log_docker4.png" width = 800 height = 250>
-<br>Picture 15. Ansible log for setup docker
+<br>Picture 14. Ansible log for setup docker
 </p>
 
 <p align = "center">
 <img src = "./images/ansible_log_db.png" width = 800 height = 300>
-<br>Picture 16. Ansible log for database
+<br>Picture 15. Ansible log for database
 </p>
 
 <p align = "center">
 <img src = "./images/ansible_log_api_nginx.png" width = 800 height = 250>
-<br>Picture 17. Ansible log for api and web service
+<br>Picture 16. Ansible log for api and web service
 </p>
 
 <p align = "center">
 <img src = "./images/ansible_log_lb.png" width = 800 height = 150>
-<br>Picture 18. Ansible log for lb
+<br>Picture 17. Ansible log for lb
 </p>
 
 ## 2.4 Monitoring
@@ -669,7 +664,7 @@ scrape_configs:
 
 <p align = "center">
 <img src = "./images/ansible_log_monitor.png" width = 800 height = 300>
-<br>Picture 19. Ansible log for monitoring
+<br>Picture 18. Ansible log for monitoring
 </p>
 
 **Dashboard monitoring nodes & containers using Prometheus system centralized at 171.236.38.100:9090.**
@@ -679,7 +674,7 @@ scrape_configs:
 <img src = "./images/node_load1_graph(prom).png" width = 800 height = 400>
 <img src = "./images/container_prom.png" width = 800 height = 250>
 <img src = "./images/container_prom_graph.png" width = 800 height = 420>
-<br>Picture 20. Dashboard monitoring nodes and containers using Prometheus
+<br>Picture 19. Dashboard monitoring nodes and containers using Prometheus
 </p>
 
 ## 2.5 Logging
@@ -743,7 +738,7 @@ USER fluent
 
 <p align = "center">
 <img src = "./images/ansible_log_logging.png" width = 800 height = 200>
-<br>Picture 21. Ansible log for lb
+<br>Picture 20. Ansible log for lb
 </p>
 
 Because the logs were not pushed to the server before shutting down, I was unable to capture a sample log from Kibana :((
@@ -752,21 +747,21 @@ Because the logs were not pushed to the server before shutting down, I was unabl
 
 <p align = "center">
 <img src = "./images/web_with_lb.gif" width = 800 height = 400>
-<br>Picture 22. Demo Web with load balancer
+<br>Picture 21. Demo Web with load balancer
 </p>
 
 <p align = "center">
 <img src = "./images/host1.png" width = 800 height = 400>
-<br>Picture 23. Running web in host ec2 №1 http://54.166.186.66/
+<br>Picture 22. Running web in host ec2 №1 http://54.166.186.66/
 </p>
 
 
 <p align = "center">
 <img src = "./images/host2.png" width = 800 height = 400>
-<br>Picture 24. Running web in host ec2 №2 http://44.203.194.242/
+<br>Picture 23. Running web in host ec2 №2 http://44.203.194.242/
 </p>
 
 <p align = "center">
 <img src = "./images/host3.png" width = 800 height = 400>
-<br>Picture 25. Running web in host ec2 №3 http://18.205.151.59/
+<br>Picture 24. Running web in host ec2 №3 http://18.205.151.59/
 </p>
