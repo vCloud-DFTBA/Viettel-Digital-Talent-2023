@@ -16,5 +16,5 @@
     name: fluentd
     image: fluentd_image
     volumes: /tmp/templates/fluentd.conf:/fluentd/etc/fluent.conf
-    network_mode: host
     restart_policy: unless-stopped
+    network_mode: host

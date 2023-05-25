@@ -28,11 +28,16 @@
   - api
   - web
 
-- name: Setup Loadbalancer and Monitoring
+- name: Setup Monitoring
+  hosts: remote_hosts
+  become: true
+  gather_facts: true
+  roles:
+  - monitor
+
+- name: Setup Loadbalancer
   hosts: localhost
   become: true
   gather_facts: true
   roles:
   - lb
-  - monitor
-  
