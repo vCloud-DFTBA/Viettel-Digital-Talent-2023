@@ -479,7 +479,7 @@ all:
   - common
 
 - name: Setup Logging
-  hosts: remote_hosts
+  hosts: node1
   become: true
   gather_facts: true
   roles:
@@ -683,9 +683,10 @@ To collect logs for each container (web, api, and db), add the following log dri
 
 ```yaml
 log_driver: fluentd
-log_options:
-  fluentd-address: "localhost:24224"
-  fluentd-async-connect: "true"
+  log_options:
+    fluentd-address: "{{ fluentd_host }}:24224"
+    fluentd-async-connect: "true"
+    tag: "logger.frontend.{{ inventory_hostname}}"
 ```
 
 **Dockerfile for building fluentd image**
@@ -707,7 +708,7 @@ USER fluent
   bind 0.0.0.0
 </source>
 
-<match *.**>
+<match logger.**>
   @type elasticsearch
   host 171.236.38.100
   port 9200
@@ -741,7 +742,9 @@ USER fluent
     image: fluentd_image
     volumes: /tmp/templates/fluentd.conf:/fluentd/etc/fluent.conf
     restart_policy: unless-stopped
-    network_mode: host
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
 ```
 **Ansible log for role logging**
 

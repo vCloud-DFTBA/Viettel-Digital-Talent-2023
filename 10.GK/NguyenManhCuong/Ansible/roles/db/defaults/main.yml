@@ -4,4 +4,5 @@ db_docker_image: mongo
 db_port: 27017
 database_name: database
 mongodb_hostname: ec2-54-166-186-66.compute-1.amazonaws.com
+fluentd_host: 54.166.186.66
 

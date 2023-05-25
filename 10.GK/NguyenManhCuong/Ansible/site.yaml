@@ -7,7 +7,7 @@
   - common
 
 - name: Setup Logging
-  hosts: remote_hosts
+  hosts: node1
   become: true
   gather_facts: true
   roles:

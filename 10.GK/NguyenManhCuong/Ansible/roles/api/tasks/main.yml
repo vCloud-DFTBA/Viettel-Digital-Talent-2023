@@ -25,5 +25,6 @@
       - name: frontend
     log_driver: fluentd
     log_options:
-      fluentd-address: "localhost:24224"
+      fluentd-address: "{{ fluentd_host }}:24224"
       fluentd-async-connect: "true"
+      tag: "logger.backend.{{ inventory_hostname}}"

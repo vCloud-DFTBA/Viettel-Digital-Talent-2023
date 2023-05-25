@@ -17,4 +17,6 @@
     image: fluentd_image
     volumes: /tmp/templates/fluentd.conf:/fluentd/etc/fluent.conf
     restart_policy: unless-stopped
-    network_mode: host
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
