@@ -1,0 +1,178 @@
+html {
+    height: 100vh;
+}
+body, .intro, .bg-image{
+    min-height: 100vh;
+}
+
+.demo{ font-family: 'Noto Sans', sans-serif; }
+.panel{
+    background: linear-gradient(to right, #2980b9, #2c3e50);
+    padding: 0;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 0 5px rgba(0,0,0,0.05),0 0 0 10px rgba(0,0,0,0.05);
+}
+.panel .panel-heading{
+    padding: 20px 15px;
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+}
+.panel .panel-heading .title{
+    color: #fff;
+    font-size: 28px;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 40px;
+    margin: 0;
+}
+.panel .panel-heading .btn{
+    color: rgba(255,255,255,0.5);
+    background: transparent;
+    font-size: 16px;
+    text-transform: capitalize;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    transition: all 0.3s ease 0s;
+}
+.panel .panel-heading .btn:hover{
+    color: #fff;
+    text-shadow: 3px 3px rgba(255,255,255,0.2);
+}
+.panel .panel-heading .form-control{
+    color: #fff;
+    background-color: transparent;
+    width: 35%;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+.panel .panel-heading .form-control:focus{
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: none;
+    outline: none;
+}
+.panel .panel-heading .form-control::placeholder{
+    color: rgba(255,255,255,0.5);
+    font-size: 15px;
+    font-weight: 500;
+}
+.panel .panel-body{ padding: 0; }
+.panel .panel-body .table thead tr th{
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 12px;
+    border: none;
+}
+.panel .panel-body .table tbody tr td{
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 12px;
+    vertical-align: middle;
+    border: none;
+}
+.panel .panel-body .table tbody tr:nth-child(even){ background-color: rgba(255,255,255,0.05); }
+.panel .panel-body .table tbody .action-list{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.panel .panel-body .table tbody .action-list li{
+    display: inline-block;
+    margin: 0 5px;
+}
+.panel .panel-body .table tbody .action-list li a{
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+.panel .panel-body .table tbody .action-list li a:hover{ color: rgba(248, 129, 129, 0.8); }
+.panel .panel-body .table tbody .action-list li a:before,
+.panel .panel-body .table tbody .action-list li a:after{
+    content: attr(data-tip);
+    color: #fff;
+    background-color: #111;
+    font-size: 12px;
+    padding: 5px 7px;
+    border-radius: 4px;
+    text-transform: capitalize;
+    display: none;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    top: -32px;
+    transition: all 0.3s ease 0s;
+}
+.panel .panel-body .table tbody .action-list li a:after{
+    content: '';
+    height: 15px;
+    width: 15px;
+    padding: 0;
+    border-radius: 0;
+    transform: translateX(-50%) rotate(45deg);
+    top: -18px;
+    z-index: -1;
+}
+.panel .panel-body .table tbody .action-list li a:hover:before,
+.panel .panel-body .table tbody .action-list li a:hover:after{
+    display: block;
+}
+
+@media only screen and (max-width:767px){
+    .panel .panel-heading .title{
+        text-align: center;
+        margin: 0 0 10px;
+    }
+    .panel .panel-heading .btn_group{ text-align: center; }
+}
+.mask {
+    flex-direction: column;
+} 
+
+#iconCreate a {
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+
+#iconCreate a:hover{ color: rgba(133, 248, 129, 0.8); }
+#iconCreate a:before,
+#iconCreate a:after {
+    content: attr(data-tip);
+    color: #fff;
+    background-color: #111;
+    font-size: 12px;
+    padding: 5px 7px;
+    border-radius: 4px;
+    text-transform: capitalize;
+    display: none;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    top: -32px;
+    transition: all 0.3s ease 0s;
+}
+#iconCreate a:after{
+    content: '';
+    height: 15px;
+    width: 15px;
+    padding: 0;
+    border-radius: 0;
+    transform: translateX(-50%) rotate(45deg);
+    top: -18px;
+    z-index: -1;
+}
+
+#iconCreate a:hover:before,
+#iconCreate a:hover:after{
+    display: block;
+}

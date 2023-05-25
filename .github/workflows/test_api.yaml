@@ -1,0 +1,65 @@
+name: test_api
+on:
+  push:
+    branches: ["*"] 
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions: read-all
+    outputs:
+      dobaohoang: ${{ steps.filter.outputs.dobaohoang }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          base: ${{ github.ref }}
+          filters: |
+            dobaohoang:
+              - '10. GK/DoBaoHoang/**'
+
+  test_api:
+    needs: changes
+    if: ${{ needs.changes.outputs.dobaohoang == 'true' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11"]
+
+    env:
+      MONGODB_DATABASE: flaskdb
+      MONGODB_HOSTNAME: db
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create network
+        run: docker network create --driver bridge test_net
+
+      - name: Build mock database
+        run: docker build -t db ${{ github.workspace }}/"10. GK"/DoBaoHoang/source/db
+      - name: Run mock database
+        run: docker run -p 27017:27017 --network test_net --name db -d db 
+
+      - name: Build api server
+        run: docker build -t api ${{ github.workspace }}/"10. GK"/DoBaoHoang/source/api
+      - name: Run api server
+        run: |
+            docker run -p 8080:8080 --network test_net --name api -d \
+            -e MONGODB_DATABASE=flaskdb \
+            -e MONGODB_HOSTNAME=db \
+            api
+
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install denpendencies
+        run: pip install -r ${{ github.workspace }}/"10. GK"/DoBaoHoang/source/api/tests/requirements.txt
+    
+      - name: Run tests
+        run: pytest ${{ github.workspace }}/"10. GK"/DoBaoHoang/source/api/tests/test_api.py
+            
+            

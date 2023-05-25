@@ -1,0 +1,33 @@
+---
+# tasks file for lb
+- name: Install and run Load Balancer
+  block:
+  - name: Pull Nginx image
+    community.general.docker_image:
+      name: "{{ nginx_image }}"
+      tag: "{{ nginx_tag }}"
+      source: pull
+      state: present
+      force_source: true
+  
+  - name: Create Nginx container
+    community.general.docker_container:
+      name: "{{ nginx_container_name }}"
+      image: "{{ nginx_image }}:{{ nginx_tag }}"
+      state: present
+  
+  - name: Run Nginx container
+    community.general.docker_container:
+      name: "{{ nginx_container_name }}"
+      image: "{{ nginx_image }}:{{ nginx_tag }}"
+      exposed_ports:
+        - 80
+      published_ports:
+        - "80:80"
+      log_driver: fluentd
+      log_options:
+        fluentd-address: "192.168.0.133:24224"
+        fluentd-async-connect: "true"
+        tag: "docker.lb"
+      restart_policy: unless-stopped
+      state: started
