@@ -327,8 +327,8 @@ CMD ["nginx", "-g", "daemon off;"]
 </p>
 
 <p align = "center">
-<img src = "./images/allworkflow_runs.png" width = 800 height = 300> 
-<br>Picture 8. All workflow runs
+<img src = "./images/workflow_runs.png" width = 800 height = 300> 
+<br>Picture 8. Workflow runs
 </p>
 
 ## 2.3 Continuous Delivery
