@@ -14,8 +14,8 @@ def mock_data():
         students = [
             {
                 'stt': '1',
-                'name': 'John Doe',
-                'username': 'johndoe',
+                'name': 'Nguyen Van Chi',
+                'username': 'chinv',
                 'birth_year': '1990',
                 'gender': 'Nam',
                 'university': 'XYZ University',
@@ -42,8 +42,8 @@ class AppTestCase(unittest.TestCase):
         self.INIT_COLLECTION_SIZE = self.test_collection.estimated_document_count()
         self.test_student = self.test_collection.find_one({})
         self.new_student = {
-            'name': 'Jane Smith',
-            'username': 'janesmith',
+            'name': 'Nguyen Thi No',
+            'username': 'nont',
             'birth_year': '1995',
             'gender': 'Nữ',
             'university': 'ABC University',
