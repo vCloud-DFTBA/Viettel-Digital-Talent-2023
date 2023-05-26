@@ -25,7 +25,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: echo "TAG=$(echo ${{ github.ref }} | sed 's/refs\/tags\///')" >> $GITHUB_ENV
       
-      - name: Build and Push Backend Images
+      - name: Build and Push flask Images
         uses: docker/build-push-action@v4
         with:
           context: '3. Mid-term/Lequanganh/flask'
@@ -35,11 +35,11 @@ jobs:
             ${{ secrets.DOCKER_NAME }}/lqa-flask-app:${{ env.TAG }}
             ${{ secrets.DOCKER_NAME }}/lqa-flask-app:latest
             
-      - name: Build and Push Frontend Images
+      - name: Build and Push nginx Images
         uses: docker/build-push-action@v4
         with:
-          context: '3. Mid-term/Lequanganh/flask/nginx'
-          file: '3. Mid-term/Lequanganh/flask/Dockerfile'
+          context: '3. Mid-term/Lequanganh/nginx'
+          file: '3. Mid-term/Lequanganh/nginx/Dockerfile'
           push: true
           tags: |
             ${{ secrets.DOCKER_NAME }}/lqa-web:${{ env.TAG }}
