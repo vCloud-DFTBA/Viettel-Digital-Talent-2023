@@ -44,5 +44,5 @@ jobs:
 
       - name: Run unit test
         run: |
-          cd /'3. Mid-term'/Lequanganh/flask/
+          cd '3. Mid-term'/Lequanganh/flask
           pytest api_test.py
