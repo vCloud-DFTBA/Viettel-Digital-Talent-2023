@@ -113,8 +113,8 @@ def test_create_entry(test_db):
     # Assert the response status code is 302 (redirect)
     assert response.status_code == 302
 
-    # Assert the response redirected to '/table'
-    assert response.location == '/table'
+    # Assert the response redirected to '/'
+    assert response.location == '/'
 
     # Check if the new entry is added to the database
     new_entry = db.mytable.find_one({'Họ và tên': 'Ten 3'})
@@ -135,8 +135,8 @@ def test_delete_entry(test_db):
     # Assert the response status code is 302 (redirect)
     assert response.status_code == 302
 
-    # Assert the response redirected to '/table'
-    assert response.location == '/table'
+    # Assert the response redirected to '/'
+    assert response.location == '/'
     # Check if the entry is deleted from the database
     deleted_entry = db.mytable.find_one({'Họ và tên': 'Ten 3'})
     assert deleted_entry is None
@@ -170,8 +170,8 @@ def test_update_entry(test_db):
     # Assert the response status code is 302 (redirect)
     assert response.status_code == 302
 
-    # Assert the response redirected to '/table'
-    assert response.location == '/table'
+    # Assert the response redirected to '/'
+    assert response.location == '/'
 
     # Check if the entry is updated in the database
     updated_entry = test_db.mytable.find_one({'_id': inserted_entry.inserted_id})
