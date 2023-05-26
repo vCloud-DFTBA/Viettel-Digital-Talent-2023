@@ -28,9 +28,9 @@ jobs:
       - name: Build and Push Backend Images
         uses: docker/build-push-action@v4
         with:
-          context: '3. Mid-term'/Lequanganh/flask
+          context: "3. Mid-term/Lequanganh/flask"
           push: true
-          file: '3. Mid-term'/Lequanganh/flask/Dockerfile
+          file: "3. Mid-term/Lequanganh/flask/Dockerfile"
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/lqa-flask-app:${{ env.TAG }}
             ${{ secrets.DOCKER_USERNAME }}/lqa-flask-app:latest
@@ -38,8 +38,8 @@ jobs:
       - name: Build and Push Frontend Images
         uses: docker/build-push-action@v4
         with:
-          context: '3. Mid-term'/Lequanganh/flask/nginx
-          file: '3. Mid-term'/Lequanganh/flask/Dockerfile
+          context: "3. Mid-term/Lequanganh/flask/nginx"
+          file: "3. Mid-term/Lequanganh/flask/Dockerfile"
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/lqa-web:${{ env.TAG }}
