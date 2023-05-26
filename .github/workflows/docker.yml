@@ -14,8 +14,8 @@ jobs:
 
       - name: Show Docker Hub credentials
         run: |
-        echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}"
-        echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}"
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}"
+          echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}"
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
