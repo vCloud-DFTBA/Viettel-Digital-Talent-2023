@@ -4,7 +4,7 @@ from bson import ObjectId
 import requests
 import csv
 from mongomock import MongoClient
-from app1_copy import create_app
+from app import create_app
 
 test_id = []
 # Fixture to create the test database
