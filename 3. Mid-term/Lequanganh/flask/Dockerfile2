@@ -1,0 +1,21 @@
+FROM python:3.9.16-alpine3.18
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt ; \
+    rm -f requirements.txt
+
+COPY . .
+
+# Set the environment variable COLOR to "black"
+ENV COLOR cyan
+
+# Expose port 5000
+EXPOSE 5000
+
+# Set the container name
+ENV container_name flask_midterm_test_2
+
+CMD ["python3", "init1.py"]
