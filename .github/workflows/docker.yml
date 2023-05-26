@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Show Docker Hub credentials
-      run: |
+        run: |
         echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}"
         echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}"
 
