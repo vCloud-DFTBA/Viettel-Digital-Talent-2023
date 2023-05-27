@@ -21,7 +21,7 @@
 </div>
 
 <div align="center">
-  <i><
+  <i>
          dashboard
         </i>
 </div>
@@ -32,7 +32,7 @@
 </div>
 
 <div align="center">
-  <i><
+  <i>
          system architecture
         </i>
 </div>
