@@ -1,0 +1,246 @@
+[{
+  "STT": "1",
+  "Name": "Bùi Minh Sơn",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Công nghệ thông tin"
+},{
+  "STT": "2",
+  "Name": "Đào Đại Hiệp",
+  "Year": "2001",
+  "Sex": "Nam",
+  "School": "Đại học Bách khoa Hà Nội",
+  "Major": "Điện tử viễn thông"
+},{
+  "STT": "3",
+  "Name": "Đỗ Anh Tú",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+},{
+  "STT": "4",
+  "Name": "Đỗ Bảo Hoàng",
+  "Year": "1997",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+},{
+  "STT": "5",
+  "Name": "Hoàng Quốc Doanh",
+  "Year": "2001",
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": null
+},{
+  "STT": "6",
+  "Name": "Le Minh Duc",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+},{
+  "STT": "7",
+  "Name": "Lê Phúc Lai",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Kỹ thuật điện tử viễn thông"
+},{
+  "STT": "8",
+  "Name": "Lê Quang Anh",
+  "Year": "1997",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+},{
+  "STT": "9",
+  "Name": "Lê Trọng Minh",
+  "Year": "2000",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Kỹ thuật điều khiển và tự động hóa"
+},{
+  "STT": "10",
+  "Name": "Lê Tùng Lâm",
+  "Year": "1999",
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+},{
+  "STT": "11",
+  "Name": "Lê Văn Chiến",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Kỹ thuật hàng không vũ trụ"
+},{
+  "STT": "12",
+  "Name": "Linh Thi Nguyen",
+  "Year": "2002",
+  "Sex": "Nữ",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "ICT"
+},{
+  "STT": "13",
+  "Name": "Nguyễn Đại An",
+  "Year": "2023",
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+},{
+  "STT": "14",
+  "Name": "Nguyễn Đình Hoàng",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+},{
+  "STT": " 15",
+  "Name": "Nguyen Duc Vinh Data",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính Viễn thông",
+  "Major": null
+},{
+  "STT": " 16",
+  "Name": "Nguyễn Dương Long",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "ĐH Thuỷ lợi",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+},{
+  "STT": " 17",
+  "Name": "Nguyen Huu Thang",
+  "Year": "2000",
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+},{
+  "STT": " 18",
+  "Name": "Nguyễn Mạnh Cường",
+  "Year": "1997",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Điện tử"
+},{
+  "STT": " 19",
+  "Name": "Nguyễn Mạnh Đức",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Học viện Kỹ thuật mật mã",
+  "Major": "An toàn thông tin"
+},{
+  "STT": " 20",
+  "Name": "Nguyễn Ngọc Chung",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Học viên Công nghệ Bưu chính Viễn Thông HCM",
+  "Major": null
+},{
+  "STT": " 21",
+  "Name": "Nguyễn Tuấn Anh",
+  "Year": "1997",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+},{
+  "STT": " 22",
+  "Name": "Nguyễn Văn Quang",
+  "Year": "1997",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+},{
+  "STT": " 23",
+  "Name": "Ninh Chí Hướng",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính viễn thông",
+  "Major": "An toàn thông tin"
+},{
+  "STT": " 24",
+  "Name": "Ninh Văn Nghĩa",
+  "Year": "2001",
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+},{
+  "STT": " 25",
+  "Name": "Phạm Anh Đức",
+  "Year": "2001",
+  "Sex": "Nam",
+  "School": "Đại học Bách Khoa Hà Nội",
+  "Major": "Toán ứng dụng và tin học"
+},{
+  "STT": " 26",
+  "Name": "Phạm Duy Cương",
+  "Year": "1997",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Công nghệ điện tử"
+},{
+  "STT": " 27",
+  "Name": "Phạm Hồng Thanh",
+  "Year": "1998",
+  "Sex": "Nam",
+  "School": "Swinburne University",
+  "Major": "Phát triển phần mềm"
+},{
+  "STT": "28",
+  "Name": "Phạm Thị Khánh Linh",
+  "Year": "2002",
+  "Sex": "Nữ",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+},{
+  "STT": " 29",
+  "Name": "Phạm Văn Tới",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính viễn thông",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+},{
+  "STT": "30",
+  "Name": "Trần Đức Mạnh",
+  "Year": "1998",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Bảo mật thông tin"
+},{
+  "STT": "31",
+  "Name": "Trần Mạnh Dũng",
+  "Year": "2001",
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính Viễn thông",
+  "Major": "Điện tử viễn thông"
+},{
+  "STT": "32",
+  "Name": "Trần Minh Dương",
+  "Year": "2002",
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+},{
+  "STT": "33",
+  "Name": "Trần Xuân Phú",
+  "Year": "2001",
+  "Sex": "Nam",
+  "School": "School Đại học Công nghệ thông tin - ĐHQG Tp.Hồ chí Minh",
+  "Major": "Khoa học máy tính"
+},{
+  "STT": "34",
+  "Name": "Vũ Hoàng Long",
+  "Year": "2001",
+  "Sex": "Nam",
+  "School": "Đại học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+},{
+  "STT": " 35",
+  "Name": "Vũ Minh Hiếu",
+  "Year": "2000",
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Kỹ thuật phần mềm"
+}]

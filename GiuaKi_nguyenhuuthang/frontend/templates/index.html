@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=
+    "https://code.jquery.com/jquery-3.5.1.js">
+        </script>
+    <style>
+       table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+td,
+th {
+  border: 2px solid #999;
+  padding: 0.5rem;
+}
+        
+    </style>
+</head>
+<body>
+    <div class="href-item">
+        <a href="index.html">Home</a>
+        <a href="find.html">find Student</a>
+        <a href="create.html">create Student</a>
+        <a href="update.html">Update Student</a>
+        <a href="delete.html">delete Student</a>
+    </div>
+
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Sex</th>
+            <th>School</th>
+            <th>Major</th>
+          </tr>
+        </thead>
+        <tbody id="data">
+    
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+        // api url
+const api_url =
+      "http://127.0.0.1:5000/api/getstudent";
+ 
+      $(document).ready(function () {
+  
+  // FETCHING DATA FROM JSON FILE
+  $.getJSON(api_url, 
+          function (data) {
+      var student = '';
+
+      // ITERATING THROUGH OBJECTS
+      $.each(data, function (key, value) {
+
+          //CONSTRUCTION OF ROWS HAVING
+          // DATA FROM JSON OBJECT
+          student += '<tr>';
+          student += '<td>' + 
+              value.STT + '</td>';
+
+          student += '<td>' + 
+              value.Name + '</td>';
+
+          student += '<td>' + 
+              value.Year + '</td>';
+
+          student += '<td>' + 
+              value.Sex + '</td>';
+          
+          student += '<td>' + 
+              value.School + '</td>';
+          student += '<td>' + 
+              value.Major + '</td>';
+              
+          student += '</tr>';
+      });
+        
+      //INSERTING ROWS INTO TABLE 
+      $('#data').append(student);
+  });
+});
+    </script>
+</body>
+</html>

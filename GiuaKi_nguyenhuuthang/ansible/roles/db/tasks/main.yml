@@ -1,0 +1,19 @@
+---
+
+- name: Run Docker image for custom Mongodb instance
+  docker_container:
+    name: mongodb
+    image: midterm
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.5.46:24224"
+      tag: "docker.mongodb"
+    hostname: mongodb
+    ports:
+     - "27019:27017"
+    networks: 
+      - name: midterm_network
+  become: true
