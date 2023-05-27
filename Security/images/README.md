@@ -96,7 +96,7 @@
             - Otherwise: Findings are deduplicated across the whole product
 - Note that currently deduplication does not occur across different products.
 
-#### Deduplication algorithms
+##### Deduplication algorithms
 - The behavior of the deduplication can be configured for each parser in settings.dist.py (or settings.py after install) by configuring the DEDUPLICATION_ALGORITHM_PER_PARSER variable, or via the env variable (useful for Kubernetes deployments) DD_DEDUPLICATION_ALGORITHM_PER_PARSER with a JSON string like
 
 ``` text
@@ -109,3 +109,77 @@ The available algorithms are:
 DEDUPE_ALGO_UNIQUE_ID_FROM_TOOL
 DEDUPE_ALGO_HASH_CODE
 DEDUPE_ALGO_LEGACY
+
+#### Reports
+Instant reports
+![](report_1.png)
+- Instant reports can be generated for:
+    - Product types
+    - Products
+    - Engagements
+    - Tests
+    - List of Findings
+    - Endpoints
+- Filtering is available on all report generation views to aid in focusing the report for the appropriate need.
+
+Custom reports
+![](report_2.png)
+- Custom reports, generated with the Report Builder, allow you to select specific components to be added to the report. These include:
+
+  - Cover Page
+  - Table of Contents
+  - WYSIWYG Content
+  - Findings
+  - Vulnerable Endpoints
+  - Page Breaks
+- DefectDojo’s reports can be generated in HTML and AsciiDoc.
+
+#### Metrics
+- DefectDojo provides a number of metrics visualization in order to help with reporting, awareness and to be able to quickly communicate a products/product type's security stance.
+
+- The following metric views are provided:
+
+##### Product Type Metrics
+- This view provides graphs displaying Open Bug Count by Month, Accepted Bug Count by Month, Open Bug Count by Week, Accepted Bug Count by Week as well as tabular data on Top 10 Products by bug severity, Detail Breakdown of all reported findings, Opened Findings, Accepted Findings, Closed Findings, Trending Open Bug Count, Trending Accepted Bug Count, and Age of Issues.
+
+![](met_1.png)
+##### Product Type Counts
+- This view provides tabular data of Total Current Security Bug Count, Total Security Bugs Opened In Period, Total Security Bugs Closed In Period, Trending Total Bug Count By Month, Top 10 By Bug Severity, and Open Findings. This view works great for communication with stakeholders as it is a snapshot in time of the product.
+
+![](met_2.png)
+
+##### Simple Metrics
+- Provides tabular data for all Product Types. The data displayed in this view is the total number of S0, S1, S2, S3, S4, Opened This Month, and Closed This Month.
+![](met_3.png)
+
+##### Engineer Metrics
+- Provides graphs displaying information about a tester's activity.
+![](met_4.png)
+
+##### Metrics Dashboard
+- Provides a full screen, auto scroll view with many metrics in graph format. This view is great for large displays or "Dashboards."
+
+![](met_5.png)
+
+
+### Users 
+- DefectDojo users inherit from django.contrib.auth.models.User.
+
+- A username, first name, last name, and email address can be associated with each user. Additionally the following attributes describe the type of users:
+
+##### Active
+- Designates whether this user should be treated as active and can login to DefectDojo. Unselect this instead of deleting accounts.
+##### Superuser status
+- Designates that this user can configure the system and has all permissions for objects without explicitly assigning them.
+- A superuser may force a password reset for any user at any given time. This can be set when creating a new user, or when editing an existing one, requiring the user to change their password upon their next login.
+
+- DefectDojo enforces the following password rules for all users:
+
+    - Must meet a length requirement of 9 characters
+    - Must be unique (not commonly used)
+    - Must contain one of each of the following: a number (0-9), uppercase letter (A-Z), lowercase letter (a-z), and symbol ()[]{}|~!@#$%^&*_-+=;:`'",<>./?
+
+### Calendar
+- The calendar view provides a look at all the engagements and tests occurring during the month d, week or day displayed. Each entry is a direct link to the respective engagement or test view page.
+
+
