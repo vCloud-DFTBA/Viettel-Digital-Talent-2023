@@ -107,7 +107,9 @@
 The available algorithms are:
 
 DEDUPE_ALGO_UNIQUE_ID_FROM_TOOL
+
 DEDUPE_ALGO_HASH_CODE
+
 DEDUPE_ALGO_LEGACY
 
 #### Reports
