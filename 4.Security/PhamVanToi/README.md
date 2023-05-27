@@ -6,11 +6,11 @@
 ![](images/progress1.png)
 ![](images/progress2.png)
 
-#2. Thực hành 1 hệ thống ATTT online viết báo cáo: Sandbox/Phishing Mail 
+# 2. Thực hành 1 hệ thống ATTT online viết báo cáo: Sandbox/Phishing Mail 
 ###CheckPhish
 Use Checkphish to check the information of a URL. From there, we can know if that website is fake or not.
 
-####Demo
+#### Demo
 
 ![](images/checkphish1.png)
 ![](images/checkphish2.png)
@@ -25,7 +25,7 @@ Jevereg is used analyzed the behavior of potential malicious executables.
 ![](images/jevereg4.png)
 
 
-#3. Tìm hiểu kiến trúc và tính năng của 1 công cụ ATTT (Wazuh)
+# 3. Tìm hiểu kiến trúc và tính năng của 1 công cụ ATTT (Wazuh)
 
 ## Architecture
 The Wazuh architecture is based on Wazuh agents, running on the monitored endpoints, that forward security data to a central server. Agentless devices such as firewalls, switches, routers, and access points are supported and can actively submit log data via Syslog, SSH, or using their API. The central server decodes and analyzes the incoming information and passes the results along to the Wazuh indexer for indexing and storage.
