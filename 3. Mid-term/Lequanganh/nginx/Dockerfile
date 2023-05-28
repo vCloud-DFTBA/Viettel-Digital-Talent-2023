@@ -4,7 +4,7 @@ FROM nginx:stable-alpine3.17-slim
 WORKDIR /app
 
 # Copy the Nginx configuration file to the container
-COPY ./nginx1.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the static files for the Flask app to the container
 COPY ./static /app/static
@@ -12,8 +12,8 @@ COPY ./static /app/static
 # Expose port 80
 EXPOSE 80
 
-# Set the container name
-ENV container_name nginx_test_1
+#  Set the container name
+# ENV container_name nginx_backend
 
 # Set up dependencies
 RUN apk update && \

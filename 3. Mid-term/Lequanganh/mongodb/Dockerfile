@@ -1,7 +1,7 @@
 FROM mongo:5.0.17
 
 # Set the container name
-ENV container_name mongo_test_1
+# ENV container_name mongo_test_1
 
 # Expose port 27017
 EXPOSE 27017

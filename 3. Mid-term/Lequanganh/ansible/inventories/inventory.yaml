@@ -1,0 +1,27 @@
+---
+all:
+  hosts:
+    web_app_1:
+      ansible_host: 10.0.2.
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
+    web_app_2:
+      ansible_host: 10.0.2.15
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
+    db:
+      ansible_host: 10.0.2.15
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
+    nginx_lb:
+      ansible_host: 10.0.2.15
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
