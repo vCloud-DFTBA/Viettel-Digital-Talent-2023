@@ -7,4 +7,4 @@
     ports:
       - 80:80
     networks: 
-      - my-network
+      - name: my-network

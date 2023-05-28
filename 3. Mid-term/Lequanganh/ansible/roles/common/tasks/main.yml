@@ -49,3 +49,25 @@
   pip:
     name: docker
     state: present
+
+- name: Prepare clean docker
+  block:
+  - name: Get running containers
+    community.general.docker_host_info:
+      containers: true
+      containers_all: false
+    register: docker_running
+
+  - name: Get all existing containers
+    community.general.docker_host_info:
+      containers: true
+      containers_all: true
+    register: docker_all
+
+  - name: Stop running containers
+    when: (docker_running.containers | length) != 0
+    shell: "docker kill $(docker ps -q)"
+
+  - name: Remove stopped docker containers
+    when: (docker_all.containers | length) != 0
+    shell: docker rm $(docker ps -aq)

@@ -20,17 +20,13 @@
   roles:
     - roles/db
 
-- name: Run webapp_1
-  hosts: web_app_1
+- name: Run webapp
+  hosts: 
+    - web_app_1
+    - web_app_2
   become: true
   roles:
-    - roles/api_2
-
-- name: Run webapp_2
-  hosts: web_app_2
-  become: true
-  roles:
-    - roles/api_2
+    - roles/api
 
 - name: Run nginx front-end
   hosts: web_app_1, web_app_2

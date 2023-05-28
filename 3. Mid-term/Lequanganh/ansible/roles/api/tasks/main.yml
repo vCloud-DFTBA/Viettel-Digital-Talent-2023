@@ -5,9 +5,7 @@
     command: python init.py
     restart_policy: unless-stopped
     env:
-      COLOR: cyan
-    # exposed_ports:
-    #   - 5000
+      COLOR: "{{COLOR}}"
     ports:
       - "5000:5000"
     network_mode: my-network
