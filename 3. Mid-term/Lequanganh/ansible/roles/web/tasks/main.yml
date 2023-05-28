@@ -1,19 +1,9 @@
----
-- name: Copy configure file
-  become: yes
-  copy:
-    src: /home/lqa/Desktop/Ansible/roles/web/files/nginx.conf
-    dest: ~/default.conf
 - name: Run Nginx
   docker_container:
     name: nginx_test
-    image: nginx:stable-alpine3.17-slim
+    image: leqa/lqa-web:latest
     state: started
     restart_policy: unless-stopped
     ports:
       - 80:80
-    volumes:
-      - ~/default.conf:/etc/nginx/conf.d/default.conf
     network_mode: my-network
-
-

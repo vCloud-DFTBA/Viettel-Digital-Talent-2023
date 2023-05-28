@@ -1,2 +1,9 @@
----
-# tasks file for load-balancer
+- name: Run Nginx
+  docker_container:
+    name: nginx_test
+    image: leqa/lqa-load-balancer:latest
+    state: started
+    restart_policy: unless-stopped
+    ports:
+      - 80:80
+    network_mode: my-network

@@ -8,8 +8,6 @@
       COLOR: black
     exposed_ports:
       - 5000
-    volumes:
-      - ~/static:/app/static
     network_mode: my-network
 
 
