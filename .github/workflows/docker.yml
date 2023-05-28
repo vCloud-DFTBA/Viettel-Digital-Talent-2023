@@ -35,7 +35,7 @@ jobs:
             ${{ secrets.DOCKER_NAME }}/lqa-flask-app:${{ env.TAG }}
             ${{ secrets.DOCKER_NAME }}/lqa-flask-app:latest
             
-      - name: Build and Push nginx Images
+      - name: Build and Push nginx front-end
         uses: docker/build-push-action@v4
         with:
           context: '3. Mid-term/Lequanganh/nginx'
@@ -44,3 +44,14 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_NAME }}/lqa-web:${{ env.TAG }}
             ${{ secrets.DOCKER_NAME }}/lqa-web:latest
+
+      - name: Build and Push nginx load-balancer
+        uses: docker/build-push-action@v4
+        with:
+          context: '3. Mid-term/Lequanganh/load-balancer'
+          file: '3. Mid-term/Lequanganh/load-balancer/Dockerfile'
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_NAME }}/lqa-load-balancer:${{ env.TAG }}
+            ${{ secrets.DOCKER_NAME }}/lqa-load-balancer:latest
+
