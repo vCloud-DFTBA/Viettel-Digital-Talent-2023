@@ -6,10 +6,10 @@
     restart_policy: unless-stopped
     env:
       COLOR: cyan
-    exposed_ports:
-      - 5000
-    volumes:
-      - ~/static:/app/static
+    # exposed_ports:
+    #   - 5000
+    ports:
+      - "5000:5000"
     network_mode: my-network
 
 

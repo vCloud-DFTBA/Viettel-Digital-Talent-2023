@@ -6,8 +6,10 @@
     restart_policy: unless-stopped
     env:
       COLOR: black
-    exposed_ports:
-      - 5000
+    # exposed_ports:
+    #   - 5000
+    ports:
+      - "5000:5000"
     network_mode: my-network
 
 
