@@ -6,4 +6,5 @@
     restart_policy: unless-stopped
     ports:
       - 80:80
-    network_mode: my-network
+    networks: 
+      - my-network
