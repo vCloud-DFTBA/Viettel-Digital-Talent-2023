@@ -18,14 +18,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-        
+
       - name: Get tag name
         if: startsWith(github.ref, 'refs/tags/')
         run: echo "TAG=$(echo ${{ github.ref }} | sed 's/refs\/tags\///')" >> $GITHUB_ENV
-      
+
       - name: Build and Push Backend Images
         uses: docker/build-push-action@v4
         with:
@@ -35,7 +35,7 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/backend:${{ env.TAG }}
             ${{ secrets.DOCKER_USERNAME }}/backend:latest
-            
+
       - name: Build and Push Frontend Images
         uses: docker/build-push-action@v4
         with:
