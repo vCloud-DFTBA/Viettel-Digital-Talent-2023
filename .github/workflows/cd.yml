@@ -29,9 +29,9 @@ jobs:
       - name: Build and Push Backend Images
         uses: docker/build-push-action@v4
         with:
-          context: source_code/flask
+          context: '10. GK/NguyenTuanAnh/source_code/flask'
           push: true
-          file: source_code/flask/Dockerfile
+          file: '10. GK/NguyenTuanAnh/source_code/flask/Dockerfile'
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/backend:${{ env.TAG }}
             ${{ secrets.DOCKER_USERNAME }}/backend:latest
@@ -39,8 +39,8 @@ jobs:
       - name: Build and Push Frontend Images
         uses: docker/build-push-action@v4
         with:
-          context: source_code/nginx
-          file: source_code/nginx/Dockerfile
+          context: '10. GK/NguyenTuanAnh/source_code/nginx'
+          file: '10. GK/NguyenTuanAnh/source_code/nginx/Dockerfile'
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/frontend:${{ env.TAG }}
