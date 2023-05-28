@@ -1,0 +1,3 @@
+.idea
+Ansible/roles/web/.travis.yml
+Ansible/roles/api/.travis.yml

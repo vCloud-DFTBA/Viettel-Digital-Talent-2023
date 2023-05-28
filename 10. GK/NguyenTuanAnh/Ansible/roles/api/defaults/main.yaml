@@ -1,0 +1,5 @@
+db_container_name: mysql
+db_user: debian-sys-maint
+db_password: MxHyYGaovDfTPRa8
+db_database: crudapp
+

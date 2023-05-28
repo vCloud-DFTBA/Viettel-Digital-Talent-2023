@@ -1,0 +1,27 @@
+---
+- name: Pull api image from Docker Hub
+  community.docker.docker_image:
+    name: "{{ flask_image }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run api container
+  community.docker.docker_container:
+    name: "{{ item.name }}"
+    image: "{{ flask_image }}"
+    restart_policy: unless-stopped
+    state: started
+    env:
+      MYSQL_HOST: "{{ db_container_name }}"
+      MYSQL_USER : "{{ db_user }}"
+      MYSQL_PASSWORD : "{{ db_password }}"
+      MYSQL_DB : "{{ db_database }}"
+    ports:
+      - 5000
+    networks:
+      - name: backend
+      - name: frontend
+  loop:
+    - { name: 'backend_1' }
+    - { name: 'backend_2' }

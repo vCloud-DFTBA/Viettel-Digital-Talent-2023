@@ -1,0 +1,20 @@
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: 241631096
+      hostname: homework2
+  children:
+    remote_hosts:
+      hosts:
+        node1:
+          ansible_ssh_host: 34.224.91.16
+          ansible_ssh_user: ubuntu
+          ansible_ssh_private_key_file: ~/Desktop/TA_key.pem
+        node2:
+          ansible_ssh_host: 184.72.215.124
+          ansible_ssh_user: ubuntu
+          ansible_ssh_private_key_file: ~/Desktop/TA_key.pem
+
