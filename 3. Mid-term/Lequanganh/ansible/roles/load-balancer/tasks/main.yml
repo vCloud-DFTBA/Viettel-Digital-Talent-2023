@@ -1,4 +1,12 @@
-- name: Run Nginx
+- name: Pull Nginx-lb image
+  community.general.docker_image:
+    name: leqa/lqa-load-balancer
+    tag: latest
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run Nginx-lb
   docker_container:
     name: nginx_test
     image: leqa/lqa-load-balancer:latest

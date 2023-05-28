@@ -1,3 +1,11 @@
+- name: Pull Nginx image
+  community.general.docker_image:
+    name: leqa/lqa-web
+    tag: latest
+    source: pull
+    state: present
+    force_source: true
+
 - name: Run Nginx
   docker_container:
     name: nginx_test

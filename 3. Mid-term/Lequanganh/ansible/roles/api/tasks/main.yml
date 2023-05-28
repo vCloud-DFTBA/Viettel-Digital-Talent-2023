@@ -1,3 +1,11 @@
+- name: Pull Flask image
+  community.general.docker_image:
+    name: leqa/lqa-flask-app
+    tag: latest
+    source: pull
+    state: present
+    force_source: true
+
 - name: Run Flask container
   community.docker.docker_container:
     name: flask_container
@@ -9,6 +17,7 @@
     ports:
       - "5000:5000"
     network_mode: my-network
+
 
 
 

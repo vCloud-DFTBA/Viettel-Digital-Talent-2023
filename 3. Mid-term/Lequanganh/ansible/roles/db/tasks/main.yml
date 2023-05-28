@@ -1,4 +1,12 @@
 ---
+- name: Pull MongoDB image
+  community.general.docker_image:
+    name: mongo
+    tag: 5.0.17
+    source: pull
+    state: present
+    force_source: true
+
 - name: Run MongoDB
   community.docker.docker_container:
     name: database
