@@ -2,10 +2,11 @@ name: Build and Push Images to DockerHub
 
 on:
   push:
-    tags:
-      - '*'
-      - '!refs/tags/*'
-  
+    branches: [ "midterm" ]
+#    tags:
+#      - '*'
+#      - '!refs/tags/*'
+#
 jobs:
   build_and_push:
     name: Build and Push Images to DockerHub
