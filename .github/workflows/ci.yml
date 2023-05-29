@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-      - midterm
 
   push:
     branches:
@@ -22,7 +21,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip 
+          python -m pip install --upgrade pip
+          pwd
+          ls -lR
           pip install -r "10. GK/NguyenTuanAnh/source_code/flask/requirements.txt"
 
       - uses: ricardochaves/python-lint@v1.4.0
