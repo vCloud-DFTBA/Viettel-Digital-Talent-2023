@@ -18,6 +18,7 @@ jobs:
           MYSQL_DATABASE: crudapptest
           MYSQL_USER: demo
           MYSQL_PASSWORD: demo
+          MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -26,10 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: test connection
-        run: |
-          ping google.com
-          ping 3.226.18.226
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
