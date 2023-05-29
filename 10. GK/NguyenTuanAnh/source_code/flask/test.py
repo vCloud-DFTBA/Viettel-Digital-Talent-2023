@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from app import create_app
@@ -5,8 +6,7 @@ from app import create_app
 
 class TestStudent(unittest.TestCase):
     def setUp(self):
-        self.app, self.mysql = create_app('many random bytes', 'localhost', 'debian-sys-maint',
-                                          'MxHyYGaovDfTPRa8', 'crudapptest')
+        self.app, self.mysql = create_app('many random bytes', os.environ['MYSQL_HOST'], os.environ['MYSQL_USER'], os.environ['MYSQL_PASSWORD'], os.environ['MYSQL_DB'])
         self.app.config['TESTING'] = True
         self.client = self.app.test_client()
 
