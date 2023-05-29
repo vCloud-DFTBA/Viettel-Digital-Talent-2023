@@ -15,6 +15,10 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
+      - name: test connection
+        run: |
+          ping google.com
+          ping 3.226.18.226
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
