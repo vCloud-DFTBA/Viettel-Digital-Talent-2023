@@ -1,12 +1,26 @@
 ---
+- name: Setup Prometheus and Fluentd server
+  hosts: center
+  become: true
+  roles: 
+    - roles/prometheus
+    - roles/logging
+
 - name: Install Docker on remote host
-  hosts: all
+  hosts: 
+    - web_app_1
+    - web_app_2
+    - db
+    - nginx_lb
   become: true
   roles:
     - roles/common
+    - roles/monitor
 
 - name: Create a Docker network
-  hosts: all
+  hosts: 
+    - web_app_1
+    - web_app_2
   become: yes
   tasks:
     - name: Create Docker network
@@ -19,6 +33,7 @@
   become: true
   roles:
     - roles/db
+    - roles/monitor
 
 - name: Run webapp
   hosts: 
@@ -27,15 +42,20 @@
   become: true
   roles:
     - roles/api
+    - roles/monitor
 
 - name: Run nginx front-end
-  hosts: web_app_1, web_app_2
+  hosts:
+    - web_app_1
+    - web_app_2
   become: true
   roles:
     - roles/web
+    - roles/monitor
 
 - name: nginx load balancer
   hosts: nginx_lb
   become: true
   roles:
     - roles/load-balancer
+    - roles/monitor

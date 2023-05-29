@@ -29,3 +29,8 @@ all:
       ansible_ssh_pass: 9876541
       ansible_become_user: root
       ansible_become_password: 9876541
+
+    center:
+      ansible_connection: local
+      ansible_become_user: root
+      ansible_become_password: 9876541

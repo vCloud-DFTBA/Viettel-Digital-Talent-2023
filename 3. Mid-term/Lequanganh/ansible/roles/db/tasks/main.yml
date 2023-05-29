@@ -1,18 +1,15 @@
 ---
-- name: Pull MongoDB image
-  community.general.docker_image:
-    name: mongo
-    tag: 5.0.17
-    source: pull
-    state: present
-    force_source: true
-
 - name: Run MongoDB
   community.docker.docker_container:
     name: database
     image: mongo:5.0.17
-    restart_policy: unless-stopped
-    state: started
     ports:
       - "27017:27017"
     network_mode: my-network
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "10.0.3.4:24224"
+      fluentd-async-connect: "true"
+      tag: "docker.api"
+    restart_policy: unless-stopped
+    state: started

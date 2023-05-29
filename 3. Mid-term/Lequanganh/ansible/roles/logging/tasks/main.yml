@@ -1,0 +1,28 @@
+---
+# tasks file for logging
+- name: Install and run Logging
+  block:
+  - name: Pull logging image
+    community.general.docker_image:
+      name: "{{ logging_image }}"
+      tag: "{{ logging_tag }}"
+      source: pull
+      state: present
+      force_source: true
+  
+  - name: Create logging container
+    community.general.docker_container:
+      name: "{{ logging_container_name }}"
+      image: "{{ logging_image }}:{{ logging_tag }}"
+      state: present
+  
+  - name: Run logging container
+    community.general.docker_container:
+      name: "{{ logging_container_name }}"
+      image: "{{ logging_image }}:{{ logging_tag }}"
+      exposed_ports:
+        - 24224
+      published_ports:
+        - "24224:24224"
+      restart_policy: unless-stopped
+      state: started
