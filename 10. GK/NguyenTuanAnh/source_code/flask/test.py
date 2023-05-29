@@ -8,9 +8,9 @@ class TestStudent(unittest.TestCase):
     def setUp(self):
         # self.app, self.mysql = create_app('many random bytes', os.environ['MYSQL_HOST'], os.environ['MYSQL_USER'], os.environ['MYSQL_PASSWORD'], os.environ['MYSQL_DB'])
         self.app, self.mysql = create_app('many random bytes',
-                                          '3.226.18.226',
-                                          'admin',
-                                          'nguyentuananh',
+                                          '127.0.0.1',
+                                          'demo',
+                                          'demo',
                                           'crudapptest')
         self.app.config['TESTING'] = True
         self.client = self.app.test_client()

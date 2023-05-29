@@ -11,6 +11,17 @@ on:
 
 jobs:
   test:
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: crudapptest
+          MYSQL_USER: demo
+          MYSQL_PASSWORD: demo
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     name: Run Unit Test
     runs-on: ubuntu-latest
     steps:
