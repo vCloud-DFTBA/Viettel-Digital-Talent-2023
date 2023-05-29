@@ -30,7 +30,7 @@ instructions, multi-stage build, etc.)
 Docker history của image load balancer:
 
 <div align="center">
-  <img width="500" src="history_loadbalancer.png">
+  <img width="500" src="images/history_loadbalancer.png">
 </div>
 
 <div align="center">
@@ -67,7 +67,7 @@ Docker history cuar image nginx:
 - Output log của luồng CI
   
 <div align="center">
-  <img width="500" src="images/Ci.png">
+  <img width="500" src="images/CI.png">
 </div>
 
 <div align="center">
