@@ -23,13 +23,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pwd
-          ls -lR
           pip install -r "10. GK/NguyenTuanAnh/source_code/flask/requirements.txt"
 
       - uses: ricardochaves/python-lint@v1.4.0
         with:
-          python-root-list: "./source_code/app"
+          python-root-list: "10. GK/NguyenTuanAnh/source_code/flask/requirements.txt"
           use-pylint: false
           use-pycodestyle: false
           use-flake8: true
@@ -40,7 +38,7 @@ jobs:
 
       - name: Run unit test
         run: |
-          cd ./source_code/flask
+          cd "10. GK/NguyenTuanAnh/source_code/flask/requirements.txt"
           export MYSQL_HOST={{ secrets.MYSQL_HOST }}
           export MYSQL_USER={{ secrets.MYSQL_USER }}
           export MYSQL_PASSWORD={{ secrets.MYSQL_PASSWORD }}
