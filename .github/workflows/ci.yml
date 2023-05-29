@@ -2,9 +2,13 @@ name: Run Unit Test
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - main
+      - midterm
+
   push:
-    branches: [ "main" ]
+    branches:
+     - midterm
 
 jobs:
   test:
