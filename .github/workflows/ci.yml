@@ -39,10 +39,6 @@ jobs:
       - name: Run unit test
         run: |
           cd "10. GK/NguyenTuanAnh/source_code/flask"
-#          export MYSQL_HOST=${{ secrets.MYSQL_HOST }}
-#          export MYSQL_USER=${{ secrets.MYSQL_USER }}
-#          export MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
-#          export MYSQL_DB=${{ secrets.MYSQL_DB_TEST }}
           python3 -m unittest test.py
 
 
