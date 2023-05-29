@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip 
-          pip install -r '10. GK/NguyenTuanAnh/source_code/app/requirements.txt'
+          pip install -r "10. GK/NguyenTuanAnh/source_code/flask/requirements.txt"
 
       - uses: ricardochaves/python-lint@v1.4.0
         with:
