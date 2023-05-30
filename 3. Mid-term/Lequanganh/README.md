@@ -30,7 +30,7 @@ instructions, multi-stage build, etc.)
 Docker history của image load balancer:
 
 <div align="center">
-  <img width="500" src="history_loadbalancer.png">
+  <img width="500" src="images/history_loadbalancer.png">
 </div>
 
 <div align="center">
@@ -67,7 +67,7 @@ Docker history cuar image nginx:
 - Output log của luồng CI
   
 <div align="center">
-  <img width="500" src="images/Ci.png">
+  <img width="500" src="images/CI.png">
 </div>
 
 <div align="center">
@@ -168,7 +168,15 @@ ansible-playbook -i inventories/inventory.yaml playbooks/playbook.yaml
 </div>
 
 <div align="center">
-  <i>Pic. 11 - Prometheus </i>
+  <i>Pic. 11 - Node-exporter's metric </i>
+</div>
+
+<div align="center">
+  <img width="500" src="images/cadadvisor.png">
+</div>
+
+<div align="center">
+  <i>Pic. 12 - Cadadvisor's metric  </i>
 </div>
 
 ### 5. Logging 
@@ -185,7 +193,7 @@ ansible-playbook -i inventories/inventory.yaml playbooks/playbook.yaml
 </div>
 
 <div align="center">
-  <i>Pic. 12 - fluentd log </i>
+  <i>Pic. 13 - fluentd log </i>
 </div>
 
 <div align="center">
@@ -193,5 +201,5 @@ ansible-playbook -i inventories/inventory.yaml playbooks/playbook.yaml
 </div>
 
 <div align="center">
-  <i>Pic. 13 - logging container </i>
+  <i>Pic. 14 - logging container </i>
 </div>
