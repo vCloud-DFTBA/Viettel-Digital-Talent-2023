@@ -10,11 +10,11 @@ all:
     remote_hosts:
       hosts:
         node1:
-          ansible_ssh_host: 34.224.91.16
+          ansible_ssh_host: 16.16.216.15
           ansible_ssh_user: ubuntu
           ansible_ssh_private_key_file: ~/Desktop/TA_key.pem
         node2:
-          ansible_ssh_host: 184.72.215.124
+          ansible_ssh_host: 16.16.216.75
           ansible_ssh_user: ubuntu
           ansible_ssh_private_key_file: ~/Desktop/TA_key.pem
 

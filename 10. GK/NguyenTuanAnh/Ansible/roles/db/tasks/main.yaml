@@ -1,31 +1,11 @@
 ---
-- name: Pull MySQL image from Docker Hub
-  community.docker.docker_image:
-    name: mysql:8.0.32
-    source: pull
+- name: Install MySQL CLient
+  apt:
+    name: mysql-client-core-8.0
     state: present
-    force_source: true
-
-- name: Run MySQL container
-  community.docker.docker_container:
-    name: mysql
-    image: mysql:8.0.32
-    restart_policy: unless-stopped
-    state: started
-    env:
-      MYSQL_USER: "{{ db_user }}"
-      MYSQL_PASSWORD: "{{ db_password }}"
-      MYSQL_ROOT_PASSWORD: "{{ db_root_password }}"
-      MYSQL_DATABASE: "{{ db_database }}"
-    healthcheck:
-      test: "/usr/bin/mysql --user=root --password=tuananh --execute \"SHOW DATABASES;\""
-      interval: 2s
-      timeout: 20s
-      retries: 10
-    volumes:
-      - /opt/10..gk/mysql_data:/var/lib/mysql
-      - /tmp/10..gk/mysqld:/var/run/mysqld
-    networks:
-      - name: backend
-
-
+    update_cache: true
+#
+#- name: Install MySQL Client
+#  become: yes
+#  run:
+#    apt install mysql-client-core-8.0
