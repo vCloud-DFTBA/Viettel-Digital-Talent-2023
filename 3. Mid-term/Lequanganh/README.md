@@ -201,10 +201,6 @@ ansible-playbook -i inventories/inventory.yaml playbooks/playbook.yaml
 </div>
 
 <div align="center">
-<<<<<<< HEAD
   <i>Pic. 14 - logging container </i>
 </div>
-=======
-  <i>Pic. 13 - logging container </i>
-</div>
->>>>>>> ed2fc1b4c2af61c13076e1792ad79afe0690f3c5
+
