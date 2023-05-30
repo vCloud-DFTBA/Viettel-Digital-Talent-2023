@@ -36,5 +36,3 @@ export KUBECONFIG="$HOME/.kube/config"
 ```
 
 This could take *18 hours or more*! There are several thousand tests in the suite. The number of tests run and passed will be displayed at the end. Expect some failures as it tries tests that aren't supported by our cluster, e.g. mounting persistent volumes using NFS.
-
-Prev: [Smoke Test](16-smoke-test.md)
