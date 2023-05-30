@@ -1,11 +1,5 @@
 ---
 # tasks file for logging
-- name: Copy prometheus config
-  copy: 
-    src: fluent.conf
-    dest: /tmp/fluent.conf
-  become: true
-
 - name: Install and run fluentd
   community.general.docker_container:
     name: fluentd
