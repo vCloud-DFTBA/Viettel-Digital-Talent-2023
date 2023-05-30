@@ -23,6 +23,7 @@ vực cloud dưới dạng bảng
 - Yêu cầu image đảm bảo tối ưu thời gian build và kích thước chiếm dụng, khuyến khích
 sử dụng các thủ thuật build image đã được giới thiệu (layer-caching, optimized RUN
 instructions, multi-stage build, etc.)
+
 **Output:**
 - File Docker cho từng dịch vụ được lưu trong từng thư mục nhỏ của **[source_code](https://github.com/tuananhitmo97/Viettel-Digital-Talent-2023/tree/midterm/10.%20GK/NguyenTuanAnh/source_code)**.
 - Output câu lệnh build và thông tin docker history của từng image.
@@ -81,14 +82,14 @@ developer tạo ra trên GitHub
 <div align="center">
        <img src="images/loadbalancer.jpg" width="700"/>
        <br/>
-       <i>Hình 5. Ảnh minh họa kiến trúc triển khai.</i>
+       <i>Hình 6. Ảnh minh họa kiến trúc triển khai.</i>
 </div>
 
 - File setup công cụ CD trên github: **[cd.yml](https://github.com/tuananhitmo97/Viettel-Digital-Talent-2023/blob/midterm/.github/workflows/cd.yml)**.
 - Output log của luồng CD:
 <div align="center">
        <img src="images/output_cd_log.png"/>
-       <i>Hình 6. Output log của luồng CD.</i>
+       <i>Hình 7. Output log của luồng CD.</i>
 </div>
 
 - Output của luồng build và push Docker image lên Docker Hub:
@@ -96,13 +97,13 @@ developer tạo ra trên GitHub
 <div align="center">
        <img src="images/frontend_image_dockerhub.png" width="600"/>
        <br/>
-       <i>Hình 7. Image frontend in Dockerhub.</i>
+       <i>Hình 8. Image frontend in Dockerhub.</i>
 </div>
 
 <div align="center">
        <img src="images/backend_image_dockerhub.png" width="600"/>
        <br/>
-       <i>Hình 8. Image backend in Dockerhub.</i>
+       <i>Hình 9. Image backend in Dockerhub.</i>
 </div>
 
 - Thư mục chứa ansible playbook dùng để triển khai các dịch vụ: **[Ansible](https://github.com/tuananhitmo97/Viettel-Digital-Talent-2023/tree/midterm/10.%20GK/NguyenTuanAnh/Ansible)**.
@@ -110,7 +111,7 @@ developer tạo ra trên GitHub
 <div align="center">
        <img src="images/tree_folder.png" width="600"/>
        <br/>
-       <i>Hình 9. Cấu trúc các thư mục Ansible.</i>
+       <i>Hình 10. Cấu trúc các thư mục Ansible.</i>
 </div>
 
 - Output log của Ansible:
@@ -121,7 +122,7 @@ developer tạo ra trên GitHub
        <img src="images/ansible_log_3.png"/>
        <img src="images/ansible_log_4.png"/>
        <br/>
-       <i>Hình 10. Output log của Ansible.</i>
+       <i>Hình 11. Output log của Ansible.</i>
 </div>
 
 - Hình ảnh demo Web application và các chức năng trên remote hosts EC2 AWS:
@@ -129,7 +130,7 @@ developer tạo ra trên GitHub
 <div align="center">
        <img src="images/webapp_demo.png"/>
        <br/>
-       <i>Hình 11. Demo CRUD Web application hiển thị danh sách các ứng viên.</i>
+       <i>Hình 12. Demo CRUD Web application hiển thị danh sách các ứng viên.</i>
 </div>
 
 - Hình ảnh test các chức năng trên các remote hosts:
@@ -139,19 +140,19 @@ developer tạo ra trên GitHub
        <img src="images/insert_2.png"/>
        <img src="images/insert_3.png"/>
        <br/>
-       <i>Hình 12. Add attendee data.</i>
+       <i>Hình 13. Add attendee data.</i>
 </div>
 
 <div align="center">
        <img src="images/view.png"/>
-       <i>Hình 13. View attendee data.</i>
+       <i>Hình 14. View attendee data.</i>
 </div>
 
 <div align="center">
        <img src="images/update.png"/>
        <img src="images/update_2.png"/>
        <br/>
-       <i>Hình 14. Update attendee data.</i>
+       <i>Hình 15. Update attendee data.</i>
 </div>
 
 <div align="center">
@@ -159,7 +160,7 @@ developer tạo ra trên GitHub
        <img src="images/delete_2.png"/>
        <img src="images/delete_3.png"/>
        <br/>
-       <i>Hình 15. Delete attendee data.</i>
+       <i>Hình 16. Delete attendee data.</i>
 </div>
 
 ### 4. Monitoring
@@ -182,7 +183,7 @@ sát dịch vụ của các sinh viên trên hệ thống giám sát tập trung
        <img src="images/prometheus_3.png"/>
        <img src="images/prometheus_4.png"/>
        <br/>
-       <i>Hình 16. Giám sát nodes và containers sử dụng Prometheus.</i>
+       <i>Hình 17. Giám sát nodes và containers sử dụng Prometheus.</i>
 </div>
 
 ### 5. Logging
