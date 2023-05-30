@@ -3,22 +3,22 @@
 > ## Author: Le Trong Minh - VDT 2023
 
 # Table of contents:
-> # [1. Prerequisites](#1-prerequisites-1)
-> # [2. Provisioning Resources](#2-provisioning-resources-1)
-> # [3. Installing the Client Tools](#3-installing-the-client-tools-1)
-> # [4. Provisioning a CA and Generating TLS Certificates](#4-provisioning-a-ca-and-generating-tls-certificates-1)
-> # [5. Generating Kubernetes Configuration Files for Authentication](#5-generating-kubernetes-configuration-files-for-authentication-1)
-> # [6. Generating the Data Encryption Config and Key](#6-generating-the-data-encryption-config-and-key-1)
-> # [7. Bootstrapping the etcd Cluster](#7-bootstrapping-the-etcd-cluster-1)
-> # [8. Bootstrapping the Kubernetes Control Plane](#8-bootstrapping-the-kubernetes-control-plane-1)
-> # [9. Installing CRI on the Kubernetes Worker Nodes](#9-installing-cri-on-the-kubernetes-worker-nodes-1)
-> # [10. Bootstrapping the Kubernetes Worker Nodes](#10-bootstrapping-the-kubernetes-worker-nodes-1)
-> # [11. TLS Bootstrapping Worker Nodes](#11-tls-bootstrapping-worker-nodes-1)
-> # [12. Configuring kubectl for Remote Access](#12-configuring-kubectl-for-remote-access-1)
-> # [13.Provisioning Pod Network](#13provisioning-pod-network-1)
-> # [14. RBAC for Kubelet Authorization](#14-rbac-for-kubelet-authorization-1)
-> # [15. Deploying the DNS Cluster Add-on](#15-deploying-the-dns-cluster-add-on-1)
-> # [16. Smoke Test](#16-smoke-test-1)
+> ## [1. Prerequisites](#1-prerequisites-1)
+> ## [2. Provisioning Resources](#2-provisioning-resources-1)
+> ## [3. Installing the Client Tools](#3-installing-the-client-tools-1)
+> ## [4. Provisioning a CA and Generating TLS Certificates](#4-provisioning-a-ca-and-generating-tls-certificates-1)
+> ## [5. Generating Kubernetes Configuration Files for Authentication](#5-generating-kubernetes-configuration-files-for-authentication-1)
+> ## [6. Generating the Data Encryption Config and Key](#6-generating-the-data-encryption-config-and-key-1)
+> ## [7. Bootstrapping the etcd Cluster](#7-bootstrapping-the-etcd-cluster-1)
+> ## [8. Bootstrapping the Kubernetes Control Plane](#8-bootstrapping-the-kubernetes-control-plane-1)
+> ## [9. Installing CRI on the Kubernetes Worker Nodes](#9-installing-cri-on-the-kubernetes-worker-nodes-1)
+> ## [10. Bootstrapping the Kubernetes Worker Nodes](#10-bootstrapping-the-kubernetes-worker-nodes-1)
+> ## [11. TLS Bootstrapping Worker Nodes](#11-tls-bootstrapping-worker-nodes-1)
+> ## [12. Configuring kubectl for Remote Access](#12-configuring-kubectl-for-remote-access-1)
+> ## [13.Provisioning Pod Network](#13provisioning-pod-network-1)
+> ## [14. RBAC for Kubelet Authorization](#14-rbac-for-kubelet-authorization-1)
+> ## [15. Deploying the DNS Cluster Add-on](#15-deploying-the-dns-cluster-add-on-1)
+> ## [16. Smoke Test](#16-smoke-test-1)
 
 
 # Kubernetes The Hard Way On VirtualBox
