@@ -1,7 +1,22 @@
 > This tutorial is a modified version of the original developed by [Kelsey Hightower](https://github.com/kelseyhightower/kubernetes-the-hard-way).
 
 # Table of contents:
-
+# [1. Prerequisites](#1-prerequisites-1)
+# [2. Provisioning Resources](#2-provisioning-resources-1)
+# [3. Installing the Client Tools](#3-installing-the-client-tools-1)
+# [4. Provisioning a CA and Generating TLS Certificates](#4-provisioning-a-ca-and-generating-tls-certificates-1)
+# [5. Generating Kubernetes Configuration Files for Authentication](#5-generating-kubernetes-configuration-files-for-authentication-1)
+# [6. Generating the Data Encryption Config and Key](#6-generating-the-data-encryption-config-and-key-1)
+# [7. Bootstrapping the etcd Cluster](#7-bootstrapping-the-etcd-cluster-1)
+# [8. Bootstrapping the Kubernetes Control Plane](#8-bootstrapping-the-kubernetes-control-plane-1)
+# [9. Installing CRI on the Kubernetes Worker Nodes](#9-installing-cri-on-the-kubernetes-worker-nodes-1)
+# [10. Bootstrapping the Kubernetes Worker Nodes](#10-bootstrapping-the-kubernetes-worker-nodes-1)
+# [11. TLS Bootstrapping Worker Nodes](#11-tls-bootstrapping-worker-nodes-1)
+# [12. Configuring kubectl for Remote Access](#12-configuring-kubectl-for-remote-access-1)
+# [13.Provisioning Pod Network](#13provisioning-pod-network-1)
+# [14. RBAC for Kubelet Authorization](#14-rbac-for-kubelet-authorization-1)
+# [15. Deploying the DNS Cluster Add-on](#15-deploying-the-dns-cluster-add-on-1)
+# [16. Smoke Test](#16-smoke-test-1)
 
 
 # Kubernetes The Hard Way On VirtualBox
@@ -32,28 +47,6 @@ We will be building the following:
 * Two control plane nodes (`master-1` and `master-2`) running the control plane components as operating system services.
 * Two worker nodes (`worker-1` and `worker-2`)
 * One loadbalancer VM running HAProxy to balance requests between the two API servers.
-
-## Labs
-
-* [Prerequisites](docs/01-prerequisites.md)
-* [Provisioning Compute Resources](docs/02-compute-resources.md)
-* [Installing the Client Tools](docs/03-client-tools.md)
-* [Provisioning the CA and Generating TLS Certificates](docs/04-certificate-authority.md)
-* [Generating Kubernetes Configuration Files for Authentication](docs/05-kubernetes-configuration-files.md)
-* [Generating the Data Encryption Config and Key](docs/06-data-encryption-keys.md)
-* [Bootstrapping the etcd Cluster](docs/07-bootstrapping-etcd.md)
-* [Bootstrapping the Kubernetes Control Plane](docs/08-bootstrapping-kubernetes-controllers.md)
-* [Installing CRI on Worker Nodes](docs/09-install-cri-workers.md)
-* [Bootstrapping the Kubernetes Worker Nodes](docs/10-bootstrapping-kubernetes-workers.md)
-* [TLS Bootstrapping the Kubernetes Worker Nodes](docs/11-tls-bootstrapping-kubernetes-workers.md)
-* [Configuring kubectl for Remote Access](docs/12-configuring-kubectl.md)
-* [Deploy Weave - Pod Networking Solution](docs/13-configure-pod-networking.md)
-* [Kube API Server to Kubelet Configuration](docs/14-kube-apiserver-to-kubelet.md)
-* [Deploying the DNS Cluster Add-on](docs/15-dns-addon.md)
-* [Smoke Test](docs/16-smoke-test.md)
-* [E2E Test](docs/17-e2e-tests.md)
-* [Extra - Certificate Verification](docs/verify-certificates.md)
-
 
 # 1. Prerequisites
 
@@ -684,7 +677,7 @@ done
 ```
 ![](images/6.1%20data-encryption.png)
 
-# Bootstrapping the etcd Cluster
+# 7. Bootstrapping the etcd Cluster
 
 Kubernetes components are stateless and store cluster state in [etcd](https://etcd.io/). In this lab you will bootstrap a two node etcd cluster and configure it for high availability and secure remote access.
 
@@ -1708,7 +1701,7 @@ On worker-2:
 ```
 > Remember to run the above commands on worker node: `worker-2`
 
-### Optional - Check Certificates and kubeconfigs
+### Check Certificates and kubeconfigs
 
 At `worker-2` node, run the following, selecting option 5
 
@@ -1826,7 +1819,7 @@ kubectl get nodes
 ![](images/13.1%20deploy-weave-network.png)
 
 
-## 14. RBAC for Kubelet Authorization
+# 14. RBAC for Kubelet Authorization
 
 Configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Access to the Kubelet API is required for retrieving metrics, logs, and executing commands in pods.
 
