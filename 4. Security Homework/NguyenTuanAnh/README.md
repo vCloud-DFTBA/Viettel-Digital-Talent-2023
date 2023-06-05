@@ -1,5 +1,5 @@
 # Security Homework
-## Basic Security Course
+## Basic Security Courses
 ## 1. Udacity: Intro to Information Security
 <div align="center">
        <img src="images/overview_1.jpg"/>
