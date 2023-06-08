@@ -6,5 +6,8 @@ export const ROOT_PATH = "";
 
 
 // VPS Enviroment
-export const API_ENPOINT = "http://vdt2023.imey.asia/api";
+// export const API_ENPOINT = "http://vdt2023.imey.asia/api";
+
+// K8s Enviroment
+export const API_ENPOINT = "http://api-vdt2023.default.svc.cluster.local/api";
 

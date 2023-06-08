@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-dev
+spec:
+  selector:
+    app: nginx-dev
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8088
+  type: LoadBalancer
