@@ -330,7 +330,7 @@ kubectl apply -f aio_app.yaml
 
 
 <div align="center">
-  <img width="1500" src="images/test_deploy_wt_db.gif" alt="dl_front and back">
+  <img width="1500" src="images/test_deploy_without_db.gif" alt="dl_front and back">
 </div>
 
 <div align="center">
