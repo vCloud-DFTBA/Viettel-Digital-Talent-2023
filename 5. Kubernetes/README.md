@@ -1,4 +1,26 @@
+## `Important Information:` This document includes `multiple gif files` that describe the process of `testing some API connections`. Wait for the gif files to download completely before viewing all instruction.
+
+
+
 # Multi-tier web application Deployment in Kubernetes
+
+# Table of contents:
+- [1. Requirements](#1-requirements)
+- [2. Knowledge](#2-knowledge)
+  - [2.1. What is Kubernetes?](#21-what-is-kubernetes)
+  - [2.2. What are the benefits of Kubernetes?](#22-what-are-the-benefits-of-kubernetes)
+  - [2.3. What is Kubernetes used for?](#23-what-is-kubernetes-used-for)
+  - [2.4. Kubernetes Architecture](#24-kubernetes-architecture)
+  - [2.5. Deploy using Docker-compose](#25-deploy-using-docker-compose)
+- [3. Getting started](#3-getting-started)
+  - [3.1. Pre-requisites ](#31-pre-requisites)
+- [4. Deploying the application on Kubernetes](#4-deploying-the-application-on-kubernetes)
+  - [4.1. Application architecture](#41-application-architecture)
+  - [4.2. Deploy backend and frontend](#42-deploy-backend-and-frontend)
+  - [4.3. Deploy database - MongoDB](#43-deploy-database---mongodb)
+  - [4.4. Thoroughly check the operation of the application.](#44-thoroughly-check-the-operation-of-the-application)
+- [5. References](#5-references)
+
 
 ## 1. Requirements:
 
@@ -32,6 +54,7 @@
         Kubernetes Terminology
     </i>
 </div>
+
 - Kubernetes is one of the leading container orchestration tools, but for larger and more complex application workloads. It offers much more flexibility, scalability, reliability, and specificity on how to deploy workloads.
 
 - With the widespread adoption of containers among organizations, Kubernetes, the container-centric management software, has become the de facto standard to deploy and operate containerized applications. 
@@ -461,7 +484,7 @@ kubectl apply -f .
     </i>
 </div>
 
-
+### 4.4. Thoroughly check the operation of the application.
 
 <div align="center">
   <img width="1500" src="images/test_deploy_with_database.gif" alt="dl_front and back">
