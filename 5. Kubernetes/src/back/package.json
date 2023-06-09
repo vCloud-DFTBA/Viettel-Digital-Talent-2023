@@ -1,0 +1,27 @@
+{
+  "name": "mern-k8s",
+  "version": "1.0.0",
+  "description": "Simple demo app using the MongoDB Atlas Operator on k8s",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cedricclyburn/mern-k8s.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cedricclyburn/mern-k8s/issues"
+  },
+  "homepage": "https://github.com/cedricclyburn/mern-k8s#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.7.0",
+    "nodemon": "^2.0.18"
+  }
+}

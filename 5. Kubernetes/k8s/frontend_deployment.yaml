@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-k8s-front
+  labels:
+    app: mern-k8s
+    component: front
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+      component: front
+  template:
+    metadata: 
+      labels:
+        app: mern-k8s
+        component: front
+    spec:
+      containers:
+        - name: mern-k8s-front
+          image: trongminhjr/mern-k8s-front:v1
+          ports: 
+            - containerPort: 80
+          env: 
+            - name: BASE_URL
+              value: "http://localhost:3000"
