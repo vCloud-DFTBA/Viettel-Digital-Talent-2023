@@ -1,0 +1,26 @@
+---
+- name: Copy files to node
+  ansible.builtin.copy:
+    src: roles/web/files/nginx
+    dest: /webapp
+    mode: '0644'
+
+- name: Build Nginx container image
+  docker_image:
+    name: nginx:1.22.0-alpine
+    build:
+      path: /webapp/nginx
+    source: build
+    state: present
+
+- name: Container Configure
+  docker_container:
+    name: webserver
+    image: nginx:1.22.0-alpine    
+    restart_policy: unless-stopped
+    ports:
+      - "8000:8000"
+      - "443:443"
+    volumes:
+      - nginxdata:/var/log/nginx
+    network_mode: bridge

@@ -1,0 +1,281 @@
+
+ {
+  "STT": 1,
+  "Name": "Bùi Minh Sơn",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Công nghệ thông tin"
+ }
+ {
+  "STT": 2,
+  "Name": "Đào Đại Hiệp",
+  "DOB": 2001,
+  "Gender": "Nam",
+  "Univerity": "Đại học Bách khoa Hà Nội",
+  "Major": "Điện tử viễn thông"
+ }
+ {
+  "STT": 3,
+  "Name": "Đỗ Anh Tú",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+ }
+ {
+  "STT": 4,
+  "Name": "Đỗ Bảo Hoàng",
+  "DOB": 1997,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ }
+ {
+  "STT": 5,
+  "Name": "Hoàng Quốc Doanh",
+  "DOB": 2001,
+  "Gender": "Nam",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "NULL"
+ }
+ {
+  "STT": 6,
+  "Name": "Le Minh Duc",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ }
+ {
+  "STT": 7,
+  "Name": "Lê Phúc Lai",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Kỹ thuật điện tử viễn thông"
+ }
+ {
+  "STT": 8,
+  "Name": "Lê Quang Anh",
+  "DOB": 1997,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ }
+ {
+  "STT": 9,
+  "Name": "Lê Trọng Minh",
+  "DOB": 2000,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Kỹ thuật điều khiển và tự động hóa"
+ }
+ {
+  "STT": 10,
+  "Name": "Lê Tùng Lâm",
+  "DOB": 1999,
+  "Gender": "Nam",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ }
+ {
+  "STT": 11,
+  "Name": "Lê Văn Chiến",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Kỹ thuật hàng không vũ trụ"
+ }
+ {
+  "STT": 12,
+  "Name": "Linh Thi Nguyen",
+  "DOB": 2002,
+  "Gender": "Nữ",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "ICT"
+ }
+ {
+  "STT": 13,
+  "Name": "Nguyễn Đại An",
+  "DOB": 2023,
+  "Gender": "Nam",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ }
+ {
+  "STT": 14,
+  "Name": "Nguyễn Đình Hoàng",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ }
+ {
+  "STT": 15,
+  "Name": "Nguyen Duc Vinh Data",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Học viện Công nghệ Bưu chính Viễn thông",
+  "Major": "NULL"
+ }
+ {
+  "STT": 16,
+  "Name": "Nguyễn Dương Long",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "ĐH Thuỷ lợi",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ }
+ {
+  "STT": 17,
+  "Name": "Nguyen Huu Thang",
+  "DOB": 2000,
+  "Gender": "Nam",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ }
+ {
+  "STT": 18,
+  "Name": "Nguyễn Mạnh Cường",
+  "DOB": 1997,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Điện tử"
+ }
+ {
+  "STT": 19,
+  "Name": "Nguyễn Mạnh Đức",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Học viện Kỹ thuật mật mã",
+  "Major": "An toàn thông tin"
+ }
+ {
+  "STT": 20,
+  "Name": "Nguyễn Ngọc Chung",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Học viên Công nghệ Bưu chính Viễn Thông HCM",
+  "Major": "NULL"
+ }
+ {
+  "STT": 21,
+  "Name": "Nguyễn Tuấn Anh",
+  "DOB": 1997,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ }
+ {
+  "STT": 22,
+  "Name": "Nguyễn Văn Quang",
+  "DOB": 1997,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ }
+ {
+  "STT": 23,
+  "Name": "Ninh Chí Hướng",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Học viện Công nghệ Bưu chính viễn thông",
+  "Major": "An toàn thông tin"
+ }
+ {
+  "STT": 24,
+  "Name": "Ninh Văn Nghĩa",
+  "DOB": 2001,
+  "Gender": "Nam",
+  "Univerity": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ }
+ {
+  "STT": 25,
+  "Name": "Phạm Anh Đức",
+  "DOB": 2001,
+  "Gender": "Nam",
+  "Univerity": "Đại học Bách Khoa Hà Nội",
+  "Major": "Toán ứng dụng và tin học"
+ }
+ {
+  "STT": 26,
+  "Name": "Phạm Duy Cương",
+  "DOB": 1997,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Công nghệ điện tử"
+ }
+ {
+  "STT": 27,
+  "Name": "Phạm Hồng Thanh",
+  "DOB": 1998,
+  "Gender": "Nam",
+  "Univerity": "Swinburne University",
+  "Major": "Phát triển phần mềm"
+ }
+ {
+  "STT": 28,
+  "Name": "Phạm Thị Khánh Linh",
+  "DOB": 2002,
+  "Gender": "Nữ",
+  "Univerity": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+ }
+ {
+  "STT": 29,
+  "Name": "Phạm Văn Tới",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Học viện Công nghệ Bưu chính viễn thông",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ }
+ {
+  "STT": 30,
+  "Name": "Trần Đức Mạnh",
+  "DOB": 1998,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Bảo mật thông tin"
+ }
+ {
+  "STT": 31,
+  "Name": "Trần Mạnh Dũng",
+  "DOB": 2001,
+  "Gender": "Nam",
+  "Univerity": "Học viện Công nghệ Bưu chính Viễn thông",
+  "Major": "Điện tử viễn thông"
+ }
+ {
+  "STT": 32,
+  "Name": "Trần Minh Dương",
+  "DOB": 2002,
+  "Gender": "Nam",
+  "Univerity": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+ }
+ {
+  "STT": 33,
+  "Name": "Trần Xuân Phú",
+  "DOB": 2001,
+  "Gender": "Nam",
+  "Univerity": "Trường Đại học Công nghệ thông tin - ĐHQG Tp.Hồ chí Minh",
+  "Major": "Khoa học máy tính"
+ }
+ {
+  "STT": 34,
+  "Name": "Vũ Hoàng Long",
+  "DOB": 2001,
+  "Gender": "Nam",
+  "Univerity": "Đại học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ }
+ {
+  "STT": 35,
+  "Name": "Vũ Minh Hiếu",
+  "DOB": 2000,
+  "Gender": "Nam",
+  "Univerity": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Kỹ thuật phần mềm"
+ }
