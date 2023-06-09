@@ -178,7 +178,7 @@ minikube tunnel
 
 ### 4.2. Deploy backend and frontend
 
-Backend deployment file
+`Backend deployment file`
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -210,7 +210,7 @@ spec:
               value: "mongodb://admin:admin@mongo:27017"
 ```
 
-Backend service file
+`Backend service file`
 
 ```yaml
 apiVersion: v1 
@@ -231,7 +231,7 @@ spec:
       name: http
 
 ```
-Frontkend deployment file
+`Frontkend deployment file`
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -262,7 +262,7 @@ spec:
 
 ```
 
-Frontkend service file
+`Frontkend service file`
 ```yaml
 apiVersion: v1
 kind: Service
@@ -296,7 +296,7 @@ kubectl apply -f aio_app.yaml
 ```
 
 <div align="center">
-  <img width="1500" src="images/deploy_app_withour_db.png" alt="dl_front and back">
+  <img width="1500" src="images/deploy_wt_db.png" alt="dl_front and back">
 </div>
 
 <div align="center">
@@ -306,7 +306,193 @@ kubectl apply -f aio_app.yaml
 </div>
 
 
+<div align="center">
+  <img width="1500" src="images/test_deploy_wt_db.gif" alt="dl_front and back">
+</div>
+
+<div align="center">
+<i>
+        Checking website
+    </i>
+</div>
+
+The website can be accessed from outside the cluster, however, information cannot be saved because it is not connected to the database yet
+
+
 ### 4.3. Deploy database - MongoDB
+
+`Create MongoDB Persistent Volume`
+
+`PersistentVolumes (PV):` are objects which map to a storage location. It’s a piece of storage in the cluster that has been provisioned by an administrator.
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mo-data-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 1000Mi
+  hostPath:
+    path: /data/standard/default/mo-data-pv
+    type: ""
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  volumeMode: Filesystem
+```
+
+`Create MongoDB Persistent Volume Claims`
+
+`Persistent Volume Claims (PVC):` are Kubernetes objects that act as requests for storage. Kubernetes looks for a PV from which space can be claimed and assigned for a PVC. PVC works only if you have dynamic volume provisioning enabled in the Kubernetes cluster.
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mo-data-pvc
+spec:
+  storageClassName: standard
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1000Mi
+```
+
+Deployment MongoDB
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+  labels:
+    app.kubernetes.io/name: mongo
+    app.kubernetes.io/component: backend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mongo
+      app.kubernetes.io/component: backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mongo
+        app.kubernetes.io/component: backend
+    spec:
+      containers:
+      - name: mongo
+        volumeMounts:
+          - mountPath: /data/db
+            name: mo-data
+        image: mongo:6.0
+        args:
+          - --bind_ip
+          - 0.0.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 27017
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: "admin"
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: "admin"
+      volumes:
+      - name: mo-data
+        persistentVolumeClaim:
+          claimName: mo-data-pvc
+      restartPolicy: Always
+
+```
+
+
+Service MongoDB
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  labels:
+    app.kubernetes.io/name: mongo
+    app.kubernetes.io/component: backend
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+  selector:
+    app.kubernetes.io/name: mongo
+    app.kubernetes.io/component: backend
+
+```
+
+
+let’s deploy MongoDB in our Kubernetes cluster by applying the following code:
+
+```shell
+cd mongo
+
+kubectl apply -f .
+ ```
+
+<div align="center">
+  <img width="1500" src="images/deploy_db.png" alt="dl_front and back">
+</div>
+
+<div align="center">
+<i>
+        Deploy DB
+    </i>
+</div>
+
+
+<div align="center">
+  <img width="1500" src="images/health_check_db.png" alt="dl_front and back">
+</div>
+
+<div align="center">
+<i>
+        Check connection between backend and database
+    </i>
+</div>
+
+
+
+<div align="center">
+  <img width="1500" src="images/test_deploy_with_database.gif" alt="dl_front and back">
+</div>
+
+<div align="center">
+<i>
+        Checking website
+    </i>
+</div>
+
+
+Everything works as expected. Data is stored into Databsae and can be deleted from the user interface.
+
+
+
+
+
+
+## 5. References
+
+- https://devopscube.com/deploy-mongodb-kubernetes/
+- https://mazzine.medium.com/create-mongodb-server-on-kubernetes-with-persistentvolume-6cab32dde2fc
+- https://kubernetes.io/docs/home/
+- https://www.mirantis.com/cloud-native-concepts/getting-started-with-kubernetes/what-are-kubernetes-secrets/
+- https://github.com/kubernetes/minikube
+
+
+
+
+
 
 
 
