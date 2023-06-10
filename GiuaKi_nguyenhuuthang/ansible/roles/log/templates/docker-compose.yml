@@ -4,7 +4,7 @@ services:
     container_name: fluentd
     build: .
     networks:
-      - midsem_network
+      - midterm_network
     ports:
       - "24224:24224"
 networks:

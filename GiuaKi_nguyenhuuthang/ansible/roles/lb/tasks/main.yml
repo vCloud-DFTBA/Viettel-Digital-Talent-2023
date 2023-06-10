@@ -14,7 +14,7 @@
     image: nginx:1.22.0-alpine
     restart_policy: unless-stopped
     networks:
-      - name: midsem_network
+      - name: midterm_network
     ports:
       - "3002:3002"
       - "5002:5002"

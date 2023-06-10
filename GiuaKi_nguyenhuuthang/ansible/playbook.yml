@@ -6,12 +6,12 @@
     - common
 
 #Set up logging before deploying application
-- name: Set up logging
+- name: Set up log
   hosts: all
   become: true
   gather_facts: true
   roles:
-    - logging
+    - log
 
 - name: Create remote only-one database
   hosts: database

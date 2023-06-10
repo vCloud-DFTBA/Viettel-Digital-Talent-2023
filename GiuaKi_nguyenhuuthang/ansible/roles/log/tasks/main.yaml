@@ -4,7 +4,7 @@
     state: present
 
 - name: Pull customized fluentd image 
-  command: docker pull thanhph/fluentd-test
+  command: docker pull thang/fluentd-test
 
 - name: Start fluentd
   docker_container:
@@ -14,7 +14,7 @@
     restart: yes
     restart_policy: unless-stopped
     networks:
-      - name: midsem_network
+      - name: midterm_network
     ports:
       - 24224:24224
       - 24224:24224/udp
