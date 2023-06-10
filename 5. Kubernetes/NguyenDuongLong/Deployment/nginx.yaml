@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-vdt2023
+  name: nginx-vdt2023
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-vdt2023
+  template:
+    metadata:
+      labels:
+        app: nginx-vdt2023
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx-vdt2023
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: config-volume
+        configMap:
+          name: default-config

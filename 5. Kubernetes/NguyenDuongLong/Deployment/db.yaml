@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: db-vdt2023
+  name: db-vdt2023
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-vdt2023
+  template:
+    metadata:
+      labels:
+        app: db-vdt2023
+    spec:
+      containers:
+      - name: db-vdt2023
+        image: mysql:latest
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "123456"
