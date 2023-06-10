@@ -456,14 +456,12 @@ spec:
         - containerPort: 27017
         env:
           - name: MONGO_INITDB_ROOT_USERNAME
-            # value: "admin"
             valueFrom:
               secretKeyRef:
                 name: mongo-creds
                 key: username
 
           - name: MONGO_INITDB_ROOT_PASSWORD
-            # value: "admin"
             valueFrom:
               secretKeyRef:
                 name: mongo-creds
