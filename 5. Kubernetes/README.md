@@ -540,6 +540,14 @@ kubectl apply -f .
 
 Everything works as expected. Data is stored into Databsae and can be deleted from the user interface.
 
+## `The next direction of developmen` 
+We will be to use helm chart. Using helm chart will have benefits such as:
+* **Application Packaging and Deployment:** Helm charts can be used to package and deploy applications on Kubernetes. This makes it easy to distribute and deploy applications to multiple Kubernetes clusters.
+* **Version Control:** Helm charts can be version controlled, making it easy to track changes to the application and roll back to previous versions if needed.
+* **Configuration management:** Helm chart can be used to manage the configuration of applications. This makes it easy to change the configuration of the applications without having to manually edit the Kubernetes manifests.
+* **Reproducibility:** Helm charts can be used to reproduce application deployments. This makes it easy to deploy the same application on different Kubernetes clusters or restore the application to its original state.
+
+Helm charts also easily assist in autoscaling the application.
 
 ## 5. Conclusions
 
