@@ -1,22 +1,23 @@
 {
-  "name": "mern-k8s",
+  "name": "todo-app-mern-k8s",
   "version": "1.0.0",
-  "description": "Simple demo app using the MongoDB Atlas Operator on k8s",
+  "description": "Todo app using the MongoDB on k8s",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cedricclyburn/mern-k8s.git"
+    
+    "url": "git+https://github.com/letrongminh/Viettel-Digital-Talent-2023.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cedricclyburn/mern-k8s/issues"
+    "url": "git+https://github.com/letrongminh/Viettel-Digital-Talent-2023.git"
   },
-  "homepage": "https://github.com/cedricclyburn/mern-k8s#readme",
+  "homepage": "git+https://github.com/letrongminh/Viettel-Digital-Talent-2023.git",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
