@@ -1,7 +1,5 @@
 ## `Important Information:` This document includes `multiple gif files` that describe the process of `testing some API connections`. Wait for the gif files to download completely before viewing all instruction.
 
-
-
 # Multi-tier web application Deployment in Kubernetes
 
 # Table of contents:
@@ -19,7 +17,8 @@
   - [4.2. Deploy backend and frontend](#42-deploy-backend-and-frontend)
   - [4.3. Deploy database - MongoDB](#43-deploy-database---mongodb)
   - [4.4. Thoroughly check the operation of the application.](#44-thoroughly-check-the-operation-of-the-application)
-- [5. References](#5-references)
+- [5. Conclusions](#5-conclusions)
+- [6. References](#6-references)
 
 
 ## 1. Requirements:
@@ -385,7 +384,41 @@ spec:
       storage: 1000Mi
 ```
 
-Deployment MongoDB
+`Create MongoDB Secrets`
+
+Secrets in Kubernetes are the objects used for supplying sensitive information to containers. They are like ConfigMaps with the difference that data is stored in an encoded format.
+
+For the security of our MongoDB instance, it is wise to restrict access to the database with a password. We will use Secrets to mount our desired passwords to the containers.
+
+Save the following manifest as `mongodb_secrets.yaml`
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-creds
+# type: Opaque
+data:
+  password: YWRtaW4=
+  username: YWRtaW4=
+```
+
+Decoding contents of Secret objects
+
+Kubernetes stores the content of all secrets in a base 64 encoded format. If you want to see how your string will appear in a base64 format, execute the following.
+```sh
+echo "VDT2023" | base64 
+
+# after encoding it, this becomes VkRUMjAyMw==
+# If you want to decode a base64 string. Run
+
+echo "VkRUMjAyMw==" | base64 --decode
+# after decoding it, this will give VDT2023
+```
+
+
+
+`Deployment MongoDB`
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -399,7 +432,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: mongo
       app.kubernetes.io/component: backend
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -423,9 +456,18 @@ spec:
         - containerPort: 27017
         env:
           - name: MONGO_INITDB_ROOT_USERNAME
-            value: "admin"
+            # value: "admin"
+            valueFrom:
+              secretKeyRef:
+                name: mongo-creds
+                key: username
+
           - name: MONGO_INITDB_ROOT_PASSWORD
-            value: "admin"
+            # value: "admin"
+            valueFrom:
+              secretKeyRef:
+                name: mongo-creds
+                key: password
       volumes:
       - name: mo-data
         persistentVolumeClaim:
@@ -501,11 +543,15 @@ kubectl apply -f .
 Everything works as expected. Data is stored into Databsae and can be deleted from the user interface.
 
 
+## 5. Conclusions
 
+- A simple web app was built to deploy them on Kubernetes. The implementation needs to pay attention to namespaces, labels so that they can be linked together when in the same namespace and labels.
+- Database implementation is a challenge. A MongoDB deployment instance was created, a client to connect to it, run basic operations like data entry, and also explore how to connect from outside the Kubernetes cluster.
+- Multiple replicas have been created to increase the HA property of the application.
+- The database connection also needs attention because the pods communicate with each other via name or internal IP.
+- Secrets have also been used to store sensitive database information.
 
-
-
-## 5. References
+## 6. References
 
 - https://devopscube.com/deploy-mongodb-kubernetes/
 - https://mazzine.medium.com/create-mongodb-server-on-kubernetes-with-persistentvolume-6cab32dde2fc
