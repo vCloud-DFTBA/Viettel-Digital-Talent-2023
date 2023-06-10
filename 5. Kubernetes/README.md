@@ -347,6 +347,7 @@ The website can be accessed from outside the cluster, however, information canno
 `Create MongoDB Persistent Volume`
 
 `PersistentVolumes (PV):` are objects which map to a storage location. It’s a piece of storage in the cluster that has been provisioned by an administrator.
+Simply that the PersistentVolume (PV) is a system resource for storage in the same way that a node is a system resource for compute. PersistentVolumes are administrator-facing objects: system resources to be defined to use. 
 
 ```yaml
 apiVersion: v1
@@ -368,7 +369,7 @@ spec:
 
 `Create MongoDB Persistent Volume Claims`
 
-`Persistent Volume Claims (PVC):` are Kubernetes objects that act as requests for storage. Kubernetes looks for a PV from which space can be claimed and assigned for a PVC. PVC works only if you have dynamic volume provisioning enabled in the Kubernetes cluster.
+`Persistent Volume Claims (PVC):` are Kubernetes objects that act as requests for storage. Kubernetes looks for a PV from which space can be claimed and assigned for a PVC. PVC works only if you have dynamic volume provisioning enabled in the Kubernetes cluster. This is essentially your app's voucher for storage utilization.
 
 ```yaml
 apiVersion: v1
@@ -496,7 +497,7 @@ spec:
 ```
 
 
-let’s deploy MongoDB in our Kubernetes cluster by applying the following code:
+Let’s deploy MongoDB in our Kubernetes cluster by applying the following code:
 
 ```shell
 cd mongo
@@ -540,7 +541,7 @@ kubectl apply -f .
 
 Everything works as expected. Data is stored into Databsae and can be deleted from the user interface.
 
-## `The next direction of developmen` 
+## `The next direction of development` 
 We will be to use helm chart. Using helm chart will have benefits such as:
 * **Application Packaging and Deployment:** Helm charts can be used to package and deploy applications on Kubernetes. This makes it easy to distribute and deploy applications to multiple Kubernetes clusters.
 * **Version Control:** Helm charts can be version controlled, making it easy to track changes to the application and roll back to previous versions if needed.
