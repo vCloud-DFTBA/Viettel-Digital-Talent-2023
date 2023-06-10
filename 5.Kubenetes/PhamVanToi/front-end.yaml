@@ -1,5 +1,4 @@
 # Create the web Deployment (Nginx)
-cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,7 +20,6 @@ spec:
         - containerPort: 8000
 
 # Create the web service
-cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
@@ -35,4 +33,3 @@ spec:
     targetPort: 8000
     nodePort: 30001
   type: NodePort
-EOF  

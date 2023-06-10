@@ -1,5 +1,4 @@
 # Create the backend (API) Deployment (Python Flask)
-cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,7 +20,6 @@ spec:
         - containerPort: 9090
 
 # Create the backend service.
-cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
@@ -34,4 +32,3 @@ spec:
     port: 9090
     targetPort: 9090
   type: NodePort
-EOF  
