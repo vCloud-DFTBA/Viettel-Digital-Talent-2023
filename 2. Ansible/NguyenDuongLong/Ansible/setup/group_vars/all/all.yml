@@ -1,0 +1,6 @@
+---
+network_name: vdt2023
+
+mysql_container_name: mysql-vdt2023
+backend_container_name: backend-vdt2023
+frontend_container_name: frontend-vdt2023

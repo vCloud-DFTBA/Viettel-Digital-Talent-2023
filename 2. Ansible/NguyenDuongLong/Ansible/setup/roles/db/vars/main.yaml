@@ -1,0 +1,4 @@
+---
+mysql_root_password: "123456"
+
+mysql_image: mysql:8.0

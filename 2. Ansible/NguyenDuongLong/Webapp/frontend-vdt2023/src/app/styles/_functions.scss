@@ -1,0 +1,19 @@
+// Màu chữ chuyển
+// Cách gọi: @include linerText(45deg, #06619c, #02da97);
+@mixin linerText($gradient, $colorA, $colorB) {
+    background: -webkit-linear-gradient($gradient, $colorA, $colorB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+@keyframes growth {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

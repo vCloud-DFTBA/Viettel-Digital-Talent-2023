@@ -1,0 +1,53 @@
+version: "3.1"
+
+volumes:
+  db-vol:
+
+services:
+  mysqldb:
+    container_name: hw1-mysql
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: hw1
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - db-vol:/var/lib/mysql
+  db_seeder:
+    image: mysql:latest
+    volumes:
+      - ./init/initial.sql:/initial.sql
+    entrypoint: [ "bash", "-c", "sleep 10 && mysql --user=root --password=123456 --host=mysqldb --port=3306 hw1 < /initial.sql && exit"]
+    depends_on:
+      - mysqldb
+
+  app:
+    container_name: hw1-spring
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - db_seeder
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/hw1?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8
+
+  nginx:
+    container_name: hw1_nginx
+    deploy:
+      replicas: 1
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+    depends_on:
+      - app

@@ -1,0 +1,108 @@
+@import "../../styles/root";
+$attendees-table-background-color: #fff;
+$attendees-table-header-background-color: #e9ecef;
+$attendees-table-row-even-background-color: #f8f9fa;
+
+.container {
+  // width: 100%;
+  font-family: "roboto", sans-serif;
+  width: 100%;
+  // height: 100vh;
+  box-sizing: border-box;
+  padding: 64px 48px;
+  color: $text-color;
+  background-color: rgb(248, 249, 250);
+
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 5rem;
+    // @include linerText(45deg, rgb(255, 0, 0), rgb(255, 8, 90));
+  }
+  .table {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .attendeesTable {
+      width: 90%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: $attendees-table-background-color;
+      border: 1px solid #dee2e6;
+
+      th,
+      td {
+        padding: 0.75rem;
+        vertical-align: middle;
+        border-top: 1px solid #dee2e6;
+      }
+
+      th {
+        font-weight: 700;
+        background-color: $attendees-table-header-background-color;
+      }
+
+      tbody tr:nth-of-type(even) {
+        background-color: $attendees-table-row-even-background-color;
+      }
+
+      tbody tr:last-of-type {
+        border-bottom: 1px solid #dee2e6;
+      }
+
+      .iconBox {
+        display: flex;
+        justify-content: center;
+        justify-content: space-around;
+        .iconView {
+          font-size: 1.4rem;
+          cursor: pointer;
+          color: rgb(50, 132, 255);
+        }
+        .iconUpdate {
+          font-size: 1.4rem;
+          cursor: pointer;
+          color: rgb(0, 63, 158);
+        }
+        .iconDelete {
+          font-size: 1.4rem;
+          cursor: pointer;
+          color: rgb(168, 0, 0);
+        }
+      }
+    }
+
+    .add {
+      width: 90%;
+      display: flex;
+      justify-content: flex-end;
+
+      .iconAdd {
+        width: 4rem;
+        height: 4rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        padding: 0;
+        margin: 0.5rem 2rem;
+        border-radius: 2rem;
+
+        cursor: pointer;
+ 
+        background: rgba(19, 19, 19, 0.1);
+        font-size: 1.5rem;
+        color: rgb(14, 114, 1);
+      }
+    }
+  }
+}
