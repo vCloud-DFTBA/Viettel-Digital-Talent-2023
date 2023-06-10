@@ -17,6 +17,7 @@
   - [4.2. Deploy backend and frontend](#42-deploy-backend-and-frontend)
   - [4.3. Deploy database - MongoDB](#43-deploy-database---mongodb)
   - [4.4. Thoroughly check the operation of the application.](#44-thoroughly-check-the-operation-of-the-application)
+  - [4.5. The next direction of development](#45-the-next-direction-of-development)
 - [5. Conclusions](#5-conclusions)
 - [6. References](#6-references)
 
@@ -541,14 +542,47 @@ kubectl apply -f .
 
 Everything works as expected. Data is stored into Databsae and can be deleted from the user interface.
 
-## `The next direction of development` 
-We will be to use helm chart. Using helm chart will have benefits such as:
+### 4.5. `The next direction of development` 
+The next direction of development, we will be to use helm chart. Using helm chart will have benefits such as:
 * **Application Packaging and Deployment:** Helm charts can be used to package and deploy applications on Kubernetes. This makes it easy to distribute and deploy applications to multiple Kubernetes clusters.
 * **Version Control:** Helm charts can be version controlled, making it easy to track changes to the application and roll back to previous versions if needed.
 * **Configuration management:** Helm chart can be used to manage the configuration of applications. This makes it easy to change the configuration of the applications without having to manually edit the Kubernetes manifests.
 * **Reproducibility:** Helm charts can be used to reproduce application deployments. This makes it easy to deploy the same application on different Kubernetes clusters or restore the application to its original state.
 
 Helm charts also easily assist in autoscaling the application.
+
+#### `Autoscaling`
+
+`Autoscaling` is a feature of Kubernetes that automatically scales the number of pods in a Deployment or StatefulSet based on the observed CPU utilization of the pods. This allows we to ensure that our application has the resources it needs to handle demand without overprovisioning resources and wasting money.
+
+To configure autoscaling in Kubernetes, we need to create a HorizontalPodAutoscaler (HPA) object. An HPA object specifies the desired number of pods in a Deployment or StatefulSet, as well as the minimum and maximum number of pods that can be running. The HPA object also specifies a target CPU utilization for the pods. When the observed CPU utilization of the pods reaches the target CPU utilization, the HPA object will automatically scale the number of pods up or down.
+
+#### `Helm Charts and Autoscaling`
+
+Helm charts can be configured to use HPAs to automatically scale the number of pods in a Deployment or StatefulSet based on the observed CPU utilization of the pods.
+
+To configure autoscaling in a Helm chart, we need to specify the following in the chart's values.yaml file:
+
+* **minReplicas:** The minimum number of pods that should be running in the Deployment or StatefulSet.
+* **maxReplicas:** The maximum number of pods that should be running in the Deployment or StatefulSet.
+* **targetCPUUtilizationPercentage:** The target CPU utilization percentage for the pods. When the observed CPU utilization of the pods reaches the target CPU utilization percentage, the HPA object will automatically scale the number of pods up or down.
+
+For example, the following values.yaml file specifies that the Deployment named nginx should have a minimum of 1 pod and a maximum of 5 pods. The HPA object will automatically scale the number of pods up or down when the observed CPU utilization of the pods reaches 50%.
+
+```yaml
+minReplicas: 1
+maxReplicas: 5
+targetCPUUtilizationPercentage: 50
+```
+
+We can also use the helm autoscale command to configure autoscaling for a Helm chart. For example, the following command will configure autoscaling for the Deployment named nginx:
+
+```bash
+helm autoscale nginx --min=1 --max=5 --cpu-percent=50
+```
+
+Once we have configured autoscaling for a Helm chart, Kubernetes will automatically scale the number of pods in the Deployment or StatefulSet based on the observed CPU utilization of the pods. This will ensure that our application has the resources it needs to handle demand without overprovisioning resources and wasting money.
+
 
 ## 5. Conclusions
 
