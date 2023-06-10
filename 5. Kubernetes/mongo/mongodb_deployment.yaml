@@ -10,7 +10,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: mongo
       app.kubernetes.io/component: backend
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -34,9 +34,18 @@ spec:
         - containerPort: 27017
         env:
           - name: MONGO_INITDB_ROOT_USERNAME
-            value: "admin"
+            # value: "admin"
+            valueFrom:
+              secretKeyRef:
+                name: mongo-creds
+                key: username
+
           - name: MONGO_INITDB_ROOT_PASSWORD
-            value: "admin"
+            # value: "admin"
+            valueFrom:
+              secretKeyRef:
+                name: mongo-creds
+                key: password
       volumes:
       - name: mo-data
         persistentVolumeClaim:
