@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db-pv
+spec:
+  storageClassName: database
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: "/shared/db"
+    server: "172.16.1.100"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: code-pv
+spec:
+  storageClassName: sourcecode
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: "/shared/web"
+    server: "172.16.1.100"

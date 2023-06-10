@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tool
+  labels:
+    app: tool
+spec:
+  containers:
+  - name: c-tool
+    image: busybox
+    resources: {}

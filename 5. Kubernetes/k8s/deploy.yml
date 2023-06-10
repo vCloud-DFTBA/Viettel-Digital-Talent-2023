@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-dep
+  labels:
+    app: c-php
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: c-php
+  template:
+    metadata:
+      labels:
+        app: c-php
+    spec:
+      hostname: php
+      restartPolicy: Always
+      volumes:
+        - name: code
+          persistentVolumeClaim:
+            claimName: code-pvc
+      containers:
+      - name: c-php
+        image: daohiep22/msproject:php
+        resources:
+          limits:
+            memory: "100M"
+            cpu: "100m"
+        ports:
+          - containerPort: 9000
+        volumeMounts:
+          - name: code
+            mountPath: /home/web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-dep
+  labels:
+    app: c-httpd
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: c-httpd
+  template:
+    metadata:
+      labels:
+        app: c-httpd
+    spec:
+      hostname: httpd
+      restartPolicy: Always
+      volumes:
+        - name: code
+          persistentVolumeClaim:
+            claimName: code-pvc
+        - name: config
+          configMap:
+            name: httpd-config
+      containers:
+      - name: c-httpd
+        image: daohiep22/msproject:httpd
+        resources:
+          limits:
+            memory: "100M"
+            cpu: "100m"
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: code
+            mountPath: /home/web
+          - name: config
+            mountPath: /usr/local/apache2/conf/httpd.conf
+            subPath: httpd.conf
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-dep
+  labels:
+    app: c-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: c-mysql
+  template:
+    metadata:
+      labels:
+        app: c-mysql
+    spec:
+      hostname: mysql
+      restartPolicy: Always
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: db-pvc
+        - name: config
+          configMap:
+            name: mysql-config
+      containers:
+      - name: c-mysql
+        image: mysql:latest
+        resources:
+          limits:
+            memory: "500M"
+            cpu: "100m"
+        ports:
+          - containerPort: 3306
+            name: mysql
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "123"
+        volumeMounts:
+          - name: db
+            mountPath: /var/lib/mysql/:rw
+          - name: config
+            mountPath: /etc/mysql/my.cnf
+            subPath: my.cnf

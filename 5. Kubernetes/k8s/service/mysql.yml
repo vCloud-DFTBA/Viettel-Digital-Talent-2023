@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-dep
+  labels:
+    app: c-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: c-mysql
+  template:
+    metadata:
+      labels:
+        app: c-mysql
+    spec:
+      hostname: mysql
+      restartPolicy: Always
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: db-pvc
+        - name: config
+          configMap:
+            name: mysql-config
+      containers:
+      - name: c-mysql
+        image: docker.io/mysql:latest
+        resources:
+          limits:
+            memory: "500M"
+            cpu: "100m"
+        ports:
+          - containerPort: 3306
+            name: mysql
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "123"
+        volumeMounts:
+          - name: db
+            mountPath: /var/lib/mysql/:rw
+          - name: config
+            mountPath: /etc/mysql/my.cnf
+            subPath: my.cnf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: c-mysql
+  type: NodePort
+  ports:
+    - name: mysql-port
+      port: 3306
+      targetPort: 3306
+      nodePort: 30336

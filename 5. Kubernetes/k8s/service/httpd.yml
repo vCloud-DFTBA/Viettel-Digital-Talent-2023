@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-dep
+  labels:
+    app: c-httpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: c-httpd
+  template:
+    metadata:
+      labels:
+        app: c-httpd
+    spec:
+      hostname: httpd
+      restartPolicy: Always
+      volumes:
+        - name: code
+          persistentVolumeClaim:
+            claimName: code-pvc
+        - name: config
+          configMap:
+            name: httpd-config
+      containers:
+      - name: c-httpd
+        image: docker.io/httpd:latest
+        resources:
+          limits:
+            memory: "100M"
+            cpu: "100m"
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: code
+            mountPath: /home/web
+          - name: config
+            mountPath: /usr/local/apache2/conf/httpd.conf
+            subPath: httpd.conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd
+spec:
+  selector:
+    app: c-httpd
+  type: NodePort
+  ports:
+    - name: httpd
+      port: 80
+      targetPort: 80
+      nodePort: 30080
