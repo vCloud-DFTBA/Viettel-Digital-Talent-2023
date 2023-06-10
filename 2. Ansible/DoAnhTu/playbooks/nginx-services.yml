@@ -1,0 +1,25 @@
+---
+- hosts: local
+  become: true
+  tasks:
+    - name: Creates src directory
+      file:
+        path: /home/nginx
+        state: directory
+        mode: "0775"
+
+    - name: copy config nginx file to host
+      ansible.builtin.copy:
+        src: ../nginx/
+        dest: /home/nginx
+
+    - name: deploy nginx
+      community.docker.docker_container:
+        name: nginx
+        image: nginx:1.22.0-alpine
+        ports:
+          - "8000:80"
+        volumes:
+          - /home/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+          - name: network_app
