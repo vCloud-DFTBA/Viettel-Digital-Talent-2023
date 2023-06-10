@@ -1,0 +1,18 @@
+- name: Pull MySQL Docker image
+  docker_image:
+    source: pull
+    name: "{{ mysql_image }}"
+
+- name: Run MySQL Docker container
+  docker_container:
+    name: "{{ mysql_container_name }}"
+    image: "{{ mysql_image }}"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ mysql_root_password }}"
+    ports:
+      - "3306:3306"
+    state: started
+    interactive: true
+    tty: true
+    networks:
+      - name: vdt2023
