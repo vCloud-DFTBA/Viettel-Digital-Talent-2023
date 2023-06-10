@@ -1,0 +1,35 @@
+- name: Start container 1
+  community.docker.docker_container:
+    name: frontend1
+    image: hieuminhvuu/mt_web_arm64_ver4
+    state: started
+    ports:
+      - "3000:3000"
+    env:
+      REACT_APP_PORT_API : "81"
+      PORT : "3000"
+    command: npm start
+
+- name: Start container 2
+  community.docker.docker_container:
+    name: frontend2
+    image: hieuminhvuu/mt_web_arm64_ver4
+    state: started
+    ports:
+      - "3001:3001"
+    env:
+      REACT_APP_PORT_API : "81"
+      PORT : "3001"
+    command: npm start
+    
+- name: Start container 3
+  community.docker.docker_container:
+    name: frontend3
+    image: hieuminhvuu/mt_web_arm64_ver4
+    state: started
+    ports:
+      - "3002:3002"
+    env:
+      REACT_APP_PORT_API : "81"
+      PORT : "3002"
+    command: npm start
