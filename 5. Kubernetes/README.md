@@ -335,9 +335,10 @@ kubectl apply -f aio_app.yaml
 
 <div align="center">
 <i>
-        Checking website
+        Checking website without database (GIF File)
     </i>
 </div>
+
 
 The website can be accessed from outside the cluster, however, information cannot be saved because it is not connected to the database yet
 
@@ -492,7 +493,7 @@ kubectl apply -f .
 
 <div align="center">
 <i>
-        Checking website
+        Checking website (GIF File)
     </i>
 </div>
 
