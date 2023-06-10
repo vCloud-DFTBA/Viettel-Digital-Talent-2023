@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+    api:
+        build: ./app
+        volumes:
+            - ./:/app
+        working_dir: /app
+        environment:
+            - FLASK_APP=./app/api.py
+        command: flask run --host=0.0.0.0
+        ports: 
+            - 5000:5000
+        networks:
+            - btvn_default
+volumes:
+    mongodata:
+
+networks:
+    btvn_default:
+        external: true 
