@@ -1,0 +1,9 @@
+---
+- name: Deploy Webapp
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - common
+    - web
+    - db
