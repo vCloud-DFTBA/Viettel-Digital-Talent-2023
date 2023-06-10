@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new attendee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css"
+        integrity="sha512-F7WyTLiiiPqvu2pGumDR15med0MDkUIo5VTVyyfECR5DZmCnDhti9q5VID02ItWjq6fvDfMaBaDl2J3WdL1uxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="add_attendee.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h3>Nhập thông tin học viên mới</h3>
+    <div class="container">
+        <form method="post">
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example3">Họ và tên</label>
+                <input type="text" id="form6Example3" class="form-control" />
+                
+            </div>
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example3">Username</label>
+                <input type="text" id="form6Example3" class="form-control" />
+                
+            </div>
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="form6Example1"> Năm sinh</label>
+                        <input type="text" id="form6Example1" class="form-control" />
+                        
+                    </div>
+                </div>
+                <div class="col parent_gender_input">
+                    <div class="form-outline gender_input">
+                        <label class="form-label" for="form6Example2">Giới tính:</label>
+                        <select name="gender" id="gender">
+                            <option value="male">Nam</option>
+                            <option value="female">Nữ</option>
+                          </select>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example4">Trường đại học</label>
+                <input type="text" id="form6Example4" class="form-control" />
+                
+            </div>
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example4">Chuyên ngành</label>
+                <input type="text" id="form6Example4" class="form-control" />
+                
+            </div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+                <a href="index.html">Xác nhận</a>
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>

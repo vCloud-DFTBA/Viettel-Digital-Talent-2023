@@ -1,0 +1,22 @@
+- name: copy docker-compose.yml file
+  copy:
+    src: "~/Desktop/btlVDT2023/api/{{ item }}"
+    dest: "/home/{{ ansible_user }}/api/"
+  loop:
+    - docker-compose.yml
+    - manage.py
+    - Dockerfile
+    - nginx.conf
+    - requirements.txt
+    - core
+    - app
+  changed_when: true
+- name: docker compose down
+  shell:
+    cmd: docker compose down -v
+    chdir: ~/api/
+  notify: Delete invalid images
+- name: docker-compose up
+  shell:
+    cmd: docker compose up --scale api=2 -d
+    chdir: ~/api/

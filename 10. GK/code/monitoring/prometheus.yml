@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 10s
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['prometheus:9090']
+      labels:
+        alias: 'prometheus'
+  - job_name: 'cadvisor'
+    static_configs:
+    - targets: ['192.168.238.133:8080', '192.168.238.134:8080']
+      labels:
+        username: 'TranManhDung582001'
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: [ '192.168.238.133:9100', '192.168.238.134:9100' ]
+        labels:
+          username: 'TranManhDung582001'
+
+remote_write:
+  - url: "http://27.66.108.93:9090/api/v1/write"

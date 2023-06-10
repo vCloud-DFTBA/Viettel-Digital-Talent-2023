@@ -1,0 +1,40 @@
+body {
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+.container {
+    width: 600px;
+    margin-top: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: linear 0.2s;
+}
+
+a:hover {
+    color: white;
+    font-size: larger;
+}
+
+.parent_gender_input {
+    position: relative;
+}
+
+.gender_input {
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 20%;
+}
+
+input {
+    text-align: center;
+}

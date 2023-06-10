@@ -1,0 +1,23 @@
+services:
+
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "postgres_container"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+       - db_test:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 192.168.238.133:24224
+        tag: dungtm_db
+volumes:
+    db_test:
+      external: true
