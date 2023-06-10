@@ -2,7 +2,7 @@
 
 ## Build web 3 Tiers
 
-Source code in the folder: [sources_code/]()
+Source code in the folder: [sources_code/](https://github.com/crvt4722/Viettel-Digital-Talent-2023/tree/kubenetes/5.Kubenetes/PhamVanToi/sources_code)
 Image in Dockerhub:
 - Database: [crvt4722/k8s-db](https://hub.docker.com/repository/docker/crvt4722/k8s-db/general)
 - Backend: [crvt4722/k8s-api](https://hub.docker.com/repository/docker/crvt4722/k8s-api/general)
