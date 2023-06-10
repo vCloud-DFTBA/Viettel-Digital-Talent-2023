@@ -180,6 +180,14 @@ spec:
 EOF
 ```
 
+#### Pods, Deployments and Services
+kubectl get pod  
+kubectl get deployment  
+kubectl get service  
+kubectl get nodes -o wide  
+
+![](images/pod-dep-ser.png)
+
 ## Result (DEMO)
 Webpage
 ![](images/web-demo.png)
