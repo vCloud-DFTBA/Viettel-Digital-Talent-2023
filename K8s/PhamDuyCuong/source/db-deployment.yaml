@@ -35,3 +35,16 @@ spec:
       - name: db-data
         persistentVolumeClaim:
           claimName: db-data-pvc
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-server
+spec:
+  selector:
+    app: db
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  type: NodePort
