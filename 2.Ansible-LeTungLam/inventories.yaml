@@ -1,9 +1,0 @@
----
-all:
-  hosts:
-    localhost:
-      ansible_connection: local
-      ansible_python_interpreter: /path/to/python/interpreter
-      ansible_become_user: root
-      ansible_become_password: PASSWORD
-      hostname: YOUR_HOSTNAME
