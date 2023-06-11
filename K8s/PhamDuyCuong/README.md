@@ -32,6 +32,7 @@ data:
 ```
 kubectl apply -f db-secrets.yaml
 ```
+The first yaml creates a Kubernetes Secret named db-credentials of type `Opaque` with three data fields: `user, password, and url`. The values of these fields are Base64-encoded strings, which can be decoded to obtain the actual values. This Secret can be used to store sensitive data such as **database credentials**.
 ### Create `db-pvc.yaml` to storage persistent volume (Mongodb)
 ```yaml
 apiVersion: v1
@@ -45,6 +46,7 @@ spec:
     requests:
       storage: 100Mi
 ```
+The second YAML file creates a Kubernetes `Persistent Volume Claim` named db-data-pvc with a request for 100Mi of storage and `ReadWriteOnce` access mode. command to create the PVC in the Kubernetes cluster :
 ```
 kubectl apply -f db-pvc.yaml
 ```
@@ -102,6 +104,8 @@ spec:
       targetPort: 27017
   type: NodePort
 ```
+The Deployment also specifies two environment variables, MONGO_INITDB_ROOT_USERNAME and MONGO_INITDB_ROOT_PASSWORD, which are set using a Kubernetes Secret named db-credentials. These environment variables are used to set the username and password for the MongoDB database. The Deployment also specifies a volume mount named db-data at the path /var/lib/mongo/data, which is used to store the MongoDB data.
+The volumes section of the Deployment specifies a persistent volume claim named db-data-pvc. The Service exposes port 27017 for the MongoDB database and is of type NodePort, which means that the Service is externally accessible on a randomly assigned port on each node in the cluster.
 ```
 kubectl apply -f db-deployment.yaml
 ```
@@ -208,3 +212,10 @@ kubectl apply -f web-deployment.yaml
 <div align="center">
   <img width="1000" src="images/result_search.png" alt="containerization">
 </div>
+
+
+## Summary
+
+- Successfully created a 3-tier web using Kubernetes.
+- Approached and got acquainted with Kubernetes.
+- Used Secrets to store sensitive information such as database credentials.
