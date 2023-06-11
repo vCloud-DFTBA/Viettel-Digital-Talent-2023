@@ -151,7 +151,7 @@ spec:
 kubectl apply -f api-deployment.yaml
 ```
 
-### ### Create web deployment and service files
+### Create web deployment and service files
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
