@@ -19,6 +19,10 @@ spec:
       containers:
         - name: mern-k8s-front
           image: trongminhjr/mern-k8s-front:v1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
           ports: 
             - containerPort: 80
           env: 

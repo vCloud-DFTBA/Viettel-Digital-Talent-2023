@@ -224,6 +224,10 @@ spec:
       containers:
         - name: mern-k8s-back
           image: trongminhjr/mern-k8s-back
+          resources: # Resource requirements and limits to ensure the application runs smoothly within the cluster.
+            requests:
+              cpu: 100m
+              memory: 100Mi
           ports: 
             - containerPort: 3000
           env: # Defines the environment variables passed to the container.
@@ -277,6 +281,10 @@ spec:
       containers:
         - name: mern-k8s-front
           image: trongminhjr/mern-k8s-front:v1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
           ports: 
             - containerPort: 80
           env: 
@@ -399,13 +407,15 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: mongo-creds
-# type: Opaque
+type: Opaque
 data:
   password: YWRtaW4=
   username: YWRtaW4=
 ```
 
-Decoding contents of Secret objects
+
+
+`Decoding contents of Secret objects`
 
 Kubernetes stores the content of all secrets in a base 64 encoded format. If you want to see how your string will appear in a base64 format, execute the following.
 ```sh
@@ -599,14 +609,6 @@ Once we have configured autoscaling for a Helm chart, Kubernetes will automatica
 - https://kubernetes.io/docs/home/
 - https://www.mirantis.com/cloud-native-concepts/getting-started-with-kubernetes/what-are-kubernetes-secrets/
 - https://github.com/kubernetes/minikube
-
-
-
-
-
-
-
-
 
 
 
