@@ -1,13 +1,13 @@
 # Tổng quan hệ thống
 
-![alt text](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/Over%20view.jpg)
+![alt text](image/Over%20view.jpg)
 
 # Khởi tạo cụm máy chủ ảo
 
 <h2>Chạy lệnh: docer compose up</h2>
 </br>
 
-![alt text](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/1%20Environment.png)
+![alt text](image/1%20Environment.png)
 
 # Chạy
 
@@ -19,26 +19,26 @@
 
 <p>playbook.yaml</p>
 
-![playbook](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/PlayBook.png)
+![playbook](image/PlayBook.png)
 
 <p>inventory.yaml</p>
 
-![Inventory](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/Inventory.png)
+![Inventory](image/Inventory.png)
 
 <p>vars.yaml</p>
 
-![Inventory](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/vars.png)
+![Inventory](image/vars.png)
 
 <p>Role commom</p>
 
-![Role commom](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/role%20install%20docker.png)
+![Role commom](image/role%20install%20docker.png)
 
 <p>Role builder</p>
 
-![Role builder](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/role%20build%20image.png)
+![Role builder](image/role%20build%20image.png)
 
 # Kết quả
-![alt text](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/2%20Install%20docker.png)
-![alt text](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/3%20Build.png)
-![alt text](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/4%20Run%20container.png)
-![alt text](https://github.com/nghianinhnb/Viettel-Digital-Talent-2023/tree/Ansible/2.%20Ansible/NinhVanNghia/image/5%20Result.png)
+![alt text](image/2%20Install%20docker.png)
+![alt text](image/3%20Build.png)
+![alt text](image/4%20Run%20container.png)
+![alt text](image/5%20Result.png)
