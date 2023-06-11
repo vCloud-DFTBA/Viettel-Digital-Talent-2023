@@ -1,12 +1,9 @@
 package com.longnd.vn.controller;
 
-import com.longnd.vn.common.error.ErrorConstants;
-import com.longnd.vn.common.exception.CommonException;
 import com.longnd.vn.dto.ApiResponse;
 import com.longnd.vn.dto.AttendeeDTO;
 import com.longnd.vn.service.AttendeeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +15,6 @@ import java.util.List;
 @Slf4j
 public class AttendeeController {
 
-    //    @Autowired
-    //    private AttendeeService attendeeService;
     private final AttendeeService attendeeService;
 
     public AttendeeController(AttendeeService attendeeService) {

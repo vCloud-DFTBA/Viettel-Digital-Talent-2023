@@ -17,13 +17,6 @@
 
 - Install ansible inside virtualenv
   ```
-  VPS:
-    pip install --upgrade pip
-    pip install cryptography 
-    pip install ansible
-    pip install requests
-    pip show requests
-  ---
   pip install ansible
   ```
 

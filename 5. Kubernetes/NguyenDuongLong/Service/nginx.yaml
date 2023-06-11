@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx-dev
+  name: nginx-vdt2023
 spec:
   selector:
-    app: nginx-dev
+    app: nginx-vdt2023
   ports:
     - protocol: TCP
-      port: 8086
-      targetPort: 8088
+      port: 80
+      targetPort: 80
   type: LoadBalancer

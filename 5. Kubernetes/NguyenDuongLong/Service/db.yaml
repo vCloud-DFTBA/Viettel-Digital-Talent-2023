@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: db-vdt2023
+  name: db-vdt2023
+spec:
+  selector:
+    app: db-vdt2023
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP
