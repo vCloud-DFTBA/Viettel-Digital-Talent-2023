@@ -17,9 +17,9 @@ spec:
         image: pdc1997/api
         ports:
         - containerPort: 5000
-        # env:
-        # - name: DATABASE_URL
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: db-credentials
-        #       key: url
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: url

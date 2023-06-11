@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+	</head>
+	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='style.css')}}">
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	<h3>Chỉnh sửa thông tin ứng viên</h3>
+	<form action="{{ url_for('action_update', _id=edit_student['_id']) }}" method="POST">
+	
+	<table>
+	<tr>
+	<td>Họ và tên </td><td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><input type="text" name="full_name" value="{{ edit_student['full_name'] }}" placeholder="{{ edit_student['full_name'] }}"></td>
+	</tr>
+	<tr>
+        <td>Năm sinh: </td><td><input class="auto-scale nice-input"	type="text" name="birth_year" value="{{ edit_student['birth_year'] }}" placeholder="{{ edit_student['birth_year'] }}"></td>
+    </tr>
+    <tr>
+        <td>Giới tính: </td>
+        <td><input type="radio" name="gender" value="Nam" {{ 'checked' if edit_student["gender"] == 'Nam' else '' }}> Nam 
+        <input type="radio" name="gender" value="Nữ" {{ 'checked' if edit_student["gender"] == 'Nữ' else '' }}> Nữ </td>
+    </tr>
+    <tr>
+        <td>Trường: </td><td><input  type="text" name="university" value="{{ edit_student['university'] }}" placeholder="{{ edit_student['university'] }}"></td>
+    </tr>
+    <tr>
+        <td>Chuyên ngành: </td><td><input type="text" name="major" value="{{ edit_student['major'] }}" placeholder="{{ edit_student['major'] }}"></td>
+    </tr>
+
+	</table>
+	
+		<button class ="func2" type="submit"> Cập nhật</button>
+		<br/>
+	</form>
+	<a href="/">Trở về trang chính</a>
+</body>
+</html>
