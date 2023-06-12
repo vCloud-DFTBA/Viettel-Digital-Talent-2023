@@ -292,6 +292,10 @@ kubectl -n vdt get all
 
 ## **Deploy Monitoring Stack**
 - This part is not include in K8S assignment, I will go through it quickly.
+- Create namespace `monitoring`:
+  ```bash
+  kubectl create namespace monitoring
+  ```
 - Create [**`Custom Resource Definition`**](./monitoring/crds/).
   ```bash
   kubectl create -f crds/
