@@ -311,6 +311,24 @@ kubectl -n vdt get all
     nodeSelector:
       node-role.kubernetes.io/monitoring: ""
     ```
+  - Config Grafana Storage:
+    ```yaml
+    volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: grafana-pvc
+    ```
+  - Config Prometheus Storage:
+    ```yaml
+    spec:
+      storage:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: nfs-client-retain
+            resources:
+              requests:
+                storage: 2Gi
+    ```
   - Deploy:
     ```bash
     kubectl create -f monitoring.yaml
