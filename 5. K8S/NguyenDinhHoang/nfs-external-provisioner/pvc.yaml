@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-pvc-1
+  namespace: test
+  annotations:
+    nfs.io/storage-path: "test-path"
+spec:
+  storageClassName: nfs-client-retain
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi

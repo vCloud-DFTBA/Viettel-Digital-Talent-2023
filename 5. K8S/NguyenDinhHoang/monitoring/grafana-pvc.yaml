@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana-pvc
+  namespace: monitoring
+spec:
+  storageClassName: nfs-client-retain
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi

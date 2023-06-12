@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vdt-frontend
+  namespace: vdt
+  labels:
+    app: vdt-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vdt-frontend
+  template:
+    metadata:
+      labels:
+        app: vdt-frontend
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/frontend: ""
+      containers:
+      - name: vd-frontend
+        image: hoangndst/vdt-frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

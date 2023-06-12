@@ -1,0 +1,31 @@
+apiVersion: mongodbcommunity.mongodb.com/v1
+kind: MongoDBCommunity
+metadata:
+  name: mongodb-replica-set
+  namespace: mongodb
+spec:
+  members: 3
+  type: ReplicaSet
+  version: 4.4.0
+  security:
+    tls:
+      enabled: false
+    authentication:
+      modes: ["SCRAM"]
+  users:
+    - db: admin
+      name: admin
+      passwordSecretRef:
+        name: admin-password
+      roles:
+      - db: admin
+        name: clusterAdmin
+      - db: admin
+        name: userAdminAnyDatabase
+      - db: admin
+        name: readWriteAnyDatabase
+      - db: admin
+        name: dbAdminAnyDatabase
+      scramCredentialsSecretName: my-scram
+  additionalMongodConfig:
+    storage.wiredTiger.engineConfig.journalCompressor: zlib
