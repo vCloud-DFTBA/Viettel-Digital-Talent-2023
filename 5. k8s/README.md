@@ -208,6 +208,7 @@ kubectl get service
 Result: 
 
 ![](images/ser1.jpg)
+
 6. Access the application:
 
 - Run the following command to get the frontend URL:
