@@ -1,5 +1,20 @@
 # Deploy a Multi-tier Application on Kubernetes
 
+<!-- TOC -->
+
+- [Deploy a Multi-tier Application on Kubernetes](#deploy-a-multi-tier-application-on-kubernetes)
+    - [Assigment](#assigment)
+    - [Detailed step-by-step instructions to deploy the application by Kubenetes](#detailed-step-by-step-instructions-to-deploy-the-application-by-kubenetes)
+        - [Install Kind and create Cluster](#install-kind-and-create-cluster)
+        - [Create db-secrets.yaml the database credentials](#create-db-secretsyaml-the-database-credentials)
+        - [Create db-pvc.yaml to storage persistent volume](#create-db-pvcyaml-to-storage-persistent-volume)
+        - [Create db-deploment.yamlMongodb](#create-db-deplomentyamlmongodb)
+        - [Create api deployment and service files](#create-api-deployment-and-service-files)
+        - [Create web deployment and service files](#create-web-deployment-and-service-files)
+    - [Logs and test the application](#logs-and-test-the-application)
+    - [Summary](#summary)
+
+<!-- /TOC -->
 ## 1.Assigment
 Assignment: Deploy a Multi-tier Application on Kubernetes.
 
@@ -17,6 +32,7 @@ sudo mv ./kind /usr/local/bin/kind
 docker pull kindest/node:v1.22.0
 kind create cluster --image kindest/node:v1.22.0 --name app
 ```
+`kind` stands for Kubernetes in Docker and it is a tool for running local Kubernetes clusters using Docker container "nodes". `kind` is used  for development and testing purposes, using Docker containers as the cluster nodes.
 
 ### 2.2. Create `db-secrets.yaml` the database credentials
 
@@ -39,6 +55,7 @@ The first yaml creates a Kubernetes Secret named db-credentials of type `Opaque`
 - `user` and `password` fields in the Secret object are used by the `database` pod to initialize the initial username and password.
 - The `url` field is used by the `api` pod to connect to the database pod via `pymongo`.
 This Secret is used to store **database credentials**.
+
 ### 2.3. Create `db-pvc.yaml` to storage persistent volume
 ```yaml
 apiVersion: v1
@@ -56,6 +73,7 @@ The second YAML file creates a Kubernetes `Persistent Volume Claim` named db-dat
 ```
 kubectl apply -f db-pvc.yaml
 ```
+
 ### 2.4. Create `db-deploment.yaml`(Mongodb)
 Deloy database pods and database service
 Multiple resources can be created the same way as a single resource.
@@ -119,6 +137,7 @@ The volumes section of the Deployment specifies a persistent volume claim named 
 ```
 kubectl apply -f db-deployment.yaml
 ```
+
 ### 2.5. Create api deployment and service files
 ```yaml
 apiVersion: v1
@@ -172,6 +191,7 @@ kubectl apply -f api-deployment.yaml
 This manifest creates a `Service object` that exposes the `Deployment` in the cluster. The Deployment creates two replicas of a pod that runs a containerized application, with the DATABASE_URL environment variable set to the value of the url key in a `Secret` object named `db-credentials`. The `initContainers` section also includes an init container that waits for the mongodb-service to become available before the main container starts running.
 Once the `initContainer` completes successfully (i.e., the nc command connects to the database service), the main container `api` in the pod  will start.
 **Note** that the `initContainer` runs to completion before the main container starts, so if the initContainer fails, the main container will not start. This ensures that your application does not start until `mongodb-service` are available.
+
 ### 2.6. Create web deployment and service files
 ```yaml
 apiVersion: v1
@@ -220,6 +240,7 @@ This manifest creates a `Service` object that exposes the Deployment on `30001` 
 kubectl apply -f ./
 ```
 This command apply all the Kubernetes YAML manifests in the current directory in alphabetical order by filename.
+
 ## 3. Logs and test the application
 - List of pods and logs from api and web pods
 <div align="center">
@@ -237,7 +258,6 @@ This command apply all the Kubernetes YAML manifests in the current directory in
 <div align="center">
   <img width="1000" src="images/result_search.png" alt="containerization">
 </div>
-
 
 ## 4. Summary
 
