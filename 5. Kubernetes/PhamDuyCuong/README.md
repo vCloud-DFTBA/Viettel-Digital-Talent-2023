@@ -1,20 +1,18 @@
 # Deploy a Multi-tier Application on Kubernetes
 
-<!-- TOC -->
-
+## Table of contents
 - [Deploy a Multi-tier Application on Kubernetes](#deploy-a-multi-tier-application-on-kubernetes)
-    - [Assigment](#assigment)
-    - [Detailed step-by-step instructions to deploy the application by Kubenetes](#detailed-step-by-step-instructions-to-deploy-the-application-by-kubenetes)
-        - [Install Kind and create Cluster](#install-kind-and-create-cluster)
-        - [Create db-secrets.yaml the database credentials](#create-db-secretsyaml-the-database-credentials)
-        - [Create db-pvc.yaml to storage persistent volume](#create-db-pvcyaml-to-storage-persistent-volume)
-        - [Create db-deploment.yamlMongodb](#create-db-deplomentyamlmongodb)
-        - [Create api deployment and service files](#create-api-deployment-and-service-files)
-        - [Create web deployment and service files](#create-web-deployment-and-service-files)
-    - [Logs and test the application](#logs-and-test-the-application)
-    - [Summary](#summary)
+    - [1. Assigment](#assigment)
+    - [2. Detailed step-by-step instructions to deploy the application by Kubenetes](#detailed-step-by-step-instructions-to-deploy-the-application-by-kubenetes)
+        - [2.1. Install Kind and create Cluster](#install-kind-and-create-cluster)
+        - [2.2. Create db-secrets.yaml the database credentials](#create-db-secretsyaml-the-database-credentials)
+        - [2.3. Create db-pvc.yaml to storage persistent volume](#create-db-pvcyaml-to-storage-persistent-volume)
+        - [2.4. Create db-deploment.yamlMongodb](#create-db-deplomentyamlmongodb)
+        - [2.5. Create api deployment and service files](#create-api-deployment-and-service-files)
+        - [2.6. Create web deployment and service files](#create-web-deployment-and-service-files)
+    - [3. Logs and test the application](#logs-and-test-the-application)
+    - [4. Summary](#summary)
 
-<!-- /TOC -->
 ## 1.Assigment
 Assignment: Deploy a Multi-tier Application on Kubernetes.
 
