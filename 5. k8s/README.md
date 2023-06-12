@@ -172,6 +172,7 @@ type: NodePort
 kubectl apply -f database.yaml
 ```
 Result:
+
 ![](images/db.jpg)
 
 
@@ -180,6 +181,7 @@ Result:
 kubectl apply -f backend.yaml
 ```
 Result:
+
 ![](images/be.jpg)
 
 
@@ -188,6 +190,7 @@ Result:
 kubectl apply -f frontend.yaml
 ```
 Result: 
+
 ![](images/fe.png)
 
 4. Verify the deployment:
@@ -195,6 +198,7 @@ Result:
 kubectl get pods
 ```
 Result: all the pods are running and ready.
+
 ![](images/pod.jpg)
 
 5. Verify the service:
@@ -202,6 +206,7 @@ Result: all the pods are running and ready.
 kubectl get service 
 ```
 Result: 
+
 ![](images/ser1.jpg)
 6. Access the application:
 
@@ -210,17 +215,21 @@ Result:
 minikube service nginx-service --url
 ```
 Open the URL in your web browser to access the application.
+
 ![](images/url.png)
 
 7. Test webapp
+
 ![](images/app1.png)
 
 - Test add 1 student
+  
 ![](images/test1.jpg)
 ![](images/test2.jpg)
 ![](images/test3.jpg)
 
 - Test delele 1 student: delete a student with ID 40
+  
 ![](images/dele1.jpg)
 ![](images/dele2.jpg)
 
