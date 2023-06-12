@@ -1,0 +1,11 @@
+gce:
+  hosts:
+    node1:
+      ansible_host: 35.192.115.120
+    node2:
+      ansible_host: 35.184.206.60
+    node3:
+      ansible_host: 34.68.5.38
+  vars:
+    ansible_user: lamle
+    update_cache: no

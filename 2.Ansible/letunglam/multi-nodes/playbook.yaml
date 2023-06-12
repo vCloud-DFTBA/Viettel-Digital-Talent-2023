@@ -1,0 +1,9 @@
+- name: Ansible roles
+  hosts: gce
+  become: true
+  roles:
+    # - common
+    - web
+    - db
+    - api
+    # - deployment
