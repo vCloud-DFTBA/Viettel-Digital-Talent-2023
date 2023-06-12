@@ -2,8 +2,8 @@
   hosts: gce
   become: true
   roles:
-    # - common
+    - common
     - web
     - db
     - api
-    # - deployment
+    - deployment
