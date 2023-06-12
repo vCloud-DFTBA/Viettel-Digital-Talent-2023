@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-deployment
+  labels:
+    app: react-pod
+spec:
+  selector:
+    matchLabels:
+      app: react-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: react-pod
+    spec:
+      # imagePullSecrets:
+      #   - name: aws-ecr
+
+      containers:
+      - name: react-pod
+        image: docker.io/manhlab/k8s-frontend
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 3000
+        # volumeMounts:
+        # - name: comm-config-vol 
+        #   mountPath: /workspace/system-comm.yml
+        #   subPath: system-comm.yml
+          
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://localhost:4000"
+
+      nodeSelector:
+        kubernetes.io/os: linux
+      # volumes:
+      # - name: comm-config-vol
+      #   configMap:
+      #     name: blueedge-manager-cfg
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-pod-service
+spec:
+  type: ClusterIP
+  selector:
+    app: react-pod
+  
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      
