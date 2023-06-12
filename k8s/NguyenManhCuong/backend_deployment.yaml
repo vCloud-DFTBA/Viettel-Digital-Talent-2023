@@ -34,13 +34,13 @@ spec:
           valueFrom: 
             configMapKeyRef:
               name: mongodb-configmap
-              key: database_url
+              key: database-url
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: backend
 spec:
   type: NodePort
   selector:
@@ -49,4 +49,4 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-      nodePort: 30100
+      nodePort: 30101

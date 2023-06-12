@@ -57,7 +57,8 @@ USER_PWD = os.environ.get("USER_PWD")
 DB_URL = os.environ.get("DB_URL")
 MONGODB_DATABASE = "database"
 
-uri = f'mongodb://{USER_NAME}:{USER_PWD}@{DB_URL}'
+uri = f'mongodb://{USER_NAME}:{USER_PWD}@{DB_URL}:27017/'
+print(uri)
 client = MongoClient(uri)
 
 db = client[f'{MONGODB_DATABASE}']
