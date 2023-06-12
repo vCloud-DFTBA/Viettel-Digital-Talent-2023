@@ -1,0 +1,15 @@
+resources:
+  - ./db/db-data-pv.yml
+  - ./db/db-data-pvc.yml
+  - ./db/db-secret.yml
+  - ./db/db-deploy.yml
+  - ./db/db-svc.yml
+  - ./api/api-deploy.yml
+  - ./api/api-svc.yml
+  - ./web/web-deploy.yml
+  - ./web/web-svc.yml
+configMapGenerator:
+  - name: db-init-cm
+    files:
+      - attendees.csv
+      - init.sh

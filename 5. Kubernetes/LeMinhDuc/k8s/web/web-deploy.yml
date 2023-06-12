@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-po
+  template:
+    metadata:
+      labels:
+        app: web-po
+    spec:
+      containers:
+        - name: web
+          image: duclm278/web:k8s
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
