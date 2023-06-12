@@ -165,6 +165,7 @@ type: NodePort
 
 ## Deploying the application on Kubernetes
 - Start minikube
+
 ![](images/minikube.jpg)
 1. Deploy the database:
 ``` bash
