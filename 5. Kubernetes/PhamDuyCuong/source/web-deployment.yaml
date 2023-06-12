@@ -1,3 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+spec:
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30001
+  type: NodePort
+
+---    
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,17 +32,3 @@ spec:
         image: pdc1997/web
         ports:
         - containerPort: 80
-      
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-service
-spec:
-  selector:
-    app: web
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      nodePort: 30001
-  type: NodePort

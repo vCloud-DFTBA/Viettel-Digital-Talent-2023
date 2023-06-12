@@ -1,3 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: db
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  type: NodePort
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,7 +27,7 @@ spec:
         app: db
     spec:
       containers:
-      - name: mongodb-server
+      - name: mongodb
         image: mongo:5.0
         ports:
         - containerPort: 27017
@@ -35,16 +49,3 @@ spec:
       - name: db-data
         persistentVolumeClaim:
           claimName: db-data-pvc
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb-server
-spec:
-  selector:
-    app: db
-  ports:
-    - protocol: TCP
-      port: 27017
-      targetPort: 27017
-  type: NodePort
