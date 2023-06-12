@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+  db:
+    image: library/postgres:13-alpine
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  
+  rest_api:
+    container_name: restapi
+    build:
+      context: backend
+    ports:
+      - 4000:4000
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=host.docker.internal
+  
+  frontend:
+    container_name: frontend
+    build: 
+      context: frontend
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - REACT_APP_API_URL=http://localhost:4000

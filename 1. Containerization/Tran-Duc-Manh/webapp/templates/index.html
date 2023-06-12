@@ -1,0 +1,190 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Presentation {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+    /* Add hover effect to table rows */
+    tr:hover {
+      background-color: #f5f5f5;
+      cursor: pointer;
+    }
+</style>
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Hero -->
+    <section class="section section-header text-white pb-md-8" style="background-image:url(/static/assets/img/illustrations/bg-talent.png); background-size:cover;position:'relative';height:90vh">
+        <div class="container" >
+            <div class="row justify-content-center" >
+                <div class="col-12 col-md-10 text-center mb-5 mb-md-7">
+                    <h2 class="display-2 font-weight-bolder mb-4">
+                        Viettel Talent 2023
+                    </h2>
+                    <p class="lead mb-4 mb-lg-5"> Chắp cánh ước mơ cùng #VDT2023!</p>
+                    <div>
+                        <a href="https://www.facebook.com/groups/894917658468742" class="btn btn-light btn-download-app mb-xl-0 mr-8 mr-md-8">
+                            <span class="d-flex align-items-center">
+                                <span class="icon icon-brand mr-2 mr-md-3"><span class="fab fa-facebook"></span></span>
+                                <span class="d-inline-block text-left">
+                                    <small class="font-weight-normal d-none d-md-block">Available on</small> Facebook 
+                                </span> 
+                            </span>
+                        </a>
+                        <a href="https://tuyendung.viettel.vn/" class="btn btn-light btn-download-app">
+                            <span class="d-flex align-items-center">
+                                <span class="icon icon-brand mr-2 mr-md-3"><span class="fa fa-envelope"></span></span>
+                                <span class="d-inline-block text-left">
+                                    <small class="font-weight-normal d-none d-md-block">Available on</small> Viettel Careeer
+                                </span> 
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <section class="section section-lg py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card border-0 bg-white text-center p-1">
+                        <div class="card-header bg-white border-0 pb-0">
+                            <div class="icon icon-lg icon-primary mb-4">
+                                <span class="fas fa-cloud"></span>
+                            </div>
+                            <h2 class="h3 text-dark m-0">Viettel Cloud</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Speed through checkout and offset delivery at the same time.                  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card border-0 bg-white text-center p-1">
+                        <div class="card-header bg-white border-0 pb-0">
+                            <div class="icon icon-lg icon-primary mb-4">
+                                <span class="fas fa-cubes"></span>
+                            </div>
+                            <h2 class="h3 text-dark m-0">Viettel Data science & AI</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Get real-time delivery updates from cart to home in one place.                 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card border-0 bg-white text-center p-1">
+                        <div class="card-header bg-white border-0 pb-0">
+                            <div class="icon icon-lg icon-primary mb-4">
+                                <span class="fa fa-lock"></span>
+                            </div>
+                            <h2 class="h3 text-dark m-0">Viettel Cybersecurity</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Upgrade with personal settings from your favorite stores.                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="card border-0 bg-white text-center p-1">
+                            <div class="card-header bg-white border-0 pb-0">
+                                <div class="icon icon-lg icon-primary mb-4">
+                                    <span class="fas fa-rocket"></span>
+                                </div>
+                                <h2 class="h3 text-dark m-0">IoT & 5G</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Speed through checkout and offset delivery at the same time.                  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="card border-0 bg-white text-center p-1">
+                            <div class="card-header bg-white border-0 pb-0">
+                                <div class="icon icon-lg icon-primary mb-4">
+                                    <span class="fas fa-sitemap"></span>
+                                </div>
+                                <h2 class="h3 text-dark m-0">Software Development</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Get real-time delivery updates from cart to home in one place.                 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
+        </div>
+    </section>
+    <section class="section section-lg" id="about">
+        <div class="container">
+            <div class="row justify-content-center mb-5 mb-lg-7">
+                <div class="col-12 col-lg-8 text-center">
+                    <h2 class="h1 mb-4">Danh sách Talent</h2>
+                    <p class="lead">Danh sách tài năng được tuyển chọn từ 1800 ứng viên.</p>
+
+                </div>
+                <div>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th class="text-center">Họ và tên</th>
+                            <th class="text-center">Ngành học</th>
+                            <th class="text-center">Trường đại học</th>
+                            <th class="text-center">Chương trình</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for user in users %}
+                          <tr onclick="window.location.href='/user/{{ user.name }}';">
+                            <td class="text-center">{{ user.name }}</td>
+                            <td class="text-center">{{ user.program }}</td>
+                            <td class="text-center">{{ user.university }}</td>
+                            <td class="text-center">{{ user.title }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                      
+                </div>
+            </div>
+            <div class="row row-grid align-items-center mb-2 mb-lg-3" id="program">
+                <div class="col-12 col-lg-7">
+                    <h2 class="mb-4">Viettel Digital Talent</h2>
+                    <p>Viettel Digital Talent là chương trình đào tạo được thiết kế bởi các chuyên gia hàng đầu Viettel giúp các tài năng trẻ khai phá tiềm năng và phát triển chuyên môn trong các lĩnh vực Cloud, Cyber Security, Data Science & Artificial intelligence, Internet of Things, 5G, Software & Data Engineering (Data, C/C++, Web/Mobile).</p>
+                    <a href="#" class="btn btn-dark mt-3 animate-up-2">
+                        Learn More
+                        <span class="icon icon-xs ml-2">
+                            <i class="fas fa-external-link-alt"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-12 col-lg-4 ml-lg-auto">
+                    <img src="/static/assets/img/illustrations/scene-3.svg" class="w-100" alt="">
+                </div>
+            </div>
+           
+        </div>
+    </section>
+    
+    
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

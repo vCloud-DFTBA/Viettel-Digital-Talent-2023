@@ -1,0 +1,41 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+ok: [node1]
+ok: [node2]
+
+TASK [../roles/webserver : include_tasks] **************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/webserver/tasks/config.yml for node1, local, node2
+
+TASK [../roles/webserver : Create vth group info.] *****************************
+ok: [local]
+ok: [node2]
+ok: [node1]
+
+TASK [../roles/webserver : Create user.] ***************************************
+ok: [node2]
+ok: [local]
+ok: [node1]
+
+TASK [../roles/webserver : Check docker install.] ******************************
+ok: [node2]
+ok: [local]
+ok: [node1]
+
+TASK [../roles/webserver : include_tasks] **************************************
+
+TASK [../roles/webserver : include_tasks] **************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/webserver/tasks/service.yml for local, node1, node2
+
+TASK [../roles/webserver : Restart a container] ********************************
+ok: [node1]
+ok: [node2]
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node1                      : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node2                      : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
