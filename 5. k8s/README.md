@@ -159,7 +159,7 @@ type: NodePort
 ```
 
 ### 2. Configure the appropriate networking between the frontend, backend, and database components.
-- The simplest way to connect tiers within your application on Kubernetes is by using Kubernetes Services. 
+- The simplest way to connect tiers within the application on Kubernetes is by using Kubernetes Services. 
 ![](images/service.jpg)
 
 
