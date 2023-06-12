@@ -369,9 +369,11 @@ Author: **Le Minh Duc**
   docker push duclm278/api:k8s
   ```
 
-- When making request to `/api`, the request will be forwarded to the Kubernetes service `api` at port `5000`.
+- When making request to `/api`, the request will be forwarded to the Kubernetes service `api` at port `5000` by `nginx`.
 
   ```nginx
+  # nginx.conf
+
   http {
     server {
       ...
