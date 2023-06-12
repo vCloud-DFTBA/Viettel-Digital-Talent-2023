@@ -221,6 +221,11 @@ Author: **Le Minh Duc**
             mountPath: /docker-entrypoint-initdb.d
           - name: db-data
             mountPath: /data/db
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: test
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: test
         ports:
           - containerPort: 27017
         ...
