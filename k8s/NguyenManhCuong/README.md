@@ -10,10 +10,11 @@
 ## [II. Homework](#2-homework)
 
 -   ### [1 Installation](#21-installation)
--   ### [2 Database Deployment and Service](#22-database-deployment-and-service)
--   ### [3 Backend Deployment and Service](#23-backend-deployment-and-service)
--   ### [4 Frontend Deployment and Service](#24-frontend-deployment-and-service)
--   ### [5 Result](#25-result)
+-   ### [2 Configmap and Secret](#22-configmap-and-secret)
+-   ### [3 Database Deployment and Service](#23-database-deployment-and-service)
+-   ### [4 Backend Deployment and Service](#24-backend-deployment-and-service)
+-   ### [5 Frontend Deployment and Service](#25-frontend-deployment-and-service)
+-   ### [6 Result](#26-result)
 # 1. Kubernetes Overview
 
 ## 1.1 Introduction to Kubernetes
@@ -165,7 +166,7 @@ kubectl apply -f mongodb_secret.yaml
 <br>Picture 5. ConfigMap and Secret in the Cluster
 </p>
 
-## 2.2 Database Deployment and Service
+## 2.3 Database Deployment and Service
 
 When deploying MongoDB in Kubernetes, using a **StatefulSet** instead of a Deployment is a recommended approach. A StatefulSet provides unique identities and stable network addresses for each replica, ensuring reliable and ordered scaling, rolling updates, and persistent storage.
 
@@ -268,7 +269,7 @@ kubectl apply -f mongodb-statefulset.yaml
 <br>Picture 8. StatefulSet for database (db-statefulset)
 </p>
 
-## 2.3 Backend Deployment and Service
+## 2.4 Backend Deployment and Service
 
 **Deployment**
 ```yaml
@@ -338,7 +339,7 @@ kubectl apply -f backend_deployment.yaml
 <br>Picture 9. Pods and Service for backend
 </p>
 
-## 2.4 Frontend Deployment and Service
+## 2.5 Frontend Deployment and Service
 
 **Deployment**
 ```yaml
@@ -392,7 +393,7 @@ kubectl apply -f frontend_deployment.yaml
 <br>Picture 10. Pods and Service for frontend
 </p>
 
-## 2.5 Result
+## 2.6 Result
 
 <p align = "center">
 <img src = "./images/list_students.png" width = 800 height = 400> 
