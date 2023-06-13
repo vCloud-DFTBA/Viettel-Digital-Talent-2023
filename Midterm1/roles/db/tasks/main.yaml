@@ -1,0 +1,20 @@
+--- 
+- name: Build db image
+  community.docker.docker_image:
+    name: db_image
+    build:
+      path: ./roles/db/files
+    source: build
+    force_source: true
+    
+- name: run db container
+  community.docker.docker_container:
+    name: db
+    image: db_image
+    restart_policy: "unless-stopped"
+    networks:
+      - name: network
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: db
