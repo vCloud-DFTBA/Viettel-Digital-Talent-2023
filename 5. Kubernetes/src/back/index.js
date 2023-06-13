@@ -9,12 +9,12 @@ const user_str = process.env.user_str;
 const pass_str = process.env.pass_str;
 
 let buff_user = Buffer.from(user_str, 'base64');
-let user = user_str.toString('ascii');
+let user = buff_user.toString('utf8');
 
 let buff_pass = Buffer.from(pass_str, 'base64');
-let pass = pass_str.toString('ascii');
+let pass = buff_pass.toString('utf8');
 
-const CONNECTION_STRING = "mongodb://${user}:${pass}@mongo:27017";
+const CONNECTION_STRING = `mongodb://${user}:${pass}@mongo:27017`;
 
 const CONN_STR = CONNECTION_STRING;
 
