@@ -1,0 +1,13 @@
+- name: copy resources from host
+  copy:
+    src: "{{ source_folder }}"
+    dest: "{{ dest_folder }}"
+    force: false
+  
+- name: run Docker container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image_name }}"
+    state: "{{ container_state }}"
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"
