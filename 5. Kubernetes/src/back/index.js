@@ -3,7 +3,21 @@ require("dotenv").config()
 const cors = require("cors");
 
 const PORT = process.env.PORT;
-const CONN_STR = process.env.CONN_STR;
+// const CONN_STR = process.env.CONN_STR;
+
+const user_str = process.env.user_str;
+const pass_str = process.env.pass_str;
+
+let buff_user = Buffer.from(user_str, 'base64');
+let user = user_str.toString('ascii');
+
+let buff_pass = Buffer.from(pass_str, 'base64');
+let pass = pass_str.toString('ascii');
+
+const CONNECTION_STRING = "mongodb://${user}:${pass}@mongo:27017";
+
+const CONN_STR = CONNECTION_STRING;
+
 
 let DB_CONNECTED = false;
 
