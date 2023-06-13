@@ -8,13 +8,14 @@ const PORT = process.env.PORT;
 const user_str = process.env.user_str;
 const pass_str = process.env.pass_str;
 
-let buff_user = Buffer.from(user_str, 'base64');
-let user = buff_user.toString('utf8');
+// let buff_user = Buffer.from(user_str, 'base64');
+// let user = buff_user.toString('utf8');
 
-let buff_pass = Buffer.from(pass_str, 'base64');
-let pass = buff_pass.toString('utf8');
+// let buff_pass = Buffer.from(pass_str, 'base64');
+// let pass = buff_pass.toString('utf8');
 
-const CONNECTION_STRING = `mongodb://${user}:${pass}@mongo:27017`;
+// const CONNECTION_STRING = `mongodb://${user}:${pass}@mongo:27017`;
+const CONNECTION_STRING = `mongodb://${user_str}:${pass_str}@mongo:27017`;
 
 const CONN_STR = CONNECTION_STRING;
 

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: mern-k8s-back
-          image: trongminhjr/mern-k8s-back:v1
+          image: trongminhjr/mern-k8s-back:v2
           ports: 
             - containerPort: 3000
           env: 
