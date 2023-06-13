@@ -36,7 +36,7 @@ jobs:
         context: ./Midterm/roles/db/files
         builder: ${{ steps.buildx.outputs.name }}
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/db_image:${{ env.VERSION }}
+        tags: ${{ secrets.USERNAME_DOCKER_HUB }}/db_image:${{ env.VERSION }}
 
     - name: Build and Push Flask API Image
       uses: docker/build-push-action@v2
