@@ -17,7 +17,7 @@
   - [4.2. Deploy backend and frontend](#42-deploy-backend-and-frontend)
   - [4.3. Deploy database - MongoDB](#43-deploy-database---mongodb)
   - [4.4. Thoroughly check the operation of the application.](#44-thoroughly-check-the-operation-of-the-application)
-  - [4.5. The next direction of development](#45-the-next-direction-of-development)
+  - [4.5. Deploy application using Helm](#45-deploy-application-using-helm)
 - [5. Conclusions](#5-conclusions)
 - [6. References](#6-references)
 
@@ -422,8 +422,6 @@ data:
   username: YWRtaW4=
 ```
 
-
-
 `Decoding contents of Secret objects`
 
 Kubernetes stores the content of all secrets in a base 64 encoded format. If you want to see how your string will appear in a base64 format, execute the following.
@@ -436,8 +434,6 @@ echo "VDT2023" | base64
 echo "VkRUMjAyMw==" | base64 --decode
 # after decoding it, this will give VDT2023
 ```
-
-
 
 `Deployment MongoDB`
 ```yaml
@@ -561,7 +557,8 @@ kubectl apply -f .
 
 Everything works as expected. Data is stored into Databsae and can be deleted from the user interface.
 
-### 4.5. `The next direction of development` 
+### 4.5. `Deploy application using Helm` 
+
 The next direction of development, we will be to use helm chart. Using helm chart will have benefits such as:
 * **Application Packaging and Deployment:** Helm charts can be used to package and deploy applications on Kubernetes. This makes it easy to distribute and deploy applications to multiple Kubernetes clusters.
 * **Version Control:** Helm charts can be version controlled, making it easy to track changes to the application and roll back to previous versions if needed.
@@ -569,6 +566,135 @@ The next direction of development, we will be to use helm chart. Using helm char
 * **Reproducibility:** Helm charts can be used to reproduce application deployments. This makes it easy to deploy the same application on different Kubernetes clusters or restore the application to its original state.
 
 Helm charts also easily assist in autoscaling the application.
+
+Helm is a package manager and application management tool for Kubernetes that packages many Kubernetes resources into a single logical deployment unit called Chart. Inside the Chart will be the main part of the `templates`, which define the resources that will be deployed to k8s.
+Above, to deploy an app to k8s, we need to create yaml files like deployment.yaml, service.yaml ..etc.. These files clearly define configuration parameters for application deployment. However, when you need to change parameters, the use of those files will become cumbersome and difficult to control, there is no version management on k8s.
+
+When using helm, we will have similar files but in "template" form, which means it is more flexible. The framework of the basic deployment or service descriptor files remains the same, but instead of specific values like we originally did, it will combine with `values` declared from another values file ( `values.yaml` file in helm chart) to generate the final yaml file to apply to the system.
+Create helm chart
+
+Thus, we can understand simply how to use helmchart template as follows:
+
+`templates/deployment.yaml + values.yaml` => The `deployment.yaml` file that we wrote
+
+`templates/service.yaml + values.yaml` => The `service.yaml` file that we wrote
+
+...ect...
+
+Let do it!
+
+Create helm chart:
+```sh
+helm create helm-frontend
+```
+
+In the `value.yaml` file, we have to put parameters into it:
+
+```yaml
+# Default values for helm-frontend.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  registry: docker.io
+  repository: trongminhjr/mern-k8s-front
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v1"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: LoadBalancer
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+```
+
+Don't miss the enviroment parameters in the deployment file:
+
+```yaml
+env: 
+- name: BASE_URL
+  value: "http://localhost:3000"
+
+```
+
+Install helm: 
+```sh
+helm helm install k8s -f helm-frontend/values.yaml helm-frontend
+```
+
+Result:
+
+
+
+Other components have been configured in the folders respectively.
 
 #### `Autoscaling`
 
@@ -586,12 +712,15 @@ To configure autoscaling in a Helm chart, we need to specify the following in th
 * **maxReplicas:** The maximum number of pods that should be running in the Deployment or StatefulSet.
 * **targetCPUUtilizationPercentage:** The target CPU utilization percentage for the pods. When the observed CPU utilization of the pods reaches the target CPU utilization percentage, the HPA object will automatically scale the number of pods up or down.
 
-For example, the following values.yaml file specifies that the Deployment named nginx should have a minimum of 1 pod and a maximum of 5 pods. The HPA object will automatically scale the number of pods up or down when the observed CPU utilization of the pods reaches 50%.
+For example, the following `values.yaml` file in the `helm-frontend` folder specifies that the Deployment named nginx should have a minimum of 1 pod and a maximum of 5 pods. The HPA object will automatically scale the number of pods up or down when the observed CPU utilization of the pods reaches 50%.
 
 ```yaml
-minReplicas: 1
-maxReplicas: 5
-targetCPUUtilizationPercentage: 50
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 ```
 
 We can also use the helm autoscale command to configure autoscaling for a Helm chart. For example, the following command will configure autoscaling for the Deployment named nginx:
@@ -610,6 +739,7 @@ Once we have configured autoscaling for a Helm chart, Kubernetes will automatica
 - Multiple replicas have been created to increase the HA property of the application.
 - The database connection also needs attention because the pods communicate with each other via name or internal IP.
 - Secrets have also been used to store sensitive database information.
+- Deployed application using Helm chart. It is more convenient for application management, scaling... in the future
 
 ## 6. References
 
