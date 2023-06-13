@@ -13,7 +13,7 @@
     - [3. Logs and test the application](#logs-and-test-the-application)
     - [4. Summary](#summary)
 
-## 1.Assigment
+## 1. Assigment
 Assignment: Deploy a Multi-tier Application on Kubernetes.
 
 Objective: The objective of this assignment is to apply the concepts learned in the hands-on labs and deploy a multi-tier application on Kubernetes. The application consists of a frontend web server, a backend API server, and a database.
@@ -31,7 +31,12 @@ docker pull kindest/node:v1.22.0
 kind create cluster --image kindest/node:v1.22.0 --name app
 ```
 `kind` stands for Kubernetes in Docker and it is a tool for running local Kubernetes clusters using Docker container "nodes". `kind` is used  for development and testing purposes, using Docker containers as the cluster nodes.
+### Install kubectl for ubuntu
 
+`kubectl` - Command line tool for K8s clusters
+```
+snap install kubectl --classic
+```
 ### 2.2. Create `db-secrets.yaml` the database credentials
 
 ```yaml
@@ -45,7 +50,7 @@ data:
   password: MTIzNDU2
   url: bW9uZ29kYjovL3ZkdDIzOjEyMzQ1NkBtb25nb2RiLXNlcnZpY2U6MjcwMTcv
 ```
-
+Apply the Secret to the cluster:
 ```
 kubectl apply -f db-secrets.yaml
 ```
@@ -73,9 +78,9 @@ kubectl apply -f db-pvc.yaml
 ```
 
 ### 2.4. Create `db-deploment.yaml`(Mongodb)
-Deloy database pods and database service
-Multiple resources can be created the same way as a single resource.
-The resources will be created in the **order** they appear in the file. Therefore, it's best to specify the service first, since that will ensure the scheduler can spread the pods associated with the `service` as they are created by the controller(s), such as `Deployment`.
+Deloy database pod and database service
+Multiple resources can be created the same way as a **single** resource.
+The resources will be created in the **order** they appear in the file. Therefore, it's best to specify the **service** first, since that will ensure the **scheduler** can spread the pods associated with the `service` as they are created by the controller(s), such as `Deployment`.
 
 ```yaml
 apiVersion: v1
