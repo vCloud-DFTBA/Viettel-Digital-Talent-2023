@@ -1,0 +1,4 @@
+---
+# defaults file for webserver
+hostname: vt_app
+ports: 8080
