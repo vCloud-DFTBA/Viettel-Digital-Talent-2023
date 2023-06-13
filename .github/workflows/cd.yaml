@@ -1,4 +1,5 @@
 name: Push image to Docker hub
+on:
   push:
     tags:
       - '*'
