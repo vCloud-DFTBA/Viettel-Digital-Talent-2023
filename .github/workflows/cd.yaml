@@ -33,7 +33,7 @@ jobs:
       env:
         VERSION: ${{ steps.extract_version.outputs.version }}
       with:
-        context: ./Midterm/roles/db/files
+        context: ./Midterm1/roles/db/files
         builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: ${{ secrets.USERNAME_DOCKER_HUB }}/db_image:${{ env.VERSION }}
@@ -43,7 +43,7 @@ jobs:
       env:
         VERSION: ${{ steps.extract_version.outputs.version }}
       with:
-        context: ./Midterm/roles/api/files
+        context: ./Midterm1/roles/api/files
         builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: ${{ secrets.USERNAME_DOCKER_HUB }}/backend_image:${{ env.VERSION }}
@@ -54,7 +54,7 @@ jobs:
       env:
         VERSION: ${{ steps.extract_version.outputs.version }}
       with:
-        context: ./Midterm/roles/web/files
+        context: ./Midterm1/roles/web/files
         builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: ${{ secrets.USERNAME_DOCKER_HUB }}/frontend_image:${{ env.VERSION }}
