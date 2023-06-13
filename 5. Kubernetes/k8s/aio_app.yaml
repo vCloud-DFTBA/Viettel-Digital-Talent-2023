@@ -18,14 +18,13 @@
 #     spec:
 #       containers:
 #         - name: mern-k8s-back
-#           image: cedricclyburn/mern-k8s-back
+#           image: trongminhjr/mern-k8s-back
 #           ports: 
 #             - containerPort: 3000
 #           env: 
 #             - name: PORT
 #               value: "3000"
 #             - name: CONN_STR
-#               # value: "$ATLAS_CONNECTION_STRING"
 #               value: "mongodb://admin:admin@mongo:27017"
 # ---
 # apiVersion: v1

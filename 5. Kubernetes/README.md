@@ -1,4 +1,4 @@
-## `Important Information:` This document includes `multiple gif files` that describe the process of `testing some API connections`. Wait for the gif files to download completely before viewing all instruction.
+## `Important information:` This document includes `multiple gif files` that describe the process of `testing some API connections`. Wait for the gif files to download completely before viewing all instruction.
 
 # Multi-tier web application Deployment in Kubernetes
 
