@@ -5,9 +5,8 @@ all:
       ansible_connection: local
       ansible_python_interpreter: /home/huong/Midterm1/venv/bin/python
       ansible_become_user: root
-      ansible_become_password: 1234
+      ansible_become_password: secrets.yaml
 
 # Ninh Chi Huong 
-# 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
 
-gg
+
