@@ -79,6 +79,13 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: mongo-password
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "512Mi"
 
 ---
 
@@ -135,6 +142,13 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: mongo-password
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "512Mi"
 
 ---
 
@@ -155,3 +169,100 @@ spec:
 - Apply file yaml deployment, service của backend lên cluster ta có kết quả:
 
 ![alt](./images/apply-backend.png)
+
+##### 2.2.3. Frontend
+- Tương tự database, backend, file `frontend.yaml` là file cấu hình deployment, service của backend như bên dưới:
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: minhson7112/sonbm-frontend:v0.0.6
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "512Mi"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30002
+  type: NodePort
+
+```
+- Apply file frontend.yaml vào cluster, ta có kết quả:
+
+![alt](./images/apply-frontend.png)
+
+#### 2.3. Kiểm tra kết quả
+- Lấy danh sách node bằng lệnh `kubectl get nodes`
+
+![alt](./images/node-list.png)
+
+- Lấy danh sách pod bằng lệnh `kubectl get pods` :
+
+![alt](./images/pod-list.png)
+
+- Lấy danh sách deployment bằng lệnh `kubectl get deployment`
+ 
+![alt](./images/deployment-list.png)
+
+- Lấy danh sách service bằng lệnh `kubectl get service`
+
+![alt](./images/service-list.png)
+
+- Lấy danh sách secret bằng lệnh `kubectl get secret`
+
+![alt](./images/secret-list.png)
+
+- Dùng `kubectl get all` để lấy đầy đủ thông tin hơn
+
+![alt](./images/all.png)
+
+- Để kiểm tra log của pod, ta dùng lệnh `kubectl logs "tên pod"`, như bên dưới lần lượt là log của các pod database, backend, frontend: 
+
+  - Database:
+  ![alt](./images/log-pod-db.png)
+
+  - Backend:
+  ![alt](./images/log-backend.png)
+
+  - Frontend:
+  ![alt](./images/log-frontend.png)
+
+- Kiểm tra thông tin deployment, sử dùng lệnh `kubectl describe "tên deployment"` ví dụ như hình dưới đây:
+
+![alt](./images/describe.png)
+
+- Để truy cập vào trang web thông qua trình duyệt, ta sử dụng `ip` và `pord` của node, ở đây ta có port của frontend là `30002` và bạckend là `30001` như các hình dưới đây 
+
+![alt](./images/fe.png)
+
+![alt](./images/be.png)

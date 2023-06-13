@@ -17,7 +17,13 @@ spec:
           image: minhson7112/sonbm-frontend:v0.0.6
           ports:
             - containerPort: 80
-
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "512Mi"
 ---
 
 apiVersion: v1
