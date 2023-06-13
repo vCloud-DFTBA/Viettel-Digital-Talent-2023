@@ -220,45 +220,6 @@ spec:
     metadata: 
       labels:
         app: mern-k8s
-        component: back 
-    spec:
-      containers:
-        - name: mern-k8s-back
-          image: trongminhjr/mern-k8s-back:v1
-          ports: 
-            - containerPort: 3000
-          env: 
-            - name: PORT
-              value: "3000"
-            - name: user_str
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-creds
-                  key: username
-            - name: pass_str
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-creds
-                  key: password
-```
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mern-k8s-back
-  labels:
-    app: mern-k8s
-    component: back # Selects Pods with the label "component: back" to be associated with the Deployment
-spec:
-  replicas: 2 # Defines the number of deployed application instances is 2.
-  selector: 
-    matchLabels:
-      component: back
-  template:
-    metadata: 
-      labels:
-        app: mern-k8s
         component: back
     spec:
       containers:
