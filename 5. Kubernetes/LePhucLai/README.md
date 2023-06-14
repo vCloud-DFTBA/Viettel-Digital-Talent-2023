@@ -179,9 +179,9 @@ to apply PV and PVC
 
 To get information of Persistent Volume and Persistent Volume Claim
 
-![Untitled](/img/Untitled%202.png)
+![Untitled](/img/Untitled 2.png)
 
-![Untitled](/img/Untitled%203.png)
+![Untitled](/img/Untitled 3.png)
 
 ## 9.4 Mongo Deployment and Service
 
