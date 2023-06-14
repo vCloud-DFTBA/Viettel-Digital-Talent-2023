@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  coordinator:
+    image: nghianinhnb/coordinator
+    networks:
+      - net
+    ports:
+      - "7681:7681"
+    volumes:
+      - ./ansible:/vdt/ansible
+    privileged: true
+    hostname: coordinator
+
+  lb:
+    image: nghianinhnb/worker
+    networks:
+      - net
+    ports:
+      - "8080:80"
+    privileged: true
+    hostname: lb
+
+  host1: 
+    image: nghianinhnb/worker
+    networks:
+      - net
+    privileged: true
+    hostname: host1
+
+  host2: 
+    image: nghianinhnb/worker
+    networks:
+      - net
+    privileged: true
+    hostname: host2
+
+  db: 
+    image: nghianinhnb/worker
+    networks:
+      - net
+    privileged: true
+    hostname: db
+
+
+networks:
+  net:

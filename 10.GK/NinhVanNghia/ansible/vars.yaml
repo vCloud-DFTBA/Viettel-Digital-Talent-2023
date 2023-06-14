@@ -1,0 +1,27 @@
+---
+DB:
+  HOST: db
+  USERNAME: root
+  PASSWORD: 1234
+  PORT: 3306
+  NAME: vdt
+
+  REPLICA:
+    USER: replica_user
+    PASSWORD: PASSWORD
+
+USER: vt_app
+PASSWORD: root
+
+DOCKER:
+  USERNAME: nghianinhnb
+
+LOAD_BALANCER:
+  NETWORK: 
+    NAME: lb_network
+    NETMASK: "10.0.0.0/24"
+  VIP: "10.0.0.254"
+
+PROMETHEUS: "27.66.108.93:9090"
+
+EK_ADDRESS: "171.236.38.100"

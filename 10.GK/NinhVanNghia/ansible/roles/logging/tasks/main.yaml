@@ -1,0 +1,24 @@
+---
+- name: Create directory for Fluent config file
+  file:
+    path: /etc/fluentd
+    state: directory
+
+
+- name: Copy fluent config file
+  template:
+    src: fluent.conf.j2
+    dest: /etc/fluentd/fluent.conf
+  notify:
+  - Stop fluentd container
+  - Start fluentd container
+
+
+- name: Start Fluentd container
+  docker_container:
+    name: fluentd
+    image: "{{DOCKER.USERNAME}}/fluent"
+    restart_policy: unless-stopped
+    network_mode: "host"
+    volumes:
+    - "/etc/fluentd:/fluentd/etc"

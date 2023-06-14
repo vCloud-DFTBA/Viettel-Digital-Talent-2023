@@ -1,0 +1,4 @@
+.vscode
+.ansible
+node_modules
+vhost

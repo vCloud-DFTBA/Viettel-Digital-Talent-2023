@@ -1,0 +1,45 @@
+---
+- name: Install Docker
+  hosts: deploy
+  become: true
+  roles:
+  - common
+
+
+- name: Deploy Database Cluster
+  hosts: db_cluster
+  become_user: "{{ USER }}"
+  gather_facts: false
+  roles:
+  - db
+
+
+- name: Deploy App
+  hosts: app
+  become_user: "{{ USER }}"
+  gather_facts: false
+  roles:
+  - api
+  - web
+
+
+- name: Deploy Load balancer Cluster
+  hosts: lb_cluster
+  become_user: "{{ USER }}"
+  roles:
+  - lb
+
+
+- name: Run node_exporter, cadvisor and grafana agent
+  hosts: deploy
+  become_user: "{{ USER }}"
+  roles:
+  - monitor
+
+
+- name: start Fluent container
+  hosts: app, db_cluster
+  become_user: "{{ USER }}"
+  gather_facts: false
+  roles:
+  - logging

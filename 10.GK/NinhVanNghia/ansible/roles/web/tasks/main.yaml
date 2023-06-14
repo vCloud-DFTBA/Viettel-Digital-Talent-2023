@@ -1,0 +1,12 @@
+---
+- name: Pull and start web container
+  docker_container:
+    name: web
+    image: "{{DOCKER.USERNAME}}/web"
+    pull: true
+    network_mode: host
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: web.log

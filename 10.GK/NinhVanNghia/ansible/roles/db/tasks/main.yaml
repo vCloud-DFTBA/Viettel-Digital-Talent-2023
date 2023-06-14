@@ -1,0 +1,79 @@
+---
+- name: Create directory for MYSQL config file
+  file:
+    path: "/etc/mysql/{{item}}"
+    state: directory
+  with_items:
+  - master
+  - replica
+
+
+- name: copy Mysql config
+  template:
+    src: "{{item}}.conf.j2"
+    dest: "/etc/mysql/{{item}}/mysql.conf.cnf"
+  with_items:
+  - master
+  - replica
+
+
+- name: create database network
+  docker_network:
+    name: db_network
+    driver: bridge
+
+
+- name: start MySQL Master container
+  docker_container:
+    image: mysql:8.0.27
+    name: primary_db
+    pull: true
+    hostname: primary_db
+    networks: 
+    - name: db_network
+    published_ports:
+      - "{{DB.PORT}}:{{DB.PORT}}"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ DB.PASSWORD }}"
+      MYSQL_DATABASE: "{{ DB.NAME }}"
+    volumes:
+    - /db_data:/var/lib/mysql
+    - /etc/mysql/master:/etc/mysql/conf.d
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: db.log
+
+- name: Wait for Master to start
+  wait_for:
+    host: localhost
+    port: "{{DB.PORT}}"
+    delay: 3
+    timeout: 120
+
+- name: start MySQL Replica container
+  docker_container:
+    image: mysql:8.0.27
+    name: replica_db
+    pull: true
+    hostname: replica_db
+    networks: 
+    - name: db_network
+    published_ports:
+      - "{{DB.PORT + 1}}:{{DB.PORT}}"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ DB.PASSWORD }}"
+      MYSQL_REPLICA_USER: "{{ DB.REPLICA.USER }}"
+      MYSQL_REPLICA_PASSWORD: "{{ DB.REPLICA.PASSWORD }}"
+      MYSQL_MASTER_HOST: primary_db
+      MYSQL_MASTER_PORT: "{{ DB.PORT }}"
+      MYSQL_DATABASE: "{{ DB.NAME }}"
+    volumes:
+    - /replica_data:/var/lib/mysql
+    - /etc/mysql/replica:/etc/mysql/conf.d
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+      tag: db.replica.log

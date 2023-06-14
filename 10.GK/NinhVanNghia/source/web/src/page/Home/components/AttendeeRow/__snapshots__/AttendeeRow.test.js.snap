@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It should render 1`] = `
+<div
+  className="row border-bottom py-1"
+>
+  <div
+    className="col-3"
+  >
+    Nguyen Van A
+  </div>
+  <div
+    className="col-2"
+  >
+    2001
+  </div>
+  <div
+    className="col-5"
+  >
+    Dai hoc BKHN
+  </div>
+  <div
+    className="col-2 d-flex flex-row gap-2"
+  >
+    <button
+      className="px-2 py-0 btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Sửa
+    </button>
+    <button
+      className="px-2 py-0 btn btn-danger"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Xóa
+    </button>
+  </div>
+</div>
+`;

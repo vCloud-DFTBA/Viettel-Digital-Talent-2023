@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It should render 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="d-flex flex-row mb-1"
+  >
+    <button
+      className="ms-auto font-weight-bold btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Thêm người tham dự
+    </button>
+  </div>
+  <div
+    className="row border-bottom"
+  >
+    <div
+      className="col-3"
+    >
+      Họ Và Tên
+    </div>
+    <div
+      className="col-2"
+    >
+      Năm sinh
+    </div>
+    <div
+      className="col-5"
+    >
+      Trườnng
+    </div>
+    <div
+      className="col-2"
+    >
+      thao tác
+    </div>
+  </div>
+</div>
+`;
