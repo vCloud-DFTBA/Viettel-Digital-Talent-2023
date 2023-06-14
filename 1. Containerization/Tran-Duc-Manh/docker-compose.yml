@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  app:
+    build: 
+      context: .
+      args:
+        DEV: "true"
+    ports:
+      - "8080:8080"
+    hostname: app
+    env_file:
+      - .env
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
+    volumes:
+      - ./app:/app/
+    links:
+      - mongodb
+      - nginx
+
+  mongodb:
+    image: mongo:5.0
+    hostname: mongodb
+    # restart: unless-stopped
+    # command: mongod --auth
+    environment:
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: viettel2023
+      MONGO_INITDB_DATABASE: student
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - dbdata6:/data/db
+
+  nginx:
+    image: nginx:1.22.0-alpine
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx/student.conf:/etc/nginx/conf.d/default.conf
+
+ 
+volumes:
+  dbdata6:
