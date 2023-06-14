@@ -1,0 +1,2 @@
+NETWORK_NAME: fe-be
+IMAGE_NAME: liinhhnt/vdt-frontend:latest
