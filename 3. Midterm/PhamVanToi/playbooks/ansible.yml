@@ -1,0 +1,13 @@
+---
+- name: Setup OS enviroment
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - roles/common
+    - roles/logging
+    - roles/db
+    - roles/api
+    - roles/web
+    - roles/lb
+    

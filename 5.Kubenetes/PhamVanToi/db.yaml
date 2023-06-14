@@ -1,0 +1,34 @@
+# Create the database Deployment (Mongodb)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: mongodb-server
+        image: crvt4722/k8s-db
+        ports:
+        - containerPort: 27017
+
+# Create the database service.
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-server
+spec:
+  selector:
+    app: db
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+  type: NodePort
