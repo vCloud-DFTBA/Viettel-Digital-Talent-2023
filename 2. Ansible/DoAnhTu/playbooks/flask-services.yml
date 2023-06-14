@@ -1,0 +1,34 @@
+# flask-services.yml
+---
+- hosts: local
+  become: true
+  tasks:
+    - name: Creates src directory
+      file:
+        path: /home/src
+        state: directory
+        mode: "0775"
+
+    - name: copy src to folder remote
+      ansible.builtin.copy:
+        src: ../app
+        dest: /home/src
+    - name: Create a network
+      docker_network:
+        name: network_app
+
+    - name: create docker image flask app
+      shell: docker build -t flask_python .
+      args:
+        chdir: /home/src/app
+
+    - name: create docker container flask app
+      docker_container:
+        name: flask
+        image: flask_python
+        state: started
+        ports:
+          - "5000:5000"
+        networks:
+          - name: network_db
+          - name: network_app

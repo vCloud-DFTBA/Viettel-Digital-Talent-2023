@@ -1,0 +1,10 @@
+---
+- name: deploy
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - web
+    - api
+    - db
+  

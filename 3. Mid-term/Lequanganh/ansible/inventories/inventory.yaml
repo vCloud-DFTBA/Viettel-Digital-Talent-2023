@@ -1,0 +1,36 @@
+---
+all:
+  hosts:
+    web_app_1:
+      ansible_host: 10.0.3.6
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
+      COLOR: black
+
+    web_app_2:
+      ansible_host: 10.0.3.7
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
+      COLOR: cyan
+
+    db:
+      ansible_host: 10.0.3.8
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
+    nginx_lb:
+      ansible_host: 10.0.3.5
+      ansible_user: lqa
+      ansible_ssh_pass: 9876541
+      ansible_become_user: root
+      ansible_become_password: 9876541
+
+    center:
+      ansible_connection: local
+      ansible_become_user: root
+      ansible_become_password: 9876541

@@ -1,0 +1,16 @@
+user: lechiennn
+source_folder: ../app
+dest_folder: "/home/{{ user }}/test/"
+
+image_name: api
+image_state: present
+resources_path: "{{ dest_folder }}/app"
+
+container_name: ap
+ports:
+  - "5000:5000"
+container_state: started
+volumes:
+  - "{{ resources_path }}:/app"
+
+network_name: net

@@ -1,0 +1,35 @@
+.my-table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 60%;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.my-table th {
+  background-color: rgb(170, 18, 18);
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  padding: 8px;
+}
+
+.my-table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.my-table tr.header-row th:first-child {
+  background-color: rgb(170, 18, 18);
+}
+
+.my-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+header {
+  text-align: center;
+  font-family: monospace;
+  font-size: 24px;
+}
