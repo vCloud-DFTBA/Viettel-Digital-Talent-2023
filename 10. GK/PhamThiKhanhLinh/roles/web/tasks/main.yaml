@@ -1,0 +1,27 @@
+- name: Check if API network exists
+  community.docker.docker_network_info:
+    name: "{{ NETWORK_NAME }}"
+  register: api_network
+  become: true
+
+- name: Create API network
+  community.docker.docker_network:
+    name: "{{ NETWORK_NAME }}"
+    state: present
+  when: api_network.exists == false
+  become: true
+
+- name: Run frontend container with image frontend-vdt:v0.1.0
+  community.docker.docker_container:
+    name: frontend
+    image: "{{ IMAGE_NAME }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ NETWORK_NAME }}"
+    ports:
+      - "3030:3030"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "100.115.93.99:24224"
+      tag: "docker.web"
+  tags: docker

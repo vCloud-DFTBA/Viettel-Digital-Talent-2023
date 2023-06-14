@@ -1,0 +1,18 @@
+- name: Set up Docker
+  hosts: all
+  become: true
+  roles:
+    - common
+
+- name: Deploy backend and mongodb database
+  hosts: all
+  become: true
+  roles:
+    - db
+    - api
+
+- name: Deploy frontend
+  hosts: all
+  become: true
+  roles:
+    - web
