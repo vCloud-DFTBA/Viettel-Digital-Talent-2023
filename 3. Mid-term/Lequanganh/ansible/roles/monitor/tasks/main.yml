@@ -1,0 +1,22 @@
+---
+# tasks file for monitor
+- name: Run cadvisor container
+  docker_container:
+    image: gcr.io/cadvisor/cadvisor
+    name: cadvisor
+    ports:
+      - 5678:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    restart_policy: "unless-stopped"
+
+- name: Run node exporter container
+  docker_container:
+    image: prom/node-exporter
+    name: node-exporter
+    ports:
+      - 9100:9100
+    restart_policy: "unless-stopped"

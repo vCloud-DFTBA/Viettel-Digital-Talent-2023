@@ -1,0 +1,16 @@
+---
+# tasks file for logging
+- name: Install and run fluentd
+  community.general.docker_container:
+    name: fluentd
+    image: fluentd:v1.16.0-1.0
+    exposed_ports:
+      - 24224
+    published_ports:
+      - "24224:24224"
+    restart_policy: unless-stopped
+    volumes: /tmp/fluent.conf:/fluentd/etc/fluent.conf
+    state: started
+
+
+  

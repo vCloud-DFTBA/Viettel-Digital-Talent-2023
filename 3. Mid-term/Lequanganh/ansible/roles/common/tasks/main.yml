@@ -1,0 +1,73 @@
+- name: Check if Docker is already installed
+  command: docker --version
+  register: docker_version
+  changed_when: false
+  ignore_errors: true
+
+- name: Install Docker dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+  when: docker_version.rc != 0
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when: docker_version.rc != 0
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+  when: docker_version.rc != 0
+
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: present
+  when: docker_version.rc != 0
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  when: docker_version.rc != 0
+
+- name: Install python3-pip
+  apt:
+    name: python3-pip
+    state: present
+
+- name: Install Docker SDK for Python
+  pip:
+    name: docker
+    state: present
+
+- name: Prepare clean docker
+  block:
+  - name: Get running containers
+    community.general.docker_host_info:
+      containers: true
+      containers_all: false
+    register: docker_running
+
+  - name: Get all existing containers
+    community.general.docker_host_info:
+      containers: true
+      containers_all: true
+    register: docker_all
+
+  - name: Stop running containers
+    when: (docker_running.containers | length) != 0
+    shell: "docker kill $(docker ps -q)"
+
+  - name: Remove stopped docker containers
+    when: (docker_all.containers | length) != 0
+    shell: docker rm $(docker ps -aq)

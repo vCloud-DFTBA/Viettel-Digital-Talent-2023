@@ -1,0 +1,4 @@
+---
+# nginx_port: 80
+# nginx_conf: ~/web_app/1. Containerization/LeQuangAnh/nginx/nginx.conf
+
