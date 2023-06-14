@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+
+    #flask app
+    backend:
+      build: 
+        context: flask
+        dockerfile: Dockerfile
+      restart: unless-stopped
+      ports: 
+        - "5000:5000"
+      depends_on:
+        -  mongo  
+      networks:
+        - webapp
+    #nginx
+    webserver:
+      image: nginx:1.22.0-alpine
+      ports:
+          - 8000:80
+      volumes:
+          - ./nginx/:/etc/nginx/conf.d/
+      networks:
+        - webapp
+    # MongoDB
+    mongo:
+      container_name: mongodb
+      image: mongo:5.0
+      restart: unless-stopped
+      hostname: md_mongodb
+      environment:
+        - MONGO_INITDB_DATABASE=vdt2023
+        - MONGO_INITDB_ROOT_USERNAME=mongoAdmin
+        - MONGO_INITDB_ROOT_PASSWORD=admin123
+      volumes:
+        - ./data/init_db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+      ports:
+        - "27017:27017"
+      networks:
+        - webapp
+
+networks:
+  webapp:
+    driver: bridge
