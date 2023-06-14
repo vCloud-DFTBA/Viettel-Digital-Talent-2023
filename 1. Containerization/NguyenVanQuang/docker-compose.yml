@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  presentation_tier:
+    build: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+
+  logic_tier_1:
+    build: flask
+    container_name: flask_1
+    restart: unless-stopped
+    environment:
+      SERVER_NAME: Server 1
+      MONGO_INITDB_DATABASE: vdt2023
+      SERVICE_NAME: data_tier
+    ports:
+      - "5000:5000"
+
+  logic_tier_2:
+    build: flask
+    container_name: flask_2
+    restart: unless-stopped
+    environment:
+      SERVER_NAME: Server 2
+      MONGO_INITDB_DATABASE: vdt2023
+      SERVICE_NAME: data_tier
+    ports:
+      - "5001:5000"
+
+  data_tier:
+    image: mongo:4.4.18
+    container_name: mongodb
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_DATABASE=vdt2023
+    ports:
+      - "27017:27017"
