@@ -1,0 +1,62 @@
+---
+- name: Creates src directory
+  file:
+    path: /home/src
+    state: directory
+    mode: "0775"
+
+- name: copy src to folder remote
+  ansible.builtin.copy:
+    src: ../../../../app/VDT
+    dest: /home/src
+- name: copy test to folder remote
+  ansible.builtin.copy:
+    src: ../../../../app/test
+    dest: /home/src
+- name: copy dockerfile to folder remote
+  ansible.builtin.copy:
+    src: ../../../../app/Dockerfile
+    dest: /home/src
+- name: copy requirements.txt to folder remote
+  ansible.builtin.copy:
+    src: ../../../../app/requirements.txt
+    dest: /home/src
+
+- name: Create a network
+  docker_network:
+    name: network_app
+
+- name: create docker image flask app
+  shell: docker build -t flask_python .
+  args:
+    chdir: /home/src
+
+- name: create docker container flask app 1
+  docker_container:
+    name: flask1
+    image: flask_python
+    state: started
+    ports:
+      - "5000:5000"
+    networks:
+      - name: network_db
+      - name: network_app
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "0.0.0.0:24224"
+      tag: app1
+
+- name: create docker container flask app 2
+  docker_container:
+    name: flask2
+    image: flask_python
+    state: started
+    ports:
+      - "5001:5000"
+    networks:
+      - name: network_db
+      - name: network_app
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "0.0.0.0:24224"
+      tag: app2

@@ -1,0 +1,52 @@
+version: '3.9'
+
+networks:
+  vdt_web:
+    name: vdt_web
+volumes:
+  mongo-data:
+    name: mongo-data
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: mongo
+    hostname: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: hoangndst
+      MONGO_INITDB_ROOT_PASSWORD: Hoang2002
+    networks:
+      - vdt_web
+    volumes:
+      - mongo-data:/data/db
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    hostname: frontend
+    ports:
+      - 3000:80
+    restart: always
+    networks:
+      - vdt_web
+    depends_on:
+      - mongo
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: backend
+    hostname: backend
+    ports:
+      - 5000:5000
+    restart: always
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - MONGO_USERNAME=hoangndst
+      - MONGO_PASSWORD=Hoang2002
+    networks:
+      - vdt_web
+    depends_on:
+      - mongo

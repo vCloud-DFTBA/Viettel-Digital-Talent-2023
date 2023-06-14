@@ -1,0 +1,44 @@
+version: "3"
+
+networks:
+  dockerlab:
+    driver: bridge
+
+services:
+  php:
+    container_name: php
+    image: myphp
+    hostname: php
+    restart: always
+    networks:
+      - dockerlab
+    volumes:
+      - /lab/web/:/home/code
+    ports:
+      - "9000:9000"
+  httpd:
+    container_name: httpd
+    image: httpd:latest
+    hostname: httpd
+    restart: always
+    networks:
+      - dockerlab
+    volumes:
+      - /lab/web/:/home/code
+      - /lab/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    ports:
+      - "8080:80"
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    hostname: mysql
+    restart: always
+    networks:
+      - dockerlab
+    volumes:
+      - /lab/db/:/var/lib/mysql
+      - /lab/web/:/home/code
+    ports:
+      - "13306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123

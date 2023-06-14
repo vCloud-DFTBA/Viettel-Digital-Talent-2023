@@ -1,0 +1,116 @@
+{% extends "layouts/base.html" %}
+<!-- {% block title %} Presentation {% endblock %}  -->
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+<section style="background-color: #ffffff;">
+    <div class="container py-7">
+      <div class="row">
+            <div class="card-body">
+              <div class="row">
+                <div class="card-body">
+                  <h5 class="my-3">{{ user.name }}</h5>
+                </div>
+                <div class="col-sm-3">
+                  <p class="mb-0">Họ và tên</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user.name }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Năm sinh</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user.year }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Giới tính</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user.sex }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Trường</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user.university }}</p>
+                </div>
+              </div>
+
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Chuyên ngành</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user.title }}</p>
+                </div>
+              </div>
+
+              <!-- <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Chuyên ngành</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user.program }}</p>
+                </div>
+              </div> -->
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+<!-- Footer-->
+<footer class="border-top">
+  <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+              <ul class="list-inline text-center">
+                  <li class="list-inline-item">
+                      <a href="#!">
+                          <span class="fa-stack fa-lg">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                      </a>
+                  </li>
+                  <li class="list-inline-item">
+                      <a href="#!">
+                          <span class="fa-stack fa-lg">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                          </span>
+                      </a>
+                  </li>
+                  <li class="list-inline-item">
+                      <a href="#!">
+                          <span class="fa-stack fa-lg">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                      </a>
+                  </li>
+              </ul>
+              <div class="small text-center text-muted fst-italic">Copyright &copy; trong-minh le 2023</div>
+          </div>
+      </div>
+  </div>
+</footer>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+<!-- {% block javascripts %}{% endblock javascripts %} -->

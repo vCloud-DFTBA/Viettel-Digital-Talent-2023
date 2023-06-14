@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thông tin cá nhân</title>
+</head>
+<body>
+    <h1>Thông tin cá nhân</h1>
+    <form id="update-form" method="POST" action="/api/update_entry">
+        <input type="hidden" name="_id" value="{{ attendee['_id'] }}">
+        <table>
+            <tr>
+                <td>Họ và tên</td>
+                <td><input type="text" name="ho_ten" value="{{ attendee['Họ và tên'] }}"></td>
+            </tr>
+            <tr>
+                <td>Năm sinh</td>
+                <td><input type="text" name="nam_sinh" value="{{ attendee['Năm sinh'] }}"></td>
+            </tr>
+            <tr>
+                <td>Giới tính</td>
+                <td><input type="text" name="gioi_tinh" value="{{ attendee['Giới tính'] }}"></td>
+            </tr>
+            <tr>
+                <td>Trường</td>
+                <td><input type="text" name="truong" value="{{ attendee['Trường'] }}"></td>
+            </tr>
+            <tr>
+                <td>Chuyên ngành</td>
+                <td><input type="text" name="chuyen_nganh" value="{{ attendee['Chuyên ngành'] }}"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Update">
+    </form>
+    
+    <form id="delete-form" method="POST" action="/api/delete_entry">
+        <input type="hidden" name="entry_name" value="{{ attendee['Họ và tên'] }}">
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

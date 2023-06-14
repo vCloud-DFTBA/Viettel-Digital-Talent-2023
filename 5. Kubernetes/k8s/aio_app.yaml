@@ -1,0 +1,89 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: mern-k8s-back
+#   labels:
+#     app: mern-k8s
+#     component: back
+# spec:
+#   replicas: 2
+#   selector: 
+#     matchLabels:
+#       component: back
+#   template:
+#     metadata: 
+#       labels:
+#         app: mern-k8s
+#         component: back
+#     spec:
+#       containers:
+#         - name: mern-k8s-back
+#           image: trongminhjr/mern-k8s-back
+#           ports: 
+#             - containerPort: 3000
+#           env: 
+#             - name: PORT
+#               value: "3000"
+#             - name: CONN_STR
+#               value: "mongodb://admin:admin@mongo:27017"
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: mern-k8s-back
+#   labels:
+#     app: mern-k8s
+#     component: back
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     component: back
+#   ports:
+#     - port: 3000
+#       targetPort: 3000
+#       protocol: TCP
+#       name: http
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: mern-k8s-front
+#   labels:
+#     app: mern-k8s
+#     component: front
+# spec:
+#   replicas: 2
+#   selector: 
+#     matchLabels:
+#       component: front
+#   template:
+#     metadata: 
+#       labels:
+#         app: mern-k8s
+#         component: front
+#     spec:
+#       containers:
+#         - name: mern-k8s-front
+#           image: trongminhjr/mern-k8s-front:v1
+#           ports: 
+#             - containerPort: 80
+#           env: 
+#             - name: BASE_URL
+#               value: "http://localhost:3000"
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: mern-k8s-front
+#   labels:
+#     app: mern-k8s
+#     component: front
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     component: front
+#   ports:
+#     - port: 80
+#       targetPort: 80
+#       protocol: TCP
+#       name: http

@@ -1,0 +1,17 @@
+---
+# tasks file for prometheus
+- name: Copy prometheus config
+  copy: 
+    src: prometheus.yml
+    dest: /tmp/prometheus.yaml
+  become: true
+
+- name: Run Prometheus container
+  docker_container:
+    image: prom/prometheus
+    name: prometheus
+    restart_policy: "unless-stopped"
+    volumes: /tmp/prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+  become: true
