@@ -1,0 +1,24 @@
+2023-05-16 15:38:11,290 - student_attend - INFO - Delete user to db
+2023-05-16 15:38:11,292 - student_attend - INFO - Pass delete user
+2023-05-16 15:38:11,328 - student_attend - INFO - Add user to db
+2023-05-16 15:38:11,329 - student_attend - INFO - Pass test add user
+2023-05-16 15:38:11,331 - student_attend - INFO - Get user to db
+2023-05-16 15:38:11,332 - student_attend - INFO - Pass test get single user info
+2023-05-16 15:38:11,347 - student_attend - INFO - Update user info
+2023-05-16 15:38:11,355 - student_attend - INFO - Pass update user
+2023-05-16 15:38:11,364 - student_attend - INFO - Delete user to db
+2023-05-16 15:38:11,365 - student_attend - INFO - Pass delete user
+2023-05-16 15:38:11,369 - student_attend - INFO - Get all user info
+2023-05-16 15:38:11,375 - student_attend - INFO - Pass get all users
+2023-05-16 15:45:54,918 - student_attend - INFO - Delete user to db
+2023-05-16 15:45:54,925 - student_attend - INFO - Pass delete user
+2023-05-16 15:45:54,940 - student_attend - INFO - Add user to db
+2023-05-16 15:45:54,942 - student_attend - INFO - Pass test add user
+2023-05-16 15:45:54,948 - student_attend - INFO - Get user to db
+2023-05-16 15:45:54,949 - student_attend - INFO - Pass test get single user info
+2023-05-16 15:45:54,972 - student_attend - INFO - Update user info
+2023-05-16 15:45:54,975 - student_attend - INFO - Pass update user
+2023-05-16 15:45:54,982 - student_attend - INFO - Delete user to db
+2023-05-16 15:45:54,985 - student_attend - INFO - Pass delete user
+2023-05-16 15:45:54,992 - student_attend - INFO - Get all user info
+2023-05-16 15:45:55,002 - student_attend - INFO - Pass get all users

@@ -1,0 +1,41 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [node2]
+ok: [node1]
+ok: [local]
+
+TASK [../roles/api : include_tasks] ********************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/api/tasks/config.yml for node1, local, node2
+
+TASK [../roles/api : Create vth group info.] ***********************************
+ok: [local]
+ok: [node1]
+ok: [node2]
+
+TASK [../roles/api : Create user.] *********************************************
+ok: [local]
+ok: [node2]
+ok: [node1]
+
+TASK [../roles/api : Check docker install.] ************************************
+ok: [node2]
+ok: [local]
+ok: [node1]
+
+TASK [../roles/api : include_tasks] ********************************************
+
+TASK [../roles/api : include_tasks] ********************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/api/tasks/service.yml for local, node1, node2
+
+TASK [../roles/api : Run the docker API images] ********************************
+ok: [node1]
+ok: [node2]
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node1                      : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node2                      : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

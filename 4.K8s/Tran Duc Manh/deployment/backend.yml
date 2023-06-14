@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restful-deployment
+  labels:
+    app: restapi-pod
+spec:
+  selector:
+    matchLabels:
+      app: restapi-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: restapi-pod
+    spec:
+      # imagePullSecrets:
+      #   - name: aws-ecr
+
+      containers:
+      - name: restapi-pod
+        image: docker.io/manhlab/k8s-rest_api
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 4000
+        # volumeMounts:
+        # - name: comm-config-vol 
+        #   mountPath: /workspace/system-comm.yml
+        #   subPath: system-comm.yml
+          
+        env:
+        - name: POSTGRES_HOST
+          value: "postgres-pod-service"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: POSTGRES_PASSWORD
+
+      nodeSelector:
+        kubernetes.io/os: linux
+      # volumes:
+      # - name: comm-config-vol
+      #   configMap:
+      #     name: blueedge-manager-cfg
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: restapi-pod-service
+spec:
+  type: ClusterIP
+  selector:
+    app: restapi-pod
+  
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
+      

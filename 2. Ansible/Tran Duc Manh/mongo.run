@@ -1,0 +1,55 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [mongodb : include_tasks] *************************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/2. Ansible/Tran Duc Manh/roles/mongodb/tasks/config.yml for local
+
+TASK [mongodb : Create nginx group info.] **************************************
+changed: [local]
+
+TASK [mongodb : Create user.] **************************************************
+changed: [local]
+
+TASK [mongodb : Check docker install.] *****************************************
+ok: [local]
+
+TASK [mongodb : Ensure db client packages are installed (Debian/Ubuntu)] *******
+skipping: [local] => (item=mongodb-org-tools) 
+skipping: [local]
+
+TASK [mongodb : include_tasks] *************************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/2. Ansible/Tran Duc Manh/roles/mongodb/tasks/setup_env.yml for local
+
+TASK [mongodb : Configuration: Environment with Auth] **************************
+skipping: [local]
+
+TASK [mongodb : Configuration: Environment without Auth] ***********************
+ok: [local]
+
+TASK [mongodb : Configuration: Init database] **********************************
+ok: [local]
+
+TASK [mongodb : Configuration: Render config directories] **********************
+changed: [local]
+
+TASK [mongodb : Configuration: Render user config script] **********************
+changed: [local]
+
+TASK [mongodb : include_tasks] *************************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/2. Ansible/Tran Duc Manh/roles/mongodb/tasks/service.yml for local
+
+TASK [mongodb : Create data container] *****************************************
+changed: [local]
+
+TASK [mongodb : Run mongodb container] *****************************************
+changed: [local]
+
+TASK [mongodb : Wait until mongodb starts up] **********************************
+ok: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=14   changed=6    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
