@@ -15,7 +15,7 @@
 
 # 2. Kubernetes Architecture
 
-![Untitled](/img/Untitled.png)
+![Untitled](img/Untitled.png)
 
 - When you deploy Kubernetes, you get a cluster. A cluster contains a set of worker machines called nodes and control plane. Every cluster has at least one worker node and the control plane usually runs across multiple computers. In production, a cluster has multiple nodes to provide high availability and fault-tolerance.
 - **Control plane:** The collection of processes that control Kubernetes nodes. This is where all task assignments originate. The control plane contains:
@@ -119,7 +119,7 @@ data:
 
 K8s secret uses base64 for data encoding
 
-![Untitled](/img/Untitled1.png)
+![Untitled](img/Untitled1.png)
 
 Use 
 
@@ -179,9 +179,9 @@ to apply PV and PVC
 
 To get information of Persistent Volume and Persistent Volume Claim
 
-![Untitled](/img/Untitled2.png)
+![Untitled](img/Untitled2.png)
 
-![Untitled](/img/Untitled3.png)
+![Untitled](img/Untitled3.png)
 
 ## 9.4 Mongo Deployment and Service
 
@@ -371,22 +371,22 @@ to apply Service and Deployment of Nginx
 
 ## 9.7 Results:
 
-![Untitled](/img/Untitled4.png)
+![Untitled](img/Untitled4.png)
 
 Check the ip of the node
 
 > kubectl get node -o wide
 > 
 
-![Untitled](/img/Untitled5.png)
+![Untitled](img/Untitled5.png)
 
 Go to 192.168.49.2:30800
 
-[Screencast from 14-06-2023 16:27:28.webm](/img/Screencast_from_14-06-2023_162728.webm)
+[Screencast from 14-06-2023 16:27:28.webm](img/Screencast_from_14-06-2023_162728.webm)
 
 To test whether the persistance volumes works or not, i will delete the mongo pod and then refresh the page
 
-[Screencast from 14-06-2023 16:29:34.webm](/img/Screencast_from_14-06-2023_162934.webm)
+[Screencast from 14-06-2023 16:29:34.webm](img/Screencast_from_14-06-2023_162934.webm)
 
 # 10. Refferences:
 
