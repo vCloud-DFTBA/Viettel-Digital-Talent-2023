@@ -1,0 +1,36 @@
+---
+- name: Remove directory {{ monitor_dest }}
+  ansible.builtin.file:
+    path: "{{ monitor_dest }}"
+    state: absent
+  when: monitor_dest_cleanup | default(false) | bool
+
+- name: Create directory {{ monitor_dest }}
+  ansible.builtin.file:
+    path: "{{ monitor_dest }}"
+    state: directory
+    mode: "0755"
+
+- name: Create directory {{ monitor_dest }}/data
+  ansible.builtin.file:
+    path: "{{ monitor_dest }}/data"
+    state: directory
+    mode: "0755"
+
+- name: Generate agent.yml
+  ansible.builtin.template:
+    src: agent.yml.j2
+    dest: "{{ monitor_dest }}/agent.yml"
+    mode: "0644"
+
+- name: Generate docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ monitor_dest }}/docker-compose.yml"
+    mode: "0644"
+
+- name: Create and (re)start service {{ monitor_service }}
+  community.docker.docker_compose:
+    project_src: "{{ monitor_dest }}"
+    state: present
+    restarted: true

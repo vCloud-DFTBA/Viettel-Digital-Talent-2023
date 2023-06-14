@@ -1,0 +1,17 @@
+---
+- name: Create network {{ api_db_network }}
+  community.docker.docker_network:
+    name: "{{ api_db_network }}"
+
+- name: Create container
+  community.docker.docker_container:
+    name: "{{ db_name }}"
+    hostname: "{{ db_name }}"
+    restart_policy: unless-stopped
+    image: "{{ db_image }}"
+    volumes:
+      - ../app/db:/docker-entrypoint-initdb.d
+    networks:
+      - name: "{{ api_db_network }}"
+    ports:
+      - 27017:27017

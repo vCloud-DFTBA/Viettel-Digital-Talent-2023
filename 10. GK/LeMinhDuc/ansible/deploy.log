@@ -1,0 +1,253 @@
+
+PLAY [Set up] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [logger01]
+ok: [api01]
+ok: [web01]
+ok: [db01]
+
+TASK [common : Create group root] **********************************************
+ok: [web01]
+ok: [db01]
+ok: [logger01]
+ok: [api01]
+
+TASK [common : Create user root] ***********************************************
+ok: [web01]
+ok: [logger01]
+ok: [db01]
+ok: [api01]
+
+TASK [common : Uninstall old versions] *****************************************
+ok: [logger01]
+ok: [db01]
+ok: [api01]
+ok: [web01]
+
+TASK [common : Allow apt to use repository over HTTPS] *************************
+ok: [api01]
+ok: [logger01]
+ok: [web01]
+ok: [db01]
+
+TASK [common : Add Docker's official GPG key] **********************************
+ok: [web01]
+ok: [logger01]
+ok: [db01]
+ok: [api01]
+
+TASK [common : Add repository into sources list] *******************************
+ok: [logger01]
+ok: [web01]
+ok: [db01]
+ok: [api01]
+
+TASK [common : Install Docker engine] ******************************************
+ok: [logger01]
+ok: [api01]
+ok: [db01]
+ok: [web01]
+
+TASK [common : Install pip3] ***************************************************
+ok: [db01]
+ok: [logger01]
+ok: [api01]
+ok: [web01]
+
+TASK [common : Install Docker Compose v1 for backward compatibility] ***********
+ok: [web01]
+ok: [logger01]
+ok: [api01]
+ok: [db01]
+
+TASK [common : Ensure docker-group added user root] ****************************
+ok: [web01]
+ok: [logger01]
+ok: [db01]
+ok: [api01]
+
+TASK [common : Reset SSH connection to re-evaluate group membership] ***********
+
+TASK [common : Reset SSH connection to re-evaluate group membership] ***********
+
+TASK [common : Reset SSH connection to re-evaluate group membership] ***********
+
+TASK [common : Reset SSH connection to re-evaluate group membership] ***********
+
+PLAY [Restart docker service] **************************************************
+
+TASK [debug : Restart docker service] ******************************************
+changed: [logger01]
+changed: [api01]
+changed: [db01]
+changed: [web01]
+
+PLAY [Tear down existing services] *********************************************
+
+TASK [cleanup : Get running containers] ****************************************
+ok: [api01]
+ok: [logger01]
+ok: [web01]
+ok: [db01]
+
+TASK [cleanup : Stop running containers] ***************************************
+skipping: [logger01]
+skipping: [db01]
+skipping: [api01]
+skipping: [web01]
+
+TASK [cleanup : Prune everything (including non-dangling images)] **************
+ok: [api01]
+ok: [logger01]
+ok: [db01]
+ok: [web01]
+
+PLAY [Deploy logger] ***********************************************************
+
+TASK [log : Remove directory /etc/logger] **************************************
+changed: [logger01]
+
+TASK [log : Create directory /etc/logger] **************************************
+changed: [logger01]
+
+TASK [log : Create directory /etc/logger/conf] *********************************
+changed: [logger01]
+
+TASK [log : Generate Dockerfile] ***********************************************
+changed: [logger01]
+
+TASK [log : Generate docker-compose.yml] ***************************************
+changed: [logger01]
+
+TASK [log : Generate fluent.conf] **********************************************
+changed: [logger01]
+
+TASK [log : Create and (re)start service logger] *******************************
+changed: [logger01]
+
+PLAY [Set up db files] *********************************************************
+
+TASK [db_setup : Remove directory /etc/db] *************************************
+changed: [db01]
+
+TASK [db_setup : Create directory /etc/db] *************************************
+changed: [db01]
+
+TASK [db_setup : Copy common files to /etc/db] *********************************
+changed: [db01]
+
+TASK [db_setup : Generate docker-compose.yml] **********************************
+changed: [db01]
+
+PLAY [Deploy db service] *******************************************************
+
+TASK [db : Create and (re)start service db] ************************************
+changed: [db01]
+
+PLAY [Set up api files] ********************************************************
+
+TASK [api_setup : Remove directory /etc/api] ***********************************
+changed: [api01]
+
+TASK [api_setup : Create directory /etc/api] ***********************************
+changed: [api01]
+
+TASK [api_setup : Generate docker-compose.yml] *********************************
+changed: [api01]
+
+PLAY [Deploy api service] ******************************************************
+
+TASK [api : Create and (re)start service api] **********************************
+changed: [api01]
+
+TASK [lb : Remove directory /etc/api_lb] ***************************************
+changed: [api01]
+
+TASK [lb : Ensure having directory /etc/api_lb] ********************************
+changed: [api01]
+
+TASK [lb : Generate nginx.conf] ************************************************
+changed: [api01]
+
+TASK [lb : Create and (re)start service api_lb] ********************************
+changed: [api01]
+
+TASK [lb : Scale service api to 2] *********************************************
+changed: [api01]
+
+PLAY [Set up web files] ********************************************************
+
+TASK [web_setup : Remove directory /etc/web] ***********************************
+changed: [web01]
+
+TASK [web_setup : Create directory /etc/web] ***********************************
+changed: [web01]
+
+TASK [web_setup : Generate docker-compose.yml] *********************************
+changed: [web01]
+
+PLAY [Deploy web service] ******************************************************
+
+TASK [web : Create and (re)start service web] **********************************
+changed: [web01]
+
+TASK [lb : Remove directory /etc/web_lb] ***************************************
+changed: [web01]
+
+TASK [lb : Ensure having directory /etc/web_lb] ********************************
+changed: [web01]
+
+TASK [lb : Generate nginx.conf] ************************************************
+changed: [web01]
+
+TASK [lb : Create and (re)start service web_lb] ********************************
+changed: [web01]
+
+TASK [lb : Scale service web to 2] *********************************************
+changed: [web01]
+
+PLAY [Deploy monitors] *********************************************************
+
+TASK [monitor : Remove directory /etc/monitor] *********************************
+changed: [web01]
+changed: [logger01]
+changed: [api01]
+changed: [db01]
+
+TASK [monitor : Create directory /etc/monitor] *********************************
+changed: [db01]
+changed: [api01]
+changed: [logger01]
+changed: [web01]
+
+TASK [monitor : Create directory /etc/monitor/data] ****************************
+changed: [logger01]
+changed: [web01]
+changed: [db01]
+changed: [api01]
+
+TASK [monitor : Generate agent.yml] ********************************************
+changed: [api01]
+changed: [logger01]
+changed: [web01]
+changed: [db01]
+
+TASK [monitor : Generate docker-compose.yml] ***********************************
+changed: [api01]
+changed: [logger01]
+changed: [db01]
+changed: [web01]
+
+TASK [monitor : Create and (re)start service monitor] **************************
+changed: [web01]
+changed: [logger01]
+changed: [db01]
+changed: [api01]
+
+PLAY RECAP *********************************************************************
+api01                      : ok=29   changed=16   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+db01                       : ok=25   changed=12   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+logger01                   : ok=27   changed=14   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+web01                      : ok=29   changed=16   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+

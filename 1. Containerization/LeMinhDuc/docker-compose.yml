@@ -1,0 +1,37 @@
+services:
+  backend:
+    restart: unless-stopped
+    build:
+      context: ./backend
+    depends_on:
+      - db
+    networks:
+      - react-flask
+      - flask-mongo
+    ports:
+      - 5000:5000
+
+  db:
+    restart: unless-stopped
+    image: mongo:5.0
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - flask-mongo
+    ports:
+      - 27017:27017
+
+  frontend:
+    restart: unless-stopped
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+    networks:
+      - react-flask
+    ports:
+      - 80:80
+
+networks:
+  react-flask:
+  flask-mongo:

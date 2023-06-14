@@ -1,0 +1,16 @@
+---
+- name: Create network {{ web_api_network }}
+  community.docker.docker_network:
+    name: "{{ web_api_network }}"
+
+- name: Create container
+  community.docker.docker_container:
+    name: "{{ api_name }}"
+    hostname: "{{ api_name }}"
+    restart_policy: unless-stopped
+    image: "{{ api_image }}"
+    networks:
+      - name: "{{ web_api_network }}"
+      - name: "{{ api_db_network }}"
+    ports:
+      - 5000:5000

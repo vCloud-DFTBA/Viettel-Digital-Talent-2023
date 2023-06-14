@@ -1,0 +1,13 @@
+services:
+  {{ db_service }}:
+    restart: unless-stopped
+    image: mongo:5.0
+    volumes:
+      - {{ db_dest }}:/docker-entrypoint-initdb.d
+    ports:
+      - {{ db_exposed_port }}:27017
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: {{ logger_host }}:24224
+        tag: mongo.{{ db_service }}

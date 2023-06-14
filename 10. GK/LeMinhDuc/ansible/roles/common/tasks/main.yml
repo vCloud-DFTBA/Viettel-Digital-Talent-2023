@@ -1,0 +1,70 @@
+---
+- name: Create group {{ ansible_user }}
+  ansible.builtin.group:
+    name: "{{ ansible_user }}"
+
+- name: Create user {{ ansible_user }}
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Uninstall old versions
+  ansible.builtin.apt:
+    name:
+      - docker
+      - docker-engine
+      - docker.io
+      - containerd
+      - runc
+    state: absent
+
+- name: Allow apt to use repository over HTTPS
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+    update_cache: true
+
+- name: Add Docker's official GPG key
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    state: present
+
+- name: Add repository into sources list
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ deb_architecture[ansible_architecture] }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    state: present
+    filename: docker
+
+- name: Install Docker engine
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+
+- name: Install pip3
+  ansible.builtin.apt:
+    name:
+      - python3-pip
+    state: present
+    update_cache: true
+
+- name: Install Docker Compose v1 for backward compatibility
+  ansible.builtin.pip:
+    name: docker-compose
+    state: present
+
+- name: Ensure docker-group added user {{ ansible_user }}
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+
+- name: Reset SSH connection to re-evaluate group membership
+  ansible.builtin.meta: reset_connection

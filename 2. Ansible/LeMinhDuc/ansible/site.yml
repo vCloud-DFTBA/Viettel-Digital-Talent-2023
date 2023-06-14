@@ -1,0 +1,28 @@
+---
+- name: Set up Docker
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - common
+
+- name: Deploy db
+  hosts: all
+  become: false
+  gather_facts: false
+  roles:
+    - db
+
+- name: Deploy backend
+  hosts: all
+  become: false
+  gather_facts: false
+  roles:
+    - api
+
+- name: Deploy frontend
+  hosts: all
+  become: false
+  gather_facts: false
+  roles:
+    - web

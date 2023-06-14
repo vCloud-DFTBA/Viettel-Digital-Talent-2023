@@ -1,0 +1,8 @@
+---
+- name: Create and (re)start service {{ db_service }}
+  community.docker.docker_compose:
+    project_src: "{{ db_dest }}"
+    state: present
+    restarted: true
+    services:
+      - "{{ db_service }}"
