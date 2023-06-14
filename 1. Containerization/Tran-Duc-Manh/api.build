@@ -1,0 +1,41 @@
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 513B done
+#1 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.9
+#3 DONE 0.4s
+
+#4 [1/6] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 193.42kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/6] WORKDIR /app
+#6 CACHED
+
+#7 [3/6] COPY poetry.lock pyproject.toml ./
+#7 CACHED
+
+#8 [4/6] RUN pip install --no-cache-dir  --upgrade pip &&     pip install --no-cache-dir  poetry &&     poetry config virtualenvs.create false
+#8 CACHED
+
+#9 [5/6] RUN if [ "true" = "true" ] ; then poetry install --no-cache --with dev ; else poetry install --no-cache --only main ; fi
+#9 CACHED
+
+#10 [6/6] COPY ./ ./
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 writing image sha256:eb2e2f7e468d7c4b690911ab96d885219ac863199881d9d9d4e15faf6fcd55bc done
+#11 naming to docker.io/library/tran-duc-manh-api done
+#11 DONE 0.0s

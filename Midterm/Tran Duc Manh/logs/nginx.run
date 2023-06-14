@@ -1,0 +1,159 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Restart a container] ************************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Create nginx group info.] *******************************
+ok: [local]
+
+TASK [../roles/nginx : Create user.] *******************************************
+ok: [local]
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Restart a container] ************************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Restart a container] ************************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Restart a container] ************************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Restart a container] ************************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start docker container Nginx] ***************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for local
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for local
+
+TASK [../roles/nginx : Start docker container Nginx] ***************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
