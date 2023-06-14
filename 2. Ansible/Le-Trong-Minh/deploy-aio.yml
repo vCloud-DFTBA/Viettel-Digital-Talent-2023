@@ -1,7 +1,0 @@
-- hosts: all
-  roles:
-    - common
-    - mongodb
-    - backend
-    - frontend
-    - nginx
