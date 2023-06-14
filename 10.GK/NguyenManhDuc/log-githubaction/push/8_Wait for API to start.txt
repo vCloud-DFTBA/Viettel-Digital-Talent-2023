@@ -1,0 +1,11 @@
+2023-05-22T04:35:20.1154471Z ##[group]Run sleep 5
+2023-05-22T04:35:20.1154901Z [36;1msleep 5[0m
+2023-05-22T04:35:20.1238063Z shell: /usr/bin/bash -e {0}
+2023-05-22T04:35:20.1238354Z env:
+2023-05-22T04:35:20.1238670Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:20.1239045Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib/pkgconfig
+2023-05-22T04:35:20.1239428Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:20.1239790Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:20.1240147Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-22T04:35:20.1240490Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib
+2023-05-22T04:35:20.1240778Z ##[endgroup]

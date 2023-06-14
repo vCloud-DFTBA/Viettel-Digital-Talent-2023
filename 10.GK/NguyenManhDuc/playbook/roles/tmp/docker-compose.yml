@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  fluent:
+    build: .
+    container_name: fluent
+    restart: unless-stopped
+    volumes:
+      - ./config/:/fluent/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+    

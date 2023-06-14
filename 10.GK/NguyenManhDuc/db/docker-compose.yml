@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+    mongodb:
+        image: mongo:5.0
+        container_name: mongo1
+        volumes:    
+        - ./init.js:/docker-entrypoint-initdb.d/init.js
+        ports:
+        - 27017:27017
+      

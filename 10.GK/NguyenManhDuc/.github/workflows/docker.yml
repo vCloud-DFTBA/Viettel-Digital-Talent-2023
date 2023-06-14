@@ -1,0 +1,67 @@
+name: docker built and push
+
+on:
+    push: 
+        tags:
+            - "*"
+          
+jobs:
+    docker:
+        runs-on: ubuntu-latest
+        steps:
+            - 
+                name: checkout
+                uses: actions/checkout@v3
+            -
+                name: Set up QEMU
+                uses: docker/setup-qemu-action@v2
+            -
+                name: Set up Docker Buildx
+                uses: docker/setup-buildx-action@v2
+            - 
+                name: login to docker hub
+                uses: docker/login-action@v1
+                with:
+                    username: ${{ secrets.DOCKER_USERNAME }}
+                    password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+            - 
+                name: Opimize cache dokcer image
+                uses: actions/cache@v2
+                with:
+                  path: /tmp/.buildx-cache
+                  key: ${{ runner.os }}-buildx-${{ github.sha }}
+                  restore-keys: |
+                    ${{ runner.os }}-buildx-
+            - 
+                name: Get Latest Tag
+                id: get-tag
+                run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+            - 
+                name: build and push docker image api
+                uses: docker/build-push-action@v2
+                env:
+                    RELEASE_VERSION: ${{ steps.get-tag.outputs.tag }}
+                with:
+                    context: ./api
+                    file: ./api/Dockerfile
+                    builder: ${{ steps.buildx.outputs.name }}
+                    push: true
+                    tags: ${{ secrets.DOCKER_USERNAME }}/api:${{ steps.get-tag.outputs.tag }}
+                    cache-from: type=local,src=/tmp/.buildx-cache
+                    cache-to: type=local,dest=/tmp/.buildx-cache
+            - 
+                name: build and push docker image web
+                uses: docker/build-push-action@v2
+                env:
+                    RELEASE_VERSION: ${{ steps.get-tag.outputs.tag }}
+                with:
+                    context: ./web
+                    file: ./web/Dockerfile
+                    builder: ${{ steps.buildx.outputs.name }}
+                    push: true
+                    tags: ${{ secrets.DOCKER_USERNAME }}/web:${{ steps.get-tag.outputs.tag }}
+                    cache-from: type=local,src=/tmp/.buildx-cache
+                    cache-to: type=local,dest=/tmp/.buildx-cache
+            - 
+                name: Verify
+                run: echo ${{ steps.docker_build.outputs.digest }}

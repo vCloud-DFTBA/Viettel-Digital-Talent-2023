@@ -1,0 +1,4 @@
+
+alert_image: "prom/alertmanager:v0.25.0"
+container_alert_name: "alertmanager"
+alertmanager_dir_config: "/etc/alertmanager"

@@ -1,0 +1,61 @@
+2023-05-21T18:46:35.3658125Z ##[group]Run pip install --upgrade pip
+2023-05-21T18:46:35.3658432Z [36;1mpip install --upgrade pip[0m
+2023-05-21T18:46:35.3658770Z [36;1mif [ -f "api/requirements.txt" ]; then pip install -r "api/requirements.txt"; fi[0m
+2023-05-21T18:46:35.3659155Z [36;1mif [ -f "tests/requirements.txt" ]; then pip install -r "tests/requirements.txt"; fi[0m
+2023-05-21T18:46:35.3713486Z shell: /usr/bin/bash -e {0}
+2023-05-21T18:46:35.3713721Z env:
+2023-05-21T18:46:35.3713978Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3714306Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib/pkgconfig
+2023-05-21T18:46:35.3714633Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3714934Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3715223Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3715527Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib
+2023-05-21T18:46:35.3715771Z ##[endgroup]
+2023-05-21T18:46:36.1149746Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (23.0.1)
+2023-05-21T18:46:36.3347224Z Collecting pip
+2023-05-21T18:46:36.4856596Z   Downloading pip-23.1.2-py3-none-any.whl (2.1 MB)
+2023-05-21T18:46:36.5866301Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 21.4 MB/s eta 0:00:00
+2023-05-21T18:46:36.6470679Z Installing collected packages: pip
+2023-05-21T18:46:36.6472170Z   Attempting uninstall: pip
+2023-05-21T18:46:36.6480595Z     Found existing installation: pip 23.0.1
+2023-05-21T18:46:36.6968777Z     Uninstalling pip-23.0.1:
+2023-05-21T18:46:36.7396581Z       Successfully uninstalled pip-23.0.1
+2023-05-21T18:46:37.8724278Z Successfully installed pip-23.1.2
+2023-05-21T18:46:38.7761196Z Collecting Flask==2.1.3 (from -r api/requirements.txt (line 1))
+2023-05-21T18:46:38.9366523Z   Downloading Flask-2.1.3-py3-none-any.whl (95 kB)
+2023-05-21T18:46:38.9761866Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 95.6/95.6 kB 2.5 MB/s eta 0:00:00
+2023-05-21T18:46:39.5344184Z Collecting pymongo==4.2.0 (from -r api/requirements.txt (line 2))
+2023-05-21T18:46:39.5553570Z   Downloading pymongo-4.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (479 kB)
+2023-05-21T18:46:39.6138475Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 479.9/479.9 kB 8.4 MB/s eta 0:00:00
+2023-05-21T18:46:39.6809784Z Collecting Werkzeug>=2.0 (from Flask==2.1.3->-r api/requirements.txt (line 1))
+2023-05-21T18:46:39.7059685Z   Downloading Werkzeug-2.3.4-py3-none-any.whl (242 kB)
+2023-05-21T18:46:39.7299198Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.5/242.5 kB 11.0 MB/s eta 0:00:00
+2023-05-21T18:46:39.7733793Z Collecting Jinja2>=3.0 (from Flask==2.1.3->-r api/requirements.txt (line 1))
+2023-05-21T18:46:39.7906519Z   Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+2023-05-21T18:46:39.8024180Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 13.6 MB/s eta 0:00:00
+2023-05-21T18:46:39.8365462Z Collecting itsdangerous>=2.0 (from Flask==2.1.3->-r api/requirements.txt (line 1))
+2023-05-21T18:46:39.8536393Z   Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+2023-05-21T18:46:39.9021060Z Collecting click>=8.0 (from Flask==2.1.3->-r api/requirements.txt (line 1))
+2023-05-21T18:46:39.9181451Z   Downloading click-8.1.3-py3-none-any.whl (96 kB)
+2023-05-21T18:46:39.9277538Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 12.3 MB/s eta 0:00:00
+2023-05-21T18:46:40.0348432Z Collecting MarkupSafe>=2.0 (from Jinja2>=3.0->Flask==2.1.3->-r api/requirements.txt (line 1))
+2023-05-21T18:46:40.0509644Z   Downloading MarkupSafe-2.1.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+2023-05-21T18:46:40.1253311Z Installing collected packages: pymongo, MarkupSafe, itsdangerous, click, Werkzeug, Jinja2, Flask
+2023-05-21T18:46:40.6781838Z Successfully installed Flask-2.1.3 Jinja2-3.1.2 MarkupSafe-2.1.2 Werkzeug-2.3.4 click-8.1.3 itsdangerous-2.1.2 pymongo-4.2.0
+2023-05-21T18:46:41.4418014Z Collecting requests (from -r tests/requirements.txt (line 1))
+2023-05-21T18:46:41.5788316Z   Downloading requests-2.30.0-py3-none-any.whl (62 kB)
+2023-05-21T18:46:41.6105106Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.5/62.5 kB 1.9 MB/s eta 0:00:00
+2023-05-21T18:46:41.7522139Z Collecting charset-normalizer<4,>=2 (from requests->-r tests/requirements.txt (line 1))
+2023-05-21T18:46:41.7708574Z   Downloading charset_normalizer-3.1.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (199 kB)
+2023-05-21T18:46:41.7950338Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 199.3/199.3 kB 8.9 MB/s eta 0:00:00
+2023-05-21T18:46:41.8314307Z Collecting idna<4,>=2.5 (from requests->-r tests/requirements.txt (line 1))
+2023-05-21T18:46:41.8482527Z   Downloading idna-3.4-py3-none-any.whl (61 kB)
+2023-05-21T18:46:41.8529685Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.5/61.5 kB 23.3 MB/s eta 0:00:00
+2023-05-21T18:46:41.9263527Z Collecting urllib3<3,>=1.21.1 (from requests->-r tests/requirements.txt (line 1))
+2023-05-21T18:46:41.9424873Z   Downloading urllib3-2.0.2-py3-none-any.whl (123 kB)
+2023-05-21T18:46:41.9478996Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.2/123.2 kB 39.4 MB/s eta 0:00:00
+2023-05-21T18:46:41.9933607Z Collecting certifi>=2017.4.17 (from requests->-r tests/requirements.txt (line 1))
+2023-05-21T18:46:42.0124315Z   Downloading certifi-2023.5.7-py3-none-any.whl (156 kB)
+2023-05-21T18:46:42.0191190Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 157.0/157.0 kB 38.5 MB/s eta 0:00:00
+2023-05-21T18:46:42.1114742Z Installing collected packages: urllib3, idna, charset-normalizer, certifi, requests
+2023-05-21T18:46:42.3683021Z Successfully installed certifi-2023.5.7 charset-normalizer-3.1.0 idna-3.4 requests-2.30.0 urllib3-2.0.2

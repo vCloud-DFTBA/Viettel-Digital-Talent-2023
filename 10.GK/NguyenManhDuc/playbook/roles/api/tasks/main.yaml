@@ -1,0 +1,93 @@
+---
+ 
+- name: Clone the Repository
+  git:
+    repo: https://github.com/LittleHawk03/ci-cd-practice.git
+    dest: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+    version: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+    update: no
+
+- name: Fetch Tags
+  command: git fetch --tags
+  args:
+    chdir: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+  register: fetch_output
+  changed_when: false
+
+- name: get latest tag name
+  shell: "git describe --tags `git rev-list --tags --max-count=1`"
+  args:
+    chdir: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+  register: latest_tag
+
+- name: Display Latest Tag
+  debug:
+    var: latest_tag.stdout
+
+- name: full image of api from docker hub
+  docker_image:
+    name: "{{ api_image_name }}"
+    tag: "{{ latest_tag.stdout }}"
+    source: pull
+
+- name: full image of load balancing
+  docker_image:
+    name: "{{ lb_image_name }}"
+    tag: "{{ lb_image_tag }}"
+    source: pull
+
+
+- name: creat a docker container for api 1
+  docker_container:
+    name: "{{ api_container_name }}1"
+    image: "{{ api_image_name }}:{{ latest_tag.stdout }}"
+    restart_policy: unless-stopped
+    ports:
+      - "5501:5500"
+    env:
+      MONGO_HOST: "{{ MONGO_HOST }}"
+      MONGO_PORT: "{{ MONGO_PORT }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.api.nguyenmanhduc1"
+
+- name: creat a docker container for api 2
+  docker_container:
+    name: "{{ api_container_name }}2"
+    image: "{{ api_image_name }}:{{ latest_tag.stdout }}"
+    restart_policy: unless-stopped
+    ports:
+      - "5502:5500"
+    env:
+      MONGO_HOST: "{{ MONGO_HOST }}"
+      MONGO_PORT: "{{ MONGO_PORT }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.api.nguyenmanhduc2"
+
+- name: creat a docker container for api 3
+  docker_container:
+    name: "{{ api_container_name }}3"
+    image: "{{ api_image_name }}:{{ latest_tag.stdout }}"
+    restart_policy: unless-stopped
+    ports:
+      - "5503:5500"
+    env:
+      MONGO_HOST: "{{ MONGO_HOST }}"
+      MONGO_PORT: "{{ MONGO_PORT }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.api.nguyenmanhduc3"
+
+
+
+

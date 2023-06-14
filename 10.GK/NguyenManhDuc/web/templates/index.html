@@ -1,0 +1,94 @@
+<html>
+
+<head>
+	<title>{{t}}</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='assets/style.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='assets/emoji.css')}}">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>
+	<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+</head>
+
+<body>
+	<h1>{{h}}</h1>
+	<ul>
+		<li><a href="/list" class="{{ a1 }}">LIST ALL CANDICATE</a></li>
+		<li><a href="/add_candidate" class="{{ a2 }}">ADD NEW CANDICATE</a></li>
+		<li><a href="https://docs.google.com/spreadsheets/d/1ykAAQLQ5eMCwef-bjipMadWErLX84MurTdT-a4KSvaM/edit#gid=0"
+				class="{{ a3 }}">TIME LINE</a></li>
+		<li style="float:right"><a href="/about">About</a></li>
+	</ul>
+
+	{% if error %}
+	<div class="alert alert-danger">
+		<strong>Error!</strong> {{ error }}
+	</div>
+	{% endif %}
+	<hr>
+	{% if todos[0] %}
+	<div span="right">
+		<form action="/search" method="GET">
+			<table class="none" id="close">
+				<tr>
+					<td></td>
+					<td></td>
+					<td><big><b>Search candicate:</b></big></td>
+					<td><select name="refer" required>
+							<option value="id">id</option>
+							<option value="STT">stt</option>
+							<option value="fullname">name</option>
+							<option value="gender">gender</option>
+							<option value="Username">username</option>
+							<option value="year of birth">year of birth</option>
+							<option value="university">university</option>
+							<option value="field">field</option>
+						</select></td>
+					<td><input type="text" name="key" placeholder="Search candicate" size="20" /></td>
+					<td><button type="submit">Search</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<b><big>LIST OF CANDICATE :</big></b>
+
+	<table>
+		<tr id="row">
+			<th class="stt">stt</th>
+			<th class="name">Name of candicate</th>
+			<th class="Username">Username</th>
+			<th class="year">year of brith</th>
+			<th class="gender">gender</th>
+			<th class="university">academy</th>
+			<th class="field">field</th>
+			<th class="delete">delete</th>
+			<th class="update">update</th>
+			<!-- <th class="func1">Remove</th>
+			<th class="func2">Modify</th> -->
+		</tr>
+		{% for todo in todos %}
+		<tr class="datas">
+			<!-- <td><a href="./done?_id={{ todo['_id'] }}"></a></td> -->
+			<td class="stt">{{todo["STT"]}}</td>
+			<td class="name">{{ todo["fullname"] }}</td>
+			<td class="Username">{{ todo["Username"] }}</td>
+			<td class="year">{{ todo["year of birth"] }}</td>
+			<td class="gender">{{ todo["gender"] }}</td>
+			<td class="university">{{ todo["university"] }}</td>
+			<td class="field">{{ todo["field"] }}</td>
+			<td class="delete"><a href="./remove?_id={{ todo['_id'] }}">🗑️</a></td>
+			<td class="update"><a href="./update?_id={{ todo['_id'] }}">📝</a></td>
+			<!-- <td class="pr">{{ todo["pr"] }}</td> -->
+			{% endfor %}
+	</table>
+	{% else %}
+	<div class="danger">
+		<h4>No Candidate in the database!!</h4>
+	</div>
+	{% endif %}
+	<hr />
+
+</body>
+
+
+
+</html>
