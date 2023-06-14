@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+    mongodb:
+        image: mongo:5.0-focal
+        container_name: mongodb
+        restart: unless-stopped
+        environment:
+            MONGO_INITDB_DATABASE: flaskdb
+        volumes:
+            - ./mongodbdata:/data/db
+        networks:
+            - backend
+        healthcheck:
+            test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet || exit 1
+            interval: 5s
+            retries: 3
+            start_period: 20s
+
+    webapp:
+        build: ./app
+        restart: on-failure
+        environment:
+            MONGODB_DATABASE: flaskdb
+            MONGODB_HOSTNAME: mongodb
+        networks:
+            - frontend
+            - backend
+        depends_on:
+            mongodb:
+                condition: service_healthy
+        healthcheck:
+            test: wget http://localhost:8080/profiles || exit 1
+            interval: 5s
+            retries: 3
+            start_period: 15s
+
+    server:
+        image: nginx:1.22.0-alpine
+        container_name: webserver
+        restart: on-failure
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx/static:/etc/static:ro
+        networks:
+            - frontend
+        depends_on:
+            webapp:
+                condition: service_healthy
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
