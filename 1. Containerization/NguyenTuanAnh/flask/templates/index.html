@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập Docker - Practice 1</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <h1>Địa chỉ IP của container là: <span style="color: red;">{{ ip }}</span></h1>
+    <table>
+        <tr>
+            <th>Họ và tên</th>
+            <th>Năm sinh</th>
+            <th>Giới tính</th>
+            <th>Trường Đại học</th>
+            <th>Chuyên ngành</th>
+        </tr>
+        {% for mentee in data %}
+            <tr>
+              <td>{{mentee['full_name']}}</td>
+              <td>{{mentee['birth_year']}}</td>
+              <td>{{mentee['gender']}}</td>
+              <td>{{mentee['university']}}</td>
+              <td>{{mentee['major']}}</td>
+            </tr>
+       {% endfor %}
+    </table>
+</body>
+</html>
