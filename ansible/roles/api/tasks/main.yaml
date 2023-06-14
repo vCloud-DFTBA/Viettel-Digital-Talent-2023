@@ -1,0 +1,17 @@
+---
+- name: Build the api image 
+  community.docker.docker_image:
+    build:
+      path: ./roles/api/files/
+    name: flask
+    source: "build"
+    api_version: 1.41
+
+- name: Build the flask_app container from the api image.
+  community.docker.docker_container:
+    name: flask
+    image: flask
+    ports:
+      - "5000:5000"
+    networks:
+      - name: network
