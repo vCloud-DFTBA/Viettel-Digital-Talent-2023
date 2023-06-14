@@ -6,6 +6,8 @@
 -   ### [1 Introduction to Kubernetes](#11-introduction-to-kubernetes)
 -   ### [2 Kubernetes Components](#12-kubernetes-components)
 -   ### [3 Kubernetes Architecture](#13-kubernetes-architecture)
+-   ### [4 Kubernetes Storage](#14-kubernetes-storage)
+-   ### [5 Kubernetes StatefulSet](#15-kubernetes-statefulSet)
 
 ## [II. Homework](#2-homework)
 
@@ -79,6 +81,142 @@ In practice, a Kubernetes cluster is composed of multiple Master nodes, each run
 <br>Picture 3. Example cluster set-up
 </p>
 
+## 1.4 Kubernetes Storage
+
+**Storage Requirements**
+- Storage doesn't depend on the pod lifecycle
+- Storage must be available on all nodes
+- Storage needs to survice even if cluster crashes
+  
+**Persistent Volume**
+
+**Persistent Volume (PV)** in Kubernetes is a **cluster resource** used for data storage. It is created via a YAML file and *requires physical storage*, such as local hard drives, external NFS servers, or cloud storage like AWS. PV ensures data persistence for Kubernetes applications, even during pod or container restarts, making it vital for reliable storage.
+  
+*Example of yaml file for PV using local storage (on the node itself):*
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /mnt/disks/ssd1
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - example-node
+```
+Persistent Volumes (PVs) in Kubernetes are non-namespaced resources, meaning they are accessible to the entire cluster. The responsibility of provisioning the storage resource lies with the **Kubernetes administrator**. They create PV components using the available storage backends.
+
+**Persistent Volume Claim (PVC)**
+
+In Kubernetes, a PVC is used by applications to claim a PV with a specified storage size or capacity. It simplifies the process of obtaining and managing storage resources for applications.
+
+*Example of yaml file for PVC:*
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  volumeMode: Filesystem
+```
+Use that PVC in Pods configuration
+```yaml
+volumes:
+  - name: db-data
+    persistentVolumeClaim:
+      claimName: mongodb-pvc
+```
+**Level of Volume abstractions:**
+
+- Pod requests the volume through the PV claim.
+- Claim tries to find a volume in cluster. Claims must exist in the same namespace as the pod using the claim.
+- Volume has the actual storage backend
+- Once the Pod finds the matching PV through the PVC, the volume is then mounted into to the Pod. And then that volum can be mounted into the container inside the Pod.
+
+**Storage Class**
+
+Storage Class (SC) dynamically provisions PVs for PVCs. It abstracts the underlying storage provider and parameters.
+- Pod claims storage via PVC
+- PVC requests storage from SC
+- SC creates PV that meets the needs of the Claim.
+
+*Example of yaml file for SC and PVC:*
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storage-class-name
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: io1
+  iopsPerGB: "10"
+  fsType: ext4
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+     name: mypvc
+spec:
+     accessModes:
+     - ReadWriteOnce
+     resources:
+       requests:
+         storage: 1Gi
+     storageClassName: storage-class-name
+```
+  
+<p align = "center">
+<img src = "./images/volumes.png" width = 500 height = 400> 
+<br>Picture 4. Kubernetes Storage - PV, PVC and Storage Class
+</p>
+
+## 1.5 Kubernetes StatefulSet
+
+In Kubernetes **StatefulSet** is used for **stateful applications** like databases or any application that stores data. Otherwise **stateless applications** don't keep record of state, each request is commpletely new.
+
+|                 Deployment            |                    StatefulSet                       |
+|---------------------------------------|------------------------------------------------------|
+| Used to deploy Stateless applications | Used to deploy Stateful applications                 |
+| All Pods are created parallely        | Pods are created one by one                          |
+| Pods are deleted randomly             | Pods are deleted in reverse order                    |
+| Random name is assigned to all pods   | Sticky and predictable name is assigned to the pods  |
+| Same PV is used for all pods          | Different PVs are used for each pod                  |
+
+**Scaling database applications:**
+If we allow 2 indepentdent instances of database (like Mongodb) to change the data, it ends up with **data inconsistency**. So instead there is a mechanism that decides that only one Pod is allowed to write or change the data which is shared reading at the same time by multiple Pods (Mongodb instances) from the same data is completely fine. The Pod that is allowed to update the data is called the **Master** and the other are called **Slaves**.
+
+The database Pods do not have access to the same physical storage, even though they use the same data. They each have their own replicas of the storage that each one of them can access for itself.
+
+Each Pods at anytime must have the same data as the other ones, they have to **continously synchronize** the data. Since Master is the only one to allow to change data and the Slave must know about changes and they can update their own data storage to be up-to-date for the next query request.
+
+Unlike **Deployment** when the Pods get random hashes at the end, **StatefulSet** Pods get fixed ordered name ```$(statefuleset name)-$(ordinal)```.
+
+Each StatefulSet Pod gets its own DNS endpoint from a service ```${pod name}.${governing service domain}```. So these two characteristics have predictable pod name and fixed individual DNS name. It mean that when Pod restarts the IP-address will be changed, but the name and endpoint will stay same.
+<p align = "center">
+<img src = "./images/scalingdata.png" width = 600 height = 300> 
+<img src = "./images/scalingdata2.png" width = 600 height = 300> 
+<br>Picture 5. Scaling database applications 
+</p>
+
 # 2. Homework
 
 **Requirements**
@@ -112,7 +250,7 @@ In this particular exercise, I chose to use Kind for development
 [ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.19.0/kind-linux-arm64
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
-kind create cluster --image kindest/node:v1.22.0
+kind create cluster --image kindest/node:v1.22.0 --name app
 ```
 **Install kubectl**
 
@@ -124,7 +262,7 @@ snap install kubectl --classic
 
 <p align = "center">
 <img src = "./images/create_cluster.png" width = 800 height = 300> 
-<br>Picture 4. Create Cluster Kubernetes using Kind
+<br>Picture 6. Create Cluster Kubernetes using Kind
 </p>
 
 ## 2.2 Configmap and Secret
@@ -136,8 +274,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mongodb-configmap
+immutable: false
 data:
   database-url: mongodb-service
+  mongodb.conf: |
+    storage:
+      dbPath: /data/db
+    replication:
+        replSetName: "rs0"
 ```
 The **Secret** resource named "mongodb-secret" is created to store **sensitive data** related to a MongoDB database. The Secret contains two key-value pairs for the username and password, where the values are Base64-encoded to provide a level of obfuscation.
 ```yaml
@@ -163,7 +307,7 @@ kubectl apply -f mongodb_secret.yaml
 
 <p align = "center">
 <img src = "./images/configmap_secret.png" width = 800 height = 500> 
-<br>Picture 5. ConfigMap and Secret in the Cluster
+<br>Picture 7. ConfigMap and Secret in the Cluster
 </p>
 
 ## 2.3 Database Deployment and Service
@@ -194,6 +338,8 @@ spec:
         volumeMounts:
           - name: db-data
             mountPath: /data/db
+          - name: mongodb-config
+            mountPath: /etc/mongo
         ports:
         - containerPort: 27017
         env:
@@ -207,19 +353,30 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-password
-              
+        command:
+          - mongod
+          - "--bind_ip_all"
+          - --config=/etc/mongo/mongodb.conf
+      volumes:
+        - name: mongodb-config
+          configMap:
+            name: mongodb-configmap
+            items:
+              - key: mongodb.conf
+                path: mongodb.conf
+
   volumeClaimTemplates:
-  - metadata:
-      name: db-data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: standard
-      resources:
-        requests:
-          storage: 500Mi
+    - metadata:
+        name: db-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 500Mi
 ```
 - The StatefulSet is defined with the name ```db-statefulset```.
-- The StatefulSet is configured with **two replicas** This will create and maintain two MongoDB instances.
+- The StatefulSet is configured with **two replicas** This will create and maintain **two MongoDB instances.**
 - ```selector``` defines the label selector that the StatefulSet will use to match the Pods it manages. In this case, it matches the label app: mongodb.
 - ```serviceName```: ```mongodb-service``` specifies the name of the associated Service for the StatefulSet.
 - ```template``` defines the Pod template for the MongoDB instances.
@@ -234,7 +391,10 @@ By deploying this **StatefulSet** manifest, I will have two MongoDB instances ru
 
 In addition to the StatefulSet, see an example of a **Deployment** for deploying a database [here](./mongodb-deployment.yaml).
 
-**Service**
+**Headless Service**
+
+In Kubernetes, regular Services acts like a load balancer, meaning if we call the services the request goes to a random Pod, but here we need to talk to specific Pod, like all right should go to the Master pod and Slave 1 should get the data from the Master. So we need a way to directly copy a Pod instead of balancing our load across the Pods, for this purpose Kubernetes provide a special Sercive called **Headless Service** (set``` clusterIP: None```). Through these service each pod gets its DNS entrypoint (```db-statefulset-0.mongodb-service.default.svc.cluster.local:27017```), so now when we try to access this DNS the request directly goes to the Pod
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -247,7 +407,12 @@ spec:
   - protocol: TCP
     port: 27017
     targetPort: 27017
+  clusterIP: None
 ```
+<p align = "center">
+<img src = "./images/headless_service.png" width = 400 height = 600> 
+<br>Picture 8. ConfigMap and Secret in the Cluster
+</p>
 
 **Apply a Statefulset and a Service for database in Cluster**
 
@@ -256,17 +421,49 @@ kubectl apply -f mongodb-statefulset.yaml
 ```
 <p align = "center">
 <img src = "./images/mongodb_pods.png" width = 800 height = 100> 
-<br>Picture 6. Database Pods
+<br>Picture 9. Database Pods
 </p>
 
 <p align = "center">
 <img src = "./images/mongodb_service.png" width = 800 height = 200> 
-<br>Picture 7. Service for database (mongodb-service)
+<br>Picture 10. Service for database (mongodb-service)
 </p>
 
 <p align = "center">
 <img src = "./images/statefulset.png" width = 800 height = 100> 
-<br>Picture 8. StatefulSet for database (db-statefulset)
+<br>Picture 11. StatefulSet for database (db-statefulset)
+</p>
+
+<p align = "center">
+<img src = "./images/pvc.png" width = 800 height = 100> 
+<br>Picture 12. PVC for database Pods
+</p>
+
+Now we must create the mongodb replicaset. So as we have 2 mongodb Pods, we should able to specify a specific Pod as the Master Pod and other is the Slave. StatefulSet just manages the Pods, it doesn't create the replication for us. The Replication has to be done by ourselves.
+
+Get into the Pod:
+```shell
+kubectl exec -it db-statefulset-0 -- mongo
+```
+
+Initiate the replicaset for mongodb:
+```js
+rs.initiate(
+   {
+      _id: "rs0",
+      version: 1,
+      members: [
+         { _id: 0, host : "db-statefulset-0.mongodb-service.default.svc.cluster.local:27017" },
+         { _id: 1, host : "db-statefulset-1.mongodb-service.default.svc.cluster.local:27017" }
+      ]
+   }
+)
+```
+Now, the Pod has been changed to the primary. After initialization, all Slaves should be synchronized with the primary Pod. To enable reads on the Secondary Pods (Slaves) should run command ```rs.slaveOK()``` . So the  ```db-statefulset-1``` Pod should also have the same data as ```db-statefulset-0```.
+
+<p align = "center">
+<img src = "./images/primarypod.png" width = 800 height = 450> 
+<br>Picture 13. Master Pod for database
 </p>
 
 ## 2.4 Backend Deployment and Service
@@ -336,7 +533,7 @@ kubectl apply -f backend_deployment.yaml
 
 <p align = "center">
 <img src = "./images/backend_pods_service.png" width = 800 height = 200> 
-<br>Picture 9. Pods and Service for backend
+<br>Picture 14. Pods and Service for backend
 </p>
 
 ## 2.5 Frontend Deployment and Service
@@ -390,17 +587,18 @@ kubectl apply -f frontend_deployment.yaml
 
 <p align = "center">
 <img src = "./images/frontend_pods_service.png" width = 800 height = 200> 
-<br>Picture 10. Pods and Service for frontend
+<br>Picture 15. Pods and Service for frontend
 </p>
 
 ## 2.6 Result
 
 <p align = "center">
 <img src = "./images/list_students.png" width = 800 height = 400> 
-<br>Picture 11. Demo web frontend
+<br>Picture 16. Demo web
 </p>
 
 <p align = "center">
 <img src = "./images/api.png" width = 800 height = 400> 
-<br>Picture 12. Demo web api
+<br>Picture 17. Demo web api
 </p>
+

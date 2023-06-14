@@ -9,7 +9,7 @@ spec:
   - protocol: TCP
     port: 27017
     targetPort: 27017
-
+  clusterIP: None
 ---
 
 apiVersion: apps/v1
@@ -33,6 +33,8 @@ spec:
         volumeMounts:
           - name: db-data
             mountPath: /data/db
+          - name: mongodb-config
+            mountPath: /etc/mongo
         ports:
         - containerPort: 27017
         env:
@@ -46,12 +48,24 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-password
+        command:
+          - mongod
+          - "--bind_ip_all"
+          - --config=/etc/mongo/mongodb.conf
+      volumes:
+        - name: mongodb-config
+          configMap:
+            name: mongodb-configmap
+            items:
+              - key: mongodb.conf
+                path: mongodb.conf
+
   volumeClaimTemplates:
-  - metadata:
-      name: db-data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: standard
-      resources:
-        requests:
-          storage: 500Mi
+    - metadata:
+        name: db-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 500Mi
