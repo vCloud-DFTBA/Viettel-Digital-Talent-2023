@@ -1,0 +1,10 @@
+all:
+  children:
+    controller:
+      hosts:
+        local:
+          ansible_connection: local
+          ansible_python_interpreter: /usr/bin/python3
+          ansible_become_user: ubuntu
+          ansible_become_password: 123
+          host_name: vth
