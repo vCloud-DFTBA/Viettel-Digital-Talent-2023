@@ -1,0 +1,21 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mongodb-exporter
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: mongodb-exporter
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: kube-prometheus-stack
+    app.kubernetes.io/version: "46.6.0"
+    app.kubernetes.io/part-of: monitoring
+    chart: kube-prometheus-stack-46.6.0
+    release: "kube-prometheus-stack"
+    heritage: "Helm"
+spec:
+  endpoints:
+  - port: metrics
+  selector:
+    matchLabels:
+      app: mongodb-exporter

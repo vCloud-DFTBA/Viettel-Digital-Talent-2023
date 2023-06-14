@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-svc
+  namespace: mongodb
+spec:
+  selector:
+    app: mongodb-replica-set-svc
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+      nodePort: 30007
+  type: NodePort

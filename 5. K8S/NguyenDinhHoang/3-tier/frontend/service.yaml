@@ -1,0 +1,15 @@
+# NodePort: 35000
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+  namespace: vdt
+spec:
+  selector:
+    app: vdt-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30003
+  type: NodePort

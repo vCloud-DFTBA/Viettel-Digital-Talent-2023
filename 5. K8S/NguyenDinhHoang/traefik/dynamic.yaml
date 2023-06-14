@@ -1,0 +1,57 @@
+http:
+  routers:
+    grafana:
+      rule: Host(`grafana.hoangnd.freeddns.org`)
+      entryPoints:
+        - websecure
+      service: grafana
+      tls:
+        certResolver: production
+    prometheus:
+      rule: Host(`prometheus.hoangnd.freeddns.org`)
+      entryPoints:
+        - websecure
+      service: prometheus
+      tls:
+        certResolver: production
+    vdt-frontend:
+      rule: Host(`vdt-frontend.hoangnd.freeddns.org`)
+      entryPoints:
+        - websecure
+      service: vdt-frontend
+      tls:
+        certResolver: production
+    vdt-backend:
+      rule: Host(`vdt-backend.hoangnd.freeddns.org`)
+      entryPoints:
+        - websecure
+      service: vdt-backend
+      tls:
+        certResolver: production
+  services:
+    grafana:
+      loadBalancer:
+        servers:
+          - url: http://10.114.0.6:30002
+    prometheus:
+      loadBalancer:
+        servers:
+          - url: http://10.114.0.6:30001
+    vdt-frontend:
+      loadBalancer:
+        healthCheck:
+          path: /
+          port: 30003
+        servers:
+          - url: http://10.114.0.5:30003
+          - url: http://10.114.0.6:30003
+          - url: http://10.114.0.7:30003
+    vdt-backend:
+      loadBalancer:
+        healthCheck:
+          path: /test
+          port: 30005
+        servers:
+          - url: http://10.114.0.5:30005
+          - url: http://10.114.0.6:30005
+          - url: http://10.114.0.7:30005

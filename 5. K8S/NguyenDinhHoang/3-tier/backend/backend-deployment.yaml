@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vdt-backend
+  namespace: vdt
+  labels:
+    app: vdt-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vdt-backend
+  template:
+    metadata:
+      labels:
+        app: vdt-backend
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/backend: ""
+      containers:
+      - name: vd-backend
+        image: hoangndst/vdt-backend:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ANSIBLE_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MONGO_HOST
+          value: "mongodb://mongodb-replica-set-svc.mongodb"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_USERNAME
+          value: "admin"
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: admin-password
+              key: password
