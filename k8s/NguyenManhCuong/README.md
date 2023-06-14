@@ -593,12 +593,7 @@ kubectl apply -f frontend_deployment.yaml
 ## 2.6 Result
 
 <p align = "center">
-<img src = "./images/list_students.png" width = 800 height = 400> 
-<br>Picture 16. Demo web
-</p>
-
-<p align = "center">
-<img src = "./images/api.png" width = 800 height = 400> 
-<br>Picture 17. Demo web api
+<img src = "./images/test.gif" width = 800 height = 400> 
+<br>Picture 16. Demo Application
 </p>
 
