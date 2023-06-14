@@ -1,0 +1,27 @@
+---
+# tasks file for roles/loadbalancer
+- name: Creates src directory
+  file:
+    path: /home/nginx
+    state: directory
+    mode: "0775"
+
+- name: copy config nginx file to host
+  ansible.builtin.copy:
+    src: ../templates/default.conf
+    dest: /home/nginx/conf.d/
+
+- name: deploy nginx
+  community.docker.docker_container:
+    name: nginx
+    image: nginx:1.22.0-alpine
+    ports:
+      - "8000:80"
+    volumes:
+      - /home/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - name: network_app
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "0.0.0.0:24224"
+      tag: nginx

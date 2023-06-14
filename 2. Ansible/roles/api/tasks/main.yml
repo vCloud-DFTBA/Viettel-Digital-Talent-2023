@@ -1,0 +1,31 @@
+---
+- name: Build Flask image
+  community.docker.docker_image:
+    name: flask_test
+    build:
+      path: /home/lqa/web_app/1. Containerization/LeQuangAnh/flask/
+    source: build
+
+- name: Run Flask container 1
+  community.docker.docker_container:
+    name: flask_container_1
+    image: flask_test
+    command: python app.py
+    restart_policy: unless-stopped
+    env:
+      COLOR=black
+    exposed_ports:
+      - 5000
+    network_mode: my-network
+
+- name: Run Flask container 2
+  community.docker.docker_container:
+    name: flask_container_2
+    image: flask_test
+    command: python app.py
+    restart_policy: unless-stopped
+    env:
+      COLOR=cyan
+    exposed_ports:
+      - 5000
+    network_mode: my-network

@@ -1,0 +1,3 @@
+- name: Docker-compose up
+  shell:
+    cmd: "docker-compose -f /lab/hardening/docker-compose-db.yaml up -d"

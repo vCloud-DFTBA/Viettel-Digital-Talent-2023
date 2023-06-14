@@ -1,0 +1,5 @@
+
+    - name: Build and up images fluentd
+      command: docker-compose -f  ./roles/logging/files//docker-compose.yaml up -d
+      args:
+        chdir: "{{ playbook_dir }}"

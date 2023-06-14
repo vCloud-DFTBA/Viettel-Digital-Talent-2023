@@ -1,0 +1,15 @@
+---
+# tasks file for roles/logging
+- name: Creates src directory
+  file:
+    path: /home/fluentd
+    state: directory
+    mode: "0775"
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ../templates/
+    dest: /home/fluentd/
+    mode: "0777"
+- name: Run docker-compose
+  shell: cd /home/fluentd/ && docker compose up -d
