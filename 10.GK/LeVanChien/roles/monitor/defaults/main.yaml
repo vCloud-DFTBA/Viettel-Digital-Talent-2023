@@ -1,0 +1,4 @@
+user: lechiennn
+path_to_folder: "/home/{{ user }}/test/monitor"
+
+command: docker compose up

@@ -1,0 +1,8 @@
+image_name: lechiennn/app:v1.2
+
+container_name_1: app
+container_name_2: app2
+# ports:
+#   - "5000:5000"
+container_state: started
+network_name: net

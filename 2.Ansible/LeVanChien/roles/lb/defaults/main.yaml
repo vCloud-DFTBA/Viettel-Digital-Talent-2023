@@ -1,0 +1,16 @@
+user: lechiennn
+path_to_folder: "/home/{{ user }}/test/lb"
+
+image_name: lb
+image_state: present
+
+container_name: lb
+container_state: started
+
+ports:
+  - "8080:80"
+
+volumes: 
+  - "{{ path_to_folder }}/nginx.conf:/etc/nginx/nginx.conf"
+  - "{{ path_to_folder }}/log:/var/log/nginx"
+network_name: net

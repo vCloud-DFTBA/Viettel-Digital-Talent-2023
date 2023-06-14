@@ -1,0 +1,12 @@
+user: lechiennn
+path_to_db: "/home/{{ user }}/test/db"
+
+image_name: mongo:5.0
+
+container_name: db
+
+container_state: started
+volumes:
+  - "{{ path_to_db }}:/data/db"
+
+network_name: net

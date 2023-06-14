@@ -1,0 +1,17 @@
+- name: create db folder
+  file:
+    path: "{{ path_to_db }}"
+    state: directory
+    
+- name: create Docker network
+  community.docker.docker_network:
+    name: "{{ network_name }}"
+  
+- name: run Docker container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image_name }}"
+    state: "{{ container_state }}"
+    volumes: "{{ volumes }}"
+    networks:
+      - name: "{{ network_name }}"
