@@ -1,0 +1,21 @@
+---
+# tasks file for web
+
+- name: Pull nginx image from Docker Hub
+  community.docker.docker_image:
+    name: "{{ nginx_image }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run nginx
+  community.docker.docker_container:
+    name: nginx
+    image: "{{ nginx_image }}"
+    recreate: yes
+    restart_policy: unless-stopped
+    state: started
+    ports:
+      - "80:80"
+    networks:
+      - name: presentation
