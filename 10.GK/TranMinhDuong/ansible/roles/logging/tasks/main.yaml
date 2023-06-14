@@ -1,0 +1,40 @@
+- name: Check if logging network exists
+  docker_network_info:
+    name: vtapp_logging
+  register: docker_network
+  become: true
+  
+  
+- name: Create logging network
+  docker_network:
+    name: vtapp_logging
+    state: present
+  when: docker_network.exists == false
+  become: true
+
+- name: Copy folder files/fluentd to /etc
+  copy:
+    src: files/fluentd
+    dest: /etc
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+  when: inventory_hostname == "vm3"
+
+- name: Run fluentd docker image 
+  docker_container:
+    name: fluentd
+    image: duongtm3102/fluentd:latest
+    restart_policy: unless-stopped
+    networks:
+      - name: vtapp_logging
+    hostname: fluentd
+    volumes:
+      - /etc/fluentd:/fluentd/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+  become: true
+  when: inventory_hostname == "vm3"
+  

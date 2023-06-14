@@ -1,0 +1,95 @@
+- name: Check if monitor network exists
+  docker_network_info:
+    name: vtapp_monitor
+  register: docker_network
+  become: true
+  
+  
+- name: Create monitor network
+  docker_network:
+    name: vtapp_monitor
+    state: present
+  when: docker_network.exists == false
+  become: true
+
+- name: Start Node Exporter Container
+  docker_container:
+    name: "node-exporter-{{ inventory_hostname }}"
+    image: prom/node-exporter
+    restart_policy: unless-stopped
+    ports:
+      - "9100:9100"
+    volumes:
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/:/rootfs:ro"
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+    networks:
+      - name: vtapp_monitor
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+  become: true
+
+- name: Start Cadvisor Container
+  docker_container:
+    name: "cadvisor-{{ inventory_hostname }}"
+    image: gcr.io/cadvisor/cadvisor
+    restart_policy: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+    networks:
+      - name: vtapp_monitor
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+  become: true   
+
+- name: Create /etc/prometheusconf folder
+  file:
+    path: /etc/prometheusconf
+    state: directory
+    mode: 0755
+  when: inventory_hostname == "vm3"
+  become: true
+
+- name: Copy prometheus.yml config to host
+  template:
+    src: prometheus.yml
+    dest: /etc/prometheusconf/prometheus.yml
+    owner: duongtm
+    group: duongtm
+    mode: '0644'
+  when: inventory_hostname == "vm3"
+
+
+- name: Start Prometheus contaier 
+  docker_container:
+    name: "prometheus-{{ inventory_hostname }}"
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /etc/prometheusconf/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=5d"
+      - "--web.enable-lifecycle"
+    restart_policy: unless-stopped
+    networks:
+      - name: vtapp_monitor
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+  when: inventory_hostname == "vm3"
+  become: true

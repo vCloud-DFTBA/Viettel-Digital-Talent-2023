@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+
+    #flask app
+    backend:
+      container_name: vtapp-backend
+      build: 
+        context: backend
+        dockerfile: Dockerfile
+      restart: unless-stopped
+      ports: 
+        - "5000:5000"
+      depends_on:
+        -  mongo  
+      networks:
+        - webapp
+    #frontend
+    frontend:
+      container_name: vtapp-frontend
+      build:
+        context: frontend
+        dockerfile: Dockerfile
+      ports:
+        - 8000:80
+      restart: unless-stopped
+      networks:
+        - webapp
+      depends_on:
+        - mongo
+    # MongoDB
+    mongo:
+      container_name: vtapp-mongodb
+      image: mongo:5.0
+      restart: unless-stopped
+      hostname: md_mongodb
+      environment:
+        - MONGO_INITDB_DATABASE=vdt2023
+        - MONGO_INITDB_ROOT_USERNAME=mongoAdmin
+        - MONGO_INITDB_ROOT_PASSWORD=admin123
+      volumes:
+        - ./data/init_db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+      ports:
+        - "27017:27017"
+      networks:
+        - webapp
+
+networks:
+  webapp:
+    driver: bridge

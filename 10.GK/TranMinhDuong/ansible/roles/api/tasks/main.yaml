@@ -1,0 +1,34 @@
+- name: Check if docker network exists
+  docker_network_info:
+    name: vtapp
+  register: docker_network
+  become: true
+
+- name: Create docker network
+  docker_network:
+    name: vtapp
+    state: present
+  when: docker_network.exists == false
+  become: true
+
+- name: Run docker image duongtm3102/vtapp-backend:latest
+  docker_container:
+    name: backend
+    image: duongtm3102/vtapp-backend:latest
+    restart_policy: unless-stopped
+    networks:
+      - name: vtapp
+    hostname: backend
+    ports:
+      - "5000:5000"
+    env:
+      MONGO_HOST: "{{ MONGO_HOST }}"
+      MONGO_PORT: "{{ MONGO_PORT }}"
+      MONGO_USERNAME: "{{ MONGO_USERNAME }}"
+      MONGO_PASSWORD: "{{ MONGO_PASSWORD }}"
+      ANSIBLE_HOST: "{{ inventory_hostname }}"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ FLUENTD_HOST }}:24224"
+      tag: "docker.api-{{ inventory_hostname }}"
+  become: true

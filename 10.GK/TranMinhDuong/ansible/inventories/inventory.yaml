@@ -1,0 +1,20 @@
+---
+webserver:
+  hosts:
+    vm1:
+      ansible_host: 192.168.192.144
+    vm2: 
+      ansible_host: 192.168.192.145
+  vars:
+    ansible_user: duongtm
+    ansible_ssh_private_key_file: /home/duongtm/.ssh/id_rsa
+    ansible_python_interpreter: /usr/bin/python3
+
+lb:
+  hosts:
+    vm3: 
+      ansible_host: 192.168.192.141
+  vars:
+    ansible_user: duongtm
+    ansible_connection: local
+    ansible_python_interpreter: /usr/bin/python3

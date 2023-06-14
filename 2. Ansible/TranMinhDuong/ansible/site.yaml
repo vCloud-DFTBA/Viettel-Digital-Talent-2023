@@ -1,0 +1,22 @@
+---
+- name: Setup OS environment
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - common
+
+- name: Deploy backend + database
+  hosts: backend
+  become: true
+  gather_facts: true
+  roles:
+    - db
+    - api
+
+- name: Deploy webserver
+  hosts: webserver
+  become: true
+  gather_facts: true
+  roles:
+    - web

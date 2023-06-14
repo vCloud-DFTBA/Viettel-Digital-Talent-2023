@@ -1,0 +1,46 @@
+---
+- name: Setup OS environment
+  hosts: webserver
+  become: true
+  gather_facts: true
+  roles:
+    - common
+
+- name: Deploy Logging
+  hosts: vm3
+  become: true
+  gather_facts: true
+  roles:
+    - logging
+
+
+- name: Deploy database
+  hosts: vm3
+  become: true
+  gather_facts: true
+  roles:
+    - db
+
+- name: Deploy webserver
+  hosts: webserver
+  become: true
+  gather_facts: true
+  roles:
+    - api
+    - web
+
+- name: Deploy nginx LB
+  hosts: vm3
+  become: true
+  gather_facts: true
+  roles:
+    - lb
+
+- name: Deploy Prometheus
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - monitor
+
+
