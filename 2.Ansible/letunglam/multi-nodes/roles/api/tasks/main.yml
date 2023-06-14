@@ -1,0 +1,7 @@
+---
+# tasks file for api
+- name: Pull Python image
+  docker_image:
+    name: python:3.9-alpine
+    source: pull
+    state: present

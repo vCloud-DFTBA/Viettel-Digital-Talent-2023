@@ -1,0 +1,12 @@
+gce:
+  hosts:
+    node1:
+      ansible_host: 34.133.150.131
+    node2:
+      ansible_host: 35.184.206.60
+    node3:
+      ansible_host: 34.68.5.38
+  vars:
+    ansible_user: lamle
+    update_cache: no
+    deployment_folder: /home/lamle/VDT-Cloud/Viettel-Digital-Talent-2023/2.Ansible/letunglam/multi-nodes/roles/deployment/files/deployments

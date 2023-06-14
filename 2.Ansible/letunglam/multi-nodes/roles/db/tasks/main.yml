@@ -1,0 +1,7 @@
+---
+# tasks file for db
+- name: Pull Mongo image
+  docker_image:
+    name: mongo:5.0-focal
+    source: pull
+    state: present
