@@ -1,0 +1,11 @@
+---
+- name: Create container
+  community.docker.docker_container:
+    name: "{{ web_name }}"
+    hostname: "{{ web_name }}"
+    restart_policy: unless-stopped
+    image: "{{ web_image }}"
+    networks:
+      - name: "{{ web_api_network }}"
+    ports:
+      - 80:80
