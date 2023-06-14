@@ -1,0 +1,26 @@
+- name: Check if docker network exists
+  docker_network_info:
+    name: vtapp
+  register: docker_network
+  become: true
+
+- name: Create docker network
+  docker_network:
+    name: vtapp
+    state: present
+  when: docker_network.exists == false
+  become: true
+
+- name: Run docker image duongtm3102/vtapp-frontend:latest
+  docker_container:
+    name: frontend
+    image: duongtm3102/vtapp-frontend:latest
+    restart_policy: unless-stopped
+    networks:
+      - name: "vtapp"
+    hostname: frontend
+    env:
+      REACT_APP_BACKEND_URL: "{{ REACT_APP_BACKEND_URL }}"
+    ports:
+      - "80:80"
+  become: true
