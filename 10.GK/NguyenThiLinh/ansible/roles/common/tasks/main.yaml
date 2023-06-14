@@ -1,0 +1,45 @@
+- name: Update APT cache and upgrade all packages
+  become: true
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+    state: latest
+    update_cache: yes
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+
+- name: update apt
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Install Docker Engine, containerd, and Docker Compose 
+  become: true
+  apt:
+    name: ['docker-ce', 'docker-ce-cli', 'containerd.io', 'docker-buildx-plugin', 'docker-compose-plugin']
+    state: latest
+    update_cache: yes
+    
+- name: Install Docker Module for Python
+  pip:
+    name: docker   
