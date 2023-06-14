@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Viettel Digital Talent 2023</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Update Student Information</h1>
+
+        <div class="section">
+            
+            <form id="studentForm" action="api/students/edit" method="POST">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="birth_year">Birth Year:</label>
+                    <input type="number" id="birth_year" name="birth_year" required>
+                </div>
+                <div>
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="Nam" {% if student.gender == 'Nam' %}selected{% endif %}>Nam</option>
+                        <option value="Nữ" {% if student.gender == 'Nữ' %}selected{% endif %}>Nữ</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="university">University:</label>
+                    <input type="text" id="university" name="university" required>
+                </div>
+                <div>
+                    <label for="major">Major:</label>
+                    <input type="text" id="major" name="major" required>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 8px;">
+                    <button class="edit-button" type="submit" >Save</button>
+                    <button type="button" onclick="confirmNavigation();">Home Page</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        fetch('/api/students/edit?student_id=' + urlParams.get('student_id'))
+        .then(response => response.json())
+        .then((student) => {
+            document.getElementById('name').value = student.name;
+            document.getElementById('username').value = student.username;
+            document.getElementById('birth_year').value = student.birth_year;
+            document.getElementById('gender').value = student.gender;
+            document.getElementById('university').value = student.university;
+            document.getElementById('major').value = student.major;
+        })
+
+        const formUpdate = document.getElementById('studentForm');
+        formUpdate.addEventListener('submit', event => {
+            event.preventDefault();
+            const confirmed = confirm('Save changes and return to home page?');
+                if (confirmed) {
+                    const formData = new FormData(event.target);
+                    fetch('/api/students/edit?student_id='+ urlParams.get('student_id'), {
+                        method: 'POST',
+                        body: new URLSearchParams(formData),
+
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .then(resp => {
+                                console.log(resp);
+                                document.location.href = '/';
+                            });
+                    }
+                });
+        function confirmNavigation() {
+                if (confirm('Are you sure you want to leave this page? Any unsaved changes will be lost.')) {
+                    window.location.href = '/';
+                }
+            }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+---
+- name: Setup Docker
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+  - common
+
+- name: Setup Logging
+  hosts: node1
+  become: true
+  gather_facts: true
+  roles:
+  - logging
+
+- name: Setup database
+  hosts: node1
+  become: true
+  gather_facts: true
+  roles:
+  - db
+
+- name: Deploy the application on remote machines
+  hosts: remote_hosts
+  become: true
+  gather_facts: true
+  roles:
+  - api
+  - web
+
+- name: Setup Monitoring
+  hosts: remote_hosts
+  become: true
+  gather_facts: true
+  roles:
+  - monitor
+
+- name: Setup Loadbalancer
+  hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+  - lb

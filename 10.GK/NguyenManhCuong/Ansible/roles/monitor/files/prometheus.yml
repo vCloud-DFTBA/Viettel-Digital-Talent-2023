@@ -1,0 +1,27 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s
+  external_labels:
+      monitor: 'prometheus'
+      username: 'cuongnm'
+
+remote_write:
+  - url: "http://27.66.108.93:9090/api/v1/write"
+    name: cuongnm
+
+scrape_configs:
+  - job_name: "node-exporter"
+    static_configs:
+      - targets: [
+      "54.166.186.66:9100",
+      "44.203.194.242:9100",
+      "18.205.151.59:9100",
+    ]
+
+  - job_name: "cadvisor"
+    static_configs: 
+      - targets: [
+      "54.166.186.66:8080",
+      "44.203.194.242:8080",
+      "18.205.151.59:8080"
+    ]

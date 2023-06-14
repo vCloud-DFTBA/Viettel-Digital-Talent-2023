@@ -1,0 +1,25 @@
+- name: Pull Nginx image
+  docker_image:
+    name: "{{ nginx_image_name }}"
+    tag: "{{ image_version }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run Nginx container
+  docker_container:
+    name: "{{ nginx_container_name }}"
+    image: "{{ nginx_image_name }}:{{ image_version }}"
+    restart_policy: unless-stopped
+    state: started
+    links:
+      - flask_app:flask_app
+    ports:
+      - 80:80
+    networks:
+      - name: frontend
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ fluentd_host }}:24224"
+      fluentd-async-connect: "true"
+      tag: "logger.frontend.{{ inventory_hostname}}"

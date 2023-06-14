@@ -1,0 +1,18 @@
+- name: Build lb image
+  docker_image:
+    name: loadbalancer
+    build:
+      path: ./roles/lb/templates
+      dockerfile: Dockerfile
+    source: build
+    force_source: true
+
+- name: Run nginx load balancing
+  docker_container:
+    name: loadbalancer
+    image: loadbalancer
+    restart_policy: unless-stopped
+    ports:
+      - "80:80"
+    
+  

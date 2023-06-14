@@ -1,0 +1,22 @@
+- name: copy files config to host logging
+  copy:
+    src: ./roles/logging/templates
+    dest: /tmp
+
+- name: Build fluentd image
+  docker_image:
+    name: fluentd_image
+    build:
+       path: /tmp/templates
+    source: build
+    force_source: true
+
+- name: Run fluentd container
+  docker_container:
+    name: fluentd
+    image: fluentd_image
+    volumes: /tmp/templates/fluentd.conf:/fluentd/etc/fluent.conf
+    restart_policy: unless-stopped
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"

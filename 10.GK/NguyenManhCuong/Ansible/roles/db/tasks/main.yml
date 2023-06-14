@@ -1,0 +1,66 @@
+- name: Get list of containers
+  docker_host_info:
+    containers: true
+  register: docker_info
+
+- name: Remove existing docker containers
+  shell: docker container rm -f $(docker ps -aq)
+  when: (docker_info.containers | length) != 0
+  
+- name: Get details of all existing images
+  docker_host_info:
+    images: yes
+    verbose_output: yes
+  register: image_info
+
+- name: Remove all existing images
+  docker_image:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ image_info.images | map(attribute='Id') | list }}"
+
+- name: Create a network
+  docker_network:
+    name: backend
+
+- name: Pull database image
+  docker_image:
+    name: "{{ db_docker_image }}"
+    tag: "{{ db_image_tag }}"
+    source: pull
+    state: present
+    force_source: true
+    
+- name: Run database container
+  docker_container:
+    name: "{{ db_container_name }}"
+    image: "{{ db_docker_image }}:{{ db_image_tag }}"
+    restart_policy: unless-stopped
+    state: started
+    env: 
+      MONGODB_DATABASE: "{{ database_name }}"
+      MONGODB_HOSTNAME: "{{ mongodb_hostname }}"
+    volumes: database:/data/db
+    ports:
+      - "{{ db_port }}:{{ db_port }}"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ fluentd_host }}:24224"
+      fluentd-async-connect: "true"
+      tag: "logger.db.{{ inventory_hostname}}"
+  register: db_container
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - python3-pymongo
+    state: latest
+    update_cache: true
+- name: Copy file init data
+  copy:
+    src: ./roles/db/files
+    dest: /tmp
+  become: yes
+
+- name: Initilize database
+  command: python3 /tmp/files/init.py
