@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: cd 1.\ Containerization/Le-Trong-Minh/ && docker-compose build
+      run: cd 10.\ GK/Le-Trong-Minh/webapp && docker-compose build
 
 
   push_to_registry:
@@ -54,20 +54,17 @@ jobs:
       - name: Build and push api image to Docker hub
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:1. Containerization/Le-Trong-Minh/backend"
+          context: "{{defaultContext}}:10.\ GK/Le-Trong-Minh/webapp/backend"
           platforms: linux/arm64
           push: true
           tags: "trongminhjr/api:latest"
-          # labels: "trongminhjr/api"
+          labels: "trongminhjr/api"
 
       - name: Build and push webserver image to Docker hub
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:1. Containerization/Le-Trong-Minh/frontend"
+          context: "{{defaultContext}}:10.\ GK/Le-Trong-Minh/webapp/frontend"
           platforms: linux/arm64
           push: true
           tags: "trongminhjr/webserver:latest"
-          # labels: "trongminhjr/webserver"
-
-
-
+          labels: "trongminhjr/webserver"

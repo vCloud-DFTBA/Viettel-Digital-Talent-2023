@@ -31,9 +31,9 @@
 - name: Restart a container
   community.docker.docker_container:
     name: frontend_1
-    # image: trongminhjr/webserver:latest
+    image: trongminhjr/webserver:latest
     # image: trongminhjr/devmidterm-web:v1
-    image: webserver
+    # image: webserver
     state: started
     restart_policy: unless-stopped
     networks: 
