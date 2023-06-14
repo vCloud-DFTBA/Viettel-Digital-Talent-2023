@@ -39,7 +39,7 @@ A Kubernetes Deployment tells Kubernetes how to create or modify instances of th
 
 # 5. Service
 
-In Kubernetes, a Service is a method for exposing a network application that is running as one or more [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) in your cluster.
+In Kubernetes, a Service is a method for exposing a network application that is running as one or more pods in your cluster.
 
 Types of services:
 
@@ -50,13 +50,13 @@ Types of services:
 
 # 6. ConfigMap
 
-A ConfigMap is an API object used to store non-confidential data in key-value pairs. [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a [volume](https://kubernetes.io/docs/concepts/storage/volumes/).
+A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume.
 
 # 7. Secret
 
-Secrets are similar to [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) but are specifically intended to hold confidential data.
+Secrets are similar to ConfigMap but are specifically intended to hold confidential data.
 
-A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a [Pod](https://kubernetes.io/docs/concepts/workloads/pods/) specification or in a [container image](https://kubernetes.io/docs/reference/glossary/?all=true#term-image).
+A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a pod specification or in a container image.
 
 There are three main ways for a Pod to use a Secret:
 
@@ -66,7 +66,7 @@ There are three main ways for a Pod to use a Secret:
 
 # 8. Volume
 
-There will be a problem when a container crashes or is stopped because its state is not saved so all of the files that were created or modified during the lifetime of the container are lost. Another problem is when multiple containers are running in a pod and need to share files. The Kubernetes [volume](https://kubernetes.io/docs/concepts/storage/volumes/)  solves these problems.
+There will be a problem when a container crashes or is stopped because its state is not saved so all of the files that were created or modified during the lifetime of the container are lost. Another problem is when multiple containers are running in a pod and need to share files. The Kubernetes volume solves these problems.
 
 A volume is a directory which is accessible to the containers in a pod.
 
