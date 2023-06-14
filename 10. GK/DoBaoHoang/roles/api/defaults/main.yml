@@ -1,0 +1,5 @@
+---
+# defaults file for api
+api_container_name: 'api'
+api_tag: latest
+api_image: 1805111/api

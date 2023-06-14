@@ -1,0 +1,37 @@
+---
+# tasks file for api
+- name: Install and run API server
+  block:
+  - name: Pull API image
+    community.general.docker_image:
+      name: "{{ api_image }}"
+      tag: "{{ api_tag }}"
+      source: pull
+      state: present
+      force_source: true
+  
+  - name: Create API container
+    community.general.docker_container:
+      name: "{{ api_container_name }}"
+      image: "{{ api_image }}:{{ api_tag }}"
+      state: present
+  
+  - name: Run API container
+    community.general.docker_container:
+      name: "{{ api_container_name }}"
+      image: "{{ api_image }}:{{ api_tag }}"
+      env:
+        MONGODB_DATABASE: flaskdb
+        MONGODB_HOSTNAME: "192.168.0.128"
+        HOST_URL: "{{ ansible_all_ipv4_addresses | select('search', '192.168.0.') | first }}"
+      exposed_ports:
+        - 8080
+      published_ports:
+        - "8080:8080"
+      log_driver: fluentd
+      log_options:
+        fluentd-address: "192.168.0.133:24224"
+        fluentd-async-connect: "true"
+        tag: "docker.api"
+      restart_policy: unless-stopped
+      state: started

@@ -1,0 +1,5 @@
+---
+# defaults file for lb
+nginx_container_name: 'lb'
+nginx_tag: latest
+nginx_image: 1805111/lb

@@ -1,0 +1,37 @@
+---
+# tasks file for db
+- name: Install and run Database
+  block:
+  - name: Pull Mongodb image
+    community.general.docker_image:
+      name: "{{ mongodb_image }}"
+      tag: "{{ mongodb_tag }}"
+      source: pull
+      state: present
+      force_source: true
+  
+  - name: Create Mongodb container
+    community.general.docker_container:
+      name: "{{ mongodb_container_name }}"
+      image: "{{ mongodb_image }}:{{ mongodb_tag }}"
+      state: present
+  
+  - name: Run Mongodb container
+    community.general.docker_container:
+      name: "{{ mongodb_container_name }}"
+      image: "{{ mongodb_image }}:{{ mongodb_tag }}"
+      env:
+        MONGO_INITDB_DATABASE: flaskdb
+      exposed_ports:
+        - 27017
+      published_ports:
+        - "27017:27017"
+      volumes:
+        - /mongodbdata:/data/db
+      log_driver: fluentd
+      log_options:
+        fluentd-address: "192.168.0.133:24224"
+        fluentd-async-connect: "true"
+        tag: "docker.db"
+      restart_policy: unless-stopped
+      state: started

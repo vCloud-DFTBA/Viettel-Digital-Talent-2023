@@ -1,0 +1,65 @@
+name: Build and Push Images to Dockerhub
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Extract version
+        id: vars
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+
+      - name: Login Dockerhub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push API image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ steps.vars.outputs.tag }} \
+                       -t ${{ secrets.DOCKERHUB_USERNAME }}/api:latest \
+                        ./'10. GK'/DoBaoHoang/source/api
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ steps.vars.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
+
+      - name: Build and push Web server image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ steps.vars.outputs.tag }} \
+                       -t ${{ secrets.DOCKERHUB_USERNAME }}/web:latest \
+                       ./'10. GK'/DoBaoHoang/source/server
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ steps.vars.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/web:latest
+
+      - name: Build and push Database image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/db:${{ steps.vars.outputs.tag }} \
+                       -t ${{ secrets.DOCKERHUB_USERNAME }}/db:latest \
+                       ./'10. GK'/DoBaoHoang/source/db
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/db:${{ steps.vars.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/db:latest
+
+      - name: Build and push Load Balancer image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/lb:${{ steps.vars.outputs.tag }} \
+                       -t ${{ secrets.DOCKERHUB_USERNAME }}/lb:latest \
+                       ./'10. GK'/DoBaoHoang/source/lb
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/lb:${{ steps.vars.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/lb:latest
+      
+
+      - name: Build and push Logging image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/logging:${{ steps.vars.outputs.tag }} \
+                       -t ${{ secrets.DOCKERHUB_USERNAME }}/logging:latest \
+                       ./'10. GK'/DoBaoHoang/source/logging
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/logging:${{ steps.vars.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/logging:latest

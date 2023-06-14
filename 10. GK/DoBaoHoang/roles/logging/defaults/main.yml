@@ -1,0 +1,5 @@
+---
+# defaults file for logging
+logging_container_name: 'logging'
+logging_tag: latest
+logging_image: 1805111/logging

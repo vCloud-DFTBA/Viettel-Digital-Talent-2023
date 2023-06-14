@@ -1,0 +1,87 @@
+---
+# tasks file for common
+- name: Install Docker in Debian system
+  when: ansible_os_family  == 'Debian'
+  block:
+  - name: Install packages
+    ansible.builtin.apt:
+      name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: Install repo key
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+      state: present
+
+  - name: Add docker repo
+    ansible.builtin.apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
+      state: present
+
+  - name: Install docker
+    ansible.builtin.apt:
+      name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      update_cache: yes
+      state: present
+      cache_valid_time: 3600
+
+- name: Install Docker in AWS linux
+  when: ansible_distribution == 'Amazon'
+  block:
+  - name: Add Docker repo
+    ansible.builtin.copy:
+      src: docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
+      mode: 0644
+
+  - name: Enable Docker Edge repo
+    community.general.files.ini_file:
+      dest: /etc/yum.repos.d/docker-ce.repo
+      section: 'docker-ce-edge'
+      option: enabled
+      value: 0
+
+  - name: Install Docker
+    ansible.builtin.yum:
+      name: docker-ce
+      state: present
+      update_cache: yes
+
+- name: Put docker config
+  ansible.builtin.copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: 0644
+  notify: Restart docker daemon
+
+- name: Prepare clean docker
+  block:
+  - name: Get running containers
+    community.general.docker_host_info:
+      containers: true
+      containers_all: false
+    register: docker_running
+
+  - name: Get all existing containers
+    community.general.docker_host_info:
+      containers: true
+      containers_all: true
+    register: docker_all
+
+  - name: Stop running containers
+    when: (docker_running.containers | length) != 0
+    shell: "docker kill $(docker ps -q)"
+
+  - name: Remove stopped docker containers
+    when: (docker_all.containers | length) != 0
+    shell: docker rm $(docker ps -aq)
