@@ -1,0 +1,264 @@
+2023-05-20T03:29:02.0833517Z ##[group]Run docker/build-push-action@v4
+2023-05-20T03:29:02.0833801Z with:
+2023-05-20T03:29:02.0834011Z   context: roles/api/files/
+2023-05-20T03:29:02.0834238Z   push: true
+2023-05-20T03:29:02.0834569Z   tags: ***/phutx_python_image:v1.0.5
+2023-05-20T03:29:02.0834804Z   load: false
+2023-05-20T03:29:02.0834997Z   no-cache: false
+2023-05-20T03:29:02.0835199Z   pull: false
+2023-05-20T03:29:02.0835528Z   github-token: ***
+2023-05-20T03:29:02.0835732Z ##[endgroup]
+2023-05-20T03:29:02.5034707Z ##[group]GitHub Actions runtime token access controls
+2023-05-20T03:29:02.5089907Z [
+2023-05-20T03:29:02.5090164Z   {
+2023-05-20T03:29:02.5137809Z     "Scope": "refs/tags/v1.0.5",
+2023-05-20T03:29:02.5138503Z     "Permission": 3
+2023-05-20T03:29:02.5138790Z   },
+2023-05-20T03:29:02.5138958Z   {
+2023-05-20T03:29:02.5139178Z     "Scope": "refs/heads/main",
+2023-05-20T03:29:02.5139414Z     "Permission": 1
+2023-05-20T03:29:02.5139615Z   }
+2023-05-20T03:29:02.5139778Z ]
+2023-05-20T03:29:02.5140449Z ##[endgroup]
+2023-05-20T03:29:02.5217733Z ##[group]Docker info
+2023-05-20T03:29:02.5218032Z [command]/usr/bin/docker version
+2023-05-20T03:29:02.5426099Z Client:
+2023-05-20T03:29:02.5435899Z  Version:           20.10.24+azure-1
+2023-05-20T03:29:02.5442100Z  API version:       1.41
+2023-05-20T03:29:02.5448330Z  Go version:        go1.19.6
+2023-05-20T03:29:02.5453760Z  Git commit:        297e1284d3bd092e9bc96076c3ddc4bb33f8c7ab
+2023-05-20T03:29:02.5459934Z  Built:             Fri Mar 31 18:34:38 UTC 2023
+2023-05-20T03:29:02.5463952Z  OS/Arch:           linux/amd64
+2023-05-20T03:29:02.5468467Z  Context:           default
+2023-05-20T03:29:02.5472219Z  Experimental:      true
+2023-05-20T03:29:02.5473717Z 
+2023-05-20T03:29:02.5475854Z Server:
+2023-05-20T03:29:02.5478191Z  Engine:
+2023-05-20T03:29:02.5482458Z   Version:          20.10.24+azure-1
+2023-05-20T03:29:02.5485630Z   API version:      1.41 (minimum version 1.12)
+2023-05-20T03:29:02.5489783Z   Go version:       go1.19.6
+2023-05-20T03:29:02.5492998Z   Git commit:       5d6db842238e3c4f5f9fb9ad70ea46b35227d084
+2023-05-20T03:29:02.5496733Z   Built:            Tue Apr  4 18:03:51 2023
+2023-05-20T03:29:02.5500735Z   OS/Arch:          linux/amd64
+2023-05-20T03:29:02.5501009Z   Experimental:     false
+2023-05-20T03:29:02.5501237Z  containerd:
+2023-05-20T03:29:02.5501560Z   Version:          1.6.20+azure-1
+2023-05-20T03:29:02.5501838Z   GitCommit:        2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-20T03:29:02.5502094Z  runc:
+2023-05-20T03:29:02.5502295Z   Version:          1.1.7
+2023-05-20T03:29:02.5502571Z   GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-20T03:29:02.5502862Z  docker-init:
+2023-05-20T03:29:02.5503067Z   Version:          0.19.0
+2023-05-20T03:29:02.5503286Z   GitCommit:        
+2023-05-20T03:29:02.5529172Z [command]/usr/bin/docker info
+2023-05-20T03:29:02.6278572Z Client:
+2023-05-20T03:29:02.6279344Z  Context:    default
+2023-05-20T03:29:02.6279893Z  Debug Mode: false
+2023-05-20T03:29:02.6280235Z  Plugins:
+2023-05-20T03:29:02.6280920Z   buildx: Docker Buildx (Docker Inc., 0.10.4+azure-1)
+2023-05-20T03:29:02.6281477Z   compose: Docker Compose (Docker Inc., 2.17.3+azure-1)
+2023-05-20T03:29:02.6281747Z 
+2023-05-20T03:29:02.6281935Z Server:
+2023-05-20T03:29:02.6327821Z  Containers: 0
+2023-05-20T03:29:02.6328068Z   Running: 0
+2023-05-20T03:29:02.6328270Z   Paused: 0
+2023-05-20T03:29:02.6328452Z   Stopped: 0
+2023-05-20T03:29:02.6328640Z  Images: 18
+2023-05-20T03:29:02.6328960Z  Server Version: 20.10.24+azure-1
+2023-05-20T03:29:02.6329196Z  Storage Driver: overlay2
+2023-05-20T03:29:02.6329434Z   Backing Filesystem: extfs
+2023-05-20T03:29:02.6329661Z   Supports d_type: true
+2023-05-20T03:29:02.6329892Z   Native Overlay Diff: false
+2023-05-20T03:29:02.6330116Z   userxattr: false
+2023-05-20T03:29:02.6330384Z  Logging Driver: json-file
+2023-05-20T03:29:02.6330620Z  Cgroup Driver: cgroupfs
+2023-05-20T03:29:02.6330833Z  Cgroup Version: 2
+2023-05-20T03:29:02.6331031Z  Plugins:
+2023-05-20T03:29:02.6331224Z   Volume: local
+2023-05-20T03:29:02.6331478Z   Network: bridge host ipvlan macvlan null overlay
+2023-05-20T03:29:02.6332307Z   Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+2023-05-20T03:29:02.6332609Z  Swarm: inactive
+2023-05-20T03:29:02.6332929Z  Runtimes: io.containerd.runc.v2 io.containerd.runtime.v1.linux runc
+2023-05-20T03:29:02.6333234Z  Default Runtime: runc
+2023-05-20T03:29:02.6333502Z  Init Binary: docker-init
+2023-05-20T03:29:02.6333805Z  containerd version: 2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-20T03:29:02.6334125Z  runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-20T03:29:02.6334380Z  init version: 
+2023-05-20T03:29:02.6334590Z  Security Options:
+2023-05-20T03:29:02.6334788Z   apparmor
+2023-05-20T03:29:02.6334968Z   seccomp
+2023-05-20T03:29:02.6335158Z    Profile: default
+2023-05-20T03:29:02.6335351Z   cgroupns
+2023-05-20T03:29:02.6335611Z  Kernel Version: 5.15.0-1037-azure
+2023-05-20T03:29:02.6335868Z  Operating System: Ubuntu 22.04.2 LTS
+2023-05-20T03:29:02.6336095Z  OSType: linux
+2023-05-20T03:29:02.6336430Z  Architecture: x86_64
+2023-05-20T03:29:02.6336632Z  CPUs: 2
+2023-05-20T03:29:02.6336826Z  Total Memory: 6.781GiB
+2023-05-20T03:29:02.6337076Z  Name: fv-az370-986
+2023-05-20T03:29:02.6337344Z  ID: 45C5:GCD5:C2ZA:BU76:2JJE:VILT:FJER:O74A:S3LH:GA6O:RCDR:J762
+2023-05-20T03:29:02.6337617Z  Docker Root Dir: /var/lib/docker
+2023-05-20T03:29:02.6337843Z  Debug Mode: false
+2023-05-20T03:29:02.6338277Z  Username: ***
+2023-05-20T03:29:02.6338547Z  Registry: https://index.docker.io/v1/
+2023-05-20T03:29:02.6338794Z  Labels:
+2023-05-20T03:29:02.6338990Z  Experimental: false
+2023-05-20T03:29:02.6339203Z  Insecure Registries:
+2023-05-20T03:29:02.6339404Z   127.0.0.0/8
+2023-05-20T03:29:02.6339618Z  Live Restore Enabled: false
+2023-05-20T03:29:02.6339771Z 
+2023-05-20T03:29:02.6340164Z ##[endgroup]
+2023-05-20T03:29:02.7657565Z ##[group]Buildx version
+2023-05-20T03:29:02.7671562Z [command]/usr/bin/docker buildx version
+2023-05-20T03:29:02.8251996Z github.com/docker/buildx 0.10.4+azure-1 c513d34049e499c53468deac6c4267ee72948f02
+2023-05-20T03:29:02.8275063Z ##[endgroup]
+2023-05-20T03:29:02.9579534Z [command]/usr/bin/docker buildx build --iidfile /tmp/docker-build-push-SAQV15/iidfile --tag ***/phutx_python_image:v1.0.5 --metadata-file /tmp/docker-build-push-SAQV15/metadata-file --push roles/api/files/
+2023-05-20T03:29:03.3406420Z #1 [internal] load build definition from Dockerfile
+2023-05-20T03:29:03.3410848Z #1 transferring dockerfile: 253B done
+2023-05-20T03:29:03.3414447Z #1 DONE 0.0s
+2023-05-20T03:29:03.3417650Z 
+2023-05-20T03:29:03.3420854Z #2 [internal] load .dockerignore
+2023-05-20T03:29:03.3424222Z #2 transferring context: 2B done
+2023-05-20T03:29:03.3427906Z #2 DONE 0.0s
+2023-05-20T03:29:03.3431405Z 
+2023-05-20T03:29:03.3436251Z #3 [auth] library/python:pull token for registry-1.docker.io
+2023-05-20T03:29:03.3439776Z #3 DONE 0.0s
+2023-05-20T03:29:03.3443017Z 
+2023-05-20T03:29:03.3446226Z #4 [internal] load metadata for docker.io/library/python:3.9
+2023-05-20T03:29:03.5974383Z #4 DONE 0.3s
+2023-05-20T03:29:03.5974617Z 
+2023-05-20T03:29:03.5975042Z #5 [1/4] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51
+2023-05-20T03:29:03.5975639Z #5 resolve docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51 done
+2023-05-20T03:29:03.7193414Z #5 ...
+2023-05-20T03:29:03.7194093Z 
+2023-05-20T03:29:03.7195028Z #6 [internal] load build context
+2023-05-20T03:29:03.7195516Z #6 transferring context: 3.06MB 0.0s done
+2023-05-20T03:29:03.7196122Z #6 DONE 0.0s
+2023-05-20T03:29:03.7196400Z 
+2023-05-20T03:29:03.7197005Z #5 [1/4] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51
+2023-05-20T03:29:03.7197625Z #5 sha256:27ac39eccd1fd7d6c7f78eefc98233e633a7178dd05910983ba905ecf71561f3 7.51kB / 7.51kB done
+2023-05-20T03:29:03.7198654Z #5 sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04 3.15MB / 6.29MB 0.1s
+2023-05-20T03:29:03.7199593Z #5 sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 0B / 16.15MB 0.1s
+2023-05-20T03:29:03.7200391Z #5 sha256:c65dadac8789fed40962578392e99a0528dcb868442c75d144e68ba858984837 2.01kB / 2.01kB done
+2023-05-20T03:29:03.7200895Z #5 sha256:a48c72dfa8c4e0da323ce32dac703c79d8f2de134e6a420cdfbc868323cfc68a 244B / 244B 0.1s done
+2023-05-20T03:29:03.7201464Z #5 sha256:c343b921680a19bf22934b83c02f42d8fdd0d8559417f63c1dcd2d7997c22da3 0B / 2.90MB 0.1s
+2023-05-20T03:29:03.7202018Z #5 sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51 1.86kB / 1.86kB done
+2023-05-20T03:29:03.7202502Z #5 extracting sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04
+2023-05-20T03:29:03.8231155Z #5 sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04 6.29MB / 6.29MB 0.1s done
+2023-05-20T03:29:03.8232060Z #5 sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 6.29MB / 16.15MB 0.2s
+2023-05-20T03:29:03.8232693Z #5 sha256:c343b921680a19bf22934b83c02f42d8fdd0d8559417f63c1dcd2d7997c22da3 2.90MB / 2.90MB 0.2s done
+2023-05-20T03:29:03.9230325Z #5 sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 16.15MB / 16.15MB 0.3s
+2023-05-20T03:29:04.0300828Z #5 sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 16.15MB / 16.15MB 0.3s done
+2023-05-20T03:29:04.1330959Z #5 extracting sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04 0.3s done
+2023-05-20T03:29:04.1341214Z #5 extracting sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740
+2023-05-20T03:29:04.7647096Z #5 extracting sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 0.5s done
+2023-05-20T03:29:04.7647801Z #5 extracting sha256:a48c72dfa8c4e0da323ce32dac703c79d8f2de134e6a420cdfbc868323cfc68a
+2023-05-20T03:29:04.9159471Z #5 extracting sha256:a48c72dfa8c4e0da323ce32dac703c79d8f2de134e6a420cdfbc868323cfc68a done
+2023-05-20T03:29:04.9160251Z #5 extracting sha256:c343b921680a19bf22934b83c02f42d8fdd0d8559417f63c1dcd2d7997c22da3
+2023-05-20T03:29:05.1406757Z #5 extracting sha256:c343b921680a19bf22934b83c02f42d8fdd0d8559417f63c1dcd2d7997c22da3 0.2s done
+2023-05-20T03:29:05.1407653Z #5 DONE 1.5s
+2023-05-20T03:29:05.1407902Z 
+2023-05-20T03:29:05.1408002Z #7 [2/4] WORKDIR /var/www
+2023-05-20T03:29:05.1408215Z #7 DONE 0.0s
+2023-05-20T03:29:05.1408339Z 
+2023-05-20T03:29:05.1408430Z #8 [3/4] COPY . /var/www
+2023-05-20T03:29:05.1408631Z #8 DONE 0.0s
+2023-05-20T03:29:05.2909560Z 
+2023-05-20T03:29:05.2910306Z #9 [4/4] RUN pip install --no-cache-dir -r requirements.txt &&     pip install gunicorn
+2023-05-20T03:29:07.3952068Z #9 2.103 Collecting Flask
+2023-05-20T03:29:07.3953124Z #9 2.146   Downloading Flask-2.3.2-py3-none-any.whl (96 kB)
+2023-05-20T03:29:07.3954997Z #9 2.157      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.9/96.9 KB 11.2 MB/s eta 0:00:00
+2023-05-20T03:29:07.9660796Z #9 2.717 Collecting pymongo
+2023-05-20T03:29:07.9661749Z #9 2.727   Downloading pymongo-4.3.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (492 kB)
+2023-05-20T03:29:07.9662676Z #9 2.739      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 492.1/492.1 KB 51.1 MB/s eta 0:00:00
+2023-05-20T03:29:07.9669816Z #9 2.769 Collecting blinker>=1.6.2
+2023-05-20T03:29:07.9670322Z #9 2.777   Downloading blinker-1.6.2-py3-none-any.whl (13 kB)
+2023-05-20T03:29:07.9670625Z #9 2.824 Collecting Werkzeug>=2.3.3
+2023-05-20T03:29:08.0876937Z #9 2.833   Downloading Werkzeug-2.3.4-py3-none-any.whl (242 kB)
+2023-05-20T03:29:08.0877908Z #9 2.836      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.5/242.5 KB 284.0 MB/s eta 0:00:00
+2023-05-20T03:29:08.0878513Z #9 2.860 Collecting itsdangerous>=2.1.2
+2023-05-20T03:29:08.0879080Z #9 2.867   Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+2023-05-20T03:29:08.0879547Z #9 2.899 Collecting Jinja2>=3.1.2
+2023-05-20T03:29:08.0880070Z #9 2.907   Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+2023-05-20T03:29:08.0880690Z #9 2.910      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 KB 272.4 MB/s eta 0:00:00
+2023-05-20T03:29:08.0881177Z #9 2.945 Collecting click>=8.1.3
+2023-05-20T03:29:08.1948782Z #9 2.953   Downloading click-8.1.3-py3-none-any.whl (96 kB)
+2023-05-20T03:29:08.1949917Z #9 2.956      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 KB 253.0 MB/s eta 0:00:00
+2023-05-20T03:29:08.1950549Z #9 3.042 Collecting importlib-metadata>=3.6.0
+2023-05-20T03:29:08.1951250Z #9 3.053   Downloading importlib_metadata-6.6.0-py3-none-any.whl (22 kB)
+2023-05-20T03:29:08.3331015Z #9 3.086 Collecting dnspython<3.0.0,>=1.16.0
+2023-05-20T03:29:08.3332050Z #9 3.104   Downloading dnspython-2.3.0-py3-none-any.whl (283 kB)
+2023-05-20T03:29:08.3332938Z #9 3.108      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 283.7/283.7 KB 278.2 MB/s eta 0:00:00
+2023-05-20T03:29:08.3333498Z #9 3.191 Collecting zipp>=0.5
+2023-05-20T03:29:08.4474212Z #9 3.198   Downloading zipp-3.15.0-py3-none-any.whl (6.8 kB)
+2023-05-20T03:29:08.4475175Z #9 3.290 Collecting MarkupSafe>=2.0
+2023-05-20T03:29:08.4476064Z #9 3.305   Downloading MarkupSafe-2.1.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+2023-05-20T03:29:08.7482414Z #9 3.458 Installing collected packages: zipp, MarkupSafe, itsdangerous, dnspython, click, blinker, Werkzeug, pymongo, Jinja2, importlib-metadata, Flask
+2023-05-20T03:29:09.5002972Z #9 4.284 Successfully installed Flask-2.3.2 Jinja2-3.1.2 MarkupSafe-2.1.2 Werkzeug-2.3.4 blinker-1.6.2 click-8.1.3 dnspython-2.3.0 importlib-metadata-6.6.0 itsdangerous-2.1.2 pymongo-4.3.3 zipp-3.15.0
+2023-05-20T03:29:09.5004062Z #9 4.285 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2023-05-20T03:29:09.6505957Z #9 4.382 WARNING: You are using pip version 22.0.4; however, version 23.1.2 is available.
+2023-05-20T03:29:09.6506797Z #9 4.382 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+2023-05-20T03:29:10.0943795Z #9 4.952 Collecting gunicorn
+2023-05-20T03:29:10.2452808Z #9 4.988   Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)
+2023-05-20T03:29:10.2453967Z #9 4.999      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 KB 9.5 MB/s eta 0:00:00
+2023-05-20T03:29:10.2454850Z #9 5.008 Requirement already satisfied: setuptools>=3.0 in /usr/local/lib/python3.9/site-packages (from gunicorn) (58.1.0)
+2023-05-20T03:29:10.3958753Z #9 5.111 Installing collected packages: gunicorn
+2023-05-20T03:29:10.3959786Z #9 5.181 Successfully installed gunicorn-20.1.0
+2023-05-20T03:29:10.3961459Z #9 5.181 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2023-05-20T03:29:10.5164728Z #9 5.287 WARNING: You are using pip version 22.0.4; however, version 23.1.2 is available.
+2023-05-20T03:29:10.5166204Z #9 5.287 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+2023-05-20T03:29:10.5167738Z #9 DONE 5.4s
+2023-05-20T03:29:10.6657813Z 
+2023-05-20T03:29:10.6658260Z #10 exporting to image
+2023-05-20T03:29:10.6658628Z #10 exporting layers
+2023-05-20T03:29:12.4703695Z #10 exporting layers 2.0s done
+2023-05-20T03:29:12.6170968Z #10 writing image sha256:ccd26624e8de3fde375f38aef274ab1c2e01ec9009a4e50dd8ca1fde643df831 done
+2023-05-20T03:29:12.6173203Z #10 naming to docker.io/***/phutx_python_image:v1.0.5 done
+2023-05-20T03:29:12.6174264Z #10 DONE 2.0s
+2023-05-20T03:29:12.6175136Z 
+2023-05-20T03:29:12.6176099Z #11 pushing ***/phutx_python_image:v1.0.5 with docker
+2023-05-20T03:29:12.6176691Z #11 pushing layer fc684e23cc70
+2023-05-20T03:29:12.6177525Z #11 pushing layer 701983cb2fb0
+2023-05-20T03:29:12.6178623Z #11 pushing layer a84ddd1d0df9
+2023-05-20T03:29:12.6178885Z #11 pushing layer 7590f3933b44
+2023-05-20T03:29:12.6179187Z #11 pushing layer 6e281c24915d
+2023-05-20T03:29:12.6179492Z #11 pushing layer 137c4023273a 0.1s
+2023-05-20T03:29:12.6179859Z #11 pushing layer 0007505dc811 0.1s
+2023-05-20T03:29:12.6180543Z #11 pushing layer f43725f97b9f 0.1s
+2023-05-20T03:29:12.6180807Z #11 pushing layer 9c42af2c6418 0.1s
+2023-05-20T03:29:12.6181137Z #11 pushing layer d96e248f10e6 0.1s
+2023-05-20T03:29:12.6181459Z #11 pushing layer d925e0fae4e6 0.1s
+2023-05-20T03:29:12.8323849Z #11 pushing layer 701983cb2fb0 1.38MB / 3.05MB 0.5s
+2023-05-20T03:29:12.9507195Z #11 pushing layer fc684e23cc70 1.70MB / 15.88MB 0.5s
+2023-05-20T03:29:12.9507651Z #11 pushing layer 701983cb2fb0 3.11MB / 3.05MB 0.7s
+2023-05-20T03:29:13.0673348Z #11 pushing layer fc684e23cc70 5.26MB / 15.88MB 0.9s
+2023-05-20T03:29:13.1685788Z #11 pushing layer fc684e23cc70 7.42MB / 15.88MB 1.1s
+2023-05-20T03:29:13.2729694Z #11 pushing layer fc684e23cc70 9.41MB / 15.88MB 1.4s
+2023-05-20T03:29:13.3790743Z #11 pushing layer fc684e23cc70 11.23MB / 15.88MB 1.6s
+2023-05-20T03:29:13.4829974Z #11 pushing layer fc684e23cc70 13.20MB / 15.88MB 1.8s
+2023-05-20T03:29:13.5861364Z #11 pushing layer fc684e23cc70 15.37MB / 15.88MB 2.0s
+2023-05-20T03:29:13.7370055Z #11 pushing layer fc684e23cc70 17.15MB / 15.88MB 2.2s
+2023-05-20T03:29:13.8769355Z #11 pushing layer 701983cb2fb0 1.8s done
+2023-05-20T03:29:13.8769786Z #11 pushing layer a84ddd1d0df9 1.4s done
+2023-05-20T03:29:14.7394999Z #11 pushing layer fc684e23cc70 3.3s done
+2023-05-20T03:29:16.3938094Z #11 pushing layer 7590f3933b44 3.9s done
+2023-05-20T03:29:16.3938475Z #11 pushing layer 6e281c24915d 3.9s done
+2023-05-20T03:29:16.3938996Z #11 pushing layer 137c4023273a 4.0s done
+2023-05-20T03:29:16.3939312Z #11 pushing layer 0007505dc811 4.0s done
+2023-05-20T03:29:16.3939637Z #11 pushing layer f43725f97b9f 4.0s done
+2023-05-20T03:29:16.3939958Z #11 pushing layer 9c42af2c6418 4.0s done
+2023-05-20T03:29:16.3940269Z #11 pushing layer d96e248f10e6 4.0s done
+2023-05-20T03:29:16.3940598Z #11 pushing layer d925e0fae4e6 4.0s done
+2023-05-20T03:29:16.3940894Z #11 DONE 3.8s
+2023-05-20T03:29:16.5956642Z ##[group]ImageID
+2023-05-20T03:29:16.5957236Z sha256:ccd26624e8de3fde375f38aef274ab1c2e01ec9009a4e50dd8ca1fde643df831
+2023-05-20T03:29:16.5957847Z ##[endgroup]
+2023-05-20T03:29:16.5958339Z ##[group]Digest
+2023-05-20T03:29:16.5958748Z sha256:cca61e740f5a9c1a960c00e41b2d7cb02ffc2c1339d47d415a56f1597d6da5a3
+2023-05-20T03:29:16.5959318Z ##[endgroup]
+2023-05-20T03:29:16.5959732Z ##[group]Metadata
+2023-05-20T03:29:16.5959989Z {
+2023-05-20T03:29:16.5960466Z   "containerimage.config.digest": "sha256:ccd26624e8de3fde375f38aef274ab1c2e01ec9009a4e50dd8ca1fde643df831",
+2023-05-20T03:29:16.5961055Z   "containerimage.digest": "sha256:cca61e740f5a9c1a960c00e41b2d7cb02ffc2c1339d47d415a56f1597d6da5a3"
+2023-05-20T03:29:16.5961437Z }
+2023-05-20T03:29:16.5961833Z ##[endgroup]

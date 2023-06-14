@@ -1,0 +1,6 @@
+- name: Deploy Logging Services
+  hosts: all
+  become: true
+#      gather_facts: false
+  roles:
+    - logging

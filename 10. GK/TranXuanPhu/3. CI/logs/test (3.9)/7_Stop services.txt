@@ -1,0 +1,10 @@
+2023-05-18T03:35:06.9032972Z ##[group]Run docker rm -f $(docker ps -aq)
+2023-05-18T03:35:06.9033292Z [36;1mdocker rm -f $(docker ps -aq)[0m
+2023-05-18T03:35:06.9087066Z shell: /usr/bin/bash -e {0}
+2023-05-18T03:35:06.9087287Z env:
+2023-05-18T03:35:06.9087556Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.16/x64
+2023-05-18T03:35:06.9087889Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.16/x64/lib
+2023-05-18T03:35:06.9088140Z ##[endgroup]
+2023-05-18T03:35:07.4143545Z d330cad4983f
+2023-05-18T03:35:07.4144192Z 11324f6bbd55
+2023-05-18T03:35:07.4144948Z bab029d5008a

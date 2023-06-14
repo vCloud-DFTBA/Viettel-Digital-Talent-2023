@@ -1,0 +1,39 @@
+inhibit_rules:
+  - target_match:
+      severity: "warning"
+    source_match:
+      severity: "critical"
+    # Apply inhibition if the alertname and instance are the same.
+    equal: ["alertname", "instance"]
+
+route:
+  receiver: "slack"
+  group_interval: 30s
+  repeat_interval: 30s
+
+  routes:
+    - match:
+        alertname: monitor_service_down
+      receiver: "webhook"
+      repeat_interval: 5m
+
+
+
+receivers:
+  - name: "slack"
+    slack_configs:
+      - send_resolved: true
+        text: "{{ .CommonAnnotations.description }}"
+        username: "Prometheus"
+        channel: "#test"
+        api_url: "https://hooks.slack.com/services/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"
+
+  - name: "webhook"
+    webhook_configs:
+      - url: "http://localhost:8000"
+        send_resolved: true
+        
+#  - name: "email"
+#    email_configs:
+#      - to: "phuenter2@gmail.com"
+#        send_resolved: true

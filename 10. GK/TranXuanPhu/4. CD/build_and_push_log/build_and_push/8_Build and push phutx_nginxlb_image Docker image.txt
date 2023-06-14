@@ -1,0 +1,177 @@
+2023-05-20T03:29:34.5635879Z ##[group]Run docker/build-push-action@v4
+2023-05-20T03:29:34.5636141Z with:
+2023-05-20T03:29:34.5636351Z   context: roles/lb/files/
+2023-05-20T03:29:34.5636569Z   push: true
+2023-05-20T03:29:34.5636856Z   tags: ***/phutx_nginxlb_image:v1.0.5
+2023-05-20T03:29:34.5637093Z   load: false
+2023-05-20T03:29:34.5637299Z   no-cache: false
+2023-05-20T03:29:34.5637502Z   pull: false
+2023-05-20T03:29:34.5637810Z   github-token: ***
+2023-05-20T03:29:34.5638022Z ##[endgroup]
+2023-05-20T03:29:34.7390529Z ##[group]GitHub Actions runtime token access controls
+2023-05-20T03:29:34.7402560Z [
+2023-05-20T03:29:34.7402934Z   {
+2023-05-20T03:29:34.7404378Z     "Scope": "refs/tags/v1.0.5",
+2023-05-20T03:29:34.7404742Z     "Permission": 3
+2023-05-20T03:29:34.7405428Z   },
+2023-05-20T03:29:34.7406112Z   {
+2023-05-20T03:29:34.7406468Z     "Scope": "refs/heads/main",
+2023-05-20T03:29:34.7406720Z     "Permission": 1
+2023-05-20T03:29:34.7406911Z   }
+2023-05-20T03:29:34.7407083Z ]
+2023-05-20T03:29:34.7407633Z ##[endgroup]
+2023-05-20T03:29:34.7408087Z ##[group]Docker info
+2023-05-20T03:29:34.7425416Z [command]/usr/bin/docker version
+2023-05-20T03:29:34.7710308Z Client:
+2023-05-20T03:29:34.7711101Z  Version:           20.10.24+azure-1
+2023-05-20T03:29:34.7711770Z  API version:       1.41
+2023-05-20T03:29:34.7712093Z  Go version:        go1.19.6
+2023-05-20T03:29:34.7712393Z  Git commit:        297e1284d3bd092e9bc96076c3ddc4bb33f8c7ab
+2023-05-20T03:29:34.7712694Z  Built:             Fri Mar 31 18:34:38 UTC 2023
+2023-05-20T03:29:34.7712947Z  OS/Arch:           linux/amd64
+2023-05-20T03:29:34.7713167Z  Context:           default
+2023-05-20T03:29:34.7713403Z  Experimental:      true
+2023-05-20T03:29:34.7713551Z 
+2023-05-20T03:29:34.7713624Z Server:
+2023-05-20T03:29:34.7713810Z  Engine:
+2023-05-20T03:29:34.7714173Z   Version:          20.10.24+azure-1
+2023-05-20T03:29:34.7714427Z   API version:      1.41 (minimum version 1.12)
+2023-05-20T03:29:34.7714679Z   Go version:       go1.19.6
+2023-05-20T03:29:34.7714960Z   Git commit:       5d6db842238e3c4f5f9fb9ad70ea46b35227d084
+2023-05-20T03:29:34.7715281Z   Built:            Tue Apr  4 18:03:51 2023
+2023-05-20T03:29:34.7715524Z   OS/Arch:          linux/amd64
+2023-05-20T03:29:34.7715757Z   Experimental:     false
+2023-05-20T03:29:34.7715976Z  containerd:
+2023-05-20T03:29:34.7716232Z   Version:          1.6.20+azure-1
+2023-05-20T03:29:34.7716519Z   GitCommit:        2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-20T03:29:34.7716768Z  runc:
+2023-05-20T03:29:34.7716952Z   Version:          1.1.7
+2023-05-20T03:29:34.7717220Z   GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-20T03:29:34.7717506Z  docker-init:
+2023-05-20T03:29:34.7717720Z   Version:          0.19.0
+2023-05-20T03:29:34.7717943Z   GitCommit:        
+2023-05-20T03:29:34.7742374Z [command]/usr/bin/docker info
+2023-05-20T03:29:34.8392711Z Client:
+2023-05-20T03:29:34.8393501Z  Context:    default
+2023-05-20T03:29:34.8393904Z  Debug Mode: false
+2023-05-20T03:29:34.8394376Z  Plugins:
+2023-05-20T03:29:34.8395724Z   buildx: Docker Buildx (Docker Inc., 0.10.4+azure-1)
+2023-05-20T03:29:34.8396340Z   compose: Docker Compose (Docker Inc., 2.17.3+azure-1)
+2023-05-20T03:29:34.8396646Z 
+2023-05-20T03:29:34.8396830Z Server:
+2023-05-20T03:29:34.8397502Z  Containers: 0
+2023-05-20T03:29:34.8397923Z   Running: 0
+2023-05-20T03:29:34.8399747Z   Paused: 0
+2023-05-20T03:29:34.8400122Z   Stopped: 0
+2023-05-20T03:29:34.8400453Z  Images: 21
+2023-05-20T03:29:34.8400869Z  Server Version: 20.10.24+azure-1
+2023-05-20T03:29:34.8401249Z  Storage Driver: overlay2
+2023-05-20T03:29:34.8401602Z   Backing Filesystem: extfs
+2023-05-20T03:29:34.8401917Z   Supports d_type: true
+2023-05-20T03:29:34.8402236Z   Native Overlay Diff: false
+2023-05-20T03:29:34.8455444Z   userxattr: false
+2023-05-20T03:29:34.8455821Z  Logging Driver: json-file
+2023-05-20T03:29:34.8456059Z  Cgroup Driver: cgroupfs
+2023-05-20T03:29:34.8456274Z  Cgroup Version: 2
+2023-05-20T03:29:34.8456477Z  Plugins:
+2023-05-20T03:29:34.8456672Z   Volume: local
+2023-05-20T03:29:34.8456927Z   Network: bridge host ipvlan macvlan null overlay
+2023-05-20T03:29:34.8457692Z   Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+2023-05-20T03:29:34.8457998Z  Swarm: inactive
+2023-05-20T03:29:34.8458311Z  Runtimes: io.containerd.runtime.v1.linux runc io.containerd.runc.v2
+2023-05-20T03:29:34.8458626Z  Default Runtime: runc
+2023-05-20T03:29:34.8458899Z  Init Binary: docker-init
+2023-05-20T03:29:34.8459203Z  containerd version: 2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-20T03:29:34.8459536Z  runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-20T03:29:34.8459782Z  init version: 
+2023-05-20T03:29:34.8459993Z  Security Options:
+2023-05-20T03:29:34.8460194Z   apparmor
+2023-05-20T03:29:34.8460380Z   seccomp
+2023-05-20T03:29:34.8460572Z    Profile: default
+2023-05-20T03:29:34.8460766Z   cgroupns
+2023-05-20T03:29:34.8461030Z  Kernel Version: 5.15.0-1037-azure
+2023-05-20T03:29:34.8461283Z  Operating System: Ubuntu 22.04.2 LTS
+2023-05-20T03:29:34.8461516Z  OSType: linux
+2023-05-20T03:29:34.8461732Z  Architecture: x86_64
+2023-05-20T03:29:34.8461927Z  CPUs: 2
+2023-05-20T03:29:34.8462132Z  Total Memory: 6.781GiB
+2023-05-20T03:29:34.8462384Z  Name: fv-az370-986
+2023-05-20T03:29:34.8462674Z  ID: 45C5:GCD5:C2ZA:BU76:2JJE:VILT:FJER:O74A:S3LH:GA6O:RCDR:J762
+2023-05-20T03:29:34.8462959Z  Docker Root Dir: /var/lib/docker
+2023-05-20T03:29:34.8463181Z  Debug Mode: false
+2023-05-20T03:29:34.8463464Z  Username: ***
+2023-05-20T03:29:34.8463723Z  Registry: https://index.docker.io/v1/
+2023-05-20T03:29:34.8463964Z  Labels:
+2023-05-20T03:29:34.8464217Z  Experimental: false
+2023-05-20T03:29:34.8464434Z  Insecure Registries:
+2023-05-20T03:29:34.8464644Z   127.0.0.0/8
+2023-05-20T03:29:34.8464860Z  Live Restore Enabled: false
+2023-05-20T03:29:34.8465010Z 
+2023-05-20T03:29:34.8465378Z ##[endgroup]
+2023-05-20T03:29:34.9735998Z ##[group]Buildx version
+2023-05-20T03:29:34.9746796Z [command]/usr/bin/docker buildx version
+2023-05-20T03:29:35.0357734Z github.com/docker/buildx 0.10.4+azure-1 c513d34049e499c53468deac6c4267ee72948f02
+2023-05-20T03:29:35.0379839Z ##[endgroup]
+2023-05-20T03:29:35.1550464Z [command]/usr/bin/docker buildx build --iidfile /tmp/docker-build-push-lnFe8S/iidfile --tag ***/phutx_nginxlb_image:v1.0.5 --metadata-file /tmp/docker-build-push-lnFe8S/metadata-file --push roles/lb/files/
+2023-05-20T03:29:35.4824122Z #1 [internal] load build definition from Dockerfile
+2023-05-20T03:29:35.4824527Z #1 transferring dockerfile: 189B done
+2023-05-20T03:29:35.4824762Z #1 DONE 0.0s
+2023-05-20T03:29:35.4824888Z 
+2023-05-20T03:29:35.4825001Z #2 [internal] load .dockerignore
+2023-05-20T03:29:35.4825259Z #2 transferring context: 2B done
+2023-05-20T03:29:35.4825467Z #2 DONE 0.0s
+2023-05-20T03:29:35.4825594Z 
+2023-05-20T03:29:35.4825997Z #3 [internal] load metadata for docker.io/library/nginx:1.22.0-alpine
+2023-05-20T03:29:35.4826275Z #3 DONE 0.1s
+2023-05-20T03:29:35.6326360Z 
+2023-05-20T03:29:35.6327423Z #4 [1/3] FROM docker.io/library/nginx:1.22.0-alpine@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec
+2023-05-20T03:29:35.6328098Z #4 DONE 0.0s
+2023-05-20T03:29:35.6328432Z 
+2023-05-20T03:29:35.6328715Z #5 [internal] load build context
+2023-05-20T03:29:35.6329000Z #5 transferring context: 669B done
+2023-05-20T03:29:35.6329581Z #5 DONE 0.0s
+2023-05-20T03:29:35.6329712Z 
+2023-05-20T03:29:35.6330033Z #6 [2/3] RUN rm -f /etc/nginx/conf.d/default.conf
+2023-05-20T03:29:35.6330279Z #6 CACHED
+2023-05-20T03:29:35.6330397Z 
+2023-05-20T03:29:35.6330521Z #7 [3/3] COPY nginx.conf /etc/nginx/conf.d/
+2023-05-20T03:29:35.6330759Z #7 DONE 0.0s
+2023-05-20T03:29:35.6330871Z 
+2023-05-20T03:29:35.6330965Z #8 exporting to image
+2023-05-20T03:29:35.6331184Z #8 exporting layers
+2023-05-20T03:29:36.0422123Z #8 exporting layers 0.5s done
+2023-05-20T03:29:36.0422627Z #8 writing image sha256:07553e6a97a4b16bc4972bc0ebb744659a6095d9c99082853b15d74e6773cc7a done
+2023-05-20T03:29:36.0423106Z #8 naming to docker.io/***/phutx_nginxlb_image:v1.0.5 done
+2023-05-20T03:29:36.0423376Z #8 DONE 0.5s
+2023-05-20T03:29:36.0423505Z 
+2023-05-20T03:29:36.0423952Z #9 pushing ***/phutx_nginxlb_image:v1.0.5 with docker
+2023-05-20T03:29:36.0424227Z #9 pushing layer d798cf1cc804
+2023-05-20T03:29:36.1825922Z #9 pushing layer a82030dacacb
+2023-05-20T03:29:36.1826663Z #9 pushing layer 2215c66bbd37
+2023-05-20T03:29:36.1827020Z #9 pushing layer 2fced351995b
+2023-05-20T03:29:36.1827264Z #9 pushing layer f5e6d03415cf 0.2s
+2023-05-20T03:29:36.1827525Z #9 pushing layer 3427d79f4b93 0.1s
+2023-05-20T03:29:36.1827760Z #9 pushing layer e14491c4bad5 0.1s
+2023-05-20T03:29:36.1827990Z #9 pushing layer 994393dc58e7 0.1s
+2023-05-20T03:29:36.3159692Z #9 pushing layer d798cf1cc804 4.10kB / 630B 0.4s
+2023-05-20T03:29:37.4736647Z #9 pushing layer d798cf1cc804 1.6s done
+2023-05-20T03:29:38.8264721Z #9 pushing layer a82030dacacb 2.9s done
+2023-05-20T03:29:38.8265070Z #9 pushing layer 2215c66bbd37 2.9s done
+2023-05-20T03:29:38.8265330Z #9 pushing layer 2fced351995b 2.9s done
+2023-05-20T03:29:38.8265577Z #9 pushing layer f5e6d03415cf 2.9s done
+2023-05-20T03:29:38.8265832Z #9 pushing layer 3427d79f4b93 3.0s done
+2023-05-20T03:29:38.8266098Z #9 pushing layer e14491c4bad5 3.0s done
+2023-05-20T03:29:38.8266340Z #9 pushing layer 994393dc58e7 3.0s done
+2023-05-20T03:29:38.8266570Z #9 DONE 2.8s
+2023-05-20T03:29:39.0940323Z ##[group]ImageID
+2023-05-20T03:29:39.0940700Z sha256:07553e6a97a4b16bc4972bc0ebb744659a6095d9c99082853b15d74e6773cc7a
+2023-05-20T03:29:39.0950888Z ##[endgroup]
+2023-05-20T03:29:39.0951292Z ##[group]Digest
+2023-05-20T03:29:39.0951606Z sha256:4f514e3495ba08bd639e193ae9d36b432c821718085637457c013953413eec60
+2023-05-20T03:29:39.0952066Z ##[endgroup]
+2023-05-20T03:29:39.0952405Z ##[group]Metadata
+2023-05-20T03:29:39.0952589Z {
+2023-05-20T03:29:39.0952937Z   "containerimage.config.digest": "sha256:07553e6a97a4b16bc4972bc0ebb744659a6095d9c99082853b15d74e6773cc7a",
+2023-05-20T03:29:39.0953399Z   "containerimage.digest": "sha256:4f514e3495ba08bd639e193ae9d36b432c821718085637457c013953413eec60"
+2023-05-20T03:29:39.0953696Z }
+2023-05-20T03:29:39.0954013Z ##[endgroup]
