@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-vdt2023
+  name: web-vdt2023
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-vdt2023
+  template:
+    metadata:
+      labels:
+        app: web-vdt2023
+    spec:
+      containers:
+      - name: web-vdt2023
+        image: duogglong/frontend-vdt2023:v1.0.7
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api-vdt2023
+  name: api-vdt2023
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-vdt2023
+  template:
+    metadata:
+      labels:
+        app: api-vdt2023
+    spec:
+      containers:
+      - name: api-vdt2023
+        image: duogglong/backend-vdt2023:latest
+        resources:
+          limits:
+            memory: "200Mi"
+            cpu: "300m"
+        ports:
+        - containerPort: 8088

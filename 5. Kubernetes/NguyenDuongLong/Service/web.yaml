@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: web-vdt2023
+  name: web-vdt2023
+spec:
+  selector:
+    app: web-vdt2023
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer

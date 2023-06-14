@@ -1,0 +1,171 @@
+@import "./functions";
+
+html {
+    background: #f7f7f7;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    color: #06619c;
+    scroll-behavior: smooth;
+    z-index: 0;
+}
+
+// ::selection {
+//     background-color: rgba(194, 8, 79, 0.5);
+//     color: $white-color;
+// }
+
+.btn {
+    height: 4.5rem;
+    line-height: 4.5rem;
+    padding: 0 3rem;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(155, 71, 71, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    text-decoration: none !important;
+    background: linear-gradient(to right, #43afe9, #38f9d7);
+}
+
+.btn:hover {
+    background: linear-gradient(to right,  #38f9d7, #43afe9,);
+    box-shadow: -0.5px 8px 25px rgb(102, 172, 194);
+}
+
+.boxIconTrash {
+    width: 5rem;
+    height: 5rem;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2.5rem;
+    position: absolute;
+    right: 0;
+    top: 1.5rem;
+    display: none;
+
+    .icon {
+        color: rgb(150, 47, 47);
+        position: relative;
+    }
+
+    &:hover {
+        .icon {
+            box-shadow: 0px 1px 15px -3px rgba(255, 4, 4, 0.4);
+        }
+    }
+
+    &:active {
+        opacity: 0.7;
+    }
+}
+
+.warning {
+    background: linear-gradient(to right, #d4df3f, #d4df3f);
+    &:hover {
+        background: linear-gradient(to right, #d4df3f, #d4df3f);
+        box-shadow: -0.5px 2px 10px #c3d330;
+    }
+}
+
+.error {
+    background: linear-gradient(to right, #f93838, #c42f68);
+    &:hover {
+        background: linear-gradient(to right, #f93838, #c42f68);
+        box-shadow: -0.5px 2px 10px #d33030;
+    }
+}
+
+// Form input
+.form {
+    position: relative;
+    width: $width-form-input;
+    height: 4.5rem;
+
+    &Input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-bottom: 1px solid $blue-light-color;
+        font-size: 1.5rem;
+        color: $text-color;
+        outline: none;
+        padding: 1.8rem 0.7rem 0.4rem;
+        background: none;
+        box-sizing: border-box;
+
+    }
+
+    &Label {
+        opacity: 0.7;
+        line-height: 2.2rem;
+        position: absolute;
+        left: 0.5rem;
+        top: 1.6rem;
+        padding: 0 0.5rem;
+        color: $blue-light-color;
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+        cursor: text;
+        transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+        user-select: none;
+    }
+}
+
+/* 
+1. When the input is in the focus state
+reduce the size of the label and move upwards 
+
+2. Keep label state when content is in input field 
+*/
+
+.formInput:focus ~ .formLabel,
+.formInput:not(:placeholder-shown).formInput:not(:focus) ~ .formLabel,
+.formInput:hover ~ .formLabel,
+.formLabel:hover {
+    top: -0.4rem;
+    font-size: 1.1rem;
+    left: 0.2rem;
+    padding: 0 0.5rem;
+    color: $blue-light-color;
+}
+
+.formLabelBig {
+    line-height: 2.2rem;
+    position: absolute;
+    left: 1.5rem;
+    top: -1.4rem;
+    padding: 0 0.5rem;
+    color: $blue-light-color;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    cursor: text;
+    background-color: $white-color;
+}
+
+// Scroll bar
+*::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: -webkit-linear-gradient(45deg, #316181, #4aa1bb);
+    border-radius: 10rem;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: rgb(236, 236, 236);
+    border-radius: 1rem;
+}

@@ -1,0 +1,18 @@
+- name: Pull frontend-vdt2023 Docker image - always pull latest version every playbook executes
+  command: docker pull duogglong/frontend-vdt2023:latest 
+
+- name: Run Docker container frontend-vdt2023
+  docker_container:
+    name: "{{ frontend_container_name }}"
+    image: duogglong/frontend-vdt2023:latest
+    state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ fluentd_address }}"
+      tag: "frontend-vdt2023"
+    interactive: true
+    tty: true
+    ports:
+      - "3000:3000"
+    networks:
+      - name: "{{ network_name }}"

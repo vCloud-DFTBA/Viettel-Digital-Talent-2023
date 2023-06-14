@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: api-vdt2023
+  name: api-vdt2023
+spec:
+  selector:
+    app: api-vdt2023
+  ports:
+    - protocol: TCP
+      port: 8088
+      targetPort: 8088
+  type: ClusterIP 
+  
