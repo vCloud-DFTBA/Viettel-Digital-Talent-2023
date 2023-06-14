@@ -1,0 +1,43 @@
+---
+logger:
+  hosts:
+    logger01:
+      ansible_user: root
+      ansible_host: "{{ logger_host }}"
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ vault_become_password }}"
+
+db:
+  hosts:
+    db01:
+      ansible_user: root
+      ansible_host: "{{ db_host }}"
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ vault_become_password }}"
+
+api:
+  hosts:
+    api01:
+      ansible_user: root
+      ansible_host: "{{ api_lb_host }}"
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ vault_become_password }}"
+
+web:
+  hosts:
+    web01:
+      ansible_user: root
+      ansible_host: "{{ web_lb_host }}"
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: "{{ vault_become_password }}"
+
+app:
+  children:
+    logger:
+    db:
+    api:
+    web:

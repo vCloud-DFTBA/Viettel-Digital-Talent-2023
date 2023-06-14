@@ -1,0 +1,22 @@
+---
+- name: Get running containers
+  community.docker.docker_host_info:
+    containers: true
+  register: docker_info
+
+- name: Stop running containers
+  community.docker.docker_container:
+    name: "{{ item }}"
+    state: stopped
+  loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
+
+- name: Prune everything (including non-dangling images)
+  community.docker.docker_prune:
+    containers: true
+    images: true
+    images_filters:
+      dangling: false
+    networks: true
+    volumes: true
+    builder_cache: true
+  when: prune_everything

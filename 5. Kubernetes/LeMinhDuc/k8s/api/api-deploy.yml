@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-po
+  template:
+    metadata:
+      labels:
+        app: api-po
+    spec:
+      containers:
+        - name: api
+          image: duclm278/api:k8s
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MONGO_INITDB_ROOT_PASSWORD
+            - name: MONGO_URI
+              value: mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@db:27017/vdt?authSource=admin

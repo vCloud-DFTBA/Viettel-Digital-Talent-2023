@@ -1,0 +1,31 @@
+---
+- name: Remove directory {{ lb_dest }}
+  ansible.builtin.file:
+    path: "{{ lb_dest }}"
+    state: absent
+  when: lb_dest_cleanup | default(false) | bool
+
+- name: Ensure having directory {{ lb_dest }}
+  ansible.builtin.file:
+    path: "{{ lb_dest }}"
+    state: directory
+    mode: "0755"
+
+- name: Generate nginx.conf
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: "{{ lb_dest }}/nginx.conf"
+    mode: "0644"
+
+- name: Create and (re)start service {{ lb_service }}
+  community.docker.docker_compose:
+    project_src: "{{ target_dest }}"
+    state: present
+    restarted: true
+    services:
+      - "{{ lb_service }}"
+
+- name: Scale service {{ target_service }} to {{ target_scale }}
+  community.docker.docker_compose:
+    project_src: "{{ target_dest }}"
+    scale: "{ '{{ target_service }}': '{{ target_scale }}' }"

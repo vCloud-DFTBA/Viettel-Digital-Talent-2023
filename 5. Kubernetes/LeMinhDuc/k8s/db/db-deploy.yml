@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deploy
+spec:
+  selector:
+    matchLabels:
+      app: db-po
+  template:
+    metadata:
+      labels:
+        app: db-po
+    spec:
+      containers:
+        - name: db
+          image: mongo:5.0
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: db-init
+              mountPath: /docker-entrypoint-initdb.d
+            - name: db-data
+              mountPath: /data/db
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MONGO_INITDB_ROOT_PASSWORD
+          ports:
+            - containerPort: 27017
+      volumes:
+        - name: db-init
+          configMap:
+            name: db-init-cm
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-data-pvc

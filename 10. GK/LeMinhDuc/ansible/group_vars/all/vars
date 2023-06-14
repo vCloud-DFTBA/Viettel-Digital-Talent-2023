@@ -1,0 +1,68 @@
+---
+become_password: "{{ vault_become_password }}"
+
+# Settings for app
+app_ver: 0.1.0
+# app_ver: 0.1
+# app_ver: latest
+# app_dest: /etc/app # Absolute path on remote host
+
+# Settings for db
+db_service: db
+db_dest: /etc/db # Absolute path on remote host
+db_dest_cleanup: true
+db_host: 188.166.179.154
+db_exposed_port: 27017
+db_name: vdt
+db_uri: "mongodb://{{ db_host }}:{{ db_exposed_port }}/{{ db_name }}"
+
+# Settings for api
+api_service: api
+api_image: duclm278/api
+api_image_tag: "{{ app_ver }}"
+api_dest: /etc/api # Absolute path on remote host
+api_dest_cleanup: true
+api_container_port: 5000
+api_scale: 2
+
+# Settings for api_lb
+api_lb_service: api_lb
+api_lb_dest: /etc/api_lb # Absolute path on remote host
+api_lb_dest_cleanup: true
+api_lb_host: 178.128.124.152 # Changes requires rebuilding web image if in static files.
+api_lb_container_port: 80
+api_lb_forward_port: "{{ api_container_port }}"
+api_lb_exposed_port: 5000 # Changes requires rebuilding web image if in static files.
+
+# Settings for web
+web_service: web
+web_image: duclm278/web
+web_image_tag: "{{ app_ver }}"
+web_dest: /etc/web # Absolute path on remote host
+web_dest_cleanup: true
+web_container_port: 80
+web_scale: 2
+
+# Settings for web_lb
+web_lb_service: web_lb
+web_lb_dest: /etc/web_lb # Absolute path on remote host
+web_lb_dest_cleanup: true
+web_lb_host: 188.166.187.112
+web_lb_forward_port: "{{ web_container_port }}"
+web_lb_exposed_port: 80
+
+# Settings for monitor
+monitor_service: monitor
+monitor_dest: /etc/monitor # Absolute path on remote host
+monitor_dest_cleanup: true
+monitor_external_labels: { username: "leminhduc" }
+monitor_remote_write_url: http://27.66.108.93:9090/api/v1/write
+
+# Settings for logger
+logger_service: logger
+logger_dest: /etc/logger # Absolute path on remote host
+logger_dest_cleanup: true
+logger_host: 146.190.81.163
+elasticsearch_prefix: "leminhduc"
+elasticsearch_host: 171.236.38.100
+elasticsearch_port: 9200

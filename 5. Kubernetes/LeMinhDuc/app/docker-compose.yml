@@ -1,0 +1,46 @@
+services:
+  db:
+    restart: unless-stopped
+    image: mongo:5.0
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=test
+      - MONGO_INITDB_ROOT_PASSWORD=test
+    networks:
+      - flask-mongo
+    ports:
+      - 27017:27017
+
+  api:
+    restart: unless-stopped
+    build:
+      context: ./api
+    depends_on:
+      - db
+    environment:
+      - MONGO_URI=mongodb://test:test@db:27017/vdt?authSource=admin
+    networks:
+      - react-flask
+      - flask-mongo
+    ports:
+      - 5000:5000
+
+  web:
+    restart: unless-stopped
+    build:
+      context: ./web
+      args:
+        - VITE_APP_BASE_URL=/api
+    depends_on:
+      - api
+    environment:
+      - VITE_APP_BASE_URL=http://api:5000
+    networks:
+      - react-flask
+    ports:
+      - 5173:80
+
+networks:
+  react-flask:
+  flask-mongo:

@@ -1,0 +1,43 @@
+services:
+  db:
+    restart: unless-stopped
+    image: mongo:5.0
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - flask-mongo
+    ports:
+      - 27017:27017
+
+  api:
+    restart: unless-stopped
+    build:
+      context: ./api
+    depends_on:
+      - db
+    environment:
+      - MONGO_URI=mongodb://172.17.0.1:27017/vdt
+    networks:
+      - react-flask
+      - flask-mongo
+    ports:
+      - 5000:5000
+
+  web:
+    restart: unless-stopped
+    build:
+      context: ./web
+      args:
+        - VITE_APP_BASE_URL=http://localhost:5000
+    depends_on:
+      - api
+    environment:
+      - VITE_APP_BASE_URL=http://172.17.0.1:5000
+    networks:
+      - react-flask
+    ports:
+      - 5173:80
+
+networks:
+  react-flask:
+  flask-mongo:
