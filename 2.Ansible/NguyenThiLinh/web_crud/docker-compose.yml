@@ -1,0 +1,38 @@
+version: "3.3"
+services:
+  mongo_db:
+    image: mongo:5.0
+    container_name: mongo_db
+    restart: unless-stopped
+    networks:
+      - be-db
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb:/docker-entrypoint-initdb.d
+      
+  python_server:
+    build: ./python
+    depends_on:
+      - "mongo_db"
+    container_name: python_server
+    networks:
+      - fe-be
+      - be-db
+    ports:
+      - 5000:5000
+
+  nginx_server:
+    depends_on:
+      - "python_server"
+    build:
+      context: ./front-end
+    container_name: nginx_server
+    networks:
+      - fe-be
+    ports:
+      - 3000:80
+
+networks:
+  fe-be:
+  be-db:

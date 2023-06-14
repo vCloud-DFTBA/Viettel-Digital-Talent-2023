@@ -1,0 +1,1 @@
+mongoimport --db attendees --collection attendee --ignoreBlanks --type csv --file /docker-entrypoint-initdb.d/attendees.csv --drop --headerline

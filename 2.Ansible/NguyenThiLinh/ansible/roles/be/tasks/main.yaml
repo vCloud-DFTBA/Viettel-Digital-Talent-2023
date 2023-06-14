@@ -1,0 +1,11 @@
+- name: Create docker network
+  docker_network:
+    name: "{{ NETWORK_FE_BE }}"  
+
+- name: Deploy Python-server container
+  docker_container:
+    name: python_server
+    image: "{{IMAGE_NAME}}"
+    networks:
+      - name: "{{ NETWORK_FE_BE }}"
+      - name: "{{ NETWORK_BE_DB }}"
