@@ -1,0 +1,39 @@
+# - name: Build the api image if not exists
+#   shell:
+#     cmd: docker images -q my_flask | grep -q . || docker build -t my_flask ./roles/api/files/
+
+# - name: Build the api container if not exists
+#   shell:
+#     cmd: docker inspect flask_app >/dev/null 2>&1 || docker run -d --name flask_app --network mongodb_flask_nginx_network my_flask
+
+- name: Build the api image 
+  docker_image:
+    build:
+      path: ../roles/api/files/
+    name: my_flask
+    source: "build"
+
+- name: Build the flask_app1 container from the api image.
+  docker_container:
+    name: flask_app1
+    image: my_flask
+    networks:
+      - name: mongodb_flask_nginx_network
+    
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: "flask_container1"
+
+- name: Build the flask_app2 container from the api image.
+  docker_container:
+    name: flask_app2
+    image: my_flask
+    networks:
+      - name: mongodb_flask_nginx_network
+      
+    log_driver: fluentd
+    log_options:
+      fluentd-address: localhost:24224
+      tag: "flask_container2"
+    

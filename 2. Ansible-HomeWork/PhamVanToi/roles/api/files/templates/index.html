@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+
+        a{
+            padding: 10px 10px ;
+            margin-left: 10
+            0px;
+        }
+
+        .href-item{
+            padding-bottom: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="href-item">
+        <a href="/">HOME</a>
+        <a href="/create">CREATE</a>
+        <a href="/read">READ</a>
+        <a href="/update">UPDATE</a>
+        <a href="/delete">DELETE</a>
+    </div>
+    
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Họ và tên</th>
+            <th>Username</th>
+            <th>Ngày Sinh</th>
+            <th>Giới tính</th>
+            <th>Trường</th>
+            <th>Chuyên ngành</th>
+        </tr>
+        {% for x in value %}
+        <tr>
+        <td>{{x['id']}}</td>            
+        <td>{{x['name']}}</td>
+        <td>{{x['username']}}</td>
+        <td>{{x['birth']}}</td>
+        <td>{{x['sex']}}</td>
+        <td>{{x['university']}}</td>
+        <td>{{x['major']}}</td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+    
+</body>
+</html>
+
+

@@ -1,0 +1,38 @@
+name: Run unnittest automatically with PR on main and Push commit
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+jobs:
+  unit-test-CI:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+
+    - name: Install docker
+      run: |
+        sudo apt-get update
+        sudo apt install apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+        sudo docker --version
+        sudo apt install docker-ce
+
+    - name: Pull image from DockerHub
+      run: |
+        sudo docker pull crvt4722/my_db
+        sudo docker pull crvt4722/my_flask
+        sudo docker pull crvt4722/my_nginx
+
+    - name: Run container
+      run: |
+        sudo docker network create mongodb_flask_nginx_network
+        sudo docker run -d --name mongodb-server --network mongodb_flask_nginx_network crvt4722/my_db 
+        sudo docker run -d --name flask_app --network mongodb_flask_nginx_network crvt4722/my_flask 
+        sudo docker run -d -p 80:80 --link flask_app:flask --network mongodb_flask_nginx_network crvt4722/my_nginx
+
+    - name: Run unittest
+      run: python3 3.\ Midterm/PhamVanToi/roles/web/files/unit_test.py
