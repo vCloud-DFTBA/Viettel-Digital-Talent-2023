@@ -1,0 +1,63 @@
+version: '3'
+services:
+  appuser1:
+    build: ./app
+    depends_on:
+      - mongodb
+    ports:
+      - 5000:5000
+    networks:
+      - db
+      - app
+    
+  
+  appuser2:
+    build: ./app
+    depends_on:
+      - mongodb
+    ports:
+      - 5001:5000
+    networks:
+      - db
+      - app
+    
+
+    
+    
+  nginx-production:
+    image: nginx:1.22.0-alpine
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - appuser1
+      - appuser2
+    networks:
+      - app
+
+
+  mongodb:
+    image: mongo:5.0 
+
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=Admin123
+      - MONGO_INITDB_DATABASE=VDTuser
+    
+    ports:
+      - 27017:27017
+    volumes:
+      - db1:/data/db
+      - ./mongo-entrypoint:/docker-entrypoint-initdb.d
+    networks:
+      - db
+    
+volumes:
+  db1:
+
+networks:
+  db:
+    driver: bridge
+  app:
+    driver: bridge

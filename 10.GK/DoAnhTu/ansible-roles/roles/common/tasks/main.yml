@@ -1,0 +1,46 @@
+---
+# tasks file for roles/common
+- name: updating apt packages
+  apt:
+    name: "*"
+    state: latest
+    update_cache: true
+
+- name: instal require packages for docker
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - python3-setuptools
+    state: latest
+    update_cache: true
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Install Docker Module for Python
+  pip:
+    name:
+      - docker
+      - docker-compose
+- name: add user to Docker group
+  shell: "usermod -aG docker vm2"
+
+- name: allow ports 8000, 5000, 5001
+  ansible.builtin.shell: ufw allow 8000 && ufw allow 5000 && ufw allow 5001
