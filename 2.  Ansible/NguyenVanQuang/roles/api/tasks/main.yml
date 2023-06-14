@@ -1,0 +1,29 @@
+---
+- name: Create a network
+  community.docker.docker_network:
+    name: presentation
+
+- name: Pull api image from Docker Hub
+  community.docker.docker_image:
+    name: "{{ flask_image }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run api container
+  community.docker.docker_container:
+    name: "{{ item }}"
+    image: "{{ flask_image }}"
+    restart_policy: unless-stopped
+    state: started
+    env:
+      SERVER_NAME: Server 1
+      MONGO_INITDB_DATABASE: vdt2023
+      SERVICE_NAME: mongodb
+
+    networks:
+      - name: data
+      - name: presentation
+  loop:
+    - flask_1
+    - flask_2

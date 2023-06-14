@@ -1,0 +1,5 @@
+---
+# defaults file for api
+db_container_name: mongodb
+db_database: database
+flask_image: "bititmo16/nguyenvanquang-logic_tier_1"

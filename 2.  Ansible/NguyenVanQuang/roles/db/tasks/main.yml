@@ -1,0 +1,23 @@
+---
+- name: Create Database network
+  community.docker.docker_network:
+    name: data
+
+- name: Pull MongoDB image from Docker Hub
+  community.docker.docker_image:
+    name: mongo:4.4.18
+    repository: bititmo16
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run MongoDB container
+  community.docker.docker_container:
+    name: mongodb
+    image: bititmo16/mongo:4.4.18
+    restart_policy: unless-stopped
+    state: started
+    env:
+      DB_DATABASE: "vdt2023"
+    networks:
+      - name: data
