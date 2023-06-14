@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  api-gate-way:
+    restart: always
+    deploy:
+      replicas: 1
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    networks:
+      - public
+    ports:
+      - "8080:80"
+
+  backend:
+    restart: always
+    depends_on:
+      - mongo
+    deploy:
+      replicas: 1
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - public
+      - private
+
+  frontend:
+    restart: always
+    deploy:
+      replicas: 1
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    networks:
+      - public
+
+  mongo:
+    restart: always
+    image: mongo:5.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    networks:
+      - private
+    volumes:
+      - /data/db
+
+
+networks:
+  public:
+  private:
