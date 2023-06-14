@@ -1,0 +1,22 @@
+---
+- name: Setup OS enviroment
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - common
+    - db
+    - fluentd
+    - api
+    - web
+    - lb
+
+- name: monitoring
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - node-exporter
+    - cadvisor
+    - prometheus
+    - grafana

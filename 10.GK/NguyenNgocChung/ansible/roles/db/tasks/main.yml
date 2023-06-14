@@ -1,0 +1,26 @@
+# - name: Build the mongodb image if not exists
+#   shell:
+#     cmd: docker images -q my_db | grep -q . || docker build -t my_db ./roles/db/files/
+
+# - name: Create the network if not exists
+#   shell:
+#     cmd: docker network inspect mongodb_flask_nginx_network >/dev/null 2>&1 || docker network create mongodb_flask_nginx_network
+
+# - name: Build the db container if not exists
+#   shell:
+#     cmd: docker inspect mongodb-server >/dev/null 2>&1 || docker run -d --name mongodb-server --network mongodb_flask_nginx_network my_db
+
+
+- name: Build the mongodb image 
+  docker_image:
+    build:
+      path: ./roles/db/files/
+    name: my_db
+    source: "build"
+
+- name: Build the web_mongo
+  docker_container:
+    name: web_mongo
+    image: my_db
+    networks:
+      - name: my-network

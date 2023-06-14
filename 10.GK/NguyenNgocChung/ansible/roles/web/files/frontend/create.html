@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        a {
+            display: inline-block;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+        input[type="text"],
+        button {
+            padding: 10px;
+            margin: 10px;
+        }
+        .sex-container {
+            display: flex;
+            align-items: center;
+        }
+        .sex-radio {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <a href="/">Home</a>
+    <a href="create.html">AddStudent</a>
+    <a href="update.html">UpdateStudent</a>
+
+    <form class="update-form" >
+        <input type="text" name="id" id="id" placeholder="STT">
+        <input type="text" name="name" id="name" placeholder="FULLNAME">
+        <input type="text" name="username" id="username" placeholder="USERNAME">
+        <input type="text" name="birth" id="birth" placeholder="BIRTH">
+        <div class="sex-container">
+            <input type="radio" name="sex" class="sex-radio" value="Male"> 
+            <label for="">Male</label>
+            <input type="radio" name="sex" class="sex-radio" value = "Female">
+            <label for=""> Female</label>
+        </div>
+        <input type="text" name="university" id="university" placeholder="UNIVERSITY">
+        <input type="text" name="major" id="major" placeholder="MAJOR">
+
+        <button type="submit">SUBMIT</button>
+    </form>
+
+    <script>
+        const updateForm = document.querySelector('.update-form')
+        
+        const sexRadio = document.querySelectorAll('.sex-radio')
+        updateForm.addEventListener('submit', (e)=>{
+            e.preventDefault()
+
+            let sex = ''
+            for (let gender of sexRadio){
+                if (gender.checked){
+                    sex = gender.value
+                    break
+                }
+            }
+            const data = {
+                'id': document.querySelector('#id').value,
+                'name': document.querySelector('#name').value,
+                'username': document.querySelector('#username').value,
+                'birth': document.querySelector('#birth').value,
+                'sex': sex,
+                'university': document.querySelector('#university').value,
+                'major': document.querySelector('#major').value
+            }
+            console.log(data)
+
+            fetch("http://localhost/api/create/", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                })
+            .then(response => response.json())
+            .then(data => alert('successfully'))
+            .catch(error => console.error(error));
+        })
+    </script>
+</body>
+</html>
