@@ -1,0 +1,8 @@
+---
+- name: Monitoring
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - roles/common
+    - roles/monitor

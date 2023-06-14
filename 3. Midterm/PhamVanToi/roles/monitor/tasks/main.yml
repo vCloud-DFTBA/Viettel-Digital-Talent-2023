@@ -1,0 +1,39 @@
+- name: Create a network
+  community.docker.docker_network:
+    name: monitoring_network
+
+
+- name: Pull and run Node Exporter container
+  docker_container:
+    name: node_exporter
+    image: prom/node-exporter
+    restart: true
+    published_ports: "9100:9100"
+    networks: 
+      - name: monitoring_network
+
+- name: Pull and run Cadvisor container
+  community.docker.docker_container:
+    image: gcr.io/cadvisor/cadvisor:latest
+    name: cadvisor
+    restart: true
+    networks: 
+      - name: monitoring_network
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+- name: Pull and run Prometheus container
+  docker_container:
+    name: prometheus
+    image: prom/prometheus
+    restart: true
+    published_ports: "9090:9090"
+    networks: 
+      - name: monitoring_network
+    volumes:
+      - "../roles/monitor/files/prometheus.yml:/etc/prometheus/prometheus.yml"
