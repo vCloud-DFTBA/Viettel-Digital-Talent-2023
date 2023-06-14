@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-dep
+  labels:
+    app: c-php
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: c-php
+  template:
+    metadata:
+      labels:
+        app: c-php
+    spec:
+      hostname: php
+      restartPolicy: Always
+      volumes:
+        - name: code
+          persistentVolumeClaim:
+            claimName: code-pvc
+      containers:
+      - name: c-php
+        image: docker.io/daohiep22/msproject:php
+        resources:
+          limits:
+            memory: "100M"
+            cpu: "100m"
+        ports:
+          - containerPort: 9000
+        volumeMounts:
+          - name: code
+            mountPath: /home/web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php
+spec:
+  selector:
+    app: c-php
+  type: NodePort
+  ports:
+    - name: phpport
+      port: 9000
+      targetPort: 9000
+      nodePort: 30900
