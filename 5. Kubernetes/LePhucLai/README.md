@@ -382,11 +382,11 @@ Check the ip of the node
 
 Go to 192.168.49.2:30800
 
-[Screencast from 14-06-2023 16:27:28.webm](img/Screencast_from_14-06-2023_162728.webm)
+[Screencast from 14-06-2023 16:27:28.webm](img/results1.gif)
 
 To test whether the persistance volumes works or not, i will delete the mongo pod and then refresh the page
 
-[Screencast from 14-06-2023 16:29:34.webm](img/Screencast_from_14-06-2023_162934.webm)
+[Screencast from 14-06-2023 16:29:34.webm](img/results2.gif)
 
 # 10. Refferences:
 
