@@ -15,7 +15,7 @@
 
 # 2. Kubernetes Architecture
 
-![Untitled](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Untitled.png)
+![Untitled](/img/Untitled.png)
 
 - When you deploy Kubernetes, you get a cluster. A cluster contains a set of worker machines called nodes and control plane. Every cluster has at least one worker node and the control plane usually runs across multiple computers. In production, a cluster has multiple nodes to provide high availability and fault-tolerance.
 - **Control plane:** The collection of processes that control Kubernetes nodes. This is where all task assignments originate. The control plane contains:
@@ -119,7 +119,7 @@ data:
 
 K8s secret uses base64 for data encoding
 
-![Untitled](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Untitled%201.png)
+![Untitled](/img/Untitled%201.png)
 
 Use 
 
@@ -179,9 +179,9 @@ to apply PV and PVC
 
 To get information of Persistent Volume and Persistent Volume Claim
 
-![Untitled](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Untitled%202.png)
+![Untitled](/img/Untitled%202.png)
 
-![Untitled](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Untitled%203.png)
+![Untitled](/img/Untitled%203.png)
 
 ## 9.4 Mongo Deployment and Service
 
@@ -371,22 +371,22 @@ to apply Service and Deployment of Nginx
 
 ## 9.7 Results:
 
-![Untitled](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Untitled%204.png)
+![Untitled](/img/Untitled%204.png)
 
 Check the ip of the node
 
 > kubectl get node -o wide
 > 
 
-![Untitled](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Untitled%205.png)
+![Untitled](/img/Untitled%205.png)
 
 Go to 192.168.49.2:30800
 
-[Screencast from 14-06-2023 16:27:28.webm](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Screencast_from_14-06-2023_162728.webm)
+[Screencast from 14-06-2023 16:27:28.webm](/img/Screencast_from_14-06-2023_162728.webm)
 
 To test whether the persistance volumes works or not, i will delete the mongo pod and then refresh the page
 
-[Screencast from 14-06-2023 16:29:34.webm](Kubernetes%20HW%20ca070206caed490eb072c9221f5ada75/Screencast_from_14-06-2023_162934.webm)
+[Screencast from 14-06-2023 16:29:34.webm](/img/Screencast_from_14-06-2023_162934.webm)
 
 # 10. Refferences:
 
