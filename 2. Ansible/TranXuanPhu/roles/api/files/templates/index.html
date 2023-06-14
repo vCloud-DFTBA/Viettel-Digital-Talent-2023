@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Danh sách sinh viên ban Cloud VDT2023 </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/png" href="../static/images/icons/favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+
+<link rel="stylesheet" type="text/css" href="../static/vendor/perfect-scrollbar/perfect-scrollbar.css">
+
+<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+<meta name="robots" content="noindex, follow">
+</head>
+<body>
+<!--<h1>Danh sách sinh viên ban Cloud VDT2023</h1>-->
+<div class="limiter">
+<div class="container-table100">
+<div class="wrap-table100">
+<div class="table100">
+<table>
+        <tr>
+            <th class="column1">STT</th>
+            <th class="column2">Họ và tên</th>
+            <th class="column3">Username</th>
+            <th class="column4">Năm sinh</th>
+            <th class="column4">Giới tính</th>
+            <th class="column5">Trường</th>
+            <th class="column6">Chuyên ngành</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td class="column1"> {{ student['STT'] }}</td>
+            <td class="column2"> {{ student['Họ và tên'] }}</td>
+            <td class="column3"> {{ student['Username'] }}</td>
+            <td class="column4"> {{ student['Năm sinh'] }}</td>
+            <td class="column4"> {{ student['Giới tính'] }}</td>
+            <td class="column5"> {{ student['Trường'] }}</td>
+            <td class="column6"> {{ student['Chuyên ngành'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+</div>
+</div>
+
+<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+<script src="../static/vendor/bootstrap/js/popper.js"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="../static/vendor/select2/select2.min.js"></script>
+
+<script src="../static/js/main.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-23581568-13');
+	</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7c5f643a1f928956","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

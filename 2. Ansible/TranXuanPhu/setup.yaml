@@ -1,0 +1,28 @@
+---
+- name: Setup Docker and Docker Compose
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - common
+
+- name: Build Image and Run db container
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - db
+
+- name: Build Image and Run flask container
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - api
+
+- name: Build Image and Run webserver container
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - web
