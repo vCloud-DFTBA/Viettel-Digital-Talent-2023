@@ -1,0 +1,19 @@
+---
+# tasks file for db
+- name: Start MongoDB container
+  docker_container:
+    name: my-mongodb
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    command: mongod --bind_ip_all
+    volumes:
+      - database:/data/db
+    restart_policy: always
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+
+
+      

@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: presentation_tier
+    build:
+      context: web
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+
+  backend:
+    container_name: logic_tier
+    build:
+      context: api
+    environment:
+      - FLASK_SERVER_PORT=5000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5.0
+    hostname: mongodb
+    container_name: data_tier
+    volumes:
+      - database:/data/db
+
+volumes:
+  database:
+
+

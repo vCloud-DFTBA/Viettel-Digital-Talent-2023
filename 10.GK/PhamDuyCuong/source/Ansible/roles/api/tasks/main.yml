@@ -1,0 +1,16 @@
+---
+# tasks file for api
+
+- name: Run docker image api
+  docker_container:
+    name: api
+    image: pdc1997/api:latest
+    restart_policy: unless-stopped
+    hostname: api
+    ports:
+      - "5000:5000"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
+    

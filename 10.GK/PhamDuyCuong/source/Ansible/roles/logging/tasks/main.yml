@@ -1,0 +1,23 @@
+---
+# tasks file for logging
+
+- name: copy files to /tmp
+  copy:
+    src: ./roles/logging/templates
+    dest: /tmp
+  
+- name: Build fluentd image
+  docker_image:
+    name: fluentd_img
+    tag: latest
+    source: build
+    build:
+      path: /tmp/templates
+   
+- name: Run fluentd container
+  docker_container:
+    name: fluentd
+    image: fluentd_img
+    volumes: "/tmp/templates/fluent.conf:/fluentd/etc/fluent.conf"
+    restart_policy: unless-stopped
+    network_mode: host
