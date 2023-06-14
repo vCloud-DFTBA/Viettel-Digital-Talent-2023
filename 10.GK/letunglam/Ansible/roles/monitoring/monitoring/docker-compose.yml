@@ -1,0 +1,161 @@
+version: "3.0"
+
+volumes:
+  prometheus1_data: {}
+  # prometheus2_data: {}
+  # grafana_data: {}
+
+services:
+  # haproxy:
+  #   image: haproxy:2.3
+  #   container_name: haproxy
+  #   volumes:
+  #     - ./haproxy/:/usr/local/etc/haproxy/:ro
+  #   restart: unless-stopped
+  #   network_mode: host
+
+  prometheus1:
+    image: prom/prometheus:v2.43.0
+    container_name: prometheus1
+    volumes:
+      - ./prometheus1/:/etc/prometheus/
+      - prometheus1_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=5d"
+      - "--web.enable-lifecycle"
+      - "--web.listen-address=:9090"
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+  # prometheus2:
+  #   image: prom/prometheus:v2.43.0
+  #   container_name: prometheus2
+  #   volumes:
+  #     - ./prometheus2/:/etc/prometheus/
+  #     - prometheus2_data:/prometheus
+  #   command:
+  #     - "--config.file=/etc/prometheus/prometheus.yml"
+  #     - "--storage.tsdb.path=/prometheus"
+  #     - "--web.console.libraries=/etc/prometheus/console_libraries"
+  #     - "--web.console.templates=/etc/prometheus/consoles"
+  #     - "--storage.tsdb.retention.time=200h"
+  #     - "--storage.tsdb.max-block-duration=5d"
+  #     - "--web.enable-lifecycle"
+  #     - "--web.listen-address=:9091"
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   environment:
+  #     TZ: "Asia/Ho_Chi_Minh"
+  #   labels:
+  #     org.label-schema.group: "monitoring"
+
+  # alertmanager1:
+  #   image: prom/alertmanager:v0.25.0
+  #   container_name: alertmanager1
+  #   volumes:
+  #     - ./alertmanager/:/etc/alertmanager/
+  #   command:
+  #     - "--config.file=/etc/alertmanager/config.yml"
+  #     - "--storage.path=/alertmanager"
+  #     - "--web.listen-address=:9093"
+  #     - "--cluster.listen-address=:9095"
+  #     - "--cluster.peer=localhost:9096"
+  #     - "--log.level=info"
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   environment:
+  #     TZ: "Asia/Ho_Chi_Minh"
+  #   labels:
+  #     org.label-schema.group: "monitoring"
+
+  # alertmanager2:
+  #   image: prom/alertmanager:v0.25.0
+  #   container_name: alertmanager2
+  #   volumes:
+  #     - ./alertmanager/:/etc/alertmanager/
+  #   command:
+  #     - "--config.file=/etc/alertmanager/config.yml"
+  #     - "--storage.path=/alertmanager"
+  #     - "--web.listen-address=:9094"
+  #     - "--cluster.listen-address=:9096"
+  #     - "--cluster.peer=localhost:9095"
+  #     - "--log.level=info"
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   environment:
+  #     TZ: "Asia/Ho_Chi_Minh"
+  #   labels:
+  #     org.label-schema.group: "monitoring"
+
+  nodeexporter:
+    image: prom/node-exporter:v1.5.0
+    container_name: nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    container_name: cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+  # grafana:
+  #   image: grafana/grafana:9.5.1
+  #   container_name: grafana
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #     - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+  #     - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+  #     - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+  #     - GF_USERS_ALLOW_SIGN_UP=false
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   labels:
+  #     org.label-schema.group: "monitoring"
+
+  # pushgateway:
+  #   image: prom/pushgateway:v1.2.0
+  #   container_name: pushgateway
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   environment:
+  #     TZ: "Asia/Ho_Chi_Minh"
+  #   labels:
+  #     org.label-schema.group: "monitoring"

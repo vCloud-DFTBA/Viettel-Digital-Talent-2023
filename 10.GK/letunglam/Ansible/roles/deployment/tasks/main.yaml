@@ -1,0 +1,7 @@
+- name: Copy deployment directory
+  ansible.builtin.copy:
+    src: /home/lamle/VDT-Cloud/Viettel-Digital-Talent-2023/10.GK/Deployment/
+    dest: ~/Deployment/
+
+- name: Deploy
+  command: chdir=/home/lamle/Deployment/ docker compose up -d

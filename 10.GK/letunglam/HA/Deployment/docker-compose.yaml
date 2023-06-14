@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+
+  app-1:
+    build: app
+    restart: always
+    expose:
+      - "8000"
+    links:
+      - db
+
+  nginx-1:
+    image: nginx:1.22.0-alpine
+    container_name: nginx-1
+    restart: always
+    volumes:
+      - ./nginx-1/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-1/index.html:/usr/share/nginx/html/index.html:ro
+    depends_on:
+      - app-1
+      - db
+
+
+  app-2:
+    build: app
+    restart: always
+    expose:
+      - "8000"
+    links:
+      - db
+
+  nginx-2:
+    image: nginx:1.22.0-alpine
+    container_name: nginx-2
+    restart: always
+    volumes:
+      - ./nginx-2/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-2/index.html:/usr/share/nginx/html/index.html:ro
+    depends_on:
+      - app-2
+      - db
+
+  db:
+    image: mongo:5.0-focal
+    hostname: mongodb
+    container_name: vt_db
+    restart: always
+    volumes:
+      - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+# Load balancer
+  nginx-lb:
+    image: nginx:1.22.0-alpine
+    container_name: lb
+    restart: always
+    volumes:
+      - ./lb/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - nginx-1
+      - nginx-2
+    ports:
+      - "80:80"
