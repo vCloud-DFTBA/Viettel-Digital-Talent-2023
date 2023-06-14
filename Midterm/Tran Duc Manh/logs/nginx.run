@@ -1,0 +1,39 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [node2]
+ok: [local]
+ok: [node1]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/config.yml for node1, local, node2
+
+TASK [../roles/nginx : Check docker install.] **********************************
+ok: [node2]
+ok: [node1]
+ok: [local]
+
+TASK [../roles/nginx : include_tasks] ******************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx/tasks/service.yml for node1, local, node2
+
+TASK [../roles/nginx : Download config file] ***********************************
+ok: [node2]
+ok: [local]
+ok: [node1]
+
+TASK [../roles/nginx : Download config file] ***********************************
+ok: [node1]
+ok: [node2]
+ok: [local]
+
+TASK [../roles/nginx : Start Nginx load balancer] ******************************
+changed: [node1]
+changed: [local]
+changed: [node2]
+
+PLAY RECAP *********************************************************************
+local                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node1                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node2                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

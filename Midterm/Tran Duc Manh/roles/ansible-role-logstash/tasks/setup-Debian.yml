@@ -1,0 +1,30 @@
+---
+- name: Ensure required dependencies are installed.
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg2
+    state: present
+
+- name: Add Elasticsearch apt key.
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add Logstash repository.
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/8.x/apt stable main"
+    state: present
+    #update_cache: true
+
+- name: Install Logstash.
+  apt:
+    name: '{{ logstash_package }}'
+    state: present
+
+- name: Add Logstash user to adm group (Debian).
+  user:
+    name: logstash
+    group: logstash
+    groups: adm
+  notify: restart logstash

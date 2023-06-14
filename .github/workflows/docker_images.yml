@@ -1,0 +1,32 @@
+name: Run the API unit testcases and Build
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: docker.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: cd 1.\ Containerization/Tran-Duc-Manh/ && docker-compose build --no-cache --force-rm 
+  Unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create fresh env to test
+        run: cd 1.\ Containerization/Tran-Duc-Manh/ && docker-compose up -d mongodb
+      - name: Install local dependencies
+        run: pip install pytest fastapi python-multipart requests pydantic uvicorn httpx python-logstash pymongo
+      - name: Run the unittest
+        run: cd 1.\ Containerization/Tran-Duc-Manh/api && pytest

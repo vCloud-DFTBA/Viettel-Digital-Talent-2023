@@ -1,0 +1,21 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/nginx-gateway : include_tasks] **********************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx-gateway/tasks/config.yml for local
+
+TASK [../roles/nginx-gateway : Check docker install.] **************************
+ok: [local]
+
+TASK [../roles/nginx-gateway : include_tasks] **********************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/nginx-gateway/tasks/service.yml for local
+
+TASK [../roles/nginx-gateway : Start Nginx load balancer] **********************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

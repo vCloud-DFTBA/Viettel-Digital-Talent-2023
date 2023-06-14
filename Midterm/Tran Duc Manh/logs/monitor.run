@@ -1,0 +1,36 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [local]
+
+TASK [../roles/monitor : include_tasks] ****************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/monitor/tasks/config.yml for local
+
+TASK [../roles/monitor : Create Monitor group info.] ***************************
+ok: [local]
+
+TASK [../roles/monitor : Create user.] *****************************************
+ok: [local]
+
+TASK [../roles/monitor : Check docker install.] ********************************
+ok: [local]
+
+TASK [../roles/monitor : include_tasks] ****************************************
+included: /home/ubuntu/Viettel-Digital-Talent-2023/Midterm/Tran Duc Manh/roles/monitor/tasks/service.yml for local
+
+TASK [../roles/monitor : Node exporter.] ***************************************
+ok: [local]
+
+TASK [../roles/monitor : Cadvisor.] ********************************************
+changed: [local]
+
+TASK [../roles/monitor : Grafana.] *********************************************
+changed: [local]
+
+TASK [../roles/monitor : Prometheus] *******************************************
+changed: [local]
+
+PLAY RECAP *********************************************************************
+local                      : ok=10   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
