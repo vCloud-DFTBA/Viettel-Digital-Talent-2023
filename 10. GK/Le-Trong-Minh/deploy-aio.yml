@@ -1,0 +1,9 @@
+- hosts: all
+  roles:
+    - common
+    - db
+    - api
+    - frontend
+    - nginx
+    - monitoring
+    - log

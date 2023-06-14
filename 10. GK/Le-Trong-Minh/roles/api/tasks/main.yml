@@ -1,0 +1,59 @@
+---
+# - include_tasks: config.yml
+- name: Create vth group info.
+  group:
+    name: '{{ hostname }}'
+  #become: yes
+
+- name: Create user.
+  user:
+    name: '{{ hostname }}'
+    group: '{{ hostname }}'
+  #become: yes
+
+- name: Check docker install.
+  package:
+    name: docker
+    state: present
+
+# - include_tasks: setup.yml
+
+- name: Create docker network
+  docker_network: 
+    name: "{{ NETWORK }}"
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Run the docker api images
+  community.docker.docker_container:
+    name: backend_1
+    image: trongminhjr/api:latest
+    # image: trongminhjr/devmidterm_api:v1
+    # image: api
+    state: started
+    restart_policy: unless-stopped
+    networks: 
+      - name: "{{ NETWORK }}"
+    ports:
+      - "80:80"
+    env:
+      MONGODB_HOST : "172.17.0.1"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 80
+
+- name: Run the docker api images
+  community.docker.docker_container:
+    name: backend_2
+    image: trongminhjr/api:latest
+    # image: trongminhjr/devmidterm_api:v1
+    # image: api
+    state: started
+    restart_policy: unless-stopped
+    networks: 
+      - name: "{{ NETWORK }}"
+    ports:
+      - "81:81"
+    env:
+      MONGODB_HOST : "172.17.0.1"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 81
+    

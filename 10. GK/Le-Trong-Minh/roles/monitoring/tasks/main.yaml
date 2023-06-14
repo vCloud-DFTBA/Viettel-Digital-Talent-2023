@@ -1,0 +1,75 @@
+---
+- name: Check network
+  docker_network_info:
+    name: "{{ NETWORK }}"
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Create docker network
+  docker_network: 
+    name: "{{ NETWORK }}"
+  when: docker_network.exists == false
+  register: docker_network
+  become: yes
+  tags: docker
+
+
+- name: Node exporter container.
+  community.docker.docker_container:
+    name: minhlt-nodeexporter
+    networks:
+    - name: "{{ NETWORK }}"
+    image: prom/node-exporter:v1.5.0
+    state: started
+    restart_policy: "unless-stopped"
+    # restart: true
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    # command:
+    #   - '--path.procfs=/host/proc'
+    #   - '--path.rootfs=/rootfs'
+    #   - '--path.sysfs=/host/sys'
+    #   - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+
+
+- name: Cadvisor container.
+  community.docker.docker_container:
+    name: minhlt-cadvisor
+    networks:
+    - name: "{{ NETWORK }}"
+
+    image: gcr.io/cadvisor/cadvisor-arm64:v0.47.0
+    restart_policy: "unless-stopped"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      # - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      # - /dev/disk/:/dev/disk:ro
+
+    ports:
+      - 8080:8080
+
+- name: Prometheus container
+  community.docker.docker_container:
+    name: minhlt-prometheus
+    networks: 
+      - name: "{{NETWORK}}"
+    image: prom/prometheus:v2.29.1
+    restart_policy: "unless-stopped"
+    volumes:
+      - ./roles/monitoring/files/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--enable-feature=expand-external-labels'
+      - '--web.enable-lifecycle'
+    restart: true
+    ports:
+      - 9090:9090
+

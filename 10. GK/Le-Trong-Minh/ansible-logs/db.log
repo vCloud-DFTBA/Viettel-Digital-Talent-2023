@@ -1,0 +1,59 @@
+(env) minhle@minhletrong:~/Downloads/dev-mid-term/10. GK/Le-Trong-Minh$ sudo ansible-playbook -i inventories/inventory.yml db.yml 
+[sudo] password for minhle: 
+
+PLAY [all] ********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ********************************************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Create mongo group info.] ******************************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Create user.] ******************************************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Check docker install.] *********************************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Ensure db client packages are installed (Debian/Ubuntu)] ***********************************************************************************************************************
+skipping: [local] => (item=mongodb-org-tools) 
+
+TASK [db : Check network] *****************************************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Create docker network] *********************************************************************************************************************************************************
+skipping: [local]
+
+TASK [db : Configuration: Environment with Auth] ******************************************************************************************************************************************
+skipping: [local]
+
+TASK [db : Configuration: Environment without Auth] ***************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Configuration: Init database] **************************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Configuration: Render config directories] **************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Configuration: Render user config script] **************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Create data container] *********************************************************************************************************************************************************
+[DEPRECATION WARNING]: The container_default_behavior option will change its default value from "compatibility" to "no_defaults" in community.general 3.0.0. To remove this warning, 
+please specify an explicit value for it now. This feature will be removed from community.general in version 3.0.0. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+[DEPRECATION WARNING]: Please note that docker_container handles networks slightly different than docker CLI. If you specify networks, the default network will still be attached as the 
+first network. (You can specify purge_networks to remove all networks not explicitly listed.) This behavior will change in community.general 2.0.0. You can change the behavior now by 
+setting the new `networks_cli_compatible` option to `yes`, and remove this warning by setting it to `no`. This feature will be removed from community.general in version 2.0.0. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+ok: [local]
+
+TASK [db : Run mongodb container] *********************************************************************************************************************************************************
+ok: [local]
+
+TASK [db : Wait until mongodb starts up] **************************************************************************************************************************************************
+ok: [local]
+
+PLAY RECAP ********************************************************************************************************************************************************************************
+local                      : ok=12   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   

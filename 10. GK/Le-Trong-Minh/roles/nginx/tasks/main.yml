@@ -1,0 +1,51 @@
+---
+- name: Create nginx group info.
+  group:
+    name: nginx
+
+- name: Create user.
+  user:
+    name: nginx
+    group: nginx
+
+- name: Check docker install.
+  package:
+    name: docker
+    state: present
+
+- name: Check network
+  docker_network_info:
+    name: "{{ NETWORK }}"
+  register: docker_network
+  become: yes
+  tags: docker
+
+- name: Create docker network
+  docker_network: 
+    name: "{{ NETWORK }}"
+  when: docker_network.exists == false
+  register: docker_network
+  become: yes
+  tags: docker
+
+
+- name: Restart a container
+  community.docker.docker_container:
+    name: nginx
+    image: nginx:1.22.0-alpine
+    state: started
+    ports:
+      - "8888:8888"
+      - "8889:8889"
+    networks: 
+      - name: "{{NETWORK}}"
+    volumes:
+      - ./roles/nginx/files/student.conf:/etc/nginx/conf.d/default.conf
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://nginx.host.com"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+

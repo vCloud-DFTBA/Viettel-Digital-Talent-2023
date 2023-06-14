@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  webserver:
+    build: 
+      context: ./frontend
+    # container_name: web
+    image: webserver
+    hostname: webserver
+    restart: unless-stopped
+    # ports:
+    #   - "3000:3000"
+    # links:
+    #   - api
+
+  api:
+    build: 
+      context: ./backend
+    # container_name: api
+    hostname: api
+    image: api
+    restart: unless-stopped
+  #   # ports:
+  #   #   - "80:80"
+  #   depends_on:
+  #     - db
+
+  db:
+    image: mongo:5.0
+    # container_name: db
+    restart: unless-stopped
+    hostname: mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=vdt2023
+    ports:
+      - "27017:27017"
+  
+  lb:
+    image: nginx:1.22.0-alpine
+    # container_name: nginx
+    restart: unless-stopped
+    hostname: nginx
+    volumes:
+      - ./nginx/config.conf:/etc/nginx/conf.d/default.conf
+  #   ports:
+  #     - "8888:8888"
+  #   links:
+  #     - webserver
