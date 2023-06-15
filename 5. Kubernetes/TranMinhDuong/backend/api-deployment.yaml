@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployments
+  labels:
+    app: vtapp-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vtapp-api
+  template:
+    metadata:
+      labels:
+        app: vtapp-api
+    spec:
+      containers:
+      - name: flask-api
+        image: duongtm3102/vtapp-backend:latest
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "0.5"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_HOST
+          value: "10.97.93.1"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: password
+        - name: ANSIBLE_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
