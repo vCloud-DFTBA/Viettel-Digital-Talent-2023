@@ -1,0 +1,29 @@
+---
+- name: Create folder
+  ansible.builtin.file:
+    path: /etc/mongodbdata
+    state: directory
+    mode: '0755'
+
+- name: Copy Database
+  ansible.builtin.copy:
+    src: files/attendees.json
+    dest: /etc/mongodbdata
+    mode: '0644'
+
+- name: Container Configure
+  docker_container:
+    name: mongodb
+    image: mongo:5.0.0
+    hostname: host_mongodb
+    restart_policy: unless-stopped
+    volumes:
+      - /etc/mongodbdata:/data/db
+    ports:
+      - "27017:27017"
+    network_mode: bridge
+    log_driver: fluentd
+
+- name: Import database
+  shell: |
+    docker exec mongodb mongoimport --db VDT23 --collection attendees --jsonArray --file data/db/attendees.json

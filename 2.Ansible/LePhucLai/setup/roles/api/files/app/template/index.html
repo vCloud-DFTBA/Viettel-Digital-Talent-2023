@@ -1,0 +1,78 @@
+<!doctype>
+<html>
+  <head>
+    <title>VDT23</title>
+    <link rel="stylesheet" media="all" />
+    <style>
+
+      body {
+        font-family: sans-serif;
+      }
+
+      table {
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+        border: 1px solid black;
+        text-align: center;
+      }
+
+      caption {
+          font-weight: bold;
+          font-size: 40px;
+          text-align: center;
+          color: #333;
+          margin-bottom: 16px;
+      }
+
+      thead {
+        background-color: #333;
+        color: white;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 2%;
+      }
+        
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+      }
+
+      tbody tr:nth-child(odd) {
+        background-color: #fff;
+      }
+    
+      tbody tr:nth-child(even) {
+        background-color: #eee;
+      }
+
+    </style>
+  </head>
+  <body>
+    <table>
+        <caption>VDT 2023 Attendees</caption>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>Năm sinh</th>
+                <th>Giới tính</th>
+                <th>Trường</th>
+                <th>Chuyên ngành</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cur %} 
+            <tr>
+                <td>{{item.STT}}</td>
+                <td>{{item.Name}}</td>
+                <td>{{item.DOB}}</td>
+                <td>{{item.Gender}}</td>
+                <td>{{item.Univerity}}</td>
+                <td>{{item.Major}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </body>
+</html>

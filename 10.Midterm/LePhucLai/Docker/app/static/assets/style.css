@@ -1,0 +1,56 @@
+h1 {
+    text-align: center;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+th {
+    background-color: #333;
+    color: white;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 2%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #eee;
+}
+
+button {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input {
+    font-size: 1rem;
+}

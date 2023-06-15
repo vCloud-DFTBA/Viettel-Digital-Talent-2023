@@ -1,0 +1,684 @@
+2023-05-22T16:14:24.4406728Z Requested labels: ubuntu-latest
+2023-05-22T16:14:24.4407064Z Job defined at: lephuclai/Viettel-Digital-Talent-2023/.github/workflows/CI.yaml@refs/heads/midterm
+2023-05-22T16:14:24.4407225Z Waiting for a runner to pick up this job...
+2023-05-22T16:14:25.2054327Z Job is waiting for a hosted runner to come online.
+2023-05-22T16:14:27.7528274Z Job is about to start running on the hosted runner: GitHub Actions 1 (hosted)
+2023-05-22T16:14:31.3905767Z Current runner version: '2.304.0'
+2023-05-22T16:14:31.3932318Z ##[group]Operating System
+2023-05-22T16:14:31.3932877Z Ubuntu
+2023-05-22T16:14:31.3933230Z 22.04.2
+2023-05-22T16:14:31.3933449Z LTS
+2023-05-22T16:14:31.3933730Z ##[endgroup]
+2023-05-22T16:14:31.3934035Z ##[group]Runner Image
+2023-05-22T16:14:31.3934355Z Image: ubuntu-22.04
+2023-05-22T16:14:31.3934692Z Version: 20230507.1
+2023-05-22T16:14:31.3935173Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20230507.1/images/linux/Ubuntu2204-Readme.md
+2023-05-22T16:14:31.3935773Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20230507.1
+2023-05-22T16:14:31.3936155Z ##[endgroup]
+2023-05-22T16:14:31.3936476Z ##[group]Runner Image Provisioner
+2023-05-22T16:14:31.3936826Z 2.0.171.1
+2023-05-22T16:14:31.3937053Z ##[endgroup]
+2023-05-22T16:14:31.3937696Z ##[group]GITHUB_TOKEN Permissions
+2023-05-22T16:14:31.3938188Z Contents: read
+2023-05-22T16:14:31.3938471Z Metadata: read
+2023-05-22T16:14:31.3938994Z Packages: read
+2023-05-22T16:14:31.3939328Z ##[endgroup]
+2023-05-22T16:14:31.3943136Z Secret source: Actions
+2023-05-22T16:14:31.3943611Z Prepare workflow directory
+2023-05-22T16:14:31.4694067Z Prepare all required actions
+2023-05-22T16:14:31.4880134Z Getting action download info
+2023-05-22T16:14:31.7406454Z Download action repository 'actions/checkout@v3' (SHA:8e5e7e5ab8b370d6c329ec480221332ada57f0ab)
+2023-05-22T16:14:32.0872403Z Download action repository 'actions/setup-python@v4' (SHA:57ded4d7d5e986d7296eab16560982c6dd7c923b)
+2023-05-22T16:14:32.4762762Z Complete job name: build
+2023-05-22T16:14:32.5891160Z ##[group]Run actions/checkout@v3
+2023-05-22T16:14:32.5891569Z with:
+2023-05-22T16:14:32.5892047Z   repository: lephuclai/Viettel-Digital-Talent-2023
+2023-05-22T16:14:32.5892614Z   token: ***
+2023-05-22T16:14:32.5892897Z   ssh-strict: true
+2023-05-22T16:14:32.5893210Z   persist-credentials: true
+2023-05-22T16:14:32.5893520Z   clean: true
+2023-05-22T16:14:32.5893844Z   fetch-depth: 1
+2023-05-22T16:14:32.5894143Z   lfs: false
+2023-05-22T16:14:32.5894364Z   submodules: false
+2023-05-22T16:14:32.5894671Z   set-safe-directory: true
+2023-05-22T16:14:32.5895022Z ##[endgroup]
+2023-05-22T16:14:32.8108326Z Syncing repository: lephuclai/Viettel-Digital-Talent-2023
+2023-05-22T16:14:32.8111466Z ##[group]Getting Git version info
+2023-05-22T16:14:32.8112148Z Working directory is '/home/runner/work/Viettel-Digital-Talent-2023/Viettel-Digital-Talent-2023'
+2023-05-22T16:14:32.8112973Z [command]/usr/bin/git version
+2023-05-22T16:14:32.8195111Z git version 2.40.1
+2023-05-22T16:14:32.8222356Z ##[endgroup]
+2023-05-22T16:14:32.8242451Z Temporarily overriding HOME='/home/runner/work/_temp/3bce210d-d8cf-40d7-898f-d0d03d6101a3' before making global git config changes
+2023-05-22T16:14:32.8243113Z Adding repository directory to the temporary git global config as a safe directory
+2023-05-22T16:14:32.8246297Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Viettel-Digital-Talent-2023/Viettel-Digital-Talent-2023
+2023-05-22T16:14:32.8291288Z Deleting the contents of '/home/runner/work/Viettel-Digital-Talent-2023/Viettel-Digital-Talent-2023'
+2023-05-22T16:14:32.8296775Z ##[group]Initializing the repository
+2023-05-22T16:14:32.8300571Z [command]/usr/bin/git init /home/runner/work/Viettel-Digital-Talent-2023/Viettel-Digital-Talent-2023
+2023-05-22T16:14:32.8359307Z hint: Using 'master' as the name for the initial branch. This default branch name
+2023-05-22T16:14:32.8360101Z hint: is subject to change. To configure the initial branch name to use in all
+2023-05-22T16:14:32.8361143Z hint: of your new repositories, which will suppress this warning, call:
+2023-05-22T16:14:32.8361743Z hint: 
+2023-05-22T16:14:32.8362536Z hint: 	git config --global init.defaultBranch <name>
+2023-05-22T16:14:32.8363058Z hint: 
+2023-05-22T16:14:32.8364411Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2023-05-22T16:14:32.8365192Z hint: 'development'. The just-created branch can be renamed via this command:
+2023-05-22T16:14:32.8366385Z hint: 
+2023-05-22T16:14:32.8366949Z hint: 	git branch -m <name>
+2023-05-22T16:14:32.8368910Z Initialized empty Git repository in /home/runner/work/Viettel-Digital-Talent-2023/Viettel-Digital-Talent-2023/.git/
+2023-05-22T16:14:32.8378418Z [command]/usr/bin/git remote add origin https://github.com/lephuclai/Viettel-Digital-Talent-2023
+2023-05-22T16:14:32.8418542Z ##[endgroup]
+2023-05-22T16:14:32.8419340Z ##[group]Disabling automatic garbage collection
+2023-05-22T16:14:32.8421798Z [command]/usr/bin/git config --local gc.auto 0
+2023-05-22T16:14:32.8453541Z ##[endgroup]
+2023-05-22T16:14:32.8454376Z ##[group]Setting up auth
+2023-05-22T16:14:32.8459926Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2023-05-22T16:14:32.8492803Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2023-05-22T16:14:32.8802419Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2023-05-22T16:14:32.8834158Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2023-05-22T16:14:32.9055912Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2023-05-22T16:14:32.9096478Z ##[endgroup]
+2023-05-22T16:14:32.9097450Z ##[group]Fetching the repository
+2023-05-22T16:14:32.9106141Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +60b4efc4e6c5c5ac846f1e8891a866747750d8da:refs/remotes/origin/midterm
+2023-05-22T16:14:33.1532815Z remote: Enumerating objects: 69, done.        
+2023-05-22T16:14:33.1544574Z remote: Counting objects:   1% (1/69)        
+2023-05-22T16:14:33.1545267Z remote: Counting objects:   2% (2/69)        
+2023-05-22T16:14:33.1545597Z remote: Counting objects:   4% (3/69)        
+2023-05-22T16:14:33.1545854Z remote: Counting objects:   5% (4/69)        
+2023-05-22T16:14:33.1546244Z remote: Counting objects:   7% (5/69)        
+2023-05-22T16:14:33.1546500Z remote: Counting objects:   8% (6/69)        
+2023-05-22T16:14:33.1546734Z remote: Counting objects:  10% (7/69)        
+2023-05-22T16:14:33.1546987Z remote: Counting objects:  11% (8/69)        
+2023-05-22T16:14:33.1547234Z remote: Counting objects:  13% (9/69)        
+2023-05-22T16:14:33.1547475Z remote: Counting objects:  14% (10/69)        
+2023-05-22T16:14:33.1547750Z remote: Counting objects:  15% (11/69)        
+2023-05-22T16:14:33.1548008Z remote: Counting objects:  17% (12/69)        
+2023-05-22T16:14:33.1548245Z remote: Counting objects:  18% (13/69)        
+2023-05-22T16:14:33.1548480Z remote: Counting objects:  20% (14/69)        
+2023-05-22T16:14:33.1548729Z remote: Counting objects:  21% (15/69)        
+2023-05-22T16:14:33.1548955Z remote: Counting objects:  23% (16/69)        
+2023-05-22T16:14:33.1549200Z remote: Counting objects:  24% (17/69)        
+2023-05-22T16:14:33.1549434Z remote: Counting objects:  26% (18/69)        
+2023-05-22T16:14:33.1549668Z remote: Counting objects:  27% (19/69)        
+2023-05-22T16:14:33.1549899Z remote: Counting objects:  28% (20/69)        
+2023-05-22T16:14:33.1550136Z remote: Counting objects:  30% (21/69)        
+2023-05-22T16:14:33.1550374Z remote: Counting objects:  31% (22/69)        
+2023-05-22T16:14:33.1550605Z remote: Counting objects:  33% (23/69)        
+2023-05-22T16:14:33.1550842Z remote: Counting objects:  34% (24/69)        
+2023-05-22T16:14:33.1551080Z remote: Counting objects:  36% (25/69)        
+2023-05-22T16:14:33.1551308Z remote: Counting objects:  37% (26/69)        
+2023-05-22T16:14:33.1551538Z remote: Counting objects:  39% (27/69)        
+2023-05-22T16:14:33.1551777Z remote: Counting objects:  40% (28/69)        
+2023-05-22T16:14:33.1552024Z remote: Counting objects:  42% (29/69)        
+2023-05-22T16:14:33.1552481Z remote: Counting objects:  43% (30/69)        
+2023-05-22T16:14:33.1552711Z remote: Counting objects:  44% (31/69)        
+2023-05-22T16:14:33.1552947Z remote: Counting objects:  46% (32/69)        
+2023-05-22T16:14:33.1553179Z remote: Counting objects:  47% (33/69)        
+2023-05-22T16:14:33.1553436Z remote: Counting objects:  49% (34/69)        
+2023-05-22T16:14:33.1553676Z remote: Counting objects:  50% (35/69)        
+2023-05-22T16:14:33.1553904Z remote: Counting objects:  52% (36/69)        
+2023-05-22T16:14:33.1554143Z remote: Counting objects:  53% (37/69)        
+2023-05-22T16:14:33.1554385Z remote: Counting objects:  55% (38/69)        
+2023-05-22T16:14:33.1554621Z remote: Counting objects:  56% (39/69)        
+2023-05-22T16:14:33.1554846Z remote: Counting objects:  57% (40/69)        
+2023-05-22T16:14:33.1555079Z remote: Counting objects:  59% (41/69)        
+2023-05-22T16:14:33.1555314Z remote: Counting objects:  60% (42/69)        
+2023-05-22T16:14:33.1555540Z remote: Counting objects:  62% (43/69)        
+2023-05-22T16:14:33.1555777Z remote: Counting objects:  63% (44/69)        
+2023-05-22T16:14:33.1556006Z remote: Counting objects:  65% (45/69)        
+2023-05-22T16:14:33.1556228Z remote: Counting objects:  66% (46/69)        
+2023-05-22T16:14:33.1556457Z remote: Counting objects:  68% (47/69)        
+2023-05-22T16:14:33.1556685Z remote: Counting objects:  69% (48/69)        
+2023-05-22T16:14:33.1556916Z remote: Counting objects:  71% (49/69)        
+2023-05-22T16:14:33.1557138Z remote: Counting objects:  72% (50/69)        
+2023-05-22T16:14:33.1557492Z remote: Counting objects:  73% (51/69)        
+2023-05-22T16:14:33.1557731Z remote: Counting objects:  75% (52/69)        
+2023-05-22T16:14:33.1557956Z remote: Counting objects:  76% (53/69)        
+2023-05-22T16:14:33.1558185Z remote: Counting objects:  78% (54/69)        
+2023-05-22T16:14:33.1558418Z remote: Counting objects:  79% (55/69)        
+2023-05-22T16:14:33.1558640Z remote: Counting objects:  81% (56/69)        
+2023-05-22T16:14:33.1558872Z remote: Counting objects:  82% (57/69)        
+2023-05-22T16:14:33.1559104Z remote: Counting objects:  84% (58/69)        
+2023-05-22T16:14:33.1559327Z remote: Counting objects:  85% (59/69)        
+2023-05-22T16:14:33.1559557Z remote: Counting objects:  86% (60/69)        
+2023-05-22T16:14:33.1559788Z remote: Counting objects:  88% (61/69)        
+2023-05-22T16:14:33.1560017Z remote: Counting objects:  89% (62/69)        
+2023-05-22T16:14:33.1560238Z remote: Counting objects:  91% (63/69)        
+2023-05-22T16:14:33.1560474Z remote: Counting objects:  92% (64/69)        
+2023-05-22T16:14:33.1560713Z remote: Counting objects:  94% (65/69)        
+2023-05-22T16:14:33.1560939Z remote: Counting objects:  95% (66/69)        
+2023-05-22T16:14:33.1561174Z remote: Counting objects:  97% (67/69)        
+2023-05-22T16:14:33.1567302Z remote: Counting objects:  98% (68/69)        
+2023-05-22T16:14:33.1567550Z remote: Counting objects: 100% (69/69)        
+2023-05-22T16:14:33.1567804Z remote: Counting objects: 100% (69/69), done.        
+2023-05-22T16:14:33.1568113Z remote: Compressing objects:   2% (1/48)        
+2023-05-22T16:14:33.1568375Z remote: Compressing objects:   4% (2/48)        
+2023-05-22T16:14:33.1568642Z remote: Compressing objects:   6% (3/48)        
+2023-05-22T16:14:33.1568894Z remote: Compressing objects:   8% (4/48)        
+2023-05-22T16:14:33.1569149Z remote: Compressing objects:  10% (5/48)        
+2023-05-22T16:14:33.1569400Z remote: Compressing objects:  12% (6/48)        
+2023-05-22T16:14:33.1569649Z remote: Compressing objects:  14% (7/48)        
+2023-05-22T16:14:33.1569914Z remote: Compressing objects:  16% (8/48)        
+2023-05-22T16:14:33.1570154Z remote: Compressing objects:  18% (9/48)        
+2023-05-22T16:14:33.1570407Z remote: Compressing objects:  20% (10/48)        
+2023-05-22T16:14:33.1570670Z remote: Compressing objects:  22% (11/48)        
+2023-05-22T16:14:33.1570918Z remote: Compressing objects:  25% (12/48)        
+2023-05-22T16:14:33.1571175Z remote: Compressing objects:  27% (13/48)        
+2023-05-22T16:14:33.1571627Z remote: Compressing objects:  29% (14/48)        
+2023-05-22T16:14:33.1571868Z remote: Compressing objects:  31% (15/48)        
+2023-05-22T16:14:33.1572122Z remote: Compressing objects:  33% (16/48)        
+2023-05-22T16:14:33.1572374Z remote: Compressing objects:  35% (17/48)        
+2023-05-22T16:14:33.1572621Z remote: Compressing objects:  37% (18/48)        
+2023-05-22T16:14:33.1572864Z remote: Compressing objects:  39% (19/48)        
+2023-05-22T16:14:33.1573114Z remote: Compressing objects:  41% (20/48)        
+2023-05-22T16:14:33.1573366Z remote: Compressing objects:  43% (21/48)        
+2023-05-22T16:14:33.1573604Z remote: Compressing objects:  45% (22/48)        
+2023-05-22T16:14:33.1573854Z remote: Compressing objects:  47% (23/48)        
+2023-05-22T16:14:33.1574105Z remote: Compressing objects:  50% (24/48)        
+2023-05-22T16:14:33.1574338Z remote: Compressing objects:  52% (25/48)        
+2023-05-22T16:14:33.1574583Z remote: Compressing objects:  54% (26/48)        
+2023-05-22T16:14:33.1574831Z remote: Compressing objects:  56% (27/48)        
+2023-05-22T16:14:33.1575090Z remote: Compressing objects:  58% (28/48)        
+2023-05-22T16:14:33.1575347Z remote: Compressing objects:  60% (29/48)        
+2023-05-22T16:14:33.1575580Z remote: Compressing objects:  62% (30/48)        
+2023-05-22T16:14:33.1575819Z remote: Compressing objects:  64% (31/48)        
+2023-05-22T16:14:33.1576072Z remote: Compressing objects:  66% (32/48)        
+2023-05-22T16:14:33.1576312Z remote: Compressing objects:  68% (33/48)        
+2023-05-22T16:14:33.1576665Z remote: Compressing objects:  70% (34/48)        
+2023-05-22T16:14:33.1576959Z remote: Compressing objects:  72% (35/48)        
+2023-05-22T16:14:33.1577189Z remote: Compressing objects:  75% (36/48)        
+2023-05-22T16:14:33.1577429Z remote: Compressing objects:  77% (37/48)        
+2023-05-22T16:14:33.1577673Z remote: Compressing objects:  79% (38/48)        
+2023-05-22T16:14:33.1577904Z remote: Compressing objects:  81% (39/48)        
+2023-05-22T16:14:33.1599342Z remote: Compressing objects:  83% (40/48)        
+2023-05-22T16:14:33.1599613Z remote: Compressing objects:  85% (41/48)        
+2023-05-22T16:14:33.1599881Z remote: Compressing objects:  87% (42/48)        
+2023-05-22T16:14:33.1600127Z remote: Compressing objects:  89% (43/48)        
+2023-05-22T16:14:33.1600379Z remote: Compressing objects:  91% (44/48)        
+2023-05-22T16:14:33.1600637Z remote: Compressing objects:  93% (45/48)        
+2023-05-22T16:14:33.1600880Z remote: Compressing objects:  95% (46/48)        
+2023-05-22T16:14:33.1601143Z remote: Compressing objects:  97% (47/48)        
+2023-05-22T16:14:33.1601398Z remote: Compressing objects: 100% (48/48)        
+2023-05-22T16:14:33.1601661Z remote: Compressing objects: 100% (48/48), done.        
+2023-05-22T16:14:33.1602243Z remote: Total 69 (delta 2), reused 58 (delta 1), pack-reused 0        
+2023-05-22T16:14:33.1763396Z From https://github.com/lephuclai/Viettel-Digital-Talent-2023
+2023-05-22T16:14:33.1764922Z  * [new ref]         60b4efc4e6c5c5ac846f1e8891a866747750d8da -> origin/midterm
+2023-05-22T16:14:33.1793841Z ##[endgroup]
+2023-05-22T16:14:33.1794373Z ##[group]Determining the checkout info
+2023-05-22T16:14:33.1798361Z ##[endgroup]
+2023-05-22T16:14:33.1800419Z ##[group]Checking out the ref
+2023-05-22T16:14:33.1803441Z [command]/usr/bin/git checkout --progress --force -B midterm refs/remotes/origin/midterm
+2023-05-22T16:14:33.1877901Z Switched to a new branch 'midterm'
+2023-05-22T16:14:33.1881920Z branch 'midterm' set up to track 'origin/midterm'.
+2023-05-22T16:14:33.1890337Z ##[endgroup]
+2023-05-22T16:14:33.1948088Z [command]/usr/bin/git log -1 --format='%H'
+2023-05-22T16:14:33.1975577Z '60b4efc4e6c5c5ac846f1e8891a866747750d8da'
+2023-05-22T16:14:33.2367540Z ##[group]Run actions/setup-python@v4
+2023-05-22T16:14:33.2367795Z with:
+2023-05-22T16:14:33.2367994Z   python-version: 3.10.6
+2023-05-22T16:14:33.2368211Z   check-latest: false
+2023-05-22T16:14:33.2368587Z   token: ***
+2023-05-22T16:14:33.2368963Z   update-environment: true
+2023-05-22T16:14:33.2369198Z   allow-prereleases: false
+2023-05-22T16:14:33.2369407Z ##[endgroup]
+2023-05-22T16:14:33.4018679Z ##[group]Installed versions
+2023-05-22T16:14:33.4034260Z Version 3.10.6 was not found in the local cache
+2023-05-22T16:14:33.7119704Z Version 3.10.6 is available for downloading
+2023-05-22T16:14:33.7122001Z Download from "https://github.com/actions/python-versions/releases/download/3.10.6-2787494115/python-3.10.6-linux-22.04-x64.tar.gz"
+2023-05-22T16:14:34.3897101Z Extract downloaded archive
+2023-05-22T16:14:34.4005052Z [command]/usr/bin/tar xz --warning=no-unknown-keyword -C /home/runner/work/_temp/f6e6b93b-bbc3-4456-83d9-5b642f9c83a1 -f /home/runner/work/_temp/a975def4-67ef-4da5-8452-5843f481d881
+2023-05-22T16:14:36.3506362Z Execute installation script
+2023-05-22T16:14:36.3589751Z Check if Python hostedtoolcache folder exist...
+2023-05-22T16:14:36.3590339Z Create Python 3.10.6 folder
+2023-05-22T16:14:36.3607862Z Copy Python binaries to hostedtoolcache folder
+2023-05-22T16:14:36.7664969Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2023-05-22T16:14:36.7712333Z Upgrading pip...
+2023-05-22T16:14:39.3199323Z Looking in links: /tmp/tmpourd90z_
+2023-05-22T16:14:39.3206608Z Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages (63.2.0)
+2023-05-22T16:14:39.3213226Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages (22.2.1)
+2023-05-22T16:14:40.7555773Z Collecting pip
+2023-05-22T16:14:40.8619388Z Downloading pip-23.1.2-py3-none-any.whl (2.1 MB)
+2023-05-22T16:14:41.0301444Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 12.7 MB/s eta 0:00:00
+2023-05-22T16:14:41.0307270Z 
+2023-05-22T16:14:41.0866765Z Installing collected packages: pip
+2023-05-22T16:14:42.2677380Z Successfully installed pip-23.1.2
+2023-05-22T16:14:42.3302081Z Create complete file
+2023-05-22T16:14:42.3356229Z Successfully set up CPython (3.10.6)
+2023-05-22T16:14:42.3356879Z ##[endgroup]
+2023-05-22T16:14:42.3527980Z ##[group]Run python -m pip install --upgrade pip
+2023-05-22T16:14:42.3528363Z [36;1mpython -m pip install --upgrade pip[0m
+2023-05-22T16:14:42.3528625Z [36;1mpip install ruff pytest[0m
+2023-05-22T16:14:42.3528885Z [36;1mcd 10.Midterm/LePhucLai/Docker/app[0m
+2023-05-22T16:14:42.3529153Z [36;1mpip install -r requirements.txt;[0m
+2023-05-22T16:14:42.3587171Z shell: /usr/bin/bash -e {0}
+2023-05-22T16:14:42.3587393Z env:
+2023-05-22T16:14:42.3587648Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:42.3587986Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.6/x64/lib/pkgconfig
+2023-05-22T16:14:42.3588321Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:42.3588622Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:42.3588917Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:42.3589215Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.6/x64/lib
+2023-05-22T16:14:42.3589526Z ##[endgroup]
+2023-05-22T16:14:42.8237052Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages (22.2.1)
+2023-05-22T16:14:42.9914060Z Collecting pip
+2023-05-22T16:14:42.9981727Z   Using cached pip-23.1.2-py3-none-any.whl (2.1 MB)
+2023-05-22T16:14:43.0578325Z Installing collected packages: pip
+2023-05-22T16:14:43.0578936Z   Attempting uninstall: pip
+2023-05-22T16:14:43.0582847Z     Found existing installation: pip 22.2.1
+2023-05-22T16:14:43.1061560Z     Uninstalling pip-22.2.1:
+2023-05-22T16:14:43.1582497Z       Successfully uninstalled pip-22.2.1
+2023-05-22T16:14:44.3275441Z Successfully installed pip-23.1.2
+2023-05-22T16:14:45.8288930Z Collecting ruff
+2023-05-22T16:14:45.9310835Z   Downloading ruff-0.0.269-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.4 MB)
+2023-05-22T16:14:46.3873047Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 12.1 MB/s eta 0:00:00
+2023-05-22T16:14:46.5089248Z Collecting pytest
+2023-05-22T16:14:46.5179282Z   Downloading pytest-7.3.1-py3-none-any.whl (320 kB)
+2023-05-22T16:14:46.6201748Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 320.5/320.5 kB 3.1 MB/s eta 0:00:00
+2023-05-22T16:14:46.7383192Z Collecting iniconfig (from pytest)
+2023-05-22T16:14:46.7470416Z   Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+2023-05-22T16:14:46.9003199Z Collecting packaging (from pytest)
+2023-05-22T16:14:46.9086693Z   Downloading packaging-23.1-py3-none-any.whl (48 kB)
+2023-05-22T16:14:46.9840103Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.9/48.9 kB 536.0 kB/s eta 0:00:00
+2023-05-22T16:14:47.0577466Z Collecting pluggy<2.0,>=0.12 (from pytest)
+2023-05-22T16:14:47.0671202Z   Downloading pluggy-1.0.0-py2.py3-none-any.whl (13 kB)
+2023-05-22T16:14:47.1489308Z Collecting exceptiongroup>=1.0.0rc8 (from pytest)
+2023-05-22T16:14:47.2291526Z   Downloading exceptiongroup-1.1.1-py3-none-any.whl (14 kB)
+2023-05-22T16:14:48.1438445Z Collecting tomli>=1.0.0 (from pytest)
+2023-05-22T16:14:48.1522277Z   Downloading tomli-2.0.1-py3-none-any.whl (12 kB)
+2023-05-22T16:14:48.2263042Z Installing collected packages: tomli, ruff, pluggy, packaging, iniconfig, exceptiongroup, pytest
+2023-05-22T16:14:48.6225325Z Successfully installed exceptiongroup-1.1.1 iniconfig-2.0.0 packaging-23.1 pluggy-1.0.0 pytest-7.3.1 ruff-0.0.269 tomli-2.0.1
+2023-05-22T16:14:49.3386525Z Collecting flask (from -r requirements.txt (line 1))
+2023-05-22T16:14:49.4392177Z   Downloading Flask-2.3.2-py3-none-any.whl (96 kB)
+2023-05-22T16:14:49.4736023Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.9/96.9 kB 3.1 MB/s eta 0:00:00
+2023-05-22T16:14:49.5000578Z Collecting flask_pymongo (from -r requirements.txt (line 2))
+2023-05-22T16:14:49.5135398Z   Downloading Flask_PyMongo-2.3.0-py2.py3-none-any.whl (12 kB)
+2023-05-22T16:14:49.5525195Z Collecting gunicorn (from -r requirements.txt (line 3))
+2023-05-22T16:14:49.5641764Z   Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)
+2023-05-22T16:14:49.5747729Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 kB 8.9 MB/s eta 0:00:00
+2023-05-22T16:14:49.6334047Z Collecting Werkzeug>=2.3.3 (from flask->-r requirements.txt (line 1))
+2023-05-22T16:14:49.6421458Z   Downloading Werkzeug-2.3.4-py3-none-any.whl (242 kB)
+2023-05-22T16:14:49.6659181Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.5/242.5 kB 11.2 MB/s eta 0:00:00
+2023-05-22T16:14:49.7021744Z Collecting Jinja2>=3.1.2 (from flask->-r requirements.txt (line 1))
+2023-05-22T16:14:49.7116516Z   Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+2023-05-22T16:14:49.7247442Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 12.2 MB/s eta 0:00:00
+2023-05-22T16:14:49.7500352Z Collecting itsdangerous>=2.1.2 (from flask->-r requirements.txt (line 1))
+2023-05-22T16:14:49.7583425Z   Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+2023-05-22T16:14:49.7970345Z Collecting click>=8.1.3 (from flask->-r requirements.txt (line 1))
+2023-05-22T16:14:49.8076581Z   Downloading click-8.1.3-py3-none-any.whl (96 kB)
+2023-05-22T16:14:49.8176338Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 11.9 MB/s eta 0:00:00
+2023-05-22T16:14:49.8387924Z Collecting blinker>=1.6.2 (from flask->-r requirements.txt (line 1))
+2023-05-22T16:14:49.8475578Z   Downloading blinker-1.6.2-py3-none-any.whl (13 kB)
+2023-05-22T16:14:50.3425033Z Collecting PyMongo>=3.3 (from flask_pymongo->-r requirements.txt (line 2))
+2023-05-22T16:14:50.3553646Z   Downloading pymongo-4.3.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (492 kB)
+2023-05-22T16:14:50.3889496Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 492.9/492.9 kB 15.8 MB/s eta 0:00:00
+2023-05-22T16:14:50.3988935Z Requirement already satisfied: setuptools>=3.0 in /opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages (from gunicorn->-r requirements.txt (line 3)) (63.2.0)
+2023-05-22T16:14:50.4858232Z Collecting MarkupSafe>=2.0 (from Jinja2>=3.1.2->flask->-r requirements.txt (line 1))
+2023-05-22T16:14:50.4946309Z   Downloading MarkupSafe-2.1.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+2023-05-22T16:14:50.5345107Z Collecting dnspython<3.0.0,>=1.16.0 (from PyMongo>=3.3->flask_pymongo->-r requirements.txt (line 2))
+2023-05-22T16:14:50.5429005Z   Downloading dnspython-2.3.0-py3-none-any.whl (283 kB)
+2023-05-22T16:14:50.5605654Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 283.7/283.7 kB 18.4 MB/s eta 0:00:00
+2023-05-22T16:14:50.7091853Z Installing collected packages: MarkupSafe, itsdangerous, gunicorn, dnspython, click, blinker, Werkzeug, PyMongo, Jinja2, flask, flask_pymongo
+2023-05-22T16:14:51.5432590Z Successfully installed Jinja2-3.1.2 MarkupSafe-2.1.2 PyMongo-4.3.3 Werkzeug-2.3.4 blinker-1.6.2 click-8.1.3 dnspython-2.3.0 flask-2.3.2 flask_pymongo-2.3.0 gunicorn-20.1.0 itsdangerous-2.1.2
+2023-05-22T16:14:51.6846685Z ##[group]Run cd 10.Midterm/LePhucLai/Docker
+2023-05-22T16:14:51.6846984Z [36;1mcd 10.Midterm/LePhucLai/Docker[0m
+2023-05-22T16:14:51.6847230Z [36;1mdocker compose up -d[0m
+2023-05-22T16:14:51.6847599Z [36;1mdocker exec mongodb mongoimport --db VDT23 --collection attendees --jsonArray --file data/db/attendees.json[0m
+2023-05-22T16:14:51.6900687Z shell: /usr/bin/bash -e {0}
+2023-05-22T16:14:51.6900901Z env:
+2023-05-22T16:14:51.6901170Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:51.6901505Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.6/x64/lib/pkgconfig
+2023-05-22T16:14:51.6901836Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:51.6902147Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:51.6902440Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:14:51.6902739Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.6/x64/lib
+2023-05-22T16:14:51.6903031Z ##[endgroup]
+2023-05-22T16:14:51.9551350Z  flask Pulling 
+2023-05-22T16:14:51.9555363Z  mongodb Pulling 
+2023-05-22T16:14:51.9567397Z  webserver Pulling 
+2023-05-22T16:14:52.2990210Z  918547b94326 Already exists 
+2023-05-22T16:14:52.3017757Z  5d79063a01c5 Already exists 
+2023-05-22T16:14:52.3034073Z  4eedd9c5abf7 Already exists 
+2023-05-22T16:14:52.3050563Z  9cdadd40055f Already exists 
+2023-05-22T16:14:52.3070033Z  2a12d0031f3f Pulling fs layer 
+2023-05-22T16:14:52.3071107Z  cea461a97d87 Pulling fs layer 
+2023-05-22T16:14:52.3071324Z  a48c72dfa8c4 Pulling fs layer 
+2023-05-22T16:14:52.3071648Z  c343b921680a Pulling fs layer 
+2023-05-22T16:14:52.3071866Z  c343b921680a Waiting 
+2023-05-22T16:14:52.3464359Z  a31c7b29f4ad Pulling fs layer 
+2023-05-22T16:14:52.3464655Z  8490627ad476 Pulling fs layer 
+2023-05-22T16:14:52.3473454Z  97d640de21f3 Pulling fs layer 
+2023-05-22T16:14:52.3473710Z  4676d8bbe06c Pulling fs layer 
+2023-05-22T16:14:52.3473947Z  c33fdc30cbb0 Pulling fs layer 
+2023-05-22T16:14:52.3474185Z  9826b02e8828 Pulling fs layer 
+2023-05-22T16:14:52.3474404Z  eb8cc237d4c6 Pulling fs layer 
+2023-05-22T16:14:52.3474638Z  3e9a7cca8614 Pulling fs layer 
+2023-05-22T16:14:52.3474854Z  3924ddfa6129 Pulling fs layer 
+2023-05-22T16:14:52.3475078Z  deab31eec3dc Pulling fs layer 
+2023-05-22T16:14:52.3475329Z  a31c7b29f4ad Waiting 
+2023-05-22T16:14:52.3475525Z  8490627ad476 Waiting 
+2023-05-22T16:14:52.3475723Z  97d640de21f3 Waiting 
+2023-05-22T16:14:52.3475924Z  4676d8bbe06c Waiting 
+2023-05-22T16:14:52.3476109Z  c33fdc30cbb0 Waiting 
+2023-05-22T16:14:52.3476303Z  9826b02e8828 Waiting 
+2023-05-22T16:14:52.3476483Z  eb8cc237d4c6 Waiting 
+2023-05-22T16:14:52.3476664Z  3e9a7cca8614 Waiting 
+2023-05-22T16:14:52.3476845Z  3924ddfa6129 Waiting 
+2023-05-22T16:14:52.3477033Z  deab31eec3dc Waiting 
+2023-05-22T16:14:52.3506130Z  213ec9aee27d Pulling fs layer 
+2023-05-22T16:14:52.3506396Z  1bfd2b69cf63 Pulling fs layer 
+2023-05-22T16:14:52.3506615Z  a19f4cc2e029 Pulling fs layer 
+2023-05-22T16:14:52.3506847Z  4ae981811a6d Pulling fs layer 
+2023-05-22T16:14:52.3507055Z  7a662f439736 Pulling fs layer 
+2023-05-22T16:14:52.3507263Z  a317c3c2c906 Pulling fs layer 
+2023-05-22T16:14:52.3507483Z  213ec9aee27d Waiting 
+2023-05-22T16:14:52.3507673Z  1bfd2b69cf63 Waiting 
+2023-05-22T16:14:52.3508118Z  a19f4cc2e029 Waiting 
+2023-05-22T16:14:52.3508307Z  4ae981811a6d Waiting 
+2023-05-22T16:14:52.3508482Z  7a662f439736 Waiting 
+2023-05-22T16:14:52.3508669Z  a317c3c2c906 Waiting 
+2023-05-22T16:14:52.3812794Z  a48c72dfa8c4 Downloading [==================================================>]     244B/244B
+2023-05-22T16:14:52.3813116Z  a48c72dfa8c4 Verifying Checksum 
+2023-05-22T16:14:52.3813362Z  a48c72dfa8c4 Download complete 
+2023-05-22T16:14:52.3845992Z  2a12d0031f3f Downloading [>                                                  ]  63.78kB/6.291MB
+2023-05-22T16:14:52.3892662Z  cea461a97d87 Downloading [>                                                  ]  163.1kB/16.15MB
+2023-05-22T16:14:52.4572685Z  2a12d0031f3f Verifying Checksum 
+2023-05-22T16:14:52.4573248Z  2a12d0031f3f Download complete 
+2023-05-22T16:14:52.4848603Z  2a12d0031f3f Extracting [>                                                  ]  65.54kB/6.291MB
+2023-05-22T16:14:52.4873699Z  c343b921680a Downloading [>                                                  ]  29.46kB/2.903MB
+2023-05-22T16:14:52.4929404Z  cea461a97d87 Downloading [=====================================>             ]  12.23MB/16.15MB
+2023-05-22T16:14:52.5358554Z  cea461a97d87 Verifying Checksum 
+2023-05-22T16:14:52.5359063Z  cea461a97d87 Download complete 
+2023-05-22T16:14:52.5443529Z  c343b921680a Downloading [==================================================>]  2.903MB/2.903MB
+2023-05-22T16:14:52.5450210Z  c343b921680a Verifying Checksum 
+2023-05-22T16:14:52.5455053Z  c343b921680a Download complete 
+2023-05-22T16:14:52.5779313Z  a31c7b29f4ad Downloading [>                                                  ]  294.9kB/28.57MB
+2023-05-22T16:14:52.5921321Z  2a12d0031f3f Extracting [==>                                                ]  262.1kB/6.291MB
+2023-05-22T16:14:52.6196005Z  8490627ad476 Downloading [=====================>                             ]     758B/1.748kB
+2023-05-22T16:14:52.6199991Z  8490627ad476 Downloading [==================================================>]  1.748kB/1.748kB
+2023-05-22T16:14:52.6227326Z  8490627ad476 Verifying Checksum 
+2023-05-22T16:14:52.6227696Z  8490627ad476 Download complete 
+2023-05-22T16:14:52.6331062Z  97d640de21f3 Downloading [>                                                  ]  31.49kB/3.064MB
+2023-05-22T16:14:52.6742374Z  97d640de21f3 Verifying Checksum 
+2023-05-22T16:14:52.6742718Z  97d640de21f3 Download complete 
+2023-05-22T16:14:52.6784837Z  a31c7b29f4ad Downloading [====================>                              ]     12MB/28.57MB
+2023-05-22T16:14:52.6987453Z  2a12d0031f3f Extracting [======>                                            ]    852kB/6.291MB
+2023-05-22T16:14:52.7252856Z  4676d8bbe06c Downloading [>                                                  ]  65.54kB/6.506MB
+2023-05-22T16:14:52.7808190Z  a31c7b29f4ad Downloading [==============================================>    ]  26.69MB/28.57MB
+2023-05-22T16:14:52.7910052Z  a31c7b29f4ad Verifying Checksum 
+2023-05-22T16:14:52.7913647Z  a31c7b29f4ad Download complete 
+2023-05-22T16:14:52.7968193Z  4676d8bbe06c Verifying Checksum 
+2023-05-22T16:14:52.7968465Z  4676d8bbe06c Download complete 
+2023-05-22T16:14:52.7975896Z  c33fdc30cbb0 Downloading [==================================================>]     149B/149B
+2023-05-22T16:14:52.8009465Z  c33fdc30cbb0 Verifying Checksum 
+2023-05-22T16:14:52.8009729Z  c33fdc30cbb0 Download complete 
+2023-05-22T16:14:52.8016691Z  2a12d0031f3f Extracting [=====================>                             ]  2.687MB/6.291MB
+2023-05-22T16:14:52.8673658Z  9826b02e8828 Downloading [==========================>                        ]     758B/1.427kB
+2023-05-22T16:14:52.8675600Z  9826b02e8828 Downloading [==================================================>]  1.427kB/1.427kB
+2023-05-22T16:14:52.8680990Z  9826b02e8828 Verifying Checksum 
+2023-05-22T16:14:52.8681238Z  9826b02e8828 Download complete 
+2023-05-22T16:14:52.8747147Z  eb8cc237d4c6 Downloading [==================================================>]     234B/234B
+2023-05-22T16:14:52.8754224Z  eb8cc237d4c6 Verifying Checksum 
+2023-05-22T16:14:52.8754775Z  eb8cc237d4c6 Download complete 
+2023-05-22T16:14:52.8907434Z  3e9a7cca8614 Downloading [>                                                  ]  540.7kB/206.4MB
+2023-05-22T16:14:52.8930498Z  a31c7b29f4ad Extracting [>                                                  ]  294.9kB/28.57MB
+2023-05-22T16:14:52.9413116Z  2a12d0031f3f Extracting [====================================>              ]  4.588MB/6.291MB
+2023-05-22T16:14:52.9742109Z  3924ddfa6129 Downloading [==================================================>]     170B/170B
+2023-05-22T16:14:52.9785891Z  3924ddfa6129 Verifying Checksum 
+2023-05-22T16:14:52.9789480Z  3924ddfa6129 Download complete 
+2023-05-22T16:14:52.9865937Z  deab31eec3dc Downloading [========>                                          ]     758B/4.476kB
+2023-05-22T16:14:52.9870720Z  deab31eec3dc Downloading [==================================================>]  4.476kB/4.476kB
+2023-05-22T16:14:52.9897868Z  deab31eec3dc Verifying Checksum 
+2023-05-22T16:14:52.9898166Z  deab31eec3dc Download complete 
+2023-05-22T16:14:52.9972911Z  3e9a7cca8614 Downloading [==>                                                ]   11.3MB/206.4MB
+2023-05-22T16:14:52.9977049Z  a31c7b29f4ad Extracting [====>                                              ]  2.359MB/28.57MB
+2023-05-22T16:14:53.0420481Z  2a12d0031f3f Extracting [=========================================>         ]  5.243MB/6.291MB
+2023-05-22T16:14:53.0566252Z  213ec9aee27d Downloading [>                                                  ]  28.75kB/2.806MB
+2023-05-22T16:14:53.1097251Z  3e9a7cca8614 Downloading [=====>                                             ]  22.02MB/206.4MB
+2023-05-22T16:14:53.1097698Z  1bfd2b69cf63 Downloading [>                                                  ]  73.99kB/7.392MB
+2023-05-22T16:14:53.1102053Z  a31c7b29f4ad Extracting [=======>                                           ]  4.129MB/28.57MB
+2023-05-22T16:14:53.1302377Z  213ec9aee27d Verifying Checksum 
+2023-05-22T16:14:53.1302704Z  213ec9aee27d Download complete 
+2023-05-22T16:14:53.1497451Z  213ec9aee27d Extracting [>                                                  ]  32.77kB/2.806MB
+2023-05-22T16:14:53.1557101Z  2a12d0031f3f Extracting [=============================================>     ]  5.702MB/6.291MB
+2023-05-22T16:14:53.2122642Z  3e9a7cca8614 Downloading [======>                                            ]  27.93MB/206.4MB
+2023-05-22T16:14:53.2256450Z  1bfd2b69cf63 Downloading [=====================================>             ]  5.503MB/7.392MB
+2023-05-22T16:14:53.2353275Z  1bfd2b69cf63 Verifying Checksum 
+2023-05-22T16:14:53.2353560Z  1bfd2b69cf63 Download complete 
+2023-05-22T16:14:53.2406887Z  213ec9aee27d Extracting [======>                                            ]  360.4kB/2.806MB
+2023-05-22T16:14:53.2668649Z  2a12d0031f3f Extracting [===============================================>   ]  6.029MB/6.291MB
+2023-05-22T16:14:53.2762206Z  a31c7b29f4ad Extracting [========>                                          ]  4.719MB/28.57MB
+2023-05-22T16:14:53.3279987Z  a19f4cc2e029 Downloading [==================================================>]     601B/601B
+2023-05-22T16:14:53.3319225Z  a19f4cc2e029 Verifying Checksum 
+2023-05-22T16:14:53.3322885Z  a19f4cc2e029 Download complete 
+2023-05-22T16:14:53.3326912Z  3e9a7cca8614 Downloading [=========>                                         ]  40.27MB/206.4MB
+2023-05-22T16:14:53.3329358Z  2a12d0031f3f Extracting [==================================================>]  6.291MB/6.291MB
+2023-05-22T16:14:53.3451010Z  4ae981811a6d Downloading [==========================================>        ]     759B/893B
+2023-05-22T16:14:53.3451378Z  213ec9aee27d Extracting [=======================>                           ]  1.311MB/2.806MB
+2023-05-22T16:14:53.3451711Z  4ae981811a6d Downloading [==================================================>]     893B/893B
+2023-05-22T16:14:53.3475466Z  4ae981811a6d Verifying Checksum 
+2023-05-22T16:14:53.3477562Z  4ae981811a6d Download complete 
+2023-05-22T16:14:53.3962602Z  a31c7b29f4ad Extracting [==========>                                        ]  6.193MB/28.57MB
+2023-05-22T16:14:53.4265636Z  3e9a7cca8614 Downloading [============>                                      ]  49.95MB/206.4MB
+2023-05-22T16:14:53.4433818Z  7a662f439736 Downloading [==================================================>]     666B/666B
+2023-05-22T16:14:53.4489442Z  7a662f439736 Verifying Checksum 
+2023-05-22T16:14:53.4489822Z  7a662f439736 Download complete 
+2023-05-22T16:14:53.4511156Z  213ec9aee27d Extracting [============================================>      ]  2.523MB/2.806MB
+2023-05-22T16:14:53.4652006Z  213ec9aee27d Extracting [==================================================>]  2.806MB/2.806MB
+2023-05-22T16:14:53.4810367Z  a317c3c2c906 Downloading [===========================>                       ]     757B/1.395kB
+2023-05-22T16:14:53.4812532Z  a317c3c2c906 Downloading [==================================================>]  1.395kB/1.395kB
+2023-05-22T16:14:53.4812841Z  a317c3c2c906 Verifying Checksum 
+2023-05-22T16:14:53.4813076Z  a317c3c2c906 Download complete 
+2023-05-22T16:14:53.5227847Z  a31c7b29f4ad Extracting [=============>                                     ]  7.668MB/28.57MB
+2023-05-22T16:14:53.5325347Z  3e9a7cca8614 Downloading [==============>                                    ]  60.16MB/206.4MB
+2023-05-22T16:14:53.6319923Z  a31c7b29f4ad Extracting [=================>                                 ]  10.03MB/28.57MB
+2023-05-22T16:14:53.6418284Z  3e9a7cca8614 Downloading [=================>                                 ]  73.03MB/206.4MB
+2023-05-22T16:14:53.7342774Z  a31c7b29f4ad Extracting [=====================>                             ]  12.39MB/28.57MB
+2023-05-22T16:14:53.7553817Z  3e9a7cca8614 Downloading [====================>                              ]  86.46MB/206.4MB
+2023-05-22T16:14:53.8346268Z  a31c7b29f4ad Extracting [===========================>                       ]  15.63MB/28.57MB
+2023-05-22T16:14:53.8765268Z  3e9a7cca8614 Downloading [========================>                          ]  100.4MB/206.4MB
+2023-05-22T16:14:53.9372527Z  a31c7b29f4ad Extracting [=============================>                     ]  16.81MB/28.57MB
+2023-05-22T16:14:53.9558667Z  3e9a7cca8614 Downloading [===========================>                       ]  113.8MB/206.4MB
+2023-05-22T16:14:54.0608105Z  3e9a7cca8614 Downloading [=============================>                     ]  123.5MB/206.4MB
+2023-05-22T16:14:54.0928252Z  a31c7b29f4ad Extracting [================================>                  ]  18.28MB/28.57MB
+2023-05-22T16:14:54.1604571Z  3e9a7cca8614 Downloading [================================>                  ]  133.1MB/206.4MB
+2023-05-22T16:14:54.1930966Z  a31c7b29f4ad Extracting [=====================================>             ]  21.23MB/28.57MB
+2023-05-22T16:14:54.2765147Z  3e9a7cca8614 Downloading [===================================>               ]  146.5MB/206.4MB
+2023-05-22T16:14:54.3546373Z  a31c7b29f4ad Extracting [==========================================>        ]  24.18MB/28.57MB
+2023-05-22T16:14:54.3816010Z  3e9a7cca8614 Downloading [======================================>            ]  157.3MB/206.4MB
+2023-05-22T16:14:54.4901400Z  3e9a7cca8614 Downloading [========================================>          ]  166.4MB/206.4MB
+2023-05-22T16:14:54.4908510Z  a31c7b29f4ad Extracting [===========================================>       ]  25.07MB/28.57MB
+2023-05-22T16:14:54.5279624Z  213ec9aee27d Pull complete 
+2023-05-22T16:14:54.6255511Z  3e9a7cca8614 Downloading [=========================================>         ]  173.4MB/206.4MB
+2023-05-22T16:14:54.6285894Z  1bfd2b69cf63 Extracting [>                                                  ]   98.3kB/7.392MB
+2023-05-22T16:14:54.6333967Z  a31c7b29f4ad Extracting [=============================================>     ]  26.25MB/28.57MB
+2023-05-22T16:14:54.6397440Z  2a12d0031f3f Pull complete 
+2023-05-22T16:14:54.6618320Z  cea461a97d87 Extracting [>                                                  ]  163.8kB/16.15MB
+2023-05-22T16:14:54.7385202Z  a31c7b29f4ad Extracting [===============================================>   ]  27.13MB/28.57MB
+2023-05-22T16:14:54.7429449Z  3e9a7cca8614 Downloading [===========================================>       ]  178.8MB/206.4MB
+2023-05-22T16:14:54.7639069Z  1bfd2b69cf63 Extracting [=>                                                 ]  294.9kB/7.392MB
+2023-05-22T16:14:54.8384937Z  3e9a7cca8614 Downloading [=============================================>     ]  186.3MB/206.4MB
+2023-05-22T16:14:54.8496424Z  cea461a97d87 Extracting [=>                                                 ]  327.7kB/16.15MB
+2023-05-22T16:14:54.8713059Z  a31c7b29f4ad Extracting [================================================>  ]  27.72MB/28.57MB
+2023-05-22T16:14:54.8904286Z  1bfd2b69cf63 Extracting [========>                                          ]  1.278MB/7.392MB
+2023-05-22T16:14:54.9349961Z  3e9a7cca8614 Downloading [===============================================>   ]  194.9MB/206.4MB
+2023-05-22T16:14:54.9520470Z  cea461a97d87 Extracting [=====>                                             ]  1.802MB/16.15MB
+2023-05-22T16:14:54.9931430Z  1bfd2b69cf63 Extracting [=================>                                 ]  2.654MB/7.392MB
+2023-05-22T16:14:55.0165362Z  a31c7b29f4ad Extracting [=================================================> ]  28.31MB/28.57MB
+2023-05-22T16:14:55.0418820Z  3e9a7cca8614 Downloading [=================================================> ]  205.1MB/206.4MB
+2023-05-22T16:14:55.0475024Z  3e9a7cca8614 Verifying Checksum 
+2023-05-22T16:14:55.0475309Z  3e9a7cca8614 Download complete 
+2023-05-22T16:14:55.0657133Z  cea461a97d87 Extracting [=========>                                         ]  3.113MB/16.15MB
+2023-05-22T16:14:55.0893618Z  a31c7b29f4ad Extracting [==================================================>]  28.57MB/28.57MB
+2023-05-22T16:14:55.0945903Z  1bfd2b69cf63 Extracting [==========================>                        ]  3.932MB/7.392MB
+2023-05-22T16:14:55.1255894Z  a31c7b29f4ad Pull complete 
+2023-05-22T16:14:55.1428700Z  8490627ad476 Extracting [==================================================>]  1.748kB/1.748kB
+2023-05-22T16:14:55.1432620Z  8490627ad476 Extracting [==================================================>]  1.748kB/1.748kB
+2023-05-22T16:14:55.1766580Z  cea461a97d87 Extracting [===============>                                   ]  4.915MB/16.15MB
+2023-05-22T16:14:55.2013518Z  1bfd2b69cf63 Extracting [====================================>              ]  5.407MB/7.392MB
+2023-05-22T16:14:55.2796304Z  cea461a97d87 Extracting [=================>                                 ]  5.734MB/16.15MB
+2023-05-22T16:14:55.3035847Z  1bfd2b69cf63 Extracting [===============================================>   ]   6.98MB/7.392MB
+2023-05-22T16:14:55.3915676Z  1bfd2b69cf63 Extracting [==================================================>]  7.392MB/7.392MB
+2023-05-22T16:14:55.4446712Z  cea461a97d87 Extracting [==================>                                ]  6.062MB/16.15MB
+2023-05-22T16:14:55.5479592Z  cea461a97d87 Extracting [=====================>                             ]  7.045MB/16.15MB
+2023-05-22T16:14:55.6783281Z  cea461a97d87 Extracting [=================================>                 ]  10.98MB/16.15MB
+2023-05-22T16:14:55.7768666Z  cea461a97d87 Extracting [============================================>      ]  14.42MB/16.15MB
+2023-05-22T16:14:55.8380916Z  1bfd2b69cf63 Pull complete 
+2023-05-22T16:14:55.8389931Z  8490627ad476 Pull complete 
+2023-05-22T16:14:55.8400185Z  a19f4cc2e029 Extracting [==================================================>]     601B/601B
+2023-05-22T16:14:55.8415745Z  a19f4cc2e029 Extracting [==================================================>]     601B/601B
+2023-05-22T16:14:55.8476366Z  97d640de21f3 Extracting [>                                                  ]  32.77kB/3.064MB
+2023-05-22T16:14:55.8817753Z  cea461a97d87 Extracting [===============================================>   ]  15.24MB/16.15MB
+2023-05-22T16:14:55.9317216Z  a19f4cc2e029 Pull complete 
+2023-05-22T16:14:55.9333731Z  4ae981811a6d Extracting [==================================================>]     893B/893B
+2023-05-22T16:14:55.9725233Z  97d640de21f3 Extracting [===>                                               ]  229.4kB/3.064MB
+2023-05-22T16:14:55.9725607Z  4ae981811a6d Extracting [==================================================>]     893B/893B
+2023-05-22T16:14:55.9903311Z  cea461a97d87 Extracting [==================================================>]  16.15MB/16.15MB
+2023-05-22T16:14:56.0393454Z  4ae981811a6d Pull complete 
+2023-05-22T16:14:56.0405379Z  7a662f439736 Extracting [==================================================>]     666B/666B
+2023-05-22T16:14:56.0483333Z  7a662f439736 Extracting [==================================================>]     666B/666B
+2023-05-22T16:14:56.0487428Z  cea461a97d87 Pull complete 
+2023-05-22T16:14:56.0506238Z  a48c72dfa8c4 Extracting [==================================================>]     244B/244B
+2023-05-22T16:14:56.0591452Z  a48c72dfa8c4 Extracting [==================================================>]     244B/244B
+2023-05-22T16:14:56.0729123Z  97d640de21f3 Extracting [===================================>               ]  2.163MB/3.064MB
+2023-05-22T16:14:56.1320889Z  97d640de21f3 Extracting [==================================================>]  3.064MB/3.064MB
+2023-05-22T16:14:56.1702046Z  97d640de21f3 Pull complete 
+2023-05-22T16:14:56.1789772Z  a48c72dfa8c4 Pull complete 
+2023-05-22T16:14:56.1812240Z  4676d8bbe06c Extracting [>                                                  ]  65.54kB/6.506MB
+2023-05-22T16:14:56.1837545Z  c343b921680a Extracting [>                                                  ]  32.77kB/2.903MB
+2023-05-22T16:14:56.1873276Z  7a662f439736 Pull complete 
+2023-05-22T16:14:56.1886665Z  a317c3c2c906 Extracting [==================================================>]  1.395kB/1.395kB
+2023-05-22T16:14:56.1992789Z  a317c3c2c906 Extracting [==================================================>]  1.395kB/1.395kB
+2023-05-22T16:14:56.2881774Z  4676d8bbe06c Extracting [==>                                                ]  262.1kB/6.506MB
+2023-05-22T16:14:56.3148238Z  a317c3c2c906 Pull complete 
+2023-05-22T16:14:56.3220929Z  webserver Pulled 
+2023-05-22T16:14:56.3314776Z  c343b921680a Extracting [=====>                                             ]  327.7kB/2.903MB
+2023-05-22T16:14:56.3899956Z  4676d8bbe06c Extracting [========================>                          ]  3.146MB/6.506MB
+2023-05-22T16:14:56.4353380Z  c343b921680a Extracting [===============>                                   ]  917.5kB/2.903MB
+2023-05-22T16:14:56.4908482Z  4676d8bbe06c Extracting [====================================>              ]  4.719MB/6.506MB
+2023-05-22T16:14:56.5384275Z  c343b921680a Extracting [==================================>                ]  1.999MB/2.903MB
+2023-05-22T16:14:56.5932494Z  4676d8bbe06c Extracting [===============================================>   ]   6.16MB/6.506MB
+2023-05-22T16:14:56.6140265Z  4676d8bbe06c Extracting [==================================================>]  6.506MB/6.506MB
+2023-05-22T16:14:56.6458557Z  c343b921680a Extracting [=============================================>     ]  2.621MB/2.903MB
+2023-05-22T16:14:56.6723448Z  c343b921680a Extracting [==================================================>]  2.903MB/2.903MB
+2023-05-22T16:14:56.7013882Z  4676d8bbe06c Pull complete 
+2023-05-22T16:14:56.7033605Z  c33fdc30cbb0 Extracting [==================================================>]     149B/149B
+2023-05-22T16:14:56.7083589Z  c33fdc30cbb0 Extracting [==================================================>]     149B/149B
+2023-05-22T16:14:56.7084484Z  c343b921680a Pull complete 
+2023-05-22T16:14:56.7138670Z  flask Pulled 
+2023-05-22T16:14:56.7521871Z  c33fdc30cbb0 Pull complete 
+2023-05-22T16:14:56.7537610Z  9826b02e8828 Extracting [==================================================>]  1.427kB/1.427kB
+2023-05-22T16:14:56.7541037Z  9826b02e8828 Extracting [==================================================>]  1.427kB/1.427kB
+2023-05-22T16:14:56.8193034Z  9826b02e8828 Pull complete 
+2023-05-22T16:14:56.8205109Z  eb8cc237d4c6 Extracting [==================================================>]     234B/234B
+2023-05-22T16:14:56.8214889Z  eb8cc237d4c6 Extracting [==================================================>]     234B/234B
+2023-05-22T16:14:56.8694553Z  eb8cc237d4c6 Pull complete 
+2023-05-22T16:14:56.9245352Z  3e9a7cca8614 Extracting [>                                                  ]  557.1kB/206.4MB
+2023-05-22T16:14:57.0329264Z  3e9a7cca8614 Extracting [=>                                                 ]  6.685MB/206.4MB
+2023-05-22T16:14:57.1366390Z  3e9a7cca8614 Extracting [==>                                                ]  10.58MB/206.4MB
+2023-05-22T16:14:57.2370742Z  3e9a7cca8614 Extracting [===>                                               ]  16.15MB/206.4MB
+2023-05-22T16:14:57.3375378Z  3e9a7cca8614 Extracting [=====>                                             ]  21.17MB/206.4MB
+2023-05-22T16:14:57.4592465Z  3e9a7cca8614 Extracting [======>                                            ]   27.3MB/206.4MB
+2023-05-22T16:14:57.5650377Z  3e9a7cca8614 Extracting [=======>                                           ]  30.08MB/206.4MB
+2023-05-22T16:14:57.6719156Z  3e9a7cca8614 Extracting [========>                                          ]  35.09MB/206.4MB
+2023-05-22T16:14:57.7788504Z  3e9a7cca8614 Extracting [=========>                                         ]  40.11MB/206.4MB
+2023-05-22T16:14:57.8874572Z  3e9a7cca8614 Extracting [==========>                                        ]  45.12MB/206.4MB
+2023-05-22T16:14:57.9966414Z  3e9a7cca8614 Extracting [============>                                      ]  50.14MB/206.4MB
+2023-05-22T16:14:58.1046329Z  3e9a7cca8614 Extracting [=============>                                     ]  54.59MB/206.4MB
+2023-05-22T16:14:58.2126424Z  3e9a7cca8614 Extracting [==============>                                    ]  60.16MB/206.4MB
+2023-05-22T16:14:58.3476686Z  3e9a7cca8614 Extracting [===============>                                   ]  64.62MB/206.4MB
+2023-05-22T16:14:58.4578620Z  3e9a7cca8614 Extracting [================>                                  ]  66.85MB/206.4MB
+2023-05-22T16:14:58.5627816Z  3e9a7cca8614 Extracting [=================>                                 ]  71.86MB/206.4MB
+2023-05-22T16:14:58.6705354Z  3e9a7cca8614 Extracting [==================>                                ]  76.87MB/206.4MB
+2023-05-22T16:14:58.7706386Z  3e9a7cca8614 Extracting [===================>                               ]  82.44MB/206.4MB
+2023-05-22T16:14:58.8712133Z  3e9a7cca8614 Extracting [=====================>                             ]  88.01MB/206.4MB
+2023-05-22T16:14:58.9777465Z  3e9a7cca8614 Extracting [======================>                            ]  92.47MB/206.4MB
+2023-05-22T16:14:59.0874713Z  3e9a7cca8614 Extracting [=======================>                           ]  98.04MB/206.4MB
+2023-05-22T16:14:59.1961177Z  3e9a7cca8614 Extracting [=========================>                         ]  103.6MB/206.4MB
+2023-05-22T16:14:59.3022999Z  3e9a7cca8614 Extracting [==========================>                        ]  107.5MB/206.4MB
+2023-05-22T16:14:59.4092612Z  3e9a7cca8614 Extracting [===========================>                       ]  113.6MB/206.4MB
+2023-05-22T16:14:59.5190485Z  3e9a7cca8614 Extracting [=============================>                     ]  119.8MB/206.4MB
+2023-05-22T16:14:59.6264770Z  3e9a7cca8614 Extracting [==============================>                    ]  125.9MB/206.4MB
+2023-05-22T16:14:59.7388948Z  3e9a7cca8614 Extracting [===============================>                   ]  129.8MB/206.4MB
+2023-05-22T16:14:59.8490674Z  3e9a7cca8614 Extracting [================================>                  ]  135.4MB/206.4MB
+2023-05-22T16:14:59.9498326Z  3e9a7cca8614 Extracting [==================================>                ]  140.9MB/206.4MB
+2023-05-22T16:15:00.0747817Z  3e9a7cca8614 Extracting [==================================>                ]  143.2MB/206.4MB
+2023-05-22T16:15:00.1762886Z  3e9a7cca8614 Extracting [===================================>               ]  145.4MB/206.4MB
+2023-05-22T16:15:00.3046563Z  3e9a7cca8614 Extracting [===================================>               ]  147.6MB/206.4MB
+2023-05-22T16:15:00.4074263Z  3e9a7cca8614 Extracting [====================================>              ]  151.5MB/206.4MB
+2023-05-22T16:15:00.5171786Z  3e9a7cca8614 Extracting [======================================>            ]  157.6MB/206.4MB
+2023-05-22T16:15:00.6277487Z  3e9a7cca8614 Extracting [=======================================>           ]  162.7MB/206.4MB
+2023-05-22T16:15:00.7454502Z  3e9a7cca8614 Extracting [========================================>          ]  166.6MB/206.4MB
+2023-05-22T16:15:00.8567049Z  3e9a7cca8614 Extracting [=========================================>         ]  170.5MB/206.4MB
+2023-05-22T16:15:00.9660326Z  3e9a7cca8614 Extracting [==========================================>        ]  176.6MB/206.4MB
+2023-05-22T16:15:01.0752664Z  3e9a7cca8614 Extracting [============================================>      ]  182.7MB/206.4MB
+2023-05-22T16:15:01.1845801Z  3e9a7cca8614 Extracting [=============================================>     ]  186.6MB/206.4MB
+2023-05-22T16:15:01.2853395Z  3e9a7cca8614 Extracting [==============================================>    ]  191.6MB/206.4MB
+2023-05-22T16:15:01.4001026Z  3e9a7cca8614 Extracting [===============================================>   ]  197.2MB/206.4MB
+2023-05-22T16:15:01.5022197Z  3e9a7cca8614 Extracting [=================================================> ]  202.8MB/206.4MB
+2023-05-22T16:15:01.6777116Z  3e9a7cca8614 Extracting [=================================================> ]  205.6MB/206.4MB
+2023-05-22T16:15:01.7859315Z  3e9a7cca8614 Extracting [=================================================> ]  206.1MB/206.4MB
+2023-05-22T16:15:01.8137961Z  3e9a7cca8614 Extracting [==================================================>]  206.4MB/206.4MB
+2023-05-22T16:15:04.3763418Z  3e9a7cca8614 Pull complete 
+2023-05-22T16:15:04.3777899Z  3924ddfa6129 Extracting [==================================================>]     170B/170B
+2023-05-22T16:15:04.3871129Z  3924ddfa6129 Extracting [==================================================>]     170B/170B
+2023-05-22T16:15:04.4257617Z  3924ddfa6129 Pull complete 
+2023-05-22T16:15:04.4272719Z  deab31eec3dc Extracting [==================================================>]  4.476kB/4.476kB
+2023-05-22T16:15:04.4304165Z  deab31eec3dc Extracting [==================================================>]  4.476kB/4.476kB
+2023-05-22T16:15:04.4745133Z  deab31eec3dc Pull complete 
+2023-05-22T16:15:04.4820071Z  mongodb Pulled 
+2023-05-22T16:15:04.4839695Z  Network docker_backend  Creating
+2023-05-22T16:15:04.5295967Z  Network docker_backend  Created
+2023-05-22T16:15:04.5301968Z  Network docker_frontend  Creating
+2023-05-22T16:15:04.5861139Z  Network docker_frontend  Created
+2023-05-22T16:15:04.5866264Z  Volume "docker_nginxdata"  Creating
+2023-05-22T16:15:04.5879219Z  Volume "docker_nginxdata"  Created
+2023-05-22T16:15:04.5883419Z  Volume "docker_appdata"  Creating
+2023-05-22T16:15:04.5891967Z  Volume "docker_appdata"  Created
+2023-05-22T16:15:04.5892236Z  Container mongodb  Creating
+2023-05-22T16:15:04.6165351Z  Container mongodb  Created
+2023-05-22T16:15:04.6165624Z  Container flask  Creating
+2023-05-22T16:15:04.6327775Z  Container flask  Created
+2023-05-22T16:15:04.6328075Z  Container webserver  Creating
+2023-05-22T16:15:04.6466781Z  Container webserver  Created
+2023-05-22T16:15:04.6478269Z  Container mongodb  Starting
+2023-05-22T16:15:04.9706934Z  Container mongodb  Started
+2023-05-22T16:15:04.9707215Z  Container flask  Starting
+2023-05-22T16:15:05.3576114Z  Container flask  Started
+2023-05-22T16:15:05.3576405Z  Container webserver  Starting
+2023-05-22T16:15:06.0127098Z  Container webserver  Started
+2023-05-22T16:15:06.1110877Z 2023-05-22T16:15:06.110+0000	connected to: mongodb://localhost/
+2023-05-22T16:15:06.1210569Z 2023-05-22T16:15:06.120+0000	35 document(s) imported successfully. 0 document(s) failed to import.
+2023-05-22T16:15:06.1276526Z ##[group]Run cd 10.Midterm/LePhucLai/Docker/app
+2023-05-22T16:15:06.1276906Z [36;1mcd 10.Midterm/LePhucLai/Docker/app[0m
+2023-05-22T16:15:06.1277228Z [36;1mexport MONGO_URI="mongodb://localhost:27017/VDT23"[0m
+2023-05-22T16:15:06.1277494Z [36;1mpytest test.py[0m
+2023-05-22T16:15:06.1335095Z shell: /usr/bin/bash -e {0}
+2023-05-22T16:15:06.1335313Z env:
+2023-05-22T16:15:06.1335558Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:15:06.1335900Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.6/x64/lib/pkgconfig
+2023-05-22T16:15:06.1336228Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:15:06.1336539Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:15:06.1336826Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.6/x64
+2023-05-22T16:15:06.1337125Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.6/x64/lib
+2023-05-22T16:15:06.1337382Z ##[endgroup]
+2023-05-22T16:15:06.7236476Z ============================= test session starts ==============================
+2023-05-22T16:15:06.7237229Z platform linux -- Python 3.10.6, pytest-7.3.1, pluggy-1.0.0
+2023-05-22T16:15:06.7237866Z rootdir: /home/runner/work/Viettel-Digital-Talent-2023/Viettel-Digital-Talent-2023/10.Midterm/LePhucLai/Docker/app
+2023-05-22T16:15:06.7238291Z collected 5 items
+2023-05-22T16:15:06.7238438Z 
+2023-05-22T16:15:06.8040931Z test.py .....                                                            [100%]
+2023-05-22T16:15:06.8041175Z 
+2023-05-22T16:15:06.8041461Z ============================== 5 passed in 0.35s ===============================
+2023-05-22T16:15:07.3922550Z Post job cleanup.
+2023-05-22T16:15:07.5875893Z Post job cleanup.
+2023-05-22T16:15:07.7199729Z [command]/usr/bin/git version
+2023-05-22T16:15:07.7212143Z git version 2.40.1
+2023-05-22T16:15:07.7260659Z Temporarily overriding HOME='/home/runner/work/_temp/367a31a4-842c-4c96-a7d3-5a41e0c90a71' before making global git config changes
+2023-05-22T16:15:07.7261235Z Adding repository directory to the temporary git global config as a safe directory
+2023-05-22T16:15:07.7266571Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Viettel-Digital-Talent-2023/Viettel-Digital-Talent-2023
+2023-05-22T16:15:07.7306438Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2023-05-22T16:15:07.7342392Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2023-05-22T16:15:07.7686809Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2023-05-22T16:15:07.7687328Z http.https://github.com/.extraheader
+2023-05-22T16:15:07.7688248Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2023-05-22T16:15:07.7728831Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2023-05-22T16:15:07.8401390Z Cleaning up orphan processes
