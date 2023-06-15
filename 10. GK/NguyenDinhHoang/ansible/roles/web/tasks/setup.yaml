@@ -1,0 +1,38 @@
+- name: Check if python3-pip is installed
+  apt:
+    name: python3-pip
+    state: present
+  become: yes
+  tags: python3-pip
+- name: Install docker module for python if not exists
+  pip:
+    name: docker
+    state: present
+  become: yes
+  tags: python3-pip
+- name: Check if docker network exists
+  docker_network_info:
+    name: "{{ NETWORK_NAME }}"
+  register: docker_network
+  become: yes
+  tags: docker
+- name: Create docker network
+  docker_network:
+    name: "{{ NETWORK_NAME }}"
+    state: present
+  when: docker_network.exists == false
+  become: yes
+  tags: docker
+- name: Check if docker container frontend exists
+  docker_container_info:
+    name: frontend
+  register: docker_frontend
+  become: yes
+  tags: docker
+- name: Remove docker container frontend
+  docker_container:
+    name: frontend
+    state: absent
+  when: docker_frontend.exists == true
+  become: yes
+  tags: docker

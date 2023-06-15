@@ -1,0 +1,15 @@
+- name: Run docker image mongo:5.0
+  docker_container:
+    name: database
+    image: mongo:5.0
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ NETWORK_NAME }}"
+    hostname: database
+    command: mongod --replSet mongo-rs
+    ports:
+      - "27017:27017"
+    volumes:
+      - "{{ MONGO_DB_VOLUME }}:/data/db"
+  become: yes
+  tags: docker

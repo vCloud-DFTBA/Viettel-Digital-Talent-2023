@@ -1,0 +1,4 @@
+- name: Set up the repository
+  import_tasks: repository.yaml
+- name: Install Docker Engine
+  import_tasks: docker.yaml

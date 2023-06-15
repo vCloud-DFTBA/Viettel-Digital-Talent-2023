@@ -1,0 +1,10 @@
+- hosts: vm
+  gather_facts: no
+  roles:
+    # - lb
+    # - db
+    # - api
+    # - web
+    # - monitor
+    - log
+

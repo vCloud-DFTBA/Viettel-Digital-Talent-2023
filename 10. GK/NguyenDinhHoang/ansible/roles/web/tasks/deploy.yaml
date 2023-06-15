@@ -1,0 +1,16 @@
+- name: Run docker image hoangndst/vdt-frontend:latest
+  docker_container:
+    name: frontend
+    image: hoangndst/vdt-frontend:latest
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ NETWORK_NAME }}"
+    hostname: frontend
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "{{ FLUENTD_HOST }}:24224"
+      tag: docker.frontend-{{ inventory_hostname }}
+    ports:
+      - "3000:80"
+  become: yes
+  tags: docker

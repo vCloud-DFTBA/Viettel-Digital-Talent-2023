@@ -1,0 +1,17 @@
+NETWORK_NAME: vdt_web
+MONGO_DB_VOLUME: mongo_db_nfs
+LB_VOLUME: lb_nfs
+NFS_SERVER_IP: 10.114.0.2
+NFS_SHARE_PATH: /mnt/nfs_volume/docker_nfs_share
+
+MAIN_DOMAIN: hoangnd.freeddns.org
+FRONTEND_DOMAIN: vdt-frontend.hoangnd.freeddns.org
+BACKEND_DOMAIN: vdt-backend.hoangnd.freeddns.org
+TRAEFIK_DOMAIN: traefik.hoangnd.freeddns.org
+
+VM1_IP: 10.114.0.2
+VM2_IP: 10.114.0.3
+VM3_IP: 10.114.0.4
+
+DYNU_API_KEY: 7VdZb643665567cZ54TT5bTZ65XUac6d
+EMAIL: hoangndst@gmail.com

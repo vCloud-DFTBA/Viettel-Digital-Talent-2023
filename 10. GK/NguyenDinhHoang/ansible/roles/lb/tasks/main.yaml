@@ -1,0 +1,6 @@
+- name: Prepare to deploy Traefik
+  import_tasks: setup.yaml
+  tags: traefik
+- name: Deploy Traefik
+  import_tasks: deploy.yaml
+  tags: traefik
