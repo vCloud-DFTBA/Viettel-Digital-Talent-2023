@@ -2,9 +2,19 @@
 
 Sinh viên: **Trần Minh Dương**
 
-###
+## Mục lục
 
-## I.Chuẩn bị:
+[I. Chuẩn bị](#i-chuẩn-bị)
+
+[II. Triển khai](#ii-triển-khai)
+
+- [1. Tạo K8s Cluster](#1-tạo-k8s-cluster)
+- [2. Triển khai `database`](#2-triển-khai-database)
+- [3. Triển khai `backend`](#3-triển-khai-backend)
+- [4. Triển khai `frontend`](#4-triển-khai-frontend)
+- [5. Kết quả](#5-kết-quả)
+
+## I. Chuẩn bị:
 
 ### 1, 3-tier app
 
@@ -18,7 +28,7 @@ Em sử dụng lại 3-tier app ở các bài trước. Các image frontend và 
 
 Máy Ubuntu đã set up `kubectl`, `minikube`.
 
-## II.Triển khai:
+## II. Triển khai:
 
 ### 1. Tạo K8s Cluster
 
@@ -77,6 +87,12 @@ Kiểm tra configmap `mongodb-configmap` đã được tạo.
 
 #### c, Tạo **PersistentVolumes (PV)** và **Persistent Volume Claims (PVC)**:
 
+Để có Persistent Storage, em sẽ sử dụng `PersistentVolumes` và `Persistent Volume Claims`.
+
+- `PersistentVolumes (PV)` : 1 loại tài nguyên lưu trữ dữ liệu. PV độc lập hoàn toàn với các pod và quản lý bởi K8s. Vì độc lập với các pod nên nếu pod gặp sự cố hay bị xoá, dữ liệu sẽ không bị mất đi.
+
+- `Persistent Volume Claims (PVC)` : Khi muốn sử dụng `PV`, ta cần tạo `PVC` - 1 đối tượng k8s dùng để yêu cầu lưu trữ từ 1 `PV`.
+
 [PersistentVolumes (PV)](./db/mongodb-pv.yaml):
 
 ```yaml
@@ -112,7 +128,7 @@ spec:
   storageClassName: standard
 ```
 
-c, Tạo **Deployment** và **Service**
+#### d, Tạo **Deployment** và **Service**
 
 [MongoDB Deployment](./db/mongodb-deployment.yaml)
 
@@ -181,7 +197,7 @@ spec:
   type: NodePort
 ```
 
-#### d, Triển khai
+#### e, Triển khai
 
 ```bash
 cd db
@@ -350,7 +366,7 @@ cd frontend
 kubectl apply -f .
 ```
 
-Đến đây, em đã triển khai xong 3-tier web trên K8S cluster.
+Đến đây, em đã triển khai xong 3-tier app trên K8S cluster.
 
 <div align="center">
     <img src="./images/web.png"/>
