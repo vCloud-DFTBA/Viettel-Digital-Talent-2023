@@ -1,0 +1,17 @@
+- name: run Docker container web 1
+  community.docker.docker_container:
+    name: "{{ container_name_1 }}"
+    image: "{{ image_name }}"
+    state: "{{ container_state }}"
+    # ports: "{{ ports_1 }}"
+    networks:
+      - name: "{{ network_name }}"
+
+- name: run Docker container web 2
+  community.docker.docker_container:
+    name: "{{ container_name_2 }}"
+    image: "{{ image_name }}"
+    state: "{{ container_state }}"
+    # ports: "{{ ports_2 }}"
+    networks:
+      - name: "{{ network_name }}"

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      nodeSelector: 
+        node-type: server
+      containers:
+      - name: web
+        image: lechiennn/web:v.k8s.1
+        ports:
+        - containerPort: 80

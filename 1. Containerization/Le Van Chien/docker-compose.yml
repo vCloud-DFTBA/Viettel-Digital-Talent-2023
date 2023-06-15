@@ -4,7 +4,8 @@ networks:
                 driver: bridge
 services:
         nginx:
-              image: nginx:1.22.0-alpine
+              build: ./nginx
+              container_name: web
               ports:
                       - "8080:80"
               depends_on:
@@ -16,6 +17,7 @@ services:
                       - net
         app:
                 build: ./app
+                container_name: app
                 depends_on: 
                         - db
                 networks:
@@ -28,6 +30,7 @@ services:
                         - "5000:5000"
         db:
                 image: mongo:5.0
+                container_name: db
                 ports:
                         - "27017:27017"
                 networks:

@@ -2,5 +2,4 @@
 /env
 db/*
 !db/.gitkeep
-ansible/collections/ansible_collections/*
-!ansible/collections/ansible_collections/.gitkeep
+/app/*/__pycache__

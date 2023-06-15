@@ -1,0 +1,14 @@
+- name: create monitor folder
+  file:
+    path: "{{ path_to_folder }}"
+    state: directory
+
+- name: copy all resources to target host
+  copy:
+    src: ./
+    dest: "{{ path_to_folder }}"
+
+- name: run docker compose
+  command:
+    chdir: "{{ path_to_folder }}"
+    cmd: "{{ command }}"

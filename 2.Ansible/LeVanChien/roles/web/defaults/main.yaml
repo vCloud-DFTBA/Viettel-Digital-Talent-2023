@@ -1,0 +1,13 @@
+image_name: lechiennn/web:v1.2
+
+container_name_1: nginx1
+container_name_2: nginx2
+
+ports_1:
+  - "8081:80"
+
+ports_2:
+  - "8082:80"
+container_state: started
+
+network_name: net
