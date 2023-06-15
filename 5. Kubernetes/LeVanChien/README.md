@@ -40,7 +40,6 @@ kubectl label nodes kind-worker3 node-type=db
 
 ```yaml
 #create pv
-cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -55,12 +54,10 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /data
-EOF
 ```
 PersistentVolumeClaims requests and uses a specific amount of storage resources from a Kubernetes cluster.
 ```yaml
 # create persistent volume claim
-cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -72,13 +69,11 @@ spec:
     requests:
       storage: 5Mi
   volumeName: pv
-EOF
 ```
 ## 3. Create database deployment
 - Database container will be deployed at a node whose node-type=db by using `nodeSelector`.
 ```yaml
 # create db deployment
-cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -107,11 +102,9 @@ spec:
       - name: mongodb-data-volume
         persistentVolumeClaim:
             claimName: pvc
-EOF
 ```
 - Create db Service, expose within the cluster.
 ```yaml
-cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
@@ -123,13 +116,11 @@ spec:
     - protocol: TCP
       port: 27017
       targetPort: 27017
-EOF
 ```
 ## 4. Create API deployment
 - Deploy api server with multiple replicas (2) on 2 nodes with node-type=server by using `nodeSelector` and setting `replicas: 2`.
 ```yaml
 # create api deployment
-cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -151,11 +142,9 @@ spec:
         image: lechiennn/app:v.k8s.1
         ports:
         - containerPort: 5000
-EOF
 ```
 - Create api Service, expose within the cluster.
 ```yaml
-cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
@@ -167,14 +156,12 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000 
-EOF
 ```
 ## 5. Create web service
 - Deploy web server with multiple replicas (2) on 2 nodes with node-type=server by using `nodeSelector` and setting `replicas: 2`.
 
 ```yaml
 # create web deployment
-cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -196,12 +183,10 @@ spec:
         image: lechiennn/web:v.k8s.1
         ports:
         - containerPort: 80
-EOF
 ```
 - Create api Service, expose to outside the cluster (with `type=NodePort`).
 
 ```yaml
-cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
@@ -214,9 +199,8 @@ spec:
       port: 80
       targetPort: 80
   type: NodePort    
-EOF
 ```
-## 6. Result
+## 6. Testing
 Both `web` and `api` are running on each server node (node-type=server) (i.e. 1 web and 1 API on Node 1, and 1 web and 1 API on Node 2) to provide redundancy and fault tolerance.
 `database` is connected with PVC and running on db node (node-type=db).
 
