@@ -1,0 +1,78 @@
+{% include "header.html" %}
+
+
+{% block body %}
+
+
+<div class="panel=heading">
+
+    <h2>Add Attendee <a class="pull-right btn btn-success" href="/">Back</a></h2>
+
+</div>
+
+
+<div class="panel-body">
+
+    <form action="{{ url_for('processtudent') }}" method="post">
+        <div class="form-group">
+
+            <label for="name">Họ và tên</label>
+            <input type="text" class="form-control" name="name" id="name" required="1">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="name">Username</label>
+            <input type="text" class="form-control" name="username" id="username" required="1">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="name">Năm sinh</label>
+            <input type="text" class="form-control" name="birth_year" id="birth_year" required="1">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="name">Giới tính</label>
+            <input type="text" class="form-control" name="gender" id="gender" required="1">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="name">Trường</label>
+            <input type="text" class="form-control" name="university" id="university" required="1">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="name">Chuyên ngành</label>
+            <input type="text" class="form-control" name="major" id="major" required="1">
+
+        </div>
+
+
+        <div class="form-group">
+            <input type="hidden" name="id" value="1">
+
+            <input type="hidden" name="action" value="edit">
+            <input type="submit" class="btn btn-success" name="submit" value="Add Student">
+
+        </div>
+
+
+    </form>
+
+
+</div>
+
+
+{% endblock %}
+

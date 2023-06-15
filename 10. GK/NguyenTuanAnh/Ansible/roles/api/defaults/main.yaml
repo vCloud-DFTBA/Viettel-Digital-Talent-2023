@@ -1,0 +1,4 @@
+db_container_name: database-tuananh.cezgifs7sq68.eu-north-1.rds.amazonaws.com
+db_user: admin
+db_password: nguyentuananh
+db_database: crudapp

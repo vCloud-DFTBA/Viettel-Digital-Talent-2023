@@ -1,0 +1,11 @@
+---
+- name: Install MySQL CLient
+  apt:
+    name: mysql-client-core-8.0
+    state: present
+    update_cache: true
+#
+#- name: Install MySQL Client
+#  become: yes
+#  run:
+#    apt install mysql-client-core-8.0

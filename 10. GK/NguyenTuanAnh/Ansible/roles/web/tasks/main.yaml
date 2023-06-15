@@ -1,0 +1,21 @@
+---
+- name: Pull nginx image from Docker Hub
+  community.docker.docker_image:
+    name: "{{ nginx_image }}"
+    source: pull
+    state: present
+    force_source: true
+
+- name: Run nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: "{{ nginx_image }}"
+    restart_policy: unless-stopped
+    state: started
+    ports:
+      - 80:80
+    links:
+      - flask_app:flask_app
+    networks:
+      - name: frontend
+
