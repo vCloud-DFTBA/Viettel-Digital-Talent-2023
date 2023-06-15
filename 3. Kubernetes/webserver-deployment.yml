@@ -6,11 +6,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx-deployment
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-deployment
+        app: nginx
     spec:
       containers:
       - name: nginx-deployment
@@ -23,11 +23,13 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
+  type: NodePort
   ports:
-  - port: 80
+  - port: 8080
     targetPort: 8080
+    NodePort: 30001
     protocol: TCP
     name: http
   selector:
-    app: nginx-deployment
-  type: ClusterIP
+    app: nginx
+  type: NodePort
