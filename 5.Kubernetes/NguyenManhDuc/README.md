@@ -13,6 +13,8 @@
 
 
 
+
+
 #### Install Kind and create Cluster
 
 To install kind and create Cluster:
@@ -76,6 +78,28 @@ copy all file in k8s project :
 <div align="center">
   <img src="assets/pic_6.png">
 </div>
+
+#### Constructor k8s directory
+
+
+```sh
+  k8s
+  ├── api
+  │   ├── api_deployment.yaml
+  │   └── api_service.yaml
+  ├── creat_worker.yaml
+  ├── db
+  │   ├── db_configmap.yaml
+  │   ├── db_deployment.yaml
+  │   ├── db_service.yaml
+  │   ├── db_volume_pvc.yaml
+  │   ├── db_volume_pv.yaml
+  │   └── init.js
+  ├── test.sh
+  └── web
+      ├── web_deployment.yaml
+      └── web_service.yaml
+```
 
 #### Install database using mongodb
 
@@ -240,6 +264,8 @@ see the log from db_deployment :
 
 1, Create Deployment image api ```littlehawk03/api:v1.7.0```
 
+[api_deployment.yaml](k8s/api/api_deployment.yaml)
+
 ```yaml
   apiVersion: apps/v1
   kind: Deployment
@@ -267,7 +293,7 @@ see the log from db_deployment :
                 value: "27017"
 ```
 
-2. Create Service
+2. Create Service [api_service.yaml](k8s/api/api_service.yaml)
 
 ```yaml
   apiVersion: v1
@@ -317,7 +343,9 @@ resurlt api get request:
 #### Install web UI
 
 
-1. install deployment
+1. install deployment image web ```littlehawk03/web:v1.7.0```
+
+[web_deployment.yaml](k8s/web/web_deployment.yaml)
 
 ```yaml
   apiVersion: apps/v1
@@ -347,7 +375,7 @@ resurlt api get request:
                 value: "5500"
 ```
 
-2. intall service
+2. intall service [web_service.yaml](k8s/web/web_service.yaml)
 
 ```yaml
   apiVersion: v1
