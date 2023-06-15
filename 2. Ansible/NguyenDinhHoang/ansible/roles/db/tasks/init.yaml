@@ -1,0 +1,13 @@
+- name: Initiate the replica set
+  shell: |
+    docker exec -it database mongosh --eval "rs.initiate({
+    _id: \"mongo-rs\",
+    members: [
+      {_id: 0, host: \"10.114.0.2\"},
+      {_id: 1, host: \"10.114.0.3\"},
+      {_id: 2, host: \"10.114.0.4\"}
+    ]
+    })"
+  become: yes
+  when: inventory_hostname == "vm1"
+  tags: docker mongo

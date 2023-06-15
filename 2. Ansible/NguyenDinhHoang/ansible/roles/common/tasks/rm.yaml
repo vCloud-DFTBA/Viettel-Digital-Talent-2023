@@ -1,0 +1,9 @@
+- name: rm /etc/apt/keyrings/docker.gpg
+  hosts: vm
+  tasks:
+  - name: rm /etc/apt/keyrings/docker.gpg
+    file:
+      path: /etc/apt/keyrings/docker.gpg
+      state: absent
+    become: yes
+    tags: docker
