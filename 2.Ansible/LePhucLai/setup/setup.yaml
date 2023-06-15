@@ -1,0 +1,28 @@
+---
+- name: Setup
+  hosts: all
+  remote_user: ubuntu4
+  become: true
+  gather_facts: false
+
+  pre_tasks:
+    - name: Create folder
+      ansible.builtin.file:
+        path: /etc/webapp
+        state: directory
+        mode: '0755'
+
+  roles:
+    - common
+    - web
+    - db
+    - api
+
+  tasks:
+    - name: Create network
+      docker_network:
+        name: webapp_network
+        connected:
+          - flask
+          - webserver
+          - mongodb

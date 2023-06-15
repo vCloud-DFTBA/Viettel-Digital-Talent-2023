@@ -1,0 +1,36 @@
+---
+- name: Update apt package
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install packages to allow apt to use a repository over HTTPS
+  ansible.builtin.apt:
+    pkg:
+    - ca-certificates
+    - curl
+    - gnupg
+
+- name: Add Dockers official GPG key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Set up the repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+    state: present
+    update_cache: yes
+
+- name: Update apt package
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install Docker Engine, containerd, and Docker Compose
+  ansible.builtin.apt:
+    pkg:
+      - docker
+      - docker.io
+      - docker-compose
+      - docker-registry
+    state: latest
+        
