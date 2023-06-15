@@ -1,0 +1,34 @@
+// Thiết bị màn hình nhỏ hơn 900px
+@media only screen and (max-width: 899px) {
+    html {
+        font-size: 60%;
+    }
+}
+
+// Thiết bị màn hình nhỏ hơn 768px
+@media only screen and (max-width: 767px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+// Thiết bị màn hình nhỏ hơn 600px
+@media only screen and (max-width: 599px) {
+    html {
+        font-size: 53%;
+    }
+}
+
+// Thiết bị màn hình nhỏ hơn 480px
+@media only screen and (max-width: 479px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+// Thiết bị màn hình nhỏ hơn 320px
+@media only screen and (max-width: 319px) {
+    html {
+        font-size: 47%;
+    }
+}

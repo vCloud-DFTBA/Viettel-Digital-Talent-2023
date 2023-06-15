@@ -1,0 +1,4 @@
+nginx_image: nginx:latest
+
+# path_conf_lb: ../templates/default-lb.conf
+# path_conf_be: ../templates/default-be.conf

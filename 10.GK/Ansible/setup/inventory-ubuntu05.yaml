@@ -1,0 +1,12 @@
+---
+all:
+  hosts:
+    "{{ ip_ubuntu05 }}":
+      ansible_user: long22263
+      ansible_password: "{{ password_vaulted }}"
+      ansible_become: true
+      ansible_python_interpreter: "{{ python_path }}"
+      ansible_become_user: root
+      ansible_become_password: "{{ password_vaulted }}"
+      path_default_conf: ../templates/default-fe.conf
+      fluentd_tag_name: app

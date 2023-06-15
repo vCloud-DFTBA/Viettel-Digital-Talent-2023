@@ -1,0 +1,34 @@
+- name: Pull MySQL Docker image
+  docker_image:
+    source: pull
+    name: "{{ mysql_image }}"
+
+- name: Run MySQL Docker container
+  docker_container:
+    name: "{{ mysql_container_name }}"
+    image: "{{ mysql_image }}"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ mysql_root_password }}"
+    ports:
+      - "3306:3306"
+    state: started
+    interactive: true
+    tty: true
+    volumes:
+          - ../templates/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - name: "{{ network_name }}"
+
+- name: Wait for MySQL to start
+  wait_for:
+    host: 0.0.0.0
+    port: 3306
+    timeout: 60
+
+- name: Import MySQL data
+  command: docker exec -i mysql-vdt2023 sh -c 'exec mysql -u root -p"123456" < /docker-entrypoint-initdb.d/init.sql'
+  environment:
+    MYSQL_ROOT_PASSWORD: "{{ mysql_root_password }}"
+  args:
+    chdir: /root
+  # when: "'init.sql' is exists"

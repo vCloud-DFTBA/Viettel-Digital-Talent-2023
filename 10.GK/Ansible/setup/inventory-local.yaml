@@ -1,0 +1,10 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      # ansible_become: true
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_user: root
+      ansible_become_password: 123456
+      hostname: vtn-012
