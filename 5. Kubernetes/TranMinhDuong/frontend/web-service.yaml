@@ -6,9 +6,8 @@ spec:
   selector:
     app: vtapp-fe
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    nodePort: 30012
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30012
   type: NodePort
-  

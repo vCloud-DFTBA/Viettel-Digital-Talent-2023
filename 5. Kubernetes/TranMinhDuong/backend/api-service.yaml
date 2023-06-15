@@ -6,9 +6,8 @@ spec:
   selector:
     app: vtapp-api
   ports:
-  - protocol: TCP
-    port: 5000
-    targetPort: 5000
-    nodePort: 30011
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30011
   type: NodePort
-  
