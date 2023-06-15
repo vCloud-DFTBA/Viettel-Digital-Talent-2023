@@ -1,7 +1,0 @@
----
-- name: set up load balanding for web, api
-  hosts: ["vps1","vps2"]
-  become: true
-  gather_facts: false
-  roles:
-    - lb

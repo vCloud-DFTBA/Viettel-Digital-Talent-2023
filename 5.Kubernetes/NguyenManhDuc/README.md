@@ -6,6 +6,12 @@
 
 ## Table of contents
 
+1. [Install Kind and create Cluster](#install-kind-and-create-cluster)
+2. [Install database using mongodb](#install-database-using-mongodb)
+3. [Install API](#install-api)
+3. [Install Web UI](#install-web-ui)
+
+
 
 #### Install Kind and create Cluster
 
@@ -71,9 +77,9 @@ copy all file in k8s project :
   <img src="assets/pic_6.png">
 </div>
 
-####Install database using mongodb
+#### Install database using mongodb
 
-#####creat volume and configMap
+##### creat volume and configMap
 
 <div align="center">
   <img src="assets/pic_2.png">

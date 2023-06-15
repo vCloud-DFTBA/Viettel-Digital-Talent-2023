@@ -1,4 +1,0 @@
----
-docker_image_name: littlehawk03/mongo-slim
-docker_container_name: mongodb
-docker_image_tag: latest
