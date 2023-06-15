@@ -1,0 +1,14 @@
+- name: Setup database server
+  hosts: db
+  become: true
+  roles: [ common, db ]
+
+- name: Setup api server
+  hosts: api
+  become: true
+  roles: [ common, api ]
+
+- name: Setup web server
+  hosts: server
+  become: true
+  roles: [ common, web ]
