@@ -1,0 +1,10 @@
+$body-bg:                   #f8f9fa;
+$body-color:                #000;
+
+
+$spacers: (0: 0);
+@for $i from 1 through 50 {
+    $spacers: map-merge($spacers, (
+        $i: ($i * 0.25rem)
+    ));
+}
