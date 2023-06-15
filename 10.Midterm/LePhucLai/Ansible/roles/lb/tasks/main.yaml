@@ -1,0 +1,31 @@
+---
+- name: Create folder
+  ansible.builtin.file:
+    path: /etc/loadbalance
+    state: directory
+    mode: '0755'
+
+- name: Copy files
+  ansible.builtin.copy:
+    src: files
+    dest: /etc/loadbalance
+    mode: '0644'
+
+- name: Build Loadbalance image
+  docker_image:
+    name: nginx-lb
+    build:
+      path: /etc/loadbalance/files
+    source: build
+    state: present
+
+- name: Build container
+  docker_container:
+    name: loadbalance
+    image: nginx-lb   
+    restart_policy: unless-stopped
+    volumes:
+      - nginxdata:/var/log/nginx
+    ports:
+      - "80:80"
+    network_mode: bridge

@@ -1,0 +1,25 @@
+---
+- name: Copy files to node
+  ansible.builtin.copy:
+    src: roles/api/files/app
+    dest: /webapp
+    mode: '0644'
+
+- name: Build Python Docker Image
+  docker_image:
+    name: pythonnnnnn
+    build:
+      path: /webapp/app
+    source: build
+    state: present
+
+- name: Container Configure
+  docker_container:
+    name: flask
+    image: pythonnnnnn
+    restart_policy: unless-stopped
+    volumes: 
+      - appdata:/var/www
+    ports:
+      - "5500:5000"
+    network_mode: bridge

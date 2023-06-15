@@ -1,0 +1,59 @@
+---
+- name: Setup Docker on all host
+  hosts: all
+  become: true
+  gather_facts: false
+
+  roles:
+    - common
+
+
+- name: Setup host
+  hosts: localhost
+  become: true
+  gather_facts: false
+  roles:
+    - db
+    - lb
+
+- name: Setup flask, nginx
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - api
+    - web
+
+- name: Create network on node1
+  hosts: node1
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Create network
+      docker_network:
+        name: webapp_network
+        connected:
+          - flask
+          - webserver
+
+- name: Create network on localhost
+  hosts: localhost
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Create network
+      docker_network:
+        name: webapp_network
+        connected:
+          - flask
+          - webserver
+          - mongodb
+          - loadbalance
+
+- name: Start monitoring and logging services
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - monitor
+    - logging

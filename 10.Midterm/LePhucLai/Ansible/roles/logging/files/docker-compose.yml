@@ -1,0 +1,8 @@
+services:
+  fluentd:
+    container_name: fluentd
+    build: /etc/logging/files/fluentd
+    volumes:
+        - /etc/logging/files/fluentd/conf:/fluentd/etc
+    network_mode: "host"
+    
