@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework_Containerization_PhamDuyCuong </title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='index.css') }}">
+  
+</head>
+<body>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Họ và tên</th>
+            <th>Năm sinh</th>
+            <th>Giới tính</th>
+            <th>Trường</th>
+            <th>Chuyên ngành</th>
+        </tr>
+        {% for student in data %}
+            <tr>
+                <td>{{student['stt']}}</td>
+                <td>{{student['full_name']}}</td>
+                <td>{{student['birth_year']}}</td>
+                <td>{{student['gender']}}</td>
+                <td>{{student['university']}}</td>
+                <td>{{student['major']}}</td>
+            </tr>
+       {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+---
+# tasks file for push_images
+
+- name: Compare code timestamps and rebuild image if necessary
+  docker_image:
+    name: "{{ item.0 }}"
+    state: present
+    build:
+      path: "{{ item.1 }}"
+    source: build
+  with_together:
+    - "{{image_name}}"
+    - "{{path_to_source}}"
+
+- name: Archive Docker images into .tar
+  community.docker.docker_image:
+    name: "{{ item }}"
+    archive_path: /tmp/{{ item }}.tar
+    source: local
+    state: present
+  with_items:
+    - "{{image_name}}"
+ 
+  

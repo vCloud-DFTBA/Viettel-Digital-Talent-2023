@@ -1,0 +1,24 @@
+---
+# tasks file for web
+
+- name: copy tarball image to node
+  copy:
+    src: /tmp/{{image_name}}.tar
+    dest: /root/{{image_name}}.tar
+
+- name: load image from tarball
+  community.docker.docker_image:
+    name: "{{image_name}}"
+    load_path: /root/{{image_name}}.tar
+    state: present
+    source: load
+    
+- name: Run Nginx container
+  docker_container:
+    name: my-nginx
+    image: "{{image_name}}"
+    networks:
+      - name: my-network
+    ports:
+      - "80:80"
+    state: started
