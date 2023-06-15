@@ -1,5 +1,0 @@
-
-    - name: Build and up images api
-      command: docker-compose -f  ../btvn/docker-compose-api.yaml up -d
-      args:
-        chdir: "{{ playbook_dir }}"

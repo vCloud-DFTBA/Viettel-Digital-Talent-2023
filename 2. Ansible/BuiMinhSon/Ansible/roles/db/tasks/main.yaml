@@ -1,5 +1,0 @@
-
-    - name: Build and up images mongo
-      command: docker-compose -f ../btvn/docker-compose-db.yaml up -d
-      args:
-        chdir: "{{ playbook_dir }}"
