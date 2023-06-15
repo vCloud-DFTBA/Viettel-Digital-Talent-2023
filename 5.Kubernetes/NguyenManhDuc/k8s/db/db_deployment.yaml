@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: db-mongo
+  template:
+    metadata:
+      labels:
+        app: db-mongo
+    spec:
+      containers:
+        - name: db
+          image: mongo:5.0
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: db-storage
+              mountPath: data/db
+            - name: init-data
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: db-pvc
+        - name: init-data
+          configMap:
+            name: db-config

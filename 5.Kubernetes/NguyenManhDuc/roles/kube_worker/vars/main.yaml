@@ -1,0 +1,19 @@
+---
+
+swap_items:
+  - swap
+  - none
+
+
+apt_key_url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+kube_repo_url: https://apt.kubernetes.io/
+kube_distribution_release: kubernetes-xenial
+repo_cmd: "deb {{ kube_repo_url }} {{ kubernetes-xenial }} main"
+
+kube_packages:
+  - kubelet 
+  - kubeadm 
+  - kubectl
+
+
+

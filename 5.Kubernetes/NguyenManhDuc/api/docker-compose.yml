@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+
+
+  api:
+    build: .
+    ports:
+      - 5500:5500
+    environment:
+      - FLASK_ENV=development
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+    depends_on:
+      - mongodb
+    
+     
+  # image mongdb port mapping 27017
+  mongodb:
+    image: mongo:5.0
+    container_name: database
+    volumes:
+      - ../db/init.js:/docker-entrypoint-initdb.d/init.js
+    ports:
+      - 27017:27017
+    # networks:
+    #   - web_network
+  
+
+# networks:
+#   web_network:
+#     driver: bridge
+        

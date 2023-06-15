@@ -1,0 +1,26 @@
+---
+kube_dependencies:
+  - curl 
+  - apt-transport-https 
+  - vim 
+  - wget 
+  - gnupg2
+  - software-properties-common 
+  - ca-certificates
+
+apt_key_url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+kube_repo_url: https://apt.kubernetes.io/
+kube_distribution_release: kubernetes-xenial
+repo_cmd: "deb {{ kube_repo_url }} {{ kube_distribution_release }} main"
+
+kube_packages:
+  - kubelet 
+  - kubeadm 
+  - kubectl
+
+IPADDR: "192.168.89.107"
+NODENAME: $(hostname -s)
+POD_CIDR: "192.168.0.0/16"
+
+ansible_distribution: 'Ubuntu'
+ansible_distribution_version: '22.04'
