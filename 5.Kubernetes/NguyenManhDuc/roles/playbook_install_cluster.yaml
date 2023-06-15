@@ -1,0 +1,30 @@
+---
+- name: install enviroment 
+  hosts: [k8s-master-1,worker-1]
+  become: yes
+  gather_facts: false
+  vars:
+    - ansible_distribution_release: xenial
+  roles:
+    - common
+    - install_kube
+  
+
+- name: init a masternode in my laptop
+  hosts: k8s-master-1
+  become: true
+  gather_facts: false
+  # vars:
+  #   - ansible_distribution_release: xenial
+  roles:
+    - kube_master
+  become_user: root
+  
+- name: init the worker node
+  hosts: worker-1
+  become: true
+  gather_facts: false
+  # vars:
+  #   - ansible_distribution_release: xenial
+  roles:
+    - kube_worker

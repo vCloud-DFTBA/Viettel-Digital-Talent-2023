@@ -1,0 +1,10 @@
+---
+- name: k8s folder
+  hosts: k8s-master-1
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Copy k8s folder to k8s-master-1
+      copy:
+        src: "/home/honahl/Documents/kubeHomework/k8s"
+        dest: "/"
