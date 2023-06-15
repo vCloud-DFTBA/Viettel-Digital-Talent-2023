@@ -1,0 +1,14 @@
+---
+- name: full image docker of web server mongo
+  docker_image:
+    name: "{{ docker_image_name }}"
+    tag: "{{ docker_image_tag }}"
+    source: pull
+
+- name: creat a docker container and port maping
+  docker_container: 
+    name: "{{ docker_container_name }}"
+    image: "{{ docker_image_name }}:{{ docker_image_tag }}"
+    ports:
+      - "27017:27017"
+    state: started

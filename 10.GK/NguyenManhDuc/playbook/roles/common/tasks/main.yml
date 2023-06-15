@@ -1,0 +1,54 @@
+---
+- name: install docker_dependencies
+  apt:
+    name : "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ docker_dependencies }}"
+
+- name: add GPG key 
+  apt_key:
+    url: "{{ docker_gpg_key }}"
+    state: present
+
+- name: add repository of docker to local apt
+  apt_repository:
+    repo: "{{ docker_repo_cmd }}"
+    state: present
+
+- name: install docker
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  loop: "{{ docker_apts }}"
+
+
+- name: install pip
+  apt: 
+    name: python3-pip
+    state: latest
+    update_cache: yes
+
+
+- name: install Docker Module for python using pip
+  pip:
+    name: docker
+    executable: pip3
+
+- name: install docker-compose module for python using pip
+  pip:
+    name: docker-compose
+    executable: pip3
+
+- name: start and enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: install docker-compose
+  get_url:
+    url: "{{ docker_compose_url }}"
+    dest: /usr/local/bin/docker-compose
+    mode: 'u+x,g+x'

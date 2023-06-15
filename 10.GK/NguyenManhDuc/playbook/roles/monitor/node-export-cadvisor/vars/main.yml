@@ -1,0 +1,4 @@
+node_image: "prom/node-exporter:latest"
+container_node_name: "node-exporter"
+cadvisor_image: "zcube/cadvisor"
+container_cadvisor_name: "cadvisor"

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web 
+          image: littlehawk03/web:v1.7.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: API_HOST
+              value: api-service
+            
+            - name: API_POST
+              value: "5500"
+          
+            
+        

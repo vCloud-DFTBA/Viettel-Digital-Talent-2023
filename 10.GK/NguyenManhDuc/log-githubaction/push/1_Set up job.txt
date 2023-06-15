@@ -1,0 +1,27 @@
+2023-05-22T04:34:31.5382069Z Current runner version: '2.304.0'
+2023-05-22T04:34:31.5421971Z ##[group]Operating System
+2023-05-22T04:34:31.5422824Z Ubuntu
+2023-05-22T04:34:31.5423393Z 22.04.2
+2023-05-22T04:34:31.5424015Z LTS
+2023-05-22T04:34:31.5424347Z ##[endgroup]
+2023-05-22T04:34:31.5424956Z ##[group]Runner Image
+2023-05-22T04:34:31.5425387Z Image: ubuntu-22.04
+2023-05-22T04:34:31.5426518Z Version: 20230507.1
+2023-05-22T04:34:31.5427458Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20230507.1/images/linux/Ubuntu2204-Readme.md
+2023-05-22T04:34:31.5428268Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20230507.1
+2023-05-22T04:34:31.5428955Z ##[endgroup]
+2023-05-22T04:34:31.5429393Z ##[group]Runner Image Provisioner
+2023-05-22T04:34:31.5430049Z 2.0.171.1
+2023-05-22T04:34:31.5430593Z ##[endgroup]
+2023-05-22T04:34:31.5431606Z ##[group]GITHUB_TOKEN Permissions
+2023-05-22T04:34:31.5433050Z Contents: read
+2023-05-22T04:34:31.5433442Z Metadata: read
+2023-05-22T04:34:31.5434006Z Packages: read
+2023-05-22T04:34:31.5434819Z ##[endgroup]
+2023-05-22T04:34:31.5439410Z Secret source: Actions
+2023-05-22T04:34:31.5440128Z Prepare workflow directory
+2023-05-22T04:34:31.6378794Z Prepare all required actions
+2023-05-22T04:34:31.6607039Z Getting action download info
+2023-05-22T04:34:31.9345662Z Download action repository 'actions/checkout@v3' (SHA:8e5e7e5ab8b370d6c329ec480221332ada57f0ab)
+2023-05-22T04:34:32.6538608Z Download action repository 'actions/setup-python@v4' (SHA:57ded4d7d5e986d7296eab16560982c6dd7c923b)
+2023-05-22T04:34:33.4677389Z Complete job name: build (3.10)

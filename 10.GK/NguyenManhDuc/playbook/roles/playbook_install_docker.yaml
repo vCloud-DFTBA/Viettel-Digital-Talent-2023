@@ -1,0 +1,10 @@
+---
+
+- name: setup docker
+  hosts: [vps3]
+  become: true
+  gather_facts: false
+  vars:
+    - ansible_distribution_release: xenial
+  roles:
+    - common

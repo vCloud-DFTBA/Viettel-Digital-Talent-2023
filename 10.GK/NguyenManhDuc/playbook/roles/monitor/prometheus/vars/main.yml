@@ -1,0 +1,3 @@
+docker_image: "prom/prometheus:latest"
+container_name: "prometheus"
+prometheus_dir_config: "/etc/prometheus"

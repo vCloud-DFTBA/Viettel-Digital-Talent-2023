@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: littlehawk03/api:v1.7.0
+          ports:
+            - containerPort: 5500
+          env:
+            - name: MONGO_HOST
+              value: db-service
+            - name: MONGO_PORT
+              value: "27017"

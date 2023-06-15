@@ -1,0 +1,81 @@
+---
+- name: install Kubectl
+  apt:
+    name: kubectl=1.26.*
+    state: present
+    force: yes # allow downgrades
+
+- name: create an empty file for Kubeadm configuring
+  copy:
+    content: ""
+    dest: /etc/kubernetes/kubeadm-config.yaml
+    force: no
+
+- name: configuring the container runtime including its cgroup driver
+  blockinfile:
+    path: /etc/kubernetes/kubeadm-config.yaml
+    block: |
+      kind: ClusterConfiguration
+      apiVersion: kubeadm.k8s.io/v1beta3
+      networking:
+       podSubnet: "192.168.0.0/16"
+      controlPlaneEndpoint: "192.168.89.113:6443"
+      ---
+      kind: KubeletConfiguration
+      apiVersion: kubelet.config.k8s.io/v1beta1
+      runtimeRequestTimeout: "15m"
+      cgroupDriver: "systemd"
+      systemReserved:
+        cpu: 100m
+        memory: 350M
+      kubeReserved:
+        cpu: 100m
+        memory: 50M
+      enforceNodeAllocatable:
+      - pods
+
+- name: initialize the cluster (this could take some time)
+  shell: kubeadm init --config /etc/kubernetes/kubeadm-config.yaml  >> cluster_initialized.log
+  # args:
+  #   chdir: $HOME/ubuntu
+  #   creates: cluster_initialized.log
+
+  # Create the configuration / configuration directory
+- name: Create .kube directory
+  file:
+    path: $HOME/.kube
+    state: directory
+    mode: 0755
+
+- name: Copy admin.conf to the user's kube directory
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: $HOME/.kube/config
+    remote_src: yes
+
+- name: Setup Flannel. Use log to prevent second installation
+  shell: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml >> flannel_setup.log
+  args:
+    chdir: $HOME
+    creates: flannel_setup.log
+
+- name: Create token to join cluster
+  shell: kubeadm token create --print-join-command
+  register: join_command_rawdo
+  become_user: root
+
+- name: Copy join command script
+  copy:
+    content: "{{ join_command_rawdo.stdout_lines[0] }}"
+    dest: "/tmp/join_command.sh"
+    mode: "0777"
+  become: true
+  become_method: sudo
+  become_user: root
+  connection: local
+
+- name: Copy k8s folder to node1
+  copy:
+    src: "/home/honahl/Documents/kubeHomework/k8s"
+    dest: "/k8s"
+    # mode: "0777"

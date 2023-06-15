@@ -1,0 +1,11 @@
+version: '3'
+services:
+  fluentd:
+    container_name: fluentd
+    build: .
+    volumes:
+        - ./conf/:/fluentd/etc
+    network_mode: "sonbm_default"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"

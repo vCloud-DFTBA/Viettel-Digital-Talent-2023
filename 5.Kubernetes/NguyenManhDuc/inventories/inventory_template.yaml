@@ -1,0 +1,24 @@
+---
+
+# this file is just a template to show what inside in my inventory file ther actualy file is encypt using ansible vault
+all:
+  hosts:
+    masternode:
+      ansible_connection: local
+      ansible_become_user: honahl
+      ansible_become_password: "{{ my_secret_password }}"
+
+    node1:
+      ansible_host: 192.168.50.11
+      ansible_user: root
+      ansible_password: "{{ my_secret_password }}"
+
+    node2:
+      ansible_connection: 192.168.50.12
+      ansible_become_user: root
+      ansible_become_password: "{{ my_secret_password }}"
+    
+    node3:
+      ansible_connection: 192.168.50.13
+      ansible_become_user: root
+      ansible_become_password: "{{ my_secret_password }}"

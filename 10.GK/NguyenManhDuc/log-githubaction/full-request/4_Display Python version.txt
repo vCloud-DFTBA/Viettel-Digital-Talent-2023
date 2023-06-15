@@ -1,0 +1,12 @@
+2023-05-21T18:46:35.3081555Z ##[group]Run python -c "import sys; print(sys.version)"
+2023-05-21T18:46:35.3081948Z [36;1mpython -c "import sys; print(sys.version)"[0m
+2023-05-21T18:46:35.3140507Z shell: /usr/bin/bash -e {0}
+2023-05-21T18:46:35.3140742Z env:
+2023-05-21T18:46:35.3141008Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3141357Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib/pkgconfig
+2023-05-21T18:46:35.3141695Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3142002Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3142306Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.11/x64
+2023-05-21T18:46:35.3142619Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.11/x64/lib
+2023-05-21T18:46:35.3142865Z ##[endgroup]
+2023-05-21T18:46:35.3607913Z 3.10.11 (main, Apr  6 2023, 07:59:08) [GCC 11.3.0]

@@ -1,0 +1,15 @@
+---
+
+- name: pull grafana docker image 
+  docker_image:
+    name: "{{ grafana_image }}"
+    source: pull
+
+
+- name: run grafana docker_image
+  docker_container:
+    name: "{{ container_grafana_name }}"
+    image: "{{ grafana_image }}"
+    restart_policy: unless-stopped
+    ports:
+    - "3000:3000"

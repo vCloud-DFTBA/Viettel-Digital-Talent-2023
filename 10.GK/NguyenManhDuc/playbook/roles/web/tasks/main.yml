@@ -1,0 +1,81 @@
+---
+- name: Clone the Repository
+  git:
+    repo: https://github.com/LittleHawk03/ci-cd-practice.git
+    dest: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+    version: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+    update: no
+
+- name: Fetch Tags
+  command: git fetch --tags
+  args:
+    chdir: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+  register: fetch_output
+  changed_when: false
+
+- name: get latest tag name
+  shell: "git describe --tags `git rev-list --tags --max-count=1`"
+  args:
+    chdir: "/home/honahl/Documents/ci-cd-practice/playbook/roles/api/github"
+  register: latest_tag
+
+- name: Display Latest Tag
+  debug:
+    var: latest_tag.stdout
+
+- name: full image of web application from docker hub
+  docker_image:
+    name: "{{ web_image_name }}"
+    tag: "{{ latest_tag.stdout }}"
+    source: pull
+
+- name: creat a docker container for web application and mapping port
+  docker_container:
+    name: "{{ web_container_name }}1"
+    image: "{{ web_image_name }}:{{ latest_tag.stdout }}"
+    ports:
+      - "5001:5000"
+    env:
+      API_HOST: "http://{{ API_HOST }}"
+      API_POST: "{{ API_POST }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.web.nguyenmanhduc1"
+
+- name: creat a docker container for web application and mapping port
+  docker_container:
+    name: "{{ web_container_name }}2"
+    image: "{{ web_image_name }}:{{ latest_tag.stdout }}"
+    ports:
+      - "5002:5000"
+    env:
+      API_HOST: "http://{{ API_HOST }}"
+      API_POST: "{{ API_POST }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.web.nguyenmanhduc2"
+
+
+- name: creat a docker container for web application and mapping port
+  docker_container:
+    name: "{{ web_container_name }}3"
+    image: "{{ web_image_name }}:{{ latest_tag.stdout }}"
+    ports:
+      - "5003:5000"
+    env:
+      API_HOST: "http://{{ API_HOST }}"
+      API_POST: "{{ API_POST }}"
+      FLASK_ENV: "{{ FLASK_ENV }}"
+    # state: started
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "192.168.89.107:24224"
+      tag: "docker.web.nguyenmanhduc3"
+
+

@@ -1,0 +1,25 @@
+---
+
+- name: pull alertmanagers docker images
+  docker_image:
+    name: "{{ alert_image }}"
+    source: pull
+
+- name:  copy alertmanager.yml to vps folder
+  copy:
+    src: alertmanager.yml
+    dest: /tmp
+
+- name: run the docker image of alert manager
+  docker_container:
+    name: "{{ container_alert_name }}"
+    image: "{{ alert_image }}"
+    restart_policy: unless-stopped
+    volumes:
+      - /tmp/alertmanager.yml:{{alertmanager_dir_config}}/alertmanager.yml
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+    ports:
+      - 9093:9093
+    

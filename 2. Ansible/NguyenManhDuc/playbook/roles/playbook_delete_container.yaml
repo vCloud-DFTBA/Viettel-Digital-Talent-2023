@@ -1,0 +1,20 @@
+---
+- name: delete all container 
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: get running containert
+      docker_host_info:
+        containers: yes
+      register: docker_info
+
+    - name: stop running container
+      docker_container:
+        name: "{{ item }}"
+        state: stopped
+      loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
+
+    - name: remove all running container
+      shell: |
+        docker rm $(docker ps -a -q)
+      when: docker_info.containers != 0
