@@ -1,0 +1,27 @@
+---
+- name: log
+  hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+    - logging
+
+
+
+- name: doanhhq
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - common
+    - db
+    - web
+    - api
+    - monitor
+
+- name: lb
+  hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+    - lb

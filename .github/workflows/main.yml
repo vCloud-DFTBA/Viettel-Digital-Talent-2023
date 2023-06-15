@@ -1,0 +1,78 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ "main", "giuaky" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  unit-testing:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9.16
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.9.16"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f ./10.GK/Hoang-Quoc-Doanh/web/requirements.txt ]; then pip install -r ./10.GK/Hoang-Quoc-Doanh/web/requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Turn on database
+      run: |
+        docker compose -f ./10.GK/Hoang-Quoc-Doanh/web/docker-compose-db.yaml up -d
+    - name: Test with pytest
+      run: |
+        pytest 10.GK/Hoang-Quoc-Doanh/web/tests/app/test_main.py
+  
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+#       -
+#         name: Build and push
+#         uses: docker/build-push-action@v4
+#         with:
+#           context: 10.GK/Hoang-Quoc-Doanh/web/app
+#           file: 10.GK/Hoang-Quoc-Doanh/web/app/Dockerfile
+#           push: true
+#           tags: ${{ secrets.DOCKERHUB_USERNAME }}/vt_app:${{  github.ref_name }}
+      - name: Build and push Backend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: 10.GK/Hoang-Quoc-Doanh/web/app
+          file: 10.GK/Hoang-Quoc-Doanh/web/app/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh_be:${{  github.ref_name }}
+
+      - name: Build and push Frontend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: 10.GK/Hoang-Quoc-Doanh/web/nginx
+          file: 10.GK/Hoang-Quoc-Doanh/web/nginx/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doanh_fe:${{  github.ref_name }}
