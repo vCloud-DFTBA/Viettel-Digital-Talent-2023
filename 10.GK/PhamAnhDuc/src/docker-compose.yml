@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+
+  python:
+    container_name: python_buddy
+    image: ducpa01/python-buddy:latest
+    ports:
+      - 5000:5000
+    environment:
+      - DB_URI=mongodb://mongo:27017/
+      # - DB_URI_TEST=mongodb://localhost:27018/
+      # - FORCE_SEED_DATA=False
+    depends_on:
+      - mongo
+  mongo:
+    container_name: mongodb_buddy
+    image: mongo:5.0
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongoconfig:/data/configdb
+  nginx:
+    container_name: nginx_buddy
+    image: nginx-buddy
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:8080
+    environment:
+      - SERVER_ADDRESS_WITH_TRAILING_SLASH=http://python:5000/
+
+volumes:
+  mongodb:
+  mongoconfig:
+
+

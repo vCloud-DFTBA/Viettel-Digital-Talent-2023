@@ -1,0 +1,4 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.

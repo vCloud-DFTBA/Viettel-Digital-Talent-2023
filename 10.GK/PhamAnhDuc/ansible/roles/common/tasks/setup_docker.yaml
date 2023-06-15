@@ -1,0 +1,35 @@
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present
+
+- name: Add user to the docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  with_items: "{{ non_root_docker_users }}"
+  register: add_to_docker_group_result
+
+- name: Include reset connection tasks to make docker group change visible change to user
+  ansible.builtin.include_tasks: reset_connection.yaml
+  when: add_to_docker_group_result.changed == true

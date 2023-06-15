@@ -1,0 +1,25 @@
+---
+- name: Create webserver config directory if it does not exist
+  ansible.builtin.file:
+    path: "~/nginx"
+    state: directory
+
+- name: Template Webserver config file
+  template:
+    src: "../templates/nginx.conf"
+    dest: "~/nginx/nginx.conf"
+
+- name: Start web docker container with tag {{ tag_version }}
+  docker_container:
+    name: ducpa_web
+    image: ducpa01/nginx-buddy:{{ tag_version }}
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    log_driver: fluentd
+    ports:
+      - 8080:8080
+    volumes:
+      - ~/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - name: "{{ three_tier_network_name }}"

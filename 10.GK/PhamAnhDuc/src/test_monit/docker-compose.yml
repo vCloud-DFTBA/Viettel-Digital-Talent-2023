@@ -1,0 +1,45 @@
+version: "3.0"
+
+volumes:
+  prometheus1_data: {}
+  grafana_data: {}
+
+services:
+
+  prometheus_centralized:
+    image: prom/prometheus:v2.43.0
+    container_name: prometheus_centralized
+    volumes:
+      - ./:/etc/prometheus/
+      - prometheus1_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=1d"
+      - "--web.enable-lifecycle"
+      - "--web.listen-address=:9099"
+      - "--web.enable-remote-write-receiver"
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+  # grafana:
+  #   image: grafana/grafana:9.5.1
+  #   container_name: grafana
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #     - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+  #     - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+  #     - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+  #     - GF_USERS_ALLOW_SIGN_UP=false
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   labels:
+  #     org.label-schema.group: "monitoring"

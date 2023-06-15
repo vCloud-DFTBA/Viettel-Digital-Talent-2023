@@ -1,0 +1,22 @@
+---
+- name: Create load_balancer_conf directory if it does not exist
+  ansible.builtin.file:
+    path: "~/load_balancer_conf"
+    state: directory
+
+- name: Template Load Balancer config file
+  template:
+    src: "../templates/nginx.conf"
+    dest: "~/load_balancer_conf/nginx.conf"
+
+- name: Setup & Run Load Balancer
+  docker_container:
+    name: load_balancer
+    image: nginx:1.22.0-alpine
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    networks:
+      - name: host
+    volumes:
+      - ~/load_balancer_conf:/etc/nginx

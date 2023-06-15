@@ -1,0 +1,12 @@
+---
+- name: Create web docker container
+  docker_container:
+    name: web
+    image: ducpa01/nginx-buddy
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - name: "{{ three_tier_network_name }}"

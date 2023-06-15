@@ -1,0 +1,68 @@
+version: "3.0"
+
+services:
+  nodeexporter:
+    image: prom/node-exporter:v1.5.0
+    container_name: ducpa_nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+      - "--web.listen-address=localhost:9091"
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    container_name: ducpa_cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
+    restart: unless-stopped
+    network_mode: host
+    command:
+      - "-port=9092"
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+  local_prometheus:
+    image: prom/prometheus:v2.43.0
+    container_name: ducpa_local_prometheus
+    volumes:
+      - ./:/etc/prometheus/
+      - prometheus1_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=5d"
+      - "--web.enable-lifecycle"
+      - "--web.listen-address=:9090"
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+    labels:
+      org.label-schema.group: "monitoring"
+
+volumes:
+  prometheus1_data: {}

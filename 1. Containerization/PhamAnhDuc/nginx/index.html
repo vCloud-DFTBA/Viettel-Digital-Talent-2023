@@ -1,0 +1,86 @@
+<html>
+<title>
+    Pham Anh Duc
+</title>
+
+<head>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+</head>
+
+
+<!-- MDB -->
+
+<script>
+    var url = "http://localhost:8080/api/buddies"
+    var buddies = []
+    async function fetchBuddies() {
+        try {
+            buddies = await (await fetch(url)).json()
+            updateTable();
+        }
+        catch (error) {
+            console.log(error)
+            alert("Error while loading list. Please try again later!")
+        }
+    }
+
+    function updateTable() {
+        console.log(buddies)
+        for (let [index, buddy] of buddies.entries()) {
+            const tr = document.createElement("tr")
+            const stt = document.createElement("td")
+            stt.innerHTML = index + 1
+            const name = document.createElement("td")
+            name.innerHTML = buddy.name
+            const yearOfBirth = document.createElement("td")
+            yearOfBirth.innerHTML = buddy.yearOfBirth
+            const gender = document.createElement("td")
+            gender.innerHTML = buddy.gender
+            const university = document.createElement("td")
+            university.innerHTML = buddy.university
+            const major = document.createElement("td")
+            major.innerHTML = buddy.major
+            tr.appendChild(stt)
+            tr.appendChild(name)
+            tr.appendChild(yearOfBirth)
+            tr.appendChild(gender)
+            tr.appendChild(university)
+            tr.appendChild(major)
+            document.getElementById("tableBody").appendChild(tr)
+        }
+    }
+
+
+</script>
+
+<body onload="fetchBuddies();">
+    <div class="card" style="margin: 60px;padding: 30px;">
+        <!-- Content here -->
+        <h3 class="card-title" style="margin: auto; margin-bottom: 30px;">Danh sach</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Ho va ten</th>
+                    <th scope="col">Nam sinh</th>
+                    <th scope="col">Gioi tinh</th>
+                    <th scope="col">Truong</th>
+                    <th scope="col">Chuyen nganh</th>
+
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

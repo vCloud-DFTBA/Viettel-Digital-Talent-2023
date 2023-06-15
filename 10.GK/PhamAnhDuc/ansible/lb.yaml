@@ -1,0 +1,14 @@
+---
+- name: Setup Nginx Load Balancer
+  hosts: localhost
+  become: false
+  gather_facts: true
+  roles:
+    # - { name: common, become: yes }
+    - lb
+  vars:
+    - server_1: "192.168.56.102"
+    - server_2: "192.168.56.101"
+    - server_3: "localhost"
+  vars_files:
+    - "./vars/common.yaml"

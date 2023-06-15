@@ -1,0 +1,79 @@
+---
+- name: Install and Run "node_exporter"
+  docker_container:
+    name: "ducpa_node_exporter_{{ hostname}}"
+    image: prom/node-exporter:v1.5.0
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+      - "--web.listen-address=localhost:9091"
+    restart: yes
+    restart_policy: unless-stopped
+
+    networks:
+      - name: host
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+
+- name: Install and Run "cAdvisor"
+  docker_container:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    name: "ducpa_cadvisor_{{ hostname}}"
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    privileged: yes
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
+    restart: yes
+    restart_policy: unless-stopped
+    networks:
+      - name: host
+    command:
+      - "-port=9092"
+    env:
+      TZ: "Asia/Ho_Chi_Minh"
+
+- name: Create directory for local prometheus if not exists
+  file:
+    path: "~/local_prometheus_config"
+    state: directory
+
+- name: Template prometheus.yml
+  template:
+    src: "../templates/prometheus.yml"
+    dest: "~/local_prometheus_config/prometheus.yml"
+- name: Create docker volume for local prometheus
+  docker_volume:
+    name: local_prometheus_data
+- name: Setup local prometheus push data to centralized prometheus
+  docker_container:
+    image: prom/prometheus:v2.43.0
+    name: "ducpa_local_prometheus_{{ hostname}}"
+    volumes:
+      - ~/local_prometheus_config:/etc/prometheus/
+      - local_prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=5d"
+      - "--web.enable-lifecycle"
+      - "--web.listen-address=:9090"
+    restart: yes
+    restart_policy: unless-stopped
+    networks:
+      - name: host
+    env:
+      TZ: "Asia/Ho_Chi_Minh"

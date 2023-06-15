@@ -1,0 +1,22 @@
+version: '3'
+services:
+  # fluentd:
+  #   container_name: fluentd
+  #   build: ./fluentd
+  #   volumes:
+  #     - ./fluentd/conf:/fluentd/etc
+  #   network_mode: "host"
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.17.1
+    network_mode: "host"
+    environment:
+      - "discovery.type=single-node"
+
+  kibana:
+    container_name: kibana
+    image: kibana:7.17.1
+    environment:
+      ELASTICSEARCH_HOSTS: http://localhost:9200
+    network_mode: "host"

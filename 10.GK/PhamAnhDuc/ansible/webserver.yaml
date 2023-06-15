@@ -1,0 +1,9 @@
+---
+- name: Start web server
+  hosts: all
+  become: true
+  gather_facts: true
+  vars_files:
+    - "./vars/common.yaml"
+  roles:
+    - web

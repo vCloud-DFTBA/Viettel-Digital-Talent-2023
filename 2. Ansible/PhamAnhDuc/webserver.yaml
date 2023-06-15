@@ -1,0 +1,7 @@
+---
+- name: Start web server
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - web

@@ -1,0 +1,265 @@
+<html>
+<title>
+    Pham Anh Duc
+</title>
+
+<head>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+</head>
+
+
+<!-- MDB -->
+
+<script>
+    var url = "http://localhost:5000/buddies"
+    var currentUrl = window.location.href
+    console.log("currentUrl = ", currentUrl)
+
+    if (currentUrl.includes("file")) {
+        url = "http://localhost:5000/buddies"
+    }
+    else {
+        url = currentUrl + "api/buddies"
+    }
+    var buddies = []
+    async function fetchBuddies() {
+        try {
+            buddies = await (await fetch(url)).json()
+            updateTable();
+        }
+        catch (error) {
+            console.log(error)
+            alert("Error while loading list. Please try again later!")
+        }
+    }
+    async function init() {
+        fetchBuddies()
+        const addButton = document.getElementById("addButton")
+        addButton.addEventListener("click", () => handleAddOrUpdate())
+    }
+
+    function handleDetail(buddy) {
+        const detailModalBody = document.getElementById("detailModalBody")
+        detailModalBody.innerHTML = `
+<p>Ho ten: ${buddy.name}</p>
+<p>Nam sinh: ${buddy.yearOfBirth}</p>
+<p>Gioi tinh: ${buddy.gender}</p>
+<p>Truong: ${buddy.university}</p>
+<p>Chuyen nganh:${buddy.major}</p>
+`
+    }
+    function resetForm() {
+        document.getElementById("fname").value = ""
+        document.getElementById("fgender").value = ""
+        document.getElementById("funiversity").value = ""
+        document.getElementById("fmajor").value = ""
+        document.getElementById("fyearOfBirth").value = ""
+        document.getElementById("fbuddyId").value = ""
+        document.getElementById("fmode").value = "add"
+    }
+    function handleAddOrUpdate(buddy) {
+        if (!buddy) {
+            console.log("add mode")
+            resetForm()
+
+        }
+        else {
+            console.log("update mode", buddy)
+            document.getElementById("fname").value = buddy.name
+            document.getElementById("fgender").value = buddy.gender
+            document.getElementById("funiversity").value = buddy.university
+            document.getElementById("fmajor").value = buddy.major
+            document.getElementById("fyearOfBirth").value = buddy.yearOfBirth
+            document.getElementById("fbuddyId").value = buddy._id
+            document.getElementById("fmode").value = "update"
+        }
+
+    }
+
+    function postForm() {
+        const id = document.getElementById("fbuddyId").value
+        const mode = document.getElementById("fmode").value
+        const form = document.getElementById("buddyForm")
+        const formData = new FormData(form);
+        const jsonForm = JSON.stringify(Object.fromEntries(formData))
+        jsonForm["_id"] = id
+        delete jsonForm["buddyId"]
+        delete jsonForm["formMode"]
+        console.log(jsonForm)
+        if (mode == "add") {
+            fetch(url, {
+                method: "POST", body: jsonForm, headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(() => window.location.reload())
+            console.log("Post form in add mode")
+        }
+        if (mode == "update") {
+            console.log("Post form in update mode")
+
+            fetch(url + "/" + id, {
+                method: "PUT", body: jsonForm, headers: {
+                    "Content-Type": "application/json",
+
+                },
+            }).then(() => window.location.reload())
+        }
+
+    }
+    function handleDelete(id) {
+        fetch(url + "/" + id, {
+            method: 'DELETE',
+        })
+            .then(res => {
+                const tr = document.getElementById(id)
+                tr.remove()
+            })
+
+    }
+    function updateTable() {
+        console.log(buddies)
+        for (let [index, buddy] of buddies.entries()) {
+            const tr = document.createElement("tr")
+            const stt = document.createElement("td")
+            stt.innerHTML = index + 1
+            const name = document.createElement("td")
+            name.innerHTML = buddy.name
+            const yearOfBirth = document.createElement("td")
+            yearOfBirth.innerHTML = buddy.yearOfBirth
+
+            // adding btn grp
+            const buttonGrp = document.createElement("div")
+            buttonGrp.classList.add("btn-group")
+
+            const editBtn = document.createElement("button")
+            editBtn.innerHTML = "Edit"
+            editBtn.setAttribute("data-mdb-toggle", "modal")
+            editBtn.setAttribute("data-mdb-target", "#formModal")
+            editBtn.classList.add("btn-secondary", "btn")
+            editBtn.addEventListener("click", () => handleAddOrUpdate(buddy))
+
+            const detailBtn = document.createElement("button")
+            detailBtn.innerHTML = "Detail"
+            detailBtn.onclick = () => handleDetail(buddy)
+            detailBtn.classList.add("btn-primary", "btn")
+            detailBtn.setAttribute("data-mdb-toggle", "modal")
+            detailBtn.setAttribute("data-mdb-target", "#detailModal")
+
+            const deleteBtn = document.createElement("button")
+            deleteBtn.innerHTML = "Delete"
+            deleteBtn.onclick = () => handleDelete(buddy._id)
+            deleteBtn.classList.add("btn-danger", "btn")
+
+
+            buttonGrp.appendChild(detailBtn)
+            buttonGrp.appendChild(editBtn)
+            buttonGrp.appendChild(deleteBtn)
+
+
+            tr.appendChild(stt)
+            tr.appendChild(name)
+            tr.appendChild(yearOfBirth)
+            tr.appendChild(buttonGrp)
+            tr.id = buddy._id
+
+            document.getElementById("tableBody").appendChild(tr)
+        }
+    }
+
+
+</script>
+
+<body onload="init();">
+    <div class="card" style="margin: 60px;padding: 30px;">
+        <!-- Content here -->
+        <h3 class="card-title" style="margin: auto; margin-bottom: 30px;">Danh sach</h3>
+        <div id="modalHere"></div>
+        <button class="btn btn-primary" style="width: 80px" id="addButton" data-mdb-toggle="modal"
+            data-mdb-target="#formModal"> Add</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Ho va ten</th>
+                    <th scope="col">Nam sinh</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+
+
+        <!-- Form Modal -->
+
+        <div class="modal fade" id="formModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalFormTitle">Add/Edit student</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="buddyForm" id="buddyForm">
+                            <input type="hidden" id="fbuddyId" name="buddyId" value="">
+                            <input type="hidden" id="fmode" name="formMode" value="add">
+
+                            <p><label for="name">Ho va ten:</label>
+                                <input type="text" name="name" id="fname">
+                            </p>
+
+                            <p><label for="gender">Gioi tinh:</label>
+                                <input type="text" name="gender" id="fgender">
+                            </p>
+
+                            <p><label for="major">Nganh hoc:</label>
+                                <input type="text" name="major" id="fmajor">
+                            </p>
+
+                            <p><label for="university">Truong Dai hoc:</label>
+                                <input type="text" name="university" id="funiversity">
+                            </p>
+                            <p><label for="yearOfBirth">Nam sinh:</label>
+                                <input type="text" name="yearOfBirth" id="fyearOfBirth">
+                            </p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="postForm()"
+                            data-mdb-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail modal -->
+
+    <div class="modal fade" id="detailModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDetailTitle">Student Detail</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="detailModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
