@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  labels:
+    app: vtapp-fe
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vtapp-fe
+  template:
+    metadata:
+      labels:
+        app: vtapp-fe
+    spec:
+      containers:
+      - name: frontend
+        image: duongtm3102/vtapp-frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "0.5"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        env:
+        - name: REACT_APP_BACKEND_URL
+          value: "http://192.168.49.2:30011"
+   
