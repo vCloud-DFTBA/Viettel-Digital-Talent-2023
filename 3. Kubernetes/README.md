@@ -16,3 +16,8 @@ kubectl apply -f api-deployment.yml
 ```
 
 4. Apply Nginx Webser Deployment
+
+```sh
+kubectl apply -f config_map/nginx-configmap.yml
+kubectl apply -f webserver-deployment.yml
+```

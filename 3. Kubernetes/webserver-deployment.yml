@@ -14,10 +14,19 @@ spec:
     spec:
       containers:
       - name: nginx-deployment
-        image: ducpa01/nginx-buddy
+        image: ducpa01/nginx-buddy:v0.1.1
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: nginx-config-volume
+          mountPath: /etc/nginx
+          readOnly: true
+      volumes:
+      - name: nginx-config-volume
+        configMap:
+          name: nginx-configmap
 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -27,9 +36,9 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
-    NodePort: 30001
+    nodePort: 31080
     protocol: TCP
     name: http
   selector:
     app: nginx
-  type: NodePort
+
