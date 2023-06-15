@@ -44,6 +44,41 @@ nodes:
     mongo-user: cm9vdA==
     mongo-password: cGFzc3dvcmQ=
   ```
+- Đưa file init-db.js vào mongoDb container, tạo configmap bằng lệnh 
+  `kubectl create configmap db-configmap --from-file=./data/init-db.js`
+- Viết file `db-pv.yaml` để tạo PersistentVolumes cho db
+  ```yaml
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: db-pv
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    capacity:
+      storage: 500Mi
+    hostPath:
+      path: /data/mongodb
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: standard
+  ```
+- Viết file `db-pvc.yaml` để tạo PersistentVolumesClaims cho db
+  ```yaml
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: db-pvc
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    volumeName: db-pv
+    resources:
+      requests:
+        storage: 500Mi
+    storageClassName: standard
+  ```
+- Sau khi apply pv, pvc, kiểm tra lại ta có kết quả:
+  ![alt](./images/pv-pvc.png)
 - Triển khai deployment và service cho database mongoDB, ở đây em gộp chung chúng lại vào file `db.yaml` như bên dưới: 
 
   ```yaml
@@ -65,10 +100,20 @@ nodes:
       spec:
         containers:
           - name: mongodb
-            image: minhson7112/sonbm-db:latest
+            image: mongo:5.0
             ports:
               - containerPort: 27017
+            resources:
+              limits:
+                cpu: "1"
+                memory: "1Gi"
+              requests:
+                cpu: "0.5"
+                memory: "512Mi"
             env:
+
+              - name: MONGO_INITDB_ROOT_DATABASE
+                value: "test_database"
               - name: MONGO_INITDB_ROOT_USERNAME
                 valueFrom:
                   secretKeyRef:
@@ -79,13 +124,18 @@ nodes:
                   secretKeyRef:
                     name: db-secret
                     key: mongo-password
-            resources:
-              limits:
-                cpu: "1"
-                memory: "1Gi"
-              requests:
-                cpu: "0.5"
-                memory: "512Mi"
+            volumeMounts:
+            - name: "mongo-data-dir"
+              mountPath: "/data/db"
+            - name: "init-database"
+              mountPath: "/docker-entrypoint-initdb.d/"
+        volumes:
+          - name: "mongo-data-dir"
+            persistentVolumeClaim:
+              claimName: "db-pvc"
+          - name: "init-database"
+            configMap:
+              name: db-configmap
 
   ---
 
@@ -100,6 +150,7 @@ nodes:
       - protocol: TCP
         port: 27017
         targetPort: 27017
+        nodePort: 30003
     type: NodePort 
   ```
 - Apply file yaml secret, deployment, service của database lên cluster ta có kết quả:
