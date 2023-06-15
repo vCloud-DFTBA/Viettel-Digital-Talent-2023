@@ -1,0 +1,12 @@
+version: '3'
+services:
+  fluentd:
+    container_name: fluentd
+    build: /home/fluentd
+    volumes:
+        - ./conf:/fluentd/etc
+    network_mode: "host"
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    

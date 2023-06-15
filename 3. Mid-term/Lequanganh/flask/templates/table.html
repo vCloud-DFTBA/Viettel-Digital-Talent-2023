@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+      h1 {
+        color: {{ header_color }};
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Viettel Digital Tallent 2023</h1>
+    </header>
+    <div class="table-container">
+        <table>
+            <thead>
+            </thead>
+            <tbody>
+              {% for row in data %}
+                {% if loop.index0 % 5 == 0 %}<tr>{% endif %}
+                  <td><a href="{{ url_for('profile', attendee_id=row['_id']) }}">{{ row['Họ và tên'] }}</a></td>
+                {% if loop.index % 5 == 0 or loop.last %}</tr>{% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    <div class="button-container">
+        <button onclick="location.href='/create'" class="create-button">Create</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+---
+- name: install configure package
+  hosts: vm2
+  become: true
+  gather_facts: true
+  roles:
+    - common
+
+- name: install logging and monitoring
+  hosts: vm2
+  become: true
+  gather_facts: true
+  roles:
+    - monitor
+    - logging
+
+- name: install webapp
+  hosts: vm2
+  become: true
+  gather_facts: true
+  roles:
+    - mongo
+    - webservers
+    - loadbalancer

@@ -1,0 +1,48 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # deploy apllication by docker compose to test
+      - name: Docker Compose Action
+        uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./10.GK/DoAnhTu/docker-compose.yml"
+          down-flags: "--volumes"
+
+      # Test application run or die
+      - name: Test application run or die
+        run: |
+          curl 127.0.0.1:5000
+          curl 127.0.0.1:5001
+          curl 127.0.0.1:8000
+
+      - name: Run test by pytest
+        run: |
+          cd 10.GK/DoAnhTu/app/test
+          python3 --version
+          pip install pytest
+          pip install -r test_requirements.txt
+          pytest -s
