@@ -3,9 +3,6 @@
 ## Table of contents
 
 <!-- TOC -->
-
-- [Kubernetes exercise](#kubernetes-exercise)
-    - [Table of contents](#table-of-contents)
 - [Kubernetes Overview](#kubernetes-overview)
     - [Kubernetes at a glance](#kubernetes-at-a-glance)
         - [Master and Work components](#master-and-work-components)
