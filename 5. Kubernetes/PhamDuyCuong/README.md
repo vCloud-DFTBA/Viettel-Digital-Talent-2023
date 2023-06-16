@@ -13,14 +13,14 @@
     - [3. Logs and test the application](#logs-and-test-the-application)
     - [4. Summary](#summary)
 
-## 1. Assigment
+## Assigment
 Assignment: Deploy a Multi-tier Application on Kubernetes.
 
 Objective: The objective of this assignment is to apply the concepts learned in the hands-on labs and deploy a multi-tier application on Kubernetes. The application consists of a frontend web server, a backend API server, and a database.
 
-## 2. Detailed step-by-step instructions to deploy the application by Kubenetes
+## I. Detailed step-by-step instructions to deploy the application by Kubenetes on local
 
-### 2.1. Install Kind and create Cluster
+### 1. Install Kind and create Cluster
 
 ```
 [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.19.0/kind-linux-amd64
@@ -35,9 +35,13 @@ kind create cluster --image kindest/node:v1.22.0 --name app
 
 `kubectl` - Command line tool for K8s clusters
 ```
-snap install kubectl --classic
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.9/2023-05-11/bin/linux/amd64/kubectl
 ```
-### 2.2. Create `db-secrets.yaml` the database credentials
+After you install kubectl, you can verify its version.
+```
+kubectl version --short --client
+```
+### 2. Create `db-secrets.yaml` the database credentials
 
 ```yaml
 apiVersion: v1
@@ -59,7 +63,7 @@ The first yaml creates a Kubernetes Secret named db-credentials of type `Opaque`
 - The `url` field is used by the `api` pod to connect to the database pod via `pymongo`.
 This Secret is used to store **database credentials**.
 
-### 2.3. Create `db-pvc.yaml` to storage persistent volume
+### 3. Create `db-pvc.yaml` to storage persistent volume
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -77,7 +81,7 @@ The second YAML file creates a Kubernetes `Persistent Volume Claim` named db-dat
 kubectl apply -f db-pvc.yaml
 ```
 
-### 2.4. Create `db-deploment.yaml`(Mongodb)
+### 4. Create `db-deploment.yaml`(Mongodb)
 Deloy database pod and database service
 Multiple resources can be created the same way as a **single** resource.
 The resources will be created in the **order** they appear in the file. Therefore, it's best to specify the **service** first, since that will ensure the **scheduler** can spread the pods associated with the `service` as they are created by the controller(s), such as `Deployment`.
@@ -141,7 +145,7 @@ The volumes section of the Deployment specifies a persistent volume claim named 
 kubectl apply -f db-deployment.yaml
 ```
 
-### 2.5. Create api deployment and service files
+### 5. Create api deployment and service files
 ```yaml
 apiVersion: v1
 kind: Service
@@ -195,7 +199,7 @@ This manifest creates a `Service object` that exposes the `Deployment` in the cl
 Once the `initContainer` completes successfully (i.e., the nc command connects to the database service), the main container `api` in the pod  will start.
 **Note** that the `initContainer` runs to completion before the main container starts, so if the initContainer fails, the main container will not start. This ensures that your application does not start until `mongodb-service` are available.
 
-### 2.6. Create web deployment and service files
+### 6. Create web deployment and service files
 ```yaml
 apiVersion: v1
 kind: Service
@@ -244,7 +248,7 @@ kubectl apply -f ./
 ```
 This command apply all the Kubernetes YAML manifests in the current directory in alphabetical order by filename.
 
-## 3. Logs and test the application
+## Logs and test the application
 - List of pods and logs from api and web pods
 <div align="center">
   <img width="1000" src="images/log1.png" alt="containerization">
@@ -262,9 +266,112 @@ This command apply all the Kubernetes YAML manifests in the current directory in
   <img width="1000" src="images/result_search.png" alt="containerization">
 </div>
 
-## 4. Summary
+## II. Try to deploy web application on AWS EKS 
+### What is Amazon EKS?
+Amazon Elastic Kubernetes Service (Amazon EKS) is a managed service that you can use to run Kubernetes on AWS without needing to install, operate, and maintain your own Kubernetes control plane or nodes. Kubernetes is an open-source system for automating the deployment, scaling, and management of containerized applications.
+For a list of other features, see Amazon EKS features.
+### Amazon EKS control plane architecture
+Amazon EKS runs a single tenant Kubernetes control plane for each cluster. The control plane infrastructure isn't shared across clusters or AWS accounts. The control plane consists of at least two API server instances and three etcd instances that run across three Availability Zones within an AWS Region
+- Amazon EKS runs a single tenant Kubernetes control plane for each cluster. 
+- The control plane infrastructure isn't shared across clusters or AWS accounts. 
+- The control plane consists of at least two API server instances and three etcd instances that run across three Availability Zones within an AWS Region
+### How does Amazon EKS work?
+
+Getting started with Amazon EKS:
+
+- Create an Amazon EKS cluster in the with the `AWS CLI` or one of the AWS SDKs.
+
+- Launch managed or self-managed Amazon EC2 nodes, or deploy your workloads to AWS Fargate.
+
+- When your cluster is ready, you can configure your favorite Kubernetes tools, such as `kubectl`, to communicate with your cluster.
+
+- Deploy and manage workloads on your Amazon EKS cluster the same way that you would with any other Kubernetes environment.
+
+### Getting started with Amazon EKS
+ 
+#### Prerequisites
+Many procedures of this user guide use the following command line tools:
++ **`kubectl`** – A command line tool for working with Kubernetes clusters\. For more information, see [Installing or updating `kubectl`](install-kubectl.md)\.
+<div align="center">
+  <img width="5000" src="images/kubectl.png" alt="containerization">
+</div>
++ **eksctl** – A command line tool for working with EKS clusters that automates many individual tasks\. For more information, see [Installing or updating `eksctl`](eksctl.md)\.
+![Gophers: E, K, S, C, T, & L](logo/eksctl.png)
+I will also need [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) command (either `aws-iam-authenticator`.
+
+The IAM account used for EKS cluster creation should have these minimal access levels.
+
+| AWS Service      | Access Level                                           |
+|------------------|--------------------------------------------------------|
+| CloudFormation   | Full Access                                            |
+| EC2              | **Full:** Tagging **Limited:** List, Read, Write       |
+| EC2 Auto Scaling | **Limited:** List, Write                               |
+| EKS              | Full Access                                            |
+| IAM              | **Limited:** List, Read, Write, Permissions Management |
+| Systems Manager  | **Limited:** List, Read                                |
+
++ **AWS CLI** – A command line tool for working with AWS services, including Amazon EKS\. For more information, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the AWS Command Line Interface User Guide\. After installing the AWS CLI, I had configured it. 
+Run the aws configure command in the terminal or command prompt. 
+`aws configure`
+This command will prompt you to enter your AWS `access key ID`, `secret access` key, `default region name`, and `default output format`. 
+<div align="center">
+  <img width="5000" src="images/configure.png" alt="containerization">
+</div>
+After this check authentification
+`aws sts get-caller-identity`
+<div align="center">
+  <img width="500" src="images/authen.png" alt="containerization">
+</div>
+
+**Step 1**: Create your Amazon EKS cluster and nodes
+```eksctl create cluster --name VDT23 --region eu-north-1 --nodegroup app nodes 3 node-type t3.smalll``
+**Step 2**: check Kubernetes resources
+```kubectl get nodes -o wide```
+**Step 3**: Configure your computer to communicate with your cluster
+Create or update a kubeconfig file for your cluster. Replace region-code with the AWS Region that you created your cluster in. Replace my-cluster with the name of your cluster.
+`aws eks update-kubeconfig --name VDT23 --region eu-north-1 `
+**Step 4**: Deploy all manifests file as on local but... 
+
+I cant creat `persistent volumes` on cluster. And I need to install `Amazon EBS CSI driver` to storage this.
+#### Amazon EBS CSI driver<a name="ebs-csi"></a>
+
+The Amazon Elastic Block Store \(Amazon EBS\) Container Storage Interface \(CSI\) driver allows Amazon Elastic Kubernetes Service \(Amazon EKS\) clusters to manage the lifecycle of Amazon EBS volumes for persistent volumes\.
+
+Here are some things to consider about using the Amazon EBS CSI driver\.
++ The Amazon EBS CSI plugin requires IAM permissions to make calls to AWS APIs on your behalf\. For more information, see [Creating the Amazon EBS CSI driver IAM role](csi-iam-role.md)\.
++ Alpha features of the Amazon EBS CSI driver aren't supported on Amazon EKS clusters\.
+
+**Important**  
+ If I don't install this driver before updating your cluster to `1.27`, I might experience workload interruption\.
+
+The Amazon EBS CSI driver isn't installed when I first create a cluster\. To use the driver, I must add it as an Amazon EKS add\-on or as a self\-managed add\-on\.
++ For instructions on how to add it as a self\-managed add\-on, see the [Amazon EBS Container Storage Interface \(CSI\) driver](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) project on GitHub\.
+
+After I installed the CSI driver, I can test the functionality with a sample application
+<div align="center">
+  <img width="1000" src="images/boundpvc.png" alt="containerization">
+</div>
+In this picture PVC have bound to node.
+
+**Step 5**: Check through result :
+- Created volumes
+<div align="center">
+  <img width="1000" src="images/volumes.png" alt="containerization">
+</div>
+- Worker nodes 
+<div align="center">
+  <img width="1000" src="images/intances.png" alt="containerization">
+</div>
+- Interface of app, which can accessed from any where
+<div align="center">
+  <img width="1000" src="images/web-interface.png" alt="containerization">
+</div>
+
+## 5. Summary
 
 - Successfully created a 3-tier web using Kubernetes.
 - Approached and got acquainted with Kubernetes.
 - Used `initContainer` ensures that pods `api`does not start until `database` pods are available.
 - Used `Secrets` to store sensitive information such as database credentials.
+- Approached and got acquainted with AWS cloud, IAM authentification(for me, it is very hard).
+- Deloyed web app on AWS EKS.
