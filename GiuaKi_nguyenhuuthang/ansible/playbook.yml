@@ -1,0 +1,36 @@
+---
+- name: Install Docker
+  hosts: db, remote_nodes
+  become: yes
+  roles:
+    - common
+
+#Set up logging before deploying application
+- name: Set up log
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - log
+
+- name: Create remote only-one database
+  hosts: database
+  become: yes
+  roles:
+    - db
+
+- name: Load images and deloy three-tier web in node
+  hosts: 
+    - host
+    - remote_nodes
+  become: yes
+  roles:
+    - api
+    - web
+
+- name: Set up load balancer in host
+  hosts: host
+  become: yes
+  roles:
+    - lb
+    - monitor

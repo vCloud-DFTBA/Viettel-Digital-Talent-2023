@@ -1,0 +1,17 @@
+---
+# tasks file for web
+
+- name: Run docker image web
+  docker_container:
+    name: web
+    image: thang/web:latest
+    restart_policy: unless-stopped
+    hostname: web
+    links:
+      - "api:api"
+    ports:
+      - "80:80"
+    log_driver: fluentd
+    log_options:
+      fluentd-address: "localhost:24224"
+      fluentd-async-connect: "true"
