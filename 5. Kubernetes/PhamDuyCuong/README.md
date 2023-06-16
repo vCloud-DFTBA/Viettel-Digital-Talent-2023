@@ -297,19 +297,23 @@ Many procedures of this user guide use the following command line tools:
 </div>
 
 + **`eksctl`** – A command line tool for working with EKS clusters that automates many individual tasks\. For more information, see [Installing or updating `eksctl`](eksctl.md)\.
-![Gophers: E, K, S, C, T, & L](logo/eksctl.png)
+<div align="center">
+  <img width="2000" src="images/eksctl.png" alt="containerization">
+</div>
+
+
 I will also need [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) command (either `aws-iam-authenticator`.
 
 The IAM account used for EKS cluster creation should have these minimal access levels.
 
-| AWS Service      | Access Level                                           |
-|------------------|--------------------------------------------------------|
-| CloudFormation   | Full Access                                            |
-| EC2              | **Full:** Tagging **Limited:** List, Read, Write       |
-| EC2 Auto Scaling | **Limited:** List, Write                               |
-| EKS              | Full Access                                            |
-| IAM              | **Limited:** List, Read, Write, Permissions Management |
-| Systems Manager  | **Limited:** List, Read                                |
+    | AWS Service      | Access Level                                           |
+    |------------------|--------------------------------------------------------|
+    | CloudFormation   | Full Access                                            |
+    | EC2              | **Full:** Tagging **Limited:** List, Read, Write       |
+    | EC2 Auto Scaling | **Limited:** List, Write                               |
+    | EKS              | Full Access                                            |
+    | IAM              | **Limited:** List, Read, Write, Permissions Management |
+    | Systems Manager  | **Limited:** List, Read                                |
 
 + **`AWS CLI`** – A command line tool for working with AWS services, including Amazon EKS\. For more information, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the AWS Command Line Interface User Guide\. After installing the AWS CLI, I had configured it. 
 Run the aws configure command in the terminal or command prompt. 
