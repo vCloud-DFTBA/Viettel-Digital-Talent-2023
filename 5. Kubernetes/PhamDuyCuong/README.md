@@ -292,9 +292,6 @@ Getting started with Amazon EKS:
 #### Prerequisites
 Many procedures of this user guide use the following command line tools:
 + **`kubectl`** – A command line tool for working with Kubernetes clusters\. For more information, see [Installing or updating `kubectl`](install-kubectl.md)\.
-<div align="center">
-  <img width="5000" src="images/kubectl.png" alt="containerization">
-</div>
 
 + **`eksctl`** – A command line tool for working with EKS clusters that automates many individual tasks\. For more information, see [Installing or updating `eksctl`](eksctl.md)\.
 <div align="center">
@@ -302,7 +299,7 @@ Many procedures of this user guide use the following command line tools:
 </div>
 
 
-I will also need [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) command (either `aws-iam-authenticator`.
+I will also need [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) command (either `aws-iam-authenticator`).
 
 The IAM account used for EKS cluster creation should have these minimal access levels.
 
@@ -322,27 +319,34 @@ This command will prompt you to enter your AWS `access key ID`, `secret access` 
 <div align="center">
   <img width="5000" src="images/configure.png" alt="containerization">
 </div>
-After this check authentification
+After this check authenfication
 `aws sts get-caller-identity`
 <div align="center">
   <img width="2000" src="images/authen.png" alt="containerization">
 </div>
 
-**Step 1**: Create your Amazon EKS cluster and nodes
-```eksctl create cluster --name VDT23 --region eu-north-1 --nodegroup app nodes 3 node-type t3.smalll```
+**Step 1**: Create your Amazon EKS cluster and nodes: 
+```
+eksctl create cluster --name VDT23 --region eu-north-1 --nodegroup app nodes 3 node-type t3.smalll
+```
+
 <div align="center">
   <img width="1000" src="images/create_cluster.png" alt="containerization">
 </div>
 
 **Step 2**: check Kubernetes resources
-```kubectl get nodes -o wide```
+```
+kubectl get nodes -o wide
+```
 <div align="center">
   <img width="1000" src="images/nodes.png" alt="containerization">
 </div>
 
 **Step 3**: Configure your computer to communicate with your cluster
-Create or update a kubeconfig file for your cluster. Replace region-code with the AWS Region that you created your cluster in. Replace my-cluster with the name of your cluster.
-`aws eks update-kubeconfig --name VDT23 --region eu-north-1 `
+Create or update a kubeconfig file for your cluster. Replace region-code with the AWS Region that you created your cluster in. Replace my-cluster with the name of your cluster: 
+```
+aws eks update-kubeconfig --name VDT23 --region eu-north-1
+```
 
 **Step 4**: Deploy all manifests file as on local but... 
 
@@ -389,5 +393,5 @@ After I installed the CSI driver, I can test the functionality with application.
 - Approached and got acquainted with Kubernetes.
 - Used `initContainer` ensures that pods `api`does not start until `database` pods are available.
 - Used `Secrets` to store sensitive information such as database credentials.
-- Approached and got acquainted with AWS cloud, IAM authentification(for me, it is very hard).
+- Approached and got acquainted with AWS cloud, IAM authentication(for me, it is very hard).
 - Deloyed web app on AWS EKS.
