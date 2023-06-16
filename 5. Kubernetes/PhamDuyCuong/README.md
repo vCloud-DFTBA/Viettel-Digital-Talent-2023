@@ -295,7 +295,8 @@ Many procedures of this user guide use the following command line tools:
 <div align="center">
   <img width="5000" src="images/kubectl.png" alt="containerization">
 </div>
-+ **eksctl** – A command line tool for working with EKS clusters that automates many individual tasks\. For more information, see [Installing or updating `eksctl`](eksctl.md)\.
+
++ **`eksctl`** – A command line tool for working with EKS clusters that automates many individual tasks\. For more information, see [Installing or updating `eksctl`](eksctl.md)\.
 ![Gophers: E, K, S, C, T, & L](logo/eksctl.png)
 I will also need [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) command (either `aws-iam-authenticator`.
 
@@ -310,7 +311,7 @@ The IAM account used for EKS cluster creation should have these minimal access l
 | IAM              | **Limited:** List, Read, Write, Permissions Management |
 | Systems Manager  | **Limited:** List, Read                                |
 
-+ **AWS CLI** – A command line tool for working with AWS services, including Amazon EKS\. For more information, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the AWS Command Line Interface User Guide\. After installing the AWS CLI, I had configured it. 
++ **`AWS CLI`** – A command line tool for working with AWS services, including Amazon EKS\. For more information, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the AWS Command Line Interface User Guide\. After installing the AWS CLI, I had configured it. 
 Run the aws configure command in the terminal or command prompt. 
 `aws configure`
 This command will prompt you to enter your AWS `access key ID`, `secret access` key, `default region name`, and `default output format`. 
@@ -320,16 +321,25 @@ This command will prompt you to enter your AWS `access key ID`, `secret access` 
 After this check authentification
 `aws sts get-caller-identity`
 <div align="center">
-  <img width="500" src="images/authen.png" alt="containerization">
+  <img width="2000" src="images/authen.png" alt="containerization">
 </div>
 
 **Step 1**: Create your Amazon EKS cluster and nodes
-```eksctl create cluster --name VDT23 --region eu-north-1 --nodegroup app nodes 3 node-type t3.smalll``
+```eksctl create cluster --name VDT23 --region eu-north-1 --nodegroup app nodes 3 node-type t3.smalll```
+<div align="center">
+  <img width="1000" src="images/create_cluster.png" alt="containerization">
+</div>
+
 **Step 2**: check Kubernetes resources
 ```kubectl get nodes -o wide```
+<div align="center">
+  <img width="1000" src="images/nodes.png" alt="containerization">
+</div>
+
 **Step 3**: Configure your computer to communicate with your cluster
 Create or update a kubeconfig file for your cluster. Replace region-code with the AWS Region that you created your cluster in. Replace my-cluster with the name of your cluster.
 `aws eks update-kubeconfig --name VDT23 --region eu-north-1 `
+
 **Step 4**: Deploy all manifests file as on local but... 
 
 I cant creat `persistent volumes` on cluster. And I need to install `Amazon EBS CSI driver` to storage this.
@@ -347,21 +357,23 @@ Here are some things to consider about using the Amazon EBS CSI driver\.
 The Amazon EBS CSI driver isn't installed when I first create a cluster\. To use the driver, I must add it as an Amazon EKS add\-on or as a self\-managed add\-on\.
 + For instructions on how to add it as a self\-managed add\-on, see the [Amazon EBS Container Storage Interface \(CSI\) driver](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) project on GitHub\.
 
-After I installed the CSI driver, I can test the functionality with a sample application
+After I installed the CSI driver, I can test the functionality with application. In this picture PVC have bound to node.
 <div align="center">
   <img width="1000" src="images/boundpvc.png" alt="containerization">
 </div>
-In this picture PVC have bound to node.
+
 
 **Step 5**: Check through result :
 - Created volumes
 <div align="center">
   <img width="1000" src="images/volumes.png" alt="containerization">
 </div>
+
 - Worker nodes 
 <div align="center">
   <img width="1000" src="images/intances.png" alt="containerization">
 </div>
+
 - Interface of app, which can accessed from any where
 <div align="center">
   <img width="1000" src="images/web-interface.png" alt="containerization">
