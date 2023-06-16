@@ -1,2 +1,0 @@
----
-become_password: "{{ vault_become_password }}"
