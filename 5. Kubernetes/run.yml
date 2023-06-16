@@ -1,0 +1,6 @@
+- name: install kubernetes
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - common

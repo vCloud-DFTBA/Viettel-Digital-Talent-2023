@@ -1,0 +1,85 @@
+---
+# tasks file for roles/common
+- name: updating apt packages
+  apt:
+    name: "*"
+    state: latest
+    update_cache: true
+
+
+
+
+
+- name: configuration file for containerd
+  ansible.builtin.shell: |
+    cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
+    overlay
+    br_netfilter
+    EOF
+
+- name: Load modules
+  ansible.builtin.shell: |
+    sudo modprobe overlay
+
+    sudo modprobe br_netfilter
+
+
+- name: Set system configurations for Kubernetes networking
+  ansible.builtin.shell: |
+    cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+    net.bridge.bridge-nf-call-iptables = 1
+    net.ipv4.ip_forward = 1
+    net.bridge.bridge-nf-call-ip6tables = 1
+    EOF
+
+- name: Apply new settings
+  ansible.builtin.shell: sudo sysctl --system
+
+
+
+- name: Install containerd
+  ansible.builtin.shell: sudo apt-get update && sudo apt-get install -y containerd
+
+- name: Create default configuration file for containerd
+  ansible.builtin.shell: sudo mkdir -p /etc/containerd
+
+
+- name: Generate default containerd configuration and save to the newly created default file
+  ansible.builtin.shell: sudo containerd config default | sudo tee /etc/containerd/config.toml
+
+
+- name: Restart containerd to ensure new configuration file usage
+  ansible.builtin.shell: sudo systemctl restart containerd
+
+
+- name: Disable swap
+  ansible.builtin.shell: sudo swapoff -a
+
+
+- name: Install dependency packages
+  ansible.builtin.shell: sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+
+
+- name: Download and add GPG key
+  ansible.builtin.shell: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+- name: Add Kubernetes to repository list
+  ansible.builtin.shell: |
+    cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    deb https://apt.kubernetes.io/ kubernetes-xenial main
+    EOF
+
+- name: Update package listings
+  apt:
+    update_cache: yes
+
+
+- name: install kubernetes
+  ansible.builtin.shell: sudo apt-get install -y kubelet kubeadm kubectl --allow-change-held-packages
+
+
+
+- name: Turn off automatic updates
+  ansible.builtin.shell: sudo apt-mark hold kubelet kubeadm kubectl
+
+
