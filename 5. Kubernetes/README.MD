@@ -232,4 +232,4 @@ spec:
 
 1. Tự dựng thành công một cụm k8s cluster single node.
 2. Triển khai thành công được các thành phần (frontend, db, backend) đáp ứng được yêu cầu về kết nối. Frontend có thể được truy cập từ bên ngoài cluster, còn backend và database thì chir truy cập từ bên trong cluster.
-3. Đảm bảo tính bảo mật (mã hóa các trường thông tin qua trọng như mật khẩu, username database,...)
+3. Đảm bảo tính bảo mật (mã hóa các trường thông tin quan trọng như mật khẩu, username database,...)
