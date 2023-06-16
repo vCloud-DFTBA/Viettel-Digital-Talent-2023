@@ -109,7 +109,7 @@ kind create cluster --image kindest/node:v1.22.0 --name app
 `kind` stands for Kubernetes in Docker and it is a tool for running local Kubernetes clusters using Docker container "nodes". `kind` is used  for development and testing purposes, using Docker containers as the cluster nodes.
 ### Install kubectl for ubuntu
 <p align="center">
-  <img src="images/kube-architecture-diagram.png">
+  <img src="images/kube-kubectl.png">
 </p>
 `kubectl`  is a command line tool for communicating with a Kubernetes API server. You can use kubectl to create, inspect, update, and delete Kubernetes objects.
 ```
