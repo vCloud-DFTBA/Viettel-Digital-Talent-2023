@@ -1,0 +1,12 @@
+architecture: replicaset
+replicaSet:
+  enabled: true
+  useHostnames: true
+  service:
+    name: mongodb-service
+replicaCount: 2
+auth:
+  rootPassword: "123456"
+  usernames: ["vdt23"]
+  databases: ["VDT23"]
+  passwords: ["123456"]
