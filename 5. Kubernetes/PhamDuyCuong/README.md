@@ -2,9 +2,6 @@
 
 ## Table of contents
 
-<!-- TOC -->
-
-
 - [Kubernetes Overview](#kubernetes-overview)
     - [Kubernetes at a glance](#kubernetes-at-a-glance)
     - [Master and Work components](#master-and-work-components)
@@ -25,7 +22,6 @@
             - [Prerequisites](#prerequisites)
         - [Helm](#helm)
 
-<!-- /TOC -->
 
 # Kubernetes Overview
 
@@ -54,13 +50,6 @@
 
 > Reference: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
 
-In order for **Kubernetes** to reach its full capacity, it depends on and makes use of other open source tools. Among them we can include:
-
-* **Registry**, such as the [**Docker Registry**](https://docs.docker.com/registry/).
-* **Network**, such as [**Flannel**](https://github.com/coreos/flannel), [**Calico**](https://docs.projectcalico.org/v3.7/getting-started/kubernetes/), [**MetalLB**](https://metallb.universe.tf/), [**CoreDNS**](https://github.com/coredns/coredns), etc.
-* **Telemetry**, such as [**Prometheus**](https://prometheus.io/), [**Sysdig**](https://sysdig.com/products/monitor/) and [**Istio**](https://istio.io/docs/concepts/policies-and-telemetry/).
-* **Security**, such as [**LDAP**](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol), [**SELinux**](https://en.wikipedia.org/wiki/Security-Enhanced_Linux), [**RBAC**](https://kubernetes.io/docs/reference/glossary/?security=true#term-rbac) and [**OAuth**](https://oauth.net/) with multi-tier layers.
-* **Services**, offered in a varied catalog of previously created content from popular application patterns.
 
 ## Kubernetes at a glance
 
