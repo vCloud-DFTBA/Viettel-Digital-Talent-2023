@@ -313,4 +313,5 @@ So, I have finished deploying 3-tier app on K8S cluster.
     <img src= images/port-forward-backend.png>
     <img src= images/port-forward-frontend.png>
 -   Here is my result :
+    <img src= images/result2.png>
     <img src= images/result.png>
