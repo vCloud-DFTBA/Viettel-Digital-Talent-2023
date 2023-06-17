@@ -11,4 +11,4 @@ Screenshot including cluster's overview can be seen in the img directory.
 ## Codes
 The project directory (k8s) is included.
 
-A semi-implementation of Ansible orchestration is also present, though it lacks environment setup steps and also require entering password and username of one's own.
+A semi-implementation of Ansible orchestration is also present, though it lacks environment setup steps and also require entering password and username of one's own (I haven't tried using a vault, sorry), but I really enjoyed using it during development since it automates a lot of the process.
