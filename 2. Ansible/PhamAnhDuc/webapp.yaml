@@ -1,0 +1,10 @@
+---
+- name: Start 3-tier web app
+  hosts: all
+  become: false
+  gather_facts: true
+  roles:
+    - common
+    - db
+    - api
+    - web
