@@ -1,6 +1,13 @@
-- name: install kubernetes
-  hosts: all
+# - name: install kubernetes
+#   hosts: all
+#   become: true
+#   gather_facts: true
+#   roles:
+#     - common
+
+- name: install docker
+  hosts: worker1
   become: true
   gather_facts: true
   roles:
-    - common
+    - docker
