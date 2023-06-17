@@ -5,8 +5,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  volumeMode: Filesystem
+  volumeName: db-data-pv
   resources:
     requests:
-      storage: 1Gi
+      storage: 500Mi
   storageClassName: standard

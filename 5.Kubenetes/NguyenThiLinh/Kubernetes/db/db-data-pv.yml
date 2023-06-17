@@ -4,15 +4,10 @@ metadata:
   name: db-data-pv
 spec:
   capacity:
-    storage: 2Gi
-  volumeMode: Filesystem
+    storage: 500Mi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
-  mountOptions:
-    - hard
-    - nfsvers=4.1
-  nfs:
-    path: /tmp
-    server: 172.22.0.3
+  hostPath:
+    path: /data/mongodb
