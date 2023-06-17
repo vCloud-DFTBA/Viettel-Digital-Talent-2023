@@ -52,7 +52,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb
+  name: dbmongo
 spec:
   selector:
     app: mongodb
