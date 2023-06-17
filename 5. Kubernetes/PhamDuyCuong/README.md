@@ -455,7 +455,13 @@ To deploy a stateful MongoDB instance with a replica set and passwords using Hel
       usernames: ["vdt23"]
       databases: ["VDT23"]
   ```
-
+  - `replicaSet`: This option enables the use of a replica set and defines the service name to use for the MongoDB nodes. The `useHostnames` option indicates that the hostnames of the MongoDB nodes should be used for communication instead of IP addresses.
+  - `replicaCount`: This option specifies the number of MongoDB nodes to deploy in the replica set. In this case, it's set to 2.
+  - `auth`: This option enables authentication for the MongoDB deployment and defines the root password for the cluster.
+  
+  ```
+  helm install mongodb bitnami/mongodb --values values.yaml
+  ```
 4.4. **Verify the deployment:**
 
   Check the status of your deployment with the following command:
@@ -515,7 +521,7 @@ After I installed the CSI driver, I can test the functionality with application.
 
 Finally,delete EKS cluster:
   `eksctl delete cluster --name VDT23`
-  
+
 ## 5. Summary
 
 - Successfully created a 3-tier web using Kubernetes.
