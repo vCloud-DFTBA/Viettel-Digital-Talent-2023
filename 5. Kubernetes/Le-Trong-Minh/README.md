@@ -663,7 +663,7 @@ resources: {}
     memory: 128Mi
 
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
@@ -712,11 +712,11 @@ To configure autoscaling in a Helm chart, we need to specify the following in th
 * **maxReplicas:** The maximum number of pods that should be running in the Deployment or StatefulSet.
 * **targetCPUUtilizationPercentage:** The target CPU utilization percentage for the pods. When the observed CPU utilization of the pods reaches the target CPU utilization percentage, the HPA object will automatically scale the number of pods up or down.
 
-For example, the following `values.yaml` file in the `helm-frontend` folder specifies that the Deployment named nginx should have a minimum of 1 pod and a maximum of 5 pods. The HPA object will automatically scale the number of pods up or down when the observed CPU utilization of the pods reaches 50%.
+For example, the following `values.yaml` file in the `helm-frontend` folder specifies that the Deployment named nginx should have a minimum of 1 pod and a maximum of 5 pods. The HPA object will automatically scale the number of pods up or down when the observed CPU utilization of the pods reaches 80%.
 
 ```yaml
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
