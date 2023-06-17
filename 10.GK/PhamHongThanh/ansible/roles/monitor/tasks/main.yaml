@@ -1,0 +1,62 @@
+
+- name: Start Node Exporter Container
+  docker_container:
+    name: thanhph_node-exporter
+    image: prom/node-exporter
+    restart_policy: always
+    ports:
+      - "9100:9100"
+    networks:
+      - name: midsem_network
+
+- name: Start Cadvisor Container
+  docker_container:
+    name: thanhph_cadvisor
+    image: gcr.io/cadvisor/cadvisor
+    restart_policy: always
+    ports:
+      - "8081:8080"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+    networks:
+      - name: midsem_network
+
+- name: Create directory for local prometheus
+  file:
+    path: "~/local_prometheus_config"
+    state: directory
+
+- name: Template prometheus.yml
+  template:
+    src: prometheus/prometheus.yml
+    dest: "~/local_prometheus_config/prometheus.yml"
+    
+- name: Create docker volume for local prometheus
+  docker_volume:
+    name: local_prometheus_data
+
+- name: Start Prometheus contaier 
+
+  docker_container:
+    name: thanhph_prometheus
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./templates/prometheus:/etc/prometheus/
+      - local_prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--storage.tsdb.max-block-duration=5d"
+      - "--web.enable-lifecycle"
+      - "--web.listen-address=:9090"
+    restart: yes
+    restart_policy: unless-stopped
+    network_mode: midsem_network

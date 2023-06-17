@@ -1,0 +1,5 @@
+flask
+pymongo
+flask-pymongo
+flask-cors
+pytest

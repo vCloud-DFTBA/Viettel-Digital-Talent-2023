@@ -1,0 +1,24 @@
+- name: Create load balancer config directory
+  file:
+    path: "~/lb_conf"
+    state: directory
+
+- name: Template lb config
+  template:
+    src: nginx.conf
+    dest: "~/lb_conf/nginx.conf"
+
+- name: Run nginx load balancing
+  docker_container:
+    name: nginxlb
+    image: nginx:1.22.0-alpine
+    restart_policy: unless-stopped
+    networks:
+      - name: midsem_network
+    ports:
+      - "3002:3002"
+      - "5002:5002"
+    volumes:
+      - ~/lb_conf:/etc/nginx/conf.d/:ro
+    command: ["nginx", "-g", "daemon off;"]
+  become: true
