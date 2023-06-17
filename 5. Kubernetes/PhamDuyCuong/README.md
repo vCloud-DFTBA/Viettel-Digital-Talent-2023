@@ -513,6 +513,9 @@ After I installed the CSI driver, I can test the functionality with application.
   <img width="1000" src="images/web-interface.png" alt="containerization">
 </div>
 
+Finally,delete EKS cluster:
+  `eksctl delete cluster --name VDT23`
+  
 ## 5. Summary
 
 - Successfully created a 3-tier web using Kubernetes.
