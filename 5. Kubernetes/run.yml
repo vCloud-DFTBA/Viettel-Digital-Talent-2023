@@ -1,6 +1,0 @@
-- name: install docker-kubernetes
-  hosts: controller
-  become: true
-  gather_facts: true
-  roles:
-    - common
