@@ -1,9 +1,0 @@
-# hosts-dev
-
-
-[controller]
-controller1 ansible_host=192.168.60.132
-controller1 ansible_ssh_pass=2288
-controller1 ansible_user=vm1
-controller1 ansible_sudo_pass=2288
-
