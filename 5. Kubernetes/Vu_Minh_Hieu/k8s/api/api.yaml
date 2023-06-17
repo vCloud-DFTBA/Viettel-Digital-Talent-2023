@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: backend
+    labels:
+        app: backend
+        component: backend
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            component: backend
+    template:
+        metadata:
+            labels:
+                app: backend
+                component: backend
+        spec:
+            containers:
+                - name: backend
+                  image: hieuminhvuu/k8s_backend_v3
+                  ports:
+                      - containerPort: 80
+                  env:
+                      - name: MONGODB_HOST
+                        value: "mongo"
+                      - name: MONGODB_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: mongo-secrets
+                                key: username
+                      - name: MONGODB_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: mongo-secrets
+                                key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: backend-service
+    labels:
+        app: backend
+        component: backend
+spec:
+    selector:
+        component: backend
+    ports:
+        - port: 80
+          targetPort: 80
+          protocol: TCP

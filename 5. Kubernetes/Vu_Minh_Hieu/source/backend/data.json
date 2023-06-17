@@ -1,0 +1,317 @@
+[
+    {
+        "stt": 1,
+        "name": "Bùi Minh Sơn",
+        "username" : "sonbm",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+        "major": "Công nghệ thông tin"
+    },
+    {
+        "stt": 2,
+        "name": "Đào Đại Hiệp",
+        "username" : "hiepdd",
+        "year_of_birth": 2001,
+        "gender": "Nam",
+        "university": "Đại học Bách khoa Hà Nội",
+        "major": "Điện tử viễn thông"
+    },
+    {
+        "stt": 3,
+        "name": "Đỗ Anh Tú",
+        "username" : "tuda",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+        "major": "Mạng máy tính và truyền thông dữ liệu"
+    },
+    {
+        "stt": 4,
+        "name": "Đỗ Bảo Hoàng",
+        "username" : "hoangdb",
+        "year_of_birth": 1997,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "An toàn thông tin"
+    },
+    {
+        "stt": 5,
+        "name": "Hoàng Quốc Doanh",
+        "username" : "doanhhq",
+        "year_of_birth": 2001,
+        "gender": "Nam",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "NULL"
+    },
+    {
+        "stt": 6,
+        "name": "Le Minh Duc",
+        "username" : "duclm",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "Công nghệ thông tin ứng dụng phần mềm"
+    },
+    {
+        "stt": 7,
+        "name": "Lê Phúc Lai",
+        "username" : "lailp",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "Kỹ thuật điện tử viễn thông"
+    },
+    {
+        "stt": 8,
+        "name": "Lê Quang Anh",
+        "username" : "anhlq",
+        "year_of_birth": 1997,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "An toàn thông tin"
+    },
+    {
+        "stt": 9,
+        "name": "Lê Trọng Minh",
+        "username" : "minhlt",
+        "year_of_birth": 2000,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "Kỹ thuật điều khiển và tự động hóa"
+    },
+    {
+        "stt": 10,
+        "name": "Lê Tùng Lâm",
+        "username" : "lamlt",
+        "year_of_birth": 1999,
+        "gender": "Nam",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "Khoa học máy tính"
+    },
+    {
+        "stt": 11,
+        "name": "Lê Văn Chiến",
+        "username" : "chienlv",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+        "major": "Kỹ thuật hàng không vũ trụ"
+    },
+    {
+        "stt": 12,
+        "name": "Linh Thi Nguyen",
+        "username" : "linhnt",
+        "year_of_birth": 2002,
+        "gender": "Nữ",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "ICT"
+    },
+    {
+        "stt": 13,
+        "name": "Nguyễn Đại An",
+        "username" : "annd",
+        "year_of_birth": 2023,
+        "gender": "Nam",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "Khoa học máy tính"
+    },
+    {
+        "stt": 14,
+        "name": "Nguyễn Đình Hoàng",
+        "username" : "hoangnd",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+        "major": "Công nghệ thông tin ứng dụng phần mềm"
+    },
+    {
+        "stt": 15,
+        "name": "Nguyen Duc Vinh",
+        "username" : "vinhnd",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Học viện Công nghệ Bưu chính Viễn thông",
+        "major": "NULL"
+    },
+    {
+        "stt": 16,
+        "name": "Nguyễn Dương Long",
+        "username" : "longnd",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "ĐH Thuỷ lợi",
+        "major": "Công nghệ thông tin ứng dụng phần mềm"
+    },
+    {
+        "stt": 17,
+        "name": "Nguyen Huu Thang",
+        "username" : "thangnh",
+        "year_of_birth": 2000,
+        "gender": "Nam",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "Khoa học máy tính"
+    },
+    {
+        "stt": 18,
+        "name": "Nguyễn Mạnh Cường",
+        "username" : "cuongnm",
+        "year_of_birth": 1997,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "Điện tử"
+    },
+    {
+        "stt": 19,
+        "name": "Nguyễn Mạnh Đức",
+        "username" : "ducnm",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Học viện Kỹ thuật mật mã",
+        "major": "An toàn thông tin"
+    },
+    {
+        "stt": 20,
+        "name": "Nguyễn Ngọc Chung",
+        "username" : "chungnn",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Học viên Công nghệ Bưu chính Viễn Thông HCM",
+        "major": "NULL"
+    },
+    {
+        "stt": 21,
+        "name": "Nguyễn Tuấn Anh",
+        "username" : "anhnt",
+        "year_of_birth": 1997,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "An toàn thông tin"
+    },
+    {
+        "stt": 22,
+        "name": "Nguyễn Văn Quang",
+        "username" : "quangnv",
+        "year_of_birth": 1997,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "An toàn thông tin"
+    },
+    {
+        "stt": 23,
+        "name": "Ninh Chí Hướng",
+        "username" : "huongnc",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Học viện Công nghệ Bưu chính viễn thông",
+        "major": "An toàn thông tin"
+    },
+    {
+        "stt": 24,
+        "name": "Ninh Văn Nghĩa",
+        "username" : "nghianv",
+        "year_of_birth": 2001,
+        "gender": "Nam",
+        "university": "Đại Học Bách Khoa Hà Nội",
+        "major": "Khoa học máy tính"
+    },
+    {
+        "stt": 25,
+        "name": "Phạm Anh Đức",
+        "username" : "ducpa",
+        "year_of_birth": 2001,
+        "gender": "Nam",
+        "university": "Đại học Bách Khoa Hà Nội",
+        "major": "Toán ứng dụng và tin học"
+    },
+    {
+        "stt": 26,
+        "name": "Phạm Duy Cương",
+        "username" : "cuongpd",
+        "year_of_birth": 1997,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "Công nghệ điện tử"
+    },
+    {
+        "stt": 27,
+        "name": "Phạm Hồng Thanh",
+        "username" : "thanhph",
+        "year_of_birth": 1998,
+        "gender": "Nam",
+        "university": "Swinburne University",
+        "major": "Phát triển phần mềm"
+    },
+    {
+        "stt": 28,
+        "name": "Phạm Thị Khánh Linh",
+        "username" : "linhptk",
+        "year_of_birth": 2002,
+        "gender": "Nữ",
+        "university": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+        "major": "Mạng máy tính và truyền thông dữ liệu"
+    },
+    {
+        "stt": 29,
+        "name": "Phạm Văn Tới",
+        "username" : "toipv",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Học viện Công nghệ Bưu chính viễn thông",
+        "major": "Công nghệ thông tin ứng dụng phần mềm"
+    },
+        {
+        "stt": 30,
+        "name": "Trần Đức Mạnh",
+        "username" : "manhtd",
+        "year_of_birth": 1998,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "Bảo mật thông tin"
+    },
+    {
+        "stt": 31,
+        "name": "Trần Mạnh Dũng",
+        "username" : "dungtm",
+        "year_of_birth": 2001,
+        "gender": "Nam",
+        "university": "Học viện Công nghệ Bưu chính Viễn thông",
+        "major": "Điện tử viễn thông"
+    },
+    {
+        "stt": 32,
+        "name": "Trần Minh Dương",
+        "username" : "duongtm",
+        "year_of_birth": 2002,
+        "gender": "Nam",
+        "university": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+        "major": "Mạng máy tính và truyền thông dữ liệu"
+    },
+    {
+        "stt": 33,
+        "name": "Trần Xuân Phú",
+        "username" : "phutx",
+        "year_of_birth": 2001,
+        "gender": "Nam",
+        "university": "Trường Đại học Công nghệ thông tin - ĐHQG Tp.Hồ chí Minh",
+        "major": "Khoa học máy tính"
+    },
+    {
+        "stt": 34,
+        "name": "Vũ Hoàng Long",
+        "username" : "longvh",
+        "year_of_birth": 2001,
+        "gender": "Nam",
+        "university": "Đại học Bách Khoa Hà Nội",
+        "major": "Khoa học máy tính"
+    },
+    {
+        "stt": 35,
+        "name": "Vũ Minh Hiếu",
+        "username" : "hieuvm",
+        "year_of_birth": 2000,
+        "gender": "Nam",
+        "university": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+        "major": "Kỹ thuật phần mềm"
+    }
+]
