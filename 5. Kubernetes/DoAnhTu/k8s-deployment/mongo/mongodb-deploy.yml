@@ -19,7 +19,10 @@ spec:
           name: mongodb
           env:
             - name: MONGO_INITDB_ROOT_DATABASE
-              value: "VDTuser"
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: database
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
