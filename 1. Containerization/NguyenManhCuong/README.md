@@ -1,33 +1,33 @@
-Containerization
+# Containerization
+
+# Table of contents
 ---
-- [**I. Theoretical Part** ](#i-theoretical-part-)
-  - [**1. Containerization** ](#1-containerization-)
-    - [**1.1. Overview**  ](#11-overview--)
-    - [**1.2. Containerization vs Virtualization** ](#12-containerization-vs-virtualization-)
-    - [**1.3. Benefits of Containerization**](#13-benefits-of-containerization)
-    - [**1.4. Linux Technologies Fundamental to Containers**](#14-linux-technologies-fundamental-to-containers)
-  - [**2. Docker**](#2-docker)
-    - [**2.1 Docker Architecture**](#21-docker-architecture)
-    - [**2.2 Docker Objects**](#22-docker-objects)
-    - [**2.3 Dockerfile**](#23-dockerfile)
-    - [**2.4 Docker Compose**](#24-docker-compose)
-    - [**2.5 Docker Image Optimization**](#25-docker-image-optimization)
-- [**II. Practical Aspect**](#ii-practical-aspect)
-  - [**1. Requirements**](#1-requirements)
-  - [**2. Explaination**](#2-explaination)
-  - [**3. Result**](#3-result)
+- [**1. Containerization** ](#1-containerization)
+  - [**1.1. Overview**  ](#11-overview)
+  - [**1.2. Containerization vs Virtualization** ](#12-containerization-vs-virtualization)
+  - [**1.3. Benefits of Containerization**](#13-benefits-of-containerization)
+  - [**1.4. Linux Technologies Fundamental to Containers**](#14-linux-technologies-fundamental-to-containers)
+- [**2. Docker**](#2-docker)
+  - [**2.1. Docker Architecture**](#21-docker-architecture)
+  - [**2.2. Docker Objects**](#22-docker-objects)
+  - [**2.3. Dockerfile**](#23-dockerfile)
+  - [**2.4. Docker Compose**](#24-docker-compose)
+  - [**2.5. Docker Image Optimization**](#25-docker-image-optimization)
+- [**3. Homework**](#3-homework)
+  - [**3.1. Requirements**](#31-requirements)
+  - [**3.2. Explaination**](#32-explaination)
+  - [**3.3. Result**](#33-result)
 - [**References**](#references)
 ---
-# **I. Theoretical Part** <a name='theoretical'></a>
 
-## **1. Containerization** <a name='containerization'></a>
+## **1. Containerization**
 
-### **1.1. Overview** <a name='overview'> </a>
+### **1.1. Overview**
 
 <p align = "justify"><strong>Containerization</strong> is achieved by <em>packing</em> together of software code with all its necessary components like libraries, frameworks, and other dependencies in an isolated user space called a container.</p>
 <p align = "justify">Traditionally, to run any application on your computer, you had to install the version that matched your machine’s operating system. For example, you needed to install the Windows version of a software package on a Windows machine. However, with containerization, you can create a single software package, or container, that runs on all types of devices and operating systems.</p>
 
-### **1.2. Containerization vs Virtualization** <a name='vmvscontainer'></a>
+### **1.2. Containerization vs Virtualization**
 
 <p align = "justify">Virtualization and containerization are the two most frequently used mechanisms to host applications in a computer system.</p>
 
@@ -41,7 +41,6 @@ Containerization
 <p align = "justify"><strong>Containerization</strong> is <strong>"OS-level virtualization"</strong>. It doesn't simulate the entire physical machine. It just simulates the OS of your machine. Therefore, multiple applications can share the same OS kernel. Containers play similar roles as virtual machine but without hardware virtualization. Most common container technology is <strong>"Docker"</strong>.</p>
 
 ### **1.3. Benefits of Containerization**
-<a name='benefits'></a>
 
 - <p style="text-align: justify"><strong>Portability</strong>: By abstracting applications away from the host OS, a container enviroment makes applications run smoothly on any platform or cloud.</p>
 
@@ -58,7 +57,7 @@ Containerization
 - <p style="text-align: justify"><strong>Easy Management</strong>: Container orchestration tools perform application management, automating installation and management of workloads.</p>
 
 ### **1.4. Linux Technologies Fundamental to Containers**
-<a name='technologies'></a>
+
 <p style="text-align: justify"> Linux technologies make up the foundations of building and running a container process on system. </p>
 <p align = "center">
 <img src = "./images/linuxtechs.png" width = 480 height = 360> 
@@ -84,7 +83,6 @@ Containerization
 <p align = "justify"> If you are running a Red Hat distribution on your hosts, then <strong>SELinux</strong> is enabled by default. SELinux lets you limit an application to have access only to its own files and prevent any other processes from accessing them.</p>
 
 ## **2. Docker**
-<a name='docker'></a>
 
 <p align = "justify"> <strong>Docker</strong> is the containerization platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.</p>
 
@@ -112,7 +110,6 @@ Containerization
 <p align = "justify"><strong>Docker Desktop</strong>  is an easy-to-install application for your Mac, Windows or Linux environment that enables you to build and share containerized applications and microservices. Docker Desktop includes the Docker daemon, the Docker client, Docker Compose, Docker Content Trust, Kubernetes, and Credential Helper.</p>
 
 ### **2.2 Docker Objects**
-<a name='object'></a>
 
 **Images**
 
@@ -131,7 +128,6 @@ Containerization
 <p align = "justify">Docker networking is a passage through which all the isolated container communicate. There are mainly five network drivers in docker: <strong>Bridge, Host, Overlay, None, macvlan</strong>.</p>
 
 ### **2.3 Dockerfile**
-<a name='dockerfile'></a>
 
 <p align = "justify"><code>Dockerfile</code> is a text file that contains a series of instructions on how to build your Docker image. This image contains all the project code and its dependencies.</p>
 <p align = "center">
@@ -148,17 +144,24 @@ Containerization
     ```
     or
     ```dockerfile
-    FROM <image>[:<tag>] [AS <name>]
+    FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]
     ```
     or
     ```dockerfile
-    FROM <image>[@<digest>] [AS <name>]
+    FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]
     ```
+    The ```--platform```, ```AS name```, ```tag``` or ```digest``` values are optinal.
+
+    *Example*: ```FROM python:3.9-alpine3.17 AS db_initializer```
 - <p align = "justify"><code>ARG</code>: defines a variable that users can pass at <strong>build-time</strong> to the builder with the <code>docker build</code> command using the <code>--build-arg &lt;varname&gt;=&lt;value&gt;</code> flag. If a user specifies a build argument that was not defined in the <code>Dockerfile</code>, the build outputs a warning.</p>
+    
+    ```ARG``` is the **only** instruction that may **precede** ```FROM``` in the ```Dockerfile```
 
     ```dockerfile
     ARG <name>[=<default value>]
     ```
+    *Example*: ```ARG  VERSION=latest```
+
 - <p align = "justify"><code>ENV</code>: sets the environment variable <code>&lt;key&gt;</code> to the value <code>&lt;value&gt;</code>. This value will be in the environment for all subsequent instructions in the build stage and can be replaced inline in many as well.</p>
 
     ```dockerfile
@@ -168,11 +171,13 @@ Containerization
     ```dockerfile
     ENV <key> <value>
     ```
+    *Example*: ```ENV MONGODB_DATABASE=VDT2023```
 - <p align = "justify"><code>WORKDIR</code>: sets the working directory for any <code>RUN</code>, <code>CMD</code>, <code>ENTRYPOINT</code>, <code>COPY</code> and <code>ADD</code> instructions that follow it in the <code>Dockerfile</code>. The <code>WORKDIR</code> instruction can be used multiple times in a <code>Dockerfile</code>. If a relative path is provided, it will be relative to the path of the previous <code>WORKDIR</code> instruction.</p>
     
     ```dockerfile
     WORKDIR /path/to/workdir
     ```
+    *Example*: ```WORKDIR /web```
 - <p align = "justify"><code>USER</code>: sets the user name (or UID) and   optionally the user group (or GID) to use when running the image and for any <code>RUN</code>, <code>CMD</code>, <code>ENTRYPOINT</code> instructions that follow it in the Dockerfile.</p>
 
     ```dockerfile
@@ -182,6 +187,7 @@ Containerization
     ```dockerfile
     USER <UID>[:<GID>]
     ```
+    *Example*: ```USER vanson:dev```
 - <p align = "justify"><code>RUN</code>: executes any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile. <code>RUN</code> has 2 forms: <em>shell</em> form and <em>exec</em> form.</p>
 
     - The `exec` form:
@@ -193,7 +199,7 @@ Containerization
     ```dockerfile
     RUN <command>
     ```
-
+    *Example*: ```RUN ["/bin/bash", "-c", "echo hello"]```
 - <p align = "justify"><code>ENTRYPOINT</code>: allows you to configure a container that will run as an executable.</p>
     
     - The `exec` form (preferred):
@@ -204,6 +210,7 @@ Containerization
     ```dockerfile
     ENTRYPOINT command param1 param2
     ```
+    *Example*: ```ENTRYPOINT ["ping", "google.com"]```
 
 - <p align = "justify"><code>CMD</code>: provides defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an <code>ENTRYPOINT</code> instruction as well. There can only be <em><strong>one CMD instruction</strong></em> in a Dockerfile. If you list more than one <code>CMD</code> then only the last <code>CMD</code> will take effect. If <code>CMD</code> is used to provide default arguments for the <code>ENTRYPOINT</code> instruction, both the CMD and <code>ENTRYPOINT</code> instructions should be specified with the JSON array format.</p>
     
@@ -219,6 +226,8 @@ Containerization
      ```dockerfile
     CMD ["param1","param2"]
     ```
+    *Example*: ```CMD echo "This is a test." | wc -```
+   
 **The differences between dockerfile instructions:**
 
 - `ARG` vs `ENV`:
@@ -229,14 +238,43 @@ Containerization
     - <p align = "justify"><code>ENV</code> variables can be passed both during image <em>building</em> and while the containers are <em>running</em> at runtime.</p>
     - <p align = "justify">Similar to <code>ARG</code> variables, <code>ENV</code> variables can have a default value in the Dockerfile. They can be updated by providing new values through the </code>Docker CLI</code> or a <code>docker-compose.yml</code> file, overriding the values set in the <code>Dockerfile</code>.</p>
     - <p align = "justify"><code>ENV</code> variables are usually your <code>API keys</code>, <code>database URLs</code>, <code>secret keys</code>, etc.</p>
+    *Example:* The same variable VERSION is defined by both ARG and ENV. ARG VERSION=1.0 is only available during build-time, and not during run-time. The value ```VERSION=3.0``` from ENV takes **precedence** over ARG in run-time. Also, building the image with the flag ```--build-arg VERSION=2.0``` will have no effect as well in run-time.
+    ```Dockerfile
+    FROM ubuntu
+    ENV VERSION=3.0
+    ARG VERSION=1.0
+    RUN echo "Build-time: VERSION is set to ${VERSION:-}"
+    CMD ["bash", "-c", "echo Run-time: VERSION is set to ${VERSION:-}"]
+    ```
+    <p align = "center">
+    <img src = "./images/arg_env_example1.png" width = 600 height = 400> 
+    <br>Picture 6. Example of using ARG and ENV
+    </p>
+    <p align = "center">
+    <img src = "./images/arg_env_example2.png" width = 600 height = 400> 
+    <br>Picture 7. Example of using ARG and ENV
+    </p>
 
 - `COPY` vs `ADD`:
 
     - <p align = "justify"><code>COPY</code> and <code>ADD</code> are both <code>Dockerfile</code> instructions that let you copy files from a specific location into a Docker image.</p>
     - <p align = "justify"><code>COPY</code> command only copies the file <em>locally</em> to the destination path container. However, the <code>ADD</code> command can add files from <em>local</em> and <em>remote</em> sources through URLs.
     - <p align = "justify"> Moreover, <code>ADD</code> command can copy and automatically decompress a compressed file from the local source to the destination.</p>
-    - <p align = "justify">For safety reasons, Docker <em>discourages</em> the use of the <code>ADD</code> command and recommends using the <code>COPY</code> command to copy local files instead. If you need to download and copy files from the internet, Docker suggests using the <code>curl</code> command with a <code>RUN</code> command. The only recommended use case for <code>ADD</code> is to extract a local <code>tar</code> file into the image.</p>
+    - <p align = "justify"><strong>For safety reasons</strong>, Docker <em>discourages</em> the use of the <code>ADD</code> command and recommends using the <code>COPY</code> command to copy local files instead. If you need to download and copy files from the internet, Docker suggests using the <code>curl</code> command with a <code>RUN</code> command. The only recommended use case for <code>ADD</code> is to extract a local <code>tar</code> file into the image.</p>
+    
+    *Example:*
+    ```Dockerfile
+    FROM ubuntu
+    COPY normal.txt /tmp/
+    RUN cat /tmp/normal.txt
 
+    ADD compressed.zip /tmp/
+    RUN cat /tmp/compressed.txt
+    ```
+    <p align = "center">
+    <img src = "./images/copy_add.png" width = 600 height = 400> 
+    <br>Picture 8. Example of using COPY and ADD
+    </p>
 - `CMD` vs `ENTRYPOINT`:
 
     - <p align = "justify">Both <code>CMD</code> and <code>ENTRYPOINT</code> instructions define the commands that will be executed during <code>docker run</code>.
@@ -244,7 +282,36 @@ Containerization
     - <p align = "justify">Use <code>ENTRYPOINT</code> instructions when creating an executable Docker image with commands that must always be executed.
     - <p align = "justify">Use <code>CMD</code> instructions for an additional set of arguments that will serve as default instructions in case there is an explicit command line argument provided when the container runs.
     - <p align = "justify">If <code>ENTRYPOINT</code> and <code>CMD</code> are both used in a Dockerfile, everything specified in the <code>CMD</code> will be appended to the <code>ENTRYPOINT</code> as an argument.</p>
+    *Example*: Using CMD
+    ```Dockerfile
+    FROM ubuntu
+    ENTRYPOINT ["echo", "Hello world"]
+    ```
+    <p align = "center">
+    <img src = "./images/cmd_entrypoint.png" width = 600 height = 150> 
+    <br>Picture 9. Example of using CMD
+    </p>
 
+    *Example*: Using ENTRYPOINT
+    ```Dockerfile
+    FROM ubuntu
+    ENTRYPOINT ["echo", "Hello world"]
+    ```
+    <p align = "center">
+    <img src = "./images/cmd_entrypoint2.png" width = 600 height = 200> 
+    <br>Picture 10. Example of using CMD
+    </p>
+
+    *Example*: Using ENTRYPOINT and CMD
+    ```Dockerfile
+    FROM ubuntu
+    ENTRYPOINT ["echo", "Hello"]
+    CMD ["world"]
+    ```
+    <p align = "center">
+    <img src = "./images/cmd_entrypoint3.png" width = 600 height = 150> 
+    <br>Picture 11. Example of using ENTRYPOINT and CMD together
+    </p>
 - `RUN` vs `CMD` vs `ENTRYPOINT`:
 
     - <p align = "justify"><code>RUN</code> is used to execute commands during the build process of a Docker image. These commands are run in a new layer on top of the current image and their result is saved in the new image layer. It is often used for installing software packages.</p>
@@ -253,13 +320,12 @@ Containerization
 
 
 ### **2.4 Docker Compose**
-<a name='docker_compose'></a>
 
 <p align = "justify"><strong>Docker Compose</strong> is a tool for defining and running <em>multi-container</em> Docker applications. By using Compose, we can define the services in a <code>YAML</code> file. Then, with a single command, we create and start all the services from our configuration.</p>
 
 <p align = "center">
 <img src = "./images/docker_compose.png" width = 480 height = 240> 
-<br>Picture 6. A graphical illustration that shows how Docker compose works.
+<br>Picture 12. A graphical illustration that shows how Docker compose works.
 </p>
 
 <strong>Docker Compose</strong> is basically a three-step process:
@@ -294,9 +360,9 @@ Containerization
 - <p align = "justify"><strong>Using DockerSlim</strong>: Docker Slim is a tool for optimizing Dockerfiles and Docker images. It makes your containers betters, smaller and more secure. It can reduce image size up to <em>thirty times</em> without any manual optimization
 
 
-# **II. Practical Aspect**
+## **3. Homework**
 
-## **1. Requirements**
+### **3.1. Requirements**
 
 <p align = "justify">Set up a three-tier web application that displays the course attendees' information on the browser using <strong>docker-compose</strong>.</p>
 
@@ -307,10 +373,10 @@ Base images:
   
 <p align = "center">
 <img src = "./images/three-tier-web.png" width = 600 height = 240> 
-<br>Picture 7. Three-tier web architecture.
+<br>Picture 13. Three-tier web architecture.
 </p>
 
-## **2. Explaination**
+### **3.2. Explaination**
 
 **Dockerfile configuration**
 
@@ -336,7 +402,7 @@ CMD ["python3", "app.py"]
 ```
 **The Dockerfile provided includes a few optimization techniques:**
 
-- <p align = "justify">This Dockerfile sets up a <strong>multi-stage</strong> build process. The first stage sets up the database tier, while the second stage sets up the web application tier. Using multi-stage builds like this can help keep the resulting Docker image small and efficient. The first stage is only used to <em>initialize</em> the database and is not included in the final image, so the final image only includes the necessary components to run the web application. </p>
+- <p align = "justify">This Dockerfile sets up a <strong>multi-stage</strong> build process. The first stage sets up the database tier, while the second stage sets up the web application tier. Using multi-stage builds like this can help keep the resulting Docker image small and efficient. The first stage is only used to <em>initialize</em> the database and is not included in the final image, so the final image only includes the necessary components to run the web application. (<em>However, it should be noted that this is a demonstration of how to employ a multi-stage build process. My database initialization and web application can be built and run using the same dependencies and environment, so it may not need to use multi-stage builds. can use a single Dockerfile without separate stages)</em>.</p>
 - <p align = "justify"><strong>Lightweight base image</strong>: The Dockerfile uses the <code>python:3.9-alpine3.17</code> base image, which is a lightweight version of the Python 3.9 image. This helps reduce the size of the resulting Docker image. In Docker Hub images <strong>python:3.9-alpine</strong> and <strong>python:3.9-alpine3.17</strong> have the same size, but the latter specifies the exact version of Alpine Linux used (version 3.17). This helps ensure stability and compatibility, reducing the risk of unexpected behavior. Using a specific version also aids reproducibility by ensuring consistent behavior across different environments.</p>
 - <p align = "justify"><strong>Use caching</strong>: Firsly copy the <code>requirement.txt</code> file into the container, This is because this file is unlikely to change frequently, so Docker can use the cached version from a previous build if it hasn't changed. The <code>COPY init.py init.py</code> and <code>COPY . .</code> commands will copy neccessary and frequently changed code into the container. It can save time and improve build times.</p>
 - <p align = "justify"><strong>Use the local cache when installing the specified packages</strong>: When installing dependencies using pip, the <code>--no-cache-dir</code> flag is used. This flag tells pip not to use the local cache when installing packages, which can help reduce the size of the Docker image.</p>
@@ -382,12 +448,12 @@ CMD ["python3", "app.py"]
 
 <p align = "center">
 <img src = "./images/reverse_proxy.png" width = 500 height = 300> 
-<br>Picture 8. Reverse proxy using Nginx.
+<br>Picture 14. Reverse proxy using Nginx.
 </p>
 
 <p align = "center">
 <img src = "./images/loadbalancer.png" width = 500 height = 300> 
-<br>Picture 9. Load-balancer using Nginx.
+<br>Picture 15. Load-balancer using Nginx.
 </p>
 
 **Docker-compose configuration**
@@ -508,24 +574,24 @@ CMD ["python3", "app.py"]
 
     <p align = "justify">By using custom networks, you can isolate the communication between containers, control the traffic flow, and provide a secure environment for your application. Using custom networks in Docker can provide an additional layer of security to your application stack by limiting access to sensitive resources and controlling how containers communicate with each other.</p>
 
-## **3. Result**
+### **3.3. Result**
 
 <p align = "center">
 <img src = "./images/images_size.png" width = 600 height = 200> 
-<br>Picture 8. Built images.
+<br>Picture 16. Built images.
 </p>
 
 <p align = "center">
 <img src = "./images/containers.png" width =800 height = 100> 
-<br>Picture 9. Running containers.
+<br>Picture 17. Running containers.
 </p>
 
 <p align = "center">
-<img src = "./images/demo.gif" width = 600 height = 300> 
-<br>Picture 10. Demo web
+<img src = "./images/demo.gif" width = 800 height = 400> 
+<br>Picture 18. Demo web
 </p>
 
-# **References**
+## **References**
 
 [1] [What Is Containerization?](https://aws.amazon.com/what-is/containerization/)
 
