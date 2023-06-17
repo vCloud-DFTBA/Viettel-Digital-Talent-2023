@@ -1,0 +1,6 @@
+- name:
+hosts: all
+become: true
+gather_facts: false
+roles:
+- k8s-deploy

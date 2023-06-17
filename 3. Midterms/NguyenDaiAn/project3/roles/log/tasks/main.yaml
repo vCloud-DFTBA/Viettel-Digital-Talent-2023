@@ -1,0 +1,19 @@
+---
+- name: Build a fluentd image
+  community.docker.docker_image:
+    name: fluentd_image
+    build:
+       path: "{{ role_path }}/templates"
+    source: "build"
+    force_source: true
+- name: Build a fluentd container
+  community.docker.docker_container:
+    name: fluentd
+    image: fluentd_image
+    volumes: "{{ role_path }}/templates/fluentd.conf:/fluentd/etc/fluent.conf"
+    networks:
+      - name: project
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    restart_policy: unless-stopped

@@ -1,0 +1,10 @@
+---
+- name: Build a api image
+  community.docker.docker_image:
+    name: darejk/api_image
+    push: true
+    build:
+      path: "{{role_path}}/templates"
+    source: "build"
+    force_source: true
+

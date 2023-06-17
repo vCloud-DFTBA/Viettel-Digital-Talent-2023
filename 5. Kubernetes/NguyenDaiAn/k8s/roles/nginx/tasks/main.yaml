@@ -1,0 +1,19 @@
+---
+- name: Build a nginxweb image
+  community.docker.docker_image:
+    name: darejk/nginxweb_image
+    push: true
+    build:
+      path:  "{{role_path}}/templates/nginxweb"
+    source: "build"
+    force_source: yes
+  # shell: "docker build ./roles/nginx/templates -t nginx_image "
+    
+- name: Build a nginxapi image
+  community.docker.docker_image:
+    name: darejk/nginxapi_image
+    push: true
+    build:
+      path: "{{role_path}}/templates/nginxapi"
+    source: "build"
+    force_source: true

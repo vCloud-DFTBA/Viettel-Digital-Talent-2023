@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deploy
+  labels:
+    app: api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: nginxapi
+        image: darejk/nginxapi_image
+        ports:
+        - containerPort: 8001
+      - name: api
+        image: darejk/api_image
+        ports:
+        - containerPort: 8000

@@ -1,0 +1,94 @@
+# Ansible
+## Homework: Deploy your application in the docker-compose homework using ansible
+### Preparation
+
+Install required python libraries:
+
+    pip install ansible docker
+
+
+Ansible setup requires installing community collection for Docker through:
+
+    ansible-galaxy collection install community.docker
+
+Please also set the python directory inside inventory to the value of `which python` and add the needed sudo password.
+
+### Role 
+#### common
+Set up the main task:
+
+    ---
+    - name: Create Docker Network
+      community.docker.docker_network:
+        api_version: "auto"
+        name: project
+
+The main purpose of common is to setup docker network
+#### db
+Set up the main task:
+
+    ---
+    - name: Build db image
+      community.docker.docker_image:
+        name: db_image
+        build:
+          path: ./roles/db/templates
+        source: "build"
+        force_source: true
+        
+    - name: Create db container
+      community.docker.docker_container:
+        name: db
+        image: db_image
+        restart_policy: "unless-stopped"
+        networks:
+          - name: project
+
+Docker file and context are placed inside templates
+#### web
+Set up the main task:
+
+    ---
+    - name: Build a web image
+      community.docker.docker_image:
+        name: web_image
+        build:
+          path: ./roles/web/templates
+        source: "build"
+        force_source: true
+    
+    - name: Create a web container
+      community.docker.docker_container:
+        name: web
+        image: web_image
+        networks:
+          - name:  project
+        restart_policy: "unless-stopped"
+
+Docker file and context are placed inside templates
+#### api
+Set up the main task:
+
+    ---
+    - name: Build an api image
+      community.docker.docker_image:
+        name: api_image
+        build:
+          path: ./roles/api/templates
+        source: "build"
+        force_source: true
+    
+    - name: Create an api container
+      community.docker.docker_container:
+        name: nginx
+        image: api_image
+        ports:
+        - "8001:8001"
+        networks:
+          - name: project
+        restart_policy: "unless-stopped"
+
+Docker file and context are placed inside templates
+## Result
+![alt text](img/result.png)
+

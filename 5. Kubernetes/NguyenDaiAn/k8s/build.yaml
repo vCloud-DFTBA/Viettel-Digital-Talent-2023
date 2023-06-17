@@ -1,0 +1,10 @@
+- name:
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+  - db
+  - dockerhub
+  - web
+  - api
+  - nginx
