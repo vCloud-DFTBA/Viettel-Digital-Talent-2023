@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: xuanphu270101/phutx_python_image:k8s_exercise_v2
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APP_ENV
+              value: "prod"
+            - name: APP_DEBUG
+              value: "False"
+            - name: APP_PORT
+              value: "5000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
