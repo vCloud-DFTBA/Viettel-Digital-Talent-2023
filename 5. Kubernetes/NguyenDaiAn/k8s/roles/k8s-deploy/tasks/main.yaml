@@ -1,0 +1,26 @@
+---
+#- name: Create a k8s namespace
+#  k8s:
+#    name: "{{k8s_namespace}}"
+#    api_version: v1
+#    kind: Namespace
+#    state: present
+#    kubeconfig: "{{k8s_configdir}}"
+- name: Deploy k8s replica sets
+  kubernetes.core.k8s:
+    apply: true
+    state: present
+    kubeconfig: "{{k8s_configdir}}"
+    namespace: "{{k8s_namespace}}"
+    src:  "{{playbook_dir}}/deploys/{{item}}.yaml"
+  loop:
+  - db_configmap
+  - db_pv
+  - db_pvc
+  - db
+  - db_service
+  - web
+  - web_service
+  - api
+  - api_service
+    # - ingress

@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginxweb
+        image: darejk/nginxweb_image
+        ports:
+        - containerPort: 8000
+      - name: web
+        image: darejk/web_image
+        ports:
+        - containerPort: 8000

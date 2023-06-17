@@ -1,0 +1,5 @@
+---
+- name: Log into DockerHub
+  community.docker.docker_login:
+    username: "username cua ban"
+    password: "pass cua ban"

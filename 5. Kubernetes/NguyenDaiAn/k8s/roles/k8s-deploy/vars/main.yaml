@@ -1,0 +1,3 @@
+---
+k8s_configdir: "~/.kube/config"
+k8s_namespace: "default"

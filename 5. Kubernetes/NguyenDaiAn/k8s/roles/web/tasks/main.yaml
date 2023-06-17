@@ -1,0 +1,11 @@
+---
+- name: Build a web image
+  community.docker.docker_image:
+    name: darejk/web_image
+    push: true
+    build:
+      path: "{{ role_path }}/templates"
+    source: "build"
+    force_source: true
+      #  shell: "docker build ./roles/web/templates -t web_image"
+

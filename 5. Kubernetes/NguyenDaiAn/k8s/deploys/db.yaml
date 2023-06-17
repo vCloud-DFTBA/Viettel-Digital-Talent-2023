@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-stateful
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  serviceName: db-service
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: mongo:5.0
+        ports:
+        - containerPort: 27017
+          #args:
+          # - "--bind_ip"
+          #- "0.0.0.0"
+        volumeMounts:
+        - name: mongodb-pvc
+          mountPath: "/data/db"
+        - name: init-mongo
+          mountPath: "/docker-entrypoint-initdb.d/"
+          readOnly: true
+        env:
+        - name: MONGO_INITDB_DATABASE
+          value: data
+      volumes:
+      - name: init-mongo
+        # this does not work because pvc is not mounted before container is created
+        configMap:
+          name: db-init-configmap
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb-pvc
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 1Gi
