@@ -1,0 +1,15 @@
+resources:
+  - ./db/db-data-pv.yml
+  - ./db/db-data-pvc.yml
+  - ./db/db-deploy.yml
+  - ./db/db-service.yml
+  - ./be/be-deploy.yml
+  - ./be/be-service.yml
+  - ./nginx/nginx-deployment.yml
+  - ./nginx/nginx-service.yml
+configMapGenerator:
+  - name: db-init
+    files:
+      - attendees.csv
+      - init.sh
+      
