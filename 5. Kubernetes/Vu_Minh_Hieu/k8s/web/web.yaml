@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: frontend
+    labels:
+        app: frontend
+        component: frontend
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            component: frontend
+    template:
+        metadata:
+            labels:
+                app: frontend
+                component: frontend
+        spec:
+            containers:
+                - name: frontend
+                  image: hieuminhvuu/k8s_frontend
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 100Mi
+                  ports:
+                      - containerPort: 9333
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: frontend-service
+    labels:
+        app: frontend
+        component: frontend
+spec:
+    type: NodePort
+    selector:
+        component: frontend
+    ports:
+        - port: 9333
+          targetPort: 9333
+          protocol: TCP
+          nodePort: 30100
