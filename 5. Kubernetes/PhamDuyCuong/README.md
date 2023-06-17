@@ -3,9 +3,11 @@
 ## Table of contents
 
 <!-- TOC -->
+
+
 - [Kubernetes Overview](#kubernetes-overview)
     - [Kubernetes at a glance](#kubernetes-at-a-glance)
-        - [Master and Work components](#master-and-work-components)
+    - [Master and Work components](#master-and-work-components)
 - [Assigment](#assigment)
     - [I. Detailed step-by-step instructions to deploy the application by Kubenetes on local](#i-detailed-step-by-step-instructions-to-deploy-the-application-by-kubenetes-on-local)
         - [Install Kind and create Cluster](#install-kind-and-create-cluster)
@@ -15,14 +17,13 @@
         - [Create api deployment and service files](#create-api-deployment-and-service-files)
         - [Create web deployment and service files](#create-web-deployment-and-service-files)
     - [Logs and test the application](#logs-and-test-the-application)
-    - [II. Try to deploy web application on AWS EKS](#ii-try-to-deploy-web-application-on-aws-eks)
+    - [II. Try to deploy web application on AWS EKS and use helm to deploy statefulset mongodb](#ii-try-to-deploy-web-application-on-aws-eks-and-use-helm-to-deploy-statefulset-mongodb)
         - [What is Amazon EKS?](#what-is-amazon-eks)
         - [Amazon EKS control plane architecture](#amazon-eks-control-plane-architecture)
         - [How does Amazon EKS work?](#how-does-amazon-eks-work)
         - [Getting started with Amazon EKS](#getting-started-with-amazon-eks)
             - [Prerequisites](#prerequisites)
-            - [Amazon EBS CSI driver<a name="ebs-csi"></a>](#amazon-ebs-csi-drivera-nameebs-csia)
-    - [Summary](#summary)
+        - [Helm](#helm)
 
 <!-- /TOC -->
 
@@ -77,7 +78,7 @@ A cluster managed by **Kubernetes** basically has two large operational units: *
 
 Container management takes place at a higher and more refined level, without someone needs to actively micromanage containers and worker nodes individually.
 
-### Master and Work components
+## Master and Work components
 
 * **Container network interface (CNI)**: This plugin is a type of Network plugin that adheres to the appc/CNI specification. This is what enables connecting Pods running on different nodes and flexibility to integrate different kind of network solutions (overlays, pure L3, etc).
 * **etcd**: Consistent and highly-available key-value store used as **Kubernetes’** backing store for all cluster data. If your **Kubernetes** cluster uses **etcd** as its backing store, make sure you have a back up plan for those data.
@@ -344,7 +345,7 @@ This command apply all the Kubernetes YAML manifests in the current directory in
   <img width="1000" src="images/result_search.png" alt="containerization">
 </div>
 
-## II. Try to deploy web application on AWS EKS 
+## II. Try to deploy web application on AWS EKS and use `helm` to deploy statefulset `mongodb`
 ### What is Amazon EKS?
 Amazon Elastic Kubernetes Service (Amazon EKS) is a managed service that you can use to run Kubernetes on AWS without needing to install, operate, and maintain your own Kubernetes control plane or nodes. Kubernetes is an open-source system for automating the deployment, scaling, and management of containerized applications.
 For a list of other features, see Amazon EKS features.
@@ -425,8 +426,54 @@ Create or update a kubeconfig file for your cluster. Replace region-code with th
 ```
 aws eks update-kubeconfig --name VDT23 --region eu-north-1
 ```
+**Step 4**: Install `helm` and deploy statefulset `mongodb` 
 
-**Step 4**: Deploy all manifests file as on local but... 
+### Helm ###
+Helm is a package manager for Kubernetes that simplifies the deployment and management of applications and services on a Kubernetes cluster. 
+Use `Helm` to:
+- Find and use popular software packaged as Helm Charts to run in Kubernetes
+- Share your own applications as Helm Charts
+- Create reproducible builds of your Kubernetes applications
+- Intelligently manage your Kubernetes manifest files
+- Manage releases of Helm packages
+
+To deploy a stateful MongoDB instance with a replica set and passwords using Helm, you can follow these steps:
+
+4.1. **Install Helm**:
+   If you haven't installed Helm yet, you can follow the instructions in the [official documentation](https://helm.sh/docs/intro/install/).
+
+4.2. **Add the Bitnami Helm repository**:
+   The Bitnami repository provides a maintained MongoDB chart with support for passwords and replica sets.
+
+   ```
+   helm repo add bitnami https://charts.bitnami.com/bitnami
+   helm repo update
+   ```
+
+4.3. **Create a `values.yaml` file**:
+   Create a file named `values.yaml` to customize the deployment configuration. In this file, you can set the passwords and enable the replica set in `values.yaml`
+
+   ```yaml
+    architecture: replicaset
+    replicaSet:
+      enabled: true
+      useHostnames: true
+      service:
+        name: mongodb-service
+    replicaCount: 2
+    auth:
+      rootPassword: "123456"
+      usernames: ["vdt23"]
+      databases: ["VDT23"]get p
+   ```
+   kubectl get all
+   ```
+<div align="center">
+  <img width="1000" src="images/statefulset.png">
+</div>
+
+
+**Step 5**: Deploy all manifests file as on local but... 
 
 I cant creat `persistent volumes` on cluster. And I need to install `Amazon EBS CSI driver` to storage this.
 #### Amazon EBS CSI driver<a name="ebs-csi"></a>
@@ -450,6 +497,12 @@ After I installed the CSI driver, I can test the functionality with application.
 
 
 **Step 5**: Check through result :
+
+- All resources 
+<div align="center">
+  <img width="1000" src="images/getall.png" alt="containerization">
+</div>
+
 - Created volumes
 <div align="center">
   <img width="1000" src="images/volumes.png" alt="containerization">
