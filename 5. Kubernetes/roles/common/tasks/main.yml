@@ -40,7 +40,7 @@
       - docker
       - docker-compose
 - name: add user to Docker group
-  shell: "usermod -aG docker cloud_user"
+  shell: "usermod -aG docker vm1"
 
 
 
