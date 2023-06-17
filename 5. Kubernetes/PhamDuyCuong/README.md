@@ -429,20 +429,20 @@ Use `Helm` to:
 To deploy a stateful MongoDB instance with a replica set and passwords using Helm, you can follow these steps:
 
 4.1. **Install Helm**:
-   If you haven't installed Helm yet, you can follow the instructions in the [official documentation](https://helm.sh/docs/intro/install/).
+  If you haven't installed Helm yet, you can follow the instructions in the [official documentation](https://helm.sh/docs/intro/install/).
 
 4.2. **Add the Bitnami Helm repository**:
-   The Bitnami repository provides a maintained MongoDB chart with support for passwords and replica sets.
+  The Bitnami repository provides a maintained MongoDB chart with support for passwords and replica sets.
 
-   ```
-   helm repo add bitnami https://charts.bitnami.com/bitnami
-   helm repo update
-   ```
+  ```
+  helm repo add bitnami https://charts.bitnami.com/bitnami
+  helm repo update
+  ```
 
 4.3. **Create a `values.yaml` file**:
-   Create a file named `values.yaml` to customize the deployment configuration. In this file, you can set the passwords and enable the replica set in `values.yaml`
+  Create a file named `values.yaml` to customize the deployment configuration. In this file, you can set the passwords and enable the replica set in `values.yaml`
 
-   ```yaml
+  ```yaml
     architecture: replicaset
     replicaSet:
       enabled: true
@@ -453,10 +453,16 @@ To deploy a stateful MongoDB instance with a replica set and passwords using Hel
     auth:
       rootPassword: "123456"
       usernames: ["vdt23"]
-      databases: ["VDT23"]get p
-   ```
-   kubectl get all
-   ```
+      databases: ["VDT23"]
+  ```
+
+4.4. **Verify the deployment:**
+
+  Check the status of your deployment with the following command:
+  ```
+  kubectl get all
+  ```
+
 <div align="center">
   <img width="1000" src="images/statefulset.png">
 </div>
