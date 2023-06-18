@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: config-volume
+        configMap:
+          name: nginx-config
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30001
+  type: NodePort
