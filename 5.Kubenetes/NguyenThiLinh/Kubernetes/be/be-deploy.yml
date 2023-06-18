@@ -1,26 +1,26 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: be-deployment
-#   labels:
-#     app: be
-# spec:
-#   replicas: 2
-#   selector:
-#     matchLabels: 
-#       app: be
-#   template:
-#     metadata:
-#       labels:
-#         app: be
-#     spec:
-#       containers:
-#       - name: be-container
-#         image: liinhhnt/vdt-backendend:latest
-#         resources:
-#           limits:
-#             memory: "256Mi"
-#             cpu: "500m"
-#         ports:
-#           - containerPort: 5000
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be-deployment
+  labels:
+    app: be
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: be
+  template:
+    metadata:
+      labels:
+        app: be
+    spec:
+      containers:
+      - name: be-container
+        image: liinhhnt/vdt-backend:k8s
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 5000
         
