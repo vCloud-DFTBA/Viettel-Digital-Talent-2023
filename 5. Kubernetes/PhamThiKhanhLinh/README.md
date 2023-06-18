@@ -32,7 +32,7 @@ I use `configmap` and mount the creation script to initialize the collection in 
 kubectl create configmap mongo-configmap --from-file=./data
 ```
 
-**Deployment:** [`deployment.yaml`](/)
+**Deployment:** [`deployment.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/database/deployment.yaml)
 
 ```yaml
 apiVersion: apps/v1
@@ -92,7 +92,7 @@ spec:
             name: mongo-configmap
 ```
 
-**Service:** [`service.yaml`]()
+**Service:** [`service.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/database/service.yaml)
 
 ```yaml
 apiVersion: v1
@@ -112,7 +112,7 @@ spec:
     app: mongodb
 ```
 
-**Persistent Volume:** [`pv.yaml`]()
+**Persistent Volume:** [`pv.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/database/pv.yaml)
 
 ```yaml
 apiVersion: v1
@@ -132,7 +132,7 @@ spec:
   storageClassName: standard
 ```
 
-**Persistent Volume Claim:** [`pvc.yaml`]()
+**Persistent Volume Claim:** [`pvc.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/database/pvc.yaml)
 
 ```yaml
 apiVersion: v1
@@ -153,7 +153,7 @@ spec:
 
 #### **2. Backend Deployment and Service: Deploy a backend API server (e.g., Node.js, Flask, or any other framework) with multiple replicas. Expose the backend service within the cluster.**
 
-**Deployment:** [`deployment.yaml`]()
+**Deployment:** [`deployment.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/backend/deployment.yaml)
 
 ```yaml
 apiVersion: apps/v1
@@ -199,7 +199,7 @@ spec:
                   key: database
 ```
 
-**Service:** [`service.yaml`]()
+**Service:** [`service.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/backend/service.yaml)
 
 ```yaml
 apiVersion: v1
@@ -221,7 +221,7 @@ spec:
 
 #### **Frontend Deployment and Service: Deploy a frontend web server (e.g., Nginx) with multiple replicas. Expose the frontend service to access it from outside the cluster.**
 
-**Deployment:** [`deployment.yaml`]()
+**Deployment:** [`deployment.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/frontend/deployment.yaml)
 
 ```yaml
 apiVersion: apps/v1
@@ -253,7 +253,7 @@ spec:
               value: "http://localhost:30330"
 ```
 
-**Service:** [`service.yaml`]()
+**Service:** [`service.yaml`](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/k8s/5.%20Kubernetes/PhamThiKhanhLinh/frontend/service.yaml)
 
 ```yaml
 apiVersion: v1
