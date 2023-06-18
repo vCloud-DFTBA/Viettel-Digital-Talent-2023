@@ -5,6 +5,8 @@ metadata:
 spec:
   selector:
     app: be
+  type: NodePort
   ports:
-    - port: 5000
+    - nodePort: 31234
+      port: 5000
       targetPort: 5000

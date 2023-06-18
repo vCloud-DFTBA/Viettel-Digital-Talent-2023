@@ -4,7 +4,7 @@ metadata:
   name: db
 spec:
   selector:
-    app: db-deploy
+    app: db-port
   ports:
     - port: 27017
       targetPort: 27017
