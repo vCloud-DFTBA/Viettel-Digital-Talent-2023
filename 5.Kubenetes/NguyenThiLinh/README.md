@@ -297,7 +297,7 @@ Author: **Nguyen Thi Linh**
 
   ```
 
-- To connect database, I use `db` service name in MONGOURI `db:27017`
+- To connect database, I use `db` service name in MONGO_URI `db:27017` (in backend image)
 
 - Finally, create a Kubernetes service `be` and expose this service within the cluster:
 
