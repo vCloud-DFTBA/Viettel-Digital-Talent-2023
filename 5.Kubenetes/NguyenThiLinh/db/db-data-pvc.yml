@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeName: db-data-pv
+  resources:
+    requests:
+      storage: 500Mi
+  storageClassName: standard

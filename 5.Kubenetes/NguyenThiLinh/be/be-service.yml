@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: be
+spec:
+  selector:
+    app: be
+  type: NodePort
+  ports:
+    - nodePort: 31234
+      port: 5000
+      targetPort: 5000
