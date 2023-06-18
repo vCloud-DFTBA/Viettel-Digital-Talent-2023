@@ -2,15 +2,12 @@
 
 ## **Mục lục:**
 
-- [1. Tổng quan về giao thức AMQP](#tổng-quan-về-giao-thức-amqp)
-- [2. Kiến trúc project](#kiến-trúc-project)
-- [3. Đặc tả chương trình](#đặc-tả-chương-trình)
-- [3.1. Chương trình hiển thị thông tin các cảm biến thực hiện kết nối với gateway](#chương-trình-hiển-thị-thông-tin-các-cảm-biến-thực-hiện-kết-nối-với-gateway)
-- [3.2. Chương trình sinh dữ liệu cho các cảm biến: tự động sinh dữ liệu cảm biến và gửi dữ liệu lên gateway. Chương trình hiển thị dữ liệu nhận được phía gateway (sử dụng các biểu đồ line chart, bar chart, pie chart để hiển thị)](#chương-trình-sinh-dữ-liệu-cho-các-cảm-biến-tự-động-sinh-dữ-liệu-cảm-biến-và-gửi-dữ-liệu-lên-gateway-chương-trình-hiển-thị-dữ-liệu-nhận-được-phía-gateway-sử-dụng-các-biểu-đồ-line-chart-bar-chart-pie-chart-để-hiển-thị)
-- [3.3. Chương trình hiển thị thông tin điều khiển tại các cảm biến (được gửi từ gateway)](#chương-trình-hiển-thị-thông-tin-điều-khiển-tại-các-cảm-biến-được-gửi-từ-gateway)
-- [3.4. Chương trình hiển thị đánh giá hiệu năng của giao thức: Throughput, delay, v.v. khi số lượng node cảm biến tăng lên.](#chương-trình-hiển-thị-đánh-giá-hiệu-năng-của-giao-thức-throughput-delay-vv-khi-số-lượng-node-cảm-biến-tăng-lên)
-- [3.5. Chương trình hiển thị đánh giá số lượng tối đa các node cảm biến có thể kết nối đến gateway](#chương-trình-hiển-thị-đánh-giá-số-lượng-tối-đa-các-node-cảm-biến-có-thể-kết-nối-đến-gateway)
-- [4. Tài liệu tham khảo](#tài-liệu-tham-khảo)
+- [1. Cài đặt kubernetes cluster bằng minikube](#1-cài-đặt-kubernetes-cluster-bằng-minikube)
+- [2. Deploy mongodb](#2-deploy-mongodb)
+- [3. Deploying Flask App](#3-deploy-flask-app)
+- [4. Deploying Nginx](#4-deploy-nginx)
+- [5. Deploy auto-scale](#5-deploy-auto-scale)
+
 
 
 ## **1. Cài đặt kubernetes cluster bằng minikube**
