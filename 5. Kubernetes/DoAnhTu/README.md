@@ -474,6 +474,14 @@ spec:
   type: NodePort
 
 ```
+
+
+Trong pod của flask kiểm tra kết nối tới mongodb
+    <div align="center">
+        <img src="./img/internal1.png" width="1000" />
+        <p>curl mongodb:27017</p>
+    </div>
+
 Cấu hình gần tương tự với flask app là mode `RollingUpdate` và `Replicas:3`
 
 
@@ -492,6 +500,16 @@ Kết quả:
 
 
 Do service của nginx sử dụng `type:NodePort` với cổng 30001 cho nên có thể truy cập từ bên ngoài vào port 30001 và IP của minikube để vào web.
+
+
+Trong pod của nginx kiểm tra kết nối tới flaskapp(appuser)
+    <div align="center">
+        <img src="./img/internal2.png" width="1000" />
+        <p>curl appuser:5000</p>
+    </div>
+
+
+
 
 Kiểm tra ip của minikube để truy cập dùng lệnh `minikube profile list`.
     <div align="center">
