@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  labels:
+    app: vdt-k8s
+spec:
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+      nodePort: 30331
+  type: NodePort
+  selector:
+    app: mongodb

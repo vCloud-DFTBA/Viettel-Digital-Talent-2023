@@ -1,0 +1,21 @@
+- name: Build Fluentd image
+  community.docker.docker_image:
+    name: "{{ IMAGE_NAME }}"
+    build:
+      path: ./roles/log/fluentd
+    source: build
+  become: yes
+
+- name: Run Fluentd container
+  community.docker.docker_container:
+    name: fluentd
+    image: "{{ IMAGE_NAME }}"
+    hostname: fluentd
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ FLUENTD_VOLUME }}"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+  tags: docker
+  become: yes

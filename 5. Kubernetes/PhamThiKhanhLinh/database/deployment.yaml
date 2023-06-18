@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  selector:
+    matchLabels:
+      app: mongodb
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: vdt-k8s-db
+          image: mongo:5.0
+          imagePullPolicy: Always
+          env:
+            - name: MONGO_INITDB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-creds
+                  key: database
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-creds
+                  key: username
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-creds
+                  key: password
+          ports:
+            - containerPort: 27017
+              name: mongodb
+          volumeMounts:
+            - name: mongodb-persistent-storage
+              mountPath: /data/db
+            - name: init-mongo
+              mountPath: /docker-entrypoint-initdb.d/
+      volumes:
+        - name: mongodb-persistent-storage
+          persistentVolumeClaim:
+            claimName: mongodb-pvc
+        - name: init-mongo
+          configMap:
+            name: mongo-configmap

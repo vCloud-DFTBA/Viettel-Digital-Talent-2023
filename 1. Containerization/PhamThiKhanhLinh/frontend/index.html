@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Danh sách Viettel Digital 2023</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="table-title">
+      <h1>Danh sách học viên Viettel Digital Talent 2023</h1>
+    </div>
+    <div id="div-table">
+      <table id="table-content">
+        <thead id="thead">
+          <th id="no">STT</th>
+          <th id="name">Tên</th>
+          <th id="yearOfBirth">Năm sinh</th>
+          <th id="sex">Giới tính</th>
+          <th id="university">Trường</th>
+          <th id="major">Ngành học</th>
+        </thead>
+        <tr id="tr-content"></tr>
+      </table>
+    </div>
+    <script>
+      // Get data from backend
+      const fetchData = fetch("http://localhost/api").then((response) =>
+        response.json().then((data) => {
+          return data;
+        })
+      );
+
+      const dataTable = async () => {
+        const data = await fetchData;
+        let array = [];
+        data.sort((fir, sec) => {
+          return fir.no - sec.no;
+        });
+
+        // Create table from data
+        let table = document.getElementById("table-content");
+        let thead = document.getElementById("thead");
+        let row = thead.insertRow();
+
+        for (let element of data) {
+          let row = table.insertRow();
+          for (key in element) {
+            let cell = row.insertCell();
+            let text = document.createTextNode(element[key]);
+            cell.appendChild(text);
+          }
+        }
+      };
+
+      dataTable();
+    </script>
+  </body>
+</html>

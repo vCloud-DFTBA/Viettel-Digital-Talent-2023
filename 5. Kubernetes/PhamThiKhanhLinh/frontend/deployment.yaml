@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        component: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: khanhlinh/frontend-vdt:v2.0.0
+          ports:
+            - containerPort: 3030
+              name: frontend
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://localhost:30330"

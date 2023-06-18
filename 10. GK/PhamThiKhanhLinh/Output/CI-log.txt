@@ -1,0 +1,590 @@
+2023-05-21T19:22:00.5835504Z Requested labels: ubuntu-latest
+2023-05-21T19:22:00.5835784Z Job defined at: khanhlinhh/vdt2023-midterm-project/.github/workflows/test_api.yaml@refs/heads/main
+2023-05-21T19:22:00.5835869Z Waiting for a runner to pick up this job...
+2023-05-21T19:22:00.8015952Z Job is waiting for a hosted runner to come online.
+2023-05-21T19:22:04.1314698Z Job is about to start running on the hosted runner: GitHub Actions 2 (hosted)
+2023-05-21T19:22:06.8377363Z Current runner version: '2.304.0'
+2023-05-21T19:22:06.8409450Z ##[group]Operating System
+2023-05-21T19:22:06.8410227Z Ubuntu
+2023-05-21T19:22:06.8410592Z 22.04.2
+2023-05-21T19:22:06.8410886Z LTS
+2023-05-21T19:22:06.8411268Z ##[endgroup]
+2023-05-21T19:22:06.8411707Z ##[group]Runner Image
+2023-05-21T19:22:06.8412146Z Image: ubuntu-22.04
+2023-05-21T19:22:06.8412554Z Version: 20230507.1
+2023-05-21T19:22:06.8413134Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20230507.1/images/linux/Ubuntu2204-Readme.md
+2023-05-21T19:22:06.8413952Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20230507.1
+2023-05-21T19:22:06.8414538Z ##[endgroup]
+2023-05-21T19:22:06.8414987Z ##[group]Runner Image Provisioner
+2023-05-21T19:22:06.8415414Z 2.0.171.1
+2023-05-21T19:22:06.8415723Z ##[endgroup]
+2023-05-21T19:22:06.8416609Z ##[group]GITHUB_TOKEN Permissions
+2023-05-21T19:22:06.8417252Z Contents: read
+2023-05-21T19:22:06.8417665Z Metadata: read
+2023-05-21T19:22:06.8418335Z Packages: read
+2023-05-21T19:22:06.8418817Z ##[endgroup]
+2023-05-21T19:22:06.8423050Z Secret source: Actions
+2023-05-21T19:22:06.8423748Z Prepare workflow directory
+2023-05-21T19:22:06.9323461Z Prepare all required actions
+2023-05-21T19:22:06.9544695Z Getting action download info
+2023-05-21T19:22:07.4364104Z Download action repository 'actions/checkout@v3' (SHA:8e5e7e5ab8b370d6c329ec480221332ada57f0ab)
+2023-05-21T19:22:08.1438220Z Download action repository 'actions/setup-python@v3' (SHA:48e4ac706204bab735867521ba54b3276c883d00)
+2023-05-21T19:22:08.7032243Z Download action repository 'supercharge/mongodb-github-action@1.8.0' (SHA:538a4d2a1041920c47630172445cb688592d6e51)
+2023-05-21T19:22:09.2029825Z Complete job name: Testing API
+2023-05-21T19:22:09.2919781Z ##[group]Build container for action use: '/home/runner/work/_actions/supercharge/mongodb-github-action/1.8.0/Dockerfile'.
+2023-05-21T19:22:09.3003193Z ##[command]/usr/bin/docker build -t ed866e:0e2079aa86d8491bb3163714b6bc4e24 -f "/home/runner/work/_actions/supercharge/mongodb-github-action/1.8.0/Dockerfile" "/home/runner/work/_actions/supercharge/mongodb-github-action/1.8.0"
+2023-05-21T19:22:09.5181366Z Sending build context to Docker daemon  39.94kB
+2023-05-21T19:22:09.5183006Z 
+2023-05-21T19:22:09.5609874Z Step 1/4 : FROM docker:stable
+2023-05-21T19:22:10.6441009Z stable: Pulling from library/docker
+2023-05-21T19:22:10.9196117Z 188c0c94c7c5: Pulling fs layer
+2023-05-21T19:22:10.9197101Z 0c7c675703d6: Pulling fs layer
+2023-05-21T19:22:10.9197496Z cc8c12a437cb: Pulling fs layer
+2023-05-21T19:22:10.9197877Z f092543453df: Pulling fs layer
+2023-05-21T19:22:10.9198251Z 65b6bc45957d: Pulling fs layer
+2023-05-21T19:22:10.9198626Z 4de832df471b: Pulling fs layer
+2023-05-21T19:22:10.9199384Z 79aa7fa92271: Pulling fs layer
+2023-05-21T19:22:10.9199685Z 65b6bc45957d: Waiting
+2023-05-21T19:22:10.9200081Z 4de832df471b: Waiting
+2023-05-21T19:22:10.9200367Z 79aa7fa92271: Waiting
+2023-05-21T19:22:10.9200625Z f092543453df: Waiting
+2023-05-21T19:22:11.1811475Z cc8c12a437cb: Verifying Checksum
+2023-05-21T19:22:11.1815260Z cc8c12a437cb: Download complete
+2023-05-21T19:22:11.2024276Z 0c7c675703d6: Verifying Checksum
+2023-05-21T19:22:11.2028536Z 0c7c675703d6: Download complete
+2023-05-21T19:22:11.2060096Z 188c0c94c7c5: Verifying Checksum
+2023-05-21T19:22:11.2067044Z 188c0c94c7c5: Download complete
+2023-05-21T19:22:11.3675824Z 188c0c94c7c5: Pull complete
+2023-05-21T19:22:11.4641864Z 65b6bc45957d: Verifying Checksum
+2023-05-21T19:22:11.4713440Z 65b6bc45957d: Download complete
+2023-05-21T19:22:11.4765146Z 4de832df471b: Verifying Checksum
+2023-05-21T19:22:11.4811085Z 4de832df471b: Download complete
+2023-05-21T19:22:11.6558888Z 0c7c675703d6: Pull complete
+2023-05-21T19:22:11.7325321Z cc8c12a437cb: Pull complete
+2023-05-21T19:22:11.7569325Z 79aa7fa92271: Verifying Checksum
+2023-05-21T19:22:11.7618894Z 79aa7fa92271: Download complete
+2023-05-21T19:22:11.9314789Z f092543453df: Verifying Checksum
+2023-05-21T19:22:11.9315581Z f092543453df: Download complete
+2023-05-21T19:22:14.4734785Z f092543453df: Pull complete
+2023-05-21T19:22:14.5434079Z 65b6bc45957d: Pull complete
+2023-05-21T19:22:14.6064875Z 4de832df471b: Pull complete
+2023-05-21T19:22:14.6568088Z 79aa7fa92271: Pull complete
+2023-05-21T19:22:14.6642494Z Digest: sha256:fd4d028713fd05a1fb896412805daed82c4a0cc84331d8dad00cb596d7ce3e3a
+2023-05-21T19:22:14.6671171Z Status: Downloaded newer image for docker:stable
+2023-05-21T19:22:14.6686068Z  ---> b0757c55a1fd
+2023-05-21T19:22:14.6686710Z Step 2/4 : COPY start-mongodb.sh /start-mongodb.sh
+2023-05-21T19:22:15.0106710Z  ---> a09c19afd530
+2023-05-21T19:22:15.0107042Z Step 3/4 : RUN chmod +x /start-mongodb.sh
+2023-05-21T19:22:15.0302484Z  ---> Running in c5b5d6fef87f
+2023-05-21T19:22:16.0134287Z Removing intermediate container c5b5d6fef87f
+2023-05-21T19:22:16.0134613Z  ---> 8b2acf6162ab
+2023-05-21T19:22:16.0134920Z Step 4/4 : ENTRYPOINT ["/start-mongodb.sh"]
+2023-05-21T19:22:16.0298164Z  ---> Running in 37f2c3883a39
+2023-05-21T19:22:17.0095740Z Removing intermediate container 37f2c3883a39
+2023-05-21T19:22:17.0096117Z  ---> 14730cf2db3e
+2023-05-21T19:22:17.0100808Z Successfully built 14730cf2db3e
+2023-05-21T19:22:17.0138171Z Successfully tagged ed866e:0e2079aa86d8491bb3163714b6bc4e24
+2023-05-21T19:22:17.0160183Z ##[endgroup]
+2023-05-21T19:22:17.0604557Z ##[group]Run actions/checkout@v3
+2023-05-21T19:22:17.0604884Z with:
+2023-05-21T19:22:17.0605216Z   repository: khanhlinhh/vdt2023-midterm-project
+2023-05-21T19:22:17.0605831Z   token: ***
+2023-05-21T19:22:17.0606076Z   ssh-strict: true
+2023-05-21T19:22:17.0606360Z   persist-credentials: true
+2023-05-21T19:22:17.0606643Z   clean: true
+2023-05-21T19:22:17.0606894Z   fetch-depth: 1
+2023-05-21T19:22:17.0607554Z   lfs: false
+2023-05-21T19:22:17.0607939Z   submodules: false
+2023-05-21T19:22:17.0608233Z   set-safe-directory: true
+2023-05-21T19:22:17.0608524Z ##[endgroup]
+2023-05-21T19:22:17.3750609Z Syncing repository: khanhlinhh/vdt2023-midterm-project
+2023-05-21T19:22:17.3752628Z ##[group]Getting Git version info
+2023-05-21T19:22:17.3753305Z Working directory is '/home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project'
+2023-05-21T19:22:17.3754035Z [command]/usr/bin/git version
+2023-05-21T19:22:17.3904564Z git version 2.40.1
+2023-05-21T19:22:17.3937029Z ##[endgroup]
+2023-05-21T19:22:17.3962435Z Temporarily overriding HOME='/home/runner/work/_temp/facc24c2-6443-4df0-a852-1b506fd85f1c' before making global git config changes
+2023-05-21T19:22:17.3963036Z Adding repository directory to the temporary git global config as a safe directory
+2023-05-21T19:22:17.3971949Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project
+2023-05-21T19:22:17.4043973Z Deleting the contents of '/home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project'
+2023-05-21T19:22:17.4053951Z ##[group]Initializing the repository
+2023-05-21T19:22:17.4062356Z [command]/usr/bin/git init /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project
+2023-05-21T19:22:17.4209240Z hint: Using 'master' as the name for the initial branch. This default branch name
+2023-05-21T19:22:17.4209962Z hint: is subject to change. To configure the initial branch name to use in all
+2023-05-21T19:22:17.4210555Z hint: of your new repositories, which will suppress this warning, call:
+2023-05-21T19:22:17.4211050Z hint: 
+2023-05-21T19:22:17.4211786Z hint: 	git config --global init.defaultBranch <name>
+2023-05-21T19:22:17.4212287Z hint: 
+2023-05-21T19:22:17.4212777Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2023-05-21T19:22:17.4213391Z hint: 'development'. The just-created branch can be renamed via this command:
+2023-05-21T19:22:17.4213817Z hint: 
+2023-05-21T19:22:17.4214168Z hint: 	git branch -m <name>
+2023-05-21T19:22:17.4227280Z Initialized empty Git repository in /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project/.git/
+2023-05-21T19:22:17.4240979Z [command]/usr/bin/git remote add origin https://github.com/khanhlinhh/vdt2023-midterm-project
+2023-05-21T19:22:17.4303225Z ##[endgroup]
+2023-05-21T19:22:17.4304105Z ##[group]Disabling automatic garbage collection
+2023-05-21T19:22:17.4312020Z [command]/usr/bin/git config --local gc.auto 0
+2023-05-21T19:22:17.4350037Z ##[endgroup]
+2023-05-21T19:22:17.4350565Z ##[group]Setting up auth
+2023-05-21T19:22:17.4357923Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2023-05-21T19:22:17.4395970Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2023-05-21T19:22:17.4909321Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2023-05-21T19:22:17.4939211Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2023-05-21T19:22:17.5208559Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2023-05-21T19:22:17.5247416Z ##[endgroup]
+2023-05-21T19:22:17.5248197Z ##[group]Fetching the repository
+2023-05-21T19:22:17.5258287Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +1d434034917a2b69ae50179458776b0d09fad62c:refs/remotes/origin/main
+2023-05-21T19:22:17.9563005Z remote: Enumerating objects: 90, done.        
+2023-05-21T19:22:17.9563795Z remote: Counting objects:   1% (1/90)        
+2023-05-21T19:22:17.9573555Z remote: Counting objects:   2% (2/90)        
+2023-05-21T19:22:17.9574884Z remote: Counting objects:   3% (3/90)        
+2023-05-21T19:22:17.9575385Z remote: Counting objects:   4% (4/90)        
+2023-05-21T19:22:17.9575835Z remote: Counting objects:   5% (5/90)        
+2023-05-21T19:22:17.9576354Z remote: Counting objects:   6% (6/90)        
+2023-05-21T19:22:17.9576804Z remote: Counting objects:   7% (7/90)        
+2023-05-21T19:22:17.9577250Z remote: Counting objects:   8% (8/90)        
+2023-05-21T19:22:17.9577720Z remote: Counting objects:  10% (9/90)        
+2023-05-21T19:22:17.9578162Z remote: Counting objects:  11% (10/90)        
+2023-05-21T19:22:17.9578611Z remote: Counting objects:  12% (11/90)        
+2023-05-21T19:22:17.9579041Z remote: Counting objects:  13% (12/90)        
+2023-05-21T19:22:17.9579487Z remote: Counting objects:  14% (13/90)        
+2023-05-21T19:22:17.9579930Z remote: Counting objects:  15% (14/90)        
+2023-05-21T19:22:17.9580366Z remote: Counting objects:  16% (15/90)        
+2023-05-21T19:22:17.9580778Z remote: Counting objects:  17% (16/90)        
+2023-05-21T19:22:17.9581210Z remote: Counting objects:  18% (17/90)        
+2023-05-21T19:22:17.9581637Z remote: Counting objects:  20% (18/90)        
+2023-05-21T19:22:17.9582070Z remote: Counting objects:  21% (19/90)        
+2023-05-21T19:22:17.9582501Z remote: Counting objects:  22% (20/90)        
+2023-05-21T19:22:17.9582926Z remote: Counting objects:  23% (21/90)        
+2023-05-21T19:22:17.9583351Z remote: Counting objects:  24% (22/90)        
+2023-05-21T19:22:17.9583775Z remote: Counting objects:  25% (23/90)        
+2023-05-21T19:22:17.9584210Z remote: Counting objects:  26% (24/90)        
+2023-05-21T19:22:17.9584648Z remote: Counting objects:  27% (25/90)        
+2023-05-21T19:22:17.9585075Z remote: Counting objects:  28% (26/90)        
+2023-05-21T19:22:17.9585484Z remote: Counting objects:  30% (27/90)        
+2023-05-21T19:22:17.9585915Z remote: Counting objects:  31% (28/90)        
+2023-05-21T19:22:17.9586362Z remote: Counting objects:  32% (29/90)        
+2023-05-21T19:22:17.9586794Z remote: Counting objects:  33% (30/90)        
+2023-05-21T19:22:17.9587223Z remote: Counting objects:  34% (31/90)        
+2023-05-21T19:22:17.9587648Z remote: Counting objects:  35% (32/90)        
+2023-05-21T19:22:17.9588096Z remote: Counting objects:  36% (33/90)        
+2023-05-21T19:22:17.9588513Z remote: Counting objects:  37% (34/90)        
+2023-05-21T19:22:17.9588944Z remote: Counting objects:  38% (35/90)        
+2023-05-21T19:22:17.9590102Z remote: Counting objects:  40% (36/90)        
+2023-05-21T19:22:17.9590541Z remote: Counting objects:  41% (37/90)        
+2023-05-21T19:22:17.9590982Z remote: Counting objects:  42% (38/90)        
+2023-05-21T19:22:17.9591398Z remote: Counting objects:  43% (39/90)        
+2023-05-21T19:22:17.9591827Z remote: Counting objects:  44% (40/90)        
+2023-05-21T19:22:17.9592258Z remote: Counting objects:  45% (41/90)        
+2023-05-21T19:22:17.9592690Z remote: Counting objects:  46% (42/90)        
+2023-05-21T19:22:17.9593116Z remote: Counting objects:  47% (43/90)        
+2023-05-21T19:22:17.9593544Z remote: Counting objects:  48% (44/90)        
+2023-05-21T19:22:17.9593953Z remote: Counting objects:  50% (45/90)        
+2023-05-21T19:22:17.9594374Z remote: Counting objects:  51% (46/90)        
+2023-05-21T19:22:17.9594802Z remote: Counting objects:  52% (47/90)        
+2023-05-21T19:22:17.9595234Z remote: Counting objects:  53% (48/90)        
+2023-05-21T19:22:17.9595712Z remote: Counting objects:  54% (49/90)        
+2023-05-21T19:22:17.9596121Z remote: Counting objects:  55% (50/90)        
+2023-05-21T19:22:17.9596551Z remote: Counting objects:  56% (51/90)        
+2023-05-21T19:22:17.9597222Z remote: Counting objects:  57% (52/90)        
+2023-05-21T19:22:17.9597659Z remote: Counting objects:  58% (53/90)        
+2023-05-21T19:22:17.9598092Z remote: Counting objects:  60% (54/90)        
+2023-05-21T19:22:17.9598520Z remote: Counting objects:  61% (55/90)        
+2023-05-21T19:22:17.9598931Z remote: Counting objects:  62% (56/90)        
+2023-05-21T19:22:17.9599356Z remote: Counting objects:  63% (57/90)        
+2023-05-21T19:22:17.9599785Z remote: Counting objects:  64% (58/90)        
+2023-05-21T19:22:17.9600222Z remote: Counting objects:  65% (59/90)        
+2023-05-21T19:22:17.9600650Z remote: Counting objects:  66% (60/90)        
+2023-05-21T19:22:17.9601062Z remote: Counting objects:  67% (61/90)        
+2023-05-21T19:22:17.9601493Z remote: Counting objects:  68% (62/90)        
+2023-05-21T19:22:17.9601931Z remote: Counting objects:  70% (63/90)        
+2023-05-21T19:22:17.9602359Z remote: Counting objects:  71% (64/90)        
+2023-05-21T19:22:17.9602795Z remote: Counting objects:  72% (65/90)        
+2023-05-21T19:22:17.9603225Z remote: Counting objects:  73% (66/90)        
+2023-05-21T19:22:17.9603634Z remote: Counting objects:  74% (67/90)        
+2023-05-21T19:22:17.9604056Z remote: Counting objects:  75% (68/90)        
+2023-05-21T19:22:17.9604490Z remote: Counting objects:  76% (69/90)        
+2023-05-21T19:22:17.9604916Z remote: Counting objects:  77% (70/90)        
+2023-05-21T19:22:17.9605340Z remote: Counting objects:  78% (71/90)        
+2023-05-21T19:22:17.9605746Z remote: Counting objects:  80% (72/90)        
+2023-05-21T19:22:17.9606173Z remote: Counting objects:  81% (73/90)        
+2023-05-21T19:22:17.9606599Z remote: Counting objects:  82% (74/90)        
+2023-05-21T19:22:17.9607028Z remote: Counting objects:  83% (75/90)        
+2023-05-21T19:22:17.9607474Z remote: Counting objects:  84% (76/90)        
+2023-05-21T19:22:17.9607903Z remote: Counting objects:  85% (77/90)        
+2023-05-21T19:22:17.9608316Z remote: Counting objects:  86% (78/90)        
+2023-05-21T19:22:17.9608751Z remote: Counting objects:  87% (79/90)        
+2023-05-21T19:22:17.9609179Z remote: Counting objects:  88% (80/90)        
+2023-05-21T19:22:17.9609607Z remote: Counting objects:  90% (81/90)        
+2023-05-21T19:22:17.9610091Z remote: Counting objects:  91% (82/90)        
+2023-05-21T19:22:17.9610496Z remote: Counting objects:  92% (83/90)        
+2023-05-21T19:22:17.9610922Z remote: Counting objects:  93% (84/90)        
+2023-05-21T19:22:17.9611343Z remote: Counting objects:  94% (85/90)        
+2023-05-21T19:22:17.9611768Z remote: Counting objects:  95% (86/90)        
+2023-05-21T19:22:17.9612197Z remote: Counting objects:  96% (87/90)        
+2023-05-21T19:22:17.9612620Z remote: Counting objects:  97% (88/90)        
+2023-05-21T19:22:17.9613030Z remote: Counting objects:  98% (89/90)        
+2023-05-21T19:22:17.9613645Z remote: Counting objects: 100% (90/90)        
+2023-05-21T19:22:17.9614100Z remote: Counting objects: 100% (90/90), done.        
+2023-05-21T19:22:17.9614599Z remote: Compressing objects:   1% (1/70)        
+2023-05-21T19:22:17.9615082Z remote: Compressing objects:   2% (2/70)        
+2023-05-21T19:22:17.9615535Z remote: Compressing objects:   4% (3/70)        
+2023-05-21T19:22:17.9615999Z remote: Compressing objects:   5% (4/70)        
+2023-05-21T19:22:17.9616451Z remote: Compressing objects:   7% (5/70)        
+2023-05-21T19:22:17.9616925Z remote: Compressing objects:   8% (6/70)        
+2023-05-21T19:22:17.9617382Z remote: Compressing objects:  10% (7/70)        
+2023-05-21T19:22:17.9617836Z remote: Compressing objects:  11% (8/70)        
+2023-05-21T19:22:17.9618287Z remote: Compressing objects:  12% (9/70)        
+2023-05-21T19:22:17.9626803Z remote: Compressing objects:  14% (10/70)        
+2023-05-21T19:22:17.9627131Z remote: Compressing objects:  15% (11/70)        
+2023-05-21T19:22:17.9627465Z remote: Compressing objects:  17% (12/70)        
+2023-05-21T19:22:17.9628075Z remote: Compressing objects:  18% (13/70)        
+2023-05-21T19:22:17.9628616Z remote: Compressing objects:  20% (14/70)        
+2023-05-21T19:22:17.9628945Z remote: Compressing objects:  21% (15/70)        
+2023-05-21T19:22:17.9629258Z remote: Compressing objects:  22% (16/70)        
+2023-05-21T19:22:17.9629557Z remote: Compressing objects:  24% (17/70)        
+2023-05-21T19:22:17.9629993Z remote: Compressing objects:  25% (18/70)        
+2023-05-21T19:22:17.9630470Z remote: Compressing objects:  27% (19/70)        
+2023-05-21T19:22:17.9630828Z remote: Compressing objects:  28% (20/70)        
+2023-05-21T19:22:17.9631164Z remote: Compressing objects:  30% (21/70)        
+2023-05-21T19:22:17.9631496Z remote: Compressing objects:  31% (22/70)        
+2023-05-21T19:22:17.9631810Z remote: Compressing objects:  32% (23/70)        
+2023-05-21T19:22:17.9632138Z remote: Compressing objects:  34% (24/70)        
+2023-05-21T19:22:17.9632475Z remote: Compressing objects:  35% (25/70)        
+2023-05-21T19:22:17.9632805Z remote: Compressing objects:  37% (26/70)        
+2023-05-21T19:22:17.9633143Z remote: Compressing objects:  38% (27/70)        
+2023-05-21T19:22:17.9633473Z remote: Compressing objects:  40% (28/70)        
+2023-05-21T19:22:17.9633788Z remote: Compressing objects:  41% (29/70)        
+2023-05-21T19:22:17.9634122Z remote: Compressing objects:  42% (30/70)        
+2023-05-21T19:22:17.9634591Z remote: Compressing objects:  44% (31/70)        
+2023-05-21T19:22:17.9634897Z remote: Compressing objects:  45% (32/70)        
+2023-05-21T19:22:17.9635204Z remote: Compressing objects:  47% (33/70)        
+2023-05-21T19:22:17.9635498Z remote: Compressing objects:  48% (34/70)        
+2023-05-21T19:22:17.9635806Z remote: Compressing objects:  50% (35/70)        
+2023-05-21T19:22:17.9636111Z remote: Compressing objects:  51% (36/70)        
+2023-05-21T19:22:17.9636416Z remote: Compressing objects:  52% (37/70)        
+2023-05-21T19:22:17.9636729Z remote: Compressing objects:  54% (38/70)        
+2023-05-21T19:22:17.9637032Z remote: Compressing objects:  55% (39/70)        
+2023-05-21T19:22:17.9637328Z remote: Compressing objects:  57% (40/70)        
+2023-05-21T19:22:17.9637632Z remote: Compressing objects:  58% (41/70)        
+2023-05-21T19:22:17.9637933Z remote: Compressing objects:  60% (42/70)        
+2023-05-21T19:22:17.9638233Z remote: Compressing objects:  61% (43/70)        
+2023-05-21T19:22:17.9638536Z remote: Compressing objects:  62% (44/70)        
+2023-05-21T19:22:17.9639136Z remote: Compressing objects:  64% (45/70)        
+2023-05-21T19:22:17.9639444Z remote: Compressing objects:  65% (46/70)        
+2023-05-21T19:22:17.9639749Z remote: Compressing objects:  67% (47/70)        
+2023-05-21T19:22:17.9640056Z remote: Compressing objects:  68% (48/70)        
+2023-05-21T19:22:17.9640366Z remote: Compressing objects:  70% (49/70)        
+2023-05-21T19:22:17.9640674Z remote: Compressing objects:  71% (50/70)        
+2023-05-21T19:22:17.9641151Z remote: Compressing objects:  72% (51/70)        
+2023-05-21T19:22:17.9641457Z remote: Compressing objects:  74% (52/70)        
+2023-05-21T19:22:17.9641772Z remote: Compressing objects:  75% (53/70)        
+2023-05-21T19:22:17.9642079Z remote: Compressing objects:  77% (54/70)        
+2023-05-21T19:22:17.9642388Z remote: Compressing objects:  78% (55/70)        
+2023-05-21T19:22:17.9642693Z remote: Compressing objects:  80% (56/70)        
+2023-05-21T19:22:17.9643157Z remote: Compressing objects:  81% (57/70)        
+2023-05-21T19:22:17.9643550Z remote: Compressing objects:  82% (58/70)        
+2023-05-21T19:22:17.9643854Z remote: Compressing objects:  84% (59/70)        
+2023-05-21T19:22:17.9644162Z remote: Compressing objects:  85% (60/70)        
+2023-05-21T19:22:17.9644469Z remote: Compressing objects:  87% (61/70)        
+2023-05-21T19:22:17.9644759Z remote: Compressing objects:  88% (62/70)        
+2023-05-21T19:22:17.9645064Z remote: Compressing objects:  90% (63/70)        
+2023-05-21T19:22:17.9645374Z remote: Compressing objects:  91% (64/70)        
+2023-05-21T19:22:17.9645683Z remote: Compressing objects:  92% (65/70)        
+2023-05-21T19:22:17.9646144Z remote: Compressing objects:  94% (66/70)        
+2023-05-21T19:22:17.9646455Z remote: Compressing objects:  95% (67/70)        
+2023-05-21T19:22:17.9646745Z remote: Compressing objects:  97% (68/70)        
+2023-05-21T19:22:17.9647050Z remote: Compressing objects:  98% (69/70)        
+2023-05-21T19:22:17.9647355Z remote: Compressing objects: 100% (70/70)        
+2023-05-21T19:22:17.9647683Z remote: Compressing objects: 100% (70/70), done.        
+2023-05-21T19:22:18.0222249Z remote: Total 90 (delta 4), reused 67 (delta 1), pack-reused 0        
+2023-05-21T19:22:18.0481712Z From https://github.com/khanhlinhh/vdt2023-midterm-project
+2023-05-21T19:22:18.0482632Z  * [new ref]         1d434034917a2b69ae50179458776b0d09fad62c -> origin/main
+2023-05-21T19:22:18.0515726Z ##[endgroup]
+2023-05-21T19:22:18.0560238Z ##[group]Determining the checkout info
+2023-05-21T19:22:18.0561268Z ##[endgroup]
+2023-05-21T19:22:18.0561820Z ##[group]Checking out the ref
+2023-05-21T19:22:18.0562559Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2023-05-21T19:22:18.0675875Z Switched to a new branch 'main'
+2023-05-21T19:22:18.0699420Z branch 'main' set up to track 'origin/main'.
+2023-05-21T19:22:18.0701422Z ##[endgroup]
+2023-05-21T19:22:18.0736578Z [command]/usr/bin/git log -1 --format='%H'
+2023-05-21T19:22:18.0773635Z '1d434034917a2b69ae50179458776b0d09fad62c'
+2023-05-21T19:22:18.1145492Z ##[group]Run actions/setup-python@v3
+2023-05-21T19:22:18.1145889Z with:
+2023-05-21T19:22:18.1146206Z   python-version: 3.9
+2023-05-21T19:22:18.1146738Z   token: ***
+2023-05-21T19:22:18.1147294Z ##[endgroup]
+2023-05-21T19:22:18.3064509Z Successfully setup CPython (3.9.16)
+2023-05-21T19:22:18.3204846Z ##[group]Run supercharge/mongodb-github-action@1.8.0
+2023-05-21T19:22:18.3205267Z with:
+2023-05-21T19:22:18.3205602Z   mongodb-version: 5.0
+2023-05-21T19:22:18.3206119Z   mongodb-username: ***
+2023-05-21T19:22:18.3206566Z   mongodb-password: ***
+2023-05-21T19:22:18.3206924Z   mongodb-port: 27017
+2023-05-21T19:22:18.3207188Z env:
+2023-05-21T19:22:18.3207564Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.16/x64
+2023-05-21T19:22:18.3208111Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.16/x64/lib
+2023-05-21T19:22:18.3208482Z ##[endgroup]
+2023-05-21T19:22:18.3504179Z ##[command]/usr/bin/docker run --name ed866e0e2079aa86d8491bb3163714b6bc4e24_f18593 --label ed866e --workdir /github/workspace --rm -e "pythonLocation" -e "LD_LIBRARY_PATH" -e "INPUT_MONGODB-VERSION" -e "INPUT_MONGODB-USERNAME" -e "INPUT_MONGODB-PASSWORD" -e "INPUT_MONGODB-REPLICA-SET" -e "INPUT_MONGODB-PORT" -e "INPUT_MONGODB-DB" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project":"/github/workspace" ed866e:0e2079aa86d8491bb3163714b6bc4e24  "5.0" "" "27017" "" "***" "***"
+2023-05-21T19:22:18.6654023Z ##[group]Selecting correct MongoDB client
+2023-05-21T19:22:18.6680409Z   - Using [mongosh --quiet]
+2023-05-21T19:22:18.6710550Z 
+2023-05-21T19:22:18.6711992Z ##[endgroup]
+2023-05-21T19:22:18.6713143Z ##[group]Starting single-node instance, no replica set
+2023-05-21T19:22:18.6713854Z   - port [27017]
+2023-05-21T19:22:18.6714606Z   - version [5.0]
+2023-05-21T19:22:18.6715244Z   - database []
+2023-05-21T19:22:18.6716189Z   - credentials [***:***]
+2023-05-21T19:22:18.6716424Z 
+2023-05-21T19:22:18.6991594Z Unable to find image 'mongo:5.0' locally
+2023-05-21T19:22:19.7655164Z 5.0: Pulling from library/mongo
+2023-05-21T19:22:20.0319292Z 99803d4b97f3: Pulling fs layer
+2023-05-21T19:22:20.0320359Z 6653ceb22977: Pulling fs layer
+2023-05-21T19:22:20.0322043Z e067c5774dde: Pulling fs layer
+2023-05-21T19:22:20.0322751Z 3f2512535c9b: Pulling fs layer
+2023-05-21T19:22:20.0323402Z 95823dd64119: Pulling fs layer
+2023-05-21T19:22:20.0324056Z 806644aafaf1: Pulling fs layer
+2023-05-21T19:22:20.0324750Z b6eb4ecca0a2: Pulling fs layer
+2023-05-21T19:22:20.0325493Z 8e2314ca77da: Pulling fs layer
+2023-05-21T19:22:20.0496299Z 122debe1b6af: Pulling fs layer
+2023-05-21T19:22:20.0496694Z 806644aafaf1: Waiting
+2023-05-21T19:22:20.0496927Z b6eb4ecca0a2: Waiting
+2023-05-21T19:22:20.0497150Z 8e2314ca77da: Waiting
+2023-05-21T19:22:20.0497366Z 122debe1b6af: Waiting
+2023-05-21T19:22:20.0497579Z 3f2512535c9b: Waiting
+2023-05-21T19:22:20.0497769Z 95823dd64119: Waiting
+2023-05-21T19:22:20.3099370Z 6653ceb22977: Verifying Checksum
+2023-05-21T19:22:20.3099962Z 6653ceb22977: Download complete
+2023-05-21T19:22:20.4510772Z e067c5774dde: Verifying Checksum
+2023-05-21T19:22:20.4512050Z e067c5774dde: Download complete
+2023-05-21T19:22:20.4832632Z 99803d4b97f3: Verifying Checksum
+2023-05-21T19:22:20.4832953Z 99803d4b97f3: Download complete
+2023-05-21T19:22:20.5942282Z 3f2512535c9b: Verifying Checksum
+2023-05-21T19:22:20.5942634Z 3f2512535c9b: Download complete
+2023-05-21T19:22:20.7123021Z 95823dd64119: Verifying Checksum
+2023-05-21T19:22:20.7129435Z 95823dd64119: Download complete
+2023-05-21T19:22:20.7462701Z 806644aafaf1: Verifying Checksum
+2023-05-21T19:22:20.7466280Z 806644aafaf1: Download complete
+2023-05-21T19:22:20.8599410Z b6eb4ecca0a2: Verifying Checksum
+2023-05-21T19:22:20.8599919Z b6eb4ecca0a2: Download complete
+2023-05-21T19:22:21.0004956Z 122debe1b6af: Verifying Checksum
+2023-05-21T19:22:21.0005458Z 122debe1b6af: Download complete
+2023-05-21T19:22:21.9984651Z 99803d4b97f3: Pull complete
+2023-05-21T19:22:22.5297163Z 8e2314ca77da: Verifying Checksum
+2023-05-21T19:22:22.5297487Z 8e2314ca77da: Download complete
+2023-05-21T19:22:22.9010304Z 6653ceb22977: Pull complete
+2023-05-21T19:22:23.3653457Z e067c5774dde: Pull complete
+2023-05-21T19:22:23.4647684Z 3f2512535c9b: Pull complete
+2023-05-21T19:22:23.5166115Z 95823dd64119: Pull complete
+2023-05-21T19:22:23.5732354Z 806644aafaf1: Pull complete
+2023-05-21T19:22:23.6324466Z b6eb4ecca0a2: Pull complete
+2023-05-21T19:22:30.9559377Z 8e2314ca77da: Pull complete
+2023-05-21T19:22:31.0200701Z 122debe1b6af: Pull complete
+2023-05-21T19:22:31.0270191Z Digest: sha256:ee514514754ffdb13597a894bdae90fdabbe4c0926bf96b40a84d1233782bcc1
+2023-05-21T19:22:31.0291323Z Status: Downloaded newer image for mongo:5.0
+2023-05-21T19:22:31.0519813Z e653f04cb455a37cce0ab0d6234cf67600d0d25cc0e893bdfc654dd314736307
+2023-05-21T19:22:31.5448041Z ##[endgroup]
+2023-05-21T19:22:31.6911536Z ##[group]Run python -m pip install --upgrade pip
+2023-05-21T19:22:31.6912220Z [36;1mpython -m pip install --upgrade pip[0m
+2023-05-21T19:22:31.6912549Z [36;1mcd app/backend[0m
+2023-05-21T19:22:31.6912972Z [36;1mif [ -f requirements.txt ]; then pip install -r requirements.txt; fi[0m
+2023-05-21T19:22:31.6913396Z [36;1mpip install flake8 pytest pytest-cov[0m
+2023-05-21T19:22:31.6981153Z shell: /usr/bin/bash -e {0}
+2023-05-21T19:22:31.6981467Z env:
+2023-05-21T19:22:31.6981816Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.16/x64
+2023-05-21T19:22:31.6982243Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.16/x64/lib
+2023-05-21T19:22:31.6982582Z ##[endgroup]
+2023-05-21T19:22:35.1606448Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (22.0.4)
+2023-05-21T19:22:35.3522567Z Collecting pip
+2023-05-21T19:22:35.4445790Z   Downloading pip-23.1.2-py3-none-any.whl (2.1 MB)
+2023-05-21T19:22:35.5272434Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 30.4 MB/s eta 0:00:00
+2023-05-21T19:22:35.5737132Z Installing collected packages: pip
+2023-05-21T19:22:35.5738314Z   Attempting uninstall: pip
+2023-05-21T19:22:35.5748072Z     Found existing installation: pip 22.0.4
+2023-05-21T19:22:35.6485142Z     Uninstalling pip-22.0.4:
+2023-05-21T19:22:35.7234548Z       Successfully uninstalled pip-22.0.4
+2023-05-21T19:22:37.0131727Z Successfully installed pip-23.1.2
+2023-05-21T19:22:38.2294036Z Collecting fastapi==0.95.1 (from -r requirements.txt (line 1))
+2023-05-21T19:22:38.3190908Z   Downloading fastapi-0.95.1-py3-none-any.whl (56 kB)
+2023-05-21T19:22:38.3445870Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.0/57.0 kB 2.2 MB/s eta 0:00:00
+2023-05-21T19:22:38.9018749Z Collecting pymongo==4.3.3 (from -r requirements.txt (line 2))
+2023-05-21T19:22:38.9085567Z   Downloading pymongo-4.3.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (492 kB)
+2023-05-21T19:22:38.9360078Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 492.1/492.1 kB 19.9 MB/s eta 0:00:00
+2023-05-21T19:22:38.9798585Z Collecting python-dotenv==1.0.0 (from -r requirements.txt (line 3))
+2023-05-21T19:22:38.9854424Z   Downloading python_dotenv-1.0.0-py3-none-any.whl (19 kB)
+2023-05-21T19:22:39.0341195Z Collecting uvicorn==0.22.0 (from -r requirements.txt (line 4))
+2023-05-21T19:22:39.0438111Z   Downloading uvicorn-0.22.0-py3-none-any.whl (58 kB)
+2023-05-21T19:22:39.0501358Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 14.7 MB/s eta 0:00:00
+2023-05-21T19:22:39.1496238Z Collecting pytest==7.3.1 (from -r requirements.txt (line 5))
+2023-05-21T19:22:39.1672124Z   Downloading pytest-7.3.1-py3-none-any.whl (320 kB)
+2023-05-21T19:22:39.1760904Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 320.5/320.5 kB 55.1 MB/s eta 0:00:00
+2023-05-21T19:22:39.2091593Z Collecting mongomock==4.1.2 (from -r requirements.txt (line 6))
+2023-05-21T19:22:39.2140565Z   Downloading mongomock-4.1.2-py2.py3-none-any.whl (60 kB)
+2023-05-21T19:22:39.2193891Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.0/60.0 kB 19.9 MB/s eta 0:00:00
+2023-05-21T19:22:39.2671270Z Collecting httpx==0.24.0 (from -r requirements.txt (line 7))
+2023-05-21T19:22:39.2715743Z   Downloading httpx-0.24.0-py3-none-any.whl (75 kB)
+2023-05-21T19:22:39.2777569Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.3/75.3 kB 20.8 MB/s eta 0:00:00
+2023-05-21T19:22:39.5662215Z Collecting pydantic!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0,>=1.6.2 (from fastapi==0.95.1->-r requirements.txt (line 1))
+2023-05-21T19:22:39.5821365Z   Downloading pydantic-1.10.7-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+2023-05-21T19:22:39.6290985Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 71.8 MB/s eta 0:00:00
+2023-05-21T19:22:39.6892656Z Collecting starlette<0.27.0,>=0.26.1 (from fastapi==0.95.1->-r requirements.txt (line 1))
+2023-05-21T19:22:39.6946021Z   Downloading starlette-0.26.1-py3-none-any.whl (66 kB)
+2023-05-21T19:22:39.7008265Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.9/66.9 kB 17.9 MB/s eta 0:00:00
+2023-05-21T19:22:39.7397298Z Collecting dnspython<3.0.0,>=1.16.0 (from pymongo==4.3.3->-r requirements.txt (line 2))
+2023-05-21T19:22:39.7464013Z   Downloading dnspython-2.3.0-py3-none-any.whl (283 kB)
+2023-05-21T19:22:39.7540066Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 283.7/283.7 kB 60.2 MB/s eta 0:00:00
+2023-05-21T19:22:39.8353610Z Collecting click>=7.0 (from uvicorn==0.22.0->-r requirements.txt (line 4))
+2023-05-21T19:22:39.8402136Z   Downloading click-8.1.3-py3-none-any.whl (96 kB)
+2023-05-21T19:22:39.8462932Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 26.7 MB/s eta 0:00:00
+2023-05-21T19:22:39.8681392Z Collecting h11>=0.8 (from uvicorn==0.22.0->-r requirements.txt (line 4))
+2023-05-21T19:22:39.8723609Z   Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+2023-05-21T19:22:39.8775164Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 18.9 MB/s eta 0:00:00
+2023-05-21T19:22:39.9208230Z Collecting iniconfig (from pytest==7.3.1->-r requirements.txt (line 5))
+2023-05-21T19:22:39.9259729Z   Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+2023-05-21T19:22:39.9650444Z Collecting packaging (from pytest==7.3.1->-r requirements.txt (line 5))
+2023-05-21T19:22:39.9693865Z   Downloading packaging-23.1-py3-none-any.whl (48 kB)
+2023-05-21T19:22:39.9750297Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.9/48.9 kB 14.2 MB/s eta 0:00:00
+2023-05-21T19:22:40.0031915Z Collecting pluggy<2.0,>=0.12 (from pytest==7.3.1->-r requirements.txt (line 5))
+2023-05-21T19:22:40.0191398Z   Downloading pluggy-1.0.0-py2.py3-none-any.whl (13 kB)
+2023-05-21T19:22:40.0465775Z Collecting exceptiongroup>=1.0.0rc8 (from pytest==7.3.1->-r requirements.txt (line 5))
+2023-05-21T19:22:40.0515868Z   Downloading exceptiongroup-1.1.1-py3-none-any.whl (14 kB)
+2023-05-21T19:22:40.0814192Z Collecting tomli>=1.0.0 (from pytest==7.3.1->-r requirements.txt (line 5))
+2023-05-21T19:22:40.0857501Z   Downloading tomli-2.0.1-py3-none-any.whl (12 kB)
+2023-05-21T19:22:40.1180789Z Collecting sentinels (from mongomock==4.1.2->-r requirements.txt (line 6))
+2023-05-21T19:22:40.1241542Z   Downloading sentinels-1.0.0.tar.gz (4.1 kB)
+2023-05-21T19:22:40.1357504Z   Installing build dependencies: started
+2023-05-21T19:22:42.1860717Z   Installing build dependencies: finished with status 'done'
+2023-05-21T19:22:42.1882028Z   Getting requirements to build wheel: started
+2023-05-21T19:22:42.4322865Z   Getting requirements to build wheel: finished with status 'done'
+2023-05-21T19:22:42.4391083Z   Preparing metadata (pyproject.toml): started
+2023-05-21T19:22:42.7126367Z   Preparing metadata (pyproject.toml): finished with status 'done'
+2023-05-21T19:22:42.7677903Z Collecting certifi (from httpx==0.24.0->-r requirements.txt (line 7))
+2023-05-21T19:22:42.7727019Z   Downloading certifi-2023.5.7-py3-none-any.whl (156 kB)
+2023-05-21T19:22:42.7800823Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 157.0/157.0 kB 40.0 MB/s eta 0:00:00
+2023-05-21T19:22:42.8214910Z Collecting httpcore<0.18.0,>=0.15.0 (from httpx==0.24.0->-r requirements.txt (line 7))
+2023-05-21T19:22:42.8266501Z   Downloading httpcore-0.17.1-py3-none-any.whl (70 kB)
+2023-05-21T19:22:42.8317630Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 70.9/70.9 kB 20.3 MB/s eta 0:00:00
+2023-05-21T19:22:42.8555413Z Collecting idna (from httpx==0.24.0->-r requirements.txt (line 7))
+2023-05-21T19:22:42.8602017Z   Downloading idna-3.4-py3-none-any.whl (61 kB)
+2023-05-21T19:22:42.8653926Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.5/61.5 kB 21.4 MB/s eta 0:00:00
+2023-05-21T19:22:42.8850601Z Collecting sniffio (from httpx==0.24.0->-r requirements.txt (line 7))
+2023-05-21T19:22:42.8898987Z   Downloading sniffio-1.3.0-py3-none-any.whl (10 kB)
+2023-05-21T19:22:42.9793751Z Collecting anyio<5.0,>=3.0 (from httpcore<0.18.0,>=0.15.0->httpx==0.24.0->-r requirements.txt (line 7))
+2023-05-21T19:22:42.9846430Z   Downloading anyio-3.6.2-py3-none-any.whl (80 kB)
+2023-05-21T19:22:42.9910036Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.6/80.6 kB 20.4 MB/s eta 0:00:00
+2023-05-21T19:22:43.0413953Z Collecting typing-extensions>=4.2.0 (from pydantic!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0,>=1.6.2->fastapi==0.95.1->-r requirements.txt (line 1))
+2023-05-21T19:22:43.0467242Z   Downloading typing_extensions-4.5.0-py3-none-any.whl (27 kB)
+2023-05-21T19:22:43.1342268Z Building wheels for collected packages: sentinels
+2023-05-21T19:22:43.1353222Z   Building wheel for sentinels (pyproject.toml): started
+2023-05-21T19:22:43.3875311Z   Building wheel for sentinels (pyproject.toml): finished with status 'done'
+2023-05-21T19:22:43.3890505Z   Created wheel for sentinels: filename=sentinels-1.0.0-py3-none-any.whl size=3174 sha256=e1bce4f616a3c132f4afdcad582ee24eca71b1e2b39ad0060e5655fd60574fbe
+2023-05-21T19:22:43.3897856Z   Stored in directory: /home/runner/.cache/pip/wheels/39/4c/05/90d81b81899bc2fd244e072d9b323422128e69a99328e712a5
+2023-05-21T19:22:43.3939096Z Successfully built sentinels
+2023-05-21T19:22:43.6021961Z Installing collected packages: sentinels, typing-extensions, tomli, sniffio, python-dotenv, pluggy, packaging, iniconfig, idna, h11, exceptiongroup, dnspython, click, certifi, uvicorn, pytest, pymongo, pydantic, mongomock, anyio, starlette, httpcore, httpx, fastapi
+2023-05-21T19:22:45.2380633Z Successfully installed anyio-3.6.2 certifi-2023.5.7 click-8.1.3 dnspython-2.3.0 exceptiongroup-1.1.1 fastapi-0.95.1 h11-0.14.0 httpcore-0.17.1 httpx-0.24.0 idna-3.4 iniconfig-2.0.0 mongomock-4.1.2 packaging-23.1 pluggy-1.0.0 pydantic-1.10.7 pymongo-4.3.3 pytest-7.3.1 python-dotenv-1.0.0 sentinels-1.0.0 sniffio-1.3.0 starlette-0.26.1 tomli-2.0.1 typing-extensions-4.5.0 uvicorn-0.22.0
+2023-05-21T19:22:46.1279878Z Collecting flake8
+2023-05-21T19:22:46.2157241Z   Downloading flake8-6.0.0-py2.py3-none-any.whl (57 kB)
+2023-05-21T19:22:46.2443511Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.8/57.8 kB 1.9 MB/s eta 0:00:00
+2023-05-21T19:22:46.2480330Z Requirement already satisfied: pytest in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (7.3.1)
+2023-05-21T19:22:46.2823306Z Collecting pytest-cov
+2023-05-21T19:22:46.2872646Z   Downloading pytest_cov-4.0.0-py3-none-any.whl (21 kB)
+2023-05-21T19:22:46.3207081Z Collecting mccabe<0.8.0,>=0.7.0 (from flake8)
+2023-05-21T19:22:46.3257287Z   Downloading mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)
+2023-05-21T19:22:46.3524987Z Collecting pycodestyle<2.11.0,>=2.10.0 (from flake8)
+2023-05-21T19:22:46.3576466Z   Downloading pycodestyle-2.10.0-py2.py3-none-any.whl (41 kB)
+2023-05-21T19:22:46.3672391Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.3/41.3 kB 4.7 MB/s eta 0:00:00
+2023-05-21T19:22:46.3995711Z Collecting pyflakes<3.1.0,>=3.0.0 (from flake8)
+2023-05-21T19:22:46.4044874Z   Downloading pyflakes-3.0.1-py2.py3-none-any.whl (62 kB)
+2023-05-21T19:22:46.4143089Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 kB 7.9 MB/s eta 0:00:00
+2023-05-21T19:22:46.4333731Z Requirement already satisfied: iniconfig in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (from pytest) (2.0.0)
+2023-05-21T19:22:46.4337548Z Requirement already satisfied: packaging in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (from pytest) (23.1)
+2023-05-21T19:22:46.4345466Z Requirement already satisfied: pluggy<2.0,>=0.12 in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (from pytest) (1.0.0)
+2023-05-21T19:22:46.4358682Z Requirement already satisfied: exceptiongroup>=1.0.0rc8 in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (from pytest) (1.1.1)
+2023-05-21T19:22:46.4372386Z Requirement already satisfied: tomli>=1.0.0 in /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages (from pytest) (2.0.1)
+2023-05-21T19:22:47.0691811Z Collecting coverage[toml]>=5.2.1 (from pytest-cov)
+2023-05-21T19:22:47.0755498Z   Downloading coverage-7.2.5-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (227 kB)
+2023-05-21T19:22:47.2001723Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 227.7/227.7 kB 1.8 MB/s eta 0:00:00
+2023-05-21T19:22:47.4371926Z Installing collected packages: pyflakes, pycodestyle, mccabe, coverage, flake8, pytest-cov
+2023-05-21T19:22:47.7592881Z Successfully installed coverage-7.2.5 flake8-6.0.0 mccabe-0.7.0 pycodestyle-2.10.0 pyflakes-3.0.1 pytest-cov-4.0.0
+2023-05-21T19:22:47.9606817Z ##[group]Run cd app/backend
+2023-05-21T19:22:47.9607162Z [36;1mcd app/backend[0m
+2023-05-21T19:22:47.9607541Z [36;1m# stop the build if there are Python syntax errors or undefined names[0m
+2023-05-21T19:22:47.9608005Z [36;1mflake8 . --count --select=E9,F63,F7,F82 --show-source --statistics[0m
+2023-05-21T19:22:47.9608507Z [36;1m# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide[0m
+2023-05-21T19:22:47.9609020Z [36;1mflake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics[0m
+2023-05-21T19:22:47.9667821Z shell: /usr/bin/bash -e {0}
+2023-05-21T19:22:47.9668084Z env:
+2023-05-21T19:22:47.9668576Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.16/x64
+2023-05-21T19:22:47.9668996Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.16/x64/lib
+2023-05-21T19:22:47.9669330Z ##[endgroup]
+2023-05-21T19:22:49.1431539Z 0
+2023-05-21T19:22:49.3590556Z ./app.py:17:33: W292 no newline at end of file
+2023-05-21T19:22:49.3591347Z ./config/database.py:7:1: W293 blank line contains whitespace
+2023-05-21T19:22:49.3592054Z ./config/database.py:15:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3594728Z ./config/database.py:19:1: E305 expected 2 blank lines after class or function definition, found 1
+2023-05-21T19:22:49.3595445Z ./models/attendee_model.py:3:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3595994Z ./models/attendee_model.py:9:15: W292 no newline at end of file
+2023-05-21T19:22:49.3652340Z ./routes/attendee_route.py:9:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3653093Z ./routes/attendee_route.py:11:53: E231 missing whitespace after ','
+2023-05-21T19:22:49.3653524Z ./routes/attendee_route.py:15:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3653947Z ./routes/attendee_route.py:42:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3654354Z ./routes/attendee_route.py:45:55: W292 no newline at end of file
+2023-05-21T19:22:49.3654893Z ./schemas/attendee_schema.py:2:17: E231 missing whitespace after ':'
+2023-05-21T19:22:49.3655354Z ./schemas/attendee_schema.py:2:43: E225 missing whitespace around operator
+2023-05-21T19:22:49.3655883Z ./schemas/attendee_schema.py:2:51: E231 missing whitespace after ','
+2023-05-21T19:22:49.3656409Z ./schemas/attendee_schema.py:2:56: E231 missing whitespace after ':'
+2023-05-21T19:22:49.3657255Z ./schemas/attendee_schema.py:2:77: E225 missing whitespace around operator
+2023-05-21T19:22:49.3657705Z ./schemas/attendee_schema.py:4:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3658136Z ./schemas/attendee_schema.py:5:46: W292 no newline at end of file
+2023-05-21T19:22:49.3658544Z ./tests/conftest.py:4:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3658927Z ./tests/test_crud_api.py:5:10: E401 multiple imports on one line
+2023-05-21T19:22:49.3659348Z ./tests/test_crud_api.py:8:1: E402 module level import not at top of file
+2023-05-21T19:22:49.3659915Z ./tests/test_crud_api.py:10:1: F811 redefinition of unused 'client' from line 2
+2023-05-21T19:22:49.3660351Z ./tests/test_crud_api.py:32:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3660757Z ./tests/test_crud_api.py:43:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3661163Z ./tests/test_crud_api.py:53:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3661570Z ./tests/test_crud_api.py:57:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3661954Z ./tests/test_crud_api.py:62:1: E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3662353Z ./tests/test_crud_api.py:65:72: W292 no newline at end of file
+2023-05-21T19:22:49.3662732Z 2     E225 missing whitespace around operator
+2023-05-21T19:22:49.3663133Z 4     E231 missing whitespace after ','
+2023-05-21T19:22:49.3663465Z 12    E302 expected 2 blank lines, found 1
+2023-05-21T19:22:49.3663846Z 1     E305 expected 2 blank lines after class or function definition, found 1
+2023-05-21T19:22:49.3664226Z 1     E401 multiple imports on one line
+2023-05-21T19:22:49.3664809Z 1     E402 module level import not at top of file
+2023-05-21T19:22:49.3665271Z 1     F811 redefinition of unused 'client' from line 2
+2023-05-21T19:22:49.3665607Z 5     W292 no newline at end of file
+2023-05-21T19:22:49.3665928Z 1     W293 blank line contains whitespace
+2023-05-21T19:22:49.3666189Z 28
+2023-05-21T19:22:49.3826410Z ##[group]Run cd app/backend
+2023-05-21T19:22:49.3826753Z [36;1mcd app/backend[0m
+2023-05-21T19:22:49.3827086Z [36;1mpytest -W ignore::DeprecationWarning[0m
+2023-05-21T19:22:49.3886681Z shell: /usr/bin/bash -e {0}
+2023-05-21T19:22:49.3886946Z env:
+2023-05-21T19:22:49.3887244Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.16/x64
+2023-05-21T19:22:49.3887642Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.16/x64/lib
+2023-05-21T19:22:49.3887954Z ##[endgroup]
+2023-05-21T19:22:50.8268843Z ============================= test session starts ==============================
+2023-05-21T19:22:50.8269538Z platform linux -- Python 3.9.16, pytest-7.3.1, pluggy-1.0.0
+2023-05-21T19:22:50.8270440Z rootdir: /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project/app/backend
+2023-05-21T19:22:50.8271012Z plugins: cov-4.0.0, anyio-3.6.2
+2023-05-21T19:22:50.8271270Z collected 5 items
+2023-05-21T19:22:50.8271423Z 
+2023-05-21T19:22:50.9669120Z tests/test_crud_api.py .....                                             [100%]
+2023-05-21T19:22:50.9670076Z 
+2023-05-21T19:22:50.9670451Z ============================== 5 passed in 0.32s ===============================
+2023-05-21T19:22:51.4214027Z Post job cleanup.
+2023-05-21T19:22:51.5817970Z Post job cleanup.
+2023-05-21T19:22:51.6959483Z [command]/usr/bin/git version
+2023-05-21T19:22:51.7011281Z git version 2.40.1
+2023-05-21T19:22:51.7090776Z Temporarily overriding HOME='/home/runner/work/_temp/b3e5600e-3e46-4ff3-ae96-ff26a78c741a' before making global git config changes
+2023-05-21T19:22:51.7094362Z Adding repository directory to the temporary git global config as a safe directory
+2023-05-21T19:22:51.7101750Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project
+2023-05-21T19:22:51.7152876Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2023-05-21T19:22:51.7198293Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2023-05-21T19:22:51.7513607Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2023-05-21T19:22:51.7549391Z http.https://github.com/.extraheader
+2023-05-21T19:22:51.7573192Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2023-05-21T19:22:51.7606185Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2023-05-21T19:22:51.8061622Z Cleaning up orphan processes

@@ -1,0 +1,130 @@
+PLAY [Set up Docker] *******************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+ok: [Kilinh-Node2]
+
+TASK [common : Install apt-transport-https] ********************************************************
+ok: [Kilinh-Node2]
+ok: [Kilinh-Node1]
+ok: [localhost]
+
+TASK [common : Add signing key] ********************************************************************
+ok: [Kilinh-Node2]
+ok: [Kilinh-Node1]
+ok: [localhost]
+
+TASK [common : Add repository into sources list] ***************************************************
+ok: [localhost]
+ok: [Kilinh-Node2]
+ok: [Kilinh-Node1]
+
+TASK [common : Install Docker] *********************************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+ok: [Kilinh-Node2]
+
+PLAY [Set up logstash service with Fluentd] ********************************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [localhost]
+
+TASK [log : Build Fluentd image] *******************************************************************
+ok: [localhost]
+
+TASK [log : Run Fluentd container] *****************************************************************
+ok: [localhost]
+
+PLAY [Set up Load Balancer with NGINX] *************************************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [Kilinh-Node2]
+
+TASK [lb : Create /etc/nginxconf folder] ***********************************************************
+ok: [Kilinh-Node2]
+
+TASK [lb : Copy nginx.conf to host] ****************************************************************
+ok: [Kilinh-Node2]
+
+TASK [lb : Run nginx load balancing] ***************************************************************
+ok: [Kilinh-Node2]
+
+PLAY [Deploy backend and mongodb database] *********************************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [db : Check if Database network exists] *******************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [db : Create Database network] ****************************************************************
+skipping: [localhost]
+skipping: [Kilinh-Node1]
+
+TASK [db : Run docker image mongo] *****************************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [api : Check if API network exists] ***********************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [api : Create API network] ********************************************************************
+skipping: [localhost]
+skipping: [Kilinh-Node1]
+
+TASK [api : Check if Database network exists] ******************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [api : Create Database network] ***************************************************************
+skipping: [localhost]
+skipping: [Kilinh-Node1]
+
+TASK [api : Run Python backend container with image backend-vdt:v0.1.0] ****************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+PLAY [Deploy frontend] *****************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [web : Check if API network exists] ***********************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [web : Create API network] ********************************************************************
+skipping: [localhost]
+skipping: [Kilinh-Node1]
+
+TASK [web : Run frontend container with image frontend-vdt:v0.1.0] *********************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+PLAY [Set up Prometheus with Node Exporter and Cadvisor] *******************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [monitor : Run Node Exporter Container] *******************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [monitor : Run Cadvisor Container] ************************************************************
+ok: [localhost]
+ok: [Kilinh-Node1]
+
+TASK [monitor : Run Prometheus container] **********************************************************
+skipping: [Kilinh-Node1]
+ok: [localhost]
+
+PLAY RECAP *****************************************************************************************
+Kilinh-Node1               : ok=17   changed=0    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+Kilinh-Node2               : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=21   changed=0    unreachable=0    failed=0    skipped=4    rescued=0

@@ -1,0 +1,1115 @@
+2023-05-21T19:23:56.3693396Z Requested labels: ubuntu-latest
+2023-05-21T19:23:56.3693650Z Job defined at: khanhlinhh/vdt2023-midterm-project/.github/workflows/cd.yaml@refs/tags/release/v0.1.0
+2023-05-21T19:23:56.3693758Z Waiting for a runner to pick up this job...
+2023-05-21T19:23:56.6011187Z Job is waiting for a hosted runner to come online.
+2023-05-21T19:23:59.5264376Z Job is about to start running on the hosted runner: GitHub Actions 2 (hosted)
+2023-05-21T19:24:01.9693261Z Current runner version: '2.304.0'
+2023-05-21T19:24:01.9725277Z ##[group]Operating System
+2023-05-21T19:24:01.9725813Z Ubuntu
+2023-05-21T19:24:01.9726229Z 22.04.2
+2023-05-21T19:24:01.9726545Z LTS
+2023-05-21T19:24:01.9726887Z ##[endgroup]
+2023-05-21T19:24:01.9727246Z ##[group]Runner Image
+2023-05-21T19:24:01.9727586Z Image: ubuntu-22.04
+2023-05-21T19:24:01.9727983Z Version: 20230507.1
+2023-05-21T19:24:01.9728552Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20230507.1/images/linux/Ubuntu2204-Readme.md
+2023-05-21T19:24:01.9729287Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20230507.1
+2023-05-21T19:24:01.9729780Z ##[endgroup]
+2023-05-21T19:24:01.9730193Z ##[group]Runner Image Provisioner
+2023-05-21T19:24:01.9730532Z 2.0.171.1
+2023-05-21T19:24:01.9730882Z ##[endgroup]
+2023-05-21T19:24:01.9731671Z ##[group]GITHUB_TOKEN Permissions
+2023-05-21T19:24:01.9732289Z Contents: read
+2023-05-21T19:24:01.9732660Z Metadata: read
+2023-05-21T19:24:01.9733189Z Packages: read
+2023-05-21T19:24:01.9733706Z ##[endgroup]
+2023-05-21T19:24:01.9737165Z Secret source: Actions
+2023-05-21T19:24:01.9737765Z Prepare workflow directory
+2023-05-21T19:24:02.0462148Z Prepare all required actions
+2023-05-21T19:24:02.0643041Z Getting action download info
+2023-05-21T19:24:02.3923353Z Download action repository 'actions/checkout@v3' (SHA:8e5e7e5ab8b370d6c329ec480221332ada57f0ab)
+2023-05-21T19:24:03.0212906Z Download action repository 'docker/setup-buildx-action@v2' (SHA:4b4e9c3e2d4531116a6f8ba8e71fc6e2cb6e6c8c)
+2023-05-21T19:24:03.5234450Z Download action repository 'docker/login-action@v2' (SHA:f4ef78c080cd8ba55a85445d5b36e214a81df20a)
+2023-05-21T19:24:04.1271248Z Download action repository 'docker/build-push-action@v4' (SHA:3b5e8027fcad23fda98b2e3ac259d8d67585f671)
+2023-05-21T19:24:04.8255116Z Complete job name: Push Docker image to Docker Hub
+2023-05-21T19:24:04.9152213Z ##[group]Run actions/checkout@v3
+2023-05-21T19:24:04.9152510Z with:
+2023-05-21T19:24:04.9152898Z   repository: ***h/vdt2023-midterm-project
+2023-05-21T19:24:04.9153312Z   token: ***
+2023-05-21T19:24:04.9153523Z   ssh-strict: true
+2023-05-21T19:24:04.9153763Z   persist-credentials: true
+2023-05-21T19:24:04.9153984Z   clean: true
+2023-05-21T19:24:04.9154255Z   fetch-depth: 1
+2023-05-21T19:24:04.9154458Z   lfs: false
+2023-05-21T19:24:04.9154664Z   submodules: false
+2023-05-21T19:24:04.9154900Z   set-safe-directory: true
+2023-05-21T19:24:04.9155128Z ##[endgroup]
+2023-05-21T19:24:05.1819545Z Syncing repository: ***h/vdt2023-midterm-project
+2023-05-21T19:24:05.1821280Z ##[group]Getting Git version info
+2023-05-21T19:24:05.1821898Z Working directory is '/home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project'
+2023-05-21T19:24:05.1823621Z [command]/usr/bin/git version
+2023-05-21T19:24:05.1889074Z git version 2.40.1
+2023-05-21T19:24:05.1916825Z ##[endgroup]
+2023-05-21T19:24:05.1935180Z Temporarily overriding HOME='/home/runner/work/_temp/11434ab3-6310-4f3e-b812-5720b3e44b91' before making global git config changes
+2023-05-21T19:24:05.1935709Z Adding repository directory to the temporary git global config as a safe directory
+2023-05-21T19:24:05.1938666Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project
+2023-05-21T19:24:05.1995533Z Deleting the contents of '/home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project'
+2023-05-21T19:24:05.2001363Z ##[group]Initializing the repository
+2023-05-21T19:24:05.2005175Z [command]/usr/bin/git init /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project
+2023-05-21T19:24:05.2102434Z hint: Using 'master' as the name for the initial branch. This default branch name
+2023-05-21T19:24:05.2103203Z hint: is subject to change. To configure the initial branch name to use in all
+2023-05-21T19:24:05.2104071Z hint: of your new repositories, which will suppress this warning, call:
+2023-05-21T19:24:05.2104540Z hint: 
+2023-05-21T19:24:05.2105269Z hint: 	git config --global init.defaultBranch <name>
+2023-05-21T19:24:05.2106048Z hint: 
+2023-05-21T19:24:05.2106816Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2023-05-21T19:24:05.2107475Z hint: 'development'. The just-created branch can be renamed via this command:
+2023-05-21T19:24:05.2108168Z hint: 
+2023-05-21T19:24:05.2108608Z hint: 	git branch -m <name>
+2023-05-21T19:24:05.2115612Z Initialized empty Git repository in /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project/.git/
+2023-05-21T19:24:05.2127178Z [command]/usr/bin/git remote add origin https://github.com/***h/vdt2023-midterm-project
+2023-05-21T19:24:05.2185672Z ##[endgroup]
+2023-05-21T19:24:05.2186340Z ##[group]Disabling automatic garbage collection
+2023-05-21T19:24:05.2188882Z [command]/usr/bin/git config --local gc.auto 0
+2023-05-21T19:24:05.2222073Z ##[endgroup]
+2023-05-21T19:24:05.2222695Z ##[group]Setting up auth
+2023-05-21T19:24:05.2228572Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2023-05-21T19:24:05.2262277Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2023-05-21T19:24:05.2684074Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2023-05-21T19:24:05.2718045Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2023-05-21T19:24:05.2942088Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2023-05-21T19:24:05.2982733Z ##[endgroup]
+2023-05-21T19:24:05.2983474Z ##[group]Fetching the repository
+2023-05-21T19:24:05.2992203Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +1d434034917a2b69ae50179458776b0d09fad62c:refs/tags/release/v0.1.0
+2023-05-21T19:24:05.6413769Z remote: Enumerating objects: 90, done.        
+2023-05-21T19:24:05.6418221Z remote: Counting objects:   1% (1/90)        
+2023-05-21T19:24:05.6419252Z remote: Counting objects:   2% (2/90)        
+2023-05-21T19:24:05.6419784Z remote: Counting objects:   3% (3/90)        
+2023-05-21T19:24:05.6420517Z remote: Counting objects:   4% (4/90)        
+2023-05-21T19:24:05.6421020Z remote: Counting objects:   5% (5/90)        
+2023-05-21T19:24:05.6421728Z remote: Counting objects:   6% (6/90)        
+2023-05-21T19:24:05.6422248Z remote: Counting objects:   7% (7/90)        
+2023-05-21T19:24:05.6422941Z remote: Counting objects:   8% (8/90)        
+2023-05-21T19:24:05.6423437Z remote: Counting objects:  10% (9/90)        
+2023-05-21T19:24:05.6424989Z remote: Counting objects:  11% (10/90)        
+2023-05-21T19:24:05.6425534Z remote: Counting objects:  12% (11/90)        
+2023-05-21T19:24:05.6426319Z remote: Counting objects:  13% (12/90)        
+2023-05-21T19:24:05.6426825Z remote: Counting objects:  14% (13/90)        
+2023-05-21T19:24:05.6427551Z remote: Counting objects:  15% (14/90)        
+2023-05-21T19:24:05.6428052Z remote: Counting objects:  16% (15/90)        
+2023-05-21T19:24:05.6428765Z remote: Counting objects:  17% (16/90)        
+2023-05-21T19:24:05.6429272Z remote: Counting objects:  18% (17/90)        
+2023-05-21T19:24:05.6429977Z remote: Counting objects:  20% (18/90)        
+2023-05-21T19:24:05.6430485Z remote: Counting objects:  21% (19/90)        
+2023-05-21T19:24:05.6431203Z remote: Counting objects:  22% (20/90)        
+2023-05-21T19:24:05.6431712Z remote: Counting objects:  23% (21/90)        
+2023-05-21T19:24:05.6432405Z remote: Counting objects:  24% (22/90)        
+2023-05-21T19:24:05.6432892Z remote: Counting objects:  25% (23/90)        
+2023-05-21T19:24:05.6433770Z remote: Counting objects:  26% (24/90)        
+2023-05-21T19:24:05.6434731Z remote: Counting objects:  27% (25/90)        
+2023-05-21T19:24:05.6435468Z remote: Counting objects:  28% (26/90)        
+2023-05-21T19:24:05.6435994Z remote: Counting objects:  30% (27/90)        
+2023-05-21T19:24:05.6437011Z remote: Counting objects:  31% (28/90)        
+2023-05-21T19:24:05.6437615Z remote: Counting objects:  32% (29/90)        
+2023-05-21T19:24:05.6438361Z remote: Counting objects:  33% (30/90)        
+2023-05-21T19:24:05.6438853Z remote: Counting objects:  34% (31/90)        
+2023-05-21T19:24:05.6439559Z remote: Counting objects:  35% (32/90)        
+2023-05-21T19:24:05.6440045Z remote: Counting objects:  36% (33/90)        
+2023-05-21T19:24:05.6440914Z remote: Counting objects:  37% (34/90)        
+2023-05-21T19:24:05.6441407Z remote: Counting objects:  38% (35/90)        
+2023-05-21T19:24:05.6442142Z remote: Counting objects:  40% (36/90)        
+2023-05-21T19:24:05.6442614Z remote: Counting objects:  41% (37/90)        
+2023-05-21T19:24:05.6443327Z remote: Counting objects:  42% (38/90)        
+2023-05-21T19:24:05.6443812Z remote: Counting objects:  43% (39/90)        
+2023-05-21T19:24:05.6444525Z remote: Counting objects:  44% (40/90)        
+2023-05-21T19:24:05.6445019Z remote: Counting objects:  45% (41/90)        
+2023-05-21T19:24:05.6445718Z remote: Counting objects:  46% (42/90)        
+2023-05-21T19:24:05.6446200Z remote: Counting objects:  47% (43/90)        
+2023-05-21T19:24:05.6446885Z remote: Counting objects:  48% (44/90)        
+2023-05-21T19:24:05.6447394Z remote: Counting objects:  50% (45/90)        
+2023-05-21T19:24:05.6448098Z remote: Counting objects:  51% (46/90)        
+2023-05-21T19:24:05.6448579Z remote: Counting objects:  52% (47/90)        
+2023-05-21T19:24:05.6449277Z remote: Counting objects:  53% (48/90)        
+2023-05-21T19:24:05.6449762Z remote: Counting objects:  54% (49/90)        
+2023-05-21T19:24:05.6450461Z remote: Counting objects:  55% (50/90)        
+2023-05-21T19:24:05.6450929Z remote: Counting objects:  56% (51/90)        
+2023-05-21T19:24:05.6451864Z remote: Counting objects:  57% (52/90)        
+2023-05-21T19:24:05.6452383Z remote: Counting objects:  58% (53/90)        
+2023-05-21T19:24:05.6453100Z remote: Counting objects:  60% (54/90)        
+2023-05-21T19:24:05.6453590Z remote: Counting objects:  61% (55/90)        
+2023-05-21T19:24:05.6454294Z remote: Counting objects:  62% (56/90)        
+2023-05-21T19:24:05.6454790Z remote: Counting objects:  63% (57/90)        
+2023-05-21T19:24:05.6455508Z remote: Counting objects:  64% (58/90)        
+2023-05-21T19:24:05.6456049Z remote: Counting objects:  65% (59/90)        
+2023-05-21T19:24:05.6456799Z remote: Counting objects:  66% (60/90)        
+2023-05-21T19:24:05.6457293Z remote: Counting objects:  67% (61/90)        
+2023-05-21T19:24:05.6457994Z remote: Counting objects:  68% (62/90)        
+2023-05-21T19:24:05.6458485Z remote: Counting objects:  70% (63/90)        
+2023-05-21T19:24:05.6459372Z remote: Counting objects:  71% (64/90)        
+2023-05-21T19:24:05.6459880Z remote: Counting objects:  72% (65/90)        
+2023-05-21T19:24:05.6460588Z remote: Counting objects:  73% (66/90)        
+2023-05-21T19:24:05.6461072Z remote: Counting objects:  74% (67/90)        
+2023-05-21T19:24:05.6462288Z remote: Counting objects:  75% (68/90)        
+2023-05-21T19:24:05.6462604Z remote: Counting objects:  76% (69/90)        
+2023-05-21T19:24:05.6462912Z remote: Counting objects:  77% (70/90)        
+2023-05-21T19:24:05.6463207Z remote: Counting objects:  78% (71/90)        
+2023-05-21T19:24:05.6463510Z remote: Counting objects:  80% (72/90)        
+2023-05-21T19:24:05.6463821Z remote: Counting objects:  81% (73/90)        
+2023-05-21T19:24:05.6464124Z remote: Counting objects:  82% (74/90)        
+2023-05-21T19:24:05.6464426Z remote: Counting objects:  83% (75/90)        
+2023-05-21T19:24:05.6464726Z remote: Counting objects:  84% (76/90)        
+2023-05-21T19:24:05.6465014Z remote: Counting objects:  85% (77/90)        
+2023-05-21T19:24:05.6465314Z remote: Counting objects:  86% (78/90)        
+2023-05-21T19:24:05.6465622Z remote: Counting objects:  87% (79/90)        
+2023-05-21T19:24:05.6465924Z remote: Counting objects:  88% (80/90)        
+2023-05-21T19:24:05.6466424Z remote: Counting objects:  90% (81/90)        
+2023-05-21T19:24:05.6466713Z remote: Counting objects:  91% (82/90)        
+2023-05-21T19:24:05.6467019Z remote: Counting objects:  92% (83/90)        
+2023-05-21T19:24:05.6467321Z remote: Counting objects:  93% (84/90)        
+2023-05-21T19:24:05.6467626Z remote: Counting objects:  94% (85/90)        
+2023-05-21T19:24:05.6467935Z remote: Counting objects:  95% (86/90)        
+2023-05-21T19:24:05.6468240Z remote: Counting objects:  96% (87/90)        
+2023-05-21T19:24:05.6468682Z remote: Counting objects:  97% (88/90)        
+2023-05-21T19:24:05.6468989Z remote: Counting objects:  98% (89/90)        
+2023-05-21T19:24:05.6469291Z remote: Counting objects: 100% (90/90)        
+2023-05-21T19:24:05.6469710Z remote: Counting objects: 100% (90/90), done.        
+2023-05-21T19:24:05.6470018Z remote: Compressing objects:   1% (1/70)        
+2023-05-21T19:24:05.6470465Z remote: Compressing objects:   2% (2/70)        
+2023-05-21T19:24:05.6471655Z remote: Compressing objects:   4% (3/70)        
+2023-05-21T19:24:05.6472101Z remote: Compressing objects:   5% (4/70)        
+2023-05-21T19:24:05.6472641Z remote: Compressing objects:   7% (5/70)        
+2023-05-21T19:24:05.6473173Z remote: Compressing objects:   8% (6/70)        
+2023-05-21T19:24:05.6473625Z remote: Compressing objects:  10% (7/70)        
+2023-05-21T19:24:05.6474155Z remote: Compressing objects:  11% (8/70)        
+2023-05-21T19:24:05.6474698Z remote: Compressing objects:  12% (9/70)        
+2023-05-21T19:24:05.6475256Z remote: Compressing objects:  14% (10/70)        
+2023-05-21T19:24:05.6475778Z remote: Compressing objects:  15% (11/70)        
+2023-05-21T19:24:05.6476279Z remote: Compressing objects:  17% (12/70)        
+2023-05-21T19:24:05.6476811Z remote: Compressing objects:  18% (13/70)        
+2023-05-21T19:24:05.6477976Z remote: Compressing objects:  20% (14/70)        
+2023-05-21T19:24:05.6478362Z remote: Compressing objects:  21% (15/70)        
+2023-05-21T19:24:05.6478937Z remote: Compressing objects:  22% (16/70)        
+2023-05-21T19:24:05.6479444Z remote: Compressing objects:  24% (17/70)        
+2023-05-21T19:24:05.6479988Z remote: Compressing objects:  25% (18/70)        
+2023-05-21T19:24:05.6480444Z remote: Compressing objects:  27% (19/70)        
+2023-05-21T19:24:05.6480968Z remote: Compressing objects:  28% (20/70)        
+2023-05-21T19:24:05.6481511Z remote: Compressing objects:  30% (21/70)        
+2023-05-21T19:24:05.6482091Z remote: Compressing objects:  31% (22/70)        
+2023-05-21T19:24:05.6482600Z remote: Compressing objects:  32% (23/70)        
+2023-05-21T19:24:05.6483140Z remote: Compressing objects:  34% (24/70)        
+2023-05-21T19:24:05.6483683Z remote: Compressing objects:  35% (25/70)        
+2023-05-21T19:24:05.6484272Z remote: Compressing objects:  37% (26/70)        
+2023-05-21T19:24:05.6484809Z remote: Compressing objects:  38% (27/70)        
+2023-05-21T19:24:05.6485316Z remote: Compressing objects:  40% (28/70)        
+2023-05-21T19:24:05.6485834Z remote: Compressing objects:  41% (29/70)        
+2023-05-21T19:24:05.6486384Z remote: Compressing objects:  42% (30/70)        
+2023-05-21T19:24:05.6486906Z remote: Compressing objects:  44% (31/70)        
+2023-05-21T19:24:05.6487445Z remote: Compressing objects:  45% (32/70)        
+2023-05-21T19:24:05.6487980Z remote: Compressing objects:  47% (33/70)        
+2023-05-21T19:24:05.6488497Z remote: Compressing objects:  48% (34/70)        
+2023-05-21T19:24:05.6489171Z remote: Compressing objects:  50% (35/70)        
+2023-05-21T19:24:05.6489766Z remote: Compressing objects:  51% (36/70)        
+2023-05-21T19:24:05.6490335Z remote: Compressing objects:  52% (37/70)        
+2023-05-21T19:24:05.6490856Z remote: Compressing objects:  54% (38/70)        
+2023-05-21T19:24:05.6491367Z remote: Compressing objects:  55% (39/70)        
+2023-05-21T19:24:05.6491921Z remote: Compressing objects:  57% (40/70)        
+2023-05-21T19:24:05.6492432Z remote: Compressing objects:  58% (41/70)        
+2023-05-21T19:24:05.6492969Z remote: Compressing objects:  60% (42/70)        
+2023-05-21T19:24:05.6493525Z remote: Compressing objects:  61% (43/70)        
+2023-05-21T19:24:05.6494075Z remote: Compressing objects:  62% (44/70)        
+2023-05-21T19:24:05.6494630Z remote: Compressing objects:  64% (45/70)        
+2023-05-21T19:24:05.6495156Z remote: Compressing objects:  65% (46/70)        
+2023-05-21T19:24:05.6495681Z remote: Compressing objects:  67% (47/70)        
+2023-05-21T19:24:05.6496222Z remote: Compressing objects:  68% (48/70)        
+2023-05-21T19:24:05.6496731Z remote: Compressing objects:  70% (49/70)        
+2023-05-21T19:24:05.6497273Z remote: Compressing objects:  71% (50/70)        
+2023-05-21T19:24:05.6497796Z remote: Compressing objects:  72% (51/70)        
+2023-05-21T19:24:05.6498339Z remote: Compressing objects:  74% (52/70)        
+2023-05-21T19:24:05.6498885Z remote: Compressing objects:  75% (53/70)        
+2023-05-21T19:24:05.6499829Z remote: Compressing objects:  77% (54/70)        
+2023-05-21T19:24:05.6599117Z remote: Compressing objects:  78% (55/70)        
+2023-05-21T19:24:05.6606784Z remote: Compressing objects:  80% (56/70)        
+2023-05-21T19:24:05.6607587Z remote: Compressing objects:  81% (57/70)        
+2023-05-21T19:24:05.6607898Z remote: Compressing objects:  82% (58/70)        
+2023-05-21T19:24:05.6608189Z remote: Compressing objects:  84% (59/70)        
+2023-05-21T19:24:05.6609657Z remote: Compressing objects:  85% (60/70)        
+2023-05-21T19:24:05.6610077Z remote: Compressing objects:  87% (61/70)        
+2023-05-21T19:24:05.6610357Z remote: Compressing objects:  88% (62/70)        
+2023-05-21T19:24:05.6610646Z remote: Compressing objects:  90% (63/70)        
+2023-05-21T19:24:05.6610929Z remote: Compressing objects:  91% (64/70)        
+2023-05-21T19:24:05.6611209Z remote: Compressing objects:  92% (65/70)        
+2023-05-21T19:24:05.6611745Z remote: Compressing objects:  94% (66/70)        
+2023-05-21T19:24:05.6612036Z remote: Compressing objects:  95% (67/70)        
+2023-05-21T19:24:05.6612304Z remote: Compressing objects:  97% (68/70)        
+2023-05-21T19:24:05.6612594Z remote: Compressing objects:  98% (69/70)        
+2023-05-21T19:24:05.6612881Z remote: Compressing objects: 100% (70/70)        
+2023-05-21T19:24:05.6613178Z remote: Compressing objects: 100% (70/70), done.        
+2023-05-21T19:24:05.7399866Z remote: Total 90 (delta 4), reused 67 (delta 1), pack-reused 0        
+2023-05-21T19:24:05.7603681Z From https://github.com/***h/vdt2023-midterm-project
+2023-05-21T19:24:05.7604597Z  * [new ref]         1d434034917a2b69ae50179458776b0d09fad62c -> release/v0.1.0
+2023-05-21T19:24:05.7632509Z ##[endgroup]
+2023-05-21T19:24:05.7633037Z ##[group]Determining the checkout info
+2023-05-21T19:24:05.7634456Z ##[endgroup]
+2023-05-21T19:24:05.7634946Z ##[group]Checking out the ref
+2023-05-21T19:24:05.7639483Z [command]/usr/bin/git checkout --progress --force refs/tags/release/v0.1.0
+2023-05-21T19:24:05.7914389Z Note: switching to 'refs/tags/release/v0.1.0'.
+2023-05-21T19:24:05.7914694Z 
+2023-05-21T19:24:05.7916144Z You are in 'detached HEAD' state. You can look around, make experimental
+2023-05-21T19:24:05.7917611Z changes and commit them, and you can discard any commits you make in this
+2023-05-21T19:24:05.7918009Z state without impacting any branches by switching back to a branch.
+2023-05-21T19:24:05.7918223Z 
+2023-05-21T19:24:05.7918400Z If you want to create a new branch to retain commits you create, you may
+2023-05-21T19:24:05.7918873Z do so (now or later) by using -c with the switch command. Example:
+2023-05-21T19:24:05.7920054Z 
+2023-05-21T19:24:05.7920277Z   git switch -c <new-branch-name>
+2023-05-21T19:24:05.7920447Z 
+2023-05-21T19:24:05.7920558Z Or undo this operation with:
+2023-05-21T19:24:05.7920714Z 
+2023-05-21T19:24:05.7920804Z   git switch -
+2023-05-21T19:24:05.7921885Z 
+2023-05-21T19:24:05.7922114Z Turn off this advice by setting config variable advice.detachedHead to false
+2023-05-21T19:24:05.7922341Z 
+2023-05-21T19:24:05.7929793Z HEAD is now at 1d43403 Last commit of CD
+2023-05-21T19:24:05.7941831Z ##[endgroup]
+2023-05-21T19:24:05.8003594Z [command]/usr/bin/git log -1 --format='%H'
+2023-05-21T19:24:05.8044766Z '1d434034917a2b69ae50179458776b0d09fad62c'
+2023-05-21T19:24:05.8364552Z ##[group]Run docker/setup-buildx-action@v2
+2023-05-21T19:24:05.8364937Z with:
+2023-05-21T19:24:05.8365227Z   driver: docker-container
+2023-05-21T19:24:05.8365662Z   buildkitd-flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+2023-05-21T19:24:05.8366121Z   install: false
+2023-05-21T19:24:05.8366428Z   use: true
+2023-05-21T19:24:05.8366701Z   cleanup: true
+2023-05-21T19:24:05.8366979Z ##[endgroup]
+2023-05-21T19:24:05.9558919Z ##[group]Docker info
+2023-05-21T19:24:05.9591891Z [command]/usr/bin/docker version
+2023-05-21T19:24:06.1212410Z Client:
+2023-05-21T19:24:06.1221146Z  Version:           20.10.24+azure-1
+2023-05-21T19:24:06.1222574Z  API version:       1.41
+2023-05-21T19:24:06.1223233Z  Go version:        go1.19.6
+2023-05-21T19:24:06.1224163Z  Git commit:        297e1284d3bd092e9bc96076c3ddc4bb33f8c7ab
+2023-05-21T19:24:06.1224826Z  Built:             Fri Mar 31 18:34:38 UTC 2023
+2023-05-21T19:24:06.1225680Z  OS/Arch:           linux/amd64
+2023-05-21T19:24:06.1226145Z  Context:           default
+2023-05-21T19:24:06.1226770Z  Experimental:      true
+2023-05-21T19:24:06.1227457Z 
+2023-05-21T19:24:06.1227928Z Server:
+2023-05-21T19:24:06.1228346Z  Engine:
+2023-05-21T19:24:06.1229149Z   Version:          20.10.24+azure-1
+2023-05-21T19:24:06.1229656Z   API version:      1.41 (minimum version 1.12)
+2023-05-21T19:24:06.1230417Z   Go version:       go1.19.6
+2023-05-21T19:24:06.1230882Z   Git commit:       5d6db842238e3c4f5f9fb9ad70ea46b35227d084
+2023-05-21T19:24:06.1231600Z   Built:            Tue Apr  4 18:03:51 2023
+2023-05-21T19:24:06.1232066Z   OS/Arch:          linux/amd64
+2023-05-21T19:24:06.1232772Z   Experimental:     false
+2023-05-21T19:24:06.1233232Z  containerd:
+2023-05-21T19:24:06.1233925Z   Version:          1.6.20+azure-1
+2023-05-21T19:24:06.1234449Z   GitCommit:        2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-21T19:24:06.1235111Z  runc:
+2023-05-21T19:24:06.1235590Z   Version:          1.1.7
+2023-05-21T19:24:06.1236298Z   GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-21T19:24:06.1236831Z  docker-init:
+2023-05-21T19:24:06.1237487Z   Version:          0.19.0
+2023-05-21T19:24:06.1237988Z   GitCommit:        
+2023-05-21T19:24:06.1268519Z [command]/usr/bin/docker info
+2023-05-21T19:24:06.5372865Z Client:
+2023-05-21T19:24:06.5415614Z  Context:    default
+2023-05-21T19:24:06.5415964Z  Debug Mode: false
+2023-05-21T19:24:06.5416206Z  Plugins:
+2023-05-21T19:24:06.5416864Z   buildx: Docker Buildx (Docker Inc., 0.10.4+azure-1)
+2023-05-21T19:24:06.5417328Z   compose: Docker Compose (Docker Inc., 2.17.3+azure-1)
+2023-05-21T19:24:06.5417548Z 
+2023-05-21T19:24:06.5417660Z Server:
+2023-05-21T19:24:06.5417944Z  Containers: 0
+2023-05-21T19:24:06.5418213Z   Running: 0
+2023-05-21T19:24:06.5418692Z   Paused: 0
+2023-05-21T19:24:06.5418964Z   Stopped: 0
+2023-05-21T19:24:06.5430071Z  Images: 18
+2023-05-21T19:24:06.5430665Z  Server Version: 20.10.24+azure-1
+2023-05-21T19:24:06.5430945Z  Storage Driver: overlay2
+2023-05-21T19:24:06.5431300Z   Backing Filesystem: extfs
+2023-05-21T19:24:06.5431647Z   Supports d_type: true
+2023-05-21T19:24:06.5431966Z   Native Overlay Diff: false
+2023-05-21T19:24:06.5432304Z   userxattr: false
+2023-05-21T19:24:06.5432611Z  Logging Driver: json-file
+2023-05-21T19:24:06.5432936Z  Cgroup Driver: cgroupfs
+2023-05-21T19:24:06.5433239Z  Cgroup Version: 2
+2023-05-21T19:24:06.5433547Z  Plugins:
+2023-05-21T19:24:06.5433820Z   Volume: local
+2023-05-21T19:24:06.5434106Z   Network: bridge host ipvlan macvlan null overlay
+2023-05-21T19:24:06.5434655Z   Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+2023-05-21T19:24:06.5435037Z  Swarm: inactive
+2023-05-21T19:24:06.5435489Z  Runtimes: io.containerd.runc.v2 io.containerd.runtime.v1.linux runc
+2023-05-21T19:24:06.5435889Z  Default Runtime: runc
+2023-05-21T19:24:06.5436235Z  Init Binary: docker-init
+2023-05-21T19:24:06.5436911Z  containerd version: 2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-21T19:24:06.5437568Z  runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-21T19:24:06.5437925Z  init version: 
+2023-05-21T19:24:06.5438214Z  Security Options:
+2023-05-21T19:24:06.5438492Z   apparmor
+2023-05-21T19:24:06.5438708Z   seccomp
+2023-05-21T19:24:06.5439026Z    Profile: default
+2023-05-21T19:24:06.5439301Z   cgroupns
+2023-05-21T19:24:06.5439649Z  Kernel Version: 5.15.0-1037-azure
+2023-05-21T19:24:06.5439978Z  Operating System: Ubuntu 22.04.2 LTS
+2023-05-21T19:24:06.5440276Z  OSType: linux
+2023-05-21T19:24:06.5440563Z  Architecture: x86_64
+2023-05-21T19:24:06.5440839Z  CPUs: 2
+2023-05-21T19:24:06.5441111Z  Total Memory: 6.781GiB
+2023-05-21T19:24:06.5441481Z  Name: fv-az247-585
+2023-05-21T19:24:06.5441784Z  ID: 45C5:GCD5:C2ZA:BU76:2JJE:VILT:FJER:O74A:S3LH:GA6O:RCDR:J762
+2023-05-21T19:24:06.5442141Z  Docker Root Dir: /var/lib/docker
+2023-05-21T19:24:06.5442448Z  Debug Mode: false
+2023-05-21T19:24:06.5442765Z  Username: githubactions
+2023-05-21T19:24:06.5443153Z  Registry: https://index.docker.io/v1/
+2023-05-21T19:24:06.5443426Z  Labels:
+2023-05-21T19:24:06.5443700Z  Experimental: false
+2023-05-21T19:24:06.5444019Z  Insecure Registries:
+2023-05-21T19:24:06.5444331Z   127.0.0.0/8
+2023-05-21T19:24:06.5444626Z  Live Restore Enabled: false
+2023-05-21T19:24:06.5444767Z 
+2023-05-21T19:24:06.5445241Z ##[endgroup]
+2023-05-21T19:24:06.6341059Z ##[group]Buildx version
+2023-05-21T19:24:06.6342174Z [command]/usr/bin/docker buildx version
+2023-05-21T19:24:06.6934775Z github.com/docker/buildx 0.10.4+azure-1 c513d34049e499c53468deac6c4267ee72948f02
+2023-05-21T19:24:06.6983466Z ##[endgroup]
+2023-05-21T19:24:06.6984512Z ##[group]Creating a new builder instance
+2023-05-21T19:24:06.7900934Z [command]/usr/bin/docker buildx create --name builder-b56b7169-4cb0-4340-a744-81b07b57dbd9 --driver docker-container --buildkitd-flags --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host --use
+2023-05-21T19:24:06.8921998Z builder-b56b7169-4cb0-4340-a744-81b07b57dbd9
+2023-05-21T19:24:06.8967300Z ##[endgroup]
+2023-05-21T19:24:06.8968100Z ##[group]Booting builder
+2023-05-21T19:24:06.8970092Z [command]/usr/bin/docker buildx inspect --bootstrap --builder builder-b56b7169-4cb0-4340-a744-81b07b57dbd9
+2023-05-21T19:24:06.9562772Z #1 [internal] booting buildkit
+2023-05-21T19:24:07.1067623Z #1 pulling image moby/buildkit:buildx-stable-1
+2023-05-21T19:24:07.5589037Z #1 pulling image moby/buildkit:buildx-stable-1 0.5s done
+2023-05-21T19:24:07.5589579Z #1 creating container buildx_buildkit_builder-b56b7169-4cb0-4340-a744-81b07b57dbd90
+2023-05-21T19:24:08.1496450Z #1 creating container buildx_buildkit_builder-b56b7169-4cb0-4340-a744-81b07b57dbd90 0.7s done
+2023-05-21T19:24:08.1538250Z #1 DONE 1.2s
+2023-05-21T19:24:08.2507651Z Name:          builder-b56b7169-4cb0-4340-a744-81b07b57dbd9
+2023-05-21T19:24:08.2508053Z Driver:        docker-container
+2023-05-21T19:24:08.2508388Z Last Activity: 2023-05-21 19:24:06 +0000 UTC
+2023-05-21T19:24:08.2508581Z 
+2023-05-21T19:24:08.2508656Z Nodes:
+2023-05-21T19:24:08.2509024Z Name:      builder-b56b7169-4cb0-4340-a744-81b07b57dbd90
+2023-05-21T19:24:08.2509335Z Endpoint:  unix:///var/run/docker.sock
+2023-05-21T19:24:08.2509583Z Status:    running
+2023-05-21T19:24:08.2510065Z Flags:     --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+2023-05-21T19:24:08.2510425Z Buildkit:  v0.11.6
+2023-05-21T19:24:08.2510736Z Platforms: linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/amd64/v4, linux/386
+2023-05-21T19:24:08.2572553Z ##[endgroup]
+2023-05-21T19:24:08.3923222Z ##[group]Inspect builder
+2023-05-21T19:24:08.3926396Z {
+2023-05-21T19:24:08.3926748Z   "nodes": [
+2023-05-21T19:24:08.3927303Z     {
+2023-05-21T19:24:08.3931955Z       "name": "builder-b56b7169-4cb0-4340-a744-81b07b57dbd90",
+2023-05-21T19:24:08.3932536Z       "endpoint": "unix:///var/run/docker.sock",
+2023-05-21T19:24:08.3932923Z       "status": "running",
+2023-05-21T19:24:08.3934079Z       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+2023-05-21T19:24:08.3934771Z       "buildkit": "v0.11.6",
+2023-05-21T19:24:08.3935340Z       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/amd64/v4,linux/386"
+2023-05-21T19:24:08.3935705Z     }
+2023-05-21T19:24:08.3936461Z   ],
+2023-05-21T19:24:08.3936963Z   "name": "builder-b56b7169-4cb0-4340-a744-81b07b57dbd9",
+2023-05-21T19:24:08.3937393Z   "driver": "docker-container",
+2023-05-21T19:24:08.3938874Z   "lastActivity": "2023-05-21T19:24:06.000Z"
+2023-05-21T19:24:08.3940318Z }
+2023-05-21T19:24:08.3950192Z ##[endgroup]
+2023-05-21T19:24:08.3953121Z ##[group]BuildKit version
+2023-05-21T19:24:08.3957028Z builder-b56b7169-4cb0-4340-a744-81b07b57dbd90: v0.11.6
+2023-05-21T19:24:08.3957670Z ##[endgroup]
+2023-05-21T19:24:08.4092928Z ##[group]Run docker/login-action@v2
+2023-05-21T19:24:08.4093167Z with:
+2023-05-21T19:24:08.4093433Z   username: ***
+2023-05-21T19:24:08.4093728Z   password: ***
+2023-05-21T19:24:08.4093956Z   ecr: auto
+2023-05-21T19:24:08.4094159Z   logout: true
+2023-05-21T19:24:08.4094367Z ##[endgroup]
+2023-05-21T19:24:08.5380557Z Logging into Docker Hub...
+2023-05-21T19:24:08.9730232Z Login Succeeded!
+2023-05-21T19:24:08.9865391Z ##[group]Run echo ::set-output name=VERSION::${GITHUB_REF#refs/*/*/}
+2023-05-21T19:24:08.9865817Z [36;1mecho ::set-output name=VERSION::${GITHUB_REF#refs/*/*/}[0m
+2023-05-21T19:24:08.9921550Z shell: /usr/bin/bash -e {0}
+2023-05-21T19:24:08.9921819Z ##[endgroup]
+2023-05-21T19:24:09.0091075Z ##[warning]The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+2023-05-21T19:24:09.0223202Z ##[group]Run docker/build-push-action@v4
+2023-05-21T19:24:09.0223469Z with:
+2023-05-21T19:24:09.0223666Z   context: ./app/backend
+2023-05-21T19:24:09.0223911Z   file: ./app/backend/Dockerfile
+2023-05-21T19:24:09.0224161Z   push: true
+2023-05-21T19:24:09.0224440Z   tags: ***/backend-vdt:v0.1.0
+2023-05-21T19:24:09.0224673Z   load: false
+2023-05-21T19:24:09.0224880Z   no-cache: false
+2023-05-21T19:24:09.0225075Z   pull: false
+2023-05-21T19:24:09.0225399Z   github-token: ***
+2023-05-21T19:24:09.0225622Z ##[endgroup]
+2023-05-21T19:24:09.2212852Z ##[group]GitHub Actions runtime token access controls
+2023-05-21T19:24:09.2217793Z [
+2023-05-21T19:24:09.2218101Z   {
+2023-05-21T19:24:09.2218360Z     "Scope": "refs/tags/release/v0.1.0",
+2023-05-21T19:24:09.2218689Z     "Permission": 3
+2023-05-21T19:24:09.2218967Z   },
+2023-05-21T19:24:09.2219303Z   {
+2023-05-21T19:24:09.2219515Z     "Scope": "refs/heads/main",
+2023-05-21T19:24:09.2219831Z     "Permission": 1
+2023-05-21T19:24:09.2220111Z   }
+2023-05-21T19:24:09.2220365Z ]
+2023-05-21T19:24:09.2221594Z ##[endgroup]
+2023-05-21T19:24:09.2222009Z ##[group]Docker info
+2023-05-21T19:24:09.2240303Z [command]/usr/bin/docker version
+2023-05-21T19:24:09.2492287Z Client:
+2023-05-21T19:24:09.2492898Z  Version:           20.10.24+azure-1
+2023-05-21T19:24:09.2493237Z  API version:       1.41
+2023-05-21T19:24:09.2493553Z  Go version:        go1.19.6
+2023-05-21T19:24:09.2493905Z  Git commit:        297e1284d3bd092e9bc96076c3ddc4bb33f8c7ab
+2023-05-21T19:24:09.2494283Z  Built:             Fri Mar 31 18:34:38 UTC 2023
+2023-05-21T19:24:09.2494609Z  OS/Arch:           linux/amd64
+2023-05-21T19:24:09.2494916Z  Context:           default
+2023-05-21T19:24:09.2495224Z  Experimental:      true
+2023-05-21T19:24:09.2495446Z 
+2023-05-21T19:24:09.2495663Z Server:
+2023-05-21T19:24:09.2495853Z  Engine:
+2023-05-21T19:24:09.2496097Z   Version:          20.10.24+azure-1
+2023-05-21T19:24:09.2496369Z   API version:      1.41 (minimum version 1.12)
+2023-05-21T19:24:09.2496861Z   Go version:       go1.19.6
+2023-05-21T19:24:09.2497228Z   Git commit:       5d6db842238e3c4f5f9fb9ad70ea46b35227d084
+2023-05-21T19:24:09.2497594Z   Built:            Tue Apr  4 18:03:51 2023
+2023-05-21T19:24:09.2497913Z   OS/Arch:          linux/amd64
+2023-05-21T19:24:09.2498510Z   Experimental:     false
+2023-05-21T19:24:09.2498816Z  containerd:
+2023-05-21T19:24:09.2499337Z   Version:          1.6.20+azure-1
+2023-05-21T19:24:09.2499721Z   GitCommit:        2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-21T19:24:09.2500051Z  runc:
+2023-05-21T19:24:09.2500332Z   Version:          1.1.7
+2023-05-21T19:24:09.2500686Z   GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-21T19:24:09.2501041Z  docker-init:
+2023-05-21T19:24:09.2501337Z   Version:          0.19.0
+2023-05-21T19:24:09.2501639Z   GitCommit:        
+2023-05-21T19:24:09.2532246Z [command]/usr/bin/docker info
+2023-05-21T19:24:09.4031580Z Client:
+2023-05-21T19:24:09.4032199Z  Context:    default
+2023-05-21T19:24:09.4032509Z  Debug Mode: false
+2023-05-21T19:24:09.4032839Z  Plugins:
+2023-05-21T19:24:09.4033438Z   buildx: Docker Buildx (Docker Inc., 0.10.4+azure-1)
+2023-05-21T19:24:09.4033908Z   compose: Docker Compose (Docker Inc., 2.17.3+azure-1)
+2023-05-21T19:24:09.4034192Z 
+2023-05-21T19:24:09.4034343Z Server:
+2023-05-21T19:24:09.4034618Z  Containers: 1
+2023-05-21T19:24:09.4034901Z   Running: 1
+2023-05-21T19:24:09.4035165Z   Paused: 0
+2023-05-21T19:24:09.4035443Z   Stopped: 0
+2023-05-21T19:24:09.4035716Z  Images: 18
+2023-05-21T19:24:09.4036044Z  Server Version: 20.10.24+azure-1
+2023-05-21T19:24:09.4036368Z  Storage Driver: overlay2
+2023-05-21T19:24:09.4036687Z   Backing Filesystem: extfs
+2023-05-21T19:24:09.4036991Z   Supports d_type: true
+2023-05-21T19:24:09.4037304Z   Native Overlay Diff: false
+2023-05-21T19:24:09.4037613Z   userxattr: false
+2023-05-21T19:24:09.4038007Z  Logging Driver: json-file
+2023-05-21T19:24:09.4038321Z  Cgroup Driver: cgroupfs
+2023-05-21T19:24:09.4038620Z  Cgroup Version: 2
+2023-05-21T19:24:09.4038888Z  Plugins:
+2023-05-21T19:24:09.4040161Z   Volume: local
+2023-05-21T19:24:09.4051358Z   Network: bridge host ipvlan macvlan null overlay
+2023-05-21T19:24:09.4052318Z   Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+2023-05-21T19:24:09.4053610Z  Swarm: inactive
+2023-05-21T19:24:09.4054095Z  Runtimes: io.containerd.runc.v2 io.containerd.runtime.v1.linux runc
+2023-05-21T19:24:09.4055074Z  Default Runtime: runc
+2023-05-21T19:24:09.4055635Z  Init Binary: docker-init
+2023-05-21T19:24:09.4056584Z  containerd version: 2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-21T19:24:09.4057085Z  runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-21T19:24:09.4058300Z  init version: 
+2023-05-21T19:24:09.4058668Z  Security Options:
+2023-05-21T19:24:09.4059923Z   apparmor
+2023-05-21T19:24:09.4060437Z   seccomp
+2023-05-21T19:24:09.4061183Z    Profile: default
+2023-05-21T19:24:09.4061639Z   cgroupns
+2023-05-21T19:24:09.4062641Z  Kernel Version: 5.15.0-1037-azure
+2023-05-21T19:24:09.4063254Z  Operating System: Ubuntu 22.04.2 LTS
+2023-05-21T19:24:09.4064007Z  OSType: linux
+2023-05-21T19:24:09.4064370Z  Architecture: x86_64
+2023-05-21T19:24:09.4065066Z  CPUs: 2
+2023-05-21T19:24:09.4065427Z  Total Memory: 6.781GiB
+2023-05-21T19:24:09.4066216Z  Name: fv-az247-585
+2023-05-21T19:24:09.4066656Z  ID: 45C5:GCD5:C2ZA:BU76:2JJE:VILT:FJER:O74A:S3LH:GA6O:RCDR:J762
+2023-05-21T19:24:09.4067433Z  Docker Root Dir: /var/lib/docker
+2023-05-21T19:24:09.4067807Z  Debug Mode: false
+2023-05-21T19:24:09.4068587Z  Username: ***
+2023-05-21T19:24:09.4069013Z  Registry: https://index.docker.io/v1/
+2023-05-21T19:24:09.4069751Z  Labels:
+2023-05-21T19:24:09.4070146Z  Experimental: false
+2023-05-21T19:24:09.4070857Z  Insecure Registries:
+2023-05-21T19:24:09.4071207Z   127.0.0.0/8
+2023-05-21T19:24:09.4071917Z  Live Restore Enabled: false
+2023-05-21T19:24:09.4072220Z 
+2023-05-21T19:24:09.4073134Z ##[endgroup]
+2023-05-21T19:24:09.5487400Z ##[group]Buildx version
+2023-05-21T19:24:09.5500316Z [command]/usr/bin/docker buildx version
+2023-05-21T19:24:09.6093331Z github.com/docker/buildx 0.10.4+azure-1 c513d34049e499c53468deac6c4267ee72948f02
+2023-05-21T19:24:09.6141536Z ##[endgroup]
+2023-05-21T19:24:09.7703474Z [command]/usr/bin/docker buildx build --file ./app/backend/Dockerfile --iidfile /tmp/docker-build-push-cfsr8v/iidfile --provenance mode=min,inline-only=true,builder-id=https://github.com/***h/vdt2023-midterm-project/actions/runs/5039338774 --tag ***/backend-vdt:v0.1.0 --metadata-file /tmp/docker-build-push-cfsr8v/metadata-file --push ./app/backend
+2023-05-21T19:24:10.0963138Z #1 [internal] load build definition from Dockerfile
+2023-05-21T19:24:10.0963815Z #1 transferring dockerfile: 245B done
+2023-05-21T19:24:10.0964252Z #1 DONE 0.0s
+2023-05-21T19:24:10.0964493Z 
+2023-05-21T19:24:10.0964710Z #2 [internal] load .dockerignore
+2023-05-21T19:24:10.0965487Z #2 transferring context: 249B done
+2023-05-21T19:24:10.0965772Z #2 DONE 0.0s
+2023-05-21T19:24:10.0965903Z 
+2023-05-21T19:24:10.0966083Z #3 [internal] load metadata for docker.io/library/python:3.9
+2023-05-21T19:24:10.3690113Z #3 ...
+2023-05-21T19:24:10.3690785Z 
+2023-05-21T19:24:10.3692806Z #4 [auth] library/python:pull token for registry-1.docker.io
+2023-05-21T19:24:10.3693281Z #4 DONE 0.0s
+2023-05-21T19:24:10.5194836Z 
+2023-05-21T19:24:10.5195559Z #3 [internal] load metadata for docker.io/library/python:3.9
+2023-05-21T19:24:10.7773450Z #3 DONE 0.8s
+2023-05-21T19:24:10.7782682Z 
+2023-05-21T19:24:10.7786732Z #5 [internal] load build context
+2023-05-21T19:24:10.9297781Z #5 transferring context: 7.02kB done
+2023-05-21T19:24:10.9298122Z #5 DONE 0.0s
+2023-05-21T19:24:10.9298272Z 
+2023-05-21T19:24:10.9298575Z #6 [1/5] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51
+2023-05-21T19:24:10.9299376Z #6 resolve docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51 0.0s done
+2023-05-21T19:24:11.0805091Z #6 sha256:c343b921680a19bf22934b83c02f42d8fdd0d8559417f63c1dcd2d7997c22da3 2.90MB / 2.90MB 0.1s done
+2023-05-21T19:24:11.0808634Z #6 sha256:a48c72dfa8c4e0da323ce32dac703c79d8f2de134e6a420cdfbc868323cfc68a 244B / 244B 0.1s done
+2023-05-21T19:24:11.0809940Z #6 sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 5.24MB / 16.15MB 0.2s
+2023-05-21T19:24:11.0810564Z #6 sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04 0B / 6.29MB 0.2s
+2023-05-21T19:24:11.2311260Z #6 sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 15.73MB / 16.15MB 0.3s
+2023-05-21T19:24:11.2312162Z #6 sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04 6.29MB / 6.29MB 0.2s done
+2023-05-21T19:24:11.2313263Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 5.35MB / 196.85MB 0.2s
+2023-05-21T19:24:11.2313816Z #6 sha256:4eedd9c5abf7e5f63753a5e788cb0872a715fa1141e8ce5ea87638e6cd370a41 5.44MB / 54.58MB 0.2s
+2023-05-21T19:24:11.3401017Z #6 sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 16.15MB / 16.15MB 0.4s done
+2023-05-21T19:24:11.3401914Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 27.26MB / 196.85MB 0.3s
+2023-05-21T19:24:11.3403039Z #6 sha256:4eedd9c5abf7e5f63753a5e788cb0872a715fa1141e8ce5ea87638e6cd370a41 24.22MB / 54.58MB 0.3s
+2023-05-21T19:24:11.3403687Z #6 sha256:5d79063a01c561833dc6546d4e647fda0121a59e1a9a17874a3e30854555475e 15.76MB / 15.76MB 0.2s done
+2023-05-21T19:24:11.4632745Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 47.19MB / 196.85MB 0.5s
+2023-05-21T19:24:11.4633814Z #6 sha256:4eedd9c5abf7e5f63753a5e788cb0872a715fa1141e8ce5ea87638e6cd370a41 43.49MB / 54.58MB 0.5s
+2023-05-21T19:24:11.5782379Z #6 sha256:4eedd9c5abf7e5f63753a5e788cb0872a715fa1141e8ce5ea87638e6cd370a41 54.58MB / 54.58MB 0.6s
+2023-05-21T19:24:11.5783124Z #6 sha256:918547b9432687b1e1d238e82dc1e0ea0b736aafbf3c402eea98c6db81a9cb65 11.53MB / 55.05MB 0.2s
+2023-05-21T19:24:11.7285244Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 73.40MB / 196.85MB 0.6s
+2023-05-21T19:24:11.7286124Z #6 sha256:4eedd9c5abf7e5f63753a5e788cb0872a715fa1141e8ce5ea87638e6cd370a41 54.58MB / 54.58MB 0.6s done
+2023-05-21T19:24:11.7287251Z #6 sha256:918547b9432687b1e1d238e82dc1e0ea0b736aafbf3c402eea98c6db81a9cb65 30.41MB / 55.05MB 0.3s
+2023-05-21T19:24:11.8759686Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 121.63MB / 196.85MB 0.9s
+2023-05-21T19:24:11.8760750Z #6 sha256:918547b9432687b1e1d238e82dc1e0ea0b736aafbf3c402eea98c6db81a9cb65 55.05MB / 55.05MB 0.5s done
+2023-05-21T19:24:11.8761842Z #6 extracting sha256:918547b9432687b1e1d238e82dc1e0ea0b736aafbf3c402eea98c6db81a9cb65
+2023-05-21T19:24:12.1783969Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 175.11MB / 196.85MB 1.2s
+2023-05-21T19:24:12.3261254Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 196.85MB / 196.85MB 1.4s
+2023-05-21T19:24:13.0760620Z #6 sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 196.85MB / 196.85MB 2.0s done
+2023-05-21T19:24:13.5196468Z #6 extracting sha256:918547b9432687b1e1d238e82dc1e0ea0b736aafbf3c402eea98c6db81a9cb65 1.7s done
+2023-05-21T19:24:13.5196834Z #6 DONE 2.8s
+2023-05-21T19:24:13.6694917Z 
+2023-05-21T19:24:13.6696314Z #6 [1/5] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51
+2023-05-21T19:24:13.6696846Z #6 extracting sha256:5d79063a01c561833dc6546d4e647fda0121a59e1a9a17874a3e30854555475e
+2023-05-21T19:24:13.9703323Z #6 extracting sha256:5d79063a01c561833dc6546d4e647fda0121a59e1a9a17874a3e30854555475e 0.3s done
+2023-05-21T19:24:13.9703868Z #6 extracting sha256:4eedd9c5abf7e5f63753a5e788cb0872a715fa1141e8ce5ea87638e6cd370a41
+2023-05-21T19:24:15.4738324Z #6 extracting sha256:4eedd9c5abf7e5f63753a5e788cb0872a715fa1141e8ce5ea87638e6cd370a41 1.5s done
+2023-05-21T19:24:15.4738850Z #6 extracting sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f
+2023-05-21T19:24:20.8856189Z #6 extracting sha256:9cdadd40055fb82fef74a0a38f29fb1ee7b6922e18370ebdc3502ec66f79fa3f 5.4s done
+2023-05-21T19:24:20.8857086Z #6 extracting sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04
+2023-05-21T19:24:21.0185734Z #6 extracting sha256:2a12d0031f3fc457f41eaa0e29c0eaf4ba1376735aa940268ebccc76abb49f04 0.3s done
+2023-05-21T19:24:21.0186140Z #6 DONE 10.2s
+2023-05-21T19:24:21.1696054Z 
+2023-05-21T19:24:21.1696990Z #6 [1/5] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51
+2023-05-21T19:24:21.1697650Z #6 extracting sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740
+2023-05-21T19:24:21.4703450Z #6 extracting sha256:cea461a97d8717d5ef1eb563adaf205de17b9bf5b9bd57bc6bb2eae2296a8740 0.4s done
+2023-05-21T19:24:21.4704289Z #6 extracting sha256:a48c72dfa8c4e0da323ce32dac703c79d8f2de134e6a420cdfbc868323cfc68a done
+2023-05-21T19:24:21.4705233Z #6 extracting sha256:c343b921680a19bf22934b83c02f42d8fdd0d8559417f63c1dcd2d7997c22da3
+2023-05-21T19:24:21.6214058Z #6 extracting sha256:c343b921680a19bf22934b83c02f42d8fdd0d8559417f63c1dcd2d7997c22da3 0.1s done
+2023-05-21T19:24:21.6214658Z #6 DONE 10.8s
+2023-05-21T19:24:21.6214812Z 
+2023-05-21T19:24:21.6214968Z #7 [2/5] WORKDIR /app/backend
+2023-05-21T19:24:23.2760543Z #7 DONE 1.6s
+2023-05-21T19:24:23.2760807Z 
+2023-05-21T19:24:23.2760980Z #8 [3/5] COPY requirements.txt requirements.txt
+2023-05-21T19:24:23.2761250Z #8 DONE 0.0s
+2023-05-21T19:24:23.2761377Z 
+2023-05-21T19:24:23.2761771Z #9 [4/5] RUN pip3 install -r requirements.txt
+2023-05-21T19:24:25.1867055Z #9 1.986 Collecting fastapi==0.95.1
+2023-05-21T19:24:25.3367856Z #9 2.041   Downloading fastapi-0.95.1-py3-none-any.whl (56 kB)
+2023-05-21T19:24:25.3369616Z #9 2.054      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.0/57.0 KB 4.8 MB/s eta 0:00:00
+2023-05-21T19:24:25.8964094Z #9 2.653 Collecting pymongo==4.3.3
+2023-05-21T19:24:25.8964925Z #9 2.667   Downloading pymongo-4.3.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (492 kB)
+2023-05-21T19:24:26.0116414Z #9 2.696      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 492.1/492.1 KB 18.9 MB/s eta 0:00:00
+2023-05-21T19:24:26.0116902Z #9 2.741 Collecting python-dotenv==1.0.0
+2023-05-21T19:24:26.0117395Z #9 2.755   Downloading python_dotenv-1.0.0-py3-none-any.whl (19 kB)
+2023-05-21T19:24:26.0118157Z #9 2.810 Collecting uvicorn==0.22.0
+2023-05-21T19:24:26.1341250Z #9 2.826   Downloading uvicorn-0.22.0-py3-none-any.whl (58 kB)
+2023-05-21T19:24:26.1341890Z #9 2.831      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 KB 19.7 MB/s eta 0:00:00
+2023-05-21T19:24:26.1342233Z #9 2.933 Collecting pytest==7.3.1
+2023-05-21T19:24:26.2707024Z #9 2.951   Downloading pytest-7.3.1-py3-none-any.whl (320 kB)
+2023-05-21T19:24:26.2707642Z #9 2.960      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 320.5/320.5 KB 60.5 MB/s eta 0:00:00
+2023-05-21T19:24:26.2707985Z #9 3.000 Collecting mongomock==4.1.2
+2023-05-21T19:24:26.2708471Z #9 3.013   Downloading mongomock-4.1.2-py2.py3-none-any.whl (60 kB)
+2023-05-21T19:24:26.2709071Z #9 3.018      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.0/60.0 KB 20.1 MB/s eta 0:00:00
+2023-05-21T19:24:26.2709384Z #9 3.070 Collecting httpx==0.24.0
+2023-05-21T19:24:26.4215630Z #9 3.086   Downloading httpx-0.24.0-py3-none-any.whl (75 kB)
+2023-05-21T19:24:26.4216244Z #9 3.091      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.3/75.3 KB 24.4 MB/s eta 0:00:00
+2023-05-21T19:24:26.6956485Z #9 3.436 Collecting pydantic!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0,>=1.6.2
+2023-05-21T19:24:26.6957343Z #9 3.453   Downloading pydantic-1.10.7-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+2023-05-21T19:24:26.8369466Z #9 3.494      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 84.2 MB/s eta 0:00:00
+2023-05-21T19:24:26.8369884Z #9 3.572 Collecting starlette<0.27.0,>=0.26.1
+2023-05-21T19:24:26.8370384Z #9 3.585   Downloading starlette-0.26.1-py3-none-any.whl (66 kB)
+2023-05-21T19:24:26.8370937Z #9 3.591      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.9/66.9 KB 21.2 MB/s eta 0:00:00
+2023-05-21T19:24:26.8371269Z #9 3.636 Collecting dnspython<3.0.0,>=1.16.0
+2023-05-21T19:24:26.9370968Z #9 3.651   Downloading dnspython-2.3.0-py3-none-any.whl (283 kB)
+2023-05-21T19:24:26.9372010Z #9 3.660      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 283.7/283.7 KB 47.3 MB/s eta 0:00:00
+2023-05-21T19:24:26.9372909Z #9 3.723 Collecting click>=7.0
+2023-05-21T19:24:26.9373494Z #9 3.736   Downloading click-8.1.3-py3-none-any.whl (96 kB)
+2023-05-21T19:24:27.0395515Z #9 3.742      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 KB 30.9 MB/s eta 0:00:00
+2023-05-21T19:24:27.0396125Z #9 3.771 Collecting h11>=0.8
+2023-05-21T19:24:27.0396632Z #9 3.783   Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+2023-05-21T19:24:27.0397157Z #9 3.788      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 KB 20.6 MB/s eta 0:00:00
+2023-05-21T19:24:27.0397521Z #9 3.839 Collecting iniconfig
+2023-05-21T19:24:27.1455131Z #9 3.852   Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+2023-05-21T19:24:27.1455502Z #9 3.925 Collecting packaging
+2023-05-21T19:24:27.1455934Z #9 3.939   Downloading packaging-23.1-py3-none-any.whl (48 kB)
+2023-05-21T19:24:27.2478357Z #9 3.945      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.9/48.9 KB 11.4 MB/s eta 0:00:00
+2023-05-21T19:24:27.2478722Z #9 3.976 Collecting exceptiongroup>=1.0.0rc8
+2023-05-21T19:24:27.2479222Z #9 3.989   Downloading exceptiongroup-1.1.1-py3-none-any.whl (14 kB)
+2023-05-21T19:24:27.2479550Z #9 4.033 Collecting tomli>=1.0.0
+2023-05-21T19:24:27.2479927Z #9 4.047   Downloading tomli-2.0.1-py3-none-any.whl (12 kB)
+2023-05-21T19:24:27.3625097Z #9 4.093 Collecting pluggy<2.0,>=0.12
+2023-05-21T19:24:27.3626119Z #9 4.105   Downloading pluggy-1.0.0-py2.py3-none-any.whl (13 kB)
+2023-05-21T19:24:27.3626593Z #9 4.139 Collecting sentinels
+2023-05-21T19:24:27.3627099Z #9 4.162   Downloading sentinels-1.0.0.tar.gz (4.1 kB)
+2023-05-21T19:24:27.5130269Z #9 4.170   Preparing metadata (setup.py): started
+2023-05-21T19:24:27.8143292Z #9 4.493   Preparing metadata (setup.py): finished with status 'done'
+2023-05-21T19:24:27.8143606Z #9 4.541 Collecting idna
+2023-05-21T19:24:27.8143993Z #9 4.554   Downloading idna-3.4-py3-none-any.whl (61 kB)
+2023-05-21T19:24:27.8144568Z #9 4.561      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.5/61.5 KB 14.3 MB/s eta 0:00:00
+2023-05-21T19:24:27.9636420Z #9 4.617 Collecting sniffio
+2023-05-21T19:24:27.9637501Z #9 4.631   Downloading sniffio-1.3.0-py3-none-any.whl (10 kB)
+2023-05-21T19:24:27.9637844Z #9 4.680 Collecting certifi
+2023-05-21T19:24:27.9638353Z #9 4.693   Downloading certifi-2023.5.7-py3-none-any.whl (156 kB)
+2023-05-21T19:24:27.9638836Z #9 4.699      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 157.0/157.0 KB 40.6 MB/s eta 0:00:00
+2023-05-21T19:24:27.9639134Z #9 4.762 Collecting httpcore<0.18.0,>=0.15.0
+2023-05-21T19:24:28.0712839Z #9 4.778   Downloading httpcore-0.17.1-py3-none-any.whl (70 kB)
+2023-05-21T19:24:28.0713375Z #9 4.784      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 70.9/70.9 KB 21.0 MB/s eta 0:00:00
+2023-05-21T19:24:28.0713667Z #9 4.870 Collecting anyio<5.0,>=3.0
+2023-05-21T19:24:28.2217564Z #9 4.886   Downloading anyio-3.6.2-py3-none-any.whl (80 kB)
+2023-05-21T19:24:28.2218246Z #9 4.889      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.6/80.6 KB 21.8 MB/s eta 0:00:00
+2023-05-21T19:24:28.2218723Z #9 4.945 Collecting typing-extensions>=4.2.0
+2023-05-21T19:24:28.2219512Z #9 4.962   Downloading typing_extensions-4.5.0-py3-none-any.whl (27 kB)
+2023-05-21T19:24:28.3721158Z #9 5.034 Building wheels for collected packages: sentinels
+2023-05-21T19:24:28.3721804Z #9 5.035   Building wheel for sentinels (setup.py): started
+2023-05-21T19:24:28.6734225Z #9 5.379   Building wheel for sentinels (setup.py): finished with status 'done'
+2023-05-21T19:24:28.6735171Z #9 5.380   Created wheel for sentinels: filename=sentinels-1.0.0-py3-none-any.whl size=3200 sha256=c314a0e93de7b1dd7b88f8ebdefbb4819047f49ee84734a8046b703081b7c7db
+2023-05-21T19:24:28.6735801Z #9 5.380   Stored in directory: /root/.cache/pip/wheels/39/4c/05/90d81b81899bc2fd244e072d9b323422128e69a99328e712a5
+2023-05-21T19:24:28.6736218Z #9 5.383 Successfully built sentinels
+2023-05-21T19:24:28.7765771Z #9 5.576 Installing collected packages: sentinels, typing-extensions, tomli, sniffio, python-dotenv, pluggy, packaging, iniconfig, idna, h11, exceptiongroup, dnspython, click, certifi, uvicorn, pytest, pymongo, pydantic, mongomock, anyio, starlette, httpcore, httpx, fastapi
+2023-05-21T19:24:30.4314751Z #9 7.121 Successfully installed anyio-3.6.2 certifi-2023.5.7 click-8.1.3 dnspython-2.3.0 exceptiongroup-1.1.1 fastapi-0.95.1 h11-0.14.0 httpcore-0.17.1 httpx-0.24.0 idna-3.4 iniconfig-2.0.0 mongomock-4.1.2 packaging-23.1 pluggy-1.0.0 pydantic-1.10.7 pymongo-4.3.3 pytest-7.3.1 python-dotenv-1.0.0 sentinels-1.0.0 sniffio-1.3.0 starlette-0.26.1 tomli-2.0.1 typing-extensions-4.5.0 uvicorn-0.22.0
+2023-05-21T19:24:30.4316194Z #9 7.122 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2023-05-21T19:24:30.5822461Z #9 7.279 WARNING: You are using pip version 22.0.4; however, version 23.1.2 is available.
+2023-05-21T19:24:30.5823370Z #9 7.279 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+2023-05-21T19:24:30.6823704Z #9 DONE 7.5s
+2023-05-21T19:24:30.6824184Z 
+2023-05-21T19:24:30.6824591Z #10 [5/5] COPY . .
+2023-05-21T19:24:30.8329409Z #10 DONE 0.0s
+2023-05-21T19:24:30.8329613Z 
+2023-05-21T19:24:30.8329739Z #11 exporting to image
+2023-05-21T19:24:30.8330005Z #11 exporting layers
+2023-05-21T19:24:32.4590131Z #11 exporting layers 1.7s done
+2023-05-21T19:24:32.6096117Z #11 ...
+2023-05-21T19:24:32.6096339Z 
+2023-05-21T19:24:32.6097014Z #12 [auth] ***/backend-vdt:pull,push token for registry-1.docker.io
+2023-05-21T19:24:32.6097358Z #12 DONE 0.0s
+2023-05-21T19:24:32.6097490Z 
+2023-05-21T19:24:32.6097603Z #11 exporting to image
+2023-05-21T19:24:32.6098039Z #11 exporting manifest sha256:71ac9b2fc2670b5ed63abca4bcc5431f9a09b5cafd230a4a3279da652654c5e6 done
+2023-05-21T19:24:32.6098600Z #11 exporting config sha256:6407032404c1854fab1274d29e4bcd93584704b6ce970efc960be745967bb522 done
+2023-05-21T19:24:32.6099280Z #11 exporting attestation manifest sha256:3015afe9cbafe893d07e2d7e0762a578cc94516f0d6633ee544efe31f7bfb2f3 done
+2023-05-21T19:24:32.6099873Z #11 exporting manifest list sha256:32bf073275d272cea81a683fb80f70ea878df19283ec6e2e99a76d45458f6b85 0.0s done
+2023-05-21T19:24:32.6100263Z #11 pushing layers
+2023-05-21T19:24:39.8265101Z #11 pushing layers 7.2s done
+2023-05-21T19:24:39.8266704Z #11 pushing manifest for docker.io/***/backend-vdt:v0.1.0@sha256:32bf073275d272cea81a683fb80f70ea878df19283ec6e2e99a76d45458f6b85
+2023-05-21T19:24:40.5389709Z #11 pushing manifest for docker.io/***/backend-vdt:v0.1.0@sha256:32bf073275d272cea81a683fb80f70ea878df19283ec6e2e99a76d45458f6b85 0.8s done
+2023-05-21T19:24:40.5390258Z #11 DONE 9.8s
+2023-05-21T19:24:40.5490374Z ##[group]ImageID
+2023-05-21T19:24:40.5491000Z sha256:32bf073275d272cea81a683fb80f70ea878df19283ec6e2e99a76d45458f6b85
+2023-05-21T19:24:40.5500844Z ##[endgroup]
+2023-05-21T19:24:40.5501518Z ##[group]Digest
+2023-05-21T19:24:40.5501827Z sha256:32bf073275d272cea81a683fb80f70ea878df19283ec6e2e99a76d45458f6b85
+2023-05-21T19:24:40.5502372Z ##[endgroup]
+2023-05-21T19:24:40.5502775Z ##[group]Metadata
+2023-05-21T19:24:40.5502973Z {
+2023-05-21T19:24:40.5503189Z   "containerimage.buildinfo": {
+2023-05-21T19:24:40.5503458Z     "frontend": "dockerfile.v0",
+2023-05-21T19:24:40.5503693Z     "attrs": {
+2023-05-21T19:24:40.5503918Z       "filename": "Dockerfile",
+2023-05-21T19:24:40.5504206Z       "vcs:revision": "1d434034917a2b69ae50179458776b0d09fad62c",
+2023-05-21T19:24:40.5505052Z       "vcs:source": "https://github.com/***h/vdt2023-midterm-project"
+2023-05-21T19:24:40.5505320Z     },
+2023-05-21T19:24:40.5505626Z     "sources": [
+2023-05-21T19:24:40.5505867Z       {
+2023-05-21T19:24:40.5506130Z         "type": "docker-image",
+2023-05-21T19:24:40.5506399Z         "ref": "docker.io/library/python:3.9",
+2023-05-21T19:24:40.5506765Z         "pin": "sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51"
+2023-05-21T19:24:40.5507074Z       }
+2023-05-21T19:24:40.5507256Z     ]
+2023-05-21T19:24:40.5507435Z   },
+2023-05-21T19:24:40.5507665Z   "containerimage.descriptor": {
+2023-05-21T19:24:40.5507994Z     "mediaType": "application/vnd.oci.image.index.v1+json",
+2023-05-21T19:24:40.5508394Z     "digest": "sha256:32bf073275d272cea81a683fb80f70ea878df19283ec6e2e99a76d45458f6b85",
+2023-05-21T19:24:40.5508702Z     "size": 856
+2023-05-21T19:24:40.5508896Z   },
+2023-05-21T19:24:40.5509238Z   "containerimage.digest": "sha256:32bf073275d272cea81a683fb80f70ea878df19283ec6e2e99a76d45458f6b85",
+2023-05-21T19:24:40.5509698Z   "image.name": "***/backend-vdt:v0.1.0"
+2023-05-21T19:24:40.5509915Z }
+2023-05-21T19:24:40.5510275Z ##[endgroup]
+2023-05-21T19:24:40.5587444Z ##[group]Run docker/build-push-action@v4
+2023-05-21T19:24:40.5587706Z with:
+2023-05-21T19:24:40.5587924Z   context: ./app/frontend
+2023-05-21T19:24:40.5588173Z   file: ./app/frontend/Dockerfile
+2023-05-21T19:24:40.5588405Z   push: true
+2023-05-21T19:24:40.5588650Z   tags: ***/frontend-vdt:v0.1.0
+2023-05-21T19:24:40.5588883Z   load: false
+2023-05-21T19:24:40.5589091Z   no-cache: false
+2023-05-21T19:24:40.5589301Z   pull: false
+2023-05-21T19:24:40.5589824Z   github-token: ***
+2023-05-21T19:24:40.5590046Z ##[endgroup]
+2023-05-21T19:24:40.7486863Z ##[group]GitHub Actions runtime token access controls
+2023-05-21T19:24:40.7499307Z [
+2023-05-21T19:24:40.7499734Z   {
+2023-05-21T19:24:40.7500351Z     "Scope": "refs/tags/release/v0.1.0",
+2023-05-21T19:24:40.7500765Z     "Permission": 3
+2023-05-21T19:24:40.7501678Z   },
+2023-05-21T19:24:40.7502001Z   {
+2023-05-21T19:24:40.7502558Z     "Scope": "refs/heads/main",
+2023-05-21T19:24:40.7502945Z     "Permission": 1
+2023-05-21T19:24:40.7503572Z   }
+2023-05-21T19:24:40.7504209Z ]
+2023-05-21T19:24:40.7505509Z ##[endgroup]
+2023-05-21T19:24:40.7506270Z ##[group]Docker info
+2023-05-21T19:24:40.7519682Z [command]/usr/bin/docker version
+2023-05-21T19:24:40.7768380Z Client:
+2023-05-21T19:24:40.7769732Z  Version:           20.10.24+azure-1
+2023-05-21T19:24:40.7770164Z  API version:       1.41
+2023-05-21T19:24:40.7770788Z  Go version:        go1.19.6
+2023-05-21T19:24:40.7771230Z  Git commit:        297e1284d3bd092e9bc96076c3ddc4bb33f8c7ab
+2023-05-21T19:24:40.7771899Z  Built:             Fri Mar 31 18:34:38 UTC 2023
+2023-05-21T19:24:40.7772301Z  OS/Arch:           linux/amd64
+2023-05-21T19:24:40.7772864Z  Context:           default
+2023-05-21T19:24:40.7773254Z  Experimental:      true
+2023-05-21T19:24:40.7773745Z 
+2023-05-21T19:24:40.7773974Z Server:
+2023-05-21T19:24:40.7774503Z  Engine:
+2023-05-21T19:24:40.7779307Z   Version:          20.10.24+azure-1
+2023-05-21T19:24:40.7779793Z   API version:      1.41 (minimum version 1.12)
+2023-05-21T19:24:40.7780431Z   Go version:       go1.19.6
+2023-05-21T19:24:40.7780873Z   Git commit:       5d6db842238e3c4f5f9fb9ad70ea46b35227d084
+2023-05-21T19:24:40.7781560Z   Built:            Tue Apr  4 18:03:51 2023
+2023-05-21T19:24:40.7781962Z   OS/Arch:          linux/amd64
+2023-05-21T19:24:40.7782540Z   Experimental:     false
+2023-05-21T19:24:40.7782921Z  containerd:
+2023-05-21T19:24:40.7783548Z   Version:          1.6.20+azure-1
+2023-05-21T19:24:40.7786228Z   GitCommit:        2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-21T19:24:40.7790497Z  runc:
+2023-05-21T19:24:40.7790867Z   Version:          1.1.7
+2023-05-21T19:24:40.7791531Z   GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-21T19:24:40.7792011Z  docker-init:
+2023-05-21T19:24:40.7792601Z   Version:          0.19.0
+2023-05-21T19:24:40.7792964Z   GitCommit:        
+2023-05-21T19:24:40.7818448Z [command]/usr/bin/docker info
+2023-05-21T19:24:40.8532716Z Client:
+2023-05-21T19:24:40.8533219Z  Context:    default
+2023-05-21T19:24:40.8533848Z  Debug Mode: false
+2023-05-21T19:24:40.8534261Z  Plugins:
+2023-05-21T19:24:40.8535128Z   buildx: Docker Buildx (Docker Inc., 0.10.4+azure-1)
+2023-05-21T19:24:40.8535690Z   compose: Docker Compose (Docker Inc., 2.17.3+azure-1)
+2023-05-21T19:24:40.8536223Z 
+2023-05-21T19:24:40.8536445Z Server:
+2023-05-21T19:24:40.8536989Z  Containers: 1
+2023-05-21T19:24:40.8537346Z   Running: 1
+2023-05-21T19:24:40.8537883Z   Paused: 0
+2023-05-21T19:24:40.8538236Z   Stopped: 0
+2023-05-21T19:24:40.8538757Z  Images: 18
+2023-05-21T19:24:40.8539339Z  Server Version: 20.10.24+azure-1
+2023-05-21T19:24:40.8539954Z  Storage Driver: overlay2
+2023-05-21T19:24:40.8540353Z   Backing Filesystem: extfs
+2023-05-21T19:24:40.8540938Z   Supports d_type: true
+2023-05-21T19:24:40.8541327Z   Native Overlay Diff: false
+2023-05-21T19:24:40.8543018Z   userxattr: false
+2023-05-21T19:24:40.8543982Z  Logging Driver: json-file
+2023-05-21T19:24:40.8544387Z  Cgroup Driver: cgroupfs
+2023-05-21T19:24:40.8544960Z  Cgroup Version: 2
+2023-05-21T19:24:40.8545321Z  Plugins:
+2023-05-21T19:24:40.8546295Z   Volume: local
+2023-05-21T19:24:40.8546773Z   Network: bridge host ipvlan macvlan null overlay
+2023-05-21T19:24:40.8547801Z   Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+2023-05-21T19:24:40.8548282Z  Swarm: inactive
+2023-05-21T19:24:40.8548947Z  Runtimes: io.containerd.runtime.v1.linux runc io.containerd.runc.v2
+2023-05-21T19:24:40.8549415Z  Default Runtime: runc
+2023-05-21T19:24:40.8550023Z  Init Binary: docker-init
+2023-05-21T19:24:40.8550686Z  containerd version: 2806fc1057397dbaeefbea0e4e17bddfbd388f38
+2023-05-21T19:24:40.8551369Z  runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7
+2023-05-21T19:24:40.8552055Z  init version: 
+2023-05-21T19:24:40.8552618Z  Security Options:
+2023-05-21T19:24:40.8552976Z   apparmor
+2023-05-21T19:24:40.8553831Z   seccomp
+2023-05-21T19:24:40.8554209Z    Profile: default
+2023-05-21T19:24:40.8554997Z   cgroupns
+2023-05-21T19:24:40.8555660Z  Kernel Version: 5.15.0-1037-azure
+2023-05-21T19:24:40.8556464Z  Operating System: Ubuntu 22.04.2 LTS
+2023-05-21T19:24:40.8557029Z  OSType: linux
+2023-05-21T19:24:40.8557882Z  Architecture: x86_64
+2023-05-21T19:24:40.8558270Z  CPUs: 2
+2023-05-21T19:24:40.8558820Z  Total Memory: 6.781GiB
+2023-05-21T19:24:40.8559416Z  Name: fv-az247-585
+2023-05-21T19:24:40.8560302Z  ID: 45C5:GCD5:C2ZA:BU76:2JJE:VILT:FJER:O74A:S3LH:GA6O:RCDR:J762
+2023-05-21T19:24:40.8560759Z  Docker Root Dir: /var/lib/docker
+2023-05-21T19:24:40.8561637Z  Debug Mode: false
+2023-05-21T19:24:40.8562248Z  Username: ***
+2023-05-21T19:24:40.8563050Z  Registry: https://index.docker.io/v1/
+2023-05-21T19:24:40.8563611Z  Labels:
+2023-05-21T19:24:40.8564343Z  Experimental: false
+2023-05-21T19:24:40.8564724Z  Insecure Registries:
+2023-05-21T19:24:40.8565274Z   127.0.0.0/8
+2023-05-21T19:24:40.8565627Z  Live Restore Enabled: false
+2023-05-21T19:24:40.8566110Z 
+2023-05-21T19:24:40.8566706Z ##[endgroup]
+2023-05-21T19:24:40.9895674Z ##[group]Buildx version
+2023-05-21T19:24:40.9945764Z [command]/usr/bin/docker buildx version
+2023-05-21T19:24:41.0581529Z github.com/docker/buildx 0.10.4+azure-1 c513d34049e499c53468deac6c4267ee72948f02
+2023-05-21T19:24:41.0589411Z ##[endgroup]
+2023-05-21T19:24:41.2163722Z [command]/usr/bin/docker buildx build --file ./app/frontend/Dockerfile --iidfile /tmp/docker-build-push-C3t7Z2/iidfile --provenance mode=min,inline-only=true,builder-id=https://github.com/***h/vdt2023-midterm-project/actions/runs/5039338774 --tag ***/frontend-vdt:v0.1.0 --metadata-file /tmp/docker-build-push-C3t7Z2/metadata-file --push ./app/frontend
+2023-05-21T19:24:41.5439355Z #1 [internal] load build definition from Dockerfile
+2023-05-21T19:24:41.5443163Z #1 transferring dockerfile: 458B done
+2023-05-21T19:24:41.5443887Z #1 DONE 0.0s
+2023-05-21T19:24:41.5444079Z 
+2023-05-21T19:24:41.5444204Z #2 [internal] load .dockerignore
+2023-05-21T19:24:41.5444472Z #2 transferring context: 123B done
+2023-05-21T19:24:41.5444775Z #2 DONE 0.0s
+2023-05-21T19:24:41.5444900Z 
+2023-05-21T19:24:41.5445390Z #3 [auth] docker/dockerfile:pull token for registry-1.docker.io
+2023-05-21T19:24:41.5445673Z #3 DONE 0.0s
+2023-05-21T19:24:41.5445799Z 
+2023-05-21T19:24:41.5445959Z #4 resolve image config for docker.io/docker/dockerfile:1
+2023-05-21T19:24:41.9947777Z #4 DONE 0.5s
+2023-05-21T19:24:41.9949677Z 
+2023-05-21T19:24:41.9951059Z #5 docker-image://docker.io/docker/dockerfile:1@sha256:39b85bbfa7536a5feceb7372a0817649ecb2724562a38360f4d6a7782a409b14
+2023-05-21T19:24:41.9951973Z #5 resolve docker.io/docker/dockerfile:1@sha256:39b85bbfa7536a5feceb7372a0817649ecb2724562a38360f4d6a7782a409b14 done
+2023-05-21T19:24:42.1458645Z #5 sha256:a47ff7046597eea0123ea02817165350e3680f75000dc5d69c9a310258e1bedd 11.55MB / 11.55MB 0.1s done
+2023-05-21T19:24:42.1460160Z #5 extracting sha256:a47ff7046597eea0123ea02817165350e3680f75000dc5d69c9a310258e1bedd
+2023-05-21T19:24:42.2971069Z #5 extracting sha256:a47ff7046597eea0123ea02817165350e3680f75000dc5d69c9a310258e1bedd 0.1s done
+2023-05-21T19:24:42.2976136Z #5 DONE 0.3s
+2023-05-21T19:24:42.4482633Z 
+2023-05-21T19:24:42.4486139Z #6 [auth] library/node:pull token for registry-1.docker.io
+2023-05-21T19:24:42.4486555Z #6 DONE 0.0s
+2023-05-21T19:24:42.4486705Z 
+2023-05-21T19:24:42.4486980Z #7 [auth] library/nginx:pull token for registry-1.docker.io
+2023-05-21T19:24:42.4487285Z #7 DONE 0.0s
+2023-05-21T19:24:42.4487428Z 
+2023-05-21T19:24:42.4487732Z #8 [internal] load metadata for docker.io/library/node:18.16.0-alpine3.17
+2023-05-21T19:24:42.7178604Z #8 DONE 0.4s
+2023-05-21T19:24:42.7183838Z 
+2023-05-21T19:24:42.7189167Z #9 [internal] load metadata for docker.io/library/nginx:1.22.0-alpine
+2023-05-21T19:24:42.8587119Z #9 DONE 0.6s
+2023-05-21T19:24:42.9596211Z 
+2023-05-21T19:24:42.9601053Z #10 [development 1/5] FROM docker.io/library/node:18.16.0-alpine3.17@sha256:1ccc70acda680aa4ba47f53e7c40b2d4d6892de74817128e0662d32647dd7f4d
+2023-05-21T19:24:42.9605608Z #10 resolve docker.io/library/node:18.16.0-alpine3.17@sha256:1ccc70acda680aa4ba47f53e7c40b2d4d6892de74817128e0662d32647dd7f4d done
+2023-05-21T19:24:42.9609299Z #10 DONE 0.1s
+2023-05-21T19:24:42.9616116Z 
+2023-05-21T19:24:42.9616747Z #11 [stage-2 1/5] FROM docker.io/library/nginx:1.22.0-alpine@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec
+2023-05-21T19:24:42.9617481Z #11 resolve docker.io/library/nginx:1.22.0-alpine@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec done
+2023-05-21T19:24:43.0655327Z #11 ...
+2023-05-21T19:24:43.0655848Z 
+2023-05-21T19:24:43.0656371Z #12 [internal] load build context
+2023-05-21T19:24:43.0656831Z #12 transferring context: 701.98kB 0.0s done
+2023-05-21T19:24:43.0657424Z #12 DONE 0.0s
+2023-05-21T19:24:43.0657701Z 
+2023-05-21T19:24:43.0658667Z #11 [stage-2 1/5] FROM docker.io/library/nginx:1.22.0-alpine@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec
+2023-05-21T19:24:43.1673546Z #11 sha256:a317c3c2c9064a2aabf3ab203f55b717e828a7fc339ee0a6100cd8d5970a6c17 1.40kB / 1.40kB 0.1s done
+2023-05-21T19:24:43.1674370Z #11 sha256:7a662f439736576aac6a8cd6ddf51e961c8641e2a22ce7bb620b60815b25fc37 666B / 666B 0.1s done
+2023-05-21T19:24:43.2835044Z #11 sha256:4ae981811a6d5d8dbd93ecccfe21e9e947155407df83e899099170dfdf366fb6 893B / 893B 0.1s done
+2023-05-21T19:24:43.2836251Z #11 sha256:a19f4cc2e0294fdd41523297ad14df64bb526fdf8ce599b4af3687d8912c4e41 601B / 601B 0.1s done
+2023-05-21T19:24:43.4251834Z #11 sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49 2.81MB / 2.81MB 0.1s done
+2023-05-21T19:24:43.4256444Z #11 sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 7.39MB / 7.39MB 0.1s done
+2023-05-21T19:24:43.4257110Z #11 extracting sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49
+2023-05-21T19:24:43.5764787Z #11 extracting sha256:213ec9aee27d8be045c6a92b7eac22c9a64b44558193775a1a7f626352392b49 0.1s done
+2023-05-21T19:24:43.5765519Z #11 extracting sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472
+2023-05-21T19:24:44.0275795Z #11 extracting sha256:1bfd2b69cf63efb52fab38d283b3142918b64f4095997a0b4865c2086b64e472 0.5s done
+2023-05-21T19:24:44.0276291Z #11 extracting sha256:a19f4cc2e0294fdd41523297ad14df64bb526fdf8ce599b4af3687d8912c4e41 0.0s done
+2023-05-21T19:24:44.0276751Z #11 extracting sha256:4ae981811a6d5d8dbd93ecccfe21e9e947155407df83e899099170dfdf366fb6 0.0s done
+2023-05-21T19:24:44.0277209Z #11 extracting sha256:7a662f439736576aac6a8cd6ddf51e961c8641e2a22ce7bb620b60815b25fc37 0.0s done
+2023-05-21T19:24:44.0277663Z #11 extracting sha256:a317c3c2c9064a2aabf3ab203f55b717e828a7fc339ee0a6100cd8d5970a6c17 0.0s done
+2023-05-21T19:24:44.0278005Z #11 DONE 1.0s
+2023-05-21T19:24:44.0278132Z 
+2023-05-21T19:24:44.0278555Z #13 [stage-2 2/5] COPY /nginx.conf /etc/nginx/conf.d/default.conf
+2023-05-21T19:24:44.3285768Z #13 DONE 0.3s
+2023-05-21T19:24:44.3286198Z 
+2023-05-21T19:24:44.3290672Z #14 [stage-2 3/5] WORKDIR /usr/share/nginx/html
+2023-05-21T19:24:44.4703616Z #14 DONE 0.1s
+2023-05-21T19:24:44.4703933Z 
+2023-05-21T19:24:44.4705158Z #15 [stage-2 4/5] RUN rm -rf ./*
+2023-05-21T19:24:44.4705568Z #15 DONE 0.1s
+2023-05-21T19:24:44.4706936Z 
+2023-05-21T19:24:44.4708098Z #10 [development 1/5] FROM docker.io/library/node:18.16.0-alpine3.17@sha256:1ccc70acda680aa4ba47f53e7c40b2d4d6892de74817128e0662d32647dd7f4d
+2023-05-21T19:24:44.4708630Z #10 sha256:062e26bc2446cf92691255ec92cacfd68fdb24004e2b9343f416105b2f7d4966 450B / 450B 0.1s done
+2023-05-21T19:24:44.4709192Z #10 sha256:f56be85fc22e46face30e2c3de3f7fe7c15f8fd7c4e5add29d7f64b87abdaa09 3.37MB / 3.37MB 0.1s done
+2023-05-21T19:24:44.4709844Z #10 extracting sha256:f56be85fc22e46face30e2c3de3f7fe7c15f8fd7c4e5add29d7f64b87abdaa09 0.1s done
+2023-05-21T19:24:44.4710674Z #10 sha256:60542df8b663b3c876b9fd0ad8459ac628a50bd8684149e54c3dff2e44397f03 2.35MB / 2.35MB 0.2s done
+2023-05-21T19:24:44.4711395Z #10 sha256:931b0e865bc24d4d3f7032c4a9b98b4790ee7bb8dcd0d2fd02e15e163d806034 47.48MB / 47.48MB 0.5s done
+2023-05-21T19:24:44.4712010Z #10 extracting sha256:931b0e865bc24d4d3f7032c4a9b98b4790ee7bb8dcd0d2fd02e15e163d806034
+2023-05-21T19:24:45.4916907Z #10 extracting sha256:931b0e865bc24d4d3f7032c4a9b98b4790ee7bb8dcd0d2fd02e15e163d806034 2.0s done
+2023-05-21T19:24:45.4917639Z #10 extracting sha256:60542df8b663b3c876b9fd0ad8459ac628a50bd8684149e54c3dff2e44397f03 0.1s done
+2023-05-21T19:24:45.4918149Z #10 DONE 2.6s
+2023-05-21T19:24:45.6427463Z 
+2023-05-21T19:24:45.6429015Z #10 [development 1/5] FROM docker.io/library/node:18.16.0-alpine3.17@sha256:1ccc70acda680aa4ba47f53e7c40b2d4d6892de74817128e0662d32647dd7f4d
+2023-05-21T19:24:45.6430076Z #10 extracting sha256:062e26bc2446cf92691255ec92cacfd68fdb24004e2b9343f416105b2f7d4966 done
+2023-05-21T19:24:45.6430872Z #10 DONE 2.6s
+2023-05-21T19:24:45.6431604Z 
+2023-05-21T19:24:45.6433016Z #16 [development 2/5] WORKDIR /app
+2023-05-21T19:24:45.7939313Z #16 DONE 0.1s
+2023-05-21T19:24:45.7940024Z 
+2023-05-21T19:24:45.7941106Z #17 [development 3/5] COPY package*.json ./
+2023-05-21T19:24:45.7941929Z #17 DONE 0.0s
+2023-05-21T19:24:45.7942569Z 
+2023-05-21T19:24:45.7943522Z #18 [development 4/5] RUN npm install
+2023-05-21T19:24:52.8613302Z #18 7.142 npm WARN deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+2023-05-21T19:24:53.1617889Z #18 7.350 npm WARN deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+2023-05-21T19:24:53.1619562Z #18 7.410 npm WARN deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+2023-05-21T19:24:53.4627994Z #18 7.658 npm WARN deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+2023-05-21T19:24:57.3417238Z #18 11.53 npm WARN deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+2023-05-21T19:25:05.4565003Z #18 19.72 
+2023-05-21T19:25:05.4565656Z #18 19.72 added 1488 packages, and audited 1489 packages in 19s
+2023-05-21T19:25:05.4565997Z #18 19.72 
+2023-05-21T19:25:05.4566339Z #18 19.72 235 packages are looking for funding
+2023-05-21T19:25:05.4591714Z #18 19.72   run `npm fund` for details
+2023-05-21T19:25:05.4591983Z #18 19.73 
+2023-05-21T19:25:05.4592234Z #18 19.73 6 high severity vulnerabilities
+2023-05-21T19:25:05.4592459Z #18 19.73 
+2023-05-21T19:25:05.4592737Z #18 19.73 To address all issues (including breaking changes), run:
+2023-05-21T19:25:05.4593274Z #18 19.73   npm audit fix --force
+2023-05-21T19:25:05.4593497Z #18 19.73 
+2023-05-21T19:25:05.4593740Z #18 19.73 Run `npm audit` for details.
+2023-05-21T19:25:05.4593962Z #18 19.73 npm notice 
+2023-05-21T19:25:05.4594337Z #18 19.73 npm notice New minor version of npm available! 9.5.1 -> 9.6.7
+2023-05-21T19:25:05.4594728Z #18 19.73 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.7>
+2023-05-21T19:25:05.4595164Z #18 19.73 npm notice Run `npm install -g npm@9.6.7` to update!
+2023-05-21T19:25:05.4595421Z #18 19.73 npm notice 
+2023-05-21T19:25:07.7130170Z #18 DONE 22.0s
+2023-05-21T19:25:07.7130348Z 
+2023-05-21T19:25:07.7130826Z #19 [development 5/5] COPY . .
+2023-05-21T19:25:08.0143164Z #19 DONE 0.3s
+2023-05-21T19:25:08.0143366Z 
+2023-05-21T19:25:08.0143713Z #20 [build 1/1] RUN npm run build
+2023-05-21T19:25:08.6172023Z #20 0.586 
+2023-05-21T19:25:08.6172720Z #20 0.586 > vdt-web@0.1.0 build
+2023-05-21T19:25:08.6173117Z #20 0.586 > react-scripts build
+2023-05-21T19:25:08.6173418Z #20 0.586 
+2023-05-21T19:25:10.2691255Z #20 2.332 Creating an optimized production build...
+2023-05-21T19:25:20.1436938Z #20 12.11 Compiled successfully.
+2023-05-21T19:25:20.1437232Z #20 12.11 
+2023-05-21T19:25:20.1437460Z #20 12.11 File sizes after gzip:
+2023-05-21T19:25:20.1437680Z #20 12.11 
+2023-05-21T19:25:20.1437919Z #20 12.13   58.4 kB  build/static/js/main.99f7a621.js
+2023-05-21T19:25:20.1438229Z #20 12.13   1.04 kB  build/static/css/main.286466e4.css
+2023-05-21T19:25:20.1438467Z #20 12.13 
+2023-05-21T19:25:20.1438732Z #20 12.13 The project was built assuming it is hosted at /.
+2023-05-21T19:25:20.1439115Z #20 12.13 You can control this with the homepage field in your package.json.
+2023-05-21T19:25:20.1439401Z #20 12.13 
+2023-05-21T19:25:20.1439635Z #20 12.13 The build folder is ready to be deployed.
+2023-05-21T19:25:20.1439932Z #20 12.13 You may serve it with a static server:
+2023-05-21T19:25:20.1440170Z #20 12.13 
+2023-05-21T19:25:20.1440615Z #20 12.13   npm install -g serve
+2023-05-21T19:25:20.1440897Z #20 12.13   serve -s build
+2023-05-21T19:25:20.1441092Z #20 12.13 
+2023-05-21T19:25:20.1441338Z #20 12.13 Find out more about deployment here:
+2023-05-21T19:25:20.1441597Z #20 12.13 
+2023-05-21T19:25:20.1441845Z #20 12.13   https://cra.link/deployment
+2023-05-21T19:25:20.1442084Z #20 12.13 
+2023-05-21T19:25:20.1442262Z #20 DONE 12.2s
+2023-05-21T19:25:20.7215080Z 
+2023-05-21T19:25:20.7218395Z #21 [stage-2 5/5] COPY --from=build /app/build .
+2023-05-21T19:25:20.8502664Z #21 DONE 0.0s
+2023-05-21T19:25:20.8503456Z 
+2023-05-21T19:25:20.8503682Z #22 exporting to image
+2023-05-21T19:25:20.8503939Z #22 exporting layers 0.1s done
+2023-05-21T19:25:20.9930605Z #22 exporting manifest sha256:66f07bb690d346ef1aa582570ee2801b615b4dac7a6184556c0efb5f4cb1b566 done
+2023-05-21T19:25:20.9932153Z #22 exporting config sha256:36ea04edbf547f6f4576e39d471e8e89d6863dd4eae218219cb1548a9fce188f done
+2023-05-21T19:25:20.9932711Z #22 exporting attestation manifest sha256:9232694fa18f93b6c55890b4bc9daa1fa227374d28fcb1d11ac03c3078a21c72 done
+2023-05-21T19:25:20.9933280Z #22 exporting manifest list sha256:f020a5853cf4b2df9bf5285f1c1223d59a0eb4825e046b719813cd5b0481827a done
+2023-05-21T19:25:20.9933685Z #22 pushing layers
+2023-05-21T19:25:21.1446004Z #22 ...
+2023-05-21T19:25:21.1446406Z 
+2023-05-21T19:25:21.1447601Z #23 [auth] ***/frontend-vdt:pull,push token for registry-1.docker.io
+2023-05-21T19:25:21.1447994Z #23 DONE 0.0s
+2023-05-21T19:25:21.2953989Z 
+2023-05-21T19:25:21.2955559Z #22 exporting to image
+2023-05-21T19:25:23.6682201Z #22 pushing layers 2.8s done
+2023-05-21T19:25:23.6683252Z #22 pushing manifest for docker.io/***/frontend-vdt:v0.1.0@sha256:f020a5853cf4b2df9bf5285f1c1223d59a0eb4825e046b719813cd5b0481827a
+2023-05-21T19:25:24.4865367Z #22 pushing manifest for docker.io/***/frontend-vdt:v0.1.0@sha256:f020a5853cf4b2df9bf5285f1c1223d59a0eb4825e046b719813cd5b0481827a 0.8s done
+2023-05-21T19:25:24.4866197Z #22 DONE 3.7s
+2023-05-21T19:25:24.4922401Z ##[group]ImageID
+2023-05-21T19:25:24.4923053Z sha256:f020a5853cf4b2df9bf5285f1c1223d59a0eb4825e046b719813cd5b0481827a
+2023-05-21T19:25:24.4925484Z ##[endgroup]
+2023-05-21T19:25:24.4925956Z ##[group]Digest
+2023-05-21T19:25:24.4973774Z sha256:f020a5853cf4b2df9bf5285f1c1223d59a0eb4825e046b719813cd5b0481827a
+2023-05-21T19:25:24.4974353Z ##[endgroup]
+2023-05-21T19:25:24.4974746Z ##[group]Metadata
+2023-05-21T19:25:24.4974938Z {
+2023-05-21T19:25:24.4975166Z   "containerimage.buildinfo": {
+2023-05-21T19:25:24.4975430Z     "frontend": "gateway.v0",
+2023-05-21T19:25:24.4975651Z     "attrs": {
+2023-05-21T19:25:24.4975884Z       "cmdline": "docker/dockerfile:1",
+2023-05-21T19:25:24.4976126Z       "filename": "Dockerfile",
+2023-05-21T19:25:24.4976631Z       "source": "docker/dockerfile:1",
+2023-05-21T19:25:24.4976941Z       "vcs:revision": "1d434034917a2b69ae50179458776b0d09fad62c",
+2023-05-21T19:25:24.4977611Z       "vcs:source": "https://github.com/***h/vdt2023-midterm-project"
+2023-05-21T19:25:24.4977892Z     },
+2023-05-21T19:25:24.4978089Z     "sources": [
+2023-05-21T19:25:24.4978276Z       {
+2023-05-21T19:25:24.4978536Z         "type": "docker-image",
+2023-05-21T19:25:24.4978809Z         "ref": "docker.io/docker/dockerfile:1",
+2023-05-21T19:25:24.4979985Z         "pin": "sha256:39b85bbfa7536a5feceb7372a0817649ecb2724562a38360f4d6a7782a409b14"
+2023-05-21T19:25:24.4980336Z       },
+2023-05-21T19:25:24.4980526Z       {
+2023-05-21T19:25:24.4980786Z         "type": "docker-image",
+2023-05-21T19:25:24.4981137Z         "ref": "docker.io/library/nginx:1.22.0-alpine",
+2023-05-21T19:25:24.4989621Z         "pin": "sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec"
+2023-05-21T19:25:24.4990032Z       },
+2023-05-21T19:25:24.4990227Z       {
+2023-05-21T19:25:24.4990593Z         "type": "docker-image",
+2023-05-21T19:25:24.4990970Z         "ref": "docker.io/library/node:18.16.0-alpine3.17",
+2023-05-21T19:25:24.4998116Z         "pin": "sha256:1ccc70acda680aa4ba47f53e7c40b2d4d6892de74817128e0662d32647dd7f4d"
+2023-05-21T19:25:24.4998531Z       }
+2023-05-21T19:25:24.4998723Z     ]
+2023-05-21T19:25:24.4998890Z   },
+2023-05-21T19:25:24.4999131Z   "containerimage.descriptor": {
+2023-05-21T19:25:24.4999622Z     "mediaType": "application/vnd.oci.image.index.v1+json",
+2023-05-21T19:25:24.5000054Z     "digest": "sha256:f020a5853cf4b2df9bf5285f1c1223d59a0eb4825e046b719813cd5b0481827a",
+2023-05-21T19:25:24.5000371Z     "size": 856
+2023-05-21T19:25:24.5000686Z   },
+2023-05-21T19:25:24.5001023Z   "containerimage.digest": "sha256:f020a5853cf4b2df9bf5285f1c1223d59a0eb4825e046b719813cd5b0481827a",
+2023-05-21T19:25:24.5001812Z   "image.name": "***/frontend-vdt:v0.1.0"
+2023-05-21T19:25:24.5002065Z }
+2023-05-21T19:25:24.5002655Z ##[endgroup]
+2023-05-21T19:25:24.5068886Z Post job cleanup.
+2023-05-21T19:25:24.6105026Z ##[group]Removing temp folder /tmp/docker-build-push-C3t7Z2
+2023-05-21T19:25:24.6120847Z ##[endgroup]
+2023-05-21T19:25:24.6209764Z Post job cleanup.
+2023-05-21T19:25:24.7276225Z ##[group]Removing temp folder /tmp/docker-build-push-cfsr8v
+2023-05-21T19:25:24.7293539Z ##[endgroup]
+2023-05-21T19:25:24.7361641Z Post job cleanup.
+2023-05-21T19:25:24.8640040Z [command]/usr/bin/docker logout 
+2023-05-21T19:25:24.8927899Z Removing login credentials for https://index.docker.io/v1/
+2023-05-21T19:25:24.9028756Z Post job cleanup.
+2023-05-21T19:25:25.0128802Z ##[group]Removing builder
+2023-05-21T19:25:25.1806979Z [command]/usr/bin/docker buildx rm builder-b56b7169-4cb0-4340-a744-81b07b57dbd9
+2023-05-21T19:25:27.2457094Z builder-b56b7169-4cb0-4340-a744-81b07b57dbd9 removed
+2023-05-21T19:25:27.2540818Z ##[endgroup]
+2023-05-21T19:25:27.2541586Z ##[group]Cleaning up certificates
+2023-05-21T19:25:27.2547834Z ##[endgroup]
+2023-05-21T19:25:27.2639653Z Post job cleanup.
+2023-05-21T19:25:27.3833534Z [command]/usr/bin/git version
+2023-05-21T19:25:27.3890164Z git version 2.40.1
+2023-05-21T19:25:27.3962177Z Temporarily overriding HOME='/home/runner/work/_temp/c6d32487-fc71-429a-aeb3-6a5ba911ca77' before making global git config changes
+2023-05-21T19:25:27.3967727Z Adding repository directory to the temporary git global config as a safe directory
+2023-05-21T19:25:27.3978050Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vdt2023-midterm-project/vdt2023-midterm-project
+2023-05-21T19:25:27.4033866Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2023-05-21T19:25:27.4080741Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2023-05-21T19:25:27.4363898Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2023-05-21T19:25:27.4391714Z http.https://github.com/.extraheader
+2023-05-21T19:25:27.4405020Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2023-05-21T19:25:27.4443194Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2023-05-21T19:25:27.4885640Z Cleaning up orphan processes

@@ -1,0 +1,20 @@
+.button-edit {
+  background-color: #7aa874;
+}
+
+.button-edit:hover {
+  background-color: #539165;
+}
+
+.button-delete {
+  background-color: #ff6969;
+}
+
+.button-delete:hover {
+  background-color: #ed2b2a;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+}
