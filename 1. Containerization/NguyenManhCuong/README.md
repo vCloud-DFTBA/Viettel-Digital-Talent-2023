@@ -1,28 +1,29 @@
-  - [**1. Containerization**](#1-containerization)
-    - [**1.1. Overview**](#11-overview)
-    - [**1.2. Containerization vs Virtualization**](#12-containerization-vs-virtualization)
-    - [**1.3. Benefits of Containerization**](#13-benefits-of-containerization)
-    - [**1.4. Linux Technologies Fundamental to Containers**](#14-linux-technologies-fundamental-to-containers)
-  - [**2. Docker**](#2-docker)
-    - [**2.1 Docker Architecture**](#21-docker-architecture)
-    - [**2.2 Docker Objects**](#22-docker-objects)
-    - [**2.3 Dockerfile**](#23-dockerfile)
-    - [**2.4 Docker Compose**](#24-docker-compose)
-    - [**2.5 Docker Image Optimization**](#25-docker-image-optimization)
-  - [**3. Homework**](#3-homework)
-    - [**3.1. Requirements**](#31-requirements)
-    - [**3.2. Explaination**](#32-explaination)
-    - [**3.3. Result**](#33-result)
-  - [**References**](#references)
+**Table of Contents**
+- [1 Containerization](#1-containerization)
+  - [1.1 Overview](#11-overview)
+  - [1.2 Containerization vs Virtualization](#12-containerization-vs-virtualization)
+  - [1.3 Benefits of Containerization](#13-benefits-of-containerization)
+  - [1.4 Linux Technologies Fundamental to Containers](#14-linux-technologies-fundamental-to-containers)
+- [2 Docker](#2-docker)
+  - [2.1 Docker Architecture](#21-docker-architecture)
+  - [2.2 Docker Objects](#22-docker-objects)
+  - [2.3 Dockerfile](#23-dockerfile)
+  - [2.4 Docker Compose](#24-docker-compose)
+  - [2.5 Docker Image Optimization](#25-docker-image-optimization)
+- [3 Homework](#3-homework)
+  - [3.1 Requirements](#31-requirements)
+  - [3.2 Explaination](#32-explaination)
+  - [3.3 Result](#33-result)
+- [References](#references)
 
-## **1. Containerization**
+## 1 Containerization
 
-### **1.1. Overview**
+### 1.1 Overview
 
 <p align = "justify"><strong>Containerization</strong> is achieved by <em>packing</em> together of software code with all its necessary components like libraries, frameworks, and other dependencies in an isolated user space called a container.</p>
 <p align = "justify">Traditionally, to run any application on your computer, you had to install the version that matched your machine’s operating system. For example, you needed to install the Windows version of a software package on a Windows machine. However, with containerization, you can create a single software package, or container, that runs on all types of devices and operating systems.</p>
 
-### **1.2. Containerization vs Virtualization**
+### 1.2 Containerization vs Virtualization
 
 <p align = "justify">Virtualization and containerization are the two most frequently used mechanisms to host applications in a computer system.</p>
 
@@ -35,7 +36,7 @@
 
 <p align = "justify"><strong>Containerization</strong> is <strong>"OS-level virtualization"</strong>. It doesn't simulate the entire physical machine. It just simulates the OS of your machine. Therefore, multiple applications can share the same OS kernel. Containers play similar roles as virtual machine but without hardware virtualization. Most common container technology is <strong>"Docker"</strong>.</p>
 
-### **1.3. Benefits of Containerization**
+### 1.3 Benefits of Containerization
 
 - <p style="text-align: justify"><strong>Portability</strong>: By abstracting applications away from the host OS, a container enviroment makes applications run smoothly on any platform or cloud.</p>
 
@@ -51,7 +52,7 @@
 
 - <p style="text-align: justify"><strong>Easy Management</strong>: Container orchestration tools perform application management, automating installation and management of workloads.</p>
 
-### **1.4. Linux Technologies Fundamental to Containers**
+### 1.4 Linux Technologies Fundamental to Containers
 
 <p style="text-align: justify"> Linux technologies make up the foundations of building and running a container process on system. </p>
 <p align = "center">
@@ -77,7 +78,7 @@
 <p align = "justify"><strong>Seccomp</strong> provides containers access to only those resources which the container might need. For example, if you don't need the container to change the clock time on your host machine, you probably have no use for the clock_adjtime and clock_settime syscalls, and it makes sense to block them out. The default <code>seccomp</code> profile provides a sane default for running containers with seccomp and disables around 44 system calls out of 300+</p>
 <p align = "justify"> If you are running a Red Hat distribution on your hosts, then <strong>SELinux</strong> is enabled by default. SELinux lets you limit an application to have access only to its own files and prevent any other processes from accessing them.</p>
 
-## **2. Docker**
+## 2 Docker
 
 <p align = "justify"> <strong>Docker</strong> is the containerization platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.</p>
 
@@ -86,7 +87,7 @@
 <br>Picture 3. Docker Logo
 </p>
 
-### **2.1 Docker Architecture**
+### 2.1 Docker Architecture
 <a name='architecture'></a>
 
 <p align = "center">
@@ -104,7 +105,7 @@
 
 <p align = "justify"><strong>Docker Desktop</strong>  is an easy-to-install application for your Mac, Windows or Linux environment that enables you to build and share containerized applications and microservices. Docker Desktop includes the Docker daemon, the Docker client, Docker Compose, Docker Content Trust, Kubernetes, and Credential Helper.</p>
 
-### **2.2 Docker Objects**
+### 2.2 Docker Objects
 
 **Images**
 
@@ -122,7 +123,7 @@
 
 <p align = "justify">Docker networking is a passage through which all the isolated container communicate. There are mainly five network drivers in docker: <strong>Bridge, Host, Overlay, None, macvlan</strong>.</p>
 
-### **2.3 Dockerfile**
+### 2.3 Dockerfile
 
 <p align = "justify"><code>Dockerfile</code> is a text file that contains a series of instructions on how to build your Docker image. This image contains all the project code and its dependencies.</p>
 <p align = "center">
@@ -314,7 +315,7 @@
     - <p align = "justify"><code>ENTRYPOINT</code> is being used when you want to run your container as an application.</p>
 
 
-### **2.4 Docker Compose**
+### 2.4 Docker Compose
 
 <p align = "justify"><strong>Docker Compose</strong> is a tool for defining and running <em>multi-container</em> Docker applications. By using Compose, we can define the services in a <code>YAML</code> file. Then, with a single command, we create and start all the services from our configuration.</p>
 
@@ -328,7 +329,7 @@
 - <p align = "justify">Define the services that make up the app in <code>docker-compose.yml</code> so they can be run together in an isolated environment.
 - <p align = "justify">Run <code>docker-compose up</code> command and <strong>Compose</strong> will start and run entire application.</p>
   
-### **2.5 Docker Image Optimization**
+### 2.5 Docker Image Optimization
 
 <p align = "justify">Large Docker images can make it difficult to share and slow down execution. So, optimizing the images can help with the overall development and production process. There are several techniques for optimizing the building of images in Docker:</p>
 
@@ -355,9 +356,9 @@
 - <p align = "justify"><strong>Using DockerSlim</strong>: Docker Slim is a tool for optimizing Dockerfiles and Docker images. It makes your containers betters, smaller and more secure. It can reduce image size up to <em>thirty times</em> without any manual optimization
 
 
-## **3. Homework**
+## 3 Homework
 
-### **3.1. Requirements**
+### 3.1 Requirements
 
 <p align = "justify">Set up a three-tier web application that displays the course attendees' information on the browser using <strong>docker-compose</strong>.</p>
 
@@ -371,7 +372,7 @@ Base images:
 <br>Picture 13. Three-tier web architecture.
 </p>
 
-### **3.2. Explaination**
+### 3.2 Explaination
 
 **Dockerfile configuration**
 
@@ -569,7 +570,7 @@ CMD ["python3", "app.py"]
 
     <p align = "justify">By using custom networks, you can isolate the communication between containers, control the traffic flow, and provide a secure environment for your application. Using custom networks in Docker can provide an additional layer of security to your application stack by limiting access to sensitive resources and controlling how containers communicate with each other.</p>
 
-### **3.3. Result**
+### 3.3 Result
 
 <p align = "center">
 <img src = "./images/images_size.png" width = 600 height = 200> 
@@ -586,7 +587,7 @@ CMD ["python3", "app.py"]
 <br>Picture 18. Demo web
 </p>
 
-## **References**
+## References
 
 [1] [What Is Containerization?](https://aws.amazon.com/what-is/containerization/)
 
