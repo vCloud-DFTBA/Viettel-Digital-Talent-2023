@@ -25,7 +25,7 @@ webapp:
   hosts:
     localhost:
       ansible_connection: local
-      ansible_become_user: root
+      ansible_become_user: kilinh
 
     Kilinh-Node1:
       ansible_host: 198.19.249.24
