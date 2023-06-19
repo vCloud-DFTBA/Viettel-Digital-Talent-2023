@@ -1,0 +1,4 @@
+- name: Build and run Python backend
+  command: docker compose -f ./app/be-compose.yaml up -d
+  args:
+    chdir: "{{ playbook_dir }}"

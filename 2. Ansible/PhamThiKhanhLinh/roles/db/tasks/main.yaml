@@ -1,0 +1,4 @@
+- name: Build and Run MongoDB
+  command: docker compose -f ./app/db-compose.yaml up -d
+  args:
+    chdir: "{{ playbook_dir }}"

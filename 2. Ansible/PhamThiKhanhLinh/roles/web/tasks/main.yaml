@@ -1,0 +1,4 @@
+- name: Build frontend image
+  command: docker compose -f ./app/fe-compose.yaml up -d
+  args:
+    chdir: "{{ playbook_dir }}"

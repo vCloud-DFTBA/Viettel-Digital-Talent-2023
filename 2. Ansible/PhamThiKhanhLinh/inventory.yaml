@@ -1,0 +1,19 @@
+---
+webapp:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_become_user: kilinh
+
+    Kilinh-Node1:
+      ansible_host: 198.19.249.24
+
+    Kilinh-Node2:
+      ansible_host: 198.19.249.113
+
+  vars:
+    ansible_user: kilinh
+    ansible_ssh_private_key_file: /home/kilinh/.ssh/id_rsa
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_become: true
+    ansible_become_method: sudo

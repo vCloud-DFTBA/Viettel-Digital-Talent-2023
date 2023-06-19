@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  backend:
+    image: backend:latest
+    container_name: backend
+    build: ./backend
+    networks:
+      - db
+      - app
+
+networks:
+  app:
+    driver: bridge
+    name: app
+    external: false
+  db:
+    external: true
