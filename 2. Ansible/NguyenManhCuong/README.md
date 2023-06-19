@@ -1,21 +1,17 @@
-# Ansible
+**Table of contents**
 
-# Table of contents
-## [I. Overview](#1-overview)
--   ### [1. Infrastructure as Code](#11-infrastructure-as-code)
--   ### [2. Ansible](#12-ansible)
+- [1. Overview of Ansible](#1-overview-of-ansible)
+  - [1.1 Infrastructure as Code](#11-infrastructure-as-code)
+  - [1.2 Ansible](#12-ansible)
+- [2 Homework](#2-homework)
+  - [2.1 Requirements](#21-requirements)
+  - [2.2 Installation](#22-installation)
+  - [2.3 Using ansible to deploy](#23-using-ansible-to-deploy)
+  - [2.4 Results](#24-results)
+- [3 References](#3-references)
 
-## [II. Homework](#2-homework)
-
--   ### [1. Requirements](#21-requirements)
--   ### [2. Installation](#22-installation)
--   ### [3. Using ansible to deploy](#23-using-ansible-to-deploy)
--   ### [4. Results](#24-results)
-
-## [III. References](#3-references)
-
-# 1. Overview
-## 1.1 Infrastructure as Code
+## 1. Overview of Ansible
+### 1.1 Infrastructure as Code
 
 **Infrastructure as Code (IaC)** is the **managing** and **provisioning** of infrastructure through code instead of through *manual* processes.
 
@@ -44,7 +40,7 @@ An imperative approach instead defines the specific commands needed to achieve t
 
 Immutable infrastructure has gained favor particularly for cloud and microservices environments, which are highly scalable and involve many more interdependent components and services
 
-## 1.2 Ansible
+### 1.2 Ansible
 
 Ansible is an open-source automation tool that simplifies the *management* and *configuration* of systems, applications, and networks. It provides a declarative language to describe system configurations, which allows administrators to define the desired state of their infrastructure, rather than scripting specific commands or procedures. Ansible follows a "Infrastructure as Code" approach, enabling automation and consistent management of infrastructure through human-readable, version-controlled playbooks.
 
@@ -75,9 +71,9 @@ given goal
     - **Handlers**: A special form of a task, that only executes when notified by a previous task which resulted in a ‘changed’ status.
 - **Module**: is a reusable, standalone unit of code that performs a specific task or action on the managed nodes. Modules encapsulate functionality that can be executed by Ansible playbooks to automate various operations, such as installing packages, configuring services, managing files, running commands, or interacting with cloud providers and network devices.
 
-# 2. Homework
+## 2 Homework
 
-## 2.1 Requirements
+### 2.1 Requirements
 
 Deploy your application in the docker-compose homework using ansible:
 - Setup docker for your target environments in role “common”
@@ -86,7 +82,7 @@ Deploy your application in the docker-compose homework using ansible:
 *Note: The number of target nodes is chosen appropriately based on your lab environment. You can run all tasks on the same host if there
 are not enough resources.*
 
-## 2.2 Installation
+### 2.2 Installation
 
 - **Creating a Virtual Enviroment**: for maintaining a clean and controlled development environment, ensures reproducibility, simplifies dependency management, and promotes portability and security
 ```shell
@@ -100,9 +96,9 @@ are not enough resources.*
         pip install ansible
 ```
 
-## 2.3 Using ansible to deploy
+### 2.3 Using ansible to deploy
 
-### **Approach to solving homework exercises**
+**Approach to solving homework exercises**
 
 In the exercise, I will use Ansible to deploy the application on the remote EC2 instance of AWS. On the local machine, I will build and push the images (API and Nginx) to Docker Hub. On the remote machine, I will pull the images and deploy the product. I will perform four roles as required: 
 
@@ -113,7 +109,7 @@ In the exercise, I will use Ansible to deploy the application on the remote EC2 
    
 Additionally, there will be an extra `push` role to build and push the API and Nginx images to Docker Hub on the local machine.
 
-### **Inventory file**
+**Inventory file**
 
 Inventory file defines two groups of hosts: `localhost` (local machine) and `nodes` (EC2 instance of AWS). 
 ```yaml
@@ -131,7 +127,7 @@ all:
             ansible_ssh_private_key_file: ~/Desktop/vdt-2023.pem
 ```
 
-### **Creating playbook**
+**Creating playbook**
 
 An Ansible playbook consisting of three plays:
 
@@ -187,7 +183,7 @@ roles/
             main.yml      #  <-- other variables for the role
 ```
 
-### **Role `common` for installing Docker**
+**Role `common` for installing Docker**
 
 Running playbook will perform the following actions on the hosts:
 1. Install aptitude, which is preferred by Ansible as an alternative to the apt package manager
@@ -250,7 +246,7 @@ Running playbook will perform the following actions on the hosts:
 <br>Picture 1. Running play `Setup Docker` with role `common`
 </p>
 
-### **Role `push` for pushing images (`api`, `nginx`) to DockerHub**
+**Role `push` for pushing images (`api`, `nginx`) to DockerHub**
 
 Running playbook will perform the following actions on the hosts:
 1. Login into DockerHub. Using **Ansible Vault** for encrypting sensitive variables `dockerhub_username` and `dockerhub_password` (in file default/main.yaml) (To ensure the security when pushing source to GitHub. No one can access or view sensitive information such as my DockerHub username and password. Additionally, Ansible Vault provides the capability to encrypt sensitive files):
@@ -306,7 +302,7 @@ dockerhub_password: !vault |
 <br>Picture 2. Running play with role `push`
 </p>
 
-### **Role `db` for setting up the database**
+**Role `db` for setting up the database**
 
 Running playbook will perform the following actions on the `nodes` hosts (remote machine):
 1. Delete all existing containers and images
@@ -366,12 +362,12 @@ Running playbook will perform the following actions on the `nodes` hosts (remote
 <br>Picture 3. Running play with role `db`
 </p>
 
-### **Role `api` will handle the deployment tasks specifically related to the API component**
+**Role `api` will handle the deployment tasks specifically related to the API component**
 
 Running playbook will perform the following actions on the `nodes` hosts (remote machine):
 1. Create a network named `frontend` for frontend
 2. Pull images `api` previously uploaded to Docker Hub
-3. Run 3 containers for web server (flask_1, flask_2, flask_3)
+3. Run 3 containers for web server (flask_1, flask_2, flask_3). Each container will host a different application with a distinct font color: blue, red, and green. This setup will demonstrate how a load balancer distributes incoming traffic across multiple servers
 
 ```yaml
 - name: Create a network
@@ -411,7 +407,7 @@ Running playbook will perform the following actions on the `nodes` hosts (remote
 <br>Picture 4. Running play with role `api`
 </p>
 
-### **Role `web` for deploying the Nginx web server**
+**Role `web` for deploying the Nginx web server**
 
 Running playbook will perform the following actions on the `nodes` hosts (remote machine):
 1. Pull images `nginx` previously uploaded to Docker Hub
@@ -441,13 +437,13 @@ Running playbook will perform the following actions on the `nodes` hosts (remote
 <br>Picture 5. Running play with role `web`
 </p>
 
-### **Run playbook**
+**Run playbook**
 
 ```shell
 ansible-playbook -i inventory.yaml site.yaml --ask-vault-pass
 ```
 
-## 2.4 Results
+### 2.4 Results
 
 After executing the playbook, I received the following outcomes:
 
@@ -472,7 +468,7 @@ After executing the playbook, I received the following outcomes:
 </p>
 
 
-# 3. References
+## 3 References
 
 [1] [What is Infrastructure as Code (IaC)?](https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac#:~:text=Infrastructure%20as%20Code%20(IaC)%20is,to%20edit%20and%20distribute%20configurations.)
 
