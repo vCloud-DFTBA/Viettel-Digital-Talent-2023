@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+  labels:
+    app: fastapi
+  namespace: vdt
+  annotations:
+    monitoring: "true"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+      - image: yellow09/vdt-fastapi
+        name: fastapi
+        ports:
+        - containerPort: 8000
