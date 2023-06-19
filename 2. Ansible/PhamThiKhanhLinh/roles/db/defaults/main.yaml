@@ -1,6 +1,0 @@
-IMAGE_NAME: mongo:5.0
-NETWORK_NAME: db-network
-MONGODB_VOLUME: ./data:/docker-entrypoint-initdb.d
-MONGO_ROOT_USERNAME: kilinh
-MONGO_ROOT_PASSWORD: Linh2812
-DATABASE_NAME: VDT2023

@@ -1,3 +1,0 @@
-IMAGE_NAME: backend
-DB_NETWORK_NAME: db-network
-API_NETWORK_NAME: api-network

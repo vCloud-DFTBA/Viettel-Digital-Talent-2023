@@ -1,26 +1,4 @@
-- name: Pull MongoDB image from Docker Hub
-  community.docker.docker_image:
-    name: "{{ IMAGE_NAME }}"
-    source: pull
-
-- name: Create Database network
-  community.docker.docker_network:
-    name: "{{ NETWORK_NAME }}"
-      #driver_options:
-      #com.docker.network.bridge.name: db-network-bridge
-
-- name: Run docker image mongo
-  community.docker.docker_container:
-    name: mongo
-    image: "{{ IMAGE_NAME }}"
-    restart_policy: unless-stopped
-    networks:
-      - name: "{{ NETWORK_NAME }}"
-    volumes:
-      - "{{ MONGODB_VOLUME }}"
-   
-    env:
-      MONGO_INITDB_ROOT_USERNAME: "{{ MONGO_ROOT_USERNAME }}"
-      MONGO_INITDB_ROOT_PASSWORD: "{{ MONGO_ROOT_PASSWORD }}"
-      MONGO_INITDB_DATABASE: "{{ DATABASE_NAME }}"
-  become: yes
+- name: Build and Run MongoDB
+  command: docker compose -f ./app/db-compose.yaml up -d
+  args:
+    chdir: "{{ playbook_dir }}"

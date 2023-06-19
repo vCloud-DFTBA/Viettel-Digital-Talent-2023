@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:5.0
+    container_name: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
+      MONGO_INITDB_DATABASE: ${DATABASE}
+    networks:
+      - db
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+
+networks:
+  db:
+    name: db
+    external: false
+    driver: bridge

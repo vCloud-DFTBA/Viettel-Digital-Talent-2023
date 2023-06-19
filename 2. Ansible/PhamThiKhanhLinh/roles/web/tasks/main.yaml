@@ -1,17 +1,4 @@
 - name: Build frontend image
-  community.docker.docker_image:
-    name: "{{ IMAGE_NAME }}"
-    build:
-      path: ./app/frontend
-    source: build
-
-- name: Run frontend container
-  community.docker.docker_container:
-    name: frontend
-    image: "{{ IMAGE_NAME }}"
-    restart_policy: unless-stopped
-    networks:
-      - name: "{{ NETWORK_NAME }}"
-    ports:
-      - "80:80"
-  become: yes
+  command: docker compose -f ./app/fe-compose.yaml up -d
+  args:
+    chdir: "{{ playbook_dir }}"
