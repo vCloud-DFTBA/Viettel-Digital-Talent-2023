@@ -1,0 +1,24 @@
+---
+- name: Setup Docker
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+  - common
+
+- name: Push images from local machine to DockerHub
+  hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+  - push
+
+- name: Deploy the application on remote machine
+  hosts: nodes
+  become: true
+  gather_facts: true
+  roles:
+  - db
+  - api
+  - web
+  

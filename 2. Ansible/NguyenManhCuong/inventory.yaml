@@ -1,0 +1,13 @@
+---
+all:
+    hosts:
+        localhost:
+            ansible_connection: local
+            ansible_python_interpreter: ./venv/bin/python3
+            ansible_become_user: root
+            ansible_become_password: vanson1997
+            hostname: vdt-23
+        nodes:
+            ansible_ssh_host: 3.27.152.18 
+            ansible_ssh_user: ubuntu
+            ansible_ssh_private_key_file: ~/Desktop/vdt-2023.pem
