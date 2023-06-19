@@ -43,10 +43,10 @@ webapp:
 
 #### b. Roles
 
-- [common](): Set up environment such as installing Docker, Docker Compose Plugin, etc.
-- [db](): Pull MongoDB image and run container using `docker compose`.
-- [api](): Build Python Back-End image and run container using `docker compose`.
-- [web](): Build Front-End image and run container using `docker compose`.
+- [common](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/ansible-lab/2.%20Ansible/PhamThiKhanhLinh/roles/common/tasks/main.yaml): Set up environment such as installing Docker, Docker Compose Plugin, etc.
+- [db](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/ansible-lab/2.%20Ansible/PhamThiKhanhLinh/roles/db/tasks/main.yaml): Pull MongoDB image and run container using `docker compose`.
+- [api](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/ansible-lab/2.%20Ansible/PhamThiKhanhLinh/roles/api/tasks/main.yaml): Build Python Back-End image and run container using `docker compose`.
+- [web](https://github.com/khanhlinhh/Viettel-Digital-Talent-2023/blob/ansible-lab/2.%20Ansible/PhamThiKhanhLinh/roles/web/tasks/main.yaml): Build Front-End image and run container using `docker compose`.
 
 ### 2. Deployment
 
