@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <title>Profile</title>
+  </head>
+  <body>
+    <section class="intro">
+        <div class="bg-image" style="background-color: #d8f3dc;">
+          <div class="mask d-flex align-items-center justify-content-around">
+            <div class="p-5">
+                <h1 id="pageTitle">Profile</h1>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col col-sm-10 text-center">
+                                        <h4 class="title">Danh sách học viên</h4>
+                                    </div>
+                                    <div class="col col-sm-2 text-center mt-1" id="iconCreate" data-bs-toggle="modal" data-bs-target="#modalCreate">
+                                        <a href="#" data-tip="new"><i class="fa fa-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-uppercase" id="headTable">
+                                     
+                                        </tr>
+                                    </thead>
+                                    <tbody id="attendees">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- Modal Create-->
+            <div class="modal fade" id="modalCreate" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Create New Attendee</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="formCreate">
+                            <div class="modal-body">
+                            
+                                <div class="mb-3">
+                                    <label for="create_name" class="form-label">Họ và Tên</label>
+                                    <input type="text" class="form-control" id="create_name" name="name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="create_birth_year" class="form-label">Năm sinh</label>
+                                    <input type="text" class="form-control" id="create_birth_year" name="birth_year">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="create_gender" class="form-label">Giới tính</label>
+                                    <input type="text" class="form-control" id="create_gender" name="gender">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="create_university" class="form-label">Đại học</label>
+                                    <input type="text" class="form-control" id="create_university" name="university">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="create_major" class="form-label">Chuyên ngành</label>
+                                    <input type="text" class="form-control" id="create_major" name="major">
+                                </div>
+                
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnCreate">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          <!-- Modal Update-->
+            <div class="modal fade" id="modalUpdate" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalUpdateTitle">Update Attendee</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="formUpdate">
+                            <div class="modal-body">
+                            
+                                <div class="mb-3">
+                                    <label for="update_birth_year" class="form-label">Năm sinh</label>
+                                    <input type="text" class="form-control" id="update_birth_year" name="birth_year">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="update_gender" class="form-label">Giới tính</label>
+                                    <input type="text" class="form-control" id="update_gender" name="gender">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="update_university" class="form-label">Đại học</label>
+                                    <input type="text" class="form-control" id="update_university" name="university">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="update_major" class="form-label">Chuyên ngành</label>
+                                    <input type="text" class="form-control" id="update_major" name="major">
+                                </div>
+                
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="btnUpdate">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          <!-- Modal Delete-->
+            <div class="modal fade" id="modalDelete" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete Attendee</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn có chắc muốn xóa người này?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger" id="btnDelete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        
+      </section>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
+
