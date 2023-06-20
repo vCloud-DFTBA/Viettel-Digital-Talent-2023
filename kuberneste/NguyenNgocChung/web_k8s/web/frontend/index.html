@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .href-item {
+            margin-bottom: 20px;
+        }
+        .href-item a {
+            display: inline-block;
+            padding: 10px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="href-item">
+        <a href="/">Home</a>
+        <a href="create.html">AddStudent</a>
+        <a href="update.html">UpdateStudent</a>
+    </div>
+    
+    <table class="table-data">
+        <tr>
+            <th>STT</th>
+            <th>Họ và tên</th>
+            <th>Username</th>
+            <th>Ngày Sinh</th>
+            <th>Giới tính</th>
+            <th>Trường</th>
+            <th>Chuyên ngành</th>
+            <th>Xoá </th>
+            <th>Xem thông tin</th>
+        </tr>
+    </table>
+
+    <script>
+        let root = document.querySelector('.table-data')
+
+        fetch('http://localhost/api/attendees/')
+        .then(response => response.json())
+        .then(data => {
+            for (attendee of data){
+                const tr = document.createElement('tr')
+
+                for (key in attendee){
+                    const td = document.createElement('td')
+                    td.textContent = attendee[key]
+                    tr.appendChild(td)
+                }
+
+                let td = document.createElement('td')
+                let a = document.createElement('a')
+                linkHref = "api/delete/" + attendee['id']
+                a.href = linkHref
+                a.textContent = 'Delete'
+                td.appendChild(a)
+                tr.appendChild(td)
+
+                let td1 = document.createElement('td')
+                let a1 = document.createElement('a')
+                linkHref = "api/read/" + attendee['id']
+                a1.href = linkHref
+                a1.textContent = 'Detail'
+                td1.appendChild(a1)
+                tr.appendChild(td1)
+
+                root.appendChild(tr)
+
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    </script>
+</body>
+</html>
+
+
