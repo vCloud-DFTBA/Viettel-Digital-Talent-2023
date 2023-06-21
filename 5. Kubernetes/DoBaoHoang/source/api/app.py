@@ -4,12 +4,11 @@ from pymongo import MongoClient
 from bson import ObjectId, errors
 application = Flask(__name__)
 
-MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
-MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
-HOST_URL = os.environ.get("HOST_URL")
+DATABASE_USER = os.environ.get("DATABASE_USER")
+DATABASE_PWD = os.environ.get("DATABASE_PWD")
 
-client = MongoClient(f"{MONGODB_HOSTNAME}:27017")
-db = client[MONGODB_DATABASE]
+client = MongoClient(f"mongodb://{DATABASE_USER}:{DATABASE_PWD}@db-service:27017/flaskdb?authSource=admin")
+db = client['flaskdb']
 collection = db.attendees
 
 def is_valid(profile):
@@ -32,7 +31,6 @@ def profiles():
         attendee['_id'] = str(attendee['_id'])
         attendees.append(attendee)
     response = {
-        "ip": HOST_URL,
         "attendees": attendees
     }
     return response, 200

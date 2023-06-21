@@ -22,7 +22,7 @@ fetch(baseURL + '/profiles')
     .then(resp => resp.json())
     .then(data => {
         data.attendees.forEach(attendee => {
-            titlePage.textContent = `IP: ${data.ip}`;
+            titlePage.textContent = `Viettel Digital Talent 2023`;
             let row = document.createElement("tr");
             appendCellData(row, attendee.name);
             appendCellData(row, attendee.birth_year);

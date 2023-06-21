@@ -11,11 +11,11 @@ if __name__ == "__main__":
     import os
     from pymongo import MongoClient
 
-    MONGODB_DATABASE = os.environ.get("MONGODB_DATABASE")
-    MONGODB_HOSTNAME = os.environ.get("MONGODB_HOSTNAME")
+    DATABASE_USER = os.environ.get("DATABASE_USER")
+    DATABASE_PWD = os.environ.get("DATABASE_PWD")
 
-    client = MongoClient(f"{MONGODB_HOSTNAME}:27017")
-    db = client[MONGODB_DATABASE]
+    client = MongoClient(f"mongodb://{DATABASE_USER}:{DATABASE_PWD}@db-service:27017/flaskdb?authSource=admin")
+    db = client['flaskdb']
     collection = db.attendees
 
     init_database('static/attendees.csv', collection)
