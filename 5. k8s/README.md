@@ -53,7 +53,7 @@ data:
 ```
 
 ```
-kubectl apply -f mongodb_secret.yaml
+kubectl apply -f mongodb-secret.yaml
 ```
 <div align="center">
        <img src="./images/secret_in_cluster.png"/>
@@ -272,5 +272,5 @@ kubectl apply -f web-deployment.yaml
 <div align="center">
        <img src="./images/web.png"/>
        <br/>
-       <i>Demo three-tier Web Application</i>
+       <i>Demo three-tier Web Application.</i>
 </div>
