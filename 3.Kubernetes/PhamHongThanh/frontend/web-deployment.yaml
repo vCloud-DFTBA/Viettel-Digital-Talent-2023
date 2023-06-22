@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-nginx
+  labels:
+    app: react-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: react-nginx
+  template:
+    metadata:
+      labels:
+        app: react-nginx
+    spec:
+      containers:
+      - name: react-nginx
+        image: thanhph/frontend:main
+        ports:
+        - containerPort: 80
