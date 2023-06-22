@@ -1,0 +1,34 @@
+- name: Create vt_app group
+  group:
+    name: vt_app
+
+- name: Create vt_app user
+  user:
+    name: vt_app
+    group: vt_app
+
+- name: Setup DNS server
+  lineinfile:
+    path: /etc/resolv.conf
+    line: nameserver 8.8.8.8
+
+- name: Install utility tools
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: "{{ update_cache }}"
+  loop:
+      - curl
+      - wget
+      - htop
+
+- name: SSH hardening
+  copy:
+    src: ../templates/sshd.conf
+    dest: /etc/ssh/sshd_config.d/ssh_hardening.conf
+  notify: "Restart SSH"
+- import_tasks: setup_docker.yaml 
+
+- name: Create docker network for 3-tier web application
+  docker_network:
+    name: "{{ three_tier_network_name }}"
