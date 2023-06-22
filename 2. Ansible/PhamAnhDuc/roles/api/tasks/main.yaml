@@ -1,0 +1,13 @@
+---
+
+- name: Start API server
+  docker_container:
+    name: python
+    image: ducpa01/python-buddy
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    ports: "5000:5000"
+    env_file: ~/projects/vdt/Viettel-Digital-Talent-2023/Ansible/PhamAnhDuc/roles/api/vars/api.env
+    networks:
+      - name: "{{ three_tier_network_name }}"

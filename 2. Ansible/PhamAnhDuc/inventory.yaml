@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become_password: 123
+      hostname: vtn-01
+      three_tier_network_name: 3-tier-network
