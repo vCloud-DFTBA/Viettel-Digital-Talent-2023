@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: VDT-2023
+  region: eu-central-1
+
+nodeGroups:
+  - name: app
+    instanceType: t3.micro
+    desiredCapacity: 2
+    volumeSize: 8
+    ssh:
+      allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
