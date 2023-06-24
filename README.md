@@ -162,6 +162,5 @@ $ kubectl get nodes -o wide
 ```
 ![ip](./K8s/imagek8s/ip.png)
 
-Có được địa chỉ ip ta tiến hành truy cập http://172.18.0.2:30000 trên trình duyệt
-hệ thống trae về kết quả :
+Có được địa chỉ ip ta tiến hành truy cập http://172.18.0.2:30000 trên trình duyệt và hệ thống trả về kết quả như sau :
 ![result](./K8s/imagek8s/result.png)
