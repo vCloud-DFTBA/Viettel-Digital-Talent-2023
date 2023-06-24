@@ -149,6 +149,7 @@ Lấy danh sách deployment bằng lệnh
 $ kubectl get deployment
 ``` 
 ![deployment](./K8s/imagek8s/deployment.png)
+
 Lấy danh sách Service bằng lệnh
 ```c
 $ kubectl get service
