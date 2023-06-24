@@ -1,7 +1,7 @@
 # Deploy a Multi-tier Application on Kubernetes
-Build web 3 Tiers
+Build web 3 Tiers.
 ![web_3_tier](./K8s/imagek8s/web-3-tier.png)
-Sử dụng 3 images trong dockerhub
+Sử dụng 3 images trong dockerhub:
 
 Database: huong195/k8s_db_image:v1.0
 Backend: huong195/k8s_web_image:v1.0
