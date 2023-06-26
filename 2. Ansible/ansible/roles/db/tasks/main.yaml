@@ -1,0 +1,19 @@
+---
+- name: Create database directory
+  file:
+    path: /etc/mongodb
+    state: directory
+
+- name: Copy file to Node
+  copy:
+    src: "{{item}}"
+    dest: "/etc/mongodb/"
+  loop:
+    - data.json
+    - docker-compose.yaml
+    - Dockerfile
+    - import-data.sh
+  
+- name: Run docker compose to Deploy
+  community.docker.docker_compose:
+    project_src: /etc/mongodb/
