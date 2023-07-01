@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:4.2.24-bionic
+    container_name: database_mongo
+    environment:
+      - MONGO_INITDB_DATABASE=vdt23
+      - MONGO_INITDB_ROOT_USERNAME=thanh
+      - MONGO_INITDB_ROOT_PASSWORD=thanh
+    ports:
+      - "27018:27017"
+    networks:
+      my_network:
+        aliases:
+          - mongodb
+  flask:
+    build: ./flask
+    container_name: backend_flask
+    depends_on:
+      - mongodb
+    ports:
+      - 5000:5000
+    networks:
+      my_network:
+        aliases:
+          - flask-app
+  nginx:
+    build: ./nginx
+    container_name: frontend_nginx
+    depends_on:
+      - flask
+    ports:
+      - 8081:80
+    networks:
+      - my_network
+networks:
+  my_network:

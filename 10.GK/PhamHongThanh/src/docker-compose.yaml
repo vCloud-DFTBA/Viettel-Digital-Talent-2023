@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  mongodb:
+    build: ./mongodb
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    networks:
+      my_network:
+        aliases:
+          - mongodb
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - 5001:5000
+    depends_on: 
+      - mongodb
+    networks:
+      my_network:
+        aliases:
+          - backend
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - 8081:80
+    networks:
+      - my_network
+networks:
+  my_network:

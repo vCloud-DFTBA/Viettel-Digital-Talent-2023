@@ -1,0 +1,19 @@
+---
+- name: Create Flask directory
+  file:
+    path: /etc/flask
+    state: directory
+
+- name: Copy file to Node
+  copy:
+    src: "{{ item }}"
+    dest: /etc/flask/
+  loop:
+    - docker-compose.yaml
+    - Dockerfile
+    - app.py
+    - requirements.txt
+  
+- name: Run docker compose to Deploy
+  community.docker.docker_compose:
+    project_src: /etc/flask/

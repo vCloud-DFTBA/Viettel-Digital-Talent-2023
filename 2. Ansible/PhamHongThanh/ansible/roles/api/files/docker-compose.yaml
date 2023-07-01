@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  flask:
+    build: .
+    container_name: backend_flask
+    ports:
+      - 5000:5000
+    networks:
+      my_network:
+        aliases:
+          - flask-app
+
+networks:
+  my_network:
+    external: 
+      name: my_network
