@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}Viettel intern list</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            font-size: 20px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #990b0b;
+        }
+
+        tr:hover {
+            background-color: #9feeb7;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Intern Members</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Birth of Year</th>
+                <th>Gender</th>
+                <th>Major</th>
+                <th>University</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in data_student %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username}}</td>
+                <td>{{ user.year_of_birth }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.major }}</td>
+                <td>{{ user.university }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

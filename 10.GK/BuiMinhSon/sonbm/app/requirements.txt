@@ -1,0 +1,5 @@
+Flask==2.2.3
+Flask-Pymongo
+Jinja2==3.1.2
+Flask-Session
+flask_cors

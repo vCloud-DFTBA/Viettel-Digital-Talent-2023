@@ -1,0 +1,21 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form-control {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .form-button {
+    margin-top: 20px;
+  }

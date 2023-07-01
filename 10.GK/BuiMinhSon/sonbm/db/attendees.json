@@ -1,0 +1,247 @@
+[
+ {
+  "Name": "Bùi Minh Sơn",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Công nghệ thông tin"
+ },
+ {
+  "Name": "Đào Đại Hiệp",
+  "YearOfBirth": 2001,
+  "Sex": "Nam",
+  "School": "Đại học Bách khoa Hà Nội",
+  "Major": "Điện tử viễn thông"
+ },
+ {
+  "Name": "Đỗ Anh Tú",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+ },
+ {
+  "Name": "Đỗ Bảo Hoàng",
+  "YearOfBirth": 1997,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ },
+ {
+  "Name": "Hoàng Quốc Doanh",
+  "YearOfBirth": 2001,
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "NULL"
+ },
+ {
+  "Name": "Le Minh Duc",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ },
+ {
+  "Name": "Lê Phúc Lai",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Kỹ thuật điện tử viễn thông"
+ },
+ {
+  "Name": "Lê Quang Anh",
+  "YearOfBirth": 1997,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ },
+ {
+  "Name": "Lê Trọng Minh",
+  "YearOfBirth": 2000,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Kỹ thuật điều khiển và tự động hóa"
+ },
+ {
+  "Name": "Lê Tùng Lâm",
+  "YearOfBirth": 1999,
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ },
+ {
+  "Name": "Lê Văn Chiến",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Kỹ thuật hàng không vũ trụ"
+ },
+ {
+  "Name": "Linh Thi Nguyen",
+  "YearOfBirth": 2002,
+  "Sex": "Nữ",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "ICT"
+ },
+ {
+  "Name": "Nguyễn Đại An",
+  "YearOfBirth": 2023,
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ },
+ {
+  "Name": "Nguyễn Đình Hoàng",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ },
+ {
+  "Name": "Nguyen Duc Vinh Data",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính Viễn thông",
+  "Major": "NULL"
+ },
+ {
+  "Name": "Nguyễn Dương Long",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "ĐH Thuỷ lợi",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ },
+ {
+  "Name": "Nguyen Huu Thang",
+  "YearOfBirth": 2000,
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ },
+ {
+  "Name": "Nguyễn Mạnh Cường",
+  "YearOfBirth": 1997,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Điện tử"
+ },
+ {
+  "Name": "Nguyễn Mạnh Đức",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Học viện Kỹ thuật mật mã",
+  "Major": "An toàn thông tin"
+ },
+ {
+  "Name": "Nguyễn Ngọc Chung",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Học viên Công nghệ Bưu chính Viễn Thông HCM",
+  "Major": "NULL"
+ },
+ {
+  "Name": "Nguyễn Tuấn Anh",
+  "YearOfBirth": 1997,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ },
+ {
+  "Name": "Nguyễn Văn Quang",
+  "YearOfBirth": 1997,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "An toàn thông tin"
+ },
+ {
+  "Name": "Ninh Chí Hướng",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính viễn thông",
+  "Major": "An toàn thông tin"
+ },
+ {
+  "Name": "Ninh Văn Nghĩa",
+  "YearOfBirth": 2001,
+  "Sex": "Nam",
+  "School": "Đại Học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ },
+ {
+  "Name": "Phạm Anh Đức",
+  "YearOfBirth": 2001,
+  "Sex": "Nam",
+  "School": "Đại học Bách Khoa Hà Nội",
+  "Major": "Toán ứng dụng và tin học"
+ },
+ {
+  "Name": "Phạm Duy Cương",
+  "YearOfBirth": 1997,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Công nghệ điện tử"
+ },
+ {
+  "Name": "Phạm Hồng Thanh",
+  "YearOfBirth": 1998,
+  "Sex": "Nam",
+  "School": "Swinburne University",
+  "Major": "Phát triển phần mềm"
+ },
+ {
+  "Name": "Phạm Thị Khánh Linh",
+  "YearOfBirth": 2002,
+  "Sex": "Nữ",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+ },
+ {
+  "Name": "Phạm Văn Tới",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính viễn thông",
+  "Major": "Công nghệ thông tin ứng dụng phần mềm"
+ },
+ {
+  "Name": "Trần Đức Mạnh",
+  "YearOfBirth": 1998,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Bảo mật thông tin"
+ },
+ {
+  "Name": "Trần Mạnh Dũng",
+  "YearOfBirth": 2001,
+  "Sex": "Nam",
+  "School": "Học viện Công nghệ Bưu chính Viễn thông",
+  "Major": "Điện tử viễn thông"
+ },
+ {
+  "Name": "Trần Minh Dương",
+  "YearOfBirth": 2002,
+  "Sex": "Nam",
+  "School": "Đại học Công nghệ - Đại học Quốc gia Hà Nội",
+  "Major": "Mạng máy tính và truyền thông dữ liệu"
+ },
+ {
+  "Name": "Trần Xuân Phú",
+  "YearOfBirth": 2001,
+  "Sex": "Nam",
+  "School": "School Đại học Công nghệ thông tin - ĐHQG Tp.Hồ chí Minh",
+  "Major": "Khoa học máy tính"
+ },
+ {
+  "Name": "Vũ Hoàng Long",
+  "YearOfBirth": 2001,
+  "Sex": "Nam",
+  "School": "Đại học Bách Khoa Hà Nội",
+  "Major": "Khoa học máy tính"
+ },
+ {
+  "Name": "Vũ Minh Hiếu",
+  "YearOfBirth": 2000,
+  "Sex": "Nam",
+  "School": "Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga",
+  "Major": "Kỹ thuật phần mềm"
+ }
+]

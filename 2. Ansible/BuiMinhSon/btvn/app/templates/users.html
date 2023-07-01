@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Danh sách thành viên</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            font-size: 20px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #990b0b;
+        }
+
+        tr:hover {
+            background-color: #9feeb7;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Danh sách thành viên</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Họ tên</th>
+                <th>Năm sinh</th>
+                <th>Trường</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in data %}
+            <tr>
+                <td>{{ user.Name }}</td>
+                <td>{{ user.YearOfBirth }}</td>
+                <td>{{ user.School }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

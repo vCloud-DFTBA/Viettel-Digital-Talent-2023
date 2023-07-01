@@ -1,0 +1,32 @@
+# hosts-dev
+
+[vm]
+vm1 ansible_host=192.168.60.134
+vm1 ansible_ssh_pass=2288
+vm1 ansible_user=vm1
+vm1 ansible_sudo_pass=2288
+
+vm2 ansible_host=192.168.60.135
+vm2 ansible_ssh_pass=2288
+vm2 ansible_user=vm2
+vm2 ansible_sudo_pass=2288
+
+
+[VPS]
+vps1 ansible_host=35.86.186.124
+vps1 ansible_ssh_pass=vdt2023
+vps1 ansible_user=cloud_user
+vps1 ansible_sudo_pass=vdt2023
+
+vps2 ansible_host=35.86.242.19
+vps2 ansible_ssh_pass=vdt2023
+vps2 ansible_user=cloud_user
+vps2 ansible_sudo_pass=vdt2023
+
+
+
+[localhost]
+node1 ansible_host=localhost
+node1 ansible_ssh_pass=Face123@
+node1 ansible_user=mr8
+node1 ansible_sudo_pass=Face123@

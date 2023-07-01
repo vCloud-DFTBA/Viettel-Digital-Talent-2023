@@ -1,0 +1,10 @@
+---
+- name: Run MongoDB
+  community.docker.docker_container:
+    name: database
+    image: mongo:5.0.17
+    restart_policy: unless-stopped
+    state: started
+    ports:
+      - "27017:27017"
+    network_mode: my-network

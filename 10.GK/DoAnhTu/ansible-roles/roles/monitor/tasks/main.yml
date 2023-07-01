@@ -1,0 +1,18 @@
+---
+# tasks file for roles/monitoring
+- name: Creates src directory
+  file:
+    path: /home/prometheus
+    state: directory
+    mode: "0775"
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ../templates/
+    dest: /home/prometheus/
+    mode: "0777"
+- name: Run Docker Compose
+  community.docker.docker_compose:
+    project_src: /home/prometheus/
+    build: no
+    state: present

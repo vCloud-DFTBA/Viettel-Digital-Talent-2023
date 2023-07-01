@@ -1,0 +1,21 @@
+---
+# - name: install configure package
+#   hosts: vps2
+#   become: true
+#   gather_facts: true
+#   roles:
+#     - common
+
+# - name: install configure package
+#   hosts: VPS
+#   become: true
+#   gather_facts: true
+#   roles:
+#     - monitoring
+
+- name: install configure package
+  hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+    - logging
