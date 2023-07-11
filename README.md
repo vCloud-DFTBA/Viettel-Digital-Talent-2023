@@ -5,9 +5,10 @@ Build web 3 Tiers.
 
 Sử dụng 3 images trong dockerhub:
 
-Database: huong195/k8s_db_image:v1.0
-Backend: huong195/k8s_web_image:v1.0
-Frontend: huong195/k8s_nginx_image:v1.0
+#### Database: huong195/k8s_db_image:v1.0
+#### Backend: huong195/k8s_web_image:v1.0
+#### Frontend: huong195/k8s_nginx_image:v1.0
+
 ## quá trình thực hiện 
 ### Install Kind and create Cluster
 ```c
