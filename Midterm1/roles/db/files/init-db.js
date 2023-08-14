@@ -38,5 +38,4 @@ db.internees.insertMany([
 {'id': '33', 'name': 'Trần Xuân Phú', 'username': 'phutx','birth': '2001', 'sex': 'Nam', 'university': 'Trường Đại học Công nghệ thông tin - ĐHQG Tp.Hồ chí Minh', 'major': 'Khoa học máy tính'},
 {'id': '34', 'name': 'Vũ Hoàng Long', 'username': 'longvh','birth': '2001', 'sex': 'Nam', 'university': 'Đại học Bách Khoa Hà Nội', 'major': 'Khoa học máy tính'},
 {'id': '35', 'name': 'Vũ Minh Hiếu', 'username': 'hieuvm','birth': '2000', 'sex': 'Nam', 'university': 'Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga', 'major': 'Kỹ thuật phần mềm'}
-{'id': '35', 'name': 'Vũ Minh Hiếu', 'username': 'hieuvm','birth': '2000', 'sex': 'Nam', 'university': 'Đại học CNTT, cơ khí & quang học St.Petersburg LB Nga', 'major': 'Kỹ thuật phần mềm'}
 ])
