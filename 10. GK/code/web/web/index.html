@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMD</title>
+
+    <!-- <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"
+            integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css"
+        integrity="sha512-F7WyTLiiiPqvu2pGumDR15med0MDkUIo5VTVyyfECR5DZmCnDhti9q5VID02ItWjq6fvDfMaBaDl2J3WdL1uxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body">
+    <!-- <h2>Header</h2>
+    <h3>Sub-Header</h3> -->
+    <h2>Danh sách học viên tham gia chương trình đào tạo Viettel Digital
+        Talent 2023</h2>
+    <h3>~Lĩnh vực Cloud~</h3>
+    <button class="btn add_new_attendee">
+
+        <a href="add_attendee.html">
+            <i class="fas fa-user-plus fa-lg" style="color: #cd1818;"></i>
+        </a>
+    </button>
+    <div class="loader" id="loading"></div>
+    <table class="table" id="attendees">
+    </table>
+    <div class="delete_modal hidden">
+        <div class="container_modal">
+            <div class="header_modal">
+                <i class="fas fa-check" style="color: #ffffff; margin-right: 10px;"></i>
+                Xác nhận
+            </div>
+            <div class="content_modal">Bạn có chắc chắn muốn xóa học viên này?</div>
+            <div class="footer_modal">
+                <button class="accept_button" id="btn_accept_button">Có</button>
+                <button class="cancel_button" id="btn_cancel_button">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="edit_modal hidden">
+        <div class="edit_container_modal">
+            <div class="edit_header_modal">
+                Chỉnh sửa thông tin học viên
+            </div>
+            <div class="edit_content_modal">
+                <form method="post">
+
+                    <!-- Text input -->
+                    <!-- <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example3">Họ và tên</label>
+                        <input type="text" id="form6Example3" class="form-control" name="inputName" autocomplete="off"/>
+                        
+                    </div> -->
+                    <!-- Text input -->
+                    <!-- <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example3">Username</label>
+                        <input type="text" id="form6Example3" name="inputUsername" class="form-control" />
+                        
+                    </div> -->
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <!-- <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form6Example1"> Năm sinh</label>
+                                <input type="text" id="form6Example1" class="form-control" />
+                                
+                            </div> -->
+                        <!-- </div>
+                        <div class="col parent_gender_input">
+                            <div class="form-outline gender_input">
+                                <label class="form-label" for="form6Example2">Giới tính:</label>
+                                <select name="gender" id="gender">
+                                    <option value="male">Nam</option>
+                                    <option value="female">Nữ</option>
+                                  </select>
+                                
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Text input -->
+                    <!-- <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example4">Trường đại học</label>
+                        <input type="text" id="form6Example4" class="form-control" />
+                        
+                    </div> -->
+                    <!-- Text input -->
+                    <!-- <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example4">Chuyên ngành</label>
+                        <input type="text" id="form6Example4" class="form-control" /> -->
+                        
+                    <!-- </div>
+                    
+                </form>
+            </div>
+            <div class="edit_footer_modal">
+                <button class="accept_button" id="btn_accept_edit_button">Xác nhận</button>
+                <button class="cancel_button" id="btn_cancel_edit_infor">Hủy thay đổi</button>
+            </div>
+        </div>
+    </div> -->
+    
+</body>
+<script src="main.js"></script>
+</html>

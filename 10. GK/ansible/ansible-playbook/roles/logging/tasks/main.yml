@@ -1,0 +1,15 @@
+- name: copy docker-compose file from src to dest
+  copy:
+    src: ~/Desktop/btlVDT2023/fluentd
+    dest: ~/
+  register: copy_result
+- name: docker compose down
+  shell:
+    cmd: docker compose down -v
+    chdir: ~/fluentd/
+  when: copy_result.changed
+  register: docker_compose_down
+- name: docker compose up
+  shell:
+    cmd: docker compose up -d
+    chdir: ~/fluentd/

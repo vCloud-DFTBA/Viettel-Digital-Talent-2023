@@ -1,0 +1,65 @@
+---
+- name: Install Docker on Managed Nodes
+  hosts: managedhosts
+  become: true
+  gather_facts: false
+  roles:
+    - common
+  
+- name: install fluentd
+  hosts: web
+  become: false
+  gather_facts: false
+  roles:
+    - logging
+    
+
+- name: Deploy database 
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - db
+          
+
+- name: Deploy api
+  hosts: api
+  become: false
+  gather_facts: false
+  roles:
+    - api
+
+    
+
+- name: Deploy web frontend
+  hosts: web
+  become: false
+  gather_facts: false
+  roles:
+    - web
+
+- name: HA and loadbalancer API backend server
+  hosts: api
+  become: false
+  gather_facts: false
+  roles:
+    - lb_backend
+ 
+- name: HA and loadbalancer web frontend server
+  hosts: web
+  become: false
+  gather_facts: false
+  roles:
+    - lb_frontend
+
+- name: install node exporter and cadvisor for managednode
+  hosts: managedhosts
+  become: false
+  gather_facts: false
+  roles:
+    - monitor
+
+
+
+    
+
+    

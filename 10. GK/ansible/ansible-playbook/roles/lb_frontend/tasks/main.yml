@@ -1,0 +1,21 @@
+- name: copy docker-compose.yml file
+  copy:
+    src: "~/Desktop/btlVDT2023/web/{{ item }}"
+    dest: "/home/{{ ansible_user }}/web/"
+  loop:
+    - docker-compose.yml
+    - Dockerfile
+    - nginx.conf
+    - web
+    - nginxlb.conf
+  changed_when: true
+- name: docker compose down
+  shell:
+    cmd: docker compose down -v
+    chdir: ~/web/
+  notify: Delete invalid images
+
+- name: docker-compose up
+  shell:
+    cmd: docker compose up --scale web=2 -d
+    chdir: ~/web/

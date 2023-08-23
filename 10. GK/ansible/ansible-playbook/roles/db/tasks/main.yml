@@ -1,0 +1,15 @@
+- name: Tear down existing services
+  shell:
+    cmd: "docker-compose down"
+    chdir: '{{ db_project_directory }}'
+- name: docker-compose up
+  shell:
+    cmd: "docker-compose up -d"
+    chdir: '{{ db_project_directory }}'
+
+# community.docker.docker_compose:
+          #   project_src: /home/manhdung5801/Desktop/btlVDT2023/db
+          #   state: present
+          #   files:
+          #     - docker-compose.yml
+          #   env_file: /home/manhdung5801/Desktop/btlVDT2023/db
