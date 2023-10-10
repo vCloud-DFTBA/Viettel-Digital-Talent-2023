@@ -1,6 +1,6 @@
 # Deploy a Multi-tier Application on Kubernetes
 Build web 3 Tiers.
-![web_3_tier](./K8s/imagek8s/web-3-tier.png)
+![web_3_tier](./3_K8s/imagek8s/web-3-tier.png)
 Sử dụng 3 images trong dockerhub:
 
 Database: huong195/k8s_db_image:v1.0
@@ -141,24 +141,24 @@ Lấy danh sách pod bằng lệnh
 ```c
 $ kubectl get pod 
 ```
-![pod](./K8s/imagek8s/pod.png)
+![pod](./3_K8s/imagek8s/pod.png)
 Lấy danh sách deployment bằng lệnh
 ```c
 $ kubectl get deployment
 ``` 
-![deployment](./K8s/imagek8s/deployment.png)
+![deployment](./3_K8s/imagek8s/deployment.png)
 Lấy danh sách Service bằng lệnh
 ```c
 $ kubectl get service
 ```
-![service](./K8s/imagek8s/service.png)
+![service](./3_K8s/imagek8s/service.png)
 
 Kiểm tra các node
 ```c
 $ kubectl get nodes -o wide
 ```
-![ip](./K8s/imagek8s/ip.png)
+![ip](./3_K8s/imagek8s/ip.png)
 
 Có được địa chỉ ip ta tiến hành truy cập http://172.18.0.2:30000 trên trình duyệt
 hệ thống trae về kết quả :
-![result](./K8s/imagek8s/result.png)
+![result](./3_K8s/imagek8s/result.png)
