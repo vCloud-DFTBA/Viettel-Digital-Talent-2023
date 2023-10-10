@@ -1,6 +1,8 @@
 # Deploy a Multi-tier Application on Kubernetes
 Build web 3 Tiers.
+
 ![web_3_tier](https://github.com/blackcat4347/Viettel-Digital-Talent-2023/blob/main/3_K8s/imagek8s/web-3-tier.png?raw=true)
+
 Sử dụng 3 images trong dockerhub:
 
 Database: huong195/k8s_db_image:v1.0
