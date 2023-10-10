@@ -1,6 +1,6 @@
 # Deploy a Multi-tier Application on Kubernetes
 Build web 3 Tiers.
-![web_3_tier](./3_K8s/imagek8s/web-3-tier.png)
+![web_3_tier](https://github.com/blackcat4347/Viettel-Digital-Talent-2023/blob/main/3_K8s/imagek8s/web-3-tier.png?raw=true)
 Sử dụng 3 images trong dockerhub:
 
 Database: huong195/k8s_db_image:v1.0
@@ -141,24 +141,24 @@ Lấy danh sách pod bằng lệnh
 ```c
 $ kubectl get pod 
 ```
-![pod](./3_K8s/imagek8s/pod.png)
+![pod](https://github.com/blackcat4347/Viettel-Digital-Talent-2023/blob/main/3_K8s/imagek8s/pod.png?raw=true)
 Lấy danh sách deployment bằng lệnh
 ```c
 $ kubectl get deployment
 ``` 
-![deployment](./3_K8s/imagek8s/deployment.png)
+![deployment](https://github.com/blackcat4347/Viettel-Digital-Talent-2023/blob/main/3_K8s/imagek8s/deployment.png?raw=true)
 Lấy danh sách Service bằng lệnh
 ```c
 $ kubectl get service
 ```
-![service](./3_K8s/imagek8s/service.png)
+![service](https://github.com/blackcat4347/Viettel-Digital-Talent-2023/blob/main/3_K8s/imagek8s/service.png?raw=true)
 
 Kiểm tra các node
 ```c
 $ kubectl get nodes -o wide
 ```
-![ip](./3_K8s/imagek8s/ip.png)
+![ip](https://github.com/blackcat4347/Viettel-Digital-Talent-2023/blob/main/3_K8s/imagek8s/ip.png?raw=true)
 
 Có được địa chỉ ip ta tiến hành truy cập http://172.18.0.2:30000 trên trình duyệt
 hệ thống trae về kết quả :
-![result](./3_K8s/imagek8s/result.png)
+![result](https://github.com/blackcat4347/Viettel-Digital-Talent-2023/blob/main/3_K8s/imagek8s/result.png?raw=true)
