@@ -1,0 +1,68 @@
+Building mongodb
+[+] Building 119.5s (5/5) FINISHED
+ => [internal] load .dockerignore                                                                                                                                      0.2s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load build definition from Dockerfile                                                                                                                   0.1s
+ => => transferring dockerfile: 51B                                                                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/mongo:5.0                                                                                                           6.5s
+ => [1/1] FROM docker.io/library/mongo:5.0@sha256:ee514514754ffdb13597a894bdae90fdabbe4c0926bf96b40a84d1233782bcc1                                                   111.4s
+ => => resolve docker.io/library/mongo:5.0@sha256:ee514514754ffdb13597a894bdae90fdabbe4c0926bf96b40a84d1233782bcc1                                                     0.0s
+ => => sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8 28.58MB / 28.58MB                                                                       7.9s
+ => => sha256:6653ceb2297789e4fe13aba3af53f096e83ecc4ad4417356ea72e4f9e8b7dccb 1.84kB / 1.84kB                                                                         1.9s
+ => => sha256:ee514514754ffdb13597a894bdae90fdabbe4c0926bf96b40a84d1233782bcc1 1.04kB / 1.04kB                                                                         0.0s
+ => => sha256:27d1b94856d816baba40786ed3412064c939c804a51f8bc6057c3ade301a9c81 2.20kB / 2.20kB                                                                         0.0s
+ => => sha256:ef8735eb905a8fba4ff109a7c3b40ff5da6f4e365adbf31427bf3ea179c29393 7.93kB / 7.93kB                                                                         0.0s
+ => => sha256:e067c5774dde349c4127278bc0f06acc2f6d6a88bff74983171225648b999315 8.35MB / 8.35MB                                                                         7.3s
+ => => sha256:3f2512535c9bcf2f6101b06b4fe0ed1c287f5468ff706040b190898672771028 1.26MB / 1.26MB                                                                         4.7s
+ => => sha256:95823dd641199b73cc53f548fee010eee561dfe2ebae9a7ee571fe1452e33db0 147B / 147B                                                                             5.6s
+ => => sha256:806644aafaf1d573325b8e49c6fc90554de5be9e9768cde4f3c7f2c1716ae0ec 1.44kB / 1.44kB                                                                         6.3s
+ => => sha256:b6eb4ecca0a280d864aad293e957efa59a8d6a2458bb34589a68df325ab9521e 256B / 256B                                                                             7.2s
+ => => sha256:8e2314ca77da3e599d8ca7b1fdd11a671f6ac79aaa627565d8252d55b02682a5 216.49MB / 216.49MB                                                                    39.7s
+ => => sha256:122debe1b6af34d1fba2a5f35e7e52b3c15ea04c754b7b2f39501489156158b7 5.02kB / 5.02kB                                                                         8.1s
+ => => extracting sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8                                                                             25.6s
+ => => extracting sha256:6653ceb2297789e4fe13aba3af53f096e83ecc4ad4417356ea72e4f9e8b7dccb                                                                              0.0s
+ => => extracting sha256:e067c5774dde349c4127278bc0f06acc2f6d6a88bff74983171225648b999315                                                                              6.5s
+ => => extracting sha256:3f2512535c9bcf2f6101b06b4fe0ed1c287f5468ff706040b190898672771028                                                                              0.3s
+ => => extracting sha256:95823dd641199b73cc53f548fee010eee561dfe2ebae9a7ee571fe1452e33db0                                                                              0.0s
+ => => extracting sha256:806644aafaf1d573325b8e49c6fc90554de5be9e9768cde4f3c7f2c1716ae0ec                                                                              0.0s
+ => => extracting sha256:b6eb4ecca0a280d864aad293e957efa59a8d6a2458bb34589a68df325ab9521e                                                                              0.0s
+ => => extracting sha256:8e2314ca77da3e599d8ca7b1fdd11a671f6ac79aaa627565d8252d55b02682a5                                                                             65.5s
+ => => extracting sha256:122debe1b6af34d1fba2a5f35e7e52b3c15ea04c754b7b2f39501489156158b7                                                                              0.0s
+ => exporting to image                                                                                                                                                 0.1s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:bbccc72c8907af74f6170eeae58c43d0cb24a6afddf917143d3d6a3059855154                                                                           0.0s
+ => => naming to docker.io/library/mongo:5.0                                                                                                                           0.0s
+Building flask
+[+] Building 7.7s (10/10) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                   0.1s
+ => => transferring dockerfile: 244B                                                                                                                                   0.0s
+ => [internal] load .dockerignore                                                                                                                                      0.1s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/python:3.9                                                                                                          7.1s
+ => [1/5] FROM docker.io/library/python:3.9@sha256:6ea9dafc96d7914c5c1d199f1f0195c4e05cf017b10666ca84cb7ce8e2699d51                                                    0.0s
+ => [internal] load build context                                                                                                                                      0.2s
+ => => transferring context: 3.84kB                                                                                                                                    0.1s
+ => CACHED [2/5] WORKDIR /var/www                                                                                                                                      0.0s
+ => CACHED [3/5] COPY . /var/www                                                                                                                                       0.0s
+ => CACHED [4/5] RUN pip install --no-cache-dir -r requirements.txt                                                                                                    0.0s
+ => CACHED [5/5] RUN pip install gunicorn                                                                                                                              0.0s
+ => exporting to image                                                                                                                                                 0.0s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:f4a7c390c822654454d8a5508511309e56edc289b62b6403e209e0440b07f242                                                                           0.0s
+ => => naming to docker.io/library/python:3.9                                                                                                                          0.0s
+Building webserver
+[+] Building 7.7s (8/8) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                   0.1s
+ => => transferring dockerfile: 220B                                                                                                                                   0.0s
+ => [internal] load .dockerignore                                                                                                                                      0.1s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/nginx:1.22.0-alpine                                                                                                 6.8s
+ => [1/3] FROM docker.io/library/nginx:1.22.0-alpine@sha256:addd3bf05ec3c69ef3e8f0021ce1ca98e0eb21117b97ab8b64127e3ff6e444ec                                           0.0s
+ => [internal] load build context                                                                                                                                      0.1s
+ => => transferring context: 32B                                                                                                                                       0.0s
+ => CACHED [2/3] RUN rm -f /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/app.conf                                                                                   0.0s
+ => CACHED [3/3] COPY nginx.conf /etc/nginx/conf.d/                                                                                                                    0.0s
+ => exporting to image                                                                                                                                                 0.0s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:ee2e01da03c255936a8aff9035aa83d089d991c8d79d5fb7d9b64073df9b605c                                                                           0.0s
+ => => naming to docker.io/library/nginx:1.22.0-alpine
