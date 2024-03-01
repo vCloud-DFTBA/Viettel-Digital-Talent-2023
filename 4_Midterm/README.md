@@ -4,19 +4,28 @@
 
 Yêu cầu:
 ● Viết một CRUD web application đơn giản thực hiện các chức năng:
-\n○ Liệt kê danh sách sinh viên tham gia khóa đào tạo chương trình VDT 2023 lĩnh
+
+○ Liệt kê danh sách sinh viên tham gia khóa đào tạo chương trình VDT 2023 lĩnh
 vực cloud dưới dạng bảng (0.5đ)
-\n○ Cho phép xem chi tiết/thêm/xóa/cập nhật thông tin sinh viên (0.5đ)
+
+○ Cho phép xem chi tiết/thêm/xóa/cập nhật thông tin sinh viên (0.5đ)
+
 ● Thiết kế hệ thống với ba dịch vụ: (0.5đ)
+
 ○ web: Giao diện web viết bằng HTML + CSS + Javascript được triển khai trên nền
 web server nginx
+
 ○ api: RESTful API viết bằng ngôn ngữ lập trình tùy chọn (prefer Python), có đầy
 đủ các chức năng: list, get, create, update, delete các bản ghi thông tin sinh viên
+
 ○ db: Database SQL hoặc NoSQL lưu trữ thông tin sinh viên (dữ liệu khởi tạo của
 DB này được cho bởi bảng trong Phụ lục I.)
+
 ● Viết unit tests cho các chức năng APIs (0.5đ)
+
 ● * Viết unit tests cho các chức năng giao diện, viết integration tests
 Output:
+
 ● Mã nguồn của từng dịch vụ
 Triển khai web application sử dụng các DevOps tools & practices
 (8đ)
@@ -26,22 +35,31 @@ Triển khai web application sử dụng các DevOps tools & practices
 
 
 Yêu cầu:
+
 ● Viết Dockerfile để đóng gói các dịch vụ trên thành các container image (0.5đ)
+
 ● Yêu cầu image đảm bảo tối ưu thời gian build và kích thước chiếm dụng, khuyến khích
 sử dụng các thủ thuật build image đã được giới thiệu (layer-caching, optimized RUN
 instructions, multi-stage build, etc.) (0.5đ)
 Output:
+
 ● File Dockerfile cho từng dịch vụ
+
 ● Output câu lệnh build và thông tin docker history của từng image
 
 
 2. Continuous Integration (1đ)
 Yêu cầu:
+
 ● Tự động chạy unit test khi tạo PR vào branch main (0.5đ)
+
 ● Tự động chạy unit test khi push commit lên một branch (0.5đ)
 Output:
+
 ● File setup công cụ CI
+
 ● Output log của luồng CI
+
 ● Các hình ảnh demo khác
 
 
