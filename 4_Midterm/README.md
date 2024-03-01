@@ -4,9 +4,9 @@
 
 Yêu cầu:
 ● Viết một CRUD web application đơn giản thực hiện các chức năng:
-○ Liệt kê danh sách sinh viên tham gia khóa đào tạo chương trình VDT 2023 lĩnh
+\n○ Liệt kê danh sách sinh viên tham gia khóa đào tạo chương trình VDT 2023 lĩnh
 vực cloud dưới dạng bảng (0.5đ)
-○ Cho phép xem chi tiết/thêm/xóa/cập nhật thông tin sinh viên (0.5đ)
+\n○ Cho phép xem chi tiết/thêm/xóa/cập nhật thông tin sinh viên (0.5đ)
 ● Thiết kế hệ thống với ba dịch vụ: (0.5đ)
 ○ web: Giao diện web viết bằng HTML + CSS + Javascript được triển khai trên nền
 web server nginx
