@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+
+    <link rel="stylesheet" crossorigin="anonymous"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+
+	<script crossorigin="anonymous"
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" >
+	</script></head>
+
+<body>
+    
+    <div class="href-item">
+        <a href="/">Home</a>
+        <a href="insert.html">Add</a>
+    </div>
+
+    <form class="insert-form" >
+        <div class="form-group row">
+            <label for="STT">Id</label>
+            <input type="text" class="form-control" name="id" id="id" placeholder="STT">
+          </div>
+          <div class="form-group row">
+              <label for="FullName">FullName</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="FULLNAME">
+            </div>
+            <div class="form-group row">
+              <label for="Username">Username</label>
+              <input type="text"  class="form-control" name="username" id="username" placeholder="USERNAME">
+          </div>
+          <div class="form-group row">
+              <label for="Year">Year of birth</label>
+              <input type="text" class="form-control" name="birth" id="birth" placeholder="BIRTH">
+            </div>
+            <div class="sex-container">
+              <input type="radio" name="sex" class="sex-radio" value="Male"> 
+              <label for="">Male</label>
+              <input type="radio" name="sex" class="sex-radio" value = "Female">
+              <label for=""> Female</label>
+          </div>
+            <div class="form-group row">
+              <label for="university">University</label>
+              <input type="text" class="form-control" name="university" id="university" placeholder="UNIVERSITY">
+          </div>
+          <div class="form-group row">
+              <label for="major">Major</label>
+              <input type="text" class="form-control" name="major" id="major" placeholder="MAJOR">
+          </div>
+  
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="/" class="btn btn-primary">Cancel</a>
+    </form>
+
+    <script>
+        const updateForm = document.querySelector('.insert-form')
+        
+        const sexRadio = document.querySelectorAll('.sex-radio')
+        updateForm.addEventListener('submit', (e)=>{
+            e.preventDefault()
+
+            let sex = ''
+            for (let gender of sexRadio){
+                if (gender.checked){
+                    sex = gender.value
+                    break
+                }
+            }
+            const data = {
+                'id': document.querySelector('#id').value,
+                'name': document.querySelector('#name').value,
+                'username': document.querySelector('#username').value,
+                'birth': document.querySelector('#birth').value,
+                'sex': sex,
+                'university': document.querySelector('#university').value,
+                'major': document.querySelector('#major').value
+            }
+            console.log(data)
+
+            fetch("http://localhost:3000/Add", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                })
+            .then(response => response.json())
+            .then(data => alert('successfully'))
+            .catch(error => console.error(error));
+        })
+    </script>
+</body>
+</html>
