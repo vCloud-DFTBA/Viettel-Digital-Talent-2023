@@ -2,7 +2,7 @@
 
 # # Phát triển một 3-tier web application đơn giản (2đ)
 
-Yêu cầu:
+# #Yêu cầu:
 
 ● Viết một CRUD web application đơn giản thực hiện các chức năng:
 
@@ -32,10 +32,10 @@ Triển khai web application sử dụng các DevOps tools & practices
 (8đ)
 
 
-1. Containerization (1đ)
+# #1. Containerization (1đ)
 
 
-Yêu cầu:
+# # #Yêu cầu:
 
 ● Viết Dockerfile để đóng gói các dịch vụ trên thành các container image (0.5đ)
 
@@ -49,7 +49,7 @@ Output:
 ● Output câu lệnh build và thông tin docker history của từng image
 
 
-2. Continuous Integration (1đ)
+# # 2. Continuous Integration (1đ)
 Yêu cầu:
 
 ● Tự động chạy unit test khi tạo PR vào branch main (0.5đ)
