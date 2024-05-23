@@ -1,0 +1,44 @@
+---
+###########################################################################
+#Required settings
+
+#Name of the container when it's running
+mongodb_container_name: 'mongodb'
+# Port to be exposed to the host
+mongodb_port: 27017
+
+###########################################################################
+# Authentication
+# Enable authentication
+mongodb_auth: false
+
+# Admin credentials
+mongodb_admin_user:
+mongodb_admin_password:
+
+# User database
+mongodb_db:
+# User credentials
+mongodb_user:
+mongodb_password:
+
+###########################################################################
+# Optional settings
+
+# Mongo version
+mongodb_docker_image: mongo
+mongodb_docker_image_tag: 5
+
+# Install mongo cli on docker host
+mongodb_install_cli: false
+
+# Environment variables to be set for container
+mongodb_env: {}
+# Volumes to be mapped for mongo
+mongodb_volumes: []
+
+# Momory limit for container
+mongodb_container_memory_limit: 256m
+
+# Path to store config files on server
+mongodb_settings_path: '{{ ansible_user_dir }}/{{ mongodb_container_name }}'

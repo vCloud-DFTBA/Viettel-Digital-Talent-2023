@@ -1,0 +1,16 @@
+const database = '{{ mongodb_db }}';
+const user = '{{ mongodb_user }}';
+const pass = '{{ mongodb_password }}';
+
+if (database && user) {
+  db.createUser({
+    user: user,
+    pwd: pass,
+    roles: [
+      {
+        role: 'readWrite',
+        db: database
+      }
+    ]
+  });
+}

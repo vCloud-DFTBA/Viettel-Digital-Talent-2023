@@ -1,0 +1,11 @@
+- name: Run the docker API images
+  community.docker.docker_container:
+    name: backend
+    image: hieuminhvuu/p1_backend
+    state: started
+    restart: true
+    ports:
+      - "80:80"
+    env:
+      MONGODB_HOST : "172.17.0.1"
+    
