@@ -1,0 +1,2 @@
+docker_repo_image_name: tranmanhdung582001/web
+container_name: web_container

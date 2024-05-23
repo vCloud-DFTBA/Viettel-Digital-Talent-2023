@@ -1,0 +1,33 @@
+---
+- name: Install Docker on Managed Nodes
+  hosts: webserver
+  become: true
+  gather_facts: false
+  roles:
+    - common
+  
+
+
+- name: Deploy database 
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - db
+          
+
+- name: Deploy api
+  hosts: webserver
+  become: false
+  gather_facts: false
+  roles:
+    - api
+
+    
+
+- name: Deploy web frontend
+  hosts: webserver
+  become: false
+  gather_facts: false
+  roles:
+    - web
+    
