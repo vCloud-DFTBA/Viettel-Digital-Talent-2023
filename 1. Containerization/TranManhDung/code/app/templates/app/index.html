@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TMD Production</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"
+            integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css"
+          integrity="sha512-F7WyTLiiiPqvu2pGumDR15med0MDkUIo5VTVyyfECR5DZmCnDhti9q5VID02ItWjq6fvDfMaBaDl2J3WdL1uxA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body style="font-family: 'Roboto', sans-serif;">
+<h3 style="text-align:center">Danh sách học viên tham gia chương trình VDT 2023 lĩnh vực Cloud</h3>
+<table class="table">
+
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Họ và tên</th>
+        <th scope="col">Ngày sinh</th>
+        <th scope="col">Giới tính</th>
+        <th scope="col">Tên trường học</th>
+    </tr>
+    </thead>
+    {% for data in datas %}
+    <tbody>
+    <tr>
+        <th scope="row">{{data.id}}</th>
+        <td>{{data.name}}</td>
+        <td>{{data.DoB}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.university_name}}</td>
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+</body>
+
+</html>

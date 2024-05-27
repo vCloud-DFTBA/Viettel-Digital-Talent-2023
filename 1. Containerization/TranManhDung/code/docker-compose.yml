@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  web_app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_web_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - web_app:/data/web_app
+    command: > 
+      sh -c "python manage.py makemigrations &&
+            python manage.py migrate && 
+            python manage.py runserver 0.0.0.0:8000"
+  db:
+    image: postgres:12
+    container_name: postgresdb
+    environment:
+      - POSTGRES_USER=myusername
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=docker_postgresdb
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+  
+volumes:
+  postgres:
+  web_app:
+
