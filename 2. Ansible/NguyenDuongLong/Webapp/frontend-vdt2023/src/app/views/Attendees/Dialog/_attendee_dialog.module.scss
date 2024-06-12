@@ -1,0 +1,173 @@
+@import "../../../styles/root";
+
+.container {
+    width: 100%;
+    height: 100vh;
+    // height: 30%;
+    position: fixed;
+    z-index: 101;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .dialog{
+        width: 80rem;
+        height: 34rem;
+        background-color: rgb(255, 255, 255);
+        position: relative;
+        // top: -22%;
+        top: 10%;
+        box-shadow: 0px 1px 27px -3px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        .form {
+            margin: 2px 0;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 50px;
+            letter-spacing: 0.2rem;
+            @include linerText(45deg, #456072, #1f71db);
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            right: 0;
+            font-size: 3.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(218, 60, 60);
+                .icon {
+                    color: $white-color !important;
+                }
+            }
+        }
+
+        .content {
+            box-sizing: border-box;
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            overflow-y: scroll; /* Add vertical scrollbar */
+            // align-items: center;
+            // justify-content: center;
+
+            &::-webkit-scrollbar {
+                width: 0.2rem;
+            }
+
+            &Box {
+                // width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                border-radius: 1rem;
+                border: 1px solid $blue-dark-color;
+                position: relative;
+                margin: 1rem;
+
+                .form {
+                    margin: 2rem;
+                }
+
+                .item {
+                    margin: 2rem 0 1rem;
+                    border-radius: 2rem;
+                    background-color: #f8f9fa;
+
+                    .boxDeleteIcon {
+                        display: inline-block;
+                        color: $red-light-color;
+                        font-size: 2rem;
+                        padding-bottom: 1rem;
+                        cursor: pointer;
+
+                        &:active {
+                            font-size: 1.7rem;
+                        }
+
+                        &:hover .iconTrashCan {
+                            color: $red-dark-color;
+                        }
+                    }
+
+                    .selectIcon {
+                        width: $width-form-input;
+                        height: 4rem;
+                        font-size: 1.5rem;
+                        color: $blue-light-color;
+                        background-color: transparent;
+                        border: none;
+                        margin: 1.8rem 0.7rem 0.4rem;
+                        box-sizing: border-box;
+                        border-bottom: 1px solid $blue-light-color;
+                        outline: none;
+                    }
+                }
+
+                .boxAddItem {
+                    width: calc($width-form-input + 4rem);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 2rem 1rem;
+                    box-sizing: border-box;
+
+                    .boxItem {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2rem;
+                        padding: 1rem;
+                        box-sizing: border-box;
+                        border: 1px solid #ced4da;
+                        cursor: pointer;
+                        border-radius: 3rem;
+
+                        &:active {
+                            color: $white-color;
+                            background-color: rgb(85, 212, 85);
+                        }
+                    }
+                }
+
+                .listIcon {
+                    width: 20%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    padding: 1.2rem;
+                    .boxItem {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2rem;
+                        padding: 1rem;
+                        box-sizing: border-box;
+                        border: 1px solid #ced4da;
+                        cursor: pointer;
+                        border-radius: 3rem;
+
+                        &:active {
+                            color: $white-color;
+                            background-color: rgb(85, 212, 85);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

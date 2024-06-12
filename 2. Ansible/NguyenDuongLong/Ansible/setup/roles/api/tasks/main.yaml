@@ -1,0 +1,14 @@
+- name: Pull backend-vdt2023 Docker image - always pull latest version every playbook executes
+  command: docker pull duogglong/backend-vdt2023:latest 
+
+- name: Run Docker container backend-vdt2023
+  docker_container:
+    name: "{{ backend_container_name }}"
+    image: duogglong/backend-vdt2023:latest
+    state: started
+    interactive: true
+    tty: true
+    ports:
+      - "8088:8088"
+    networks:
+      - name: "{{ network_name }}"

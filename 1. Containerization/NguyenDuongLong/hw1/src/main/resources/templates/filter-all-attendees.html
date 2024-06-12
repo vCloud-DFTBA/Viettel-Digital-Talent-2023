@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendee List</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Họ và tên</th>
+        <th>Năm sinh</th>
+        <th>Giới tính</th>
+        <th>Trường</th>
+        <th>Chuyên ngành</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="attendee, status : ${attendees}">
+        <td th:text="${status.index + 1}"></td>
+<!--        <td th:text="${attendee.id}"></td>-->
+        <td th:text="${attendee.name}"></td>
+        <td th:text="${attendee.yearOfBirth}"></td>
+        <td th:text="${attendee.sex}"></td>
+        <td th:text="${attendee.school}"></td>
+        <td th:text="${attendee.major}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
