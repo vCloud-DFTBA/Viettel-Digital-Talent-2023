@@ -1,0 +1,17 @@
+---
+- name: deploy_web
+  hosts: all
+  become: true
+  gather_facts: true
+  roles:
+    - common
+    - db
+    - api
+    - nginx
+
+  # name: db_docker
+  # hosts: all
+  # become: true
+  # gather_facts: true
+  # roles:
+  #   - db

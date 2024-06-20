@@ -1,0 +1,21 @@
+---
+- name: buid images nginx
+  docker_image:
+    name: nginx_web
+    build: 
+      path: /home/chung/web_ansible/nginx
+    source: build
+
+- name: run container nginx
+  docker_container:
+    name: "{{container_name}}"
+    image: "{{ docker_images }}"
+    volumes:
+      - /home/chung/web_ansible/nginx:/usr/share/nginx/html
+    state: started
+    networks:
+      - name: my-network
+    ports:
+      - 80:80
+
+

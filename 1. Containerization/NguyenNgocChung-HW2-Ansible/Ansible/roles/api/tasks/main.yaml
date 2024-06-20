@@ -1,0 +1,16 @@
+---
+- name: buid  images
+  docker_image:
+    name: api
+    build: 
+      path: /home/chung/web_ansible/python
+    source: build
+
+- name: run container
+  docker_container:
+    name: "{{container_name}}"
+    image: "{{ docker_images }}"
+    networks:
+      - name: my-network
+
+

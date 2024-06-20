@@ -1,0 +1,21 @@
+---
+- name: Create a network
+  community.docker.docker_network:
+    name: my-network
+    state: present
+
+- name: buid images mongodb
+  docker_image:
+    name: db
+    build: 
+      path: /home/chung/web_ansible/mongo
+    source: build
+
+- name: run container mongodb
+  docker_container:
+    name: "{{container_name}}"
+    image: "{{ docker_images }}"
+    networks:
+      - name: my-network
+
+

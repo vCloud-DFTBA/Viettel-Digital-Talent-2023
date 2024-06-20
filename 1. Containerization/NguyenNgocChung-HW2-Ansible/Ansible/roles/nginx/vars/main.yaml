@@ -1,0 +1,2 @@
+container_name: web_nginx
+docker_images: nginx_web
